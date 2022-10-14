@@ -1,0 +1,33 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/</link>
+        <description>This is my cool site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 14 Oct 2022 23:53:33 &#43;0800</lastBuildDate>
+            <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Secondpost</title>
+    <link>http://wysiwyz.github.io/posts/secondpost/</link>
+    <pubDate>Fri, 14 Oct 2022 23:53:33 &#43;0800</pubDate>
+    <author>Celine</author>
+    <guid>http://wysiwyz.github.io/posts/secondpost/</guid>
+    <description><![CDATA[This is the second post.
+在 double short codes 裡面寫 markdown 語法不管用， 如果要加 markdown 語法的話，要把 {{&lt; &gt;}} 改成 {{% %}}
+**Testing doubly short code.** Testing doubly short code.
+short code]]></description>
+</item>
+<item>
+    <title>Firstpost</title>
+    <link>http://wysiwyz.github.io/posts/firstpost/</link>
+    <pubDate>Fri, 14 Oct 2022 23:08:24 &#43;0800</pubDate>
+    <author>Celine</author>
+    <guid>http://wysiwyz.github.io/posts/firstpost/</guid>
+    <description><![CDATA[Front matter - meta data about this piece of data key-value pairs that gives us information about this file
+can be written in three languages: yaml, toml, json
+default language for front matter is yaml
+What does a toml-style front matter look like?
++++ title = &#34;FirstPost&#34; date = YYYY-MM-ddTHH:mm:ss draft = true +++ versus a yaml-style front matter
+--- title: &#34;firstPost&#34; date: YYYY-MM-ddTHH:mm:ss draft: true --- Create custom front matter such as]]></description>
+</item>
+</channel>
+</rss>
