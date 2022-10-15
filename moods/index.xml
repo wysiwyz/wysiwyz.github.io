@@ -3,21 +3,5 @@
         <title>Moods - mood - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/moods/</link>
         <description>Moods - mood - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 14 Oct 2022 23:08:24 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/moods/" rel="self" type="application/rss+xml" /><item>
-    <title>Happy</title>
-    <link>http://wysiwyz.github.io/moods/happy/</link>
-    <pubDate>Fri, 14 Oct 2022 23:08:24 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/moods/happy/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Upbeat</title>
-    <link>http://wysiwyz.github.io/moods/upbeat/</link>
-    <pubDate>Fri, 14 Oct 2022 23:08:24 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/moods/upbeat/</guid>
-    <description><![CDATA[]]></description>
-</item>
-</channel>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="http://wysiwyz.github.io/moods/" rel="self" type="application/rss+xml" /></channel>
 </rss>
