@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>novelReadingLog - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/novelreadinglog/</link>
-        <description>novelReadingLog - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 18 Nov 2019 21:50:30 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/novelreadinglog/" rel="self" type="application/rss+xml" /><item>
+        <title>novelReadingLog - Category - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/categories/novelreadinglog/</link>
+        <description>novelReadingLog - Category - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 18 Nov 2019 21:50:30 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/novelreadinglog/" rel="self" type="application/rss+xml" /><item>
     <title>時光的彼岸 A tale for the time being</title>
     <link>http://wysiwyz.github.io/posts/ataleforthetimebeing/</link>
     <pubDate>Mon, 18 Nov 2019 21:50:30 &#43;0800</pubDate>

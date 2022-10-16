@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>See primer plus - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="See primer plus" />
+<meta property="og:description" content="成為 C&#43;&#43; pro 的幾個建議（摘錄自 Big Sam Tsai）
+Read good C&#43;&#43; textbooks again and again Learn from practice Work in related field Right mentor Make learning thoughts public At least three years 這樣看來我能做到的有 1. 2. 5. 6. ，4. 的話可以抓親友充數
+Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR directive /* a C-style comment */ int main() { // function header { start of function body using namespace std; // make difinitions visible cout &lt;&lt; &#34;Come up and C&#43;&#43; me some time." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/see_primer_plus/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-16T10:08:10+08:00" />
+<meta property="article:modified_time" content="2022-10-16T10:08:10+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="See primer plus"/>
+<meta name="twitter:description" content="成為 C&#43;&#43; pro 的幾個建議（摘錄自 Big Sam Tsai）
+Read good C&#43;&#43; textbooks again and again Learn from practice Work in related field Right mentor Make learning thoughts public At least three years 這樣看來我能做到的有 1. 2. 5. 6. ，4. 的話可以抓親友充數
+Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR directive /* a C-style comment */ int main() { // function header { start of function body using namespace std; // make difinitions visible cout &lt;&lt; &#34;Come up and C&#43;&#43; me some time."/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/see_primer_plus/" /><link rel="prev" href="http://wysiwyz.github.io/posts/secondpost/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "See primer plus",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/see_primer_plus\/"
+        },"genre": "posts","keywords": "","wordcount":  786 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/see_primer_plus\/","datePublished": "2022-10-16T10:08:10+08:00","dateModified": "2022-10-16T10:08:10+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">See primer plus</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-16">2022-10-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;786 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#chapter--2">Chapter  2</a>
+      <ul>
+        <li><a href="#宣告敘述與變數">宣告敘述與變數</a></li>
+        <li><a href="#指定敘述">指定敘述</a></li>
+        <li><a href="#其它的-c-敘述--使用-cin">其它的 C++ 敘述 — 使用 <code>cin</code></a></li>
+        <li><a href="#有回傳值的函數">有回傳值的函數</a></li>
+        <li><a href="#在多重函數的程式中使用-using-指令">在多重函數的程式中使用 using 指令</a></li>
+      </ul>
+    </li>
+    <li><a href="#chapter-3">Chapter 3</a>
+      <ul>
+        <li><a href="#簡單變數">簡單變數</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>成為 C++ pro 的幾個建議（摘錄自 Big Sam Tsai）</p>
+<blockquote>
+<ol>
+<li>Read good C++ textbooks again and again</li>
+<li>Learn from practice</li>
+<li>Work in related field</li>
+<li>Right mentor</li>
+<li>Make learning thoughts public</li>
+<li>At least <strong>three years</strong></li>
+</ol>
+</blockquote>
+<p>這樣看來我能做到的有 1. 2. 5. 6. ，<del>4. 的話可以抓親友充數</del></p>
+<h2 id="chapter--2">Chapter  2</h2>
+<h3 id="宣告敘述與變數">宣告敘述與變數</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;                          // a PREPROCESSOR directive</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* a C-style comment */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {                                 <span style="color:#75715e">// function header  { start of function body
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;                     <span style="color:#75715e">// make difinitions visible
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Come up and C++ me some time.&#34;</span>; <span style="color:#75715e">// message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> endl;                            <span style="color:#75715e">// start a new line 換行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;You won&#39;t regret it!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;  <span style="color:#75715e">// more output
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Come up and C++ me some time.&#34;</span>; 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// if to omit &#34;using namespace std;&#34;, one needs to add prefix &#34;std::&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;                  <span style="color:#75715e">// &lt;&lt; insertion operator 「插入運算子」
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">/* nowadays &#34;using namespace std;&#34; is considered lazy approach, 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">	   optimized declaration as below: */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>cout;                <span style="color:#75715e">// make cout available
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>endl;                <span style="color:#75715e">// make endl available
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>cin;                 <span style="color:#75715e">// make cin available
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Jupiter is a large planet.</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;        <span style="color:#75715e">// displays sentence, goes to next line
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Jupiter is a large planet.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;  <span style="color:#75715e">// displays sentence, goes to next line
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;C++宣告變數的風格是，將變數宣告在最接近第一次使用的地方&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;                                <span style="color:#75715e">// terminate main()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// return(0); | return (0); --- valid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// return0;                 --- invalid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>}                                            <span style="color:#75715e">// end of function body
+</span></span></span></code></pre></div><hr>
+<h3 id="指定敘述">指定敘述</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> carrot <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> steinway <span style="color:#f92672">=</span> carrot;
+</span></span><span style="display:flex;"><span>    steinway <span style="color:#f92672">-=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> steinway <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;  <span style="color:#75715e">// cout 必須將整數格式的數字轉成字元再印出, cout 可以辨識型別
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    printf(<span style="color:#e6db74">&#34;Printing a string: %s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#e6db74">&#34;25&#34;</span>);  <span style="color:#75715e">// %s - 列印字串
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    printf(<span style="color:#e6db74">&#34;Pringting a integer: %d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>, <span style="color:#ae81ff">25</span>);  <span style="color:#75715e">// %d - 整數
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><hr>
+<h3 id="其它的-c-敘述--使用-cin">其它的 C++ 敘述 — 使用 <code>cin</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> carrots;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;How many carrots do you have?&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#f92672">&gt;&gt;</span> carrots;  <span style="color:#75715e">// C++ input (pronounced as &#34;see-in&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Here are two more. &#34;</span>;
+</span></span><span style="display:flex;"><span>    carrots <span style="color:#f92672">=</span> carrots <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// the next line concatenates output
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Now you have &#34;</span> <span style="color:#f92672">&lt;&lt;</span> carrots <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; carrots.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>
+<p>C++ 將輸出視為從程式流出的字元串流，將輸入視為流入程式的字元串流</p>
+</li>
+<li>
+<p><code>&lt;&lt;</code> 運算子將字元送出到輸出串流</p>
+</li>
+<li>
+<p><code>&gt;&gt;</code> 運算子從輸入串流（input stream）取得字元</p>
+</li>
+<li>
+<p><code>cin</code> 和 <code>cout</code> 一樣聰明，會將從鍵盤輸入的字元序列，轉成接收變數可接收的形式</p>
+</li>
+<li>
+<p><code>&lt;&lt;</code> 運算子可以結合 (combine) 或連結 (concatenate) 輸出</p>
+<ul>
+<li>
+<p><code>cout &lt;&lt; &quot;Now you have &quot; &lt;&lt; carrots &lt;&lt; &quot; carrots.&quot; &lt;&lt; endl;</code></p>
+</li>
+<li>
+<p>以上輸出相當於以下程式碼輸出</p>
+<ul>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Now you have &#34;</span>;
+</span></span><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> carrots;
+</span></span><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; carrots&#34;</span>;
+</span></span><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span></code></pre></div></li>
+<li>
+<p>C++ 格式非常自由，語法單元之間加入換行字元和空白字元，並不會影響程式</p>
+</li>
+<li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Now you have &#34;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#f92672">&lt;&lt;</span> carrots
+</span></span><span style="display:flex;"><span>     <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; carrots.&#34;</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="有回傳值的函數">有回傳值的函數</h3>
+<ul>
+<li>
+<p>函數呼叫 function call : <code>sqrt(6.25);</code></p>
+</li>
+<li>
+<p>被呼叫的函數 called function: <code>sqrt</code> 的程式碼</p>
+</li>
+<li>
+<p>其它：有多個引數、沒有引數、沒有回傳值（傳送至螢幕）</p>
+</li>
+<li>
+<p>有些程式語言稱有回傳值的函數為<strong>函數</strong>（function），無回傳值者稱為<strong>程序</strong>（procedure）或<strong>副程式</strong>（subroutine）。但 C++ 和 C 都稱為函數。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">simon</span>(<span style="color:#66d9ef">int</span>);  <span style="color:#75715e">// 自定義函數原型：一般寫在 main() 定義之前
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>    simon(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Pick an integer&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> count;
+</span></span><span style="display:flex;"><span>    cin <span style="color:#f92672">&gt;&gt;</span> count;
+</span></span><span style="display:flex;"><span>    simon(count);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Done!&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">simon</span>(<span style="color:#66d9ef">int</span> n)  <span style="color:#75715e">// 函數主體：最簡單方式是把它放在 main() 之後
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Simon says touch your toes &#34;</span> <span style="color:#f92672">&lt;&lt;</span> n <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; times.&#34;</span> <span style="color:#f92672">&lt;&lt;</span>endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>C 和 C++ 均不允許函數主體內再定義其它函數（Pascal 可），每個函數定義均須獨立</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>voin <span style="color:#a6e22e">simon</span>(<span style="color:#66d9ef">int</span>);   <span style="color:#75715e">// 函數原型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">taxes</span>(<span style="color:#66d9ef">double</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()    <span style="color:#75715e">// 函數 #1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>voin <span style="color:#a6e22e">simon</span>(<span style="color:#66d9ef">int</span> n)  <span style="color:#75715e">// 函數 #2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">double</span> <span style="color:#a6e22e">taxes</span>(<span style="color:#66d9ef">double</span> t)  <span style="color:#75715e">// 函數 #3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>{
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> t;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>為何 main() 被設計成有回傳值？(<code>int main()</code> 與 <code>return 0;</code>)
+<ul>
+<li>可以想像成電腦作業系統（如 UNIX 或 Windows）接收<code>main()</code>回傳值</li>
+<li>UNIX 的 shell 描述檔和 Windows 命令列提示的批次檔，可執行程式並檢查其回傳值，這些值稱為<strong>離開值</strong>（exit value）</li>
+<li>慣例：正常結束回傳<code>0</code>，有問題時傳回非 0 值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="在多重函數的程式中使用-using-指令">在多重函數的程式中使用 using 指令</h3>
+<ul>
+<li>
+<p>將 <code>using namspace std</code> 指令放在兩個函數的外面與上面</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;   <span style="color:#75715e">// 影響此檔案中的所有函式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">simon</span>(<span style="color:#66d9ef">int</span>); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">simon</span>(<span style="color:#66d9ef">int</span> n) 
+</span></span><span style="display:flex;"><span>{   
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+<li>
+<p>使用 std 名稱空間 的四種方式</p>
+<ol>
+<li>
+<p>將 <code>using namespace std;</code> 放在函式定義內容的上面，檔案中每個函式都能用</p>
+</li>
+<li>
+<p>將 <code>using namespace std;</code> 放在某一個函數中，只有該函數可使用 std名稱空間 的所有內容</p>
+</li>
+<li>
+<p>某一函式中如果沒放 <code>using namespace std;</code> 可以這樣撰寫指令 <code>using std::cout;</code></p>
+</li>
+<li>
+<p>可以完全不用 <code>using</code>指令，只要在需要用 std名稱空間 的元素時，加入前置 <code>std::</code>即可</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span>std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;I&#39;m using cout and endl from the std namespace&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span></code></pre></div></li>
+</ol>
+</li>
+<li>
+<p>C++ 內建輸出入功能的物件（<code>cin</code>和<code>cout</code>）來自 istream 和 ostream類別 (under file <code>iostream</code>)</p>
+<ul>
+<li>
+<p>插入運算子 <code>&lt;&lt;</code> ：<code>ostream</code>類別定義，將資料放入輸出串流</p>
+</li>
+<li>
+<p>萃取運算子 <code>&gt;&gt;</code>：從輸出串流讀取資訊</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="chapter-3">Chapter 3</h2>
+<p>C++ 內建資料型態：基本型態（整數、浮點數）、複合型態（compound types）</p>
+<h3 id="簡單變數">簡單變數</h3>
+<ul>
+<li>程式需紀錄三種基本屬性：
+<ol>
+<li>資訊儲存的位置</li>
+<li>儲存的內容</li>
+<li>資訊的類別</li>
+</ol>
+</li>
+</ul>
+<h4 id="變數名稱">變數名稱</h4>
+<ul>
+<li>
+<p>C++ 命名規則</p>
+<ol>
+<li>變數名稱可使用字母、數字、以及底線<code>_</code>字元</li>
+<li>變數名稱第一個字元不可為數字</li>
+<li>大小寫字元有區別</li>
+<li>不可用 C++ 關鍵字當變數名稱</li>
+<li>保留給系統使用：兩個底線，或一個底線開頭後接大寫字母</li>
+</ol>
+<ul>
+<li><code>__hazel_nut</code> 或 <code>_ChestNut</code></li>
+<li>保留給編譯程式或者保留給系統的全域識別字之用</li>
+</ul>
+<ol start="6">
+<li>C++ 的變數名稱沒有長度限制，名稱中的所有字元都是有意義的
+<ul>
+<li>相較 ANSI C(C99) C語言能識別的變數名稱最大長度為 63 字元</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>變數名稱的命名</p>
+<ol>
+<li>
+<p>有些人會在變數名稱加入額外層次的資訊</p>
+<ul>
+<li><code>myWeight</code> 整數命名為 <code>nMyWeight</code>、<code>intMyWeight</code>(雖更明確卻令人詬病)
+<table>
+<thead>
+<tr>
+<th></th>
+<th>以空字元結尾的字元字串 str, sz</th>
+<th>布林值 b</th>
+<th>指標 p</th>
+<th>單一字元 c</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><code>strRain</code>、<code>szRain</code></td>
+<td><code>bIsRain</code></td>
+<td><code>pRain</code></td>
+<td><code>cRain</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>更多字首命名格式範例是否採用，以團隊 / 個人需求、喜好、風格選擇</p>
+</li>
+</ol>
+<ul>
+<li>確保一致性與明確性</li>
+</ul>
+</li>
+</ul>
+<h4 id="整數型態">整數型態</h4>
+<ul>
+<li>C++ 不同整數型態所需的記憶體大小也不相同</li>
+<li>有號型態（signed type）可表達正負整數，無號型態（unsigned type）不能表達負數</li>
+<li><strong>寬度 Width</strong>：描述整數使用的記憶量
+<ul>
+<li>寬度由小至大 <code>char</code> &lt; <code>short</code> &lt; <code>int</code> &lt; <code>long</code></li>
+<li>每一種都包含有號及無號兩種，一共八種整數型態</li>
+</ul>
+</li>
+</ul>
+<h4 id="shortintlong-及-long-long-整數型態">short、int、long 及 long long 整數型態</h4>
+<ul>
+<li>
+<p>因各家電腦設計不同，C++ 只規定最小容量的彈性標準</p>
+<ul>
+<li><code>short</code> 整數最少是 16 位元寬</li>
+<li><code>int</code> 整數最少要和 short 一樣大</li>
+<li><code>long</code> 整數最少是 32 位元寬，而且最少要和 int 一樣大</li>
+<li><code>long long</code> 整數最少是 64 位元寬，而且最少要和 long 一樣大</li>
+</ul>
+</li>
+<li>
+<p>位元（bit）是電腦記憶體的基本單位 ( 8 bit 位元 = 1 byte 位元組)</p>
+<blockquote>
+<p>每一位元有 2 種指定，八位元可表達 256 種數值
+2 X 2 X 2 X 2 X 2 X 2 X 2 X 2</p>
+<p>位元組 (byte) : 衡量電腦記憶體容量的度量單位
+1K = 1,024 位元組、1M = 1,024K 位元組</p>
+</blockquote>
+</li>
+<li>
+<p>C++ 定義的位元組：</p>
+<ul>
+<li>C++ 的位元組至少由可以表示執行系統的基本字元集（character set）的連續位元組成
+<ul>
+<li>ASCII、EBCDIC 字元集系統中，1個位元組等於 8 個位元</li>
+<li>Unicode 系統的話，1 個位元組等於 16 個或 32 個位元</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-10-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://wysiwyz.github.io/posts/see_primer_plus/" data-title="See primer plus" data-via="cel_yi" data-hashtags=""><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/see_primer_plus/" data-hashtag=""><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://wysiwyz.github.io/posts/see_primer_plus/" data-title="See primer plus"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/see_primer_plus/" data-title="See primer plus"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://wysiwyz.github.io/posts/see_primer_plus/" data-title="See primer plus"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/secondpost/" class="prev" rel="prev" title="Secondpost"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Secondpost</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

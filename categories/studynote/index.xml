@@ -3,7 +3,28 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 14 Oct 2022 23:08:24 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 16 Oct 2022 10:08:10 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>See primer plus</title>
+    <link>http://wysiwyz.github.io/posts/see_primer_plus/</link>
+    <pubDate>Sun, 16 Oct 2022 10:08:10 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/see_primer_plus/</guid>
+    <description><![CDATA[成為 C++ pro 的幾個建議（摘錄自 Big Sam Tsai）
+Read good C++ textbooks again and again Learn from practice Work in related field Right mentor Make learning thoughts public At least three years 這樣看來我能做到的有 1. 2. 5. 6. ，4. 的話可以抓親友充數
+Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR directive /* a C-style comment */ int main() { // function header { start of function body using namespace std; // make difinitions visible cout &lt;&lt; &#34;Come up and C++ me some time.]]></description>
+</item>
+<item>
+    <title>Secondpost</title>
+    <link>http://wysiwyz.github.io/posts/secondpost/</link>
+    <pubDate>Fri, 14 Oct 2022 23:53:33 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/secondpost/</guid>
+    <description><![CDATA[This is the second post.
+在 double short codes 裡面寫 markdown 語法不管用， 如果要加 markdown 語法的話，要把 {{&lt; &gt;}} 改成 {{% %}}
+**Testing doubly short code.** Testing doubly short code.
+short code]]></description>
+</item>
+<item>
     <title>Firstpost</title>
     <link>http://wysiwyz.github.io/posts/firstpost/</link>
     <pubDate>Fri, 14 Oct 2022 23:08:24 &#43;0800</pubDate>
