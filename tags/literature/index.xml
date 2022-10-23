@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>movieReviews - Category - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/categories/moviereviews/</link>
-        <description>movieReviews - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/moviereviews/" rel="self" type="application/rss+xml" /><item>
+        <title>Literature - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/literature/</link>
+        <description>Literature - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/literature/" rel="self" type="application/rss+xml" /><item>
     <title>犬王 [還沒觀賞的話別點,皆劇透]</title>
     <link>http://wysiwyz.github.io/posts/inu_oh/</link>
     <pubDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</pubDate>
