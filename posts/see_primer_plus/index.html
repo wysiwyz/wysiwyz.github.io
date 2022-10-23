@@ -19,7 +19,7 @@ Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR dire
 Read good C&#43;&#43; textbooks again and again Learn from practice Work in related field Right mentor Make learning thoughts public At least three years 這樣看來我能做到的有 1. 2. 5. 6. ，4. 的話可以抓親友充數
 Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR directive /* a C-style comment */ int main() { // function header { start of function body using namespace std; // make difinitions visible cout &lt;&lt; &#34;Come up and C&#43;&#43; me some time."/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/see_primer_plus/" /><link rel="prev" href="http://wysiwyz.github.io/posts/secondpost/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/see_primer_plus/" /><link rel="prev" href="http://wysiwyz.github.io/posts/secondpost/" /><link rel="next" href="http://wysiwyz.github.io/posts/inu_oh/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -30,7 +30,7 @@ Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR dire
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/see_primer_plus\/"
-        },"genre": "posts","keywords": "","wordcount":  786 ,
+        },"genre": "posts","keywords": "","wordcount":  933 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/see_primer_plus\/","datePublished": "2022-10-16T10:08:10+08:00","dateModified": "2022-10-16T10:08:10+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@ Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR dire
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">See primer plus</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-16">2022-10-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;786 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-10-16">2022-10-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;933 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -443,7 +443,46 @@ Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR dire
 </li>
 </ul>
 </li>
+<li>
+<p>知道系統整數最大範圍：</p>
+<ol>
+<li><code>sizeof</code>運算子 取得型態或變數的位元組數</li>
+<li>在標頭檔案 <code>climits</code>（或是較舊系統的<code>limits.h</code>標頭檔）中有整數型態範圍的資訊
+<ul>
+<li>定義符號名稱來表示不同的範圍。
+<ul>
+<li><code>INT_MAX </code>— int 的最大值</li>
+<li><code>CHAR_BIT</code> — 位元組的位元數</li>
+<li><strong>初始化</strong>的方式：使用宣告敘述指定變數的初值</li>
 </ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">// limits.cpp -- some integer limits
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e"># include &lt;iostream&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># include &lt;climits&gt;			   </span><span style="color:#75715e">// use limits.h for older systems
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>()
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> n_int <span style="color:#f92672">=</span> INT_MAX;        <span style="color:#75715e">// intialize n_int to max int value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">short</span> n_short <span style="color:#f92672">=</span> SHRT_MAX;   <span style="color:#75715e">// symbols defined in limits.h file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">long</span> n_long <span style="color:#f92672">=</span> LONG_MAX;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">long</span> <span style="color:#66d9ef">long</span> n_llong <span style="color:#f92672">=</span> LLONG_MAX;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// sizeof operator yields size of type or of variable
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;int is &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span> (<span style="color:#66d9ef">int</span>) <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; bytes.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;short is &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span> n_short <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; bytes.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;long is &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span> n_long  <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; bytes.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;long long is &#34;</span> <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span> n_llong <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; bytes.&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Maximum values:&#34;</span> <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;int: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> 
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+<p>​</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -465,7 +504,8 @@ Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR dire
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/secondpost/" class="prev" rel="prev" title="Secondpost"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Secondpost</a></div>
+    <div class="post-nav"><a href="/posts/secondpost/" class="prev" rel="prev" title="Secondpost"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Secondpost</a>
+            <a href="/posts/inu_oh/" class="next" rel="next" title="犬王">犬王<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
