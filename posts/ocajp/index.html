@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Oracle Certified Associate Java PG - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Oracle Certified Associate Java PG" />
+<meta property="og:description" content="OCAJP 紀錄題目的地方&hellip;
+1. Hello Java public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos&#43;&#43;) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.replace(pos, pos &#43; 1, uc); } } } catch (Exception e) { System.out.println(&#34;Out of limits&#34;); } System.out.println(message); } } Out of limits hEllO jAvA!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/ocajp/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-08T14:57:52+08:00" />
+<meta property="article:modified_time" content="2022-11-08T14:57:52+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Oracle Certified Associate Java PG"/>
+<meta name="twitter:description" content="OCAJP 紀錄題目的地方&hellip;
+1. Hello Java public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos&#43;&#43;) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.replace(pos, pos &#43; 1, uc); } } } catch (Exception e) { System.out.println(&#34;Out of limits&#34;); } System.out.println(message); } } Out of limits hEllO jAvA!"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ocajp/" /><link rel="prev" href="http://wysiwyz.github.io/posts/reading_club/" /><link rel="next" href="http://wysiwyz.github.io/posts/ocpjp/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Oracle Certified Associate Java PG",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/ocajp\/"
+        },"genre": "posts","keywords": "Java, 1Z0-808","wordcount":  1863 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/ocajp\/","datePublished": "2022-11-08T14:57:52+08:00","dateModified": "2022-11-08T14:57:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Oracle Certified Associate Java PG</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-08">2022-11-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1863 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ocajp">OCAJP</a>
+      <ul>
+        <li><a href="#1-hello-java">1. Hello Java</a></li>
+        <li><a href="#2-print-1020">2. Print 10:20</a></li>
+        <li><a href="#3---static-variable-and-object-variable">3.   Static Variable and Object Variable</a></li>
+        <li><a href="#4--constructor">4.  Constructor</a></li>
+        <li><a href="#5-initialize-variable">5. Initialize Variable</a></li>
+        <li><a href="#6-static-variable-and-object-variable-2">6. Static variable and Object variable 2</a></li>
+        <li><a href="#7--what-could-be-included-in-a-java-class">7.  What could be included in a Java class?</a></li>
+        <li><a href="#8-polymorphism多型-and-overriding-覆寫">8. Polymorphism<code>(多型)</code> and Overriding <code>(覆寫)</code></a></li>
+        <li><a href="#9-loop-process-control">9. Loop process control</a></li>
+        <li><a href="#10-concatenation-of-character-and-string">10. Concatenation of Character and String</a></li>
+        <li><a href="#11-ternary-operator-">11. Ternary Operator (?:)</a></li>
+        <li><a href="#12-two-dimensional-arrays">12. Two Dimensional Arrays</a></li>
+        <li><a href="#13-scope-of-substring">13. Scope of subString</a></li>
+        <li><a href="#14-revising-array">14. Revising array</a></li>
+        <li><a href="#15-masking-variable">15. Masking variable</a></li>
+        <li><a href="#16-object-variable-and-reference">16. Object variable and reference</a></li>
+        <li><a href="#17-abstract-class-and-implementation">17. Abstract class and implementation</a></li>
+        <li><a href="#18-how-to-sout-joetrue1000-">18. How to sout <code>joe:true:100.0</code> ?</a></li>
+        <li><a href="#19-revising-arrays_2">19. Revising Arrays_2</a></li>
+        <li><a href="#20-inheritance-and-constructor">20. Inheritance and Constructor</a></li>
+        <li><a href="#21-exception-and-error">21. Exception and Error</a></li>
+        <li><a href="#22-permanent-passing-value">22. Permanent passing value</a></li>
+        <li><a href="#23-abstract-class-and-interface">23. Abstract class and Interface</a></li>
+        <li><a href="#24-isolated-object">24. Isolated Object</a></li>
+        <li><a href="#25-concatenation-of-string-and-values">25. Concatenation of String and Values</a></li>
+        <li><a href="#26-string-concatenation---operator">26. String Concatenation  — 「+」Operator</a></li>
+        <li><a href="#27-how-to-create-c-class">27. How to create C class?</a></li>
+        <li><a href="#28-scope-of-variables">28. Scope of variables</a></li>
+        <li><a href="#29-bank-module">29. Bank Module</a></li>
+        <li><a href="#30-convert-to-upperclass-alphabet">30. Convert to Upperclass Alphabet</a></li>
+        <li><a href="#31-default-methods-for-interface">31. Default Methods for Interface</a></li>
+        <li><a href="#32-break-of-methods">32. <code>break</code> of Methods</a></li>
+        <li><a href="#33-usage-of-while">33. Usage of <code>while</code></a></li>
+        <li><a href="#34-continue-and-break-of-a-for-loop">34. <code>continue</code> and <code>break</code> of a For Loop</a></li>
+        <li><a href="#35-checked-exception-and-unchecked-exception">35. Checked Exception and Unchecked Exception</a></li>
+        <li><a href="#36-initialization-of-field">36. Initialization of Field</a></li>
+        <li><a href="#37-calculating-floatdouble">37. Calculating float/double</a></li>
+        <li><a href="#38-initialized-value-of-string-array">38. Initialized Value of String Array</a></li>
+        <li><a href="#39-throwing-ioexception">39. Throwing IOException</a></li>
+        <li><a href="#40-object-oriented-feature-of-java">40. Object Oriented Feature of Java</a></li>
+        <li><a href="#41-toy-shop">41. Toy shop</a></li>
+        <li><a href="#42-polymorphism-多型-and-overriding-覆寫-2">42. Polymorphism (多型) and Overriding (覆寫) 2</a></li>
+        <li><a href="#43-overloading-多載-and-default-value-type-預設數值型態">43. Overloading (多載) and Default Value Type (預設數值型態)</a></li>
+        <li><a href="#44-mutable-length-parameter-and-passing-by-value">44. Mutable Length Parameter And Passing by Value</a></li>
+        <li><a href="#45-generics-泛型">45. Generics (泛型)</a></li>
+        <li><a href="#46-constructor-2">46. Constructor 2</a></li>
+        <li><a href="#47-inheritance-relation">47. Inheritance Relation</a></li>
+        <li><a href="#48-casting-value">48. Casting value</a></li>
+        <li><a href="#49-declaration-method-of-object-array">49. Declaration Method of Object Array</a></li>
+        <li><a href="#50-引入套件">50. 引入套件</a></li>
+        <li><a href="#51-passing-by-parameter-from-command">51. Passing by Parameter from Command</a></li>
+        <li><a href="#51-polymorphism-and-overriding_3">51. Polymorphism and Overriding_3</a></li>
+        <li><a href="#52-electric-bills">52. Electric Bills</a></li>
+        <li><a href="#53-permanent-passing-by-value_2">53. Permanent Passing by Value_2</a></li>
+        <li><a href="#54-logically-equivalent">54. Logically Equivalent</a></li>
+        <li><a href="#55-initialized-value-of-string-array_2">55. Initialized Value of String Array_2</a></li>
+        <li><a href="#56-exception">56. Exception</a></li>
+        <li><a href="#57-integer-arithmetics">57. Integer Arithmetics</a></li>
+        <li><a href="#58-code-block">58. Code Block</a></li>
+        <li><a href="#59-for-loop">59. For Loop</a></li>
+        <li><a href="#60-two-dimensional-arrays_2">60. Two Dimensional Arrays_2</a></li>
+        <li><a href="#61-object-entity-class">61. Object Entity Class</a></li>
+        <li><a href="#62-java-code-compiling-and-operating">62. Java Code Compiling and Operating</a></li>
+        <li><a href="#63-method-main--code-entry-point">63. Method <code>main</code> — Code Entry Point</a></li>
+        <li><a href="#64-arrays">64. Arrays</a></li>
+        <li><a href="#65-garbage-collection">65. Garbage Collection</a></li>
+        <li><a href="#66-loop-do-while">66. Loop <code>do-while</code></a></li>
+        <li><a href="#67-array-object-reference-and-foreach">67. Array Object Reference and <code>foreach</code></a></li>
+        <li><a href="#68-usage-of-switch">68. Usage of <code>switch</code></a></li>
+        <li><a href="#69-list-object">69. List Object</a></li>
+        <li><a href="#70-interface-and-class">70. Interface and Class</a></li>
+        <li><a href="#71-stringbuilder">71. StringBuilder</a></li>
+        <li><a href="#72-private-method">72. Private method</a></li>
+        <li><a href="#73-string-array">73. String Array</a></li>
+        <li><a href="#74-exception-handling">74. Exception Handling</a></li>
+        <li><a href="#75-column">75. Column</a></li>
+        <li><a href="#76-column_2">76. Column_2</a></li>
+        <li><a href="#77-exception-handling_2">77. Exception Handling_2</a></li>
+        <li><a href="#78-overriding-methods">78. Overriding Methods</a></li>
+        <li><a href="#79-inheritance-and-constructor_2">79. Inheritance and Constructor_2</a></li>
+        <li><a href="#80-two-dimensional-string-array">80. Two-Dimensional String Array</a></li>
+        <li><a href="#81-is-object-equivalent">81. Is-Object-Equivalent</a></li>
+        <li><a href="#82-count-variable-of-foreach">82. Count Variable of <code>foreach</code></a></li>
+        <li><a href="#83-divide-by-zero">83. Divide by Zero</a></li>
+        <li><a href="#84-equivalent-string">84. Equivalent String</a></li>
+        <li><a href="#85-masking">85. Masking</a></li>
+        <li><a href="#86-stringbuilder_2">86. StringBuilder_2</a></li>
+        <li><a href="#87-plus-and-minus">87. Plus And Minus</a></li>
+        <li><a href="#88-casting-objects">88. Casting Objects</a></li>
+        <li><a href="#89-static-variable-and-object-variable_3">89. Static Variable and Object Variable_3</a></li>
+        <li><a href="#90-exception-class">90. Exception Class</a></li>
+        <li><a href="#91-break-in-nested-loop">91. <code>break</code> in Nested Loop</a></li>
+        <li><a href="#92-initialization-of-field_2">92. Initialization of Field_2</a></li>
+        <li><a href="#93-break-of-a-switch">93. <code>break</code> of a switch</a></li>
+        <li><a href="#94-passing-by-parameter-from-command_2">94. Passing by Parameter from Command_2</a></li>
+        <li><a href="#95-the-removeif-method-of-collection">95. The <code>removeIf</code> method of Collection</a></li>
+        <li><a href="#96-removal-of-collection-elements">96. Removal of Collection Elements</a></li>
+        <li><a href="#97-inheritance-and-constructor_3">97. Inheritance and Constructor_3</a></li>
+        <li><a href="#98-wrapper-clas">98. Wrapper Clas</a></li>
+        <li><a href="#99-string-concatenation">99. String Concatenation</a></li>
+        <li><a href="#100-setting-up-object-field">100. Setting up Object Field</a></li>
+        <li><a href="#101-method-main--code-entry-point_2">101. Method <code>main</code> — Code Entry Point_2</a></li>
+        <li><a href="#102-usage-of-while_2">102. Usage of <code>while</code>_2</a></li>
+        <li><a href="#103-visibility-of-overriding-method">103. Visibility of Overriding Method</a></li>
+        <li><a href="#104-ternary-operator-_2">104. Ternary Operator (?:)_2</a></li>
+        <li><a href="#105-constructor-and-initializing-field">105. Constructor and Initializing Field</a></li>
+        <li><a href="#106-character-value-and-number-value">106. Character Value and Number Value</a></li>
+        <li><a href="#107-implementation-of-method">107. Implementation of Method</a></li>
+        <li><a href="#108-object-instance">108. Object Instance</a></li>
+        <li><a href="#109-compiling-java-by-command">109. Compiling Java by Command</a></li>
+        <li><a href="#110-method-implementation-of-interface-and-abstract-class">110. Method Implementation of Interface and Abstract Class</a></li>
+        <li><a href="#111-sout-54321">111. Sout <code>54321</code></a></li>
+        <li><a href="#112-private-method_2">112. Private Method_2</a></li>
+        <li><a href="#113-assignment-expression">113. Assignment Expression</a></li>
+        <li><a href="#114-calculating-floatdouble_2">114. Calculating float/double_2</a></li>
+        <li><a href="#115-usage-of-switch_2">115. Usage of <code>switch</code>_2</a></li>
+        <li><a href="#116-structure-of-class">116. Structure of Class</a></li>
+        <li><a href="#117-passing-by-parameter-from-command_2">117. Passing by Parameter from Command_2</a></li>
+        <li><a href="#118-for-loop_2">118. For Loop_2</a></li>
+        <li><a href="#119-date-and-time">119. Date and TIme</a></li>
+        <li><a href="#120-scope-of-string-index">120. Scope of String Index</a></li>
+        <li><a href="#121-forloop_3">121. ForLoop_3</a></li>
+        <li><a href="#122-benefits-of-encapulation">122. Benefits of Encapulation</a></li>
+        <li><a href="#123-linear-search">123. Linear Search</a></li>
+        <li><a href="#124-permanent-passing-by-value_3">124. Permanent Passing by Value_3</a></li>
+        <li><a href="#125-replacing-string">125. Replacing String</a></li>
+        <li><a href="#126-benefits-of-polymorphism">126. Benefits of Polymorphism</a></li>
+        <li><a href="#127-initialization-of-field_3">127. Initialization of Field_3</a></li>
+        <li><a href="#128-passing-by-parameter-from-command_4">128. Passing by Parameter from Command_4</a></li>
+        <li><a href="#129-object-instance_2">129. Object Instance_2</a></li>
+        <li><a href="#130-polymorphism-and-inheritance">130. Polymorphism and Inheritance</a></li>
+        <li><a href="#131-default-method">131. Default Method</a></li>
+        <li><a href="#132-inheritance-constructor-and-overriding-method">132. Inheritance, Constructor and Overriding Method</a></li>
+        <li><a href="#133-plusplus">133. PlusPlus</a></li>
+        <li><a href="#134-inverted-boolean">134. Inverted Boolean</a></li>
+        <li><a href="#135-foreach-foreach">135. ForEach <code>foreach</code></a></li>
+        <li><a href="#136-triangle-area">136. Triangle Area</a></li>
+        <li><a href="#137-code-unreachable">137. Code Unreachable</a></li>
+        <li><a href="#138-string-concatenation_2">138. String Concatenation_2</a></li>
+        <li><a href="#139-polymorphism-and-inheritance_2">139. Polymorphism and Inheritance_2</a></li>
+        <li><a href="#140-date-and-time_2">140. Date and TIme_2</a></li>
+        <li><a href="#141-decision-making">141. Decision Making</a></li>
+        <li><a href="#142-passing-by-parameter-from-command_5">142. Passing by Parameter from Command_5</a></li>
+        <li><a href="#143-sout-object">143. Sout Object</a></li>
+        <li><a href="#144-disregard-parameter-while-invoking-method">144. Disregard Parameter While Invoking Method</a></li>
+        <li><a href="#145-date-and-time_3">145. Date And Time_3</a></li>
+        <li><a href="#146-exception_2">146. Exception_2</a></li>
+        <li><a href="#147-static-variable-and-object-variable_4">147. Static Variable and Object Variable_4</a></li>
+        <li><a href="#148-equivalent-string_2">148. Equivalent String_2</a></li>
+        <li><a href="#149-visible-scope-of-constructor">149. Visible Scope of Constructor</a></li>
+        <li><a href="#150-initialization-of-field_4">150. Initialization of Field_4</a></li>
+        <li><a href="#151-masking_2">151. Masking_2</a></li>
+        <li><a href="#152-lonely-object">152. Lonely Object</a></li>
+        <li><a href="#153-customized-exception">153. Customized Exception</a></li>
+        <li><a href="#154-usage-of-lambda-expr">154. Usage of Lambda Expr</a></li>
+        <li><a href="#155-arithmetics">155. Arithmetics</a></li>
+        <li><a href="#156-boolean-operand">156. Boolean Operand</a></li>
+        <li><a href="#157-usage-of-while_3">157. Usage of <code>while</code>_3</a></li>
+        <li><a href="#158-field-of-inheritance">158. Field of Inheritance</a></li>
+        <li><a href="#159-incorrect-array-length">159. Incorrect Array Length</a></li>
+        <li><a href="#160-clear-stringbuilder">160. Clear StringBuilder</a></li>
+        <li><a href="#161-convert-string-to-integer-object">161. Convert String to Integer Object</a></li>
+        <li><a href="#162-convert-primitive-datatype">162. Convert Primitive DataType</a></li>
+        <li><a href="#163-array-length-and-string-length">163. Array Length and String Length</a></li>
+        <li><a href="#164-usage-of-do-while">164. Usage of <code>do-while</code></a></li>
+        <li><a href="#165-constructor_3">165. Constructor_3</a></li>
+        <li><a href="#166-plus-and-minus_2">166. Plus and Minus_2</a></li>
+        <li><a href="#167-removal-of-collection-elements_2">167. Removal of Collection Elements_2</a></li>
+        <li><a href="#168-operating-string">168. Operating String</a></li>
+        <li><a href="#169-throwing-exception">169. Throwing Exception</a></li>
+        <li><a href="#170-foreach_2-foreach">170. ForEach_2 (<code>foreach</code>)</a></li>
+        <li><a href="#171-object-types-storable-in-a-collection">171. Object Types Storable in a Collection</a></li>
+        <li><a href="#172-throwing-exception">172. Throwing Exception</a></li>
+        <li><a href="#173-get-all-elements-in-an-array">173. Get All Elements in an Array</a></li>
+        <li><a href="#174-is-stringbuilder-object-equivalent-to-string">174. Is StringBuilder Object equivalent to String</a></li>
+        <li><a href="#175-linear-search_2">175. Linear Search_2</a></li>
+        <li><a href="#176-checked-exception">176. Checked Exception</a></li>
+        <li><a href="#177-visibility-of-methods">177. Visibility of Methods</a></li>
+        <li><a href="#178-constructor_4">178. Constructor_4</a></li>
+        <li><a href="#179-boolean-object">179. Boolean Object</a></li>
+        <li><a href="#180-creating-object">180. Creating Object</a></li>
+        <li><a href="#181-sout-null">181. Sout <code>null</code></a></li>
+        <li><a href="#182-the-trim-usage-of-string-object">182. The <code>trim</code> usage of String Object</a></li>
+        <li><a href="#183-visibility-of-overriding-method">183. Visibility of Overriding Method</a></li>
+        <li><a href="#184-object-instance_3">184. Object Instance_3</a></li>
+        <li><a href="#185-decision-making_2">185. Decision Making_2</a></li>
+        <li><a href="#186-encapulation">186. Encapulation</a></li>
+        <li><a href="#187-method-main--code-entry-point_3">187. Method <code>main</code> — Code Entry Point_3</a></li>
+        <li><a href="#188-nested-forloop">188. Nested ForLoop</a></li>
+        <li><a href="#189-usage-of-lambda_2">189. Usage of Lambda_2</a></li>
+        <li><a href="#190-writing-method">190. Writing Method</a></li>
+        <li><a href="#191-writing-java-file">191. Writing Java File</a></li>
+        <li><a href="#192-creating-object_2">192. Creating Object_2</a></li>
+        <li><a href="#193-convert-number-primitive-datatype">193. Convert Number Primitive DataType</a></li>
+        <li><a href="#194-masking_3">194. Masking_3</a></li>
+        <li><a href="#195-method-main--code-entry-point_4">195. Method <code>main</code> — Code Entry Point_4</a></li>
+        <li><a href="#196-protected-private-variable-in-class">196. Protected-Private Variable in Class</a></li>
+        <li><a href="#197-how-to-print-a-b-c-">197. How to Print &ldquo;a b c &quot;</a></li>
+        <li><a href="#198-string-concatenation-and-relational-operating">198. String Concatenation and Relational Operating</a></li>
+        <li><a href="#199-about-java">199. About Java</a></li>
+        <li><a href="#200-default-constructor">200. Default Constructor</a></li>
+        <li><a href="#201-double-object">201. Double Object</a></li>
+        <li><a href="#202-forloop_4">202. ForLoop_4</a></li>
+        <li><a href="#203-protect-object-field">203. Protect Object Field</a></li>
+        <li><a href="#204-method-tostring">204. Method <code>toString</code></a></li>
+        <li><a href="#205-how-to-print-135">205. How to Print &ldquo;135&rdquo;?</a></li>
+        <li><a href="#206-forloop_5">206. ForLoop_5</a></li>
+        <li><a href="#207-creating-two-dimensional-array">207. Creating Two Dimensional Array</a></li>
+        <li><a href="#208-generics_2">208. Generics_2</a></li>
+        <li><a href="#209-infinite-loop">209. Infinite Loop</a></li>
+        <li><a href="#210-calculating-circle-area">210. Calculating Circle Area</a></li>
+        <li><a href="#211-how-to-print-123--fred-">211. How to Print 123 : Fred :</a></li>
+        <li><a href="#212-access-scope-of-protected">212. Access Scope of <code>protected</code></a></li>
+        <li><a href="#213-the-trim-usage-of-string-object_2">213. The <code>trim</code> usage of String Object_2</a></li>
+        <li><a href="#214-equivalent-string_3">214. Equivalent String_3</a></li>
+        <li><a href="#215-remainder-operator--modulo">215. Remainder Operator / Modulo</a></li>
+        <li><a href="#216-improving-encapulation">216. Improving Encapulation</a></li>
+        <li><a href="#217-arithmetics_2">217. Arithmetics_2</a></li>
+        <li><a href="#218-changing-object-field-value">218. Changing Object Field Value</a></li>
+        <li><a href="#219-ternary-operator-_3">219. Ternary Operator (?:)_3</a></li>
+        <li><a href="#220-sout-current-time">220. Sout Current Time</a></li>
+        <li><a href="#221-try-catch">221. Try-Catch</a></li>
+        <li><a href="#222-when-foreach-meets-null">222. When <code>foreach</code> Meets <code>null</code></a></li>
+        <li><a href="#223-forloop_6">223. ForLoop_6</a></li>
+        <li><a href="#224-how-to-print-coj">224. How to Print COJ?</a></li>
+        <li><a href="#225-how-to-print-0">225. How to Print `0``?</a></li>
+        <li><a href="#226-usage-of-switch_3">226. Usage of <code>switch</code>_3</a></li>
+        <li><a href="#227-usage-of-the-same-signature">227. Usage of the Same Signature</a></li>
+        <li><a href="#228-encapulation_2">228. Encapulation_2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="ocajp">OCAJP</h2>
+<p>紀錄題目的地方&hellip;</p>
+<h3 id="1-hello-java">1. Hello Java</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloJava</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        StringBuilder message <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hello java!&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> pos <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>pos <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> pos <span style="color:#f92672">&lt;</span> 12<span style="color:#f92672">;</span> pos<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>message<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>pos<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;e&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;o&#39;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                        String uc <span style="color:#f92672">=</span> Character<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span>message<span style="color:#f92672">.</span><span style="color:#a6e22e">charAt</span><span style="color:#f92672">(</span>pos<span style="color:#f92672">)).</span><span style="color:#a6e22e">toUpperCase</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                        message<span style="color:#f92672">.</span><span style="color:#a6e22e">replace</span><span style="color:#f92672">(</span>pos<span style="color:#f92672">,</span> pos <span style="color:#f92672">+</span> 1<span style="color:#f92672">,</span> uc<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Out of limits&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>Out of limits
+hEllO jAvA!</p>
+</blockquote>
+<h3 id="2-print-1020">2. Print 10:20</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>2<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # B 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    int[] array;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    array = int[2];
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # C 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    int array = new int[2];
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    # D 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    int array [2];
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    */</span>
+</span></span><span style="display:flex;"><span>    array<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    array<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> 20<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>array<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> array<span style="color:#f92672">[</span>1<span style="color:#f92672">]);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>compile error: lack of <code>new</code>
+compile error: declare primitive int, but instantiate an int array of size 2
+compile error: more like declaring array in stack in C language</p>
+</blockquote>
+<h3 id="3---static-variable-and-object-variable">3.   Static Variable and Object Variable</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StaticVariableAndObjectVariable</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span> <span style="color:#75715e">// 靜態(類別)變數i - 只有一個存在,不會因為類別被實體化就多一個記憶體空間
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> j<span style="color:#f92672">;</span>  <span style="color:#75715e">// 物件變數j
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        StaticVariableAndObjectVariable x1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StaticVariableAndObjectVariable<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        StaticVariableAndObjectVariable x2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StaticVariableAndObjectVariable<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        x1<span style="color:#f92672">.</span><span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> 3<span style="color:#f92672">;</span>  <span style="color:#75715e">// == X.i
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        x1<span style="color:#f92672">.</span><span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> 4<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        x2<span style="color:#f92672">.</span><span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> 5<span style="color:#f92672">;</span>  <span style="color:#75715e">// == X.i
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        x2<span style="color:#f92672">.</span><span style="color:#a6e22e">j</span> <span style="color:#f92672">=</span> 6<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>                x1<span style="color:#f92672">.</span><span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">+</span> x1<span style="color:#f92672">.</span><span style="color:#a6e22e">j</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">+</span> x2<span style="color:#f92672">.</span><span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#f92672">+</span> x2<span style="color:#f92672">.</span><span style="color:#a6e22e">j</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p><strong>靜態(類別)變數i - 只有一個存在,不會因為類別被實體化就多一個記憶體空間</strong>
+Console:
+5 4 5 6</p>
+</blockquote>
+<h3 id="4--constructor">4.  Constructor</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sports</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> num_players<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String name<span style="color:#f92672">,</span> ground_condition<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Sports<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> np<span style="color:#f92672">,</span> String sname<span style="color:#f92672">,</span> String sground<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        num_players <span style="color:#f92672">=</span> np<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        name <span style="color:#f92672">=</span> sname<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        ground_condition <span style="color:#f92672">=</span> sground<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cricket</span> <span style="color:#66d9ef">extends</span> Sports <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> num_umpires<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> num_substitutes<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//insert code here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    Which code fragment can be inserted at line &#34;//insert code here&#34; to enable the code to compile?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    // # B - 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    Cricket() {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        super.ground_condition = &#34;Condition OK&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        super.name = &#34;Cricket&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        super.num_players = 11;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        num_umpires = 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        num_substitutes = 2;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    // # C 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    Cricket() {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        this(3,2);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        super(11, &#34;Cricket&#34;, &#34;Condition OK&#34;);  // must be 1st statement
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    Cricket(int nu, int ns) {  // need to add super(.., .., ..);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        this.num_umpires = nu;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        this.num_substitutes = ns;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    // # D 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    Cricket() {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        this.num_umpires = 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        this.num_substitutes = 2;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">        super(11, &#34;Cricket&#34;, &#34;Condition OK&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// A:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Cricket<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>11<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Cricket&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Condition OK&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        num_umpires <span style="color:#f92672">=</span> 3<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        num_substitutes <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>#B Compiler 會自動在第一行加上super();  but Sports class 沒有 No Arg Constructor
+#C 即使有加上 super(&hellip;, &hellip;, &hellip;); 放第二行仍然會編譯錯誤，只能放第一行
+#D 原因同 #C</p>
+</blockquote>
+<h3 id="5-initialize-variable">5. Initialize Variable</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Calculator</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> 5<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> sum<span style="color:#f92672">;</span> <span style="color:#75715e">// should be initialized
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">do</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            sum <span style="color:#f92672">+=</span> num<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>num<span style="color:#f92672">--)</span> <span style="color:#f92672">&gt;</span> 1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;The sum is &#34;</span> <span style="color:#f92672">+</span> sum <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What&rsquo;s the result?
+A. The sum is 2
+B. The sum is 14
+C. The sum is 15
+D. The loop executes infinite times
+E. <strong>Compilation fails</strong></p>
+</blockquote>
+<h3 id="6-static-variable-and-object-variable-2">6. Static variable and Object variable 2</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">changeCount</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">&lt;</span> 5<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">++</span>i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            count<span style="color:#f92672">++;</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Test check1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Test check2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        check1<span style="color:#f92672">.</span><span style="color:#a6e22e">changeCount</span><span style="color:#f92672">();</span>  <span style="color:#75715e">// count +1 five times
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        check2<span style="color:#f92672">.</span><span style="color:#a6e22e">changeCount</span><span style="color:#f92672">();</span>  <span style="color:#75715e">// count +1 five times
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>check1<span style="color:#f92672">.</span><span style="color:#a6e22e">count</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; : &#34;</span> <span style="color:#f92672">+</span> check2<span style="color:#f92672">.</span><span style="color:#a6e22e">count</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?
+A. <strong>10 : 10</strong>
+B. 5 : 5
+C. 5 : 10
+D. Compilation fails</p>
+</blockquote>
+<h3 id="7--what-could-be-included-in-a-java-class">7.  What could be included in a Java class?</h3>
+<blockquote>
+<p>Which two items can legally be contained within a Java class declaration?
+A. An import statement
+<strong>B. A field declaration</strong>
+C. A package declaration
+<strong>D. A method declaration</strong></p>
+</blockquote>
+<p><code>package declaration</code>
+<code>import statement</code>
+<code>class declaration</code> {
+<code>field</code> → 代表所有變數/常數，存取時在「.」之後，不需加括號 ex. <code>plane.height</code>
+<code>method</code> → 存取時在「.」之後，需要加括號　ex. <code>plane.computePlaneArea()</code>
+}</p>
+<h3 id="8-polymorphism多型-and-overriding-覆寫">8. Polymorphism<code>(多型)</code> and Overriding <code>(覆寫)</code></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AlphaBetaGamma</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Alpha</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">doStuff</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> msg<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Beta</span> <span style="color:#66d9ef">extends</span> Alpha <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">doStuff</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> msg<span style="color:#f92672">.</span><span style="color:#a6e22e">replace</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;e&#39;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Gamma</span> <span style="color:#66d9ef">extends</span> Beta <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">doStuff</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> msg<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        ArrayList<span style="color:#f92672">&lt;</span>Alpha<span style="color:#f92672">&gt;</span> strs <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;</span>Alpha<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span>        strs<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Alpha<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        strs<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Beta<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        strs<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Gamma<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Alpha t <span style="color:#f92672">:</span> strs<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">doStuff</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Java&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?
+A. Java
+　 Java
+　 Java
+<strong>B. Java
+　 Jeve
+　 va</strong>
+C. Java
+　 Jeve
+　 ve
+D. Compilation fails</p>
+</blockquote>
+<p>Alpha, Beta, Gamma 的實體物件都會使用到自己的 <code>doStuff</code> 物件方法</p>
+<h3 id="9-loop-process-control">9. Loop process control</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> array <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 4<span style="color:#f92672">,</span> 5<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">:</span> array<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            keyword1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>i<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">==</span> 3<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            keyword2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What should keyword1 and keyword2 be respectively, in order to produce output 2345?
+A. continue, break
+B. break, break
+C. break, continue
+D. <strong>continue, continue</strong></p>
+</blockquote>
+<p>continue - 直接執行下一次的迴圈
+break - 直接跳出迴圈</p>
+<h3 id="10-concatenation-of-character-and-string">10. Concatenation of Character and String</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CharToStr</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String str1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Java&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">char</span> str2<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#39;J&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;v&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;a&#39;</span><span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        String str3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">char</span> c <span style="color:#f92672">:</span> str2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            str3 <span style="color:#f92672">=</span> str3 <span style="color:#f92672">+</span> c<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>str1<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>str3<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Successful&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Unsuccessful&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?
+A. Successful
+B. Unsuccessfull
+C. Compilation fails
+D. An exception is thrown at runtime</p>
+<p><code>str3</code> 一開始為 null，接著直接使用「+」運算子與字元做字串連接（Java 允許此種作法），
+但是 <code>String str3 = null;</code> 在字串連接時會自動被改為長度為 4 的「null」字串，
+輸出結果為「nullJava」，因此結果為 Unsuccessfull。</p>
+</blockquote>
+<ul>
+<li>
+<p>「+」運算子的運算元必須要至少有一個是字串 String 或者物件 Object，才會被當成字串連結，不然就是加法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>        <span style="color:#75715e">// System.out.println(null + &#39;c&#39;); // bad operand types (不知型態 + 字元值99)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        String str <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>str <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>                    <span style="color:#75715e">// nullc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>                   <span style="color:#75715e">// nullc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>str <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;c&#39;</span><span style="color:#f92672">);</span>                    <span style="color:#75715e">// nullc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;n&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;u&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;l&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;l&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;c&#39;</span><span style="color:#f92672">);</span>  <span style="color:#75715e">// 542
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">((</span>String<span style="color:#f92672">)</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;c&#39;</span><span style="color:#f92672">);</span>          <span style="color:#75715e">// nullc
+</span></span></span></code></pre></div></li>
+</ul>
+<h3 id="11-ternary-operator-">11. Ternary Operator (?:)</h3>
+<h3 id="12-two-dimensional-arrays">12. Two Dimensional Arrays</h3>
+<h3 id="13-scope-of-substring">13. Scope of subString</h3>
+<h3 id="14-revising-array">14. Revising array</h3>
+<h3 id="15-masking-variable">15. Masking variable</h3>
+<h3 id="16-object-variable-and-reference">16. Object variable and reference</h3>
+<h3 id="17-abstract-class-and-implementation">17. Abstract class and implementation</h3>
+<h3 id="18-how-to-sout-joetrue1000-">18. How to sout <code>joe:true:100.0</code> ?</h3>
+<h3 id="19-revising-arrays_2">19. Revising Arrays_2</h3>
+<h3 id="20-inheritance-and-constructor">20. Inheritance and Constructor</h3>
+<h3 id="21-exception-and-error">21. Exception and Error</h3>
+<h3 id="22-permanent-passing-value">22. Permanent passing value</h3>
+<h3 id="23-abstract-class-and-interface">23. Abstract class and Interface</h3>
+<h3 id="24-isolated-object">24. Isolated Object</h3>
+<h3 id="25-concatenation-of-string-and-values">25. Concatenation of String and Values</h3>
+<h3 id="26-string-concatenation---operator">26. String Concatenation  — 「+」Operator</h3>
+<h3 id="27-how-to-create-c-class">27. How to create C class?</h3>
+<blockquote>
+<p>C類別建立</p>
+</blockquote>
+<h3 id="28-scope-of-variables">28. Scope of variables</h3>
+<h3 id="29-bank-module">29. Bank Module</h3>
+<h3 id="30-convert-to-upperclass-alphabet">30. Convert to Upperclass Alphabet</h3>
+<h3 id="31-default-methods-for-interface">31. Default Methods for Interface</h3>
+<h3 id="32-break-of-methods">32. <code>break</code> of Methods</h3>
+<h3 id="33-usage-of-while">33. Usage of <code>while</code></h3>
+<h3 id="34-continue-and-break-of-a-for-loop">34. <code>continue</code> and <code>break</code> of a For Loop</h3>
+<h3 id="35-checked-exception-and-unchecked-exception">35. Checked Exception and Unchecked Exception</h3>
+<blockquote>
+<p>需要檢查的例外 vs 不需要檢查的例外</p>
+</blockquote>
+<h3 id="36-initialization-of-field">36. Initialization of Field</h3>
+<blockquote>
+<p>欄位初始值</p>
+</blockquote>
+<h3 id="37-calculating-floatdouble">37. Calculating float/double</h3>
+<blockquote>
+<p>浮點數運算</p>
+</blockquote>
+<h3 id="38-initialized-value-of-string-array">38. Initialized Value of String Array</h3>
+<blockquote>
+<p>字串陣列的初始值</p>
+</blockquote>
+<h3 id="39-throwing-ioexception">39. Throwing IOException</h3>
+<h3 id="40-object-oriented-feature-of-java">40. Object Oriented Feature of Java</h3>
+<h3 id="41-toy-shop">41. Toy shop</h3>
+<h3 id="42-polymorphism-多型-and-overriding-覆寫-2">42. Polymorphism (多型) and Overriding (覆寫) 2</h3>
+<h3 id="43-overloading-多載-and-default-value-type-預設數值型態">43. Overloading (多載) and Default Value Type (預設數值型態)</h3>
+<h3 id="44-mutable-length-parameter-and-passing-by-value">44. Mutable Length Parameter And Passing by Value</h3>
+<blockquote>
+<p>可變長度參數和傳值</p>
+</blockquote>
+<h3 id="45-generics-泛型">45. Generics (泛型)</h3>
+<h3 id="46-constructor-2">46. Constructor 2</h3>
+<h3 id="47-inheritance-relation">47. Inheritance Relation</h3>
+<h3 id="48-casting-value">48. Casting value</h3>
+<blockquote>
+<p>數值轉型</p>
+</blockquote>
+<h3 id="49-declaration-method-of-object-array">49. Declaration Method of Object Array</h3>
+<blockquote>
+<p>陣列物件宣告方式</p>
+</blockquote>
+<h3 id="50-引入套件">50. 引入套件</h3>
+<h3 id="51-passing-by-parameter-from-command">51. Passing by Parameter from Command</h3>
+<blockquote>
+<p>從命令列傳入參數</p>
+</blockquote>
+<h3 id="51-polymorphism-and-overriding_3">51. Polymorphism and Overriding_3</h3>
+<h3 id="52-electric-bills">52. Electric Bills</h3>
+<h3 id="53-permanent-passing-by-value_2">53. Permanent Passing by Value_2</h3>
+<h3 id="54-logically-equivalent">54. Logically Equivalent</h3>
+<h3 id="55-initialized-value-of-string-array_2">55. Initialized Value of String Array_2</h3>
+<h3 id="56-exception">56. Exception</h3>
+<h3 id="57-integer-arithmetics">57. Integer Arithmetics</h3>
+<h3 id="58-code-block">58. Code Block</h3>
+<h3 id="59-for-loop">59. For Loop</h3>
+<h3 id="60-two-dimensional-arrays_2">60. Two Dimensional Arrays_2</h3>
+<h3 id="61-object-entity-class">61. Object Entity Class</h3>
+<blockquote>
+<p>物件實體的類別</p>
+</blockquote>
+<h3 id="62-java-code-compiling-and-operating">62. Java Code Compiling and Operating</h3>
+<h3 id="63-method-main--code-entry-point">63. Method <code>main</code> — Code Entry Point</h3>
+<h3 id="64-arrays">64. Arrays</h3>
+<h3 id="65-garbage-collection">65. Garbage Collection</h3>
+<h3 id="66-loop-do-while">66. Loop <code>do-while</code></h3>
+<h3 id="67-array-object-reference-and-foreach">67. Array Object Reference and <code>foreach</code></h3>
+<h3 id="68-usage-of-switch">68. Usage of <code>switch</code></h3>
+<h3 id="69-list-object">69. List Object</h3>
+<h3 id="70-interface-and-class">70. Interface and Class</h3>
+<blockquote>
+<p>引用介面類別</p>
+</blockquote>
+<h3 id="71-stringbuilder">71. StringBuilder</h3>
+<h3 id="72-private-method">72. Private method</h3>
+<h3 id="73-string-array">73. String Array</h3>
+<h3 id="74-exception-handling">74. Exception Handling</h3>
+<h3 id="75-column">75. Column</h3>
+<h3 id="76-column_2">76. Column_2</h3>
+<h3 id="77-exception-handling_2">77. Exception Handling_2</h3>
+<h3 id="78-overriding-methods">78. Overriding Methods</h3>
+<h3 id="79-inheritance-and-constructor_2">79. Inheritance and Constructor_2</h3>
+<h3 id="80-two-dimensional-string-array">80. Two-Dimensional String Array</h3>
+<h3 id="81-is-object-equivalent">81. Is-Object-Equivalent</h3>
+<blockquote>
+<p>判斷物件是否相同</p>
+</blockquote>
+<h3 id="82-count-variable-of-foreach">82. Count Variable of <code>foreach</code></h3>
+<blockquote>
+<p>foreach 計次變數</p>
+</blockquote>
+<h3 id="83-divide-by-zero">83. Divide by Zero</h3>
+<h3 id="84-equivalent-string">84. Equivalent String</h3>
+<h3 id="85-masking">85. Masking</h3>
+<h3 id="86-stringbuilder_2">86. StringBuilder_2</h3>
+<h3 id="87-plus-and-minus">87. Plus And Minus</h3>
+<h3 id="88-casting-objects">88. Casting Objects</h3>
+<h3 id="89-static-variable-and-object-variable_3">89. Static Variable and Object Variable_3</h3>
+<h3 id="90-exception-class">90. Exception Class</h3>
+<h3 id="91-break-in-nested-loop">91. <code>break</code> in Nested Loop</h3>
+<h3 id="92-initialization-of-field_2">92. Initialization of Field_2</h3>
+<blockquote>
+<p>欄位的初始值2</p>
+</blockquote>
+<h3 id="93-break-of-a-switch">93. <code>break</code> of a switch</h3>
+<h3 id="94-passing-by-parameter-from-command_2">94. Passing by Parameter from Command_2</h3>
+<blockquote>
+<p>從命令列傳入參數_2</p>
+</blockquote>
+<h3 id="95-the-removeif-method-of-collection">95. The <code>removeIf</code> method of Collection</h3>
+<h3 id="96-removal-of-collection-elements">96. Removal of Collection Elements</h3>
+<h3 id="97-inheritance-and-constructor_3">97. Inheritance and Constructor_3</h3>
+<h3 id="98-wrapper-clas">98. Wrapper Clas</h3>
+<h3 id="99-string-concatenation">99. String Concatenation</h3>
+<blockquote>
+<p>字串連接 (跟字串串接有啥不同)</p>
+</blockquote>
+<h3 id="100-setting-up-object-field">100. Setting up Object Field</h3>
+<blockquote>
+<p>物件欄位的設定</p>
+</blockquote>
+<h3 id="101-method-main--code-entry-point_2">101. Method <code>main</code> — Code Entry Point_2</h3>
+<h3 id="102-usage-of-while_2">102. Usage of <code>while</code>_2</h3>
+<h3 id="103-visibility-of-overriding-method">103. Visibility of Overriding Method</h3>
+<blockquote>
+<p>覆寫方法的可見度</p>
+</blockquote>
+<h3 id="104-ternary-operator-_2">104. Ternary Operator (?:)_2</h3>
+<h3 id="105-constructor-and-initializing-field">105. Constructor and Initializing Field</h3>
+<h3 id="106-character-value-and-number-value">106. Character Value and Number Value</h3>
+<h3 id="107-implementation-of-method">107. Implementation of Method</h3>
+<h3 id="108-object-instance">108. Object Instance</h3>
+<blockquote>
+<p>實體化物件</p>
+</blockquote>
+<h3 id="109-compiling-java-by-command">109. Compiling Java by Command</h3>
+<h3 id="110-method-implementation-of-interface-and-abstract-class">110. Method Implementation of Interface and Abstract Class</h3>
+<h3 id="111-sout-54321">111. Sout <code>54321</code></h3>
+<blockquote>
+<p>輸出54321</p>
+</blockquote>
+<h3 id="112-private-method_2">112. Private Method_2</h3>
+<h3 id="113-assignment-expression">113. Assignment Expression</h3>
+<blockquote>
+<p>指派算式</p>
+</blockquote>
+<h3 id="114-calculating-floatdouble_2">114. Calculating float/double_2</h3>
+<h3 id="115-usage-of-switch_2">115. Usage of <code>switch</code>_2</h3>
+<h3 id="116-structure-of-class">116. Structure of Class</h3>
+<h3 id="117-passing-by-parameter-from-command_2">117. Passing by Parameter from Command_2</h3>
+<blockquote>
+<p>從命令列傳入參數</p>
+</blockquote>
+<h3 id="118-for-loop_2">118. For Loop_2</h3>
+<h3 id="119-date-and-time">119. Date and TIme</h3>
+<h3 id="120-scope-of-string-index">120. Scope of String Index</h3>
+<blockquote>
+<p>字串索引範圍</p>
+</blockquote>
+<h3 id="121-forloop_3">121. ForLoop_3</h3>
+<h3 id="122-benefits-of-encapulation">122. Benefits of Encapulation</h3>
+<h3 id="123-linear-search">123. Linear Search</h3>
+<blockquote>
+<p>線性搜尋</p>
+</blockquote>
+<h3 id="124-permanent-passing-by-value_3">124. Permanent Passing by Value_3</h3>
+<h3 id="125-replacing-string">125. Replacing String</h3>
+<h3 id="126-benefits-of-polymorphism">126. Benefits of Polymorphism</h3>
+<h3 id="127-initialization-of-field_3">127. Initialization of Field_3</h3>
+<blockquote>
+<p>欄位初始值</p>
+</blockquote>
+<h3 id="128-passing-by-parameter-from-command_4">128. Passing by Parameter from Command_4</h3>
+<blockquote>
+<p>從命令列傳入參數_4</p>
+</blockquote>
+<h3 id="129-object-instance_2">129. Object Instance_2</h3>
+<blockquote>
+<p>實體化物件_2</p>
+</blockquote>
+<h3 id="130-polymorphism-and-inheritance">130. Polymorphism and Inheritance</h3>
+<h3 id="131-default-method">131. Default Method</h3>
+<h3 id="132-inheritance-constructor-and-overriding-method">132. Inheritance, Constructor and Overriding Method</h3>
+<h3 id="133-plusplus">133. PlusPlus</h3>
+<h3 id="134-inverted-boolean">134. Inverted Boolean</h3>
+<blockquote>
+<p>反向布林</p>
+</blockquote>
+<h3 id="135-foreach-foreach">135. ForEach <code>foreach</code></h3>
+<h3 id="136-triangle-area">136. Triangle Area</h3>
+<h3 id="137-code-unreachable">137. Code Unreachable</h3>
+<blockquote>
+<p>永遠無法被執行到的程式, <del>無法見到的人, 無法說出的話</del></p>
+</blockquote>
+<h3 id="138-string-concatenation_2">138. String Concatenation_2</h3>
+<h3 id="139-polymorphism-and-inheritance_2">139. Polymorphism and Inheritance_2</h3>
+<h3 id="140-date-and-time_2">140. Date and TIme_2</h3>
+<h3 id="141-decision-making">141. Decision Making</h3>
+<blockquote>
+<p>條件判斷</p>
+</blockquote>
+<h3 id="142-passing-by-parameter-from-command_5">142. Passing by Parameter from Command_5</h3>
+<blockquote>
+<p>從命令列傳入參數_5</p>
+</blockquote>
+<h3 id="143-sout-object">143. Sout Object</h3>
+<blockquote>
+<p>印出物件</p>
+</blockquote>
+<h3 id="144-disregard-parameter-while-invoking-method">144. Disregard Parameter While Invoking Method</h3>
+<h3 id="145-date-and-time_3">145. Date And Time_3</h3>
+<h3 id="146-exception_2">146. Exception_2</h3>
+<h3 id="147-static-variable-and-object-variable_4">147. Static Variable and Object Variable_4</h3>
+<h3 id="148-equivalent-string_2">148. Equivalent String_2</h3>
+<h3 id="149-visible-scope-of-constructor">149. Visible Scope of Constructor</h3>
+<blockquote>
+<p>建構子的可視範圍</p>
+</blockquote>
+<h3 id="150-initialization-of-field_4">150. Initialization of Field_4</h3>
+<blockquote>
+<p>欄位初始值</p>
+</blockquote>
+<h3 id="151-masking_2">151. Masking_2</h3>
+<h3 id="152-lonely-object">152. Lonely Object</h3>
+<h3 id="153-customized-exception">153. Customized Exception</h3>
+<h3 id="154-usage-of-lambda-expr">154. Usage of Lambda Expr</h3>
+<h3 id="155-arithmetics">155. Arithmetics</h3>
+<h3 id="156-boolean-operand">156. Boolean Operand</h3>
+<h3 id="157-usage-of-while_3">157. Usage of <code>while</code>_3</h3>
+<h3 id="158-field-of-inheritance">158. Field of Inheritance</h3>
+<h3 id="159-incorrect-array-length">159. Incorrect Array Length</h3>
+<h3 id="160-clear-stringbuilder">160. Clear StringBuilder</h3>
+<h3 id="161-convert-string-to-integer-object">161. Convert String to Integer Object</h3>
+<h3 id="162-convert-primitive-datatype">162. Convert Primitive DataType</h3>
+<blockquote>
+<p>基本數值型態的轉換</p>
+</blockquote>
+<h3 id="163-array-length-and-string-length">163. Array Length and String Length</h3>
+<h3 id="164-usage-of-do-while">164. Usage of <code>do-while</code></h3>
+<h3 id="165-constructor_3">165. Constructor_3</h3>
+<h3 id="166-plus-and-minus_2">166. Plus and Minus_2</h3>
+<h3 id="167-removal-of-collection-elements_2">167. Removal of Collection Elements_2</h3>
+<h3 id="168-operating-string">168. Operating String</h3>
+<blockquote>
+<p>字串的操作</p>
+</blockquote>
+<h3 id="169-throwing-exception">169. Throwing Exception</h3>
+<h3 id="170-foreach_2-foreach">170. ForEach_2 (<code>foreach</code>)</h3>
+<h3 id="171-object-types-storable-in-a-collection">171. Object Types Storable in a Collection</h3>
+<h3 id="172-throwing-exception">172. Throwing Exception</h3>
+<h3 id="173-get-all-elements-in-an-array">173. Get All Elements in an Array</h3>
+<blockquote>
+<p>撈出陣列所有元素</p>
+</blockquote>
+<h3 id="174-is-stringbuilder-object-equivalent-to-string">174. Is StringBuilder Object equivalent to String</h3>
+<blockquote>
+<p>StringBuilder 物件與字串的相等</p>
+</blockquote>
+<h3 id="175-linear-search_2">175. Linear Search_2</h3>
+<h3 id="176-checked-exception">176. Checked Exception</h3>
+<blockquote>
+<p>需要檢查的例外</p>
+</blockquote>
+<h3 id="177-visibility-of-methods">177. Visibility of Methods</h3>
+<h3 id="178-constructor_4">178. Constructor_4</h3>
+<h3 id="179-boolean-object">179. Boolean Object</h3>
+<h3 id="180-creating-object">180. Creating Object</h3>
+<h3 id="181-sout-null">181. Sout <code>null</code></h3>
+<h3 id="182-the-trim-usage-of-string-object">182. The <code>trim</code> usage of String Object</h3>
+<h3 id="183-visibility-of-overriding-method">183. Visibility of Overriding Method</h3>
+<h3 id="184-object-instance_3">184. Object Instance_3</h3>
+<h3 id="185-decision-making_2">185. Decision Making_2</h3>
+<h3 id="186-encapulation">186. Encapulation</h3>
+<h3 id="187-method-main--code-entry-point_3">187. Method <code>main</code> — Code Entry Point_3</h3>
+<h3 id="188-nested-forloop">188. Nested ForLoop</h3>
+<h3 id="189-usage-of-lambda_2">189. Usage of Lambda_2</h3>
+<h3 id="190-writing-method">190. Writing Method</h3>
+<h3 id="191-writing-java-file">191. Writing Java File</h3>
+<h3 id="192-creating-object_2">192. Creating Object_2</h3>
+<h3 id="193-convert-number-primitive-datatype">193. Convert Number Primitive DataType</h3>
+<h3 id="194-masking_3">194. Masking_3</h3>
+<h3 id="195-method-main--code-entry-point_4">195. Method <code>main</code> — Code Entry Point_4</h3>
+<h3 id="196-protected-private-variable-in-class">196. Protected-Private Variable in Class</h3>
+<h3 id="197-how-to-print-a-b-c-">197. How to Print &ldquo;a b c &quot;</h3>
+<h3 id="198-string-concatenation-and-relational-operating">198. String Concatenation and Relational Operating</h3>
+<h3 id="199-about-java">199. About Java</h3>
+<h3 id="200-default-constructor">200. Default Constructor</h3>
+<h3 id="201-double-object">201. Double Object</h3>
+<h3 id="202-forloop_4">202. ForLoop_4</h3>
+<h3 id="203-protect-object-field">203. Protect Object Field</h3>
+<blockquote>
+<p>保護物件欄位</p>
+</blockquote>
+<h3 id="204-method-tostring">204. Method <code>toString</code></h3>
+<h3 id="205-how-to-print-135">205. How to Print &ldquo;135&rdquo;?</h3>
+<h3 id="206-forloop_5">206. ForLoop_5</h3>
+<h3 id="207-creating-two-dimensional-array">207. Creating Two Dimensional Array</h3>
+<h3 id="208-generics_2">208. Generics_2</h3>
+<h3 id="209-infinite-loop">209. Infinite Loop</h3>
+<h3 id="210-calculating-circle-area">210. Calculating Circle Area</h3>
+<h3 id="211-how-to-print-123--fred-">211. How to Print 123 : Fred :</h3>
+<h3 id="212-access-scope-of-protected">212. Access Scope of <code>protected</code></h3>
+<h3 id="213-the-trim-usage-of-string-object_2">213. The <code>trim</code> usage of String Object_2</h3>
+<h3 id="214-equivalent-string_3">214. Equivalent String_3</h3>
+<h3 id="215-remainder-operator--modulo">215. Remainder Operator / Modulo</h3>
+<h3 id="216-improving-encapulation">216. Improving Encapulation</h3>
+<h3 id="217-arithmetics_2">217. Arithmetics_2</h3>
+<h3 id="218-changing-object-field-value">218. Changing Object Field Value</h3>
+<h3 id="219-ternary-operator-_3">219. Ternary Operator (?:)_3</h3>
+<h3 id="220-sout-current-time">220. Sout Current Time</h3>
+<h3 id="221-try-catch">221. Try-Catch</h3>
+<h3 id="222-when-foreach-meets-null">222. When <code>foreach</code> Meets <code>null</code></h3>
+<h3 id="223-forloop_6">223. ForLoop_6</h3>
+<h3 id="224-how-to-print-coj">224. How to Print COJ?</h3>
+<h3 id="225-how-to-print-0">225. How to Print `0``?</h3>
+<h3 id="226-usage-of-switch_3">226. Usage of <code>switch</code>_3</h3>
+<h3 id="227-usage-of-the-same-signature">227. Usage of the Same Signature</h3>
+<h3 id="228-encapulation_2">228. Encapulation_2</h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-11-08</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://wysiwyz.github.io/posts/ocajp/" data-title="Oracle Certified Associate Java PG" data-via="cel_yi" data-hashtags="Java,1Z0-808"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/ocajp/" data-hashtag="Java"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://wysiwyz.github.io/posts/ocajp/" data-title="Oracle Certified Associate Java PG"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/ocajp/" data-title="Oracle Certified Associate Java PG"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://wysiwyz.github.io/posts/ocajp/" data-title="Oracle Certified Associate Java PG"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-808/">1Z0-808</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/reading_club/" class="prev" rel="prev" title="// Reading club"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>// Reading club</a>
+            <a href="/posts/ocpjp/" class="next" rel="next" title="Oracle Certified Professional Java PG">Oracle Certified Professional Java PG<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

@@ -1,0 +1,33 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Java - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/java/</link>
+        <description>Java - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 08 Nov 2022 15:02:22 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/java/" rel="self" type="application/rss+xml" /><item>
+    <title>[NEW] OCP Java PG</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp_11/</link>
+    <pubDate>Tue, 08 Nov 2022 15:02:22 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp_11/</guid>
+    <description><![CDATA[JDK 11 New OCPJP 沒意外的話應該會考1Z0-819，雖然沒什麼人考但是版本比較新 🛰]]></description>
+</item>
+<item>
+    <title>Oracle Certified Professional Java PG</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp/</link>
+    <pubDate>Tue, 08 Nov 2022 15:00:44 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp/</guid>
+    <description><![CDATA[OCPJP pro to be or else &hellip; no else
+1. Regional Inner Class public class Vehicle { int distance; Vehicle(int x) { this.distance = x; } public void increSpeed(int time) { int timeTravel = time; class Car { // line n1 int value = 0; public void speed() { value = distance / timeTravel; // line n2 System.out.println(&#34;Velocity with new speed &#34; + value + &#34; kmph&#34;); } } new Car().]]></description>
+</item>
+<item>
+    <title>Oracle Certified Associate Java PG</title>
+    <link>http://wysiwyz.github.io/posts/ocajp/</link>
+    <pubDate>Tue, 08 Nov 2022 14:57:52 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocajp/</guid>
+    <description><![CDATA[OCAJP 紀錄題目的地方&hellip;
+1. Hello Java public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos++) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.replace(pos, pos + 1, uc); } } } catch (Exception e) { System.out.println(&#34;Out of limits&#34;); } System.out.println(message); } } Out of limits hEllO jAvA!]]></description>
+</item>
+</channel>
+</rss>
