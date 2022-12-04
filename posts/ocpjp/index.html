@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="OCPJP pro to be or else &hellip; no else
 1. Regional Inner Class public class Vehicle { int distance; Vehicle(int x) { this.distance = x; } public void increSpeed(int time) { int timeTravel = time; class Car { // line n1 int value = 0; public void speed() { value = distance / timeTravel; // line n2 System.out.println(&#34;Velocity with new speed &#34; &#43; value &#43; &#34; kmph&#34;); } } new Car()."/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ocpjp/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ocajp/" /><link rel="next" href="http://wysiwyz.github.io/posts/ocpjp_11/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ocpjp/" /><link rel="prev" href="http://wysiwyz.github.io/posts/reading_club/" /><link rel="next" href="http://wysiwyz.github.io/posts/ocpjp_11/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp\/"
-        },"genre": "posts","keywords": "Java, 1Z0-809","wordcount":  1334 ,
+        },"genre": "posts","keywords": "Java, 1Z0-809","wordcount":  2301 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp\/","datePublished": "2022-11-08T15:00:44+08:00","dateModified": "2022-11-08T15:00:44+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -70,8 +70,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Oracle Certified Professional Java PG</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-08">2022-11-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1334 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-08">2022-11-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2301 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -151,7 +151,7 @@
         <li><a href="#67-collection-and-stream_4">67. Collection and Stream_4</a></li>
         <li><a href="#68-collection-and-stream_5">68. Collection and Stream_5</a></li>
         <li><a href="#69-get-properties-of-all-files-within-directory">69. Get properties of All Files Within Directory</a></li>
-        <li><a href="#70-usage-of-statement-and-resultset">70. Usage of Statement and ResultSet</a></li>
+        <li><a href="#71-usage-of-statement-and-resultset">71. Usage of Statement and ResultSet</a></li>
         <li><a href="#71-collection-and-stream_6">71. Collection and Stream_6</a></li>
         <li><a href="#72-usage-of-path">72. Usage of Path</a></li>
         <li><a href="#73-collection-and-stream_7">73. Collection and Stream_7</a></li>
@@ -198,11 +198,11 @@
 </span></span></code></pre></div><blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Vehicle vehicle <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Vehicle<span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>vehicle<span style="color:#f92672">.</span><span style="color:#a6e22e">increSpeed</span><span style="color:#f92672">(</span>60<span style="color:#f92672">);</span>
-</span></span></code></pre></div><p>What is the result?
-A. <strong>Velocity with new speed 1 kmph</strong>
-B. A compilation error occurs at line n1.
-C. A compilation error occurs at line n2.
-D. A compilation error occurs at line n3.</p>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A. <strong>Velocity with new speed 1 kmph</strong></p>
+<p>B. A compilation error occurs at line n1.</p>
+<p>C. A compilation error occurs at line n2.</p>
+<p>D. A compilation error occurs at line n3.</p>
 </blockquote>
 <h3 id="2-default-method-of-functional-interface-and-stream-operation-of-collection">2. Default Method of Functional Interface and Stream Operation of Collection</h3>
 <blockquote>
@@ -232,12 +232,12 @@ D. A compilation error occurs at line n3.</p>
 </span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>javaPg1<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>javaPg2<span style="color:#f92672">));</span> <span style="color:#75715e">// line n2
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
 </span></span></code></pre></div><blockquote>
-<p>Which statement is true?
-A. The program prints true.
-B. The program prints false.
-C. A compilation error occurs. To ensure successful compilation, replace line n1 with:
-<code>boolean equals (Book obj) {</code>
-D. A compilation error occurs. To ensure successful compilation, replace line n2 with:
+<p>Which statement is true?</p>
+<p>A. The program prints true.</p>
+<p>B. The program prints false.</p>
+<p>C. A compilation error occurs. To ensure successful compilation, replace line n1 with:
+<code>boolean equals (Book obj) {</code></p>
+<p>D. A compilation error occurs. To ensure successful compilation, replace line n2 with:
 <code>System.out.println(b1.equals((Object)b2));</code></p>
 </blockquote>
 <ul>
@@ -286,11 +286,11 @@ D. A compilation error occurs. To ensure successful compilation, replace line n2
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AgeOutOfLimitException</span> <span style="color:#66d9ef">extends</span> UserException <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><blockquote>
-<p>What is the result?
-A. User is registered.
-B. An AgeOutOfLimitException is thrown.
-C. A UserException is thrown.
-D. A compilation error occurs in the main method.</p>
+<p>What is the result?</p>
+<p>A. User is registered.</p>
+<p>B. An AgeOutOfLimitException is thrown.</p>
+<p>C. A UserException is thrown.</p>
+<p>D. A compilation error occurs in the main method.</p>
 </blockquote>
 <ul>
 <li>由於 line 14 呼叫 App.doRegister() 所傳入之 age 參數為 60，line 5 的 if 條件式會成立，拋出 AgeOutOfLimitException</li>
@@ -326,11 +326,11 @@ D. A compilation error occurs in the main method.</p>
 </span></span><span style="display:flex;"><span>                <span style="color:#75715e">// line n1
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#f92672">.</span><span style="color:#a6e22e">collect</span><span style="color:#f92672">(</span>Collectors<span style="color:#f92672">.</span><span style="color:#a6e22e">toList</span><span style="color:#f92672">());</span>
 </span></span></code></pre></div><blockquote>
-<p>Which code fragment, when inserted at line n1, sorts the employees list in descending order of fName and then ascending order of lName?
-A. <code>.sorted(Comparator.comparing(Emp::getfName).reversed().thenComparing(Emp::getlName))</code>
-B. <code>.sorted(Comparator.comparing(Emp::getfName).thenComparing(Emp::getlName))</code>
-C. <code>.map(Emp::getfName).sorted(Comparator.reverseOrder())</code>
-D. <code>.map(Emp::getfName).sorted(Comparator.reverseOrder()).map(Emp::getlName).reversed()</code></p>
+<p>Which code fragment, when inserted at line n1, sorts the employees list in descending order of fName and then ascending order of lName?</p>
+<p>A. <code>.sorted(Comparator.comparing(Emp::getfName).reversed().thenComparing(Emp::getlName))</code></p>
+<p>B. <code>.sorted(Comparator.comparing(Emp::getfName).thenComparing(Emp::getlName))</code></p>
+<p>C. <code>.map(Emp::getfName).sorted(Comparator.reverseOrder())</code></p>
+<p>D. <code>.map(Emp::getfName).sorted(Comparator.reverseOrder()).map(Emp::getlName).reversed()</code></p>
 </blockquote>
 <ul>
 <li>選項B，<code>fName</code> 不是遞減排序 (fName，lName 都遞增)</li>
@@ -363,12 +363,12 @@ D. <code>.map(Emp::getfName).sorted(Comparator.reverseOrder()).map(Emp::getlName
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><blockquote>
-<p>Which statement is true?
-A. Board does not compile.
-B. Paper does not compile.
-C. Frame does not compile.
-D. Drawable does not compile.
-E. <strong>All classes compile successfully.</strong></p>
+<p>Which statement is true?</p>
+<p>A. Board does not compile.</p>
+<p>B. Paper does not compile.</p>
+<p>C. Frame does not compile.</p>
+<p>D. Drawable does not compile.</p>
+<p>E. <strong>All classes compile successfully.</strong></p>
 </blockquote>
 <ul>
 <li>class Paper 編譯成功，因為 Paper.draw() 並未繼承 Canvas.draw()，簽名 (signature) 不同</li>
@@ -388,11 +388,11 @@ E. <strong>All classes compile successfully.</strong></p>
 </span></span><span style="display:flex;"><span>nextYear<span style="color:#f92672">.</span><span style="color:#a6e22e">plusDays</span><span style="color:#f92672">(</span>15<span style="color:#f92672">);</span>  <span style="color:#75715e">// line n1
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>nextYear<span style="color:#f92672">);</span>
 </span></span></code></pre></div><blockquote>
-<p>What is the result?
-A. <strong>2023-02-14</strong>
-B. A DateTimeException is thrown.
-C. 2023-02-29
-D. A compilation error occurs at line n1.</p>
+<p>What is the result?</p>
+<p>A. <strong>2023-02-14</strong></p>
+<p>B. A DateTimeException is thrown.</p>
+<p>C. 2023-02-29</p>
+<p>D. A compilation error occurs at line n1.</p>
 </blockquote>
 <ul>
 <li>程式第三行建立出的一個「2023/02/29」的 LocalDate 物件，
@@ -409,11 +409,11 @@ D. A compilation error occurs at line n1.</p>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> hrs <span style="color:#f92672">=</span> ChronoUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">HOURS</span><span style="color:#f92672">.</span><span style="color:#a6e22e">between</span><span style="color:#f92672">(</span>depart<span style="color:#f92672">,</span> arrive<span style="color:#f92672">);</span>    <span style="color:#75715e">//line n1
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Travel time is &#34;</span> <span style="color:#f92672">+</span> hrs <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; hours&#34;</span><span style="color:#f92672">);</span>
 </span></span></code></pre></div><blockquote>
-<p>What is the result?
-A. Travel time is 4 hours
-B. Travel time is 6 hours
-C. Travel time is 8 hours
-D. An exception is thrown at line n1.</p>
+<p>What is the result?</p>
+<p>A. Travel time is 4 hours</p>
+<p>B. Travel time is 6 hours</p>
+<p>C. Travel time is 8 hours</p>
+<p>D. An exception is thrown at line n1.</p>
 </blockquote>
 <ul>
 <li>
@@ -445,13 +445,155 @@ D. An exception is thrown at line n1.</p>
 <h3 id="67-collection-and-stream_4">67. Collection and Stream_4</h3>
 <h3 id="68-collection-and-stream_5">68. Collection and Stream_5</h3>
 <h3 id="69-get-properties-of-all-files-within-directory">69. Get properties of All Files Within Directory</h3>
-<h3 id="70-usage-of-statement-and-resultset">70. Usage of Statement and ResultSet</h3>
+<h3 id="71-usage-of-statement-and-resultset">71. Usage of Statement and ResultSet</h3>
+<blockquote>
+<p>Statement 和 ResultSet 的用法</p>
+</blockquote>
 <h3 id="71-collection-and-stream_6">71. Collection and Stream_6</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> nL <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Jim&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;John&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Jeff&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Function<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> funVal <span style="color:#f92672">=</span> s <span style="color:#f92672">-&gt;</span> <span style="color:#e6db74">&#34;Hello : &#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>nL<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>funVal<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">peek</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>print<span style="color:#f92672">);</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p>A. <code>Hello : JimHello : JohnHello : Jeff</code></p>
+<p>B. <code>Jim John Jeff</code></p>
+<p><strong>C. The program prints nothing.</strong></p>
+<p>D. A compilation error occurs.</p>
+</blockquote>
+<p>要修改成以下兩種其一，才會輸出 <code>Hello : JimHello : JohnHello : Jeff</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>nL<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>funVal<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>print<span style="color:#f92672">);</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>nL<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">map</span><span style="color:#f92672">(</span>funVal<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">peek</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>print<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span><span style="color:#a6e22e">count</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><hr>
 <h3 id="72-usage-of-path">72. Usage of Path</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Path p1 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/Pics/MyPic.jpeg&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>p1<span style="color:#f92672">.</span><span style="color:#a6e22e">getNameCount</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">(</span>1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>Assume that the Pics directory does NOT exist.</p>
+<p>What is the result?</p>
+<p>A. An exception is thrown at run time.</p>
+<p>**B. **</p>
+<pre tabindex="0"><code>2:MyPic.jpeg:MyPic.jpeg
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>1:Pics:/Pics/MyPic.jpeg
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>2:Pics:MyPic.jpeg
+</code></pre></blockquote>
+<p>Path物件的getNameCount方法會計算路徑結構中檔案或是目錄名稱的數量，在這個題目中的路徑為「/Pics/MyPic.jpeg」，因此有「Pics」和「MyPic.jpeg」兩個名稱。</p>
+<p>Path物件的getName方法會取得路徑結構中的檔案或是目錄名稱，索引值從0開始。</p>
+<p>Path物件的getFileName方法會取得最後一個名稱。</p>
+<hr>
 <h3 id="73-collection-and-stream_7">73. Collection and Stream_7</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> empDetails <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;100, Robin, HR&#34;</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;200, Mary, AdminServices&#34;</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;101, Peter, HR&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    empDetails<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">filter</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1&#34;</span><span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">sorted</span><span style="color:#f92672">()</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">.</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">::</span>println<span style="color:#f92672">);</span> <span style="color:#75715e">// line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p><strong>A.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>100<span style="color:#f92672">,</span> Robin<span style="color:#f92672">,</span> HR
+</span></span><span style="display:flex;"><span>101<span style="color:#f92672">,</span> Peter<span style="color:#f92672">,</span> HR
+</span></span></code></pre></div><p>B. A compilation error occurs at line n1.</p>
+<p>C.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>100<span style="color:#f92672">,</span> Robin<span style="color:#f92672">,</span> HR
+</span></span><span style="display:flex;"><span>101<span style="color:#f92672">,</span> Peter<span style="color:#f92672">,</span> HR
+</span></span><span style="display:flex;"><span>200<span style="color:#f92672">,</span> Mary<span style="color:#f92672">,</span> AdminServices
+</span></span></code></pre></div><p>D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>100<span style="color:#f92672">,</span> Robin<span style="color:#f92672">,</span> HR
+</span></span><span style="display:flex;"><span>200<span style="color:#f92672">,</span> Mary<span style="color:#f92672">,</span> AdminServices
+</span></span><span style="display:flex;"><span>101<span style="color:#f92672">,</span> Peter<span style="color:#f92672">,</span> HR
+</span></span></code></pre></div></blockquote>
+<p>串流物件的 filter 方法可以保留符合條件的元素，因此line 6之後，串流物件元素剩下「100,Robin,HR」和「101,Peter,HR」</p>
+<p>sorted() 方法會排序串流中的元素，如不指定 Comparator 排序字串元素的話，會用辭典順序排序。</p>
+<hr>
 <h3 id="74-usage-of-assertionassert">74. Usage of Assertion(assert)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RateOfInterest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> rateOfInterest <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        String accountType <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;LOAN&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>accountType<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;RD&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                rateOfInterest <span style="color:#f92672">=</span> 5<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;FD&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                rateOfInterest <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">assert</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;No interest for this account&#34;</span><span style="color:#f92672">;</span> <span style="color:#75715e">// line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Rate of interest:&#34;</span> <span style="color:#f92672">+</span> rateOfInterest<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p>A. <code>Rate of interest: 0</code></p>
+<p><strong>B. An AssertionError is thrown.</strong></p>
+<p>C. <code>No interest for this account.</code></p>
+<p>D. A compilation error occurs at line n1.</p>
+</blockquote>
+<p>Java 的 assertion 敘述通常用於 private 方法內，確保傳入方法的參數範圍。</p>
+<p>當 assertion 敘述的判斷式為 false 時，就會拋出 AssertionError。</p>
+<p>執行 Java 程式時，<strong>若要啟用 assertion 敘述的功能，必須要在「java」指令後加上「-ea」或是「-enableassertions」參數來啟用 assertion</strong>。</p>
+<p>第四行 accountType 參考到的字串均不符合 switch 結構中的 case 項目，會執行 line 12/13 default 程式，拋出 AssertionError。</p>
+<hr>
 <h3 id="75-how-to-encapulate">75. How to Encapulate</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Vehicle</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    String <span style="color:#a6e22e">getName</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What action encapsulates the Vehicle class?</p>
+<p>A. Make the Vehicle class public.              <em>與封裝概念無關</em></p>
+<p>B. Make the name variable public.    		<em>與封裝概念背道而馳。應該 name field 設為 private 可見度，使用 getter/setter 存取</em></p>
+<p>C. Make the setName method public.		<em>setName() 是否為 public 都與封裝概念關聯不大</em></p>
+<p><strong>D. Make the name variable private.</strong> 	   <em>Bingo</em></p>
+<p>E. Make the setName method private.	  <em>setName() 是否為 private 都與封裝概念關聯不大</em></p>
+<p>F. Make the getName method private.	  <em>getName() 是否為 private 都與封裝概念關聯不大</em></p>
+</blockquote>
+<hr>
 <h3 id="76-usage-of-assertionassert_2">76. Usage of Assertion(assert)_2</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Counter</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> <span style="color:#f92672">(</span>b <span style="color:#f92672">&gt;=</span> 1<span style="color:#f92672">)</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Invalid Denominator&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> a <span style="color:#f92672">/</span> b<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result of running the code with the <code>-ea</code> option?</p>
+<p>A. <code>-10</code></p>
+<p>B. <code>0</code></p>
+<p><strong>C. An AssertionError is thrown.</strong></p>
+<p>D. A compilation error occurs.</p>
+</blockquote>
+<p>Java的assertion敘述通常用於private方法內，確保傳入方法的參數範圍</p>
+<p><strong>當assertion敘述的判斷式為false的時候，就會拋出 AssertionError。</strong></p>
+<hr>
 <h3 id="77-default-method-of-interface">77. Default Method of Interface</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Moveable</span><span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>
@@ -462,8 +604,8 @@ D. An exception is thrown at line n1.</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>Integer distance<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><blockquote>
-<p>Which statement is true?
-A. Moveable can be used as below:</p>
+<p>Which statement is true?</p>
+<p>A. Moveable can be used as below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Moveable<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> animal <span style="color:#f92672">=</span> n <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Running&#34;</span> <span style="color:#f92672">+</span> n<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>animal<span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>animal<span style="color:#f92672">.</span><span style="color:#a6e22e">walk</span><span style="color:#f92672">(</span>20<span style="color:#f92672">);</span>
@@ -475,8 +617,8 @@ A. Moveable can be used as below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Moveable animal <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Integer n<span style="color:#f92672">)</span> <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>n<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>animal<span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>Moveable<span style="color:#f92672">.</span><span style="color:#a6e22e">walk</span><span style="color:#f92672">(</span>20<span style="color:#f92672">);</span>  <span style="color:#75715e">// walk 方法不能用這樣的方式呼叫
-</span></span></span></code></pre></div><p>D. Movable cannot be used in a lambda expression.
-==Moveable 介面可以使用 Lambda 表示式來實作==</p>
+</span></span></span></code></pre></div><p>D. Movable cannot be used in a lambda expression.</p>
+<p style="background-color: yellow;"> Moveable 介面可以使用 Lambda 表示式來實作 </p>
 </blockquote>
 <ul>
 <li>run 方法：
@@ -485,14 +627,171 @@ A. Moveable can be used as below:</p>
 Moveable 介面的預設方法，只能在實體化出 Moveable 介面的物件之後才能使用，
 無法直接用 Moveable 介面來呼叫</li>
 </ul>
+<hr>
 <h3 id="78-member-of-class">78. Member of Class</h3>
-<blockquote>
-<p>類別成員</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Customer</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String fName<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String lName<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> count<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Customer</span><span style="color:#f92672">(</span>String first<span style="color:#f92672">,</span> String last<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        fName <span style="color:#f92672">=</span> first<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        lName <span style="color:#f92672">=</span> last<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">++</span>count<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        count <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getCount</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> count<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">App</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Customer c1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Customer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Larry&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Smith&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Customer c2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Customer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Pedro&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Gonzales&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Customer c3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Customer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Penny&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Jones&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Customer c4 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Customer<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Lars&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Svenson&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        c4 <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        c3 <span style="color:#f92672">=</span> c2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Customer<span style="color:#f92672">.</span><span style="color:#a6e22e">getCount</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p>A. 0</p>
+<p>B. 2</p>
+<p>C. 3</p>
+<p><strong>D.</strong> 4</p>
+<p>E. 5</p>
 </blockquote>
+<p>Customer.getCount() 是回傳 count 變數的值，count 變數在建構子被呼叫時會加 1，
+count 變數在建構子被呼叫時會加 1，App 類別 main 方法中一共實體化 4 個 Customer 物件，輸出「4」。</p>
+<hr>
 <h3 id="79-sequence-of-collection">79. Sequence of Collection</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TextBook</span> <span style="color:#66d9ef">implements</span> Comparator<span style="color:#f92672">&lt;</span>TextBook<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> price<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TextBook</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TextBook</span><span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> price<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> price<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>TextBook o1<span style="color:#f92672">,</span> TextBook o2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> o1<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>o2<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> price<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>TextBook<span style="color:#f92672">&gt;</span> textBooks <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> TextBook<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Beginning with Java&#34;</span><span style="color:#f92672">,</span> 2<span style="color:#f92672">),</span> 
+</span></span><span style="display:flex;"><span>                                         <span style="color:#66d9ef">new</span> TextBook<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;A Guide to Java Journey&#34;</span><span style="color:#f92672">,</span> 3<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>textBooks<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> TextBook<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>textBooks<span style="color:#f92672">);</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p><strong>A.</strong> <code>[A Guide to Java Tour:3.0, Beginning with Java:2.0]</code></p>
+<p>B. <code>[Beginning with Java:2.0, A Guide to Java Tour:3.0]</code></p>
+<p>C. A compilation error occurs because the Book class does not override the abstract method compareTo().</p>
+<p>D. An Exception is thrown at run time.</p>
+</blockquote>
+<p>TextBook class 實作 Comparator 介面，並使用 TextBook 物件的 name 欄位字串辭典順序作為排序依據。</p>
+<p>Collections.sort() 傳入 TextBook Comparator 物件來排序集合物件。因此答案為 <strong>A</strong>。</p>
+<hr>
 <h3 id="80-the-resolve-method-of-path-object">80. The <code>resolve</code> Method of Path Object</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path path1 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/app/./sys/&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Path res1 <span style="color:#f92672">=</span> path1<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;log&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Path path2 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/server/exe/&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Path res2 <span style="color:#f92672">=</span> path2<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/readme/&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>res1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>res2<span style="color:#f92672">);</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p>A.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">\</span>app<span style="color:#960050;background-color:#1e0010">\</span>sys<span style="color:#960050;background-color:#1e0010">\</span>log
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">\</span>readme<span style="color:#960050;background-color:#1e0010">\</span>server<span style="color:#960050;background-color:#1e0010">\</span>exe    
+</span></span></code></pre></div><p>B.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">\</span>app<span style="color:#960050;background-color:#1e0010">\</span>log<span style="color:#960050;background-color:#1e0010">\</span>sys
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">\</span>server<span style="color:#960050;background-color:#1e0010">\</span>exe<span style="color:#960050;background-color:#1e0010">\</span>readme
+</span></span></code></pre></div><p>**C. **</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">\</span>app<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#f92672">.</span><span style="color:#960050;background-color:#1e0010">\</span>sys<span style="color:#960050;background-color:#1e0010">\</span>log
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">\</span>readme
+</span></span></code></pre></div><p>D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">\</span>app<span style="color:#960050;background-color:#1e0010">\</span><span style="color:#f92672">.</span><span style="color:#960050;background-color:#1e0010">\</span>sys<span style="color:#960050;background-color:#1e0010">\</span>log
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">\</span>server<span style="color:#960050;background-color:#1e0010">\</span>exe<span style="color:#960050;background-color:#1e0010">\</span>readme
+</span></span></code></pre></div></blockquote>
+<p>Path.resolve() 類似 Paths.get()，可以產生新的 Path 物件。</p>
+<p>但與 Paths.get() 不同之處在於 Path.resolve() 方法與目前的 Path 物件有關，</p>
+<p>resolve方法可傳入<strong>相對路徑</strong>或是<strong>絕對路徑</strong>。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/wEIX6sq.png"
+        data-srcset="https://i.imgur.com/wEIX6sq.png, https://i.imgur.com/wEIX6sq.png 1.5x, https://i.imgur.com/wEIX6sq.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/wEIX6sq.png"
+        title="image-20221111115438037" /></p>
+<hr>
 <h3 id="81-overriding-method-that-throws-exception">81. Overriding Method That Throws Exception</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FuelNotAvailException</span> <span style="color:#66d9ef">extends</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Vehicle</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ride</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> FuelNotAvailException <span style="color:#f92672">{</span>  <span style="color:#75715e">// line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Happy Friday!!&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SolarVehicle</span> <span style="color:#66d9ef">extends</span> Vehicle <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ride</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span> <span style="color:#75715e">// line n2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ride</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> FuelNotAvailException<span style="color:#f92672">,</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Vehicle v <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SolarVehicle<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    v<span style="color:#f92672">.</span><span style="color:#a6e22e">ride</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>modification enables the code fragment to print Happy Journey!?</p>
+<p>A. Replace line n1 with public void ride() throws FuelNotAvailException {</p>
+<p><strong>B.</strong> Replace line n1 with protected void ride() throws Exception {</p>
+<p>C. Replace line n2 with void ride() throws Exception {</p>
+<p>D. Replace line n2 with private void ride() throws FuelNotAvailException {</p>
+</blockquote>
+<p>FuelNotAvailException 繼承 Exception，屬於 check exception。</p>
+<p>Vehicle.ride() 方法會拋出 FuelNotAvailException；</p>
+<p>而複寫 Vehicle.ride() 方法的 SolarVehicle 類別，其 ride() 方法只能</p>
+<ol>
+<li>不拋出例外</li>
+<li>拋出 unchecked exception 或</li>
+<li>拋出 FuelNotAvailException 或其子例外</li>
+</ol>
+<hr>
 <h3 id="82-copying-files">82. Copying Files</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path source <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/data/december/log.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Path destination <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/data&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">copy</span><span style="color:#f92672">(</span>source<span style="color:#f92672">,</span> destination<span style="color:#f92672">);</span>
+</span></span></code></pre></div><blockquote>
+<p>Assume that the <code>file/data/december/log.txt</code> is accessible and contains:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>11<span style="color:#f92672">-</span>Nov<span style="color:#f92672">-</span>2022 <span style="color:#f92672">-</span> Executed successfully
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A. A file with the name log.txt is created in the /data directory and the content of the /data/december/log.txt file is copied to it.</p>
+<p>B. The program executes successfully and does NOT change the file system.</p>
+<p>C. A FileNotFoundException is thrown at run time.</p>
+<p><strong>D. A FileAlreadyExistsException is thrown at run time.</strong></p>
+</blockquote>
+<p>若<code>/data</code>已存在，程式會拋出 <em>FileAlreadyExistsException</em>，
+若<code>/data</code>不存在，會在「/」目錄下產生「data」檔案，內容為「11-Nov-2022 - Executed successfully」。</p>
+<p>若要避免<em>FileAlreadyExistsException</em>，可在 Files.copy() 方法加入<code>CopyOption</code>至第三個參數中，如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">copy</span><span style="color:#f92672">(</span>source<span style="color:#f92672">,</span> destination<span style="color:#f92672">,</span> StandardCopyOption<span style="color:#f92672">.</span><span style="color:#a6e22e">REPLACE_EXISTING</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><hr>
 <h3 id="83-how-to-print-rat-cat-lion-tiger">83. How to Print 「Rat Cat Lion Tiger」？</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">checkValue</span><span style="color:#f92672">(</span>String s1<span style="color:#f92672">,</span> String s2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> s1<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> s2<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">();</span>
@@ -504,15 +803,17 @@ Moveable 介面的預設方法，只能在實體化出 Moveable 介面的物件�
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">stream</span><span style="color:#f92672">(</span>strArray<span style="color:#f92672">).</span><span style="color:#a6e22e">forEach</span><span style="color:#f92672">(</span>s <span style="color:#f92672">-&gt;</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>s <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">));</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><blockquote>
-<p>Which code fragment should be inserted at line n1 to enable the code to print Rat Cat Lion Tiger?
-<strong>A.</strong> <code>Arrays.sort(strArray, CheckClass::checkValue);</code>
-B. <code>Arrays.sort(strArray, (CheckClass::new)::checkValue);</code>
-C. <code>Arrays.sort(strArray, (CheckClass::new).checkValue);</code>
-D. <code>Arrays.sort(strArray, CheckClass::new::checkValue);</code></p>
+<p>Which code fragment should be inserted at line n1 to enable the code to print Rat Cat Lion Tiger?</p>
+<p><strong>A.</strong> <code>Arrays.sort(strArray, CheckClass::checkValue);</code></p>
+<p>B. <code>Arrays.sort(strArray, (CheckClass::new)::checkValue);</code></p>
+<p>C. <code>Arrays.sort(strArray, (CheckClass::new).checkValue);</code></p>
+<p>D. <code>Arrays.sort(strArray, CheckClass::new::checkValue);</code></p>
 </blockquote>
 <ul>
-<li>Arrays</li>
+<li><code>Arrays.sort()</code> 方法可以排序傳入的陣列 array，也可以再傳入 Comparator 來自行決定陣列的排序方式。
+<code>CheckClass</code> 類別的 <code>checkValue()</code> 方法是類別方法，不用實體化即可以使用</li>
 </ul>
+<hr>
 <h3 id="84-usage-of-treemap">84. Usage of TreeMap</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> books <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeMap<span style="color:#f92672">&lt;&gt;();</span>
 </span></span><span style="display:flex;"><span>books<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>1007<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">);</span>
@@ -521,11 +822,11 @@ D. <code>Arrays.sort(strArray, CheckClass::new::checkValue);</code></p>
 </span></span><span style="display:flex;"><span>books<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>1003<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;B&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>books<span style="color:#f92672">);</span>
 </span></span></code></pre></div><blockquote>
-<p>What is the result?
-A. {1007 = A, 1002 = C, 1001 = B, 1003 = B}
-B. <strong>{1001 = B, 1002 = C, 1003 = B, 1007 = A}</strong>
-C. {1002 = C, 1003 = B, 1007 = A}
-D. {1007 = A, 1001 = B, 1003 = B, 1002 = C}</p>
+<p>What is the result?</p>
+<p>A. {1007 = A, 1002 = C, 1001 = B, 1003 = B}</p>
+<p>B. <strong>{1001 = B, 1002 = C, 1003 = B, 1007 = A}</strong></p>
+<p>C. {1002 = C, 1003 = B, 1007 = A}</p>
+<p>D. {1007 = A, 1001 = B, 1003 = B, 1002 = C}</p>
 </blockquote>
 <ul>
 <li><code>TreeMap</code> implements NavigableMap; <code>NavigableMap</code>(interface) extends <code>SortedMap</code>
@@ -552,7 +853,7 @@ D. {1007 = A, 1001 = B, 1003 = B, 1002 = C}</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/ocajp/" class="prev" rel="prev" title="Oracle Certified Associate Java PG"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Oracle Certified Associate Java PG</a>
+    <div class="post-nav"><a href="/posts/reading_club/" class="prev" rel="prev" title="// Reading club"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>// Reading club</a>
             <a href="/posts/ocpjp_11/" class="next" rel="next" title="[NEW] OCP Java PG">[NEW] OCP Java PG<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
