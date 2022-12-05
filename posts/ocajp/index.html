@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocajp\/"
-        },"genre": "posts","keywords": "Java, 1Z0-808","wordcount":  3661 ,
+        },"genre": "posts","keywords": "Java, 1Z0-808","wordcount":  5383 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocajp\/","datePublished": "2022-12-04T14:57:52+08:00","dateModified": "2022-12-04T14:57:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -70,8 +70,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Oracle Certified Associate Java PG</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-04">2022-12-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3661 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;18 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-04">2022-12-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5383 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;26 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -114,7 +114,7 @@
         <li><a href="#31-default-methods-for-interface">31. Default Methods for Interface</a></li>
         <li><a href="#32-break-of-methods">32. <code>break</code> of Methods</a></li>
         <li><a href="#33-usage-of-while">33. Usage of <code>while</code></a></li>
-        <li><a href="#34-continue-and-break-of-a-for-loop">34. <code>continue</code> and <code>break</code> of a For Loop</a></li>
+        <li><a href="#34-continue-and-break-of-a-for-loop">34. <code>continue</code> and <code>break</code> of a for loop</a></li>
         <li><a href="#35-checked-exception-and-unchecked-exception">35. Checked Exception and Unchecked Exception</a></li>
         <li><a href="#36-initialization-of-field">36. Initialization of Field</a></li>
         <li><a href="#37-calculating-floatdouble">37. Calculating float/double</a></li>
@@ -449,11 +449,12 @@
 </span></span><span style="display:flex;"><span>        num_substitutes <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><blockquote>
-<p>#B Compiler 會自動在第一行加上super();  but Sports class 沒有 No Arg Constructor</p>
-<p>#C 即使有加上 super(&hellip;, &hellip;, &hellip;); 放第二行仍然會編譯錯誤，只能放第一行</p>
-<p>#D 原因同 #C</p>
-</blockquote>
+</span></span></code></pre></div><h4 id="analysis">Analysis</h4>
+<ul>
+<li>B. Compiler 會自動在第一行加上super();  but Sports class 沒有 No Arg Constructor</li>
+<li>C. 即使有加上 super(&hellip;, &hellip;, &hellip;); 放第二行仍然會編譯錯誤，只能放第一行</li>
+<li>D. 原因同 #C</li>
+</ul>
 <hr>
 <h3 id="5-initialize-variable">5. Initialize Variable</h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Calculator</span> <span style="color:#f92672">{</span>
@@ -512,6 +513,7 @@
 <p>C. A package declaration</p>
 <p><strong>D. A method declaration</strong></p>
 </blockquote>
+<h4 id="analysis-1">Analysis</h4>
 <p><code>package declaration</code></p>
 <p><code>import statement</code></p>
 <p><code>class declaration</code> {</p>
@@ -565,6 +567,7 @@ Jeve
 ve
 </code></pre><p>D. Compilation fails</p>
 </blockquote>
+<h4 id="analysis-2">Analysis</h4>
 <ul>
 <li>Alpha, Beta, Gamma 的實體物件都會使用到自己的 <code>doStuff</code> 物件方法</li>
 </ul>
@@ -589,6 +592,7 @@ ve
 <p>C. break, continue</p>
 <p><strong>D.</strong> continue, continue</p>
 </blockquote>
+<h4 id="analysis-3">Analysis</h4>
 <ul>
 <li>continue - 直接執行下一次的迴圈</li>
 <li>break - 直接跳出迴圈</li>
@@ -617,6 +621,7 @@ ve
 <p>C. Compilation fails</p>
 <p>D. An exception is thrown at runtime</p>
 </blockquote>
+<h4 id="analysis-4">Analysis</h4>
 <ul>
 <li>
 <p><code>str3</code> 一開始為 null，接著直接使用「+」運算子與字元做字串連接（Java 允許此種作法），
@@ -652,6 +657,7 @@ ve
 <p>D. <code>System.out.printLn(x &gt; 10 ? &quot;&gt;&quot; ? &quot;&lt;&quot; ? &quot;=&quot;);</code></p>
 <p>E. None of the above</p>
 </blockquote>
+<h4 id="analysis-5">Analysis</h4>
 <ul>
 <li>三元運算子的「?」和「:」一定是成對出現的，故 A、B、D 皆有誤</li>
 </ul>
@@ -686,6 +692,7 @@ ve
 </span></span><span style="display:flex;"><span>num<span style="color:#f92672">[</span>1<span style="color:#f92672">][</span>2<span style="color:#f92672">]=</span>10
 </span></span><span style="display:flex;"><span>num<span style="color:#f92672">[</span>1<span style="color:#f92672">][</span>3<span style="color:#f92672">]=</span>10
 </span></span></code></pre></div></blockquote>
+<h4 id="analysis-6">Analysis</h4>
 <ul>
 <li><code>int num[][] = new int[1][3];</code> &ndash; 宣告並實體化一個 ⭐<strong>長度為 1x3 的</strong> 二維整數 &ldquo;num&rdquo; 陣列
 <ul>
@@ -730,6 +737,7 @@ String out of limits
 Nya
 Opha Jo
 </code></pre></blockquote>
+<h4 id="analysis-7">Analysis</h4>
 <ul>
 <li>names[0]的長度是10，索引範圍是 0 ~ 11；</li>
 <li>names[1]的長度是9，索引範圍是 0 ~ 6；</li>
@@ -783,6 +791,7 @@ Opha Jo
 <p><strong>D. Prints 1 2 3 4 5 six times</strong></p>
 <p>E. Compilation fails</p>
 </blockquote>
+<h4 id="analysis-8">Analysis</h4>
 <ul>
 <li>for 迴圈內的變數 i 會遮蔽掉物件的變數 i，for 迴圈做的變數 i 更動，都不會影響到物件的變數 i</li>
 <li>line 10 的 <code>i++</code> 決定了 while 迴圈的執行次數</li>
@@ -821,6 +830,7 @@ I, o
 <pre tabindex="0"><code>e, e
 o, o
 </code></pre></blockquote>
+<h4 id="analysis-9">Analysis</h4>
 <ul>
 <li>Java 永遠是 pass by value
 <ul>
@@ -876,6 +886,7 @@ o, o
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">draw</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#75715e">/* code here */</span> <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div></blockquote>
+<h4 id="analysis-10">Analysis</h4>
 <ul>
 <li>Abstract class 抽象類別
 <ul>
@@ -933,6 +944,7 @@ Replace line n1 with:</p>
 Replace line n1 with:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Joe&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> 100<span style="color:#f92672">);</span>
 </span></span></code></pre></div></blockquote>
+<h4 id="analysis-11">Analysis</h4>
 <ul>
 <li>A: 先實體化物件，再透過物件參考才可以存取 → OK</li>
 <li>B: main 方法是類別 (靜態) 方法，並沒有實體，無法使用 this 關鍵字</li>
@@ -995,6 +1007,7 @@ Replace line n1 with:</p>
 <p>C. Compilation fails at line n1</p>
 <p><strong>D. Compilation fails at line n2</strong></p>
 </blockquote>
+<h4 id="analysis-12">Analysis</h4>
 <ul>
 <li>line n1 - 用「this」敘述呼叫了Vehicle物件的另一個建構子，而Vehicle物件的確擁有「Vehicle(int x)」建構子
 → OK</li>
@@ -1025,8 +1038,9 @@ Replace line n1 with:</p>
 <p>D. Execution completes normally, and Ready to use is printed to the console.</p>
 <p>E. The code fails to compile because a throws keyword is required.</p>
 </blockquote>
+<h4 id="analysis-13">Analysis</h4>
 <ul>
-<li>line 5 的 while 迴圈會不斷執行，因此會持續添加字串直到產生 OutOfMemoryError</li>
+<li>line 5 的 whvile 迴圈會不斷執行，因此會持續添加字串直到產生 OutOfMemoryError</li>
 <li>try-cache 並沒有處理 Error 類別底下的 OutOfMemoryError，因此會繼續往外拋出
 <ul>
 <li>沒有程式去處理該 OutOfMemoryError，執行緒會原封不動拋出，中止執行</li>
@@ -1065,6 +1079,7 @@ Replace line n1 with:</p>
 <p><strong>C.</strong> <code>400.0 : 100.0</code></p>
 <p>D. Compilation fails.</p>
 </blockquote>
+<h4 id="analysis-14">Analysis</h4>
 <ul>
 <li>Java 永遠是 pass by value
 <ul>
@@ -1114,6 +1129,7 @@ Replace line n1 with:</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">methodY</span><span style="color:#f92672">(){}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div></blockquote>
+<h4 id="analysis-15">Analysis</h4>
 <ul>
 <li>
 <p>X是抽象類別，Y是介面，要成功建立Z這個類別去繼承X與實作Y</p>
@@ -1158,6 +1174,7 @@ Replace line n1 with:</p>
 <p>C. Compilation fails</p>
 <p>D. An exception is thrown at runtime</p>
 </blockquote>
+<h4 id="analysis-16">Analysis</h4>
 <ul>
 <li>line 8: 將新長度為4的整數陣列指派給numbers變數
 <ul>
@@ -1190,6 +1207,7 @@ Replace line n1 with:</p>
 <pre tabindex="0"><code>5 + 2 = 34
 5 + 2 = 7
 </code></pre></blockquote>
+<h4 id="analysis-17">Analysis</h4>
 <ul>
 <li>運算子「+」若其中一個運算元為字串，那麼它將會做字串連接，否則為加法運算。</li>
 </ul>
@@ -1227,6 +1245,7 @@ Hello Java SE 8
 </span></span><span style="display:flex;"><span>Hello p1<span style="color:#f92672">.</span><span style="color:#a6e22e">MyString</span><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#f92672">&lt;&lt;</span>hashcode<span style="color:#f92672">&gt;&gt;</span>  <span style="color:#75715e">// @74a14482
 </span></span></span></code></pre></div><p>D. Compilation fails at the Test class.</p>
 </blockquote>
+<h4 id="analysis-18">Analysis</h4>
 <ul>
 <li>
 <p>運算子「+」若其中一個運算元為字串，那麼它將會做字串連接，否則為加法運算</p>
@@ -1265,6 +1284,7 @@ Hello Java SE 8
 <p>D. <code>class C implements X, Y extends B { }</code></p>
 <p><strong>E.</strong> <code>class C extends B implements X, Y { }</code></p>
 </blockquote>
+<h4 id="analysis-19">Analysis</h4>
 <ul>
 <li>類別可以使用 <code>implements</code> 實作多個介面 (interface)</li>
 <li>但只可以使用 <code>extends</code> 繼承單一個類別</li>
@@ -1290,87 +1310,702 @@ Hello Java SE 8
 <p><strong>D. Compilation fails due to error on line 7.</strong></p>
 <p>E. An Exception is thrown at the runtime.</p>
 </blockquote>
+<h4 id="analysis-20">Analysis</h4>
 <ul>
 <li>line 7 使用的 x 變數已經在 x 被宣告的 for 迴圈之外，無法有效存取，會發生編譯錯誤</li>
 </ul>
+<hr>
 <h3 id="29-bank-module">29. Bank Module</h3>
+<blockquote>
+<p>You are developing a banking module. You have develop a class named ccMask that has a maskcc method.</p>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CCMask</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">maskCC</span><span style="color:#f92672">(</span>String creditCard<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;XXXX-XXXX-XXXX-&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>maskCC<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1234-5678-9101-1121&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>You must ensure that the maskcc method returns a string that hides all digits of the credit card number except the four last digits (and the hyphens that separate each group of four digits).</p>
+<p>Which two code fragments should you use at line n1, independently, to achieve this requirement?</p>
+<p>A.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span>creditCard<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>15<span style="color:#f92672">,</span> 19<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> sb<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p><strong>B.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">return</span> x <span style="color:#f92672">+</span> creditCard<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span>15<span style="color:#f92672">,</span> 19<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><strong>C.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span>x<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>creditCard<span style="color:#f92672">,</span> 15<span style="color:#f92672">,</span> 19<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div><p>D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span>creditCard<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>StringBuilder s <span style="color:#f92672">=</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> x<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></blockquote>
+<h4 id="analysis-21">Analysis</h4>
+<ul>
+<li>A, D: xxxx-xxxx-xxxx-(creditCard)</li>
+</ul>
+<hr>
 <h3 id="30-convert-to-upperclass-alphabet">30. Convert to Upperclass Alphabet</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[][]</span> arra <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[</span>3<span style="color:#f92672">][];</span>
+</span></span><span style="display:flex;"><span>        arra<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;rose&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;lily&#34;</span><span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        arra<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;apple&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;berry&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;cherry&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;grapes&#34;</span><span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        arra<span style="color:#f92672">[</span>2<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;beans&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;carrot&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;potato&#34;</span><span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// insert code fragment here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>Which code fragment when inserted at line &lsquo;// insert code fragment here&rsquo;, enables the code to successfully change arra elements to uppercase?</p>
+<p><strong>A.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> arra<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++){</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> j <span style="color:#f92672">&lt;</span> arra<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> j<span style="color:#f92672">++){</span>
+</span></span><span style="display:flex;"><span>        arra<span style="color:#f92672">[</span>i<span style="color:#f92672">][</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> arra<span style="color:#f92672">[</span>i<span style="color:#f92672">][</span>j<span style="color:#f92672">].</span><span style="color:#a6e22e">toUpperCase</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>B.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>i <span style="color:#f92672">&lt;</span> 3<span style="color:#f92672">;</span> i<span style="color:#f92672">++){</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>0<span style="color:#f92672">;</span> j <span style="color:#f92672">&lt;</span> 4<span style="color:#f92672">;</span> j<span style="color:#f92672">++){</span>
+</span></span><span style="display:flex;"><span>        arra<span style="color:#f92672">[</span>i<span style="color:#f92672">][</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> arra<span style="color:#f92672">[</span>i<span style="color:#f92672">][</span>j<span style="color:#f92672">].</span><span style="color:#a6e22e">toUpperCase</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>C.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>String a<span style="color:#f92672">[]</span> <span style="color:#f92672">:</span> arra<span style="color:#f92672">[][]){</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>String x <span style="color:#f92672">:</span> a<span style="color:#f92672">[]){</span>
+</span></span><span style="display:flex;"><span>        x<span style="color:#f92672">.</span><span style="color:#a6e22e">toUpperCase</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">:</span> arra<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>String x <span style="color:#f92672">:</span> arra<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>        arra<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">toUpperCase</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></blockquote>
+<h4 id="analysis-22">Analysis</h4>
+<ul>
+<li>B → ArrayIndexOutOfBoundsException</li>
+<li>C → <code>x.toUpperCase();</code> 只會<strong>回傳</strong>修改後的字串，不會修改字串內容</li>
+<li>D → 嚴重錯誤</li>
+</ul>
+<hr>
 <h3 id="31-default-methods-for-interface">31. Default Methods for Interface</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CanFly</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fly</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ____ String <span style="color:#a6e22e">getType</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> type<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>Which of the following can fill in the blank in this code to make it compile?</p>
+<p>A. abstract</p>
+<p>B. public</p>
+<p><strong>C. default</strong></p>
+<p>D. It will not compile with any as interfaces cannot have non abstract methods.</p>
+<p>E.  It will compile without filling the blank.</p>
+</blockquote>
+<h4 id="analysis-23">Analysis</h4>
+<ul>
+<li>Java 8 interface 的預設方法和靜態方法 default method vs static method
+<ul>
+<li>如果要在介面實作預設方法，需使用<code>default</code>修飾字來定義方法
+<ul>
+<li>預設方法只能由 <strong>實作這個介面的類別所實體化出的物件</strong> 使用</li>
+</ul>
+</li>
+<li>如果要在介面實作靜態方法，需使用 <code>static</code> 修飾字來定義方法
+<ul>
+<li><strong>靜態方法只能透過介面使用</strong>，無法透過實作這個介面的物件實體使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h3 id="32-break-of-methods">32. <code>break</code> of Methods</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestBreak</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> sum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doCheck</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> number<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>number <span style="color:#f92672">%</span> 2 <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> number<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                sum <span style="color:#f92672">+=</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        TestBreak obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TestBreak<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Red &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">sum</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        obj<span style="color:#f92672">.</span><span style="color:#a6e22e">doCheck</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Orange &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">sum</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        obj<span style="color:#f92672">.</span><span style="color:#a6e22e">doCheck</span><span style="color:#f92672">(</span>3<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Green &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">sum</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>Red 0
+Orange 0
+Green 3
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>Red 0
+Orange 0
+Green 6
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>Red 0
+Orange 1
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>Green 4
+</code></pre><p><strong>E.</strong> Compilation fails</p>
+</blockquote>
+<h4 id="analysis-24">Analysis</h4>
+<ul>
+<li><code>break;</code> 敘述只能用在迴圈和 <code>switch</code>結構中，不能用在 if 判斷</li>
+</ul>
+<hr>
 <h3 id="33-usage-of-while">33. Usage of <code>while</code></h3>
-<h3 id="34-continue-and-break-of-a-for-loop">34. <code>continue</code> and <code>break</code> of a For Loop</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyClass</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> ii <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> ii <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>            ii<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ii = &#34;</span> <span style="color:#f92672">+</span> ii<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What&rsquo;s the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>ii = 1
+ii = 2
+</code></pre><p><strong>B. Compilation fails</strong></p>
+<p>C. The program prints nothing</p>
+<p>D. The program goes into an infinite loop with no output</p>
+<p>E. The program goes to an infinite loop outputting:</p>
+<pre tabindex="0"><code>ii = 1
+ii = 1
+</code></pre></blockquote>
+<h4 id="analysis-25">Analysis</h4>
+<ul>
+<li>
+<p>while 迴圈內 expression 用法錯誤，可改成:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> ii <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">while</span><span style="color:#f92672">(</span>ii <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>		ii<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ii = &#34;</span> <span style="color:#f92672">+</span> ii<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>或者:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> ii <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> ii <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">;){</span>
+</span></span><span style="display:flex;"><span>		ii<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ii = &#34;</span> <span style="color:#f92672">+</span> ii<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<hr>
+<h3 id="34-continue-and-break-of-a-for-loop">34. <code>continue</code> and <code>break</code> of a for loop</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String<span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;B&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;C&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;D&#34;</span><span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Work done&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A. <code>A B C Work done</code></p>
+<p>B. <code>A B C D Work done</code></p>
+<p><strong>C.</strong> <code>A Work done</code></p>
+<p>D. Compilation fails</p>
+</blockquote>
+<h4 id="analysis-26">Analysis</h4>
+<ul>
+<li>第一次迴圈執行到第 8 行就直接跳出迴圈，所以只輸出 A Work done</li>
+</ul>
+<hr>
 <h3 id="35-checked-exception-and-unchecked-exception">35. Checked Exception and Unchecked Exception</h3>
 <blockquote>
-<p>需要檢查的例外 vs 不需要檢查的例外</p>
+<p>Given the classes:</p>
+<ul>
+<li>AssertionError</li>
+<li>ArithmeticException</li>
+<li>ArrayIndexOutOfBoundsException</li>
+<li>FileNotFoundException</li>
+<li>IllegalArgumentException</li>
+<li>IOError</li>
+<li>IOException</li>
+<li>NumberFormatException</li>
+<li>SQLException</li>
+</ul>
+<p>Which option lists only those classes that belong to the unchecked exception category?</p>
+<p>A. <strong>AssertionError</strong>, <strong>ArrayIndexOutOfBoundsException</strong>, <strong>ArithmeticException</strong></p>
+<p>B. AssertionError, IOError, IOException</p>
+<p>C. ArithmeticException, FileNotFoundException, NumberFormatException</p>
+<p>D. FileNotFoundException, IOException, SQLException</p>
+<p>E. ArrayIndexOutOfBoundException, IllegalArgumentException, FileNotFoundException</p>
 </blockquote>
+<h4 id="analysis-27">Analysis</h4>
+<ul>
+<li>例外的兩種類型
+<ul>
+<li>不需檢查的例外(<em>unchecked exception</em>)
+<ul>
+<li>包含 RuntimeException，Error 以及所有其它繼承它們的例外(或是錯誤)</li>
+<li>常見例外 ArrayIndexOutOfBoundsException, NullPointerException</li>
+</ul>
+</li>
+<li>需要檢查的例外(<em>checked exception</em>)
+<ul>
+<li>必須使用「try-cache」結構 或是「throws」關鍵字來處理例外</li>
+<li>常見例外 IOException, SQLException</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>解析
+<ul>
+<li>B - 需要檢查的例外 <code>IOException</code></li>
+<li>C - 需要檢查的例外 <code>FileNotFoundException</code></li>
+<li>D - 全部都是需要檢查的例外 <code>FileNotFoundException</code>, <code>IOException</code>, <code>SQLException</code></li>
+<li>E - 需要檢查的例外 <code>FileNotFoundException</code></li>
+</ul>
+</li>
+</ul>
+<hr>
 <h3 id="36-initialization-of-field">36. Initialization of Field</h3>
 <blockquote>
-<p>欄位初始值</p>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Whizlabs</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> pass<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Whizlabs wb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Whizlabs<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;name = &#34;</span> <span style="color:#f92672">+</span> wb<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;,pass = &#34;</span> <span style="color:#f92672">+</span> wb<span style="color:#f92672">.</span><span style="color:#a6e22e">pass</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What would be the output, if it is executed as a program?</p>
+<p>A. <code>name =, pass =</code></p>
+<p>B. <code>name = null, pass = null</code></p>
+<p><strong>C.</strong> <code>name = null, pass = false</code></p>
+<p>D. <code>name = null pass = true</code></p>
+<p>E. Compile error.</p>
 </blockquote>
+<h4 id="analysis-28">Analysis</h4>
+<ul>
+<li>
+<p>Java 類別或物件欄位會依不同資料型態自動給定初始值：</p>
+<pre tabindex="0"><code>String、Object：null
+byte、short、int、long、float、double：0
+char：\0
+boolean：false
+</code></pre></li>
+</ul>
+<hr>
 <h3 id="37-calculating-floatdouble">37. Calculating float/double</h3>
 <blockquote>
-<p>浮點數運算</p>
+<p>Which of the following data types will allow the following code snippet to compile?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> i <span style="color:#f92672">=</span> 4<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> j <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>____ z <span style="color:#f92672">=</span> i <span style="color:#f92672">+</span> j<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>A. long</p>
+<p><strong>B.</strong> double</p>
+<p>C. int</p>
+<p><strong>D.</strong> float</p>
+<p>E. byte</p>
 </blockquote>
+<h4 id="analysis-29">Analysis</h4>
+<ul>
+<li>單精準浮點數 (float) 為32位元的浮點數</li>
+<li>雙精準浮點數 (double) 為64位元的浮點數</li>
+</ul>
+<hr>
 <h3 id="38-initialized-value-of-string-array">38. Initialized Value of String Array</h3>
 <blockquote>
-<p>字串陣列的初始值</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[]</span> strs <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[</span>2<span style="color:#f92672">];</span> <span style="color:#75715e">//2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String str <span style="color:#f92672">:</span> strs<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            strs<span style="color:#f92672">[</span>idx<span style="color:#f92672">].</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; element &#34;</span><span style="color:#f92672">+</span> idx<span style="color:#f92672">);</span>  <span style="color:#75715e">//5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            idx<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>idx <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> idx <span style="color:#f92672">&lt;</span> strs<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> idx<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>strs<span style="color:#f92672">[</span>idx<span style="color:#f92672">]);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>Element 0
+Element 1
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>Null element 0
+Null element 1
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>Null
+Null
+</code></pre><p><strong>D.</strong> A NullPointerException is thrown at runtime.</p>
 </blockquote>
+<h4 id="analysis-30">Analysis</h4>
+<ul>
+<li>line 2 建立長度為 2 的字串陣列，每個元素自動初始化為<code>null</code></li>
+<li>line 5 使用 String.concat()，但因為變數所存的參考為null，會發生 NullPointerException</li>
+</ul>
+<hr>
 <h3 id="39-throwing-ioexception">39. Throwing IOException</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">X</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFileContent</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">/* code goes here */</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IOException<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        X xobj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> X<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        xobj<span style="color:#f92672">.</span><span style="color:#a6e22e">printFileContent</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which two modifications should you make so that the code compiles successfully?</p>
+<p>**A. **Replace line 8 with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span></code></pre></div><p>B. Replace line 10 with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    xobj<span style="color:#f92672">.</span><span style="color:#a6e22e">printFileContent</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>C.</strong> Replace line 2 with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printFileContent</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{}</span>
+</span></span></code></pre></div><p>D. Replace line 4 with:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> IOException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Exception raised&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>E. At line 11, insert</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> IOException<span style="color:#f92672">();</span>
+</span></span></code></pre></div></blockquote>
+<h4 id="analysis-31">Analysis</h4>
+<ul>
+<li><code>IOException</code> 是需要檢查的例外 (checked exception)，需要寫程式處理它</li>
+<li>B - try-catch 用法錯，要調換 Exception (↓) 和 IOException (↑) 的順序</li>
+<li>D - 缺少 new 來實體化 IOException 物件；但有 new 也無用</li>
+<li>E - 可以加至 line 11，但無作用</li>
+<li>可以用選項 C 將 <code>printFileContent()</code>方法中產生的 IOExeption 往外拋出</li>
+<li>可以用選項 A 繼續將有使用到 printFileContent() 的地方 (這裡是 main()) 往外拋出例外</li>
+</ul>
+<hr>
 <h3 id="40-object-oriented-feature-of-java">40. Object Oriented Feature of Java</h3>
+<blockquote>
+<p>Which three statements describe the object-oriented features of the Java language?</p>
+<p>A. Objects cannot be reused.</p>
+<p><strong>B. A subclass can inherit from a superclass.</strong></p>
+<p><strong>C. Objects can share behaviors with other objects.</strong></p>
+<p>D. A package must contain more than one class.</p>
+<p><strong>E. Object is the root class of all other objects.</strong></p>
+<p>F. A main method must be declared in every class.</p>
+</blockquote>
+<h4 id="analysis-32">Analysis</h4>
+<ul>
+<li>A - wrong, an object can get reused.</li>
+<li>D - wrong, a package can contain nothing, or only one/more than one interfaces.</li>
+<li>F - wrong, not every class requires a main method.</li>
+</ul>
+<hr>
 <h3 id="41-toy-shop">41. Toy shop</h3>
+<blockquote>
+<p>You are asked to developed a program for a shopping application, and you are given the following information:</p>
+<ol>
+<li>The application must contain the classes Toy, EduToy, and consToy. The Toy class is the superclass of the other two classes.</li>
+<li>The int calculatePrice (Toy t) method calculates the price of a toy.</li>
+<li>The void printToy (Toy t) method prints the details of a toy</li>
+</ol>
+<p>Whic definition of the Toy class adds a valid layer of abstraction to the class hierarchy?</p>
+<p><strong>A.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Toy</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculatePrice</span><span style="color:#f92672">(</span>Toy t<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printToy</span><span style="color:#f92672">(</span>Toy t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">/* code goes here */</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>B.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Toy</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculatePrice</span><span style="color:#f92672">(</span>Toy t<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printToy</span><span style="color:#f92672">(</span>Toy t<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>C.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Toy</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculatePrice</span><span style="color:#f92672">(</span>Toy t<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printToy</span><span style="color:#f92672">(</span>Toy t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">/* code goes here */</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Toy</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">calculatePrice</span><span style="color:#f92672">(</span>Toy t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">/* code goes here */</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printToy</span><span style="color:#f92672">(</span>Toy t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">/* code goes here */</span> <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></blockquote>
+<h4 id="analysis-33">Analysis</h4>
+<ul>
+<li>抽象方法 (public <strong>abstract</strong> <em>dataType methodName</em> (<em>parameterName</em>); )
+<ul>
+<li>不能有程式實作區塊 <code>{ }</code></li>
+<li>不能使用 <code>final</code> 修飾，因為需要由繼承類別來實作程式區塊</li>
+</ul>
+</li>
+<li>非抽象方法：
+<ul>
+<li>必須要有程式實作區塊</li>
+<li>可以使用 <code>final</code> 修飾，使其不可被覆寫 (Override)</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h3 id="42-polymorphism-多型-and-overriding-覆寫-2">42. Polymorphism (多型) and Overriding (覆寫) 2</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Base</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Base &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DerivedA</span> <span style="color:#66d9ef">extends</span> Base <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;DerivedA&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DerivedB</span> <span style="color:#66d9ef">extends</span> DerivedA <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">test</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;DerivedB&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Base b1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DerivedB<span style="color:#f92672">();</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Base b2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DerivedA<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Base b3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DerivedB<span style="color:#f92672">();</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        b1 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Base<span style="color:#f92672">)</span> b3<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        Base b4 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>DerivedA<span style="color:#f92672">)</span> b3<span style="color:#f92672">;</span> <span style="color:#75715e">// 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        b1<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        b4<span style="color:#f92672">.</span><span style="color:#a6e22e">test</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>Base
+DerivedA
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>Base
+DerivedB
+</code></pre><p><strong>C.</strong></p>
+<pre tabindex="0"><code>DerivedB
+DerivedB
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>DerivedB
+DerivedA
+</code></pre><p>E. A classCastException is thrown at runtime.</p>
+</blockquote>
+<h4 id="analysis-34">Analysis</h4>
+<ul>
+<li>class DerivedB 檔案的 main 方法中的 b1, b3, b4 這三個變數在 line 12 執行完後，參考到的物件實體都是從 DerivedB class 實體化出來的第二個物件</li>
+<li>class Base 的 test() 方法在 DerivedB class 中被覆寫，因此 DerivedB.java (line 13 ~ 14) 會執行 line 3 的 test() 方法</li>
+</ul>
+<hr>
 <h3 id="43-overloading-多載-and-default-value-type-預設數值型態">43. Overloading (多載) and Default Value Type (預設數值型態)</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SumTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSum</span><span style="color:#f92672">(</span>Integer X<span style="color:#f92672">,</span> Integer Y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Integer sum is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>X <span style="color:#f92672">+</span> Y<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">double</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> Y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;double sum is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>x <span style="color:#f92672">+</span> Y<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">float</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">float</span> Y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;float sum is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>x <span style="color:#f92672">+</span> Y<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doSum</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> Y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;int sum is &#34;</span> <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>x <span style="color:#f92672">+</span> Y<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        doSum<span style="color:#f92672">(</span>10<span style="color:#f92672">,</span> 20<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        doSum<span style="color:#f92672">(</span>10<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">,</span> 20<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>int sum is 30
+float sum is 30.0
+</code></pre><p><strong>B.</strong></p>
+<pre tabindex="0"><code>int sum is 30
+double sum is 30.0
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>Integer sum is 30
+double sum is 30.0
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>Integer sum is 30
+float sum is 30.0
+</code></pre></blockquote>
+<h4 id="analysis-35">Analysis</h4>
+<ul>
+<li>
+<p>Java的預設整數型態是int，浮點數型態是double</p>
+</li>
+<li>
+<p>在程式碼內想用 long 或 float 數值型態，可以直接在數值後接上<code>l</code>或<code>f</code>來轉型</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">float</span> sum is 30<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">float</span> sum is 30<span style="color:#f92672">.</span><span style="color:#a6e22e">0</span>
+</span></span></code></pre></div></li>
+</ul>
+<hr>
 <h3 id="44-mutable-length-parameter-and-passing-by-value">44. Mutable Length Parameter And Passing by Value</h3>
 <blockquote>
 <p>可變長度參數和傳值</p>
 </blockquote>
+<hr>
 <h3 id="45-generics-泛型">45. Generics (泛型)</h3>
+<hr>
 <h3 id="46-constructor-2">46. Constructor 2</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CD</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> r<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    CD<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> r<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> r<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DVD</span> <span style="color:#66d9ef">extends</span> CD <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> c<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    DVD<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> r<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> c<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>And given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>DVD dvd <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DVD<span style="color:#f92672">(</span>10<span style="color:#f92672">,</span> 20<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Which code fragment should you use at line n1 to instantiate the dvd object successfully?</p>
+<p>A.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">super</span><span style="color:#f92672">.</span><span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> r<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> c<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>B.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>r<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><strong>C.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>r<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> c<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">c</span> <span style="color:#f92672">=</span> r<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span>
+</span></span></code></pre></div></blockquote>
+<h4 id="analysis-36">Analysis</h4>
+<hr>
 <h3 id="47-inheritance-relation">47. Inheritance Relation</h3>
+<hr>
 <h3 id="48-casting-value">48. Casting value</h3>
 <blockquote>
 <p>數值轉型</p>
 </blockquote>
+<hr>
 <h3 id="49-declaration-method-of-object-array">49. Declaration Method of Object Array</h3>
 <blockquote>
 <p>陣列物件宣告方式</p>
 </blockquote>
+<hr>
 <h3 id="50-引入套件">50. 引入套件</h3>
+<hr>
 <h3 id="51-passing-by-parameter-from-command">51. Passing by Parameter from Command</h3>
 <blockquote>
 <p>從命令列傳入參數</p>
 </blockquote>
+<hr>
 <h3 id="51-polymorphism-and-overriding_3">51. Polymorphism and Overriding_3</h3>
+<hr>
 <h3 id="52-electric-bills">52. Electric Bills</h3>
+<hr>
 <h3 id="53-permanent-passing-by-value_2">53. Permanent Passing by Value_2</h3>
+<hr>
 <h3 id="54-logically-equivalent">54. Logically Equivalent</h3>
+<hr>
 <h3 id="55-initialized-value-of-string-array_2">55. Initialized Value of String Array_2</h3>
+<hr>
 <h3 id="56-exception">56. Exception</h3>
+<hr>
 <h3 id="57-integer-arithmetics">57. Integer Arithmetics</h3>
+<hr>
 <h3 id="58-code-block">58. Code Block</h3>
+<hr>
 <h3 id="59-for-loop">59. For Loop</h3>
+<hr>
 <h3 id="60-two-dimensional-arrays_2">60. Two Dimensional Arrays_2</h3>
+<hr>
 <h3 id="61-object-entity-class">61. Object Entity Class</h3>
 <blockquote>
 <p>物件實體的類別</p>
 </blockquote>
+<hr>
 <h3 id="62-java-code-compiling-and-operating">62. Java Code Compiling and Operating</h3>
+<hr>
 <h3 id="63-method-main--code-entry-point">63. Method <code>main</code> — Code Entry Point</h3>
+<hr>
 <h3 id="64-arrays">64. Arrays</h3>
+<hr>
 <h3 id="65-garbage-collection">65. Garbage Collection</h3>
+<hr>
 <h3 id="66-loop-do-while">66. Loop <code>do-while</code></h3>
+<hr>
 <h3 id="67-array-object-reference-and-foreach">67. Array Object Reference and <code>foreach</code></h3>
+<hr>
 <h3 id="68-usage-of-switch">68. Usage of <code>switch</code></h3>
+<hr>
 <h3 id="69-list-object">69. List Object</h3>
+<hr>
 <h3 id="70-interface-and-class">70. Interface and Class</h3>
 <blockquote>
 <p>引用介面類別</p>
 </blockquote>
+<hr>
 <h3 id="71-stringbuilder">71. StringBuilder</h3>
+<hr>
 <h3 id="72-private-method">72. Private method</h3>
+<hr>
 <h3 id="73-string-array">73. String Array</h3>
+<hr>
 <h3 id="74-exception-handling">74. Exception Handling</h3>
+<hr>
 <h3 id="75-column">75. Column</h3>
+<hr>
 <h3 id="76-column_2">76. Column_2</h3>
 <h3 id="77-exception-handling_2">77. Exception Handling_2</h3>
 <h3 id="78-overriding-methods">78. Overriding Methods</h3>
@@ -1561,55 +2196,102 @@ Hello Java SE 8
 <h3 id="179-boolean-object">179. Boolean Object</h3>
 <h3 id="180-creating-object">180. Creating Object</h3>
 <h3 id="181-sout-null">181. Sout <code>null</code></h3>
+<hr>
 <h3 id="182-the-trim-usage-of-string-object">182. The <code>trim</code> usage of String Object</h3>
+<hr>
 <h3 id="183-visibility-of-overriding-method">183. Visibility of Overriding Method</h3>
+<hr>
 <h3 id="184-object-instance_3">184. Object Instance_3</h3>
+<hr>
 <h3 id="185-decision-making_2">185. Decision Making_2</h3>
+<hr>
 <h3 id="186-encapulation">186. Encapulation</h3>
+<hr>
 <h3 id="187-method-main--code-entry-point_3">187. Method <code>main</code> — Code Entry Point_3</h3>
+<hr>
 <h3 id="188-nested-forloop">188. Nested ForLoop</h3>
+<hr>
 <h3 id="189-usage-of-lambda_2">189. Usage of Lambda_2</h3>
+<hr>
 <h3 id="190-writing-method">190. Writing Method</h3>
+<hr>
 <h3 id="191-writing-java-file">191. Writing Java File</h3>
+<hr>
 <h3 id="192-creating-object_2">192. Creating Object_2</h3>
+<hr>
 <h3 id="193-convert-number-primitive-datatype">193. Convert Number Primitive DataType</h3>
+<hr>
 <h3 id="194-masking_3">194. Masking_3</h3>
+<hr>
 <h3 id="195-method-main--code-entry-point_4">195. Method <code>main</code> — Code Entry Point_4</h3>
+<hr>
 <h3 id="196-protected-private-variable-in-class">196. Protected-Private Variable in Class</h3>
+<hr>
 <h3 id="197-how-to-print-a-b-c-">197. How to Print &ldquo;a b c &quot;</h3>
+<hr>
 <h3 id="198-string-concatenation-and-relational-operating">198. String Concatenation and Relational Operating</h3>
+<hr>
 <h3 id="199-about-java">199. About Java</h3>
+<hr>
 <h3 id="200-default-constructor">200. Default Constructor</h3>
+<hr>
 <h3 id="201-double-object">201. Double Object</h3>
+<hr>
 <h3 id="202-forloop_4">202. ForLoop_4</h3>
+<hr>
 <h3 id="203-protect-object-field">203. Protect Object Field</h3>
 <blockquote>
 <p>保護物件欄位</p>
 </blockquote>
+<hr>
 <h3 id="204-method-tostring">204. Method <code>toString</code></h3>
+<hr>
 <h3 id="205-how-to-print-135">205. How to Print &ldquo;135&rdquo;?</h3>
+<hr>
 <h3 id="206-forloop_5">206. ForLoop_5</h3>
+<hr>
 <h3 id="207-creating-two-dimensional-array">207. Creating Two Dimensional Array</h3>
+<hr>
 <h3 id="208-generics_2">208. Generics_2</h3>
+<hr>
 <h3 id="209-infinite-loop">209. Infinite Loop</h3>
+<hr>
 <h3 id="210-calculating-circle-area">210. Calculating Circle Area</h3>
+<hr>
 <h3 id="211-how-to-print-123--fred-">211. How to Print 123 : Fred :</h3>
+<hr>
 <h3 id="212-access-scope-of-protected">212. Access Scope of <code>protected</code></h3>
+<hr>
 <h3 id="213-the-trim-usage-of-string-object_2">213. The <code>trim</code> usage of String Object_2</h3>
+<hr>
 <h3 id="214-equivalent-string_3">214. Equivalent String_3</h3>
+<hr>
 <h3 id="215-remainder-operator--modulo">215. Remainder Operator / Modulo</h3>
+<hr>
 <h3 id="216-improving-encapulation">216. Improving Encapulation</h3>
+<hr>
 <h3 id="217-arithmetics_2">217. Arithmetics_2</h3>
+<hr>
 <h3 id="218-changing-object-field-value">218. Changing Object Field Value</h3>
+<hr>
 <h3 id="219-ternary-operator-_3">219. Ternary Operator (?:)_3</h3>
+<hr>
 <h3 id="220-sout-current-time">220. Sout Current Time</h3>
+<hr>
 <h3 id="221-try-catch">221. Try-Catch</h3>
+<hr>
 <h3 id="222-when-foreach-meets-null">222. When <code>foreach</code> Meets <code>null</code></h3>
+<hr>
 <h3 id="223-forloop_6">223. ForLoop_6</h3>
+<hr>
 <h3 id="224-how-to-print-coj">224. How to Print COJ?</h3>
+<hr>
 <h3 id="225-how-to-print-0">225. How to Print `0``?</h3>
+<hr>
 <h3 id="226-usage-of-switch_3">226. Usage of <code>switch</code>_3</h3>
+<hr>
 <h3 id="227-usage-of-the-same-signature">227. Usage of the Same Signature</h3>
+<hr>
 <h3 id="228-encapulation_2">228. Encapulation_2</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
