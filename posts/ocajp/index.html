@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocajp\/"
-        },"genre": "posts","keywords": "Java, 1Z0-808","wordcount":  8047 ,
+        },"genre": "posts","keywords": "Java, 1Z0-808","wordcount":  11326 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocajp\/","datePublished": "2022-12-04T14:57:52+08:00","dateModified": "2022-12-04T14:57:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -70,8 +70,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Oracle Certified Associate Java PG</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-04">2022-12-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8047 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;38 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-04">2022-12-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11326 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;54 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -156,25 +156,25 @@
         <li><a href="#72-private-method">72. Private method</a></li>
         <li><a href="#73-string-array">73. String Array</a></li>
         <li><a href="#74-exception-handling">74. Exception Handling</a></li>
-        <li><a href="#75-column">75. Column</a></li>
-        <li><a href="#76-column_2">76. Column_2</a></li>
+        <li><a href="#75-fields">75. Fields</a></li>
+        <li><a href="#76-field_2">76. Field_2</a></li>
         <li><a href="#77-exception-handling_2">77. Exception Handling_2</a></li>
         <li><a href="#78-overriding-methods">78. Overriding Methods</a></li>
         <li><a href="#79-inheritance-and-constructor_2">79. Inheritance and Constructor_2</a></li>
         <li><a href="#80-two-dimensional-string-array">80. Two-Dimensional String Array</a></li>
-        <li><a href="#81-is-object-equivalent">81. Is-Object-Equivalent</a></li>
-        <li><a href="#82-count-variable-of-foreach">82. Count Variable of <code>foreach</code></a></li>
+        <li><a href="#81-is-object-equivalent-判斷物件是否相同">81. Is-Object-Equivalent <em>判斷物件是否相同</em></a></li>
+        <li><a href="#82-count-variable-of-foreach-foreach-計次變數">82. Count Variable of <code>foreach</code> <em>foreach 計次變數</em></a></li>
         <li><a href="#83-divide-by-zero">83. Divide by Zero</a></li>
         <li><a href="#84-equivalent-string">84. Equivalent String</a></li>
         <li><a href="#85-masking">85. Masking</a></li>
         <li><a href="#86-stringbuilder_2">86. StringBuilder_2</a></li>
         <li><a href="#87-plus-and-minus">87. Plus And Minus</a></li>
         <li><a href="#88-casting-objects">88. Casting Objects</a></li>
-        <li><a href="#89-static-variable-and-object-variable_3">89. Static Variable and Object Variable_3</a></li>
+        <li><a href="#89-static-variable-and-object-variable_3--">89. Static Variable and Object Variable_3 ✨ ✨</a></li>
         <li><a href="#90-exception-class">90. Exception Class</a></li>
         <li><a href="#91-break-in-nested-loop">91. <code>break</code> in Nested Loop</a></li>
         <li><a href="#92-initialization-of-field_2">92. Initialization of Field_2</a></li>
-        <li><a href="#93-break-of-a-switch">93. <code>break</code> of a switch</a></li>
+        <li><a href="#93-switch-break">93. switch break</a></li>
         <li><a href="#94-passing-by-parameter-from-command_2">94. Passing by Parameter from Command_2</a></li>
         <li><a href="#95-the-removeif-method-of-collection">95. The <code>removeIf</code> method of Collection</a></li>
         <li><a href="#96-removal-of-collection-elements">96. Removal of Collection Elements</a></li>
@@ -2895,6 +2895,36 @@ D. Remove the default section.</p>
 </span></span><span style="display:flex;"><span>        Foo obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Woofy<span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which set modifications enable the code to compile and run?</p>
+<p>A.
+At line n1, Insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades<span style="color:#f92672">;</span> <span style="color:#75715e">//
+</span></span></span></code></pre></div><p>At line n2, insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.domain<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>B.
+At line n1, Insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades.*<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>At line n2, insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades.*<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.*<span style="color:#f92672">;</span>  <span style="color:#75715e">// 
+</span></span></span></code></pre></div><p>C.
+At line n1, Insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades.*<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>At line n2, insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades.Boo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.*<span style="color:#f92672">;</span>  <span style="color:#75715e">//
+</span></span></span></code></pre></div><p>D.
+At line n1, Insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades.Foo<span style="color:#f92672">,</span> Boo<span style="color:#f92672">;</span> <span style="color:#75715e">//
+</span></span></span></code></pre></div><p>At line n2, insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> org.domain.Woofy<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p><strong>E.</strong>
+At line n1, Insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades.*<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>At line n2, insert:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> facades.*<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.domain.Woofy<span style="color:#f92672">;</span>
 </span></span></code></pre></div></blockquote>
 <h4 id="analysis-62">Analysis</h4>
 <ul>
@@ -2908,204 +2938,1416 @@ D. Remove the default section.</p>
 </ul>
 <hr>
 <h3 id="71-stringbuilder">71. StringBuilder</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">()</span> <span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;world&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>Which code fragment prints Hello world?</p>
+<p><strong>A.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">insert</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Hello &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sb<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>B.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Hello &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sb<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>C.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Hello &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sb<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>sb<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span><span style="color:#e6db74">&#34;Hello &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sb<span style="color:#f92672">);</span>
+</span></span></code></pre></div></blockquote>
+<h4 id="analysis-63">Analysis</h4>
+<ul>
+<li>A : <code>StringBuilder.insert(indexPosition, &quot;str&quot;)</code> 正確</li>
+<li>B : <code>StringBuilder.append()</code> 沒有指定加入位置的方法</li>
+<li>C、D : StringBuilder 沒有 <code>add</code>, <code>set</code> 方法</li>
+</ul>
 <hr>
 <h3 id="72-private-method">72. Private method</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestA</span> <span style="color:#66d9ef">extends</span> Root <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Root r <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TestA<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>r<span style="color:#f92672">.</span><span style="color:#a6e22e">method1</span><span style="color:#f92672">());</span> <span style="color:#75715e">// line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>r<span style="color:#f92672">.</span><span style="color:#a6e22e">method2</span><span style="color:#f92672">());</span> <span style="color:#75715e">// line n2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Root</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> MAX <span style="color:#f92672">=</span> 20000<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">method1</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 100 <span style="color:#f92672">+</span> MAX<span style="color:#f92672">;</span>  <span style="color:#75715e">// line n3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> a<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">method2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 200 <span style="color:#f92672">+</span> MAX<span style="color:#f92672">;</span>  <span style="color:#75715e">// line n4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> a<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which line causes  a compilation error?</p>
+<p><strong>A.</strong> Line n1</p>
+<p>B. Line n2</p>
+<p>C. Line n3</p>
+<p>D. Line n4</p>
+</blockquote>
+<h4 id="analysis-64">Analysis</h4>
+<ul>
+<li>line n1 編譯錯誤， method1() 是 class Root 的私有成員，無法由外面類別存取</li>
+</ul>
 <hr>
 <h3 id="73-string-array">73. String Array</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestStringArr</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[][]</span> chs <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[</span>2<span style="color:#f92672">][];</span>
+</span></span><span style="display:flex;"><span>        chs<span style="color:#f92672">[</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[</span>2<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>        chs<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[</span>5<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 97<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> a <span style="color:#f92672">&lt;</span> chs<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> a<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> b <span style="color:#f92672">&lt;</span> chs<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> b<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                chs<span style="color:#f92672">[</span>a<span style="color:#f92672">][</span>b<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">+</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>                i<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> ca <span style="color:#f92672">:</span> chs<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String c <span style="color:#f92672">:</span> ca<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>c <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p><strong>A.</strong></p>
+<pre tabindex="0"><code>97 98
+99 100 null null null
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>91 98
+99 100 101 102 103
+</code></pre><p>C. Compilation fails.
+D. A NullPointerException is thrown at runtime.
+E. An ArraylndexOutOfBoundsException is thrown at runtime.</p>
+</blockquote>
+<h4 id="analysis-65">Analysis</h4>
+<ul>
+<li>line 10 for loop : a = 0, b = 0，<code>chs[0][0] = &quot;97&quot;</code>
+<ul>
+<li>a = 0, b = 1 → <code>chs[0][1] = &quot;98&quot;</code></li>
+<li>a = 1, b = 0 → <code>chs[1][0] = &quot;99&quot;</code></li>
+<li>a = 1, b = 1 → <code>chs[1][1] = &quot;100&quot;</code>，跳出迴圈</li>
+</ul>
+</li>
+<li>其它未設定到的陣列元素為 null</li>
+</ul>
 <hr>
 <h3 id="74-exception-handling">74. Exception Handling</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readCard</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Reading Card&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">checkCard</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> carNo<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Checking Card&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> RuntimeException <span style="color:#f92672">{</span> <span style="color:#75715e">// line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Test ex <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Test<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> carNo <span style="color:#f92672">=</span> 12344<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        ex<span style="color:#f92672">.</span><span style="color:#a6e22e">checkCard</span><span style="color:#f92672">(</span>carNo<span style="color:#f92672">);</span> <span style="color:#75715e">// line n2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ex<span style="color:#f92672">.</span><span style="color:#a6e22e">readCard</span><span style="color:#f92672">(</span>carNo<span style="color:#f92672">);</span> <span style="color:#75715e">// line n3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Reading Card
+</span></span><span style="display:flex;"><span>Checking Card
+</span></span></code></pre></div><p>B. Compilation fails only at line n1.
+C. Compilation fails only at line n2.
+D. Compilation fails only at line n3.
+<strong>E.</strong> Compilation fails at both line n2 and line n3.</p>
+</blockquote>
+<h4 id="analysis-66">Analysis</h4>
+<ul>
+<li><code>checkCard()</code> 用 throws 拋出 Exception，Exception 是 checked exception，必須撰寫程式處理 <code>checkCard</code> 方法拋出的 Exception</li>
+<li>即使 <code>main()</code> 有用 throws 拋出 RuntimeException，但 Exception 並不是繼承 RuntimeException，因此 line n2 / line n3 會因為沒處理 Exception 而發生編譯錯誤</li>
+</ul>
 <hr>
-<h3 id="75-column">75. Column</h3>
+<h3 id="75-fields">75. Fields</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScopeTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> j<span style="color:#f92672">;</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> k<span style="color:#f92672">;</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">new</span> ScopeTest<span style="color:#f92672">().</span><span style="color:#a6e22e">doStuff</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doStuff</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 5<span style="color:#f92672">;</span>  <span style="color:#75715e">// 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        doStuff2<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;x&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doStuff2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> y <span style="color:#f92672">=</span> 7<span style="color:#f92672">;</span>  <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;y&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> z <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> z <span style="color:#f92672">&lt;</span> 5<span style="color:#f92672">;</span> z<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>  <span style="color:#75715e">// 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;z&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;y&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which two items are fields?</p>
+<p><strong>A.</strong> j</p>
+<p><strong>B.</strong> k</p>
+<p>C. x</p>
+<p>D. y</p>
+<p>E. z</p>
+</blockquote>
+<h4 id="analysis-67">Analysis</h4>
+<ul>
+<li>欄位 field: 類別或物件的變數</li>
+<li>x, y : 方法變數、z : 迴圈內變數</li>
+</ul>
 <hr>
-<h3 id="76-column_2">76. Column_2</h3>
+<h3 id="76-field_2">76. Field_2</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestField2</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> fvar<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> cvar<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        TestField2 t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TestField2<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// insert code here to write field variables
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which code fragments, inserted independently, enable the code compile?</p>
+<p><strong>A.</strong> <code>t.fvar = 200;</code></p>
+<p><strong>B.</strong> <code>cvar = 400;</code></p>
+<p>C.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fvar <span style="color:#f92672">=</span> 200<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>cvar <span style="color:#f92672">=</span> 400<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>D.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fvar</span> <span style="color:#f92672">=</span> 200<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cvar</span> <span style="color:#f92672">=</span> 400<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p><strong>E.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">fvar</span> <span style="color:#f92672">=</span> 200<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>TestField2<span style="color:#f92672">.</span><span style="color:#a6e22e">cvar</span> <span style="color:#f92672">=</span> 400<span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>F.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fvar</span> <span style="color:#f92672">=</span> 200<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>TestField2<span style="color:#f92672">.</span><span style="color:#a6e22e">cvar</span> <span style="color:#f92672">=</span> 400<span style="color:#f92672">;</span>
+</span></span></code></pre></div></blockquote>
+<h4 id="analysis-68">Analysis</h4>
+<ul>
+<li>A, B <em>correct</em>
+<ul>
+<li>A : 用物件實體的參考變數存取物件實體欄位 (<code>t.fvar</code>)</li>
+<li>B : 在靜態 main 方法中直接使用靜態欄位</li>
+</ul>
+</li>
+<li>E <em>correct</em>
+<ul>
+<li>用物件實體的參考變數存取物件實體欄位 (<code>t.fvar</code>)</li>
+<li>用類別名稱存取類別欄位 (<code>TestField2.cvar</code>)</li>
+</ul>
+</li>
+<li>C : 直接在靜態方法「main」裡存取物件實體的欄位
+<ul>
+<li>因為沒有物件，所以無法存取</li>
+</ul>
+</li>
+<li>D, F : 直接在靜態方法「main」裡**使用「this」**來表示目前的物件實體
+<ul>
+<li>因為沒有物件，無法存取</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h3 id="77-exception-handling_2">77. Exception Handling_2</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestExeptionHandleTwo</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dispResult</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> num<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">((</span>num<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">/</span> <span style="color:#f92672">(</span>num<span style="color:#f92672">[</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">-</span> num<span style="color:#f92672">[</span>2<span style="color:#f92672">])));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>ArithmeticException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;First exception&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Done&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> arr <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>100<span style="color:#f92672">,</span> 100<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>            dispResult<span style="color:#f92672">(</span>arr<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IllegalArgumentException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">err</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Second exception&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">err</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Third exception&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>0
+Done
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>First Exception
+Done
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>Second Exception
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>Done
+Third Exception
+</code></pre><p><strong>E.</strong></p>
+<pre tabindex="0"><code>Third Exception
+</code></pre></blockquote>
+<h4 id="analysis-69">Analysis</h4>
+<ul>
+<li><code>ArrayIndexOutOfBoundException</code> 不是 <code>ArithmeticException</code>，不會由 line 6 catch 到，最後被 line 18 catch 接到</li>
+</ul>
+<hr>
 <h3 id="78-overriding-methods">78. Overriding Methods</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A1</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m1</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Green&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A2</span> <span style="color:#66d9ef">extends</span> A1 <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m3</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m1</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Cyan&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Blue&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OverrideMethodA3</span> <span style="color:#66d9ef">extends</span> A2 <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m1</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Yellow&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Pink&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m3</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Red&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        OverrideMethodA3 tp <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> OverrideMethodA3<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        tp<span style="color:#f92672">.</span><span style="color:#a6e22e">m1</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        tp<span style="color:#f92672">.</span><span style="color:#a6e22e">m2</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        tp<span style="color:#f92672">.</span><span style="color:#a6e22e">m3</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p><strong>A.</strong></p>
+<pre tabindex="0"><code>Yellow
+Pink
+Red
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>Cyan
+Blue
+Red
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>Cyan
+Green
+Red
+</code></pre><p>D. Compilation Fails</p>
+</blockquote>
+<h4 id="analysis-70">Analysis</h4>
+<ul>
+<li>tp 變數參考到 class A3 物件實體，A3 覆寫 m1, m2, m3 方法</li>
+</ul>
+<hr>
 <h3 id="79-inheritance-and-constructor_2">79. Inheritance and Constructor_2</h3>
+<blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">A</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;A &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#66d9ef">extends</span> A <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">B</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;B &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestC</span> <span style="color:#66d9ef">extends</span> B <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TestC</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        TestC c <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TestC<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A. <code>C B A</code></p>
+<p>B. <code>C</code></p>
+<p><strong>C.</strong> <code>A B C</code></p>
+<p>D. Compilation fails at line n1 and line n2</p>
+</blockquote>
+<h4 id="analysis-71">Analysis</h4>
+<ul>
+<li>
+<p>建構子如果沒使用 <code>super</code> 或 <code>this</code> 來定義要先執行哪個建構子，在編譯時會自動在第一行加上 <code>super();</code>。會依序輸出 A、B、C</p>
+</li>
+<li>
+<p>可以把以上程式擴展成這樣：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">A</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">();</span>  <span style="color:#75715e">// super
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;A &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">B</span> <span style="color:#66d9ef">extends</span> A <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">B</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">();</span>  <span style="color:#75715e">// super
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;B &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestC</span> <span style="color:#66d9ef">extends</span> B <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">TestC</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">();</span>  <span style="color:#75715e">// super
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        TestC c <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TestC<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<hr>
 <h3 id="80-two-dimensional-string-array">80. Two-Dimensional String Array</h3>
-<h3 id="81-is-object-equivalent">81. Is-Object-Equivalent</h3>
 <blockquote>
-<p>判斷物件是否相同</p>
-</blockquote>
-<h3 id="82-count-variable-of-foreach">82. Count Variable of <code>foreach</code></h3>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String shirts<span style="color:#f92672">[][]</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">[</span>2<span style="color:#f92672">][</span>2<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>shirts<span style="color:#f92672">[</span>0<span style="color:#f92672">][</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>shirts<span style="color:#f92672">[</span>0<span style="color:#f92672">][</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;blue&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>shirts<span style="color:#f92672">[</span>1<span style="color:#f92672">][</span>0<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;small&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>shirts<span style="color:#f92672">[</span>1<span style="color:#f92672">][</span>1<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;medium&#34;</span><span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>Which code fragment prints <code>red:blue:small:medium:</code>?</p>
+<p>A.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> index <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">;</span> index<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span> idx <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">;</span> idx<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>shirts<span style="color:#f92672">[</span>index<span style="color:#f92672">][</span>idx<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>B.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> index <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">;</span> index<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> idx <span style="color:#f92672">&lt;</span> index<span style="color:#f92672">;</span> idx<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>shirts<span style="color:#f92672">[</span>index<span style="color:#f92672">][</span>idx<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>C.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String sizes <span style="color:#f92672">:</span> shirts<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String s <span style="color:#f92672">:</span> sizes<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>s <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>D.</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> index <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">;)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> idx <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> idx <span style="color:#f92672">&lt;</span> 2<span style="color:#f92672">;)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>shirts<span style="color:#f92672">[</span>index<span style="color:#f92672">][</span>idx<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        idx<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    index<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></blockquote>
+<h4 id="analysis-72">Analysis</h4>
+<ul>
+<li>A : 因為 index 與 idx 都是從 1 開始，只會輸出 <code>shirts[1][1]</code>的內容，即 <code>medium:</code></li>
+<li>B : 會輸出 <code>small:</code></li>
+<li>C : shirt 型態應該為字串陣列 <code>String[]</code></li>
+</ul>
+<hr>
+<h3 id="81-is-object-equivalent-判斷物件是否相同">81. Is-Object-Equivalent <em>判斷物件是否相同</em></h3>
 <blockquote>
-<p>foreach 計次變數</p>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Product</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Product</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">,</span> String name<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> id<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// And given the code fragment:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Product p1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Product<span style="color:#f92672">(</span>101<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Pen&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Product p2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Product<span style="color:#f92672">(</span>101<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Pen&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Product p3 <span style="color:#f92672">=</span> p1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span> ans1 <span style="color:#f92672">=</span> p1 <span style="color:#f92672">==</span> p2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span> ans2 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span>p2<span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>ans1 <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> ans2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A. <code>true:true</code></p>
+<p>B. <code>true:false</code></p>
+<p><strong>C.</strong> <code>false:true</code></p>
+<p>D. <code>false:false</code></p>
 </blockquote>
+<h4 id="analysis-73">Analysis</h4>
+<ul>
+<li>line 14 <code>ans1</code> 值，以 <strong>==</strong> 運算子判斷 p1 和 p2 儲存的物件參考是否相同 → 不同物件為 false</li>
+<li>line 15 <code>ans2</code> 值，以 <strong>equals()</strong> 判斷 p1 與 p2 的 name 物件變數是否邏輯上一樣 → 皆為 &ldquo;Pen&rdquo; 字串，為 true</li>
+</ul>
+<hr>
+<h3 id="82-count-variable-of-foreach-foreach-計次變數">82. Count Variable of <code>foreach</code> <em>foreach 計次變數</em></h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyFor1</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> x <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>6<span style="color:#f92672">,</span> 7<span style="color:#f92672">,</span> 8<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">:</span> x<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            i<span style="color:#f92672">++;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p><strong>A.</strong> <code>6 7 8</code></p>
+<p>B. <code>7 8 9</code></p>
+<p>C. <code>0 1 2</code></p>
+<p>D. <code>6 8 10</code></p>
+<p>E. Compilation fails</p>
+</blockquote>
+<h4 id="analysis-74">Analysis</h4>
+<ul>
+<li>line 6 <code>i++</code> 在輸出之後才執行，不會影響到陣列輸出結果</li>
+</ul>
+<hr>
 <h3 id="83-divide-by-zero">83. Divide by Zero</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestDivideByZero</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> ax <span style="color:#f92672">=</span> 10<span style="color:#f92672">,</span> az <span style="color:#f92672">=</span> 30<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> aw <span style="color:#f92672">=</span> 1<span style="color:#f92672">,</span> ay <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            aw <span style="color:#f92672">=</span> ax <span style="color:#f92672">%</span> 2<span style="color:#f92672">;</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            ay <span style="color:#f92672">=</span> az <span style="color:#f92672">/</span> aw<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>ArithmeticException e1<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Invalid Divisor&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            aw <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Divisor Changed&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        ay <span style="color:#f92672">=</span> az <span style="color:#f92672">/</span> aw<span style="color:#f92672">;</span> <span style="color:#75715e">// line 14
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Successful Division &#34;</span> <span style="color:#f92672">+</span> ay<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>Invalid Divisor
+Divisor Changed
+Successful Division 30
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>Invalid Divisor
+Successful Division 30
+</code></pre><p><strong>C.</strong></p>
+<pre tabindex="0"><code>Invalid Divisor
+Exception in thread &#34;main&#34; java.lang.ArithmeticException: / by zero
+at test.Teagle.main(Teagle.java:14)
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>Invalid Divisor
+Exception in thread &#34;main&#34; java.lang.ArithmeticException: / by zero
+at test.Teagle.main(Teagle.java:14)
+Successful Division 1
+</code></pre></blockquote>
+<h4 id="analysis-75">Analysis</h4>
+<ul>
+<li>line 6 : 指派 10/2 的餘數 0 給 <code>aw</code> 變數，因此 line 7 除數 = 0 會拋出 ArithmeticException</li>
+<li>line 14 依然會拋出 ArithmeticException，會直接由 main 方法往外拋出給執行緒</li>
+</ul>
+<hr>
 <h3 id="84-equivalent-string">84. Equivalent String</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        StringBuilder sb1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        String str1 <span style="color:#f92672">=</span> sb1<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// insert code here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>str1 <span style="color:#f92672">==</span> str2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which code fragment, when inserted at line 9, enables the code to print true?</p>
+<p><strong>A.</strong> <code>String str2 = str1;</code></p>
+<p>B. <code>String str2 = new String(str1);</code></p>
+<p>C. <code>String str2 = sb1.toString();</code></p>
+<p>D. <code>String str2 = &quot;Duke&quot;;</code></p>
+</blockquote>
+<h4 id="analysis-76">Analysis</h4>
+<ul>
+<li><code>==</code> 運算子的運算元數值或參考必須要一樣才會是 true</li>
+</ul>
+<hr>
 <h3 id="85-masking">85. Masking</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppShadow</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    String myStr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;7007&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doStuff</span><span style="color:#f92672">(</span>String str<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> myNum <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            String myStr <span style="color:#f92672">=</span> str<span style="color:#f92672">;</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            myNum <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">parseInt</span><span style="color:#f92672">(</span>myStr<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NumberFormatException ne<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">err</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Error&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;myStr: &#34;</span> <span style="color:#f92672">+</span> myStr <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, myNum: &#34;</span> <span style="color:#f92672">+</span> myNum<span style="color:#f92672">);</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        AppShadow obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AppShadow<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        obj<span style="color:#f92672">.</span><span style="color:#a6e22e">doStuff</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;9009&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A. <code>myStr: 9009, myNum: 9009</code></p>
+<p>B. <code>myStr: 7007, myNum: 7007</code></p>
+<p><strong>C.</strong> <code>myStr: 7007, myNum: 9009</code></p>
+<p>D. Compilation fails</p>
+</blockquote>
+<h4 id="analysis-77">Analysis</h4>
+<ul>
+<li>line 8 宣告的 <code>myStr</code> 變數作用範圍只在 line 8 ~ line 9 程式區塊內</li>
+<li>傳入的參數 str → myStr → myNum</li>
+<li>line 13 的 <code>myStr</code>所指的是 line 3 的物件變數</li>
+</ul>
+<hr>
 <h3 id="86-stringbuilder_2">86. StringBuilder_2</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StringBuilderTwo</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;1Z0&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        sb<span style="color:#f92672">.</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-808&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>sb<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the output?</p>
+<p>A. <code>1Z0</code></p>
+<p>B. <code>1Z0-808</code></p>
+<p>C. An exception will be thrown.
+D. Compilation fails due to error at line 3.
+<strong>E.</strong> Compilation fails due to error at line 4.</p>
+</blockquote>
+<h4 id="analysis-78">Analysis</h4>
+<ul>
+<li>StringBuilder 物件沒有 <code>concat()</code> 方法，導致 line 4 編譯錯誤，要改用 StringBuilder.<strong>append()</strong> 串接字串</li>
+</ul>
+<hr>
 <h3 id="87-plus-and-minus">87. Plus And Minus</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> a <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> b <span style="color:#f92672">=</span> 17<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> c <span style="color:#f92672">=</span> expression1<span style="color:#f92672">;</span> <span style="color:#75715e">// -9 ++a
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> d <span style="color:#f92672">=</span> expression2<span style="color:#f92672">;</span> <span style="color:#75715e">// 17 b++ or b--
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    c<span style="color:#f92672">++;</span> 
+</span></span><span style="display:flex;"><span>    d<span style="color:#f92672">--;</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>c <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#f92672">+</span> d<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What could expression1 and expression2 be, respectively, in order to produce output - 8, 16?</p>
+<p>A. <code>++a, --b</code></p>
+<p><strong>B.</strong> <code>++a, b--</code></p>
+<p>C. <code>a++, --b</code></p>
+<p>D. <code>a++, b--</code></p>
+</blockquote>
+<h4 id="analysis-79">Analysis</h4>
+<ul>
+<li>expression2 要把變數 b 原封不動指派給變數 d (把 b assign 給 d，再自增/自減)</li>
+<li>expression1 要先幫 a +1 再指派給變數 c</li>
+</ul>
+<hr>
 <h3 id="88-casting-objects">88. Casting Objects</h3>
-<h3 id="89-static-variable-and-object-variable_3">89. Static Variable and Object Variable_3</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">X</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mX</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Xm1&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Y</span> <span style="color:#66d9ef">extends</span> X <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mX</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Xm2&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mY</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Ym&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestCasting</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        X xRef <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Y<span style="color:#f92672">();</span> 
+</span></span><span style="display:flex;"><span>        Y yRef <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Y<span style="color:#f92672">)</span>xRef<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        yRef<span style="color:#f92672">.</span><span style="color:#a6e22e">mY</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        xRef<span style="color:#f92672">.</span><span style="color:#a6e22e">mX</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p><strong>A.</strong></p>
+<pre tabindex="0"><code>Ym
+Xm2
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>Ym
+Xm1
+</code></pre><p>C. Compilation fails</p>
+<p>D. A ClassCastException is thrown at runtime</p>
+</blockquote>
+<h4 id="analysis-80">Analysis</h4>
+<ul>
+<li>隱含式 (implicit) 的向上轉型 : line 22  <code>X xRef = new Y();</code> &hellip; <em>OK</em>, Y extends X</li>
+<li>顯性 (explicit) 的向下轉型: line 23      <code>Y yRef = (Y)xRef;</code> &hellip; <em>OK</em>, xRef 參考的物件為 Y 物件</li>
+</ul>
+<hr>
+<h3 id="89-static-variable-and-object-variable_3--">89. Static Variable and Object Variable_3 ✨ ✨</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Alpha</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> ns<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> s<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Alpha<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> ns<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>s <span style="color:#f92672">&lt;</span> ns<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            s <span style="color:#f92672">=</span> ns<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ns</span> <span style="color:#f92672">=</span> ns<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doPrint</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ns = &#34;</span> <span style="color:#f92672">+</span> ns <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; s = &#34;</span> <span style="color:#f92672">+</span> s<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StaticObjectVarThree</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Alpha ref1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Alpha<span style="color:#f92672">(</span>50<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Alpha ref2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Alpha<span style="color:#f92672">(</span>125<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Alpha ref3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Alpha<span style="color:#f92672">(</span>100<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        ref1<span style="color:#f92672">.</span><span style="color:#a6e22e">doPrint</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        ref2<span style="color:#f92672">.</span><span style="color:#a6e22e">doPrint</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        ref3<span style="color:#f92672">.</span><span style="color:#a6e22e">doPrint</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>ns = 50 s = 125
+ns = 125 s = 125
+ns = 100 s = 125
+</code></pre><p><strong>B.</strong></p>
+<pre tabindex="0"><code>ns = 50 s = 125
+ns = 125 s = 125
+ns = 0 s = 125
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>ns = 50 s = 50
+ns = 125 s = 125
+ns = 100 s = 100
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>ns = 50 s = 50
+ns = 125 s = 125
+ns = 0 s = 125
+</code></pre></blockquote>
+<h4 id="analysis-81">Analysis</h4>
+<ul>
+<li><code>ns</code> 為物件變數、<code>s</code> 為類別變數</li>
+<li>類別變數 s 在物件的變化會影響到其它物件</li>
+<li>line 20 傳入最大值 125 給類別變數 <code>s</code>，之後的 line 21 傳入值 100 使 <code>s &lt; ns</code> if判斷不成立</li>
+<li>因此 ns 不會在建構子中被初始化，回傳 <code>ns = 0 s = 125</code></li>
+</ul>
+<hr>
 <h3 id="90-exception-class">90. Exception Class</h3>
+<blockquote>
+<p>Which two are Java Exception classes?</p>
+<p><strong>A.</strong> SecurityException</p>
+<p>B. DuplicatePathException</p>
+<p><strong>C.</strong> IllegalArgumentException</p>
+<p>D. TooManyArgumentsException</p>
+</blockquote>
+<h4 id="analysis-82">Analysis</h4>
+<ul>
+<li><strong>SecurityException</strong> : 是一種 RuntimeException
+<ul>
+<li>使用 class <em>SecurityManager</em> 會拋出的例外類型</li>
+<li>常見於 Android 應用程式開發，因為 Android 系統本身有對程式權限進行細部控制</li>
+</ul>
+</li>
+<li><strong>IllegalArgumentException</strong> : 亦是一種 RuntimeException
+<ul>
+<li>傳入方法參數範圍有誤時，會拋出這種例外</li>
+<li><code>Integer.parseInt(null);</code> — 拋出 <em>NumberFormatException</em> (為<em>IllegalArgumentException</em> 其中一種)</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h3 id="91-break-in-nested-loop">91. <code>break</code> in Nested Loop</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String<span style="color:#f92672">[][]</span> arr <span style="color:#f92672">=</span> <span style="color:#f92672">{{</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;B&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;C&#34;</span><span style="color:#f92672">},</span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;D&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;E&#34;</span><span style="color:#f92672">}};</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> j <span style="color:#f92672">&lt;</span> arr<span style="color:#f92672">[</span>i<span style="color:#f92672">].</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> j<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">][</span>j<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>arr<span style="color:#f92672">[</span>i<span style="color:#f92672">][</span>j<span style="color:#f92672">].</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;B&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">continue</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A. <code>A B C</code></p>
+<p>B. <code>A B C D E</code></p>
+<p><strong>C.</strong> <code>A B D E</code></p>
+<p>D. Compilation fails</p>
+</blockquote>
+<h4 id="analysis-83">Analysis</h4>
+<ul>
+<li>印出 <code>arr[0][1]</code> 之後，程式會跳出裡面的 for loop (line 4)，接著繼續執行外面的 for loop (line 3)</li>
+</ul>
+<hr>
 <h3 id="92-initialization-of-field_2">92. Initialization of Field_2</h3>
 <blockquote>
-<p>欄位的初始值2</p>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FieldInit</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">char</span> c<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">boolean</span> b<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> f<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printAll</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c = &#34;</span> <span style="color:#f92672">+</span> c<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c = &#34;</span> <span style="color:#f92672">+</span> b<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;c = &#34;</span> <span style="color:#f92672">+</span> f<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        FieldInit f <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FieldInit<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span><span style="color:#a6e22e">printAll</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>c = null
+b = false
+f = 0.0F
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>c = 0
+b = false
+f = 0.0f
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>c = null
+b = true
+f = 0.0
+</code></pre><p><strong>D.</strong></p>
+<pre tabindex="0"><code>c =  
+b = false
+f = 0.0
+</code></pre></blockquote>
+<h4 id="analysis-84">Analysis</h4>
+<ul>
+<li>
+<p>類別或物件欄位的預設初始值 :</p>
+<ul>
+<li>char 初始值 <code>\0</code> (字元值為 0)、整數初始值 <code>0</code>、浮點數初始值 <code>0.0</code></li>
+<li>布林型態初始值 <code>false</code>、物件型態初始值 <code>null</code></li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/UZPztRj.png"
+        data-srcset="https://i.imgur.com/UZPztRj.png, https://i.imgur.com/UZPztRj.png 1.5x, https://i.imgur.com/UZPztRj.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/UZPztRj.png"
+        title="image-20221207160930753" /></p>
+</li>
+</ul>
+<hr>
+<h3 id="93-switch-break">93. switch break</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>String color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;teal&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>color<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Red&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Found Red&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Blue&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Found Blue&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;Teal&#34;</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Found Teal&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Found Default&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What is the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>Found Red
+Found Default
+</code></pre><p>B. <code>Found Teal</code></p>
+<p>C.</p>
+<pre tabindex="0"><code>Found Red
+Found Blue
+Found Teal
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>Found Red
+Found Blue
+Found Teal
+Found Default
+</code></pre><p><strong>E.</strong> <code>Found Default</code></p>
 </blockquote>
-<h3 id="93-break-of-a-switch">93. <code>break</code> of a switch</h3>
+<h4 id="analysis-85">Analysis</h4>
+<ul>
+<li><code>color = &quot;teal&quot;</code> 與 line 9 case 大小寫不符合，因此只會執行到 line 21 ~ 22 (<em>&ldquo;Found Default&rdquo;</em>)</li>
+</ul>
+<hr>
 <h3 id="94-passing-by-parameter-from-command_2">94. Passing by Parameter from Command_2</h3>
 <blockquote>
-<p>從命令列傳入參數_2</p>
+<p>Given the code in a file <em>Traveler.java</em>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Tours</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Happy Journey!&#34;</span> <span style="color:#f92672">+</span> args<span style="color:#f92672">[</span>1<span style="color:#f92672">]);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Traveler</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Tours<span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>args<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>And the commands:</p>
+<pre tabindex="0"><code>javac Traveler.java
+java Traveler Java Duke
+</code></pre><p>What is the result?</p>
+<p><strong>A.</strong> <code>Happy Journey! Duke</code></p>
+<p>B. <code>Happy Journey! Java</code></p>
+<p>C. An exception is thrown at runtime</p>
+<p>D. The program fails to execute due to a runtime error</p>
 </blockquote>
+<h4 id="analysis-86">Analysis</h4>
+<ul>
+<li>main 的 <code>args</code> 參數再傳給 Tours 類的 main 靜態方法</li>
+<li>CLI 介面下傳給 Java 程式的參數索引值從 0 開始, 即 arg[0] = &ldquo;Java&rdquo;、arg[1] = &ldquo;Duke&rdquo;</li>
+</ul>
+<hr>
 <h3 id="95-the-removeif-method-of-collection">95. The <code>removeIf</code> method of Collection</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RemoveIf</span> <span style="color:#f92672">{</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>21<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>15<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>30<span style="color:#f92672">);</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>11<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>2<span style="color:#f92672">);</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// insert here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        list<span style="color:#f92672">.</span><span style="color:#a6e22e">removeIf</span><span style="color:#f92672">(</span>x <span style="color:#f92672">-&gt;</span> x <span style="color:#f92672">%</span> 2 <span style="color:#f92672">==</span> 0<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which inserted at line 11, will provide the following output?</p>
+<pre tabindex="0"><code>[21, 15, 11]
+</code></pre><p>A. <code>list.removeIf(e &gt; e % 2 != 0);</code></p>
+<p><strong>B.</strong> <code>list.removeIf(x -&gt; x % 2 == 0);</code></p>
+<p>C. <code>list.remove(e -&gt; e % 2 == 0);</code></p>
+<p>D. <code>None of the above.</code></p>
+</blockquote>
+<h4 id="analysis-87">Analysis</h4>
+<ul>
+<li>A : 會移除所有不能被 2 整除的項目，留下 <code>[30, 2]</code></li>
+<li>C : <code>remove()</code> 用法錯，參數應為物件 (the first occurence of the specified element) 或索引值 (index)</li>
+</ul>
+<hr>
 <h3 id="96-removal-of-collection-elements">96. Removal of Collection Elements</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+</span></span><span style="display:flex;"><span>    ArrayList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SE&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EE&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ME&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SE&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EE&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SE&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Values are : &#34;</span> <span style="color:#f92672">+</span> list<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p>A. <code>Values are : [EE, ME]</code></p>
+<p>B. <code>Values are : [EE, EE, ME]</code></p>
+<p>C. <code>Values are : [EE, ME, EE]</code></p>
+<p>D. <code>Values are : [SE, EE, ME, EE]</code></p>
+<p><strong>E.</strong> <code>Values are : [EE, ME, SE, EE]</code></p>
+</blockquote>
+<h4 id="analysis-88">Analysis</h4>
+<ul>
+<li>List集合允許擁有多個邏輯相同的元素，remove方法會從頭尋找<strong>第一個符合的元素</strong>，並將其移除</li>
+</ul>
+<hr>
 <h3 id="97-inheritance-and-constructor_3">97. Inheritance and Constructor_3</h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Vehicle</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;4W&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> maxSpeed <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Vehicle<span style="color:#f92672">(</span>String type<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> maxSpeed<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> type<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">maxSpeed</span> <span style="color:#f92672">=</span> maxSpeed<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Car</span> <span style="color:#66d9ef">extends</span> Vehicle <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    String trans<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Car<span style="color:#f92672">(</span>String trans<span style="color:#f92672">)</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">trans</span> <span style="color:#f92672">=</span> trans<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Car<span style="color:#f92672">(</span>String type<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> maxSpeed<span style="color:#f92672">,</span> String trans<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>type<span style="color:#f92672">,</span> maxSpeed<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">(</span>trans<span style="color:#f92672">);</span> <span style="color:#75715e">// line n2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>And given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Car c1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Car<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Auto&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    Car c2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Car<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;4W&#34;</span><span style="color:#f92672">,</span> 150<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Manual&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c1<span style="color:#f92672">.</span><span style="color:#a6e22e">type</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">maxSpeed</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> c1<span style="color:#f92672">.</span><span style="color:#a6e22e">trans</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>c2<span style="color:#f92672">.</span><span style="color:#a6e22e">type</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> c2<span style="color:#f92672">.</span><span style="color:#a6e22e">maxSpeed</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> c2<span style="color:#f92672">.</span><span style="color:#a6e22e">trans</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>What&rsquo;s the result?</p>
+<p>A.</p>
+<pre tabindex="0"><code>4W 100 Auto
+4W 150 Manual
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>null 0 Auto
+4W 150 Manual
+</code></pre><p>C. Compilation fails only at line n1</p>
+<p>D. Compilation fails only at line n2</p>
+<p><strong>E.</strong> Compilation fails at both line n1 and line n2</p>
+</blockquote>
+<h4 id="analysis-89">Analysis</h4>
+<ul>
+<li>
+<p>line n1 的 Constructor 建構子有誤，沒有使用 <code>super</code> 或 <code>this</code> 來決定要先執行的建構子，因此預設會加入 <code>super();</code> 於建構子第一行</p>
+<ul>
+<li>但是 class Vehicle 並沒有 no-arg constructor (<code>Vehicle()</code>) 此建構子，故編譯錯誤</li>
+</ul>
+</li>
+<li>
+<p>line n2 的 <code>this</code> 敘述不是在建構子的第一行呼叫，因此會編譯錯誤</p>
+</li>
+</ul>
+<hr>
 <h3 id="98-wrapper-clas">98. Wrapper Clas</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Wrapper</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// line n1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>x<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> 1<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;One&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">case</span> 2<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Two&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which thre code fragments can be independently inserted at line n1 to enable the code to print one?</p>
+<p><strong>A.</strong> <code>Byte x = 1;</code></p>
+<p><strong>B.</strong> <code>short x = 1;</code></p>
+<p>C. <code>String x = &quot;1&quot;;</code></p>
+<p>D. <code>Long x = 1;</code></p>
+<p>E. <code>Double x = 1;</code></p>
+<p><strong>F.</strong> <code>Integer x = new Integer(&quot;1&quot;);</code></p>
+</blockquote>
+<h4 id="analysis-90">Analysis</h4>
+<ul>
+<li>switch 內的 case 可知用於 case 的值為整數數值，x 需為整數型態的變數</li>
+<li>Wrapper 類別：
+<ul>
+<li>注意 Java 整數數值預設為 int，但它能自動向下轉型至 <code>short</code> 或者 <code>byte</code>，所以也能自動轉型 (auto wrapping) 成 Integer、Short 或 Byte 物件</li>
+</ul>
+</li>
+</ul>
+<hr>
 <h3 id="99-string-concatenation">99. String Concatenation</h3>
-<blockquote>
-<p>字串連接 (跟字串串接有啥不同)</p>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Concat</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String ta <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;A &#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        ta <span style="color:#f92672">=</span> ta<span style="color:#f92672">.</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;B &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        String tb <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C &#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        ta <span style="color:#f92672">=</span> ta<span style="color:#f92672">.</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span>tb<span style="color:#f92672">);</span>  <span style="color:#75715e">// A B C
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ta<span style="color:#f92672">.</span><span style="color:#a6e22e">replace</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;C&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;D&#39;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// A B D --&gt; 但沒有存取
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ta <span style="color:#f92672">=</span> ta<span style="color:#f92672">.</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span>tb<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>ta<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p>A. <code>A B C D</code></p>
+<p>B. <code>A C D</code></p>
+<p>C. <code>A B C</code></p>
+<p>D. <code>A B D</code></p>
+<p>E. <code>A B D C</code></p>
+<p><strong>F.</strong> <code>A B C C</code></p>
 </blockquote>
+<h4 id="analysis-91">Analysis</h4>
+<ul>
+<li>line 7 的 replace() 的結果並沒有指派給 ta，不會更動到 ta 變數的內容</li>
+</ul>
+<hr>
 <h3 id="100-setting-up-object-field">100. Setting up Object Field</h3>
-<blockquote>
-<p>物件欄位的設定</p>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestField</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> x<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> y<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">doStuff</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> x<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> x<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        y <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">y</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">display</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>x <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> y <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; : &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        TestField m1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TestField<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        m1<span style="color:#f92672">.</span><span style="color:#a6e22e">x</span> <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        m1<span style="color:#f92672">.</span><span style="color:#a6e22e">y</span> <span style="color:#f92672">=</span> 200<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        TestField m2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TestField<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        m2<span style="color:#f92672">.</span><span style="color:#a6e22e">doStuff</span><span style="color:#f92672">(</span>m1<span style="color:#f92672">.</span><span style="color:#a6e22e">x</span><span style="color:#f92672">,</span> m1<span style="color:#f92672">.</span><span style="color:#a6e22e">y</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        m1<span style="color:#f92672">.</span><span style="color:#a6e22e">display</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        m2<span style="color:#f92672">.</span><span style="color:#a6e22e">display</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p>A. <code>100 200 : 100 200 :</code></p>
+<p>B. <code>100 0 : 100 0 :</code></p>
+<p><strong>C.</strong> <code>100 200 : 100 0 :</code></p>
+<p>D. <code>100 0 : 100 200 :</code></p>
 </blockquote>
+<h4 id="analysis-92">Analysis</h4>
+<ul>
+<li>line 6 的 doStuff() 只會更動物件的 x 變數</li>
+<li>line 17, 18 設定 m1 物件的 x, y 兩個物件變數 → <code>m1.x</code>為 100、<code>m1.y</code> 為 200</li>
+<li>line 20 物件 m2 的 <code>doStuff()</code> 方法只會更動變數 x → <code>m2.x</code> 為 100、<code>m2.y</code> 為 0</li>
+</ul>
+<hr>
 <h3 id="101-method-main--code-entry-point_2">101. Method <code>main</code> — Code Entry Point_2</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">App</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Insert code here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Welcome to the world of Java&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>Which two code fragments, when inserted independently at line <code>//Insert code here</code>, enable the program to execute and print the welcome message on the screen?</p>
+<p><strong>A.</strong> <code>static public void main (String[] args) {</code></p>
+<p>B. <code>	static void main (String[] args) {</code></p>
+<p>C. <code>	public static void Main (String[] args) {</code></p>
+<p><strong>D.</strong> <code>public static void main (String[] args) {</code></p>
+<p>E. <code>public void main (String[] args) {</code></p>
+</blockquote>
+<h4 id="analysis-93">Analysis</h4>
+<ul>
+<li>B : 沒有使用 <code>public</code> 修飾 main() 方法，雖然可以編譯但找不到可進入的 <code>main()</code> 方法</li>
+<li>C : 方法名稱只能是 <code>main</code> 不可以是 <code>Main</code>，否則不會被當程式進入點</li>
+<li>E : 沒有使用 <code>static</code> 修飾 main() 方法，雖然可以編譯但找不到可進入的 <code>main()</code> 方法</li>
+</ul>
+<hr>
 <h3 id="102-usage-of-while_2">102. Usage of <code>while</code>_2</h3>
+<hr>
 <h3 id="103-visibility-of-overriding-method">103. Visibility of Overriding Method</h3>
 <blockquote>
 <p>覆寫方法的可見度</p>
 </blockquote>
+<hr>
 <h3 id="104-ternary-operator-_2">104. Ternary Operator (?:)_2</h3>
+<hr>
 <h3 id="105-constructor-and-initializing-field">105. Constructor and Initializing Field</h3>
+<hr>
 <h3 id="106-character-value-and-number-value">106. Character Value and Number Value</h3>
+<hr>
 <h3 id="107-implementation-of-method">107. Implementation of Method</h3>
+<hr>
 <h3 id="108-object-instance">108. Object Instance</h3>
 <blockquote>
 <p>實體化物件</p>
 </blockquote>
+<hr>
 <h3 id="109-compiling-java-by-command">109. Compiling Java by Command</h3>
+<hr>
 <h3 id="110-method-implementation-of-interface-and-abstract-class">110. Method Implementation of Interface and Abstract Class</h3>
+<p>🦊12</p>
+<hr>
 <h3 id="111-sout-54321">111. Sout <code>54321</code></h3>
 <blockquote>
 <p>輸出54321</p>
 </blockquote>
+<hr>
 <h3 id="112-private-method_2">112. Private Method_2</h3>
+<hr>
 <h3 id="113-assignment-expression">113. Assignment Expression</h3>
 <blockquote>
 <p>指派算式</p>
 </blockquote>
+<hr>
 <h3 id="114-calculating-floatdouble_2">114. Calculating float/double_2</h3>
+<hr>
 <h3 id="115-usage-of-switch_2">115. Usage of <code>switch</code>_2</h3>
+<hr>
 <h3 id="116-structure-of-class">116. Structure of Class</h3>
+<hr>
 <h3 id="117-passing-by-parameter-from-command_2">117. Passing by Parameter from Command_2</h3>
 <blockquote>
 <p>從命令列傳入參數</p>
 </blockquote>
+<hr>
 <h3 id="118-for-loop_2">118. For Loop_2</h3>
+<hr>
 <h3 id="119-date-and-time">119. Date and TIme</h3>
+<hr>
 <h3 id="120-scope-of-string-index">120. Scope of String Index</h3>
 <blockquote>
 <p>字串索引範圍</p>
 </blockquote>
+<p>🦄11</p>
+<hr>
 <h3 id="121-forloop_3">121. ForLoop_3</h3>
+<hr>
 <h3 id="122-benefits-of-encapulation">122. Benefits of Encapulation</h3>
+<hr>
 <h3 id="123-linear-search">123. Linear Search</h3>
 <blockquote>
 <p>線性搜尋</p>
 </blockquote>
+<hr>
 <h3 id="124-permanent-passing-by-value_3">124. Permanent Passing by Value_3</h3>
+<hr>
 <h3 id="125-replacing-string">125. Replacing String</h3>
+<hr>
 <h3 id="126-benefits-of-polymorphism">126. Benefits of Polymorphism</h3>
+<hr>
 <h3 id="127-initialization-of-field_3">127. Initialization of Field_3</h3>
 <blockquote>
 <p>欄位初始值</p>
 </blockquote>
+<hr>
 <h3 id="128-passing-by-parameter-from-command_4">128. Passing by Parameter from Command_4</h3>
 <blockquote>
 <p>從命令列傳入參數_4</p>
 </blockquote>
+<hr>
 <h3 id="129-object-instance_2">129. Object Instance_2</h3>
 <blockquote>
 <p>實體化物件_2</p>
 </blockquote>
+<hr>
 <h3 id="130-polymorphism-and-inheritance">130. Polymorphism and Inheritance</h3>
+<p>🦄10</p>
+<hr>
 <h3 id="131-default-method">131. Default Method</h3>
+<hr>
 <h3 id="132-inheritance-constructor-and-overriding-method">132. Inheritance, Constructor and Overriding Method</h3>
+<hr>
 <h3 id="133-plusplus">133. PlusPlus</h3>
+<hr>
 <h3 id="134-inverted-boolean">134. Inverted Boolean</h3>
 <blockquote>
 <p>反向布林</p>
 </blockquote>
+<hr>
 <h3 id="135-foreach-foreach">135. ForEach <code>foreach</code></h3>
+<hr>
 <h3 id="136-triangle-area">136. Triangle Area</h3>
+<hr>
 <h3 id="137-code-unreachable">137. Code Unreachable</h3>
 <blockquote>
-<p>永遠無法被執行到的程式, <del>無法見到的人, 無法說出的話</del></p>
+<p>永遠無法被執行到的程式, <del>無法見到的人</del></p>
 </blockquote>
+<hr>
 <h3 id="138-string-concatenation_2">138. String Concatenation_2</h3>
+<hr>
 <h3 id="139-polymorphism-and-inheritance_2">139. Polymorphism and Inheritance_2</h3>
+<hr>
 <h3 id="140-date-and-time_2">140. Date and TIme_2</h3>
+<p>🦄9</p>
+<hr>
 <h3 id="141-decision-making">141. Decision Making</h3>
 <blockquote>
 <p>條件判斷</p>
 </blockquote>
+<hr>
 <h3 id="142-passing-by-parameter-from-command_5">142. Passing by Parameter from Command_5</h3>
 <blockquote>
 <p>從命令列傳入參數_5</p>
 </blockquote>
+<hr>
 <h3 id="143-sout-object">143. Sout Object</h3>
 <blockquote>
 <p>印出物件</p>
 </blockquote>
+<hr>
 <h3 id="144-disregard-parameter-while-invoking-method">144. Disregard Parameter While Invoking Method</h3>
+<hr>
 <h3 id="145-date-and-time_3">145. Date And Time_3</h3>
+<hr>
 <h3 id="146-exception_2">146. Exception_2</h3>
+<hr>
 <h3 id="147-static-variable-and-object-variable_4">147. Static Variable and Object Variable_4</h3>
+<hr>
 <h3 id="148-equivalent-string_2">148. Equivalent String_2</h3>
+<hr>
 <h3 id="149-visible-scope-of-constructor">149. Visible Scope of Constructor</h3>
 <blockquote>
 <p>建構子的可視範圍</p>
 </blockquote>
+<hr>
 <h3 id="150-initialization-of-field_4">150. Initialization of Field_4</h3>
 <blockquote>
 <p>欄位初始值</p>
 </blockquote>
+<p>🦊8</p>
+<hr>
 <h3 id="151-masking_2">151. Masking_2</h3>
+<hr>
 <h3 id="152-lonely-object">152. Lonely Object</h3>
+<hr>
 <h3 id="153-customized-exception">153. Customized Exception</h3>
+<hr>
 <h3 id="154-usage-of-lambda-expr">154. Usage of Lambda Expr</h3>
+<hr>
 <h3 id="155-arithmetics">155. Arithmetics</h3>
+<hr>
 <h3 id="156-boolean-operand">156. Boolean Operand</h3>
+<hr>
 <h3 id="157-usage-of-while_3">157. Usage of <code>while</code>_3</h3>
+<hr>
 <h3 id="158-field-of-inheritance">158. Field of Inheritance</h3>
+<hr>
 <h3 id="159-incorrect-array-length">159. Incorrect Array Length</h3>
+<hr>
 <h3 id="160-clear-stringbuilder">160. Clear StringBuilder</h3>
+<p>🦊7</p>
+<hr>
 <h3 id="161-convert-string-to-integer-object">161. Convert String to Integer Object</h3>
+<hr>
 <h3 id="162-convert-primitive-datatype">162. Convert Primitive DataType</h3>
 <blockquote>
 <p>基本數值型態的轉換</p>
 </blockquote>
+<hr>
 <h3 id="163-array-length-and-string-length">163. Array Length and String Length</h3>
+<hr>
 <h3 id="164-usage-of-do-while">164. Usage of <code>do-while</code></h3>
+<hr>
 <h3 id="165-constructor_3">165. Constructor_3</h3>
+<hr>
 <h3 id="166-plus-and-minus_2">166. Plus and Minus_2</h3>
+<hr>
 <h3 id="167-removal-of-collection-elements_2">167. Removal of Collection Elements_2</h3>
+<hr>
 <h3 id="168-operating-string">168. Operating String</h3>
 <blockquote>
 <p>字串的操作</p>
 </blockquote>
+<hr>
 <h3 id="169-throwing-exception">169. Throwing Exception</h3>
+<hr>
 <h3 id="170-foreach_2-foreach">170. ForEach_2 (<code>foreach</code>)</h3>
+<p>🦊6</p>
+<hr>
 <h3 id="171-object-types-storable-in-a-collection">171. Object Types Storable in a Collection</h3>
+<hr>
 <h3 id="172-throwing-exception">172. Throwing Exception</h3>
+<blockquote>
+<p>Given:</p>
+</blockquote>
+<hr>
 <h3 id="173-get-all-elements-in-an-array">173. Get All Elements in an Array</h3>
 <blockquote>
 <p>撈出陣列所有元素</p>
 </blockquote>
+<hr>
 <h3 id="174-is-stringbuilder-object-equivalent-to-string">174. Is StringBuilder Object equivalent to String</h3>
 <blockquote>
 <p>StringBuilder 物件與字串的相等</p>
 </blockquote>
+<hr>
 <h3 id="175-linear-search_2">175. Linear Search_2</h3>
+<hr>
 <h3 id="176-checked-exception">176. Checked Exception</h3>
 <blockquote>
 <p>需要檢查的例外</p>
 </blockquote>
+<hr>
 <h3 id="177-visibility-of-methods">177. Visibility of Methods</h3>
+<hr>
 <h3 id="178-constructor_4">178. Constructor_4</h3>
+<hr>
 <h3 id="179-boolean-object">179. Boolean Object</h3>
+<hr>
 <h3 id="180-creating-object">180. Creating Object</h3>
+<p>🦊5</p>
+<hr>
 <h3 id="181-sout-null">181. Sout <code>null</code></h3>
 <hr>
 <h3 id="182-the-trim-usage-of-string-object">182. The <code>trim</code> usage of String Object</h3>
@@ -3125,6 +4367,7 @@ D. Remove the default section.</p>
 <h3 id="189-usage-of-lambda_2">189. Usage of Lambda_2</h3>
 <hr>
 <h3 id="190-writing-method">190. Writing Method</h3>
+<p>🦊4</p>
 <hr>
 <h3 id="191-writing-java-file">191. Writing Java File</h3>
 <hr>
@@ -3145,6 +4388,7 @@ D. Remove the default section.</p>
 <h3 id="199-about-java">199. About Java</h3>
 <hr>
 <h3 id="200-default-constructor">200. Default Constructor</h3>
+<p>🦊3</p>
 <hr>
 <h3 id="201-double-object">201. Double Object</h3>
 <hr>
@@ -3168,6 +4412,7 @@ D. Remove the default section.</p>
 <h3 id="209-infinite-loop">209. Infinite Loop</h3>
 <hr>
 <h3 id="210-calculating-circle-area">210. Calculating Circle Area</h3>
+<p>🦄 2</p>
 <hr>
 <h3 id="211-how-to-print-123--fred-">211. How to Print 123 : Fred :</h3>
 <hr>
@@ -3188,6 +4433,7 @@ D. Remove the default section.</p>
 <h3 id="219-ternary-operator-_3">219. Ternary Operator (?:)_3</h3>
 <hr>
 <h3 id="220-sout-current-time">220. Sout Current Time</h3>
+<p>🦄 2</p>
 <hr>
 <h3 id="221-try-catch">221. Try-Catch</h3>
 <hr>
