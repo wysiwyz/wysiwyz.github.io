@@ -17,7 +17,7 @@
 <meta name="twitter:description" content="OCAJP 紀錄題目的地方&hellip;
 1. Hello Java public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos&#43;&#43;) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.replace(pos, pos &#43; 1, uc); } } } catch (Exception e) { System.out.println(&#34;Out of limits&#34;); } System.out.println(message); } } Out of limits"/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ocajp/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ocpjp_11/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ocajp/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ocpjp/" /><link rel="next" href="http://wysiwyz.github.io/posts/ocpjp_11/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocajp\/"
-        },"genre": "posts","keywords": "Java, 1Z0-808","wordcount":  11326 ,
+        },"genre": "posts","keywords": "Java, 1Z0-808","wordcount":  11831 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocajp\/","datePublished": "2022-12-04T14:57:52+08:00","dateModified": "2022-12-04T14:57:52+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -70,8 +70,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Oracle Certified Associate Java PG</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-04">2022-12-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11326 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;54 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-04">2022-12-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11831 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;56 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -186,7 +186,7 @@
         <li><a href="#102-usage-of-while_2">102. Usage of <code>while</code>_2</a></li>
         <li><a href="#103-visibility-of-overriding-method">103. Visibility of Overriding Method</a></li>
         <li><a href="#104-ternary-operator-_2">104. Ternary Operator (?:)_2</a></li>
-        <li><a href="#105-constructor-and-initializing-field">105. Constructor and Initializing Field</a></li>
+        <li><a href="#105-constructor-and-initializing-field-建構子與欄位初始化">105. Constructor and Initializing Field <em>建構子與欄位初始化</em></a></li>
         <li><a href="#106-character-value-and-number-value">106. Character Value and Number Value</a></li>
         <li><a href="#107-implementation-of-method">107. Implementation of Method</a></li>
         <li><a href="#108-object-instance">108. Object Instance</a></li>
@@ -4114,17 +4114,184 @@ java Traveler Java Duke
 </ul>
 <hr>
 <h3 id="102-usage-of-while_2">102. Usage of <code>while</code>_2</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">boolean</span> isChecked <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> arry<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> <span style="color:#f92672">{</span>1<span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 5<span style="color:#f92672">,</span> 7<span style="color:#f92672">,</span> 8<span style="color:#f92672">,</span> 9<span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> index <span style="color:#f92672">=</span> arry<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(~</span>code1<span style="color:#f92672">~)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>arry<span style="color:#f92672">[</span>index <span style="color:#f92672">-</span> 1<span style="color:#f92672">]</span> <span style="color:#f92672">%</span> 2 <span style="color:#f92672">==</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                isChecked <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">~</span>code2<span style="color:#f92672">~</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span>arry<span style="color:#f92672">[</span>index<span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#f92672">+</span> isChecked<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which set of changes enable the code to print 1, true?</p>
+<p><strong>A.</strong> Replace <em>~code1~</em> with <code>index &gt; 0</code> and replacing <em>~code2~</em> with <code>index--</code></p>
+<p><strong>B.</strong> Replace <em>~code1~</em> with <code>index &gt; 0</code> and replacing <em>~code2~</em> with <code>--index</code></p>
+<p>C. Replace <em>~code1~</em> with <code>index &gt; 5</code> and replacing <em>~code2~</em> with <code>--index</code></p>
+<p>D. Replace <em>~code1~</em> with <code>index</code> and replacing <em>~code2~</em> with <code>--index</code></p>
+</blockquote>
+<h4 id="analysis-94">Analysis</h4>
+<ul>
+<li>程式最後的 <code>arry[index]</code> 需為 1；<code>isChecked</code> 須為 true；index 初始值為 6</li>
+<li>A, B : 可以讓 index 變數跳出 while loop 時為 0，且修改 isChecked 值為 true</li>
+<li>C : 只執行一次，結果為 <code>9, false</code></li>
+<li>D : <code>index</code> 並非布林變數，不能作為 while loop<strong>條件式</strong> → 編譯錯誤</li>
+</ul>
 <hr>
 <h3 id="103-visibility-of-overriding-method">103. Visibility of Overriding Method</h3>
 <blockquote>
-<p>覆寫方法的可見度</p>
+<p>Which of the following can fill in the blank in this code to make it compile?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Exam</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OCAJP</span> <span style="color:#66d9ef">extends</span> Exam<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    ____ <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">(){}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>A. abstract</p>
+<p><strong>B.</strong> final</p>
+<p>C. private</p>
+<p>D. default</p>
+<p>E. int</p>
 </blockquote>
+<h4 id="analysis-95">Analysis</h4>
+<ul>
+<li>Java 子類別如果要覆寫父類別的方法，方法可見度只能等同或大於父類別的方法</li>
+<li>如果父類別要覆寫的方法沒有使用可見度修飾字 (<code>default</code>) 時：
+<ul>
+<li>覆寫時只能同樣不使用可見度修飾字體 or</li>
+<li>使用可見度範圍更高的 <code>protected</code> 或者 <code>public</code></li>
+</ul>
+</li>
+<li>選項沒有以上兩種修飾字，所以使用 <strong>讓方法不再能被覆寫</strong> 的 final 修飾字</li>
+</ul>
 <hr>
 <h3 id="104-ternary-operator-_2">104. Ternary Operator (?:)_2</h3>
+<blockquote>
+<p>Given the code fragment:</p>
+<p>What is the result?</p>
+<p>A. <code>100</code></p>
+<p>B. <code>101</code></p>
+<p>C. <code>102</code></p>
+<p>D. <code>103</code></p>
+<p><strong>E.</strong> Compilation fails</p>
+</blockquote>
+<h4 id="analysis-96">Analysis</h4>
+<ul>
+<li>條件三元運算子的 <code>?</code> 和 <code>:</code> 必須成對出現，有幾個 <code>?</code> 就有幾個 <code>:</code></li>
+</ul>
 <hr>
-<h3 id="105-constructor-and-initializing-field">105. Constructor and Initializing Field</h3>
+<h3 id="105-constructor-and-initializing-field-建構子與欄位初始化">105. Constructor and Initializing Field <em>建構子與欄位初始化</em></h3>
+<blockquote>
+<p>Given:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">X</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> x1<span style="color:#f92672">,</span> x2<span style="color:#f92672">,</span> x3<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Y</span> <span style="color:#66d9ef">extends</span> X <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> y1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Y<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        x1 <span style="color:#f92672">=</span> 1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        x2 <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        y1 <span style="color:#f92672">=</span> 10<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Z</span> <span style="color:#66d9ef">extends</span> Y <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> z1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    Z<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        x1 <span style="color:#f92672">=</span> 3<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        y1 <span style="color:#f92672">=</span> 20<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        z1 <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestConstructorFieldInit</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Z obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Z<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>obj<span style="color:#f92672">.</span><span style="color:#a6e22e">x3</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">y1</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, &#34;</span> <span style="color:#f92672">+</span> obj<span style="color:#f92672">.</span><span style="color:#a6e22e">z1</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Which constructor initializes the variable x3?</p>
+<p><strong>A.</strong> Only the default constructor of class X</p>
+<p>B. Only the no-argument constructor of class Y</p>
+<p>C. Only the no-argument constructor of class Z</p>
+<p>D. Only the default constructor of object class</p>
+</blockquote>
+<h4 id="analysis-97">Analysis</h4>
+<ul>
+<li>
+<p>實體化 Z 物件時，會執行 line 17 class Z 的建構子</p>
+<ul>
+<li>
+<p>該建構子沒有指定要先呼叫 <code>this</code> or <code>super</code>，因此編譯預設添加 <code>super();</code>至第一行</p>
+<ul>
+<li>
+<p><code>super()</code> 會執行 class Y  line 8 的建構子</p>
+<ul>
+<li>
+<p>同上原因，class Y 建構子會執行其父類別 class X 的建構子</p>
+</li>
+<li>
+<p>class X 沒有撰寫建構子，編譯時會自動加入預設 class X 之建構子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">X</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>上述過程並沒有在執行建構子的時候，初始化 x3 變數的值，因此宣告 x3 時會預設為 0</p>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h3 id="106-character-value-and-number-value">106. Character Value and Number Value</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Msg</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">doMsg</span><span style="color:#f92672">(</span><span style="color:#66d9ef">char</span> x<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Good Day!&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> String <span style="color:#a6e22e">doMsg</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> y<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Good Luck&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">char</span> x <span style="color:#f92672">=</span> 8<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> z <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;8&#39;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>doMsg<span style="color:#f92672">(</span>x<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>doMsg<span style="color:#f92672">(</span>z<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>What is the result?</p>
+<p><strong>A.</strong></p>
+<pre tabindex="0"><code>Good Day!
+Good Luck!
+</code></pre><p>B.</p>
+<pre tabindex="0"><code>Good Day!
+Good Day!
+</code></pre><p>C.</p>
+<pre tabindex="0"><code>Good Luck!
+Good Day!
+</code></pre><p>D.</p>
+<pre tabindex="0"><code>Good Luck!
+Good Luck!
+</code></pre><p>E. Compilation fails</p>
+</blockquote>
+<h4 id="analysis-98">Analysis</h4>
 <hr>
 <h3 id="107-implementation-of-method">107. Implementation of Method</h3>
 <hr>
@@ -4134,6 +4301,18 @@ java Traveler Java Duke
 </blockquote>
 <hr>
 <h3 id="109-compiling-java-by-command">109. Compiling Java by Command</h3>
+<blockquote>
+<p>Which usage represents a valid way of compiling java source file with the name &ldquo;Main&rdquo;?</p>
+<p><strong>A.</strong> <code>javac Main.java</code></p>
+<p>B. <code>java Main.class</code></p>
+<p>C. <code>java Main.java</code></p>
+<p>D. <code>javac Main</code></p>
+<p>E. <code>java Main</code></p>
+</blockquote>
+<h4 id="analysis-99">Analysis</h4>
+<ul>
+<li>編譯 Java 原始碼使用 javac 編譯器，用法 <strong>javac{空格}{.java 檔案的完整路徑}</strong></li>
+</ul>
 <hr>
 <h3 id="110-method-implementation-of-interface-and-abstract-class">110. Method Implementation of Interface and Abstract Class</h3>
 <p>🦊12</p>
@@ -4471,7 +4650,8 @@ java Traveler Java Duke
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/ocpjp_11/" class="prev" rel="prev" title="[NEW] OCP Java PG"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[NEW] OCP Java PG</a></div>
+    <div class="post-nav"><a href="/posts/ocpjp/" class="prev" rel="prev" title="Oracle Certified Professional Java PG"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Oracle Certified Professional Java PG</a>
+            <a href="/posts/ocpjp_11/" class="next" rel="next" title="[NEW] 1Z0-819 曾師著作筆記">[NEW] 1Z0-819 曾師著作筆記<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
