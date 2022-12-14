@@ -3,8 +3,18 @@
         <title>All Posts - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/posts/</link>
         <description>All Posts | Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 13 Dec 2022 21:10:22 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>1Z0-819 曾師著作筆記</title>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 14 Dec 2022 09:48:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>1Z0-819 曾師筆記 (2/duology)</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
+    <pubDate>Wed, 14 Dec 2022 09:48:34 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp_11_2/</guid>
+    <description><![CDATA[# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
+集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
+使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.t = t; } public T get() { return this.t; } } class UseString { private String message; public void add(String message) { this.]]></description>
+</item>
+<item>
+    <title>1Z0-819 曾師筆記 (1/duology)</title>
     <link>http://wysiwyz.github.io/posts/ocpjp_11/</link>
     <pubDate>Tue, 13 Dec 2022 21:10:22 &#43;0800</pubDate>
     <author>celine</author>
@@ -112,17 +122,6 @@ What does a toml-style front matter look like?
 奈緒更在盂蘭盆節認識舅公「安古春樹一號」。這名舅公來頭不小，他是二次世界大戰當年「神風特攻隊」的軍機駕駛，受徵召前於東京的大學主修哲學與法文，奈緒從曾祖母手中得到一份軍官方審過的家書與遺囑，手邊也有一份取得來源不明，但字字真實的法文日記。
 協助露絲翻譯冷凍塑膠袋裡法文手稿的人只說了這本日記有如「惡之華」，春樹一號在其中提到無法置信的軍旅經歷，從中日東北戰事調派來的殘暴長官、無從適應的哲學系學長，還有信終毅然決定從指派飛行軌道偏航墜海的自殺決定。
 閱讀的過程中一度懷疑是否要繼續下去，這本書太真實，集結了人生各層次的悲傷─中年失業、環境議題、仕途瓶頸、同儕霸凌、雛妓援交、自縊未遂。但對難關視而不見實在太差勁，還好仁慈的作者給了大家越漸明朗的尾聲，更留待讀者各自揣摩『生』之意涵。]]></description>
-</item>
-<item>
-    <title>AJ的書店人生 The storied life of A.J. Fikry</title>
-    <link>http://wysiwyz.github.io/posts/thestoriedlifeofajfikry/</link>
-    <pubDate>Tue, 29 Oct 2019 21:49:17 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/thestoriedlifeofajfikry/</guid>
-    <description><![CDATA[顧名思義「AJ的書店人生」描寫島嶼書店經營者的一生，篇幅不長但透過書店老闆艾傑幫養女瑪雅開的十幾部書單作為章節開頭，十七八年的時間線濃縮成一本三百頁出頭的小說，故事情節完全不拖泥帶水。
-由於男女主配角有的是書商、有的是出版業務、有的是英文公演老師、還有帥過頭中年作家，情節當然少不了許多享譽盛名的英美小說家/詩人作品，讓人很想擇日拜讀，好比追憶似水年華（多虧咕狗才知道原來這系列有七冊！），還有infinite jest（網路上還有人特別以此書拍閱讀習慣的影片，可見其美名昭彰）。
-另外艾傑在退休生活費來源遭竊後，透過舉辦讀書會或作家見面會活絡鄰里感情並重振買市，以及用心針對不同客戶族群量身推薦書目，這些富人情味的設定讓人好羨慕艾利思島上的居民距離書店這麼近。然而，書中後半段的轉折並沒有特別賺人熱淚，不知是讀的人太冷血，或者是鋪陳來得有點突然。
-故事終章，不僅出版社換上了新業務代表（人物設定非常特別），書店經營者也改由原本的大配角上場，讓人不免期待，或許有朝一日能見到續集上市？屆時務必會找來翻閱，看作家如何祭出新一波書目，以及讓人淚腺如泉湧的寶藏情節。]]></description>
 </item>
 </channel>
 </rss>

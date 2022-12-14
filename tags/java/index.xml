@@ -3,8 +3,18 @@
         <title>Java - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/java/</link>
         <description>Java - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 13 Dec 2022 21:10:22 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/java/" rel="self" type="application/rss+xml" /><item>
-    <title>1Z0-819 曾師著作筆記</title>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 14 Dec 2022 09:48:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/java/" rel="self" type="application/rss+xml" /><item>
+    <title>1Z0-819 曾師筆記 (2/duology)</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
+    <pubDate>Wed, 14 Dec 2022 09:48:34 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp_11_2/</guid>
+    <description><![CDATA[# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
+集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
+使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.t = t; } public T get() { return this.t; } } class UseString { private String message; public void add(String message) { this.]]></description>
+</item>
+<item>
+    <title>1Z0-819 曾師筆記 (1/duology)</title>
     <link>http://wysiwyz.github.io/posts/ocpjp_11/</link>
     <pubDate>Tue, 13 Dec 2022 21:10:22 &#43;0800</pubDate>
     <author>celine</author>

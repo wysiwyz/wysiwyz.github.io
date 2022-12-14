@@ -54,7 +54,14 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/yicelwen" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://twitter.com/cel_yi" title="Twitter" target="_blank" rel="noopener noreffer me"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/y_cel_w" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ocpjp_11/">1Z0-819 曾師著作筆記</a>
+        <a href="/posts/ocpjp_11_2/">1Z0-819 曾師筆記 (2/duology)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-12-14">2022-12-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content"># 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
+集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
+使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.t = t; } public T get() { return this.t; } } class UseString { private String message; public void add(String message) { this.</div><div class="post-footer">
+        <a href="/posts/ocpjp_11_2/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ocpjp_11/">1Z0-819 曾師筆記 (1/duology)</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-12-13">2022-12-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">JDK 11 New OCPJP 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
 java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 程式碼附檔名必須為 .java，否則編譯器將拒絕編譯 class 檔案內可以有多個沒有 public 修飾的 class，檔案名稱不一定要與那些 classes 名稱相同。編譯時，檔案內宣告的每一個 class 都會各自產生附檔名為 .</div><div class="post-footer">
@@ -101,13 +108,6 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 ps. 10/21 臺灣上映，10/22 的週六晚 7：35 場有好多好看的觀眾🎋。</div><div class="post-footer">
         <a href="/posts/inu_oh/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/japanese/">Japanese</a>,&nbsp;<a href="/tags/literature/">Literature</a>,&nbsp;<a href="/tags/jrock/">JRock</a>,&nbsp;<a href="/tags/animation/">Animation</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/see_primer_plus/">See primer plus</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-16">2022-10-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">成為 C++ pro 的幾個建議（摘錄自 Big Sam Tsai）
-Read good C++ textbooks again and again Learn from practice Work in related field Right mentor Make learning thoughts public At least three years 這樣看來我能做到的有 1. 2. 5. 6. ，4. 的話可以抓親友充數
-Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR directive /* a C-style comment */ int main() { // function header { start of function body using namespace std; // make difinitions visible cout &lt;&lt; &#34;Come up and C++ me some time.</div><div class="post-footer">
-        <a href="/posts/see_primer_plus/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -119,6 +119,10 @@ Chapter 2 宣告敘述與變數 #include &lt;iostream&gt; // a PREPROCESSOR dire
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

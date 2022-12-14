@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>1Z0-819 曾師筆記 (2/duology) - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="1Z0-819 曾師筆記 (2/duology)" />
+<meta property="og:description" content="# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
+集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
+使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.t = t; } public T get() { return this.t; } } class UseString { private String message; public void add(String message) { this." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/ocpjp_11_2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-12-14T09:48:34+08:00" />
+<meta property="article:modified_time" content="2022-12-14T09:48:34+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="1Z0-819 曾師筆記 (2/duology)"/>
+<meta name="twitter:description" content="# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
+集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
+使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.t = t; } public T get() { return this.t; } } class UseString { private String message; public void add(String message) { this."/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ocpjp_11_2/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ocpjp_11/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "1Z0-819 曾師筆記 (2/duology)",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  348 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-14T09:48:34+08:00","dateModified": "2022-12-14T09:48:34+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-14">2022-12-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;348 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#泛型">泛型</a>
+      <ul>
+        <li><a href="#使用泛型的效益">使用泛型的效益</a></li>
+        <li><a href="#使用泛型設計類別">使用泛型設計類別</a></li>
+      </ul>
+    </li>
+    <li><a href="#集合物件">集合物件</a></li>
+    <li><a href="#map">Map</a></li>
+    <li><a href="#集合物件成員的排序">集合物件成員的排序</a></li>
+    <li><a href="#使用-of-與-copyof-方法建立-listset-與-map-物件">使用 <code>of()</code> 與 <code>copyOf()</code> 方法建立 <code>List</code>、<code>Set</code> 與 <code>Map</code> 物件</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#例外">例外</a></li>
+    <li><a href="#斷言">斷言</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#io-基礎">I/O 基礎</a></li>
+    <li><a href="#由主控台讀寫資料">由主控台讀寫資料</a></li>
+    <li><a href="#channel-io">Channel I/O</a></li>
+    <li><a href="#使用序列化技術讀寫物件">使用序列化技術讀寫物件</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#nio2-基礎">NIO.2 基礎</a></li>
+    <li><a href="#使用-path-介面操作檔案目錄">使用 Path 介面操作檔案/目錄</a></li>
+    <li><a href="#使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查刪除複製移動</a></li>
+    <li><a href="#使用-files-類別操作-channel-io-和-stream-io-讀寫檔案">使用 Files 類別操作 Channel I/O 和 Stream I/O 讀寫檔案</a></li>
+    <li><a href="#讀寫檔案目錄的屬性">讀寫檔案/目錄的屬性</a></li>
+    <li><a href="#遞迴存取目錄結構">遞迴存取目錄結構</a></li>
+    <li><a href="#使用-pathmatcher-類別找尋符合的檔案">使用 <code>PathMatcher</code> 類別找尋符合的檔案</a></li>
+    <li><a href="#其它">其它</a>
+      <ul>
+        <li><a href="#filestore-類別"><code>FileStore</code> 類別</a></li>
+        <li><a href="#使用-watchservice">使用 <code>WatchService</code></a></li>
+        <li><a href="#由基礎-io-轉換至-nio2">由基礎 I/O 轉換至 NIO.2</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#介紹">介紹</a></li>
+    <li><a href="#常見問題">常見問題</a></li>
+    <li><a href="#執行緒的-synchronized-與等待">執行緒的 synchronized 與等待</a></li>
+    <li><a href="#其它執行緒方法介紹">其它執行緒方法介紹</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#使用並行-api">使用並行 API</a></li>
+    <li><a href="#使用-executorservice-介面同時執行多樣工作">使用 ExecutorService 介面同時執行多樣工作</a></li>
+    <li><a href="#使用-fork-join-框架同時執行多樣工作">使用 Fork-Join 框架同時執行多樣工作</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#了解-databasedbms-和-sql">了解 Database、DBMS 和 SQL</a></li>
+    <li><a href="#eclipse-連線並存取資料庫">Eclipse 連線並存取資料庫</a></li>
+    <li><a href="#使用-jdbc">使用 JDBC</a></li>
+    <li><a href="#jdbc-進行交易">JDBC 進行交易</a></li>
+    <li><a href="#使用-jdbc-41-的-rowsetprovider-和-rowsetfactory">使用 JDBC 4.1 的 RowSetProvider 和 RowSetFactory</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#了解-java-的軟體區域化作法">了解 Java 的軟體區域化作法</a></li>
+    <li><a href="#使用-dateformat-類別提供日期的區域化顯示">使用 DateFormat 類別提供日期的區域化顯示</a></li>
+    <li><a href="#使用-numberformat-類別提供幣別區域化顯示">使用 NumberFormat 類別提供幣別區域化顯示</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#使用-lambda-表示式">使用 Lambda 表示式</a></li>
+    <li><a href="#使用內建的功能性介面">使用內建的功能性介面</a></li>
+    <li><a href="#在泛型內使用萬用字元">在泛型內使用萬用字元</a></li>
+    <li><a href="#使用其它內建的功能性介面">使用其它內建的功能性介面</a></li>
+    <li><a href="#使用方法參照">使用方法參照</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#建構者設計模式和方法鏈結">建構者設計模式和方法鏈結</a></li>
+    <li><a href="#使用-optional-類別">使用 Optional 類別</a></li>
+    <li><a href="#stream-api-介紹">Stream API 介紹</a></li>
+    <li><a href="#stream-api-操作">Stream API 操作</a></li>
+    <li><a href="#stream-api-和-nio2">Stream API 和 NIO.2</a></li>
+    <li><a href="#stream-api-操作平行化">Stream API 操作平行化</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#date--time-相關類別的演進">Date &amp; Time 相關類別的演進</a></li>
+    <li><a href="#當地日期與時間">當地日期與時間</a></li>
+    <li><a href="#時區和日光節約時間">時區和日光節約時間</a></li>
+    <li><a href="#描述日期與時間的數量">描述日期與時間的數量</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#認識標註型別">認識標註型別</a></li>
+    <li><a href="#建立自定義標註型別">建立自定義標註型別</a></li>
+    <li><a href="#標註型別的應用">標註型別的應用</a></li>
+    <li><a href="#自定義標註型別時使用的內建標註型別">自定義標註型別時使用的內建標註型別</a></li>
+    <li><a href="#開發一般程式碼經常使用的內建標註型別">開發一般程式碼經常使用的內建標註型別</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#認識-java-模組化">認識 Java 模組化</a></li>
+    <li><a href="#建立和執行模組化程式">建立和執行模組化程式</a></li>
+    <li><a href="#建立相依模組程式">建立相依模組程式</a></li>
+    <li><a href="#認識-module-infojava-的宣告關鍵字">認識 <code>module-info.java</code> 的宣告關鍵字</a></li>
+    <li><a href="#在命令列-command-line-使用模組指令選項">在命令列 <code>command line</code> 使用模組指令選項</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#回顧模組指令">回顧模組指令</a></li>
+    <li><a href="#比較模組類型">比較模組類型</a></li>
+    <li><a href="#分析-jdk-依賴關係">分析 JDK 依賴關係</a></li>
+    <li><a href="#模組化既有應用程式">模組化既有應用程式</a></li>
+    <li><a href="#模組化-java-服務結構">模組化 Java 服務結構</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#設計安全物件">設計安全物件</a></li>
+    <li><a href="#注入-injection-攻擊與輸入-input-驗證">注入 <em>injection</em> 攻擊與輸入 <em>input</em> 驗證</a></li>
+    <li><a href="#處理機敏資訊">處理機敏資訊</a></li>
+    <li><a href="#序列化與反序列化物件">序列化與反序列化物件</a></li>
+    <li><a href="#建立保護機敏資料的安全物件">建立保護機敏資料的安全物件</a></li>
+    <li><a href="#避免服務阻斷-denial-of-service-攻擊">避免服務阻斷 <em>denial of service</em> 攻擊</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><pre><code># 01 泛型和集合物件
+</code></pre>
+<h2 id="泛型">泛型</h2>
+<p>Java 5 之後加入泛型，使型別使用多了另一種彈性。</p>
+<p>集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。</p>
+<h3 id="使用泛型的效益">使用泛型的效益</h3>
+<ol>
+<li>提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現</li>
+<li>在集合物件 Collections 裡大量使用，限制內涵物件之型別</li>
+<li>減少轉型 casting 需要，使程式碼更簡潔</li>
+</ol>
+<h3 id="使用泛型設計類別">使用泛型設計類別</h3>
+<ul>
+<li>可以將程式碼裡的符號 <code>T</code>換成 <code>String</code>( 即 UseString())，或換成 <code>Shirt</code> (即 UseShirt())</li>
+<li>常見的符號及表示方式如下：
+<ol>
+<li><strong>T</strong> -「型別（type）」</li>
+<li><strong>E</strong> -「成員（element）」</li>
+<li><strong>K</strong> -「鍵 - 值對裡的鍵（key）」</li>
+<li><strong>V</strong> -「鍵 - 值對裡的值（value）」</li>
+</ol>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UseAny</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> T t<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>T t<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> t<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">get</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">t</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UseString</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String message<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>String message<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">message</span> <span style="color:#f92672">=</span> message<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">get</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">message</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UseShirt</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Shirt shirt<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>Shirt shirt<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">shirt</span> <span style="color:#f92672">=</span> shirt<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Shirt <span style="color:#a6e22e">get</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">shirt</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>Java 7 開始，取消「參考型別」和「建構子」都必須在&lt;&gt;符號內加上置換型別的規定，因為等號右側可以由前者推斷（inference）而知其型別</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>UseAny<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> shirt2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UseAny<span style="color:#f92672">&lt;</span>Shirt<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span>UseAny<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> msg2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UseAny<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// see below for simplified code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>UseAny<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> shirt2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UseAny<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>UseAny<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> msg2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> UseAny<span style="color:#f92672">&lt;&gt;();</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="集合物件">集合物件</h2>
+<h2 id="map">Map</h2>
+<h2 id="集合物件成員的排序">集合物件成員的排序</h2>
+<h2 id="使用-of-與-copyof-方法建立-listset-與-map-物件">使用 <code>of()</code> 與 <code>copyOf()</code> 方法建立 <code>List</code>、<code>Set</code> 與 <code>Map</code> 物件</h2>
+<hr>
+<h1 id="02-例外與斷言">02 例外與斷言</h1>
+<h2 id="例外">例外</h2>
+<h2 id="斷言">斷言</h2>
+<hr>
+<h1 id="03-輸入與輸出">03 輸入與輸出</h1>
+<h2 id="io-基礎">I/O 基礎</h2>
+<h2 id="由主控台讀寫資料">由主控台讀寫資料</h2>
+<h2 id="channel-io">Channel I/O</h2>
+<h2 id="使用序列化技術讀寫物件">使用序列化技術讀寫物件</h2>
+<hr>
+<h1 id="04-nio2">04 NIO.2</h1>
+<h2 id="nio2-基礎">NIO.2 基礎</h2>
+<h2 id="使用-path-介面操作檔案目錄">使用 Path 介面操作檔案/目錄</h2>
+<h2 id="使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查刪除複製移動</h2>
+<h2 id="使用-files-類別操作-channel-io-和-stream-io-讀寫檔案">使用 Files 類別操作 Channel I/O 和 Stream I/O 讀寫檔案</h2>
+<h2 id="讀寫檔案目錄的屬性">讀寫檔案/目錄的屬性</h2>
+<h2 id="遞迴存取目錄結構">遞迴存取目錄結構</h2>
+<h2 id="使用-pathmatcher-類別找尋符合的檔案">使用 <code>PathMatcher</code> 類別找尋符合的檔案</h2>
+<h2 id="其它">其它</h2>
+<h3 id="filestore-類別"><code>FileStore</code> 類別</h3>
+<h3 id="使用-watchservice">使用 <code>WatchService</code></h3>
+<h3 id="由基礎-io-轉換至-nio2">由基礎 I/O 轉換至 NIO.2</h3>
+<hr>
+<h1 id="05-執行緒">05 執行緒</h1>
+<h2 id="介紹">介紹</h2>
+<h2 id="常見問題">常見問題</h2>
+<h2 id="執行緒的-synchronized-與等待">執行緒的 synchronized 與等待</h2>
+<h2 id="其它執行緒方法介紹">其它執行緒方法介紹</h2>
+<hr>
+<h1 id="06-執行緒與並行-api-concurrency-api">06 執行緒與並行 API <code>Concurrency API</code></h1>
+<h2 id="使用並行-api">使用並行 API</h2>
+<h2 id="使用-executorservice-介面同時執行多樣工作">使用 ExecutorService 介面同時執行多樣工作</h2>
+<h2 id="使用-fork-join-框架同時執行多樣工作">使用 Fork-Join 框架同時執行多樣工作</h2>
+<hr>
+<h1 id="07-使用-jdbc-建立資料庫連線">07 使用 JDBC 建立資料庫連線</h1>
+<h2 id="了解-databasedbms-和-sql">了解 Database、DBMS 和 SQL</h2>
+<h2 id="eclipse-連線並存取資料庫">Eclipse 連線並存取資料庫</h2>
+<h2 id="使用-jdbc">使用 JDBC</h2>
+<h2 id="jdbc-進行交易">JDBC 進行交易</h2>
+<h2 id="使用-jdbc-41-的-rowsetprovider-和-rowsetfactory">使用 JDBC 4.1 的 RowSetProvider 和 RowSetFactory</h2>
+<hr>
+<h1 id="08-java-的區域化-localization">08 Java 的區域化 <em>Localization</em></h1>
+<h2 id="了解-java-的軟體區域化作法">了解 Java 的軟體區域化作法</h2>
+<h2 id="使用-dateformat-類別提供日期的區域化顯示">使用 DateFormat 類別提供日期的區域化顯示</h2>
+<h2 id="使用-numberformat-類別提供幣別區域化顯示">使用 NumberFormat 類別提供幣別區域化顯示</h2>
+<hr>
+<h1 id="09-lambda-表示式的應用">09 Lambda 表示式的應用</h1>
+<h2 id="使用-lambda-表示式">使用 Lambda 表示式</h2>
+<h2 id="使用內建的功能性介面">使用內建的功能性介面</h2>
+<h2 id="在泛型內使用萬用字元">在泛型內使用萬用字元</h2>
+<h2 id="使用其它內建的功能性介面">使用其它內建的功能性介面</h2>
+<h2 id="使用方法參照">使用方法參照</h2>
+<hr>
+<h1 id="10-使用-stream-api">10 使用 <code>Stream API</code></h1>
+<h2 id="建構者設計模式和方法鏈結">建構者設計模式和方法鏈結</h2>
+<h2 id="使用-optional-類別">使用 Optional 類別</h2>
+<h2 id="stream-api-介紹">Stream API 介紹</h2>
+<h2 id="stream-api-操作">Stream API 操作</h2>
+<h2 id="stream-api-和-nio2">Stream API 和 NIO.2</h2>
+<h2 id="stream-api-操作平行化">Stream API 操作平行化</h2>
+<hr>
+<h1 id="11-datetime-api">11 Date/Time API</h1>
+<h2 id="date--time-相關類別的演進">Date &amp; Time 相關類別的演進</h2>
+<h2 id="當地日期與時間">當地日期與時間</h2>
+<h2 id="時區和日光節約時間">時區和日光節約時間</h2>
+<h2 id="描述日期與時間的數量">描述日期與時間的數量</h2>
+<hr>
+<h1 id="12-標註型別-annotation">12 標註型別 <em>Annotation</em></h1>
+<h2 id="認識標註型別">認識標註型別</h2>
+<h2 id="建立自定義標註型別">建立自定義標註型別</h2>
+<h2 id="標註型別的應用">標註型別的應用</h2>
+<h2 id="自定義標註型別時使用的內建標註型別">自定義標註型別時使用的內建標註型別</h2>
+<h2 id="開發一般程式碼經常使用的內建標註型別">開發一般程式碼經常使用的內建標註型別</h2>
+<hr>
+<h1 id="13-java-平台模組系統">13 Java 平台模組系統</h1>
+<h2 id="認識-java-模組化">認識 Java 模組化</h2>
+<h2 id="建立和執行模組化程式">建立和執行模組化程式</h2>
+<h2 id="建立相依模組程式">建立相依模組程式</h2>
+<h2 id="認識-module-infojava-的宣告關鍵字">認識 <code>module-info.java</code> 的宣告關鍵字</h2>
+<h2 id="在命令列-command-line-使用模組指令選項">在命令列 <code>command line</code> 使用模組指令選項</h2>
+<hr>
+<h1 id="14-模組化應用程式">14 模組化應用程式</h1>
+<h2 id="回顧模組指令">回顧模組指令</h2>
+<h2 id="比較模組類型">比較模組類型</h2>
+<h2 id="分析-jdk-依賴關係">分析 JDK 依賴關係</h2>
+<h2 id="模組化既有應用程式">模組化既有應用程式</h2>
+<h2 id="模組化-java-服務結構">模組化 Java 服務結構</h2>
+<hr>
+<h1 id="15-開發安全的-java-程式">15 開發安全的 Java 程式</h1>
+<h2 id="設計安全物件">設計安全物件</h2>
+<h2 id="注入-injection-攻擊與輸入-input-驗證">注入 <em>injection</em> 攻擊與輸入 <em>input</em> 驗證</h2>
+<h2 id="處理機敏資訊">處理機敏資訊</h2>
+<h2 id="序列化與反序列化物件">序列化與反序列化物件</h2>
+<h2 id="建立保護機敏資料的安全物件">建立保護機敏資料的安全物件</h2>
+<h2 id="避免服務阻斷-denial-of-service-攻擊">避免服務阻斷 <em>denial of service</em> 攻擊</h2>
+<hr>
+<h1 id="16-mock-exam--analysis">16 Mock exam &amp; analysis</h1>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-12-14</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://wysiwyz.github.io/posts/ocpjp_11_2/" data-title="1Z0-819 曾師筆記 (2/duology)" data-via="cel_yi" data-hashtags="Java,1Z0-819"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/ocpjp_11_2/" data-hashtag="Java"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://wysiwyz.github.io/posts/ocpjp_11_2/" data-title="1Z0-819 曾師筆記 (2/duology)"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/ocpjp_11_2/" data-title="1Z0-819 曾師筆記 (2/duology)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://wysiwyz.github.io/posts/ocpjp_11_2/" data-title="1Z0-819 曾師筆記 (2/duology)"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ocpjp_11/" class="prev" rel="prev" title="1Z0-819 曾師筆記 (1/duology)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>1Z0-819 曾師筆記 (1/duology)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
