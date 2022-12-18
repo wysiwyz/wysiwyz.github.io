@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  3654 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  3966 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-18T17:50:34+08:00","dateModified": "2022-12-18T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3654 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;18 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3966 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;19 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -249,8 +249,22 @@
         <li><a href="#使用-catched-data-可能造成的問題">使用 <code>Catched Data</code> 可能造成的問題</a></li>
       </ul>
     </li>
-    <li><a href="#執行緒的-synchronized-與等待">執行緒的 synchronized 與等待</a></li>
-    <li><a href="#其它執行緒方法介紹">其它執行緒方法介紹</a></li>
+    <li><a href="#執行緒的-synchronized-與等待">執行緒的 synchronized 與等待</a>
+      <ul>
+        <li><a href="#使用-synchronized-關鍵字">使用 <code>synchronized</code> 關鍵字</a></li>
+        <li><a href="#使用-synchronized-的時機">使用 <code>synchronized</code> 的時機</a></li>
+        <li><a href="#縮小-synchronized-的程式區塊">縮小 synchronized 的程式區塊</a></li>
+        <li><a href="#其它執行等待的情況">其它執行等待的情況</a></li>
+      </ul>
+    </li>
+    <li><a href="#其它執行緒方法介紹">其它執行緒方法介紹</a>
+      <ul>
+        <li><a href="#使用-interrup-方法">使用 <code>interrup()</code> 方法</a></li>
+        <li><a href="#使用-sleep-方法">使用 <code>sleep()</code> 方法</a></li>
+        <li><a href="#使用其它方法">使用其它方法</a></li>
+        <li><a href="#不建議使用的方法">不建議使用的方法</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -728,32 +742,32 @@
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// List.of()
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list1 <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i2&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i3&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// UnsupportedException
+</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// line 5 : UnsupportedException
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;(</span>list1<span style="color:#f92672">);</span>  <span style="color:#75715e">// mutable w/ ArrayList
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;(</span>list1<span style="color:#f92672">);</span>  <span style="color:#75715e">// line 9 : mutable w/ ArrayList
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    list2<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list2<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Set.of()
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set1 <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i2&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i3&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        set1<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// UnsupportedException
+</span></span><span style="display:flex;"><span>        set1<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// line 15 : UnsupportedException
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;(</span>set1<span style="color:#f92672">);</span>  <span style="color:#75715e">// mutable w/ HashSet
+</span></span><span style="display:flex;"><span>    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;(</span>set1<span style="color:#f92672">);</span>  <span style="color:#75715e">// line 19 : mutable w/ HashSet
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    set2<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span>  
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>set2<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Map.of()
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Employee<span style="color:#f92672">&gt;</span> map1 <span style="color:#f92672">=</span> 
 </span></span><span style="display:flex;"><span>            Map<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jim&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jim&#34;</span><span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;duke&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;duke&#34;</span><span style="color:#f92672">));</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        map1<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">));</span> <span style="color:#75715e">// UnsupportedException
+</span></span><span style="display:flex;"><span>        map1<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">));</span> <span style="color:#75715e">// line 26 : UnsupportedException
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Employee<span style="color:#f92672">&gt;</span> map2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;(</span>map1<span style="color:#f92672">);</span>  <span style="color:#75715e">// mutable w/ HashMap
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Employee<span style="color:#f92672">&gt;</span> map2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;(</span>map1<span style="color:#f92672">);</span>  <span style="color:#75715e">// line 30 : mutable w/ HashMap
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    map2<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">));</span>
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>map2<span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
@@ -809,9 +823,9 @@
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createList</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list1 <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i2&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i3&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;iil&#34;</span><span style="color:#f92672">);</span>    <span style="color:#75715e">// element updatable
+</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;iil&#34;</span><span style="color:#f92672">);</span>    <span style="color:#75715e">// line 4 : element updatable
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list1<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>        <span style="color:#75715e">// removing or adding not permitted
+</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>        <span style="color:#75715e">// line 6 : removing or adding not permitted
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
@@ -1117,10 +1131,10 @@
 <p>Java 會將資源相關的例外隱匿 / 擠壓進程式碼的例外裡，只要知道如何將 suppressed 例外物件取出（參以下 line 3 ~ line 5）</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span><span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>e<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Throwable t <span style="color:#f92672">:</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getSuppressed</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>  
-</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">());</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Throwable t <span style="color:#f92672">:</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getSuppressed</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>  <span style="color:#75715e">// line 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>                                        <span style="color:#75715e">// line 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
 </span></span></code></pre></div></li>
 <li>
 <p>對例外物件呼叫 <code>e.getSuppressed()</code> 方法時，可回傳一個 Throwable 陣列</p>
@@ -2256,8 +2270,8 @@ java -ea HelloWorld
 </li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">boolean</span> running <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">boolean</span> running <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>  <span style="color:#75715e">// line 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Override</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread started&#34;</span><span style="color:#f92672">);</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>running<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
@@ -2270,10 +2284,10 @@ java -ea HelloWorld
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StopThreadExample</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>        MyRunnable r1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyRunnable<span style="color:#f92672">();</span>
-</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>r1<span style="color:#f92672">);</span>
-</span></span><span style="display:flex;"><span>        t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>r1<span style="color:#f92672">);</span>       <span style="color:#75715e">// line 16
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        r1<span style="color:#f92672">.</span><span style="color:#a6e22e">running</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span> <span style="color:#75715e">// terminate the thread immediately
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        r1<span style="color:#f92672">.</span><span style="color:#a6e22e">running</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span> <span style="color:#75715e">// line 19 : terminate the thread immediately
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
 </span></span></code></pre></div><table>
 <thead>
@@ -2299,7 +2313,145 @@ java -ea HelloWorld
 </table>
 <p>&hellip;</p>
 <h2 id="執行緒的-synchronized-與等待">執行緒的 synchronized 與等待</h2>
+<h3 id="使用-synchronized-關鍵字">使用 <code>synchronized</code> 關鍵字</h3>
+<ul>
+<li>
+<p>建立執行緒安全的程式，除了盡量使用執行緒安全的變數之外，就是使用「<strong>synchronized</strong>」關鍵字宣告<em>方法</em>或是<em>更小的程式碼區塊</em>：</p>
+<ol>
+<li><code>synchronized</code> 和 <code>volatile</code> 宣告有類似功用：
+<ul>
+<li>執行緒在執行該區塊的最初和最後時，會將變數值寫回 main memory</li>
+</ul>
+</li>
+<li>該區塊為獨占執行（<em>exclusive execution</em>）：
+<ul>
+<li>亦即同一時間只允許一個執行緒使用</li>
+<li>可解決 <code>non-atomic</code>問題，所以區塊內為執行緒安全</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>執行緒取得獨占執行權的機制：</p>
+<ol>
+<li>
+<p>每個 Java 物件都有一個「<strong>object monitor</strong>」，執行緒可以對它進行鎖定（lock）和解鎖（unlock）</p>
+<ul>
+<li>若鎖定成功，表示取得該物件的獨占執行權</li>
+<li>此時其它執行緒無法使用該物件的 <code>synchronized</code> 程式區塊，等同單一執行緒環境</li>
+</ul>
+</li>
+<li>
+<p>要使用宣告 <code>synchronized</code> 的方法，就必須取得「<strong>this</strong>」的 object monitor</p>
+</li>
+<li>
+<p>要使用宣告 <code>static</code> 的方法，同理也必須取得類別的「<strong>class monitor</strong>」</p>
+</li>
+<li>
+<p>要使用宣告 <code>synchronized</code> 區塊，必須指定要使用哪一個物件的 monitor</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>使用 <code>synchronized</code> 區塊可以有巢狀結構，且可以使用不同的 object monitor</p>
+</li>
+</ol>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SynchronizedAll</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sleep</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>5000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m1</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		sleep<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-- Run m1() at: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">synchronized</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">m2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		sleep<span style="color:#f92672">();</span>	
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-- Run m2() at: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#75715e">/* 將兩個public方法都宣告為synchronized，如此建立出的物件，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     m1()和m2()方法將同時只能有一個被呼叫執行 */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">M1Runner</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	SynchronizedAll o<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	M1Runner<span style="color:#f92672">(</span>SynchronizedAll o<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">o</span> <span style="color:#f92672">=</span> o<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 建立執行緒類別M1Runner，在建構子傳入一個SynchronizedAll物件後，呼叫m1()方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		o<span style="color:#f92672">.</span><span style="color:#a6e22e">m1</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">M2Runner</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	SynchronizedAll o<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	M2Runner<span style="color:#f92672">(</span>SynchronizedAll o<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">o</span> <span style="color:#f92672">=</span> o<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 建立執行緒類別M2Runner，在建構子傳入一個SynchronizedAll物件後，呼叫m2()方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		o<span style="color:#f92672">.</span><span style="color:#a6e22e">m2</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SynchronizedTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		SynchronizedAll o <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SynchronizedAll<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">// 建立一個 SynchronizedAll 物件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Start main at: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>		Thread m1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> M1Runner<span style="color:#f92672">(</span>o<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		m1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 建立 M1Runner 執行緒物件，並傳入之前建立的 SynchronizedAll 物件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        
+</span></span><span style="display:flex;"><span>		Thread m2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> M2Runner<span style="color:#f92672">(</span>o<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		m2<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 建立 M2Runner 執行緒物件，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// 並傳入和 M1Runner 所傳入的相同的 SynchronizedAll 物件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//m1.interrupt();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;End main at: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>因為 <code>SynchronizedAll</code> 內 <code>m1()</code> 及 <code>m2()</code> 方法都是 <code>synchronized</code>，要執行都要取得 this 的 object monitor，因此同時間只能有一個方法被呼叫</p>
+</blockquote>
+<h3 id="使用-synchronized-的時機">使用 <code>synchronized</code> 的時機</h3>
+<ul>
+<li><code>java.util.ConcurrentModificationException</code> :
+<ul>
+<li>如果 Java 偵測到集合物件的內容將被同時修改（不限定是否多執行緒所為），就會拋出 <code>ConcurrentModificationException</code>
+<ul>
+<li>此為「<strong>fail-fast</strong>」行為模式，亦即對於錯誤或是可能造成錯誤的情況，馬上作出反應</li>
+<li>為了避免發生 <strong>fail-fast</strong> 狀況，應避免在執行 getSummary() 方法時，其它 2 個方法被同時呼叫
+<ul>
+<li>可以將這三個方法都宣告為 <code>synchronized</code>，如此要呼叫方法前，必須取得該物件的唯一 <strong>object monitor</strong>，就不會有被同時執行的可能性</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>ConcurrentModificationException</code> 不是只有在多執行緒的情況下才會發生</li>
+</ul>
+<h3 id="縮小-synchronized-的程式區塊">縮小 synchronized 的程式區塊</h3>
+<h3 id="其它執行等待的情況">其它執行等待的情況</h3>
+<h4 id="1-starvation--因搶不到資源而排隊">1. <strong>Starvation</strong> : 因搶不到資源而排隊</h4>
+<h4 id="2-live-lock--因太忙碌而排隊">2. Live Lock : 因太忙碌而排隊</h4>
+<h4 id="3-dead-lock--2-個執行緒互相絆住對方導致永遠等待">3. Dead Lock : 2 個執行緒互相絆住對方，導致永遠等待</h4>
+<p>&hellip;</p>
 <h2 id="其它執行緒方法介紹">其它執行緒方法介紹</h2>
+<h3 id="使用-interrup-方法">使用 <code>interrup()</code> 方法</h3>
+<h3 id="使用-sleep-方法">使用 <code>sleep()</code> 方法</h3>
+<h3 id="使用其它方法">使用其它方法</h3>
+<h3 id="不建議使用的方法">不建議使用的方法</h3>
 <hr>
 <h1 id="06-執行緒與並行-api-concurrency-api">06 執行緒與並行 API <code>Concurrency API</code></h1>
 <h2 id="使用並行-api">使用並行 API</h2>
