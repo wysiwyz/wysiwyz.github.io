@@ -10,8 +10,8 @@
 使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.t = t; } public T get() { return this.t; } } class UseString { private String message; public void add(String message) { this." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wysiwyz.github.io/posts/ocpjp_11_2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-12-14T09:48:34+08:00" />
-<meta property="article:modified_time" content="2022-12-14T09:48:34+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta property="article:published_time" content="2022-12-18T17:50:34+08:00" />
+<meta property="article:modified_time" content="2022-12-18T17:50:34+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="1Z0-819 曾師筆記 (2/duology)"/>
@@ -30,8 +30,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  2747 ,
-        "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-14T09:48:34+08:00","dateModified": "2022-12-14T09:48:34+08:00","publisher": {
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  3654 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-18T17:50:34+08:00","dateModified": "2022-12-18T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-14">2022-12-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2747 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3654 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;18 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -146,22 +146,85 @@
       <ul>
         <li><a href="#主控台的-io">主控台的 I/O</a></li>
         <li><a href="#使用標準輸出方法">使用標準輸出方法</a></li>
-        <li><a href="#使用標準輸入由主控台取得輸入資料">使用標準輸入由主控台取得輸入資料</a></li>
         <li><a href="#javaioconsole-類別介紹"><code>java.io.Console</code> 類別介紹</a></li>
       </ul>
     </li>
     <li><a href="#channel-io">Channel I/O</a></li>
-    <li><a href="#使用序列化技術讀寫物件">使用序列化技術讀寫物件</a></li>
+    <li><a href="#使用序列化技術讀寫物件">使用序列化技術讀寫物件</a>
+      <ul>
+        <li><a href="#java-裡的資料保存-persistence">Java 裡的資料保存 <em>Persistence</em></a></li>
+        <li><a href="#序列化和物件圖譜">序列化和物件圖譜</a></li>
+        <li><a href="#不需要參加序列化的欄位">不需要參加序列化的欄位</a></li>
+        <li><a href="#定義物件保存的版本號碼">定義物件保存的版本號碼</a></li>
+        <li><a href="#序列化和反序列化範例">序列化和反序列化範例</a></li>
+        <li><a href="#3-serialization-and-de-serialization">3. Serialization and De-serialization</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
-    <li><a href="#nio2-基礎">NIO.2 基礎</a></li>
-    <li><a href="#使用-path-介面操作檔案目錄">使用 Path 介面操作檔案/目錄</a></li>
-    <li><a href="#使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查刪除複製移動</a></li>
-    <li><a href="#使用-files-類別操作-channel-io-和-stream-io-讀寫檔案">使用 Files 類別操作 Channel I/O 和 Stream I/O 讀寫檔案</a></li>
-    <li><a href="#讀寫檔案目錄的屬性">讀寫檔案/目錄的屬性</a></li>
-    <li><a href="#遞迴存取目錄結構">遞迴存取目錄結構</a></li>
-    <li><a href="#使用-pathmatcher-類別找尋符合的檔案">使用 <code>PathMatcher</code> 類別找尋符合的檔案</a></li>
+    <li><a href="#nio2-基礎">NIO.2 基礎</a>
+      <ul>
+        <li><a href="#javajofile限制"><code>java.jo.File</code>限制</a></li>
+        <li><a href="#java-io-套件發展歷史">Java I/O 套件發展歷史</a></li>
+        <li><a href="#檔案系統路徑和檔案">檔案系統、路徑和檔案</a></li>
+        <li><a href="#symbolic-link-檔案">Symbolic Link 檔案</a></li>
+        <li><a href="#nio2-的基本架構">NIO.2 的基本架構</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-path-介面操作檔案目錄">使用 Path 介面操作檔案/目錄</a>
+      <ul>
+        <li><a href="#path-介面">Path 介面</a></li>
+        <li><a href="#path-介面主要功能">Path 介面主要功能</a></li>
+        <li><a href="#移除路徑裡的多餘組成">移除路徑裡的多餘組成</a></li>
+        <li><a href="#建立子路徑">建立子路徑</a></li>
+        <li><a href="#結合-2-個路徑">結合 2 個路徑</a></li>
+        <li><a href="#建立連接-2-個路徑的路徑">建立連接 2 個路徑的路徑</a></li>
+        <li><a href="#hard-link">Hard Link</a></li>
+        <li><a href="#處理-symbolic-link">處理 Symbolic Link</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查刪除複製移動</a>
+      <ul>
+        <li><a href="#處理檔案">處理檔案</a></li>
+        <li><a href="#檢查檔案--目錄是否存在">檢查檔案 / 目錄是否存在</a></li>
+        <li><a href="#檢查檔案--目錄屬性">檢查檔案 / 目錄屬性</a></li>
+        <li><a href="#建立檔案--目錄">建立檔案 / 目錄</a></li>
+        <li><a href="#刪除檔案--目錄">刪除檔案 / 目錄</a></li>
+        <li><a href="#複製和移動檔案--目錄">複製和移動檔案 / 目錄</a></li>
+        <li><a href="#stream-和-path-互相複製">Stream 和 Path 互相複製</a></li>
+        <li><a href="#列出目錄內容">列出目錄內容</a></li>
+        <li><a href="#讀取和寫入檔案">讀取和寫入檔案</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-files-類別操作-channel-io-和-stream-io-讀寫檔案">使用 Files 類別操作 Channel I/O 和 Stream I/O 讀寫檔案</a>
+      <ul>
+        <li><a href="#介面-channel-和類別-bytebuffer">介面 Channel 和類別 ByteBuffer</a></li>
+        <li><a href="#隨機存取檔案">隨機存取檔案</a></li>
+        <li><a href="#對文字檔提供-buffered-io-方法">對文字檔提供 Buffered I/O 方法</a></li>
+        <li><a href="#取得位元串流物件的方法">取得位元串流物件的方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#讀寫檔案目錄的屬性">讀寫檔案/目錄的屬性</a>
+      <ul>
+        <li><a href="#使用-files-管理檔案的屬性資料">使用 Files 管理檔案的屬性資料</a></li>
+        <li><a href="#讀取檔案屬性">讀取檔案屬性</a></li>
+        <li><a href="#修改檔案屬性">修改檔案屬性</a></li>
+        <li><a href="#dos-之外的-file-attribute-views">DOS 之外的 File Attribute Views</a></li>
+        <li><a href="#posix-檔案系統的權限"><code>POSIX</code> 檔案系統的權限</a></li>
+      </ul>
+    </li>
+    <li><a href="#遞迴存取目錄結構">遞迴存取目錄結構</a>
+      <ul>
+        <li><a href="#對檔案目錄進行遞迴操作">對檔案目錄進行遞迴操作</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-pathmatcher-類別找尋符合的檔案">使用 <code>PathMatcher</code> 類別找尋符合的檔案</a>
+      <ul>
+        <li><a href="#搜尋檔案">搜尋檔案</a></li>
+        <li><a href="#glob-樣式語法介紹"><code>glob</code> 樣式語法介紹</a></li>
+      </ul>
+    </li>
     <li><a href="#其它">其它</a>
       <ul>
         <li><a href="#filestore-類別"><code>FileStore</code> 類別</a></li>
@@ -172,8 +235,20 @@
   </ul>
 
   <ul>
-    <li><a href="#介紹">介紹</a></li>
-    <li><a href="#常見問題">常見問題</a></li>
+    <li><a href="#介紹">介紹</a>
+      <ul>
+        <li><a href="#名詞說明">名詞說明</a></li>
+        <li><a href="#多執行緒的重要性">多執行緒的重要性</a></li>
+        <li><a href="#執行緒類別">執行緒類別</a></li>
+      </ul>
+    </li>
+    <li><a href="#執行緒常見問題">執行緒常見問題</a>
+      <ul>
+        <li><a href="#使用-shared-data-可能造成的問題">使用 <code>Shared Data</code> 可能造成的問題</a></li>
+        <li><a href="#使用-non-atomic-functions-可能造成的問題">使用 <code>Non-Atomic Functions</code> 可能造成的問題</a></li>
+        <li><a href="#使用-catched-data-可能造成的問題">使用 <code>Catched Data</code> 可能造成的問題</a></li>
+      </ul>
+    </li>
     <li><a href="#執行緒的-synchronized-與等待">執行緒的 synchronized 與等待</a></li>
     <li><a href="#其它執行緒方法介紹">其它執行緒方法介紹</a></li>
   </ul>
@@ -1644,30 +1719,585 @@ java -ea HelloWorld
 </tbody>
 </table>
 <h3 id="使用-javaiofile-類別">使用 <code>java.io.File</code> 類別</h3>
+<p><code>java.io.File</code> 常用方法：</p>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>return type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>getName()</code></td>
+<td>String</td>
+<td>取得檔案或目錄的名稱</td>
+</tr>
+<tr>
+<td><code>getParent()</code></td>
+<td>String</td>
+<td>取得父目錄的名稱</td>
+</tr>
+<tr>
+<td><code>getParentFile()</code></td>
+<td>File</td>
+<td>取得代表父目錄的 File 物件</td>
+</tr>
+<tr>
+<td><code>getPath()</code></td>
+<td>String</td>
+<td>取得檔案或目錄的路徑</td>
+</tr>
+<tr>
+<td><code>isAbsolute()</code></td>
+<td>boolean</td>
+<td>是否為絕對路徑</td>
+</tr>
+<tr>
+<td><code>getAbsolutePath()</code></td>
+<td>String</td>
+<td>取得絕對路徑</td>
+</tr>
+<tr>
+<td><code>canRead()</code></td>
+<td>boolean</td>
+<td>是否可讀取</td>
+</tr>
+<tr>
+<td><code>canWrite()</code></td>
+<td>boolean</td>
+<td>是否可修改</td>
+</tr>
+<tr>
+<td><code>exists()</code></td>
+<td>boolean</td>
+<td>是否存在</td>
+</tr>
+<tr>
+<td><code>isDirectory()</code></td>
+<td>boolean</td>
+<td>是否為目錄</td>
+</tr>
+<tr>
+<td><code>isFile()</code></td>
+<td>boolean</td>
+<td>是否為檔案</td>
+</tr>
+<tr>
+<td><code>lastModified()</code></td>
+<td>long</td>
+<td>取得最後一次修改時間</td>
+</tr>
+<tr>
+<td><code>length()</code></td>
+<td>long</td>
+<td>取得檔案大小</td>
+</tr>
+<tr>
+<td><code>delete()</code></td>
+<td>boolean</td>
+<td>刪除檔案或目錄並回傳成功與否</td>
+</tr>
+<tr>
+<td><code>list()</code></td>
+<td>String[]</td>
+<td>列舉目錄下的檔案與子目錄</td>
+</tr>
+<tr>
+<td><code>listFiles()</code></td>
+<td>File[]</td>
+<td>列舉目錄下的檔案與子目錄的 File 物件</td>
+</tr>
+<tr>
+<td><code>mkdir()</code></td>
+<td>boolean</td>
+<td>建立目錄</td>
+</tr>
+<tr>
+<td><code>mkdirs()</code></td>
+<td>boolean</td>
+<td>建立目錄 + 不存在但是需要一併建立的父目錄</td>
+</tr>
+<tr>
+<td><code>renameTo(File)</code></td>
+<td>boolean</td>
+<td>重新命名</td>
+</tr>
+<tr>
+<td><code>createTempFIle()</code></td>
+<td>File</td>
+<td>建立暫存檔案，有多載版本</td>
+</tr>
+<tr>
+<td><code>setLastModified(long)</code></td>
+<td>boolean</td>
+<td>設定最後一次修改時間</td>
+</tr>
+<tr>
+<td><code>setReadOnly()</code></td>
+<td>boolean</td>
+<td>設定成唯讀</td>
+</tr>
+</tbody>
+</table>
 <h2 id="由主控台讀寫資料">由主控台讀寫資料</h2>
 <h3 id="主控台的-io">主控台的 I/O</h3>
+<p><code>java.lang.System</code> 類別裡的三個 static 欄位</p>
+<table>
+<thead>
+<tr>
+<th>「欄位</th>
+<th>欄位型別</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>System.out</code></td>
+<td><code>PrintStream</code></td>
+<td>將訊息輸出至 console，又稱 <strong>標準輸出</strong>（standard output）<!-- raw HTML omitted -->可接受由主控台再經<code>&gt;</code> 或 <code>&gt;&gt;</code> 的「重新導向指令」，將輸出內容導向至另外一個檔案</td>
+</tr>
+<tr>
+<td><code>System.in</code></td>
+<td><code>InputStream</code></td>
+<td>由 console 接收來自鍵盤或其他來源的訊息輸入<!-- raw HTML omitted -->又稱 <strong>標準輸入</strong>（standard input）</td>
+</tr>
+<tr>
+<td><code>System.err</code></td>
+<td><code>PrintStream</code></td>
+<td>和 <code>System.out</code> 一樣都是輸出訊息至 console<!-- raw HTML omitted -->但主要用於輸出錯誤訊息，較為急迫必須立即顯示，因此「重新導向指令」無效，依然顯示在 console <!-- raw HTML omitted -->使用 Eclipse IDE 的話，輸出顏色為紅色（警示用）</td>
+</tr>
+</tbody>
+</table>
 <h3 id="使用標準輸出方法">使用標準輸出方法</h3>
-<h3 id="使用標準輸入由主控台取得輸入資料">使用標準輸入由主控台取得輸入資料</h3>
+<ul>
+<li><code>println()</code> 輸出換行符、<code>print()</code>不輸出換行符號</li>
+<li>以上兩方法對大部分基本型別以及參考型別都有多載方法支援
+<ul>
+<li>boolean, char, int, long, float, double、char[], <code>Object</code>, <code>String</code></li>
+<li>其它參考型別則呼叫該物件的 <code>toString()</code> 方法</li>
+</ul>
+</li>
+</ul>
 <h3 id="javaioconsole-類別介紹"><code>java.io.Console</code> 類別介紹</h3>
+<ul>
+<li>
+<p>除了使用前述 <code>System.in</code> 取得主控台標準輸入外，也可以用 <code>java.io.Console</code> 物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConsoleInput</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Console cons <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">console</span><span style="color:#f92672">();</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 使用 System.console() 方法取得 Console 物件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">boolean</span> userValid <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>cons <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            String account<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            String passwd<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">do</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                account <span style="color:#f92672">=</span> cons<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%s&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Account: &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// readline() 可取得指令列輸入的資料
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                passwd <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> String<span style="color:#f92672">(</span>cons<span style="color:#f92672">.</span><span style="color:#a6e22e">readPassword</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%s&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Password: &#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// readPassword() 除了可以取得指令列輸入的資料，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#75715e">// 還能隱藏使用者輸入內容
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>account<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;joanna&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">&amp;&amp;</span> passwd<span style="color:#f92672">.</span><span style="color:#a6e22e">equals</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Correct! System quits!&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                    userValid <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Wrong! Try again!&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">while</span> <span style="color:#f92672">(!</span>userValid<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 後測式迴圈：先輸入再驗證，失敗繼續，成功終止
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Q8HsrVi.png"
+        data-srcset="https://i.imgur.com/Q8HsrVi.png, https://i.imgur.com/Q8HsrVi.png 1.5x, https://i.imgur.com/Q8HsrVi.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Q8HsrVi.png"
+        title="image-20221218141013717" /></p>
+</li>
+</ul>
 <h2 id="channel-io">Channel I/O</h2>
-<h2 id="使用序列化技術讀寫物件">使用序列化技術讀寫物件</h2>
+<ul>
+<li>Channel : 可以指兩個設備之間傳送資訊經過的通路或連接
+<ul>
+<li>導入於 JDK 1.4，屬於 <code>java.nio</code> package</li>
+<li>可以一次大量讀入位元和字元，不需要以迴圈每次讀取少量內容</li>
+<li>程式更簡潔，程式效能更好</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.*<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.nio.ByteBuffer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.nio.channels.FileChannel<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CopyByteChannel</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		String source <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">,</span> target <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>FileChannel in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span>source<span style="color:#f92672">).</span><span style="color:#a6e22e">getChannel</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>				FileChannel out <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span>target<span style="color:#f92672">).</span><span style="color:#a6e22e">getChannel</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			ByteBuffer buff <span style="color:#f92672">=</span> ByteBuffer<span style="color:#f92672">.</span><span style="color:#a6e22e">allocate</span><span style="color:#f92672">((</span><span style="color:#66d9ef">int</span><span style="color:#f92672">)</span> in<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#75715e">// 建立和 source 檔案 size 大小相同的 ByteBuffer 物件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			in<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">(</span>buff<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#75715e">// 將實體檔案一次全數讀入到 ByteBuffer 物件中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			buff<span style="color:#f92672">.</span><span style="color:#a6e22e">position</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#75715e">// 將 ByteBuffer 裡的標示位置移到最前面
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			out<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>buff<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">/* 將 ByteBuffer 裡的資料全數輸出至 FileChannel out，再由其輸出為檔案
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">          因為 FileChannel 的 read() 和 write() 方法都是透過 ByteBuffer 物件一次搞定
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">          所以不用迴圈（loop）分次處理 */</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>FileNotFoundException f<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			f<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException i<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			i<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="使用序列化技術讀寫物件">使用序列化技術讀寫物件</h2>
+<p>🚧🚧🚧🚧🚧</p>
+<h3 id="java-裡的資料保存-persistence">Java 裡的資料保存 <em>Persistence</em></h3>
+<h3 id="序列化和物件圖譜">序列化和物件圖譜</h3>
+<h3 id="不需要參加序列化的欄位">不需要參加序列化的欄位</h3>
+<h3 id="定義物件保存的版本號碼">定義物件保存的版本號碼</h3>
+<h3 id="序列化和反序列化範例">序列化和反序列化範例</h3>
+<h4 id="1-class-shirt">1. class Shirt</h4>
+<h4 id="2-class-order">2. class Order</h4>
+<h3 id="3-serialization-and-de-serialization">3. Serialization and De-serialization</h3>
 <hr>
 <h1 id="04-nio2">04 NIO.2</h1>
 <h2 id="nio2-基礎">NIO.2 基礎</h2>
+<h3 id="javajofile限制"><code>java.jo.File</code>限制</h3>
+<h3 id="java-io-套件發展歷史">Java I/O 套件發展歷史</h3>
+<h3 id="檔案系統路徑和檔案">檔案系統、路徑和檔案</h3>
+<h3 id="symbolic-link-檔案">Symbolic Link 檔案</h3>
+<h3 id="nio2-的基本架構">NIO.2 的基本架構</h3>
 <h2 id="使用-path-介面操作檔案目錄">使用 Path 介面操作檔案/目錄</h2>
+<h3 id="path-介面">Path 介面</h3>
+<h3 id="path-介面主要功能">Path 介面主要功能</h3>
+<h3 id="移除路徑裡的多餘組成">移除路徑裡的多餘組成</h3>
+<h3 id="建立子路徑">建立子路徑</h3>
+<h3 id="結合-2-個路徑">結合 2 個路徑</h3>
+<h3 id="建立連接-2-個路徑的路徑">建立連接 2 個路徑的路徑</h3>
+<h3 id="hard-link">Hard Link</h3>
+<h3 id="處理-symbolic-link">處理 Symbolic Link</h3>
 <h2 id="使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查刪除複製移動</h2>
+<h3 id="處理檔案">處理檔案</h3>
+<h3 id="檢查檔案--目錄是否存在">檢查檔案 / 目錄是否存在</h3>
+<h3 id="檢查檔案--目錄屬性">檢查檔案 / 目錄屬性</h3>
+<h3 id="建立檔案--目錄">建立檔案 / 目錄</h3>
+<h3 id="刪除檔案--目錄">刪除檔案 / 目錄</h3>
+<h3 id="複製和移動檔案--目錄">複製和移動檔案 / 目錄</h3>
+<h3 id="stream-和-path-互相複製">Stream 和 Path 互相複製</h3>
+<h3 id="列出目錄內容">列出目錄內容</h3>
+<h3 id="讀取和寫入檔案">讀取和寫入檔案</h3>
+<hr>
 <h2 id="使用-files-類別操作-channel-io-和-stream-io-讀寫檔案">使用 Files 類別操作 Channel I/O 和 Stream I/O 讀寫檔案</h2>
+<h3 id="介面-channel-和類別-bytebuffer">介面 Channel 和類別 ByteBuffer</h3>
+<h3 id="隨機存取檔案">隨機存取檔案</h3>
+<h3 id="對文字檔提供-buffered-io-方法">對文字檔提供 Buffered I/O 方法</h3>
+<h3 id="取得位元串流物件的方法">取得位元串流物件的方法</h3>
+<hr>
 <h2 id="讀寫檔案目錄的屬性">讀寫檔案/目錄的屬性</h2>
+<h3 id="使用-files-管理檔案的屬性資料">使用 Files 管理檔案的屬性資料</h3>
+<h3 id="讀取檔案屬性">讀取檔案屬性</h3>
+<h3 id="修改檔案屬性">修改檔案屬性</h3>
+<h3 id="dos-之外的-file-attribute-views">DOS 之外的 File Attribute Views</h3>
+<h3 id="posix-檔案系統的權限"><code>POSIX</code> 檔案系統的權限</h3>
+<hr>
 <h2 id="遞迴存取目錄結構">遞迴存取目錄結構</h2>
+<h3 id="對檔案目錄進行遞迴操作">對檔案目錄進行遞迴操作</h3>
+<hr>
 <h2 id="使用-pathmatcher-類別找尋符合的檔案">使用 <code>PathMatcher</code> 類別找尋符合的檔案</h2>
+<h3 id="搜尋檔案">搜尋檔案</h3>
+<h3 id="glob-樣式語法介紹"><code>glob</code> 樣式語法介紹</h3>
+<hr>
 <h2 id="其它">其它</h2>
 <h3 id="filestore-類別"><code>FileStore</code> 類別</h3>
 <h3 id="使用-watchservice">使用 <code>WatchService</code></h3>
 <h3 id="由基礎-io-轉換至-nio2">由基礎 I/O 轉換至 NIO.2</h3>
+<p>🚧🚧🚧🚧🚧</p>
 <hr>
 <h1 id="05-執行緒">05 執行緒</h1>
 <h2 id="介紹">介紹</h2>
-<h2 id="常見問題">常見問題</h2>
+<h3 id="名詞說明">名詞說明</h3>
+<h4 id="先占式多工preemptive-multitasking">先占式多工（Preemptive Multitasking）</h4>
+<ul>
+<li>現代電腦要執行的程式個數經常遠多於 CPU 核數，為了讓程式都可以有機會執行，每個要執行的任務會被分配到一小段 CPU 時間（time slice），使每個任務都能分享到 CPU 資源來完成工作</li>
+<li>CPU 時間通常以毫秒 <code>milliseconds</code> 來計算，一旦使用完畢，任務就暫停執行，等待下次分配</li>
+</ul>
+<h4 id="任務排程task-scheduling">任務排程（Task Scheduling）</h4>
+<ul>
+<li>大部分作業系統都支援多工（multitasking），把 CPU 時間分配給所有執行程式</li>
+<li>程式兩個重要組成
+<ol>
+<li><strong>程序 Process</strong>
+<ul>
+<li>擁有記憶體來儲存資料（data）和程式碼（code）</li>
+<li>使用執行緒接受分配 CPU 時間以執行程式</li>
+</ul>
+</li>
+<li><strong>執行緒 Thread</strong>
+<ul>
+<li>程序可同時擁有多個執行緒各司其職</li>
+<li>這些執行緒共享程序的記憶體裡的資料</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="多執行緒的重要性">多執行緒的重要性</h3>
+<p>要讓程式快速執行，必須避免「效能瓶頸（<em>performance bottlenecks</em>）」，常見瓶頸：</p>
+<ol>
+<li><strong>資源競爭</strong>（<strong>Resource Contention</strong>）：多個任務搶奪同一獨佔資源，未搶到必須等待</li>
+<li><strong>輸出/輸入操作阻礙</strong>（<strong>I/O Operations Blocking</strong>）：通常為等待硬碟或網路傳輸資料</li>
+<li><strong>CPU 資源未充分使用</strong>（<strong>Underutilization of CPUs</strong>）：程式只用到單核 CPU</li>
+</ol>
+<h3 id="執行緒類別">執行緒類別</h3>
+<p>Java 類別 Thread 的兩種建立方式：</p>
+<table>
+<thead>
+<tr>
+<th>action</th>
+<th>benefits/perks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>直接繼承 Thread 類別</td>
+<td>比較簡單</td>
+</tr>
+<tr>
+<td>實作 Runnable 介面</td>
+<td>比較有彈性，可以再繼承其它類別</td>
+</tr>
+</tbody>
+</table>
+<h4 id="建立執行緒直接繼承-thread-類別">建立執行緒：直接繼承 Thread 類別</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExampleThread</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>  <span style="color:#75715e">// #1 繼承 java.lang.Thread 類別
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  <span style="color:#75715e">// #2 覆寫 run() 方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 100<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i:&#34;</span> <span style="color:#f92672">+</span> i<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>啟用執行緒：</p>
+<ul>
+<li>
+<p>要呼叫 <code>start()</code> 方法，Java 會啟動獨立執行緒執行 <code>run()</code> 方法內容</p>
+</li>
+<li>
+<p>若直接呼叫 <code>run()</code> 方法，將和一般方法無異</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ExampleThread<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h4 id="建立執行緒實作-runnable-介面">建立執行緒：實作 Runnable 介面</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExampleRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>  <span style="color:#75715e">// #1 實作 java.lang.Runnable 介面
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Override</span>   
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#75715e">// #2 覆寫 run() 方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 100<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i:&#34;</span> <span style="color:#f92672">+</span> i<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>若要以實作 <code>Runnable</code> 的類別啟動執行緒，可將其物件放入 Thread 類別的建構子，並用 <code>start()</code> 啟動</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Runnable r1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ExampleRunnable<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>r1<span style="color:#f92672">);</span> <span style="color:#75715e">// 將 ExampleRunnable 物件放入 Thread constructor
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h2 id="執行緒常見問題">執行緒常見問題</h2>
+<p>執行緒常遇到問題的三類原因：</p>
+<ol>
+<li>使用分享的資料 <em>shared data</em></li>
+<li>使用可分段的方法 <em>non-atomic function</em></li>
+<li>使用快取的資料 <em>cached data</em></li>
+</ol>
+<h3 id="使用-shared-data-可能造成的問題">使用 <code>Shared Data</code> 可能造成的問題</h3>
+<p>執行緒會潛在 static 和 instance 欄位，可能造成問題如下：</p>
+<ol>
+<li>
+<p>執行緒物件目的在執行其 <code>run()</code> 方法</p>
+<ul>
+<li>若多個執行緒都要執行 <code>run()</code>，就要注意該方法共用的部分</li>
+<li>例如：物件實例欄位會被同時存取（concurrently accessed）</li>
+</ul>
+</li>
+<li>
+<p>static 欄位原本就是分享的資料，也無法避免同時被存取的情況</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExampleRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span>  <span style="color:#75715e">// 將被共用!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 10<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i:&#34;</span> <span style="color:#f92672">+</span> i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, &#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        ExampleRunnable r1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ExampleRunnable<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>r1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Thread t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>r1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        t2<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/h3ufiAX.png"
+        data-srcset="https://i.imgur.com/h3ufiAX.png, https://i.imgur.com/h3ufiAX.png 1.5x, https://i.imgur.com/h3ufiAX.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/h3ufiAX.png"
+        title="image-20221218163741687" /></p>
+<ul>
+<li>
+<p>以上結果和預期結果有落差</p>
+<p><code>i:0, i:1, i:2, i:3, i:4, i:5, i:6, i:7, i:8, i:9,</code></p>
+</li>
+<li>
+<p>當前述類別（<strong>static</strong>）和物件實例（<strong>instance</strong>）欄位資料被多個執行緒共用，出現執行異常時，IDE 是無法警告的</p>
+</li>
+<li>
+<p>因此 <em><strong>安全地（safely）處理被分享的資料</strong></em>，就成為程式設計師的義務</p>
+</li>
+<li>
+<p>資料若因為多個執行緒同時存取而產生錯誤，一般不好處理</p>
+<ol>
+<li>Thread 的分配由作業系統決定，程式設計師無法干預</li>
+<li>每一台機器的 CPU 效能、個數不盡然相同</li>
+<li>其它程式也會占用 CPU 時間</li>
+</ol>
+</li>
+<li>
+<p>因此可能有在測試環境無異常，但部署到正式環境後卻經常發生奇怪狀況</p>
+<ul>
+<li>盡可能使用執行緒安全的設計（thread-safe），減少使用 <code>shared data</code></li>
+</ul>
+</li>
+<li>
+<p>類別內有些資料不會被多執行緒分享，永遠都 <code>thread-safe</code> 的例子</p>
+<ol>
+<li>區域變數 <em>local variables</em></li>
+<li>方法參數 <em>method parameters</em></li>
+<li>例外處理參數 <em>exception handler parameters</em></li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用-non-atomic-functions-可能造成的問題">使用 <code>Non-Atomic Functions</code> 可能造成的問題</h3>
+<ul>
+<li><code>atomic function</code> - 用原子的概念描述一個功能
+<ul>
+<li>原子無法再分割，代表 <code>single function</code>，即該功能只有一個步驟</li>
+</ul>
+</li>
+<li>Java 裡，即使程式碼只有一句敘述，也不代表它就是 <code>atomic function</code>
+<ul>
+<li>以整數 i 使用 遞增運算子的 <code>i++</code> 為例，Java 以 3 個步驟執行
+<ol>
+<li>對整數 <code>i</code> 建立暫時副本</li>
+<li>暫時副本增加 1</li>
+<li>將暫時副本的結果回寫 <code>i</code></li>
+</ol>
+</li>
+<li>另外有些 64 bit 變數的存取也可以使用 2 個 32 bit 的操作完成</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用-catched-data-可能造成的問題">使用 <code>Catched Data</code> 可能造成的問題</h3>
+<ul>
+<li>執行緒 <code>thread</code> 因為程序 <code>process</code> 需要同時執行不同工作而產生</li>
+<li>為求執行效能，執行緒啟動時，會將程序中的 <code>main memory</code> 內的分享資料複製一份，放在自己的 <code>working memory</code> 作為快取複製（<code>cached copies</code>），工作結束後寫回，如此一來可以避免程式進行過程中，執行緒必須不斷向程序要求資料而造成的效率問題</li>
+<li>這樣的設計，讓執行過程中的每一執行緒各自努力，無法<strong>即時</strong>和其他執行緒分享工作成果，必須等到工作結束</li>
+<li>只有以下情況才能讓執行緒將各自 working memory 的異動結果寫回 main memory：
+<ol>
+<li>使用到 <code>volatile</code> 宣告的變數</li>
+<li>使用到 <code>synchronized</code> 宣告的方法，亦即準備鎖定和解索物件 monitor</li>
+<li>執行緒執行時的第一個動作或最後一個動作</li>
+<li>執行緒啟動或執行緒結束時</li>
+</ol>
+</li>
+<li>若程式設計需要多執行緒在工作過程仍然能互相溝通訊息，就必須善用上述四個條件
+<ul>
+<li>尤其是使用 <code>volatile</code> 關鍵字宣告，其由來和使用方式：
+<ol>
+<li>程式設計中，如果資料經常維持不變，可以將之固定在記憶體裡，或複製出來使用，稱之為「<strong>快取複製</strong>（cached copies）」</li>
+<li>單字 <code>volatile</code> 解釋為「<strong>易變的、反覆無常的</strong>」：
+<ul>
+<li>加上此宣告相當於告訴 Java 該欄位經常有變化，不適合產生快取複製</li>
+<li>因此所有執行緒將皆存取同一份資料，例：<code>volatile int i;</code></li>
+</ul>
+</li>
+<li>必須了解宣告 <code>volatile</code> 只是不產生快取複製，和執行緒安全是兩回事
+<ul>
+<li>還是必須利用先前所提的作法來保證執行緒安全</li>
+<li>volatile 宣告可以應用在「精準終止執行緒的執行」</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">volatile</span> <span style="color:#66d9ef">boolean</span> running <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread started&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>running<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread finishing&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StopThreadExample</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        MyRunnable r1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MyRunnable<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>r1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        r1<span style="color:#f92672">.</span><span style="color:#a6e22e">running</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">;</span> <span style="color:#75715e">// terminate the thread immediately
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div><table>
+<thead>
+<tr>
+<th>line#</th>
+<th>desc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16</td>
+<td>thread <code>t1</code> 在啟動前<strong>預設</strong>會自己複製一份變數 running（值=true）作為快取複製</td>
+</tr>
+<tr>
+<td>2</td>
+<td>所以如果沒有宣告變數 running 為 <code>volatile</code></td>
+</tr>
+<tr>
+<td>19</td>
+<td>即便在 main 執行緒將 running 改為 false，執行緒 t1 不一定會馬上知道，必須等到有事件觸發，讓 working memory 和 main memory 同步，執行緒 <code>t1</code> 才會收到通知而停止</td>
+</tr>
+</tbody>
+</table>
+<p>&hellip;</p>
 <h2 id="執行緒的-synchronized-與等待">執行緒的 synchronized 與等待</h2>
 <h2 id="其它執行緒方法介紹">其它執行緒方法介紹</h2>
 <hr>
@@ -1743,7 +2373,7 @@ java -ea HelloWorld
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-12-14</span>
+                <span>Updated on 2022-12-18</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>

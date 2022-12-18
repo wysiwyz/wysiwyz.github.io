@@ -3,10 +3,10 @@
         <title>All Posts - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/posts/</link>
         <description>All Posts | Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 14 Dec 2022 09:48:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 18 Dec 2022 17:50:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>1Z0-819 曾師筆記 (2/duology)</title>
     <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
-    <pubDate>Wed, 14 Dec 2022 09:48:34 &#43;0800</pubDate>
+    <pubDate>Sun, 18 Dec 2022 17:50:34 &#43;0800</pubDate>
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/ocpjp_11_2/</guid>
     <description><![CDATA[# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
