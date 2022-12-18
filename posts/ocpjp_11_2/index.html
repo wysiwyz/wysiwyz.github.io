@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  348 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  2747 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-14T09:48:34+08:00","dateModified": "2022-12-14T09:48:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-14">2022-12-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;348 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-14">2022-12-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2747 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -87,20 +87,69 @@
         <li><a href="#使用泛型設計類別">使用泛型設計類別</a></li>
       </ul>
     </li>
-    <li><a href="#集合物件">集合物件</a></li>
+    <li><a href="#集合物件">集合物件</a>
+      <ul>
+        <li><a href="#collection-定義與種類">Collection 定義與種類</a></li>
+        <li><a href="#list">List</a></li>
+        <li><a href="#arraylist--list-最常使用的一種實作類別"><code>ArrayList</code> : List 最常使用的一種實作類別</a></li>
+        <li><a href="#自動裝箱-boxing和開箱-unboxing">自動裝箱 <code>Boxing</code>和開箱 <code>Unboxing</code></a></li>
+        <li><a href="#set">Set</a></li>
+        <li><a href="#deque-queue">Deque (Queue)</a></li>
+      </ul>
+    </li>
     <li><a href="#map">Map</a></li>
-    <li><a href="#集合物件成員的排序">集合物件成員的排序</a></li>
-    <li><a href="#使用-of-與-copyof-方法建立-listset-與-map-物件">使用 <code>of()</code> 與 <code>copyOf()</code> 方法建立 <code>List</code>、<code>Set</code> 與 <code>Map</code> 物件</a></li>
+    <li><a href="#集合物件成員的排序">集合物件成員的排序</a>
+      <ul>
+        <li><a href="#排序作法">排序作法</a></li>
+        <li><a href="#使用-comparable-介面排序">使用 <code>Comparable</code> 介面排序</a></li>
+        <li><a href="#使用-comparator-介面排序">使用 <code>Comparator</code> 介面排序</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-of-與-copyof-方法建立-listset-與-map-物件">使用 <code>of()</code> 與 <code>copyOf()</code> 方法建立 <code>List</code>、<code>Set</code> 與 <code>Map</code> 物件</a>
+      <ul>
+        <li><a href="#使用of方法建立-list-set-map-物件">使用<code>of()</code>方法建立 List, Set, Map 物件</a></li>
+        <li><a href="#使用copyof方法建立-list-set-map-物件">使用<code>copyOf()</code>方法建立 List, Set, Map 物件</a></li>
+        <li><a href="#使用-arraysaslist建立-list-物件">使用 <code>Arrays.asList()</code>建立 List 物件</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
-    <li><a href="#例外">例外</a></li>
-    <li><a href="#斷言">斷言</a></li>
+    <li><a href="#例外">例外</a>
+      <ul>
+        <li><a href="#使用try-catch程式碼區塊">使用<code>try-catch</code>程式碼區塊</a></li>
+        <li><a href="#使用-try-with-resources-程式碼區塊和-autocloseable-介面">使用 <code>try-with-resources</code> 程式碼區塊和 <code>AutoCloseable</code> 介面</a></li>
+        <li><a href="#suppressed-exceptions">Suppressed Exceptions</a></li>
+        <li><a href="#使用-multi-catch-敘述">使用 <code>multi-catch</code> 敘述</a></li>
+        <li><a href="#使用-throws-宣告">使用 <code>throws</code> 宣告</a></li>
+        <li><a href="#建立客製的-exception">建立客製的 <code>Exception</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#斷言">斷言</a>
+      <ul>
+        <li><a href="#assertions-的簡介和語法">Assertions 的簡介和語法</a></li>
+        <li><a href="#assertions-的使用">Assertions 的使用</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
-    <li><a href="#io-基礎">I/O 基礎</a></li>
-    <li><a href="#由主控台讀寫資料">由主控台讀寫資料</a></li>
+    <li><a href="#io-基礎">I/O 基礎</a>
+      <ul>
+        <li><a href="#何謂-io">何謂 I/O</a></li>
+        <li><a href="#處理串流的類別">處理串流的類別</a></li>
+        <li><a href="#串流類別的串接">串流類別的串接</a></li>
+        <li><a href="#使用-javaiofile-類別">使用 <code>java.io.File</code> 類別</a></li>
+      </ul>
+    </li>
+    <li><a href="#由主控台讀寫資料">由主控台讀寫資料</a>
+      <ul>
+        <li><a href="#主控台的-io">主控台的 I/O</a></li>
+        <li><a href="#使用標準輸出方法">使用標準輸出方法</a></li>
+        <li><a href="#使用標準輸入由主控台取得輸入資料">使用標準輸入由主控台取得輸入資料</a></li>
+        <li><a href="#javaioconsole-類別介紹"><code>java.io.Console</code> 類別介紹</a></li>
+      </ul>
+    </li>
     <li><a href="#channel-io">Channel I/O</a></li>
     <li><a href="#使用序列化技術讀寫物件">使用序列化技術讀寫物件</a></li>
   </ul>
@@ -269,17 +318,1337 @@
 </span></span></code></pre></div></li>
 </ul>
 <h2 id="集合物件">集合物件</h2>
+<h3 id="collection-定義與種類">Collection 定義與種類</h3>
+<p>集合物件 <em>Collection</em> 相較陣列具備更多管理功能：</p>
+<ol>
+<li>以 interface Collection 為代表</li>
+<li>集合內物件 <code>elements</code>，簡寫為 <code>E</code></li>
+<li>集合內物件必須為參考型別或基本型別的包裹類別 <em>wrapper class</em></li>
+<li>有多種常見資料結構，例如 <code>stack</code>、<code>queue</code>、<code>dynamic array</code> 等</li>
+<li>大量使用泛型 <code>generic</code></li>
+<li>都屬於 <code>java.util.*</code> package</li>
+<li>interface Collection 繼承了 interface Iterable，因此所有集合物件都具備使用 Iterator (疊代器) 的能力</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Dm02pU2.png"
+        data-srcset="https://i.imgur.com/Dm02pU2.png, https://i.imgur.com/Dm02pU2.png 1.5x, https://i.imgur.com/Dm02pU2.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Dm02pU2.png"
+        title="image-20221214143907275" /></p>
+<h3 id="list">List</h3>
+<p>集合物件底下最常使用的介面，具備 index 能依照放入先後區分順序 <em>order</em></p>
+<ol>
+<li>新增 element，使用 index 指定插入位置</li>
+<li>新增 element，直接加到尾端</li>
+<li>取得 element index</li>
+<li>使用 index 移除或覆寫成員</li>
+<li>取得 List 長度</li>
+</ol>
+<h3 id="arraylist--list-最常使用的一種實作類別"><code>ArrayList</code> : List 最常使用的一種實作類別</h3>
+<ul>
+<li>特色：
+<ol>
+<li>行為和陣列 <em>array</em> 相近，但長度可以自動成長，又稱為「動態陣列」(dynamic array)</li>
+<li>使用 index 新增 / 存取 / 修改 element</li>
+<li>可以用 index 區分，所以允許重複成員</li>
+</ol>
+</li>
+<li>未搭配泛型設計的 List
+<ol>
+<li>使用 Iterator 取出的物件必須轉型</li>
+<li>錯放成員時，在執行時期才能知道 (e.g. add Integer, add Integer, and then add String)</li>
+</ol>
+</li>
+</ul>
+<h3 id="自動裝箱-boxing和開箱-unboxing">自動裝箱 <code>Boxing</code>和開箱 <code>Unboxing</code></h3>
+<ol>
+<li>
+<p>Primitive → Wrapper Class : 把基本型別裝箱 <em>Boxing</em></p>
+</li>
+<li>
+<p>Wrapper Class → Primitive : 將基本型別由包裹類別的箱子裡取出，開箱 <em>Unboxing</em></p>
+</li>
+<li>
+<p>在迴圈內使用 boxing / unboxing 會讓效能耗損增幅</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Integer partNumObj <span style="color:#f92672">=</span> elements<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> partNum <span style="color:#f92672">=</span> partNumObj<span style="color:#f92672">.</span><span style="color:#a6e22e">intValue</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// see below for concised code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> partNum <span style="color:#f92672">=</span> elements<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="set">Set</h3>
+<ol>
+<li>
+<p>其成員 element 必須為獨一無二（unique），不能重複</p>
+</li>
+<li>
+<p>沒有 index</p>
+</li>
+<li>
+<p>若放入重複 element，不會出錯，但無效</p>
+</li>
+<li>
+<p>常使用 <code>HashSet</code> 實作類別。<code>TreeSet</code> 類別會依物件特性自動排序</p>
+</li>
+<li>
+<p>element 是否唯一，或是排序先後，取決於方法 <code>equals()</code> 和 <code>hashCode()</code> 的覆寫結果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestSet</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testHashSet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;uno&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;deux&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;trois&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;trois&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String s <span style="color:#f92672">:</span> set<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;item: &#34;</span> <span style="color:#f92672">+</span> s<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// only prints &#34;trois&#34; once
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">testTreeSet</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TreeSet<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;uno&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;deux&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;trois&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;trois&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        set<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;turban&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>String s <span style="color:#f92672">:</span> set<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;item: &#34;</span> <span style="color:#f92672">+</span> s<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// only prints &#34;trois&#34; once
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#75715e">// print by String alphabetical order: d, tr-, tu-, u
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="deque-queue">Deque (Queue)</h3>
+<p>Interface Deque 繼承了介面 Queue，特色如下：</p>
+<ol>
+<li>
+<p><strong>Double-Ended Queue</strong> : 具備兩端點的 Queue</p>
+</li>
+<li>
+<p>可同時使用於 Stack 和 Queue 兩種資料結構，只要呼叫不同方法</p>
+<ul>
+<li>使用<code>add()</code>、<code>remove()</code>時：Deque 物件表現出 Queue 資料結構的行為 (FIFO)</li>
+<li>使用<code>push()</code>、<code>pop()</code>時：Deque 物件表現出 Stack 資料結構的行為 (FILO)<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/U7FO4qK.png"
+        data-srcset="https://i.imgur.com/U7FO4qK.png, https://i.imgur.com/U7FO4qK.png 1.5x, https://i.imgur.com/U7FO4qK.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/U7FO4qK.png"
+        title="image-20221214161745531" /></li>
+</ul>
+</li>
+<li>
+<p><code>Deque&lt;String&gt; deque = new ArrayDeque&lt;&gt;(); </code></p>
+</li>
+</ol>
 <h2 id="map">Map</h2>
+<ul>
+<li>
+<p>Map 是 key - value 成對集合，但不屬於 Collection 集合物件家族</p>
+<ol>
+<li><strong>key 物件</strong> : 用來尋找 value 物件，每個 key 物件須為獨特而不重複的</li>
+<li><strong>value 物件</strong> : 和 key 物件有關連性（associative）</li>
+</ol>
+</li>
+<li>
+<p>在其它語言中，Map 又稱「關聯性陣列 associative arrays」，key 可構成一陣列，value 可構成另一個陣列，兩陣列有著關聯性</p>
+</li>
+<li>
+<p>Map 泛型 &lt;<code>K</code>, <code>V</code>&gt;</p>
+</li>
+<li>
+<p>Map 基本用法</p>
+<ul>
+<li><code>map.values()</code> 取得 <code>Collection&lt;T of V&gt;</code></li>
+<li><code>map.keySet()</code> 取得 <code>Set&lt;T of K&gt;</code> (因為 keys 不能重複，回傳 Set 而非 Collection)</li>
+</ul>
+</li>
+<li>
+<p>Map 並未繼承於 Collection interface，Map family 如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/talB7Y5.png"
+        data-srcset="https://i.imgur.com/talB7Y5.png, https://i.imgur.com/talB7Y5.png 1.5x, https://i.imgur.com/talB7Y5.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/talB7Y5.png"
+        title="image-20221214165500408" /></p>
+</li>
+<li>
+<p>Map family 常用類別：</p>
+<ol>
+<li>
+<p><strong>TreeMap</strong> : keys 自動依順序排序</p>
+</li>
+<li>
+<p><strong>HashTable</strong> : <em>執行緒安全</em>，且 <em>keys 和 values 不允許為 null</em></p>
+</li>
+<li>
+<p><strong>HashMap</strong> : <em><strong>非</strong>執行緒安全</em>，且 <em>keys 和 values <strong>可</strong>為 null</em></p>
+<blockquote>
+<p>執行緒安全 :</p>
+<p>一個物件被一個執行緒使用和同時被多個執行緒使用時，行為或結果都一致，不會產生非預期結果</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>🍪☕ <strong>LittleTips</strong> : <code>Set</code> 和 <code>Map</code> 兩者都有可以支援排序的分支</p>
+<ol>
+<li>支援排序的分支起源皆以 <code>Sorted</code> 作為前綴。例：<strong>Sorted</strong>Map 、 <strong>Sorted</strong>Set (interface)</li>
+<li>實作類別都是以 <code>Tree</code> 為開頭。例：<strong>Tree</strong>Map 、 <strong>Tree</strong>Set</li>
+</ol>
+</blockquote>
 <h2 id="集合物件成員的排序">集合物件成員的排序</h2>
+<h3 id="排序作法">排序作法</h3>
+<p>如何排序物件類別，如何定義順序，一個類別可以定義多個排序標準嗎？有以下兩個介面可選擇</p>
+<ol>
+<li>Comparable 介面 - 實作 <code>compareTo()</code> 方法</li>
+<li>Comparator 介面 - 實作 <code>compare()</code> 方法</li>
+</ol>
+<p>兩種方法都回傳一個整數，表示比較結果：</p>
+<ol>
+<li>回傳整數 <code>= 0</code>：兩者相等</li>
+<li>回傳整數 <code>&lt; 0</code>：表示「自己（this）」**小於（數值上）**或 <strong>先於（順序上）</strong>「方法參數物件」</li>
+<li>回傳整數 <code>&gt; 0</code>：表示「自己（this）」**大於（數值上）**或 <strong>後於（順序上）</strong>「方法參數物件」</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Calendar today <span style="color:#f92672">=</span> Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>Calendar tomorrow <span style="color:#f92672">=</span> Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">getInstance</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>tomorrow<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>Calendar<span style="color:#f92672">.</span><span style="color:#a6e22e">DATE</span><span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>today<span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>tomorrow<span style="color:#f92672">));</span>   <span style="color:#75715e">// 字串 today 先於 tomorrow，所以回傳-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;A&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;B&#34;</span><span style="color:#f92672">));</span>          <span style="color:#75715e">// 字串&#34;A&#34;早於字串&#34;B&#34;，所以回傳-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>5<span style="color:#f92672">).</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>6<span style="color:#f92672">)));</span>
+</span></span></code></pre></div><h3 id="使用-comparable-介面排序">使用 <code>Comparable</code> 介面排序</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Comparable</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>T o<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>特色：</p>
+<ol>
+<li>
+<p>支援泛型設計</p>
+</li>
+<li>
+<p>必須實作 <code>compareTo()</code> 方法，比較自己（this）和方法參數物件</p>
+</li>
+<li>
+<p>一個 class 只能實作一次 Comparable 介面，所以只能提供單一方式排序，可用於 <code>TreeSet</code> 和 <code>TreeMap</code> 等實作類別，或需要物件之間比較的地方</p>
+</li>
+<li>
+<p>決定該物件類別要以哪一個條件決定 Student 物件的排序先後，再讓該類別實作 Comparable 介面</p>
+<ol>
+<li>必須提供 <code>compareTo()</code> 方法的內容</li>
+<li>只能提供一種排序選擇</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Student</span> <span style="color:#66d9ef">implements</span> Comparable<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>Student s<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// use method delegation 方法委派 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">int</span> sortById <span style="color:#f92672">=</span> Long<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">).</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">id</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> sortByName <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">.</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> sortByScome <span style="color:#f92672">=</span> Double<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">score</span><span style="color:#f92672">).</span><span style="color:#a6e22e">compareTO</span><span style="color:#f92672">(</span>s<span style="color:#f92672">.</span><span style="color:#a6e22e">score</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> sortById<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="使用-comparator-介面排序">使用 <code>Comparator</code> 介面排序</h3>
+<ul>
+<li>
+<p>實作 <code>Comparable</code> interface 的類別只有提供一次 <code>compareTo()</code> 方法內容的機會，故只有一種排序能力</p>
+</li>
+<li>
+<p>使用 <code>Comparator</code> interface 則可以提供多種選擇</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Comparator</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>T o1<span style="color:#f92672">,</span> T o2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>特色：</p>
+<ol>
+<li>
+<p>支援泛型設計</p>
+</li>
+<li>
+<p>需實作 <code>compare()</code>，用以比較「第一個參數物件」和「第二個參數物件」</p>
+</li>
+<li>
+<p>可藉由提供多種 Comparator 類別，達成多種排序方式。</p>
+<ul>
+<li>
+<p>常用於搭配以下方法，以幫助 List 成員排序</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list<span style="color:#f92672">,</span> Comparator<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> T<span style="color:#f92672">&gt;</span> c<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    list<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>c<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NameSorter</span> <span style="color:#66d9ef">implements</span> Comparator<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>Student s1<span style="color:#f92672">,</span> Student s2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> s1<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">().</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>s2<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScoreSorter</span> <span style="color:#66d9ef">implements</span> Comparator<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">compare</span><span style="color:#f92672">(</span>Student s1<span style="color:#f92672">,</span> Student s2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Double<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span>s1<span style="color:#f92672">.</span><span style="color:#a6e22e">getScore</span><span style="color:#f92672">()).</span><span style="color:#a6e22e">compareTo</span><span style="color:#f92672">(</span>s2<span style="color:#f92672">.</span><span style="color:#a6e22e">getScore</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestComparator</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">showList</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">&gt;</span> studentList<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> studentList<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;index#&#34;</span> <span style="color:#f92672">+</span> i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> studentList<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>i<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">&gt;</span> studentList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;(</span>3<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        studentList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thomas&#34;</span><span style="color:#f92672">,</span> 1<span style="color:#f92672">,</span> 3<span style="color:#f92672">.</span><span style="color:#a6e22e">8</span><span style="color:#f92672">));</span> 
+</span></span><span style="display:flex;"><span>        studentList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;John&#34;</span><span style="color:#f92672">,</span> 2<span style="color:#f92672">,</span> 3<span style="color:#f92672">.</span><span style="color:#a6e22e">9</span><span style="color:#f92672">));</span> 
+</span></span><span style="display:flex;"><span>        studentList<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Student<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;George&#34;</span><span style="color:#f92672">,</span> 3<span style="color:#f92672">,</span> 3<span style="color:#f92672">.</span><span style="color:#a6e22e">4</span><span style="color:#f92672">));</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n------ Original ------&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        showList<span style="color:#f92672">(</span>studentList<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n----- Sort by name -----&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Comparator<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">&gt;</span> sortName <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NameSorter<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>studentList<span style="color:#f92672">,</span> sortName<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        showList<span style="color:#f92672">(</span>studentList<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n----- Sort by score -----&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Comparator<span style="color:#f92672">&lt;</span>Student<span style="color:#f92672">&gt;</span> sortScore <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ScoreSorter<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Collections<span style="color:#f92672">.</span><span style="color:#a6e22e">sort</span><span style="color:#f92672">(</span>studentList<span style="color:#f92672">,</span> sortScore<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        showList<span style="color:#f92672">(</span>studentList<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
 <h2 id="使用-of-與-copyof-方法建立-listset-與-map-物件">使用 <code>of()</code> 與 <code>copyOf()</code> 方法建立 <code>List</code>、<code>Set</code> 與 <code>Map</code> 物件</h2>
+<h3 id="使用of方法建立-list-set-map-物件">使用<code>of()</code>方法建立 List, Set, Map 物件</h3>
+<ul>
+<li>
+<p>自 Java 9 開始，除了傳統使用 new 呼叫子類別建構子以建立 List, Set, Map 物件外</p>
+<ul>
+<li>
+<p>導入靜態工廠方法 <code>of()</code> 來建立不可改變（immutable）的物件</p>
+<ul>
+<li>
+<p><code>List.of()</code> | <code>Set.of()</code> | <code>Map.of()</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>t1<span style="color:#f92672">,</span> t2<span style="color:#f92672">,</span> <span style="color:#f92672">...);</span>
+</span></span><span style="display:flex;"><span>Set<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> set <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>t1<span style="color:#f92672">,</span> t2<span style="color:#f92672">,</span> <span style="color:#f92672">...);</span>
+</span></span><span style="display:flex;"><span>Map<span style="color:#f92672">&lt;</span>K<span style="color:#f92672">,</span> V<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> Map<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span>key1<span style="color:#f92672">,</span> value1<span style="color:#f92672">,</span> key2<span style="color:#f92672">,</span> value2<span style="color:#f92672">,</span> <span style="color:#f92672">...);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>line 5, 15, 26 : 以 <code>of()</code> 建立物件後，若再嘗試新增成員（<code>list.add(...)</code>、<code>set.add(...)</code>、<code>map.put(...)</code>），都會拋出 <em><strong>java.lang.UnsupportOperationException</strong></em></p>
+</li>
+<li>
+<p>line 9, 19, 30 : 如果要將不可更改的物件轉換為可更改物件，可將其作為 <code>ArrayList</code>、<code>HashSet</code>、<code>HashMap</code> 等建構子的參數，重新建立可更改物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createImmutablesByOf</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// List.of()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list1 <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i2&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i3&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// UnsupportedException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;(</span>list1<span style="color:#f92672">);</span>  <span style="color:#75715e">// mutable w/ ArrayList
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    list2<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Set.of()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set1 <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i2&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i3&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        set1<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// UnsupportedException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;(</span>set1<span style="color:#f92672">);</span>  <span style="color:#75715e">// mutable w/ HashSet
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    set2<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span>  
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>set2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Map.of()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Employee<span style="color:#f92672">&gt;</span> map1 <span style="color:#f92672">=</span> 
+</span></span><span style="display:flex;"><span>            Map<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jim&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jim&#34;</span><span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;duke&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;duke&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        map1<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">));</span> <span style="color:#75715e">// UnsupportedException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Employee<span style="color:#f92672">&gt;</span> map2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;(</span>map1<span style="color:#f92672">);</span>  <span style="color:#75715e">// mutable w/ HashMap
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    map2<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>map2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="使用copyof方法建立-list-set-map-物件">使用<code>copyOf()</code>方法建立 List, Set, Map 物件</h3>
+<ul>
+<li>
+<p>從 Java 10 開始，又導入另一個靜態工廠方法 <code>copyOf()</code>，可以建立「<strong>不可改變</strong>」的「<strong>副本物件</strong>」</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createImmutablesByCopyOf</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// List.copyOf()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list1 <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i2&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i3&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list2 <span style="color:#f92672">=</span> List<span style="color:#f92672">.</span><span style="color:#a6e22e">copyOf</span><span style="color:#f92672">(</span>list1<span style="color:#f92672">);</span>     <span style="color:#75715e">// immutable copy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        list2<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span>     <span style="color:#75715e">// UnsupportedOperationException 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Set.copyOf()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set1 <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i2&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i3&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    Set<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> set2 <span style="color:#f92672">=</span> Set<span style="color:#f92672">.</span><span style="color:#a6e22e">copyOf</span><span style="color:#f92672">(</span>set1<span style="color:#f92672">);</span>     <span style="color:#75715e">// immutable copy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        set2<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i4&#34;</span><span style="color:#f92672">);</span>     <span style="color:#75715e">// UnsupportedOperationException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Map.copyOf()
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Employee<span style="color:#f92672">&gt;</span> map1 <span style="color:#f92672">=</span> 
+</span></span><span style="display:flex;"><span>            Map<span style="color:#f92672">.</span><span style="color:#a6e22e">of</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jim&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;jim&#34;</span><span style="color:#f92672">),</span> <span style="color:#e6db74">&#34;duke&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;duke&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>    Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span> Employee<span style="color:#f92672">&gt;</span> map2 <span style="color:#f92672">=</span> Map<span style="color:#f92672">.</span><span style="color:#a6e22e">copyOf</span><span style="color:#f92672">(</span>map1<span style="color:#f92672">);</span>     <span style="color:#75715e">// immutable copy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        map2<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> Employee<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bill&#34;</span><span style="color:#f92672">));</span>     <span style="color:#75715e">// UnsupportedOperationException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="使用-arraysaslist建立-list-物件">使用 <code>Arrays.asList()</code>建立 List 物件</h3>
+<p>List 另一種以「單個元素成員」作為參數建立 List 物件的方式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span>t1<span style="color:#f92672">,</span> t2<span style="color:#f92672">,</span> <span style="color:#f92672">...);</span>
+</span></span></code></pre></div><p>使用 <code>Arrays.asList()</code> 建立的 List 物件和陣列（Array）相似，特性：</p>
+<ol>
+<li>
+<p>長度固定，不可以新增/刪除成員（參考 line 6）</p>
+</li>
+<li>
+<p>可以修改成員（參考 line 4）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">createList</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list1 <span style="color:#f92672">=</span> Arrays<span style="color:#f92672">.</span><span style="color:#a6e22e">asList</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;i1&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i2&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;i3&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span>0<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;iil&#34;</span><span style="color:#f92672">);</span>    <span style="color:#75715e">// element updatable
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        list1<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>        <span style="color:#75715e">// removing or adding not permitted
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;(</span>list1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    list2<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>0<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>list2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
 <hr>
 <h1 id="02-例外與斷言">02 例外與斷言</h1>
 <h2 id="例外">例外</h2>
+<p>值得信賴的程式會優雅的處理例外狀況：</p>
+<ol>
+<li>處理目標是「exception（例外）」，非預期狀況</li>
+<li>例外必須處理以建立可信賴的程式</li>
+<li>發生原因可能是程式 bugs</li>
+<li>發生原因可能是程式無法處理的狀況
+<ul>
+<li>資料庫無法連線</li>
+<li>硬碟毀損</li>
+</ul>
+</li>
+</ol>
+<p>C語言發生錯誤的話，通常以<strong>回傳負值</strong>表示，例如 <code>int x = printf(&quot;hi&quot;)</code></p>
+<p>Java 則在出現錯誤時，由 JVM 拋出例外物件，不同種類的例外，有不同處理方式</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/BHInvNP.png"
+        data-srcset="https://i.imgur.com/BHInvNP.png, https://i.imgur.com/BHInvNP.png 1.5x, https://i.imgur.com/BHInvNP.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/BHInvNP.png"
+        title="image-20221215142633549" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/xYQBNxF.png"
+        data-srcset="https://i.imgur.com/xYQBNxF.png, https://i.imgur.com/xYQBNxF.png 1.5x, https://i.imgur.com/xYQBNxF.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/xYQBNxF.png"
+        title="image-20221215160311402" /></p>
+<ul>
+<li>當類別方法呼叫其他類別方法時，如果被呼叫的方法已宣告有拋出 <strong>checked exception</strong> 的風險，編譯器會要求呼叫者方法必須處理（handle）或是也宣告（declare）可能發生的問題：
+<ol>
+<li><strong>Handling Exception</strong>：表示必須有程式碼區塊來處理異常狀況，此時使用「try-catch」敘述</li>
+<li><strong>Declaring Exception</strong>：在方法上註記執行可能出現的錯誤，提醒使用的方法必須處理，此時使用「throws」宣告</li>
+</ol>
+</li>
+</ul>
+<h3 id="使用try-catch程式碼區塊">使用<code>try-catch</code>程式碼區塊</h3>
+<h4 id="一般例外狀況">一般例外狀況</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">tryCatchTest</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opening a file...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        InputStream in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;lostFile.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;File is opened&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p><code>catch</code>程式碼區塊必須傳入 <code>java.lang.Exception</code> 或 <code>java.lang.Throwable</code> 的子類別參考</p>
+</li>
+<li>
+<p>其中<code>java.lang.Throwable</code> 是例外始祖，如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>把 catch 當成一種方法，則後面的 () 代表要傳入的參數</p>
+</li>
+<li>
+<p>傳入大分類的型別（父類別或介面）為多型的應用，但不適用於此，例外處理應該對症下藥</p>
+</li>
+<li>
+<p>catch 方法只讓 Java 在程式遇到錯誤時呼叫 / 傳入例外物件</p>
+</li>
+<li>
+<p>捕捉例外後：</p>
+<ol>
+<li>紀錄錯誤訊息</li>
+<li>重試一次</li>
+<li>嘗試其它替代方案</li>
+<li>離開（return）或結束程式（exit）</li>
+</ol>
+</li>
+</ul>
+<h4 id="複雜例外狀況">複雜例外狀況</h4>
+<ul>
+<li>
+<p>一個程式碼區塊 / 方法，必須同時處理多種可能的例外狀況：</p>
+<ol>
+<li>
+<p>單一「try」搭配多個「catch」：例外子類別排序應該在父類別上面，避免所有例外一開始就被例外父類別（Exception, Throwable）攔截</p>
+</li>
+<li>
+<p>捕捉（catch）物件 Exception 時，盡可能捕捉最特定（specific type）的例外子類別</p>
+</li>
+<li>
+<p>Java Persistence API（JPA）例外大部分繼承 RuntimeException，屬 unchecked exception</p>
+<ul>
+<li>
+<p>慣例上為不用處理的意外，但正式環境裡還是應該處理</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">tryCatch</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opening a file...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        InputStream in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;lostFile.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;File is opened&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> data <span style="color:#f92672">=</span> in<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        in<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>FileNotFoundException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="紀錄logging錯誤內容">紀錄（Logging）錯誤內容</h4>
+<ul>
+<li>正式環境中，應移除 <code>printStackTrace()</code> 或 <code>System.out.println(e.getMessage())</code>此類程式碼</li>
+<li>執行錯誤時，應該寫入紀錄 / 日誌檔（log file），相關函式庫
+<ol>
+<li>Simple logging facade for Java SLF4J</li>
+<li>Apache&rsquo;s Log4j</li>
+<li>Built-in java.util logging framework</li>
+</ol>
+</li>
+</ul>
+<h4 id="使用finally敘述">使用<code>finally</code>敘述</h4>
+<ul>
+<li>
+<p>使用外部資源，例如開啟檔案或連線資料庫，應該在不使用時關閉資源</p>
+</li>
+<li>
+<p>如果在 try 區塊中關閉資源，可能因為執行錯誤而導致資源開了來不及關，此時可用 finally 敘述</p>
+<ol>
+<li>
+<p>不管是 try 或者 catch 執行結束，都一定會進入 finally 程式碼區塊</p>
+</li>
+<li>
+<p>有時在 finally 區的程式碼也可能出錯，因此需要巢狀 try-catch 區塊來處理</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">tryCatchFinally</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    InputStream in <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opening a file...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;lostFile.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;File is opened&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> data <span style="color:#f92672">=</span> in<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        in<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>FileNotFoundException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>in <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>                in<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>   <span style="color:#75715e">// try to close file
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Failed to close file&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<h3 id="使用-try-with-resources-程式碼區塊和-autocloseable-介面">使用 <code>try-with-resources</code> 程式碼區塊和 <code>AutoCloseable</code> 介面</h3>
+<h4 id="使用-try-with-resources-敘述">使用 <code>try-with-resources</code> 敘述</h4>
+<ul>
+<li>
+<p>Java 7 提供新的 <code>try-with-resources</code> 敘述，可自動關閉被開啟的「資源（resources）」</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span> 宣告並開啟資源 <span style="color:#f92672">[;</span> 宣告並開啟其它資源 <span style="color:#f92672">...]</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 在 try 程式碼區塊之後，資源將自動關閉
+</span></span></span></code></pre></div><ol>
+<li>
+<p>這裡定義的資源，必須為實作 <code>java.lang.AutoCloseable</code> 介面的類別</p>
+</li>
+<li>
+<p>如果要開多個資源，可以使用「<strong>;</strong>」做區隔</p>
+</li>
+<li>
+<p>自動關閉的順序將和使用資源的開啟順序相反</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">tryWithResource</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Opening a file...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>InputStream in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;lostFile.txt&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span> <span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;File is opened&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> data <span style="color:#f92672">=</span> in<span style="color:#f92672">.</span><span style="color:#a6e22e">read</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        in<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>FileNotFoundException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<p>比較 <code>tryCatchFinally</code> 與 <code>tryWithResource</code>，可以發現：</p>
+<ol>
+<li>移除 <code>finally</code> 程式碼區塊，如前範例行 16 - 23</li>
+<li>使用 <code>try-with-resource</code> 宣告要開啟的資源</li>
+</ol>
+<h4 id="認識-autocloseable介面">認識 <code>AutoCloseable</code>介面</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InputStream</span> <span style="color:#66d9ef">implements</span> Closeable <span style="color:#f92672">{</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Closeable</span> <span style="color:#66d9ef">extends</span> AutoCloseable <span style="color:#f92672">{</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>資源（resource）要藉由 `try-with-resources‵ 敘述開啟和自動關閉，必須實作以下兩者任一</p>
+<ol>
+<li>
+<p>介面 <em>java.lang.AutoCloseable</em></p>
+<ul>
+<li>
+<p>Java 7 新增</p>
+</li>
+<li>
+<p>唯一的抽象方法 <code>close()</code> 會拋出 Exception 物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">AutoCloseable</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">close</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p>介面 <em>java.io.Closeable</em></p>
+<ul>
+<li>
+<p>早期的 Java 版本就存在，在 Java 7 中修改使其繼承介面 <code>AutoCloseable</code></p>
+</li>
+<li>
+<p>唯一的抽象方法 <code>close()</code> 會拋出 <code>IOException</code> 物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Closeable</span> <span style="color:#66d9ef">extends</span> AutoCloseable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">close</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<p><strong>Idempotent method</strong> - 即使重複執行多次，也不會有副作用（side effects）產生</p>
+<ul>
+<li>
+<p><code>java.io.Closeable</code> 的 close() 方法必須滿足 idempotent 要求</p>
+</li>
+<li>
+<p><code>java.lang.AutoCloseable</code> 並未一致要求實作之 close() 必須比照辦理</p>
+<ul>
+<li>
+<p>即便如此仍應該要做到反覆執行多次都沒有副作用產生</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 若資源為關閉（以resource == null 判定）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>If <span style="color:#f92672">(</span>resource <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 關閉資源，並使 resource = null
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h3 id="suppressed-exceptions">Suppressed Exceptions</h3>
+<p>使用 try-with-resource 也衍伸出新的例外 exception 處理問題必須注意：</p>
+<ol>
+<li>Java 開啟資源時拋出例外，未成功開啟資源
+<ul>
+<li>程式碼直接跳到 catch 區，只拋出一個例外</li>
+</ul>
+</li>
+<li>Java 成功開啟資源，但在 try 區拋出例外，在背景關閉資源時又拋出例外
+<ul>
+<li>共產生 2 個例外</li>
+<li>catch 區必須同時接收 2 個例外物件 <strong>衍伸問題</strong></li>
+</ul>
+</li>
+<li>Java 成功開啟資源，try 區塊內任務成功執行，但在關閉資源時出錯
+<ul>
+<li>和一般情況一樣，只拋出 1 個例外</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>當有兩個例外類別被先後拋出，Java會將 <strong>後發生，同時和關閉資源有關</strong> 的例外物件，隱匿/擠壓（suppressed）到「先發生、也是在 try 區塊造成」的例外物件裡，使其可被保留</p>
+</li>
+<li>
+<p>Java 會將資源相關的例外隱匿 / 擠壓進程式碼的例外裡，只要知道如何將 suppressed 例外物件取出（參以下 line 3 ~ line 5）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span><span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>e<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Throwable t <span style="color:#f92672">:</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getSuppressed</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>t<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>對例外物件呼叫 <code>e.getSuppressed()</code> 方法時，可回傳一個 Throwable 陣列</p>
+<ul>
+<li>在背景被擠壓 / 隱匿的例外，即使再多都能被保存並取出</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TryException</span> <span style="color:#66d9ef">extends</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FinallyException</span> <span style="color:#66d9ef">extends</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SuppressedExceptions</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        before7<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        after7<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">before7</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> TryException<span style="color:#f92672">();</span>   <span style="color:#75715e">// This is lost.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> FinallyException<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;before 7: &#34;</span> <span style="color:#f92672">+</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">after7</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Throwable t <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span> <span style="color:#75715e">// 保留第一個拋出的例外物件 TryException (1/2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> TryException<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                t <span style="color:#f92672">=</span> e<span style="color:#f92672">;</span>  <span style="color:#75715e">// 保留第一個拋出的例外物件 TryException (2/2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                FinallyException fe <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FinallyException<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>t <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    t<span style="color:#f92672">.</span><span style="color:#a6e22e">addSuppressed</span><span style="color:#f92672">(</span>fe<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 將 finallyException 隱匿至 t, 再拋出 tryException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    <span style="color:#66d9ef">throw</span> t<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">throw</span> fe<span style="color:#f92672">;</span> <span style="color:#75715e">// 若無 tryException, 單獨拋出 finallyException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Throwable e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;after7: &#34;</span> <span style="color:#f92672">+</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Throwable t <span style="color:#f92672">:</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getSuppressed</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;after7: &#34;</span> <span style="color:#f92672">+</span> t<span style="color:#f92672">.</span><span style="color:#a6e22e">getClass</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="使用-multi-catch-敘述">使用 <code>multi-catch</code> 敘述</h3>
+<p>不建議直接捕捉例外的父類別，如 Exception 或 Throwable，因為：</p>
+<ol>
+<li>每種意外的處理方式應該不同</li>
+<li>要清楚知道究竟有多少個例外可能產生</li>
+</ol>
+<p>如果每種例外處理方式皆相同，則可以使用 Java 7 <code>multi-catch</code> 敘述，優點：</p>
+<ol>
+<li>可清楚知道究竟有多少例外可能拋出</li>
+<li>多種例外，同一種方式處理，簡潔化程式碼</li>
+<li><strong>不同例外以「|」區隔時，前後例外必須「沒有繼承關係」</strong>
+<ul>
+<li>例如 Exception class 不能和以 multi-catch 敘述聚集的例外類別放一起</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用-throws-宣告">使用 <code>throws</code> 宣告</h3>
+<ul>
+<li>
+<p>在類別方法上宣告 <code>throws ExceptionTypes</code>，讓呼叫該方法的 caller 處理</p>
+</li>
+<li>
+<p>覆寫子類別方法時，若父類別方法宣告拋出例外</p>
+<ol>
+<li>
+<p><strong>checked exception</strong>，子類別覆寫方法拋出的例外必須：</p>
+<ul>
+<li>例外型別必須相同，或者為其子類別（覆寫後有精進）</li>
+<li>數量相同或更少（表示問題已被處理 improved）</li>
+</ul>
+</li>
+<li>
+<p><strong>unchecked exception</strong>：子類別覆寫方法時可不予理會，例如 <code>RuntimeException</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Father</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fatherMethod1</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fatherMethod2</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> RuntimeException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fatherMethod3</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> SQLException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Child</span> <span style="color:#66d9ef">extends</span> Father <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fatherMethod1</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> FileNotFoundException <span style="color:#f92672">{</span>		
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>  <span style="color:#75715e">// FileNotFoundException 為 IOException 子類別，未超出 IOException 範圍
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fatherMethod2</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>  
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span> <span style="color:#75715e">// 父類別 RuntimeException-UncheckException，子類別可以不處理
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fatherMethod3</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>		
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span> <span style="color:#75715e">// SQLException 在方法內使用 try-catch 敘述，妥善處理不再拋出例外
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<h3 id="建立客製的-exception">建立客製的 <code>Exception</code></h3>
+<h4 id="客製化的例外類別">客製化的例外類別</h4>
+<p>建立客製化的例外子類別 DAOException，繼承 class Exception</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DAOException</span> <span style="color:#66d9ef">extends</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DAOException</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DAOException</span><span style="color:#f92672">(</span>String message<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>message<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>標準 Java 不會主動拋出客製化例外子類別，必須先捕捉標準的例外類別，再拋出客製化例外子類別</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// some codes that might cause error
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> DAOException<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="客製化包裹例外類別wrapper-exception">客製化包裹例外類別（Wrapper Exception）</h4>
+<ul>
+<li>
+<p>如果希望再拋出的客製化例外子類別也能保留最初被捕捉的例外類別訊息，可使用 wrapper 例外類別，將最初的例外類別包裹在客製例外類別中</p>
+<ul>
+<li>
+<p>設計客製例外類別</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DAOException</span> <span style="color:#66d9ef">extends</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DAOException</span><span style="color:#f92672">(</span>Throwable cause<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>cause<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DAOException</span><span style="color:#f92672">(</span>String msg<span style="color:#f92672">,</span> Throwable cause<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span><span style="color:#f92672">(</span>msg<span style="color:#f92672">,</span> cause<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>將捕捉真實例外類別作為客製例外類別的建構子參數</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// some codes might error
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> DAOException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>使用 <code>getCause()</code> 方法取出被包裹的原始例外物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// some codes might cause error
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>DAOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Throwable t <span style="color:#f92672">=</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getCause</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>使用包裹例外型別提供解決範例</p>
+<ol>
+<li>
+<p>先設計介面的抽象方法並宣告拋出 <code>DAOException</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>Employee <span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> DAOException<span style="color:#f92672">;</span>
+</span></span></code></pre></div></li>
+<li>
+<p>File-based 的方法實作方式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Employee <span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> DAOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> DAOException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>JDBC-based 的方法實作方式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> Employee <span style="color:#a6e22e">findById</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> DAOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> getEmployeeFromDatabase<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> id<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>SQLException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> DAOException<span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="斷言">斷言</h2>
+<h3 id="assertions-的簡介和語法">Assertions 的簡介和語法</h3>
+<ul>
+<li>斷言若失敗被認為是嚴重的問題，表示程式執行結果和預期有出入</li>
+<li>程式會拋出 AssertionError 並中斷程式執行，AssertionError 為 unchecked exception。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// Syntax
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">assert</span> <span style="color:#f92672">&lt;</span>boolean_expression<span style="color:#f92672">&gt;;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> <span style="color:#f92672">&lt;</span>boolean_expression<span style="color:#f92672">&gt;</span> <span style="color:#f92672">:</span> <span style="color:#f92672">&lt;</span>detail_expression<span style="color:#f92672">&gt;;</span>
+</span></span></code></pre></div><ol>
+<li>&lt;boolean_expression&gt; 若為 false，將拋出 <code>AssertionError</code></li>
+<li>&lt;detail_expression&gt; 為捕捉 <code>AssertionError</code> 後呼叫 <code>getMessage()</code> 方法回傳的子串</li>
+</ol>
+<h4 id="assertions-使用情境">Assertions 使用情境</h4>
+<ul>
+<li>使用 Assertions 來驗證假設和方法的不變量（不會改變的數值或結果，invariant），通常情況：
+<ol>
+<li>內部的不變量（internal invariants）</li>
+<li>流程控管的不變量（control flow invariants）</li>
+<li>事後的狀態和類別不變量（post-conditions &amp; class invariants）</li>
+</ol>
+</li>
+</ul>
+<h4 id="assertions-的使用注意事項">Assertions 的使用注意事項</h4>
+<ul>
+<li>
+<p>Assertions 的檢查預設關閉（disabled），使用前必須開啟</p>
+</li>
+<li>
+<p>要避免不當的使用方式：</p>
+<ol>
+<li>
+<p>不可用於類別方法的參數輸入檢查</p>
+</li>
+<li>
+<p>不可影響程式正常流程</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 將物件的生成放在 assertion 的判斷敘述中
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>SomeType s <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> <span style="color:#f92672">(</span>s <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SomeType<span style="color:#f92672">())</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+<h3 id="assertions-的使用">Assertions 的使用</h3>
+<h4 id="內部的不變量-internal-invariants">內部的不變量 <em>internal invariants</em></h4>
+<ul>
+<li>
+<p>在 else block 加上 <code>assert == 0</code>，使 x 無負值的可能</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>x <span style="color:#f92672">&gt;</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// do if x &gt; 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> <span style="color:#f92672">(</span>x <span style="color:#f92672">==</span> 0<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="流程控管的不變量-control-flow-invariants">流程控管的不變量 <em>control flow invariants</em></h4>
+<ul>
+<li>
+<p>為始 switch case 不可能進入 default block，直接在 default block 裡使用 assert false</p>
+<ul>
+<li>
+<p>表示程式進到此不用再以 boolean 表達式判斷，而是馬上拋出 <code>AssertError</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">controlFlowInvariants</span><span style="color:#f92672">(</span>Gender g<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">switch</span> <span style="color:#f92672">(</span>g<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> MALE<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// do something
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> FEMALE<span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// do something
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">assert</span> <span style="color:#66d9ef">false</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Unknown gender!!&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h4 id="事後的狀態和類別不變量-post-conditions--class-invariants">事後的狀態和類別不變量 <em>post-conditions &amp; class invariants</em></h4>
+<ul>
+<li>
+<p>無論類別欄位經過任何改變，都應該能通過方法 rule() 的檢驗</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyTime</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> hours<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> minutes<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> seconds<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rule</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span><span style="color:#f92672">(</span>0 <span style="color:#f92672">&lt;=</span> hours <span style="color:#f92672">&amp;&amp;</span> hours <span style="color:#f92672">&lt;</span> 24<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> <span style="color:#f92672">(</span>0 <span style="color:#f92672">&lt;=</span> minutes <span style="color:#f92672">&amp;&amp;</span> minutes <span style="color:#f92672">&lt;</span> 60<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> <span style="color:#f92672">(</span>0 <span style="color:#f92672">&lt;=</span> seconds <span style="color:#f92672">&amp;&amp;</span> seconds <span style="color:#f92672">&lt;</span> 60<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h4 id="assertions-的開啟與關閉">Assertions 的開啟與關閉</h4>
+<ul>
+<li>
+<p>Assertions 預設是關閉，關閉後<strong>完全不會執行</strong>，和註解（comment）類似，不影響效能</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java -enableassertions HelloWord
+java -ea HelloWorld
+</code></pre></li>
+<li>
+<p><code>-ea</code>即是 <code>-enableassertions</code>之縮寫</p>
+</li>
+<li>
+<p>若在 <code>-ea</code> 後加上其它選項，可控制 <strong>Assertions 的啟用只在某個 package 或 class</strong></p>
+<p><a href="https://docs.oracle.com/javase/7/docs/technotes/guides/language/assert.html#enable-disable" target="_blank" rel="noopener noreffer ">Enable and Disable Assertions</a></p>
+</li>
+</ul>
 <hr>
 <h1 id="03-輸入與輸出">03 輸入與輸出</h1>
 <h2 id="io-基礎">I/O 基礎</h2>
+<ul>
+<li>當輸入/輸出行為發生時，好比串流（stream）的流動，流入或流出某個地方</li>
+<li>串流需要有來源及目的，ex. 主控台視窗（console）、檔案、資料庫、網路、其它程式</li>
+</ul>
+<h3 id="何謂-io">何謂 I/O</h3>
+<p>基本認知：</p>
+<ol>
+<li>資料的進出像是水流 / 串流
+<ul>
+<li>來源流向目的，具有方向性，Java 中稱之為 <code>stream (串流)</code></li>
+<li>流動內容主要分為「位元（byte）」和「字元（character）」</li>
+</ul>
+</li>
+<li>水流的流動，若提供管道，稱為 <code>channel</code>，若使用 <code>channel</code> 支援 I/O 會更有效率</li>
+</ol>
+<h4 id="以-java-程式為區分基準">以 Java 程式為區分基準</h4>
+<ol>
+<li>
+<p>輸入串流 | 來源串流（input stream, source stream）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/hz0S8PM.png"
+        data-srcset="https://i.imgur.com/hz0S8PM.png, https://i.imgur.com/hz0S8PM.png 1.5x, https://i.imgur.com/hz0S8PM.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/hz0S8PM.png"
+        title="image-20221218122158764" /></p>
+</li>
+<li>
+<p>輸出串流 | 目的串流（output stream, sink stream）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/2OgU1l1.png"
+        data-srcset="https://i.imgur.com/2OgU1l1.png, https://i.imgur.com/2OgU1l1.png 1.5x, https://i.imgur.com/2OgU1l1.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/2OgU1l1.png"
+        title="image-20221218122209539" /></p>
+</li>
+</ol>
+<h4 id="以程式開發最常用三種端點區分">以程式開發最常用三種端點區分</h4>
+<ol>
+<li>檔案（files）和目錄（directories）</li>
+<li>主控台（console）：標準輸入（standard-in）和標準輸出（standard-out）</li>
+<li>Socket 程式（連線遠端系統，需指定 port 通訊）</li>
+</ol>
+<h3 id="處理串流的類別">處理串流的類別</h3>
+<p>依串流內的資料分類、流動方向、處理類別分為四個抽象類別：</p>
+<table>
+<thead>
+<tr>
+<th>方向\串流內容</th>
+<th>位元（byte）</th>
+<th>字元（character）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>輸入 Java</td>
+<td><code>InputStream</code></td>
+<td><code>Reader</code></td>
+</tr>
+<tr>
+<td>輸出 Java</td>
+<td><code>OutputStream</code></td>
+<td><code>Writer</code></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="class-inputstream">Class <code>InputStream</code></h4>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>name</th>
+<th>feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本方法</td>
+<td><code>int read()</code></td>
+<td>每次讀取 1 個 byte</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>int read(byte[] buffer)</code></td>
+<td>每次讀取一個 byte[]</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>int read(byte[] buffer, int offset, int length)</code></td>
+<td>每次讀取一個 byte[]，可以指定偏移量（offset）和讀取長度（length）</td>
+</tr>
+<tr>
+<td>其它方法</td>
+<td><code>void close()</code></td>
+<td>關閉 stream</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>int available()</code></td>
+<td>有多少的 bytes 可供讀取</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>long skip(long n)</code></td>
+<td>讀取時略過 n 個 <strong>bytes</strong></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>boolean markSupported()</code><!-- raw HTML omitted --><code>void mark(int readlimit)</code><!-- raw HTML omitted --><code>void reset()</code></td>
+<td>合併用於改變檔案中的讀取位置，特別是回到過去某個指定的讀取位置<!-- raw HTML omitted -->又稱 push-back 操作</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="class-outputstream">Class <code>OutputStream</code></h4>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>name</th>
+<th>feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本方法</td>
+<td><code>void write(int c)</code></td>
+<td>將 int 寫入 <code>OutputStream</code></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>void write(byte[] buffer)</code></td>
+<td>將 byte[] 寫入 <code>OutputStream</code></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>void write(byte[] buffer, int offset, int length)</code></td>
+<td>寫入 byte[] 到 <code>OutputStream</code>，指定長度（length）和偏移量（offset）</td>
+</tr>
+<tr>
+<td>其它方法</td>
+<td><code>void close()</code></td>
+<td>關閉 stream</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>void flush()</code></td>
+<td>強制將 <code>OutputStream</code> 中的資料寫入目的地</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="class-reader">Class <code>Reader</code></h4>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>name</th>
+<th>feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本方法</td>
+<td><code>int read()</code></td>
+<td>每次讀取 1 個 <strong>char</strong></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>int read(byte[] buffer)</code></td>
+<td>每次讀取一個 char[]</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>int read(byte[] buffer, int offset, int length)</code></td>
+<td>每次讀取一個 char[]，可以指定偏移量（offset）和讀取長度（length）</td>
+</tr>
+<tr>
+<td>其它方法</td>
+<td><code>void close()</code></td>
+<td>關閉 stream</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>boolean ready()</code></td>
+<td>確認 stream 是否已經準備好進行資料讀取</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>long skip(long n)</code></td>
+<td>讀取時略過 n 個 <strong>chars</strong></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>boolean markSupported()</code><!-- raw HTML omitted --><code>void mark(int readAheadLimit)</code><!-- raw HTML omitted --><code>void reset()</code></td>
+<td>合併用於改變檔案中的讀取位置，特別是回到過去某個指定的讀取位置<!-- raw HTML omitted -->又稱 push-back 操作</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="class-writer">Class Writer</h4>
+<table>
+<thead>
+<tr>
+<th>method</th>
+<th>name</th>
+<th>feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本方法</td>
+<td><code>void write(int c)</code></td>
+<td>將 int 寫入 <strong>Writer</strong></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>void write(char[] buffer)</code></td>
+<td>將整個 char[] 寫入 Writer</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>void write(char[] buffer, int offset, int length)</code></td>
+<td>寫入 char[] 到 Writer，且指定長度（length）和偏移量（offset）</td>
+</tr>
+<tr>
+<td>其它方法</td>
+<td><code>void close()</code></td>
+<td>關閉 stream</td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>void flush()</code></td>
+<td>強制將 Writer 中的資料寫入目的地</td>
+</tr>
+</tbody>
+</table>
+<h3 id="串流類別的串接">串流類別的串接</h3>
+<table>
+<thead>
+<tr>
+<th>功能\串流內容</th>
+<th>字元串流　<em>Character Streams</em></th>
+<th>位元串流 <em>Byte Streams</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Buffering（緩衝）</td>
+<td><code>BufferReader</code><!-- raw HTML omitted --><code>BufferedWriter</code></td>
+<td><code>BufferedInputStream</code><!-- raw HTML omitted --><code>BufferedOutputStream</code></td>
+</tr>
+<tr>
+<td>Filtering（過濾）</td>
+<td><code>FilterReader</code><!-- raw HTML omitted --><code>FilterWriter</code></td>
+<td><code>FilterInputStream</code><!-- raw HTML omitted --><code>FilterOutputStream</code></td>
+</tr>
+<tr>
+<td>Conversion（位元轉換為字元）</td>
+<td><code>InputStreamReader</code><!-- raw HTML omitted --><code>OutputStreamWriter</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Object serialization（物件序列化）</td>
+<td></td>
+<td><code>ObjectInputStream</code><!-- raw HTML omitted --><code>ObjectOutputStream</code></td>
+</tr>
+<tr>
+<td>Data conversion（資料型態轉換）</td>
+<td></td>
+<td><code>DataInputStream</code><!-- raw HTML omitted --><code>DataOutputStream</code></td>
+</tr>
+<tr>
+<td>Counting（計算行數）</td>
+<td><code>LineNumberReader</code></td>
+<td><code>LineNumberInputStream</code></td>
+</tr>
+<tr>
+<td>Printing（列印）</td>
+<td><code>PrintWriter</code></td>
+<td><code>PrintStream</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="使用-javaiofile-類別">使用 <code>java.io.File</code> 類別</h3>
 <h2 id="由主控台讀寫資料">由主控台讀寫資料</h2>
+<h3 id="主控台的-io">主控台的 I/O</h3>
+<h3 id="使用標準輸出方法">使用標準輸出方法</h3>
+<h3 id="使用標準輸入由主控台取得輸入資料">使用標準輸入由主控台取得輸入資料</h3>
+<h3 id="javaioconsole-類別介紹"><code>java.io.Console</code> 類別介紹</h3>
 <h2 id="channel-io">Channel I/O</h2>
 <h2 id="使用序列化技術讀寫物件">使用序列化技術讀寫物件</h2>
 <hr>
