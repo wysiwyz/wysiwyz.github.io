@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  3966 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  6179 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-18T17:50:34+08:00","dateModified": "2022-12-18T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3966 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;19 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6179 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;30 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -246,7 +246,7 @@
       <ul>
         <li><a href="#使用-shared-data-可能造成的問題">使用 <code>Shared Data</code> 可能造成的問題</a></li>
         <li><a href="#使用-non-atomic-functions-可能造成的問題">使用 <code>Non-Atomic Functions</code> 可能造成的問題</a></li>
-        <li><a href="#使用-catched-data-可能造成的問題">使用 <code>Catched Data</code> 可能造成的問題</a></li>
+        <li><a href="#使用-cached-data-可能造成的問題">使用 <code>Cached Data</code> 可能造成的問題</a></li>
       </ul>
     </li>
     <li><a href="#執行緒的-synchronized-與等待">執行緒的 synchronized 與等待</a>
@@ -259,7 +259,7 @@
     </li>
     <li><a href="#其它執行緒方法介紹">其它執行緒方法介紹</a>
       <ul>
-        <li><a href="#使用-interrup-方法">使用 <code>interrup()</code> 方法</a></li>
+        <li><a href="#使用-interrupt-方法">使用 <code>interrupt()</code> 方法</a></li>
         <li><a href="#使用-sleep-方法">使用 <code>sleep()</code> 方法</a></li>
         <li><a href="#使用其它方法">使用其它方法</a></li>
         <li><a href="#不建議使用的方法">不建議使用的方法</a></li>
@@ -268,9 +268,33 @@
   </ul>
 
   <ul>
-    <li><a href="#使用並行-api">使用並行 API</a></li>
-    <li><a href="#使用-executorservice-介面同時執行多樣工作">使用 ExecutorService 介面同時執行多樣工作</a></li>
-    <li><a href="#使用-fork-join-框架同時執行多樣工作">使用 Fork-Join 框架同時執行多樣工作</a></li>
+    <li><a href="#使用並行-api">使用並行 API</a>
+      <ul>
+        <li><a href="#並行-api-介紹">並行 API 介紹</a></li>
+        <li><a href="#atomicinteger-類別"><code>AtomicInteger</code> 類別</a></li>
+        <li><a href="#reentrantreadwritelock-類別"><code>ReentrantReadWriteLock</code> 類別</a></li>
+        <li><a href="#執行緒安全的集合物件">執行緒安全的集合物件</a></li>
+        <li><a href="#常用的同步器工具類別">常用的同步器工具類別</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-executorservice-介面同時執行多樣工作">使用 <code>ExecutorService</code> 介面同時執行多樣工作</a>
+      <ul>
+        <li><a href="#使用更高階的多執行緒執行方案">使用更高階的多執行緒執行方案</a></li>
+        <li><a href="#executorservice概觀"><code>ExecutorService</code>概觀</a></li>
+        <li><a href="#使用-javautilconcurrentcallable">使用 <code>java.util.concurrent.Callable</code></a></li>
+        <li><a href="#使用-javautilconcurrentfuture">使用 <code>java.util.concurrent.Future</code></a></li>
+        <li><a href="#關閉-executorservice">關閉 <code>ExecutorService</code></a></li>
+        <li><a href="#executorservice完整範例"><code>ExecutorService</code>完整範例</a></li>
+        <li><a href="#executorservice-進階範例"><code>ExecutorService</code> 進階範例</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-fork-join-框架同時執行多樣工作">使用 Fork-Join 框架同時執行多樣工作</a>
+      <ul>
+        <li><a href="#平行處理的策略">平行處理的策略</a></li>
+        <li><a href="#套用-fork-join-框架">套用 <code>Fork-Join</code> 框架</a></li>
+        <li><a href="#fork-join-框架的使用建議"><code>Fork-Join</code> 框架的使用建議</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -2234,7 +2258,7 @@ java -ea HelloWorld
 </ul>
 </li>
 </ul>
-<h3 id="使用-catched-data-可能造成的問題">使用 <code>Catched Data</code> 可能造成的問題</h3>
+<h3 id="使用-cached-data-可能造成的問題">使用 <code>Cached Data</code> 可能造成的問題</h3>
 <ul>
 <li>執行緒 <code>thread</code> 因為程序 <code>process</code> 需要同時執行不同工作而產生</li>
 <li>為求執行效能，執行緒啟動時，會將程序中的 <code>main memory</code> 內的分享資料複製一份，放在自己的 <code>working memory</code> 作為快取複製（<code>cached copies</code>），工作結束後寫回，如此一來可以避免程式進行過程中，執行緒必須不斷向程序要求資料而造成的效率問題</li>
@@ -2430,7 +2454,7 @@ java -ea HelloWorld
 <li>如果 Java 偵測到集合物件的內容將被同時修改（不限定是否多執行緒所為），就會拋出 <code>ConcurrentModificationException</code>
 <ul>
 <li>此為「<strong>fail-fast</strong>」行為模式，亦即對於錯誤或是可能造成錯誤的情況，馬上作出反應</li>
-<li>為了避免發生 <strong>fail-fast</strong> 狀況，應避免在執行 getSummary() 方法時，其它 2 個方法被同時呼叫
+<li>為了避免發生 <strong>fail-fast</strong> 狀況，應避免在執行 <code>getSummary()</code> 方法時，其它 2 個方法被同時呼叫
 <ul>
 <li>可以將這三個方法都宣告為 <code>synchronized</code>，如此要呼叫方法前，必須取得該物件的唯一 <strong>object monitor</strong>，就不會有被同時執行的可能性</li>
 </ul>
@@ -2439,24 +2463,1180 @@ java -ea HelloWorld
 </li>
 </ul>
 </li>
-<li><code>ConcurrentModificationException</code> 不是只有在多執行緒的情況下才會發生</li>
+<li><code>ConcurrentModificationException</code> 不是只有在多執行緒的情況下才會發生
+<ul>
+<li>以下的 <strong>fail-fast_1</strong> 或 <strong>fail-fast_2</strong> 會拋出 <code>ConcurrentModificationException</code>
+<ul>
+<li>原因：使用 iterator 或進階 for-loop 走訪 map 物件成員，同時去刪除 map 成員</li>
+<li>避免方法：
+<ul>
+<li>複製 map，讓新複製的 map 用於走訪成員</li>
+<li>再用取得的 key 刪除另外一個 map 物件的成員</li>
 </ul>
-<h3 id="縮小-synchronized-的程式區塊">縮小 synchronized 的程式區塊</h3>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ConcurrentModificationExceptionTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> String<span style="color:#f92672">&gt;</span> map <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;a&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;b&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        map<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>3<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;c&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// fail-fast 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Iterator<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> iter <span style="color:#f92672">=</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">().</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>iter<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                Integer key <span style="color:#f92672">=</span> iter<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>key <span style="color:#f92672">&gt;=</span> 2<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    map<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ConcurrentModificationException</span> e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// fail-fast 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer key <span style="color:#f92672">:</span> map<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>key <span style="color:#f92672">&gt;=</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    map<span style="color:#f92672">.</span><span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span>key<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ConcurrentModificationException</span> e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="縮小-synchronized-的程式區塊">縮小 synchronized 的程式區塊</h3>
+<ul>
+<li>
+<p>物件裡所有 synchronized 方法在執行前，都必須取得 object monitor</p>
+</li>
+<li>
+<p>因此如果越多方法使用 synchronized，或是被 synchronized 的方法內容越長，都會造成執「行等待」</p>
+</li>
+<li>
+<p>盡可能使用 synchronized 程式區塊，而非直接 synchronized 整個方法</p>
+</li>
+<li>
+<p>減少被 synchronized 的程式碼，有助於減少「執行等待」的情況</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getSummary</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    StringBuilder note <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">synchronized</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>              <span style="color:#75715e">// line 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Iterator<span style="color:#f92672">&lt;</span>Item<span style="color:#f92672">&gt;</span> iter <span style="color:#f92672">=</span> cart<span style="color:#f92672">.</span><span style="color:#a6e22e">iterator</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span>iter<span style="color:#f92672">.</span><span style="color:#a6e22e">hasNext</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Item i <span style="color:#f92672">=</span> iter<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            note<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Item:&#34;</span> <span style="color:#f92672">+</span> i<span style="color:#f92672">.</span><span style="color:#a6e22e">desc</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>  <span style="color:#75715e">// line 9
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> note<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p>可以直接把 <code>getSummary()</code> 宣告為 synchronized 方法，</p>
+<p>但比較好的做法是檢討方法內真正影響執行緒安全的程式碼。</p>
+<ul>
+<li>
+<p>line 3 ~ line 9 : synchronized 程式碼區塊可讓影響區域縮小</p>
+</li>
+<li>
+<p>根據 line 3 宣告 : 要執行本區塊必須取得 this 的 object monitor</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
 <h3 id="其它執行等待的情況">其它執行等待的情況</h3>
+<p>除了 synchronized 程式區塊造成的執行等待，還有以下幾種情形必須預防</p>
 <h4 id="1-starvation--因搶不到資源而排隊">1. <strong>Starvation</strong> : 因搶不到資源而排隊</h4>
+<ul>
+<li>指兩個執行緒共搶一個資源，其中某一個經常可以取得資源（<em>貪心執行緒，greedy thread</em>）</li>
+<li>另外一個經常無法取得資源（<em>飢餓執行緒，starved thread</em>）</li>
+</ul>
 <h4 id="2-live-lock--因太忙碌而排隊">2. Live Lock : 因太忙碌而排隊</h4>
+<ul>
+<li>指多個執行緒因為等待資源而排隊，thread_B 等 thread_A、thread_C 等 thread_B、thread_D 等 thread_C</li>
+<li>thread_A 完成可以輪到 thread_B，thread_B 完成輪到 thread_C，以此類推</li>
+</ul>
 <h4 id="3-dead-lock--2-個執行緒互相絆住對方導致永遠等待">3. Dead Lock : 2 個執行緒互相絆住對方，導致永遠等待</h4>
+<ul>
+<li>
+<p>thread_A : 必須先後取得「資源1」和「資源2」</p>
+</li>
+<li>
+<p>thread_B : 必須先後取得「資源2」和「資源1」</p>
+</li>
+<li>
+<p>Deadlock 情況 : A 持有資源 1，等待資源 2；此時 B 持有資源 2，等待資源 1</p>
+<ul>
+<li>除非 Thread-A 或 Thread-B 其中有一方讓出資源或被終止，才能結束 Deadlock</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yoRNlvk.png"
+        data-srcset="https://i.imgur.com/yoRNlvk.png, https://i.imgur.com/yoRNlvk.png 1.5x, https://i.imgur.com/yoRNlvk.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yoRNlvk.png"
+        title="image-20221219105806769" /></p>
+</li>
+</ul>
+<blockquote>
+<p>🍪☕ <strong>Little Tips</strong></p>
+<p>要產生 dead lock 需要 2 個執行緒和 2 個被搶奪的資源物件。</p>
+<p>資源可以是任何物件，使用 <code>new Object()</code> 都可以。e.g.:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">final</span> String resource1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jim1&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> String resource2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jim2&#34;</span><span style="color:#f92672">;</span>
+</span></span></code></pre></div><p>因為字串池有重複使用相同內容字串的機制，若改為以下內容，則兩個變數<strong>實際指向同一個字串物件</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">final</span> String resource1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jim&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">final</span> String resource2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jim&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 因為被搶奪的資源只有一個，無法構成 dead lock
+</span></span></span></code></pre></div></blockquote>
 <p>&hellip;</p>
 <h2 id="其它執行緒方法介紹">其它執行緒方法介紹</h2>
-<h3 id="使用-interrup-方法">使用 <code>interrup()</code> 方法</h3>
-<h3 id="使用-sleep-方法">使用 <code>sleep()</code> 方法</h3>
+<h3 id="使用-interrupt-方法">使用 <code>interrupt()</code> 方法</h3>
+<p>除了利用 <code>volatile</code> 宣告的變數來停止執行中的執行緒，也可以用 <code>interrupt()</code> 方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InterruptedRunnable</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread started&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(!</span>Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">interrupted</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* 執行中的執行緒可藉由 interrupted 方法不斷確認是否收到中斷指令
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">               若是，就中斷目前執行工作 */</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;I am running...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread finishing&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InterruptThreadExample</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        InterruptedRunnable r1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InterruptedRunnable<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        Thread t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span>r1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        t1<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{}</span>
+</span></span><span style="display:flex;"><span>        t1<span style="color:#f92672">.</span><span style="color:#a6e22e">interrupt</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 對執行中的執行緒下達 interrupt 指令
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="使用-sleep-方法">使用 <code>sleep()</code> 方法</h3>
+<p>若要使執行緒暫停，可以呼叫 class Thread 的靜態 <code>sleep()</code> 方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">native</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span><span style="color:#66d9ef">long</span> millis<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> InterruptedException<span style="color:#f92672">;</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>呼叫 <code>Thread.sleep(4000)</code> 即暫停執行 4 秒鐘，4 秒之後再等待 CPU 分配時間</p>
+<ul>
+<li>拿到才能繼續執行任務，停止時間「<strong>至少</strong>」為 4 秒鐘</li>
+</ul>
+</li>
+<li>
+<p>休眠中的執行緒隨時有被叫醒而中斷休眠的可能，所以被要求必須處理 <code>InterruptedException</code></p>
+<ul>
+<li>
+<p>並在 catch block 中決定被終止休眠後要做的事</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">long</span> start <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>4000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// what to do?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">long</span> time <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">currentTimeMillis</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> start<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Slept for &#34;</span> <span style="color:#f92672">+</span> time <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;ms&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
 <h3 id="使用其它方法">使用其它方法</h3>
+<p>Class Thread 的其它常用方法：</p>
+<p>以下 3 個方法繼承自 Object class：</p>
+<ol>
+<li>
+<p><code>wait()</code>：不限時間的等待，等候 <code>notify()</code> 被呼叫後醒過來</p>
+</li>
+<li>
+<p><code>notify()</code> 和 <code>notifyAll()</code> : 通知 <code>wait()</code> 中的執行緒</p>
+<blockquote>
+<p>🍪☕ <strong>Little Tips</strong></p>
+<p><code>daemon</code> : 在多執行緒的情形下，無法影響 JVM 的結束</p>
+</blockquote>
+</li>
+</ol>
+<p>以下示範 <code>join()</code> 和 <code>setDaemon()</code> 之使用方式與其影響</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Java" data-lang="Java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThreadTest</span> <span style="color:#66d9ef">extends</span> Thread <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread T is starting...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 3<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>1000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread T is running...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread T is ending...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThreadMethodTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread main is starting...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        testNormal<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// testJoin();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// testDaemon();
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Thread main is ending...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testNormal</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Thread t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadTest<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        t<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// #1 thread main 和 thread t 啟動後各走各的，互不影響
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testJoin</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Thread t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadTest<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        t<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            t<span style="color:#f92672">.</span><span style="color:#a6e22e">join</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* #2 thread main 啟動 thread t，在執行 t.join() 時，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">      thread t 會插隊到 main 前面，只有 thread t 結束後才會執行 thread main */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testDaemon</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Thread t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ThreadTest<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        t<span style="color:#f92672">.</span><span style="color:#a6e22e">setDaemon</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        t<span style="color:#f92672">.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// t.setDaemon(true);  // java.lang.IllegalThreadStateException
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* 將執行緒 t 設為 daemon 後，一旦 non-daemon 的 thread main 結束，JVM 就關閉
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   thread main 結束後，即便 thread t 尚未結束，JVM 也會關閉，和先前2種測試明顯不同 */</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>&hellip;</p>
 <h3 id="不建議使用的方法">不建議使用的方法</h3>
+<ul>
+<li>
+<p>class Thread 一些不建議使用的方法：</p>
+<ol>
+<li>
+<p>可能造成問題，避免使用</p>
+<ul>
+<li><code>setPriority(int)</code></li>
+<li><code>getPriority()</code></li>
+</ul>
+</li>
+<li>
+<p>已經 <strong>deprecated</strong>，不該使用</p>
+<ul>
+<li><code>destroy()</code></li>
+<li><code>resume()</code></li>
+<li><code>suspend()</code></li>
+<li><code>stop()</code></li>
+</ul>
+<blockquote>
+<p>使用 deprecated 描述表示方法可能</p>
+<ul>
+<li>寫法不好</li>
+<li>命名不符合傳統，不建議再使用</li>
+<li>未來可能移除 ex.  <code>@Deprecated</code>、<del>stop</del>() {&hellip;}、<del>resume</del>();</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 註記方式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">@Deprecated</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">stop</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    SecurityManager security <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">getSecurityManager</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>security <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        checkAccess<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span> <span style="color:#f92672">!=</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            security<span style="color:#f92672">.</span><span style="color:#a6e22e">checkPermission</span><span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>                SecurityConstants<span style="color:#f92672">.</span><span style="color:#a6e22e">STOP_THREAD_PERMISSION</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// A zero status value corresponds to &#34;NEW&#34;, it can&#39;t change to
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// not-NEW because we hold the lock.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>threadStatus <span style="color:#f92672">!=</span> 0<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        resume<span style="color:#f92672">();</span> <span style="color:#75715e">// Wake up thread if it was suspended; no-op otherwise
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// The VM can handle all thread states
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    stop0<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> ThreadDeath<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></blockquote>
+</li>
+</ol>
+</li>
+</ul>
 <hr>
 <h1 id="06-執行緒與並行-api-concurrency-api">06 執行緒與並行 API <code>Concurrency API</code></h1>
 <h2 id="使用並行-api">使用並行 API</h2>
-<h2 id="使用-executorservice-介面同時執行多樣工作">使用 ExecutorService 介面同時執行多樣工作</h2>
+<h3 id="並行-api-介紹">並行 API 介紹</h3>
+<ul>
+<li>Concurrency API 是套件 <code>java.util.concurrent</code> 下的相關類別和介面。</li>
+<li>導入於 Java 5，陸續擴充，用於支援多執行緒執行，亦即 concurrent programming，包含
+<ol>
+<li>執行緒安全（thread-safe）的集合物件</li>
+<li>取代傳統 <em>synchronization</em> 和 <em>locking</em> 的替代方案</li>
+<li>執行緒池（thread pools），又分成：
+<ul>
+<li>執行緒數量「固定」或「浮動」的執行緒池</li>
+<li>分進合擊的 <em>Fork-Join Framework</em></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="atomicinteger-類別"><code>AtomicInteger</code> 類別</h3>
+<ul>
+<li>
+<p>class <code>AtomicInteger</code> 位於<code>java.util.concurrent.atomic</code>套件裡</p>
+</li>
+<li>
+<p>提供執行緒安全又不需要使用 <em>synchronization</em> 和 <em>locking</em> 機制來控管的物件</p>
+</li>
+<li>
+<p>此類別裡的方法都是 atomic function，例如 <code>compareAndSet()</code>、<code>getAndIncrement()</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>AtomicInteger ai <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AtomicInteger<span style="color:#f92672">(</span>5<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>ai<span style="color:#f92672">.</span><span style="color:#a6e22e">compareAndSet</span><span style="color:#f92672">(</span>5<span style="color:#f92672">,</span> 42<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>  <span style="color:#75715e">// 🥨
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;after compareAndSet(): &#34;</span> <span style="color:#f92672">+</span> ai<span style="color:#f92672">);</span>  <span style="color:#75715e">// 42
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>ai<span style="color:#f92672">.</span><span style="color:#a6e22e">getAndIncrement</span><span style="color:#f92672">();</span>  <span style="color:#75715e">// 🥨
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;after getAndIncrement(): &#34;</span> <span style="color:#f92672">+</span> ai<span style="color:#f92672">);</span>   <span style="color:#75715e">// 43
+</span></span></span></code></pre></div><table>
+<thead>
+<tr>
+<th>🥨</th>
+<th>name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>compareAndSet(a,b)</code></td>
+<td>判斷數值是否為 a，若是則設定為 b，亦即將 a 取代為 b</td>
+</tr>
+<tr>
+<td><code>getAndIncrement()</code></td>
+<td>取得數值後加 1。作用同遞增運算子，但 atomic function 不須使用 synchronized block</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="reentrantreadwritelock-類別"><code>ReentrantReadWriteLock</code> 類別</h3>
+<ul>
+<li>
+<p>有別於<code>synchronization</code>與<code>monitor</code>機制，<code>ReentrantReadWriteLock</code>提供另一種鎖定（locking）</p>
+</li>
+<li>
+<p>可根據不同情況（conditions）調整執行緒等待的（wait）架構</p>
+<ol>
+<li>
+<p>過去的 monitor 未分類，一個執行緒取得 monitor 之後，其它執行緒必須等待鎖定該 monitor</p>
+</li>
+<li>
+<p>使用 <code>ReentrantReadWriteLock</code>，將原本由每個物件唯一的 object monitor，改提供 <strong>read lock</strong> 和 <strong>write lock</strong> 兩種鎖定機制</p>
+<ul>
+<li>有 thread 先取得 <strong>read lock</strong> 時，其它執行緒可以同時再取得 read lock
+<ul>
+<li>允許多個執行緒同時 read，但沒有執行緒可以取得 write lock</li>
+</ul>
+</li>
+<li>一旦有執行緒取得 <strong>write lock</strong>，將排擠其它執行緒取得 read lock 和 write lock</li>
+</ul>
+</li>
+<li>
+<p>「<strong>Reentrant</strong>」</p>
+<ul>
+<li>
+<p>如果有執行緒已經使用某個 synchronized 方法（= 取得某物件的 object monitor），則該執行緒可繼續進入其它使用相同 object monitor 的任何一個 synchronized 方法</p>
+</li>
+<li>
+<p>申請一把鑰匙之後，可以繼續打開每一個使用相同鑰匙的門，不用每次開門後都繳回，也不用為了公平而重新申請排隊</p>
+<blockquote>
+<p>1️⃣ 允許多執行緒同時「holding read lock」</p>
+<p>2️⃣ 同一時間一旦有一個執行緒「holding write lock」，</p>
+<p>​      就不會再有其它執行緒「holding read lock」或「holding write lock」</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="執行緒安全的集合物件">執行緒安全的集合物件</h3>
+<p><code>java.util.*</code> 下的集合物件預設非執行緒安全，如果要 thread-safe，必須特別處理：</p>
+<ol>
+<li>
+<p>對所有修改集合物件的程式碼，都必須放在 <em>synchronize</em> 區塊</p>
+</li>
+<li>
+<p>使用特定類別及方法建立 <em>synchronized wrapper</em> class</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>java<span style="color:#f92672">.</span><span style="color:#a6e22e">util</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Collections</span><span style="color:#f92672">.</span><span style="color:#a6e22e">synchronizedList</span><span style="color:#f92672">(</span>List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>改用套件 <code>java.util.concurrent</code> 套件下的集合物件</p>
+<p><strong>注意</strong>：即便是執行緒安全的集合物件，不代表其成員也是</p>
+</li>
+</ol>
+<p>常用執行緒安全的集合物件：</p>
+<table>
+<thead>
+<tr>
+<th><code>java.util.concurrent.*</code></th>
+<th><code>java.util.*</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CopyOnWriteArraySet</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CopyOnWriteArrayList</code></td>
+<td><code>ArrayList</code></td>
+</tr>
+<tr>
+<td><code>ConcurrentHashMap</code></td>
+<td><code>HashMap</code></td>
+</tr>
+<tr>
+<td><code>ConcurrentSkipListMap</code></td>
+<td><code>TreeMap</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Queue</code> family 的執行緒安全集合物件：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/E0u3aAs.png"
+        data-srcset="https://i.imgur.com/E0u3aAs.png, https://i.imgur.com/E0u3aAs.png 1.5x, https://i.imgur.com/E0u3aAs.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/E0u3aAs.png"
+        title="1" /></p>
+<blockquote>
+<p>🍪☕ <strong>Little Tips</strong></p>
+<p>支援執行緒安全的集合物件裡，常可以看到 <code>CopyOnWrite</code> 的命名方式，暗示該集合物件如何支援執行緒安全</p>
+<ol>
+<li>當該集合物件要增加成員時，不直接添加，而是
+<ul>
+<li>先將當前集合物件複製出一個新的集合物件，然後在新的集合物件裡增加成員</li>
+</ul>
+</li>
+<li>添加完成員之後，再將原集合物件的物件參考指向新的集合物件</li>
+<li>好處：集合物件可以讀寫並行，不需要在修改的時候排除其它行為，因為當前集合物件不會添加任何元素
+<ul>
+<li><code>CopyOnWrite</code> 集合物件是一種讀寫分離的思想實踐，對不同的集合物件讀取和寫入</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h3 id="常用的同步器工具類別">常用的同步器工具類別</h3>
+<p>套件 <code>java.util.concurrent</code> 下，提供數種支援特殊情境的同步器（<em>synchronizers</em>）類別</p>
+<table>
+<thead>
+<tr>
+<th>class</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Semaphore</code></td>
+<td>傳統的 concurrency（平行執行）工具</td>
+</tr>
+<tr>
+<td><code>CountDownLatch</code></td>
+<td>暫停 thread 直到某種情境達成，例如信號數量、事件、預設條件</td>
+</tr>
+<tr>
+<td><code>CyclicBarrier</code>（循環路障）</td>
+<td>於平行執行時提供同步點，可循環使用</td>
+</tr>
+<tr>
+<td><code>Phaser</code></td>
+<td>更有彈性的 <code>CyclicBarrier</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> stopUntil <span style="color:#f92672">=</span> 2<span style="color:#f92672">;</span>  <span style="color:#75715e">// 設定多少個 thread 抵達才放行的條件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> totalThreadCnt <span style="color:#f92672">=</span> 3<span style="color:#f92672">;</span>  <span style="color:#75715e">// 任意調整啟動的 thread 個數，測試 CyclicBarrier 類的效果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">final</span> CyclicBarrier barrier <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CyclicBarrier<span style="color:#f92672">(</span>stopUntil<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 宣告並初始化 class Cyclic 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>1<span style="color:#f92672">;</span> i<span style="color:#f92672">&lt;=</span>totalThreadCnt<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>					System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;before await&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>					barrier<span style="color:#f92672">.</span><span style="color:#a6e22e">await</span><span style="color:#f92672">();</span>  <span style="color:#75715e">// line
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>					System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;after await&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>BrokenBarrierException <span style="color:#f92672">|</span> InterruptedException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}.</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p><code>await()</code> 方法：像是柵欄，平時放下。</p>
+<p>只有滿足 <code>CyclicBarrier</code> 建構子設定的 <code>stopUntil</code> 個數的 thread 抵達後，才會放行</p>
+</blockquote>
+<h2 id="使用-executorservice-介面同時執行多樣工作">使用 <code>ExecutorService</code> 介面同時執行多樣工作</h2>
+<h3 id="使用更高階的多執行緒執行方案">使用更高階的多執行緒執行方案</h3>
+<p>多執行緒程式架構可同時執行工作，提升效率，但也容易衍生問題，必須小心操控。</p>
+<p>傳統 <code>API</code> 不容易被適當使用，可考慮使用以下兩個更高階的替代方案：</p>
+<ol>
+<li><strong>執行者服務</strong>（<em>java.util.concurrent.ExecutorService</em>）
+<ul>
+<li>建立並重複使用多執行緒</li>
+<li><code>ExecutorService</code> 介面
+<ul>
+<li>除了可以使用過去的 <code>Runnable</code> 介面定義工作內容</li>
+<li>也可用新的 <code>Callable</code> 介面定義工作內容，允許在未來工作結束後檢視結果</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>分進合擊程式框架</strong>（<em>Fork-Join Framework</em>）
+<ul>
+<li>Java 7 推出的特殊「<strong>工作竊取</strong>（work-stealing）」平行運算架構</li>
+<li>用於多執行緒執行，是一種特化的 ExecutorService</li>
+<li>程式運行時，除了不斷將整體工作進行切割外，也讓<strong>有能力、較有餘裕的執行緒在做完份內工作後，可以竊取（stealing）別人的工作來執行</strong>
+<ul>
+<li>支援 <em>能者多勞</em> 理念的多執行緒執行架構</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="executorservice概觀"><code>ExecutorService</code>概觀</h3>
+<ul>
+<li><code>ExecutorService</code> 介面是執行緒池（thread pool）的概念，使用過的執行緒皆可回收池內繼續下次使用</li>
+<li>執行緒池也會負責管理所有執行緒的生命週期，使用 <code>ExecutorService</code>執行多執行緒工作時：
+<ol>
+<li>不需要自己建立和管理多執行緒，且可以平行執行</li>
+<li>可分成兩種任務
+<ul>
+<li><code>java.lang.Runnable</code></li>
+<li><code>java.util.concurrent.Callable</code></li>
+</ul>
+</li>
+<li>使用 class <code>Executors</code> 可以取得 interface <code>ExecutorService</code> 的實作，常用兩種
+<ul>
+<li>快取式執行緒池 <em>cached thread pool</em></li>
+<li>固定式執行緒池 <em>fixed thread pool</em></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="快取式執行緒池cached-thread-pool">快取式執行緒池（cached thread pool）</h4>
+<ul>
+<li>
+<p>建立方式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>ExecutorService es <span style="color:#f92672">=</span> Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">newCachedThreadPool</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p>特點</p>
+<table>
+<thead>
+<tr>
+<th>feature</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>數量控制</td>
+<td>執行緒數量由執行緒池<strong>自動調控</strong></td>
+</tr>
+<tr>
+<td>是否重複使用</td>
+<td>執行緒工作完成後，回收重複使用</td>
+</tr>
+<tr>
+<td>工作量大時</td>
+<td>遇到需要大量 CPU 運算的工作，<strong>執行緒可能會一直增生</strong></td>
+</tr>
+<tr>
+<td>生命週期</td>
+<td>預設閒置超過 <strong>60 秒</strong>，就終止生命週期</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h4 id="固定式執行緒池fixed-thread-pool">固定式執行緒池（fixed thread pool）</h4>
+<ul>
+<li>
+<p>建立方式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> cpuCount <span style="color:#f92672">=</span> Runtime<span style="color:#f92672">.</span><span style="color:#a6e22e">getRuntime</span><span style="color:#f92672">().</span><span style="color:#a6e22e">availableProcessors</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 參考主機 CPU 數量建立執行緒數量
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>ExecutorService es <span style="color:#f92672">=</span> Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">newFixedThreadPool</span><span style="color:#f92672">(</span>cpuCount<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>特點</p>
+<table>
+<thead>
+<tr>
+<th>feature/category</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>數量控制</td>
+<td>執行緒數量固定</td>
+</tr>
+<tr>
+<td>是否重複使用</td>
+<td>執行緒工作完成後，回收重複使用</td>
+</tr>
+<tr>
+<td>工作量大時</td>
+<td>工作太多時，必須等待忙碌的執行緒釋出</td>
+</tr>
+<tr>
+<td>生命週期</td>
+<td>數量固定，不會主動終止生命週期</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="使用-javautilconcurrentcallable">使用 <code>java.util.concurrent.Callable</code></h3>
+<ul>
+<li>
+<p><code>ExecutorService</code> 可以協助管理執行緒，但還是需要自己定義執行緒的工作內容</p>
+</li>
+<li>
+<p>除了使用 <code>java.lang.Runnable</code> 介面，也可以使用另外一個 <code>java.util.concurrent.Callable</code> 介面實作類別來定義要執行的工作</p>
+<table>
+<thead>
+<tr>
+<th>Runnable</th>
+<th>Callable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>public interface <code>Runnable</code> {<!-- raw HTML omitted -->       void run();<!-- raw HTML omitted -->}</td>
+<td>public interface <code>Callable&lt;V&gt;</code> {<!-- raw HTML omitted -->       V call() throws Exception;<!-- raw HTML omitted -->}</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>Callable</code> 和 <code>Runnable</code> 相似，主要不同地方</p>
+<ol>
+<li>可以回傳結果（使用泛型）</li>
+<li>可以拋出 Exception</li>
+</ol>
+</li>
+<li>
+<p>若使用傳統 <strong>Runnable</strong> 介面實作物件作為 <code>ExecutorService</code> 的執行工作內容，可用下例執行工作</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">useRunnable</span><span style="color:#f92672">(</span>ExecutorService es<span style="color:#f92672">,</span> Runnable runnable<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    es<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span>runnable<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>若使用 <strong>Callable</strong> 介面實作物件作為 <code>ExecutorService</code> 的執行工作內容，則用下例</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">static</span><span style="color:#f92672">&lt;</span>V<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">useCallable</span><span style="color:#f92672">(</span>ExecutorService es<span style="color:#f92672">,</span> Callable<span style="color:#f92672">&lt;</span>V<span style="color:#f92672">&gt;</span> callable<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Future<span style="color:#f92672">&lt;</span>V<span style="color:#f92672">&gt;</span> future <span style="color:#f92672">=</span> es<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span>callable<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        V result <span style="color:#f92672">=</span> future<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>result<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        ex<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p><code>ExecutorService.submit()</code> 方法傳入 Callable 實作物件時，可以回傳 <strong>Future</strong> 類別的物件</p>
+</blockquote>
+<p>&hellip;</p>
+</li>
+</ul>
+<h3 id="使用-javautilconcurrentfuture">使用 <code>java.util.concurrent.Future</code></h3>
+<ul>
+<li>
+<p>介面 <code>ExecutorService</code> 執行 Callable 工作後的回傳結果屬於 <code>Future&lt;V&gt;</code> class：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Future<span style="color:#f92672">&lt;</span>V<span style="color:#f92672">&gt;</span> future <span style="color:#f92672">=</span> es<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span>callable<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>但是真正工作結果隱藏在 Future 物件裡面，必須再呼叫 <code>get()</code> 去取得結果。回傳型態 <strong>V</strong> 必須和<code>Callable&lt;V&gt;</code>裡定義的泛型物件型態一致：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>V result <span style="color:#f92672">=</span> future<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p>原因：main thread 在前景（foreground）執行工作，而不是 main 的 thread 都在背景（background）執行工作</p>
+</li>
+</ul>
+<blockquote>
+<p>🍪☕ <strong>Little Tips</strong></p>
+<p>餐館內用座位 &amp; 外帶領取號碼牌</p>
+<p>號碼牌：隱含一種「<strong>未來交貨</strong>」之意</p>
+<table>
+<thead>
+<tr>
+<th>noodle shop</th>
+<th>java program</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「號碼牌」</td>
+<td>Java 裡的 <code>Future</code> 物件</td>
+</tr>
+<tr>
+<td>拿「麵」需要號碼牌</td>
+<td>包含在 <code>Future</code> 裡的泛型物件，呼叫 <code>Future</code> 的 <code>get()</code> 方法可取得該泛型物件</td>
+</tr>
+<tr>
+<td>「煮麵」</td>
+<td><code>Callable</code> 介面裡的 <code>call()</code> 方法定義的內容</td>
+</tr>
+<tr>
+<td>「煮麵的師傅」</td>
+<td><code>ExecutorService</code>裡的執行緒</td>
+</tr>
+<tr>
+<td>「餐館」</td>
+<td><code>ExecutorService</code></td>
+</tr>
+<tr>
+<td>「您」</td>
+<td><code>main</code> 執行緒</td>
+</tr>
+</tbody>
+</table>
+<p>如果買東西需要等待，大部分商家<code>Executor Service</code> 都會給您一張號碼牌 <code>Future</code>，等時間差不多再回來領取（<code>get</code>）購買的真正商品。</p>
+<p>領取號碼牌，使用 <code>Callable</code>。</p>
+<p>不領取號碼牌，即是使用 <code>Runnable</code>。</p>
+</blockquote>
+<ul>
+<li>呼叫 <code>Future.get()</code> 方法時，若結果尚未出爐，main 執行緒就會進入等待狀態，比較好的做法：
+<ol>
+<li>呼叫 <code>get()</code> 方法前，應該先丟出（<strong>submit</strong>）所有工作
+<ul>
+<li>因為呼叫 <code>get()</code>之後只能耐心等結果</li>
+</ul>
+</li>
+<li>呼叫 <code>get()</code> 方法前也可以先呼叫 <code>isDone()</code>方法，確認是否工作完成</li>
+</ol>
+<ul>
+<li>取貨前先打電話確認是否完成，以免到達後還需要等待</li>
+<li>呼叫多載的另外一版本 <code>get(long timeout, TimeUnit unit)</code> 方法，明確指定等待時間</li>
+</ul>
+</li>
+</ul>
+<h3 id="關閉-executorservice">關閉 <code>ExecutorService</code></h3>
+<ul>
+<li>
+<p>因為 <code>ExecutorService</code>所建立的執行緒都是 <strong>non-daemon</strong>，JVM 會因為這些執行緒存在，而導致永遠不會結束</p>
+</li>
+<li>
+<p>若要結束程式，必須呼叫 <code>ExecutorService</code> 介面的 <code>shutdown()</code> 方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>es<span style="color:#f92672">.</span><span style="color:#a6e22e">shutdown</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* shutdown() 方法會在所有執行緒工作都結束後，關閉 ExecutorService 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   並終止所有執行緒生命週期，讓程式結束  */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    es<span style="color:#f92672">.</span><span style="color:#a6e22e">awaitTermination</span><span style="color:#f92672">(</span>5<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* 若已執行 shutdown() 指令，但執行緒工作結束後還是無法關閉，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">       可以使用 awaitTermination(5, TimeUnit.SECONDS) 方法傳入等待時間，時間到後會強制關閉*/</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Stopped waiting early&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>    
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="executorservice完整範例"><code>ExecutorService</code>完整範例</h3>
+<ul>
+<li>
+<p>應用 <code>Callable</code>介面和<code>Future</code>類別的 <code>ExecutorService</code>使用方式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CallableTask</span> <span style="color:#66d9ef">implements</span> Callable<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">call</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>20000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: finish job&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: done&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExecutorServiceTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        ExecutorService es <span style="color:#f92672">=</span> Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">newCacheThreadPool</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ExecutorService es = Executors.newFixedThreadPool(5);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        Callable<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> task <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CallableTask<span style="color:#f92672">();</span> <span style="color:#75715e">// 建立Callable實作物件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Future<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> future <span style="color:#f92672">=</span> es<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span>task<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 讓es分派執行緒進行Callable實作物件定義的工作內容，並取得號碼牌Future物件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>  <span style="color:#75715e">// line 17
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            String result <span style="color:#f92672">=</span> future<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span> 
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>result<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            ex<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#75715e">// ln17 ~ 22若呼叫get()方法時工作尚未結束，就會進入等待狀態
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>        es<span style="color:#f92672">.</span><span style="color:#a6e22e">shutdown</span><span style="color:#f92672">();</span> <span style="color:#75715e">// shutdown()在所有執行緒工作結束後，才關閉自己
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: service shutdown&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            es<span style="color:#f92672">.</span><span style="color:#a6e22e">awaitTermination</span><span style="color:#f92672">(</span>5<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">/* 若已執行shutdown()，但所有執行緒工作結束後還是無法關閉，則可以使用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">               awaitTermination(5,TimeUnit.SECONDS) 方法傳入等待時間，時間到後強制關閉*/</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Stopped waiting early&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="executorservice-進階範例"><code>ExecutorService</code> 進階範例</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/lXaXD7Y.png"
+        data-srcset="https://i.imgur.com/lXaXD7Y.png, https://i.imgur.com/lXaXD7Y.png 1.5x, https://i.imgur.com/lXaXD7Y.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/lXaXD7Y.png"
+        title="image-20221221144232769" /></p>
+<ul>
+<li>Java Socket 程式架構提供網路世界兩台獨立主機上的 Java 程式互相連線的機制，一般分為
+<ol>
+<li><strong>主機端</strong>（server）：提供網路連線的程式</li>
+<li><strong>用戶端</strong>（client）：要求網路連線的程式</li>
+</ol>
+</li>
+<li>成功建立連線有以下條件：
+<ol>
+<li>主機端必須提供一個固定位置（包含 IP、port 號），用戶端要連接的話需要先知道這個位置
+<ul>
+<li><strong>IP</strong> : 網路世界的住址，可幫助用戶端在網際網路裡找到單一主機</li>
+<li><strong>Port</strong> :
+<ul>
+<li>主機裡可能有諸多正在執行的程式，可用 post</li>
+<li>可以是 0-65535 之間的任一整數，0-1024的port號已被作業系統保留</li>
+<li>其它程式通常選擇1024之後的編號作為自己程式的 port 號</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Java 的 Socket 主要使用 <code>ServerSocket</code> 以及 <code>Socket</code> 兩個類別
+<ul>
+<li>主機端用 <code>ServerSocket</code> 物件的 <strong>listen()</strong> 方法監聽來自用戶端的連線請求</li>
+<li>用戶端用 <code>Socket</code> 物件和主機端做連接</li>
+<li>主機端用 <code>ServerSocket</code> 物件的 <strong>accept()</strong> 方法來串接用戶端的 <code>Socket</code> 物件</li>
+</ul>
+</li>
+<li>主機端和用戶端連接之後，就可以用以下方法來傳輸資料
+<ul>
+<li><code>Socket</code> 物件的 <code>getInputStream()</code></li>
+<li><code>Socket</code> 物件的 <code>getOutputStream()</code></li>
+</ul>
+</li>
+<li>資料傳輸完成後，記得呼叫 <code>Socket</code> 物件的 <code>close()</code> 方法結束相關資源</li>
+</ol>
+</li>
+</ul>
+<h4 id="範例一socketserversstartupjava-扮演主機端程式的角色">範例一：<code>SocketServersStartup.java</code> 扮演主機端程式的角色</h4>
+<ul>
+<li>
+<p>啟動五個執行緒，分別使用 port# 10000 - 10004 扮演主機端角色，等待/傾聽用戶端連線的要求</p>
+</li>
+<li>
+<p>如果用戶端連線成功，主機端在停頓五秒後，將輸出 <code>feedback_from_port 號</code> 的訊息給客戶端</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SocketServerStartup</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> 10000<span style="color:#f92672">;</span> port <span style="color:#f92672">&lt;</span> 10005<span style="color:#f92672">;</span> port<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">new</span> Thread<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> MySocketServer<span style="color:#f92672">(</span>port<span style="color:#f92672">)).</span><span style="color:#a6e22e">start</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MySocketServer</span> <span style="color:#66d9ef">implements</span> Runnable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> port<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    MySocketServer<span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> port<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> port<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">run</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Server &#34;</span> <span style="color:#f92672">+</span> port <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: Listening...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 聆聽 port 是否被呼叫
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                ServerSocket serverSock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ServerSocket<span style="color:#f92672">(</span>port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 取得 Socket 連線
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                Socket clientSock <span style="color:#f92672">=</span> serverSock<span style="color:#f92672">.</span><span style="color:#a6e22e">accept</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 暫停 5 秒
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">sleep</span><span style="color:#f92672">(</span>5000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 輸出訊息給 Socket 的用戶端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                PrintWriter pw <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PrintWriter<span style="color:#f92672">(</span>clientSock<span style="color:#f92672">.</span><span style="color:#a6e22e">getOutputStream</span><span style="color:#f92672">(),</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                pw<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;feedback_from_&#34;</span> <span style="color:#f92672">+</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 關閉 Socket 網路連線
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                serverSock<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                clientSock<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="範例二--建立類別-singlethreadtest-驗證使用單一執行緒依序訪問五個-socket-主機">範例二 : 建立類別 <code>SingleThreadTest</code> 驗證使用單一執行緒依序訪問五個 Socket 主機</h4>
+<ul>
+<li>使用單一執行緒逐 port 連線主機的結果，必須使用 <code>5sec * 5 = 25sec</code> 的時間</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;SingleThread starts at: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    String host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> 10000<span style="color:#f92672">;</span> port <span style="color:#f92672">&lt;</span> 10005<span style="color:#f92672">;</span> port<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>Socket sock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket<span style="color:#f92672">(</span>host<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>               Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>sock<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">());)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            String feedback <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Call &#34;</span> <span style="color:#f92672">+</span> host <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> port <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                       <span style="color:#e6db74">&#34;, and get: &#34;</span> <span style="color:#f92672">+</span> feedback <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; at &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NoSuchElementException <span style="color:#f92672">|</span> IOException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Error talking to &#34;</span> <span style="color:#f92672">+</span> host <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="範例三--建立類別-socketclientcallable-實作-callable-介面">範例三 : 建立類別 <code>SocketClientCallable</code> 實作 <code>Callable</code> 介面</h4>
+<ul>
+<li>用以定義多執行緒訪問 <code>Socket</code> 主機的工作內容</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SocketClientCallable</span> <span style="color:#66d9ef">implements</span> Callable<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String host<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> port<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">SocketClientCallable</span><span style="color:#f92672">(</span>String host<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> port<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">host</span> <span style="color:#f92672">=</span> host<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> port<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">call</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>Socket sock <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Socket<span style="color:#f92672">(</span>host<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>              Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner<span style="color:#f92672">(</span>sock<span style="color:#f92672">.</span><span style="color:#a6e22e">getInputStream</span><span style="color:#f92672">());</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            String feedback <span style="color:#f92672">=</span> scanner<span style="color:#f92672">.</span><span style="color:#a6e22e">next</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> feedback<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="範例四--建立類別-multithreadtest-驗證使用多執行緒訪問-5-個-socket-主機的情況">範例四 : 建立類別 <code>MultiThreadTest</code> 驗證使用多執行緒訪問 5 個 Socket 主機的情況</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MultiThreadTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MultiThreadTest starts at: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        ExecutorService es <span style="color:#f92672">=</span> Executors<span style="color:#f92672">.</span><span style="color:#a6e22e">newCachedThreadPool</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        String host <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;localhost&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        Map<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">,</span> Future<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;&gt;</span> callables <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 依不同 port 號送出callable工作給執行緒池執行
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> prot <span style="color:#f92672">=</span> 10000<span style="color:#f92672">;</span> port <span style="color:#f92672">&lt;</span> 10005<span style="color:#f92672">;</span> port<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            SockeClientCallable callable <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SocketClientCallable<span style="color:#f92672">(</span>host<span style="color:#f92672">,</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            Future<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> future <span style="color:#f92672">=</span> es<span style="color:#f92672">.</span><span style="color:#a6e22e">submit</span><span style="color:#f92672">(</span>callable<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 定義future物件承接執行結果,但先不呼叫get()方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            callables<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span>port<span style="color:#f92672">,</span> future<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 將future物件先存在callables，以Integer型別的port作為鍵值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 關閉 ExecutorService
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        es<span style="color:#f92672">.</span><span style="color:#a6e22e">shutdown</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            es<span style="color:#f92672">.</span><span style="color:#a6e22e">awaitTermination</span><span style="color:#f92672">(</span>5<span style="color:#f92672">,</span> TimeUnit<span style="color:#f92672">.</span><span style="color:#a6e22e">SECONDS</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>InterruptedException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Stopped waiting &#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 取回結果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Integer port <span style="color:#f92672">:</span> callables<span style="color:#f92672">.</span><span style="color:#a6e22e">keySet</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>  <span style="color:#75715e">// ln 26
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            Future<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> future <span style="color:#f92672">=</span> callables<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                String feedback <span style="color:#f92672">=</span> future<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Call &#34;</span> <span style="color:#f92672">+</span> host <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>                    port <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, and get: &#34;</span> <span style="color:#f92672">+</span> feedback <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; at &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>ExecutionException <span style="color:#f92672">|</span> InterruptedException ex<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Error talking to &#34;</span> <span style="color:#f92672">+</span> host <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;:&#34;</span> <span style="color:#f92672">+</span> port<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#75715e">// ln 26~: 在callables中找出所有Future物件，並呼叫get()取回結果
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>&hellip;</p>
 <h2 id="使用-fork-join-框架同時執行多樣工作">使用 Fork-Join 框架同時執行多樣工作</h2>
+<h3 id="平行處理的策略">平行處理的策略</h3>
+<ul>
+<li>
+<p>為了使多個CPU運算效能最佳化，可以讓程式同時執行工作，「平行處理（<code>parallelism</code>）」策略很重要</p>
+<ol>
+<li>
+<p>將工作分切成小段，各自完成後工作就可以解決</p>
+<ul>
+<li>稱為 <code>divide and conquer</code> 處理策略</li>
+<li>使用前需確認這些小段工作可以平行處理</li>
+</ul>
+</li>
+<li>
+<p>分割時注意硬體效能問題，切割太細可能有反效果</p>
+<ul>
+<li>
+<p>如果工作內容需要大量 CPU 計算而非 I/O 存取，需考慮 CPU 數量</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> Runtime<span style="color:#f92672">.</span><span style="color:#a6e22e">getRuntime</span><span style="color:#f92672">().</span><span style="color:#a6e22e">availableProcessors</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>平行處理策略第一步：切割資料讓多執行緒可以平行執行</p>
+<p>如何切割？</p>
+<p>最理想情況：讓所有 CPU 可以充分被所有執行緒利用，直到工作結束</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="使用平均分配方式發揮-cpu-計算量能">使用「平均分配」方式發揮 CPU 計算量能</h4>
+<ul>
+<li>讓每一個執行緒各自占用不同的 CPU 處理相同分量的工作，容易因為以下原因導致無法發揮硬體最高性能
+<ol>
+<li>每一個 CPU 可能效率不同</li>
+<li>某些 CPU 可能也在執行其它程式</li>
+</ol>
+</li>
+<li>讓十位同學打掃相同面積的空地，因為每個人效率不同，不會同時完成</li>
+</ul>
+<h4 id="使用工作竊取方式發揮-cpu-計算量能">使用「工作竊取」方式發揮 CPU 計算量能</h4>
+<ul>
+<li>稱為「工作竊取」的平行運算架構：平均切割工作，但數量遠多於執行緒個數
+<ol>
+<li>工作不會馬上完成，每一個執行緒會有很多待辦工作在自己的佇列</li>
+<li>若某執行緒已完成自己的工作，可以竊取其它人的工作</li>
+<li>合適的切割份量不容易達成
+<ul>
+<li>切太多：切割本身即是負擔</li>
+<li>切太少：無法充分利用 CPU 資源</li>
+</ul>
+</li>
+<li>能者多勞理念的實踐 — Java 7 推出 <code>Fork-Join</code>框架</li>
+</ol>
+</li>
+</ul>
+<h3 id="套用-fork-join-框架">套用 <code>Fork-Join</code> 框架</h3>
+<h4 id="範例一使用單一執行緒處理">範例一：使用單一執行緒處理</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SingleThreadTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">maind</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> bigData <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>1024 <span style="color:#f92672">*</span> 1024 <span style="color:#f92672">*</span> 256<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> bigData<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            bigData<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> ThreadLocalRandom<span style="color:#f92672">.</span><span style="color:#a6e22e">current</span><span style="color:#f92672">().</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> max <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">MIN_VALUE</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> value <span style="color:#f92672">:</span> bigData<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>value <span style="color:#f92672">&gt;</span> max<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                max <span style="color:#f92672">=</span> value<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Found max value: &#34;</span> <span style="color:#f92672">+</span> max<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="範例二使用-fork-join-框架平行處理">範例二：使用 <code>Fork-Join</code> 框架平行處理</h4>
+<ul>
+<li>
+<p><code>ExecutorService</code>使用 cached thread pool 或 fixed thread pool 執行 <code>Callable</code> 介面定義的工作內容</p>
+</li>
+<li>
+<p><code>Fork-Join</code> 框架則可以直接使用 <code>ExecutorService</code> 特化的子類別 <code>java.util.concurrent.ForkJoinPool</code> 執行抽象類別 <code>java.util.concurrent.ForkJoinTask&lt;V&gt;</code> 定義的工作內容</p>
+<ol>
+<li>
+<p><code>ForkJoinTask</code>物件代表需要執行的工作，可解釋為分進合擊</p>
+<ul>
+<li>一開始分頭進行，逐漸會師合併結果</li>
+</ul>
+</li>
+<li>
+<p><code>ForkJoinTask</code>物件包含要處理的資料和處理方式，類似 <code>Runnable</code> 以及 <code>Callable</code></p>
+</li>
+<li>
+<p>巨大量工作可以由 Fork-Join pool 內少數執行緒處理</p>
+<ul>
+<li>每個執行緒會工作滿檔，可以發揮硬體的極致性能</li>
+</ul>
+</li>
+<li>
+<p>開發者通常繼承 <code>ForkJoinTask</code>子類別，再實作 <code>compute()</code> 方法</p>
+<ul>
+<li>
+<p><code>RecursiveAction</code> 的 <em>compute()</em> 方法沒有回傳結果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RecursiveAction</span> <span style="color:#66d9ef">extends</span> ForkJoinTask<span style="color:#f92672">&lt;</span>Void<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">compute</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>RecursiveTask</code> 的 <em>compute()</em> 方法需要回傳結果</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RecursiveTask</span><span style="color:#f92672">&lt;</span>V<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">extends</span> ForkJoinTask<span style="color:#f92672">&lt;</span>V<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">abstract</span> V <span style="color:#a6e22e">compute</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="方法-compute-的處理邏輯">方法 <code>compute()</code> 的處理邏輯</h4>
+<ul>
+<li>
+<p>建立類別 <code>FindMaxTask</code> 繼承 <code>RecursiveTask</code>，使用 <code>Fork-Join</code> 框架在 <code>1G</code> 的 <code>int</code> 陣列裡找出最大的數字</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> RESULT <span style="color:#a6e22e">compute</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>    <span style="color:#75715e">// pseudocode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>DATA_SMALL_ENOUGH<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        PROCESS_DATA
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> RESULT<span style="color:#f92672">;</span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        SPLIT_DATA_INTO_LEFT_AND_RIGHT_PARTS
+</span></span><span style="display:flex;"><span>        TASK t1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TASK<span style="color:#f92672">(</span>LEFT_DATA<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 建立一個稱為t1的ForkJoinTask處理左半部工作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        t1<span style="color:#f92672">.</span><span style="color:#a6e22e">fork</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 呼叫 t1.fork() 做非同步處理（分進、分頭行事）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        TASK t2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> TASK<span style="color:#f92672">(</span>RIGHT_DATA<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 建立另一個稱為t2的ForkJoinTask處理右半部工作
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> COMBINE<span style="color:#f92672">(</span>t2<span style="color:#f92672">.</span><span style="color:#a6e22e">compute</span><span style="color:#f92672">(),</span> t1<span style="color:#f92672">.</span><span style="color:#a6e22e">join</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+<h5 id="圖解分進合擊">圖解分進合擊</h5>
+<ol>
+<li>
+<p>原始資料處理量太大，分兩部分派給 <code>t1</code>、<code>t2</code>兩個 <code>ForkJoinTask</code></p>
+</li>
+<li>
+<p>呼叫方法：</p>
+<ul>
+<li>
+<p><strong>分進</strong> : 呼叫 <code>t1.fork()</code> 方法調用一個執行緒處理資料</p>
+<p><strong>合擊</strong> : 呼叫 <code>join()</code> 時取回結果
+→ 目前累計一個計算結果未取回</p>
+</li>
+<li>
+<p>呼叫 <code>t2.compute()</code>時候，若資料處理量仍太大，持續進行切割工作</p>
+</li>
+</ul>
+</li>
+<li>
+<p>累計 2 個計算結果未取回</p>
+</li>
+<li></li>
+</ol>
+<h3 id="fork-join-框架的使用建議"><code>Fork-Join</code> 框架的使用建議</h3>
+<p>Fork-Join 框架幾個需要注意的地方：</p>
+<ol>
+<li>預設每核 CPU 會建立一個對應的執行緒執行工作</li>
+<li>使用時應該先排除 <code>I/O</code> 或是其它可能卡住執行緒工作的瓶頸</li>
+<li>了解自己的硬體
+<ul>
+<li><strong>單個 CPU 時，使用 Fork-Join 框架反而會比較慢</strong></li>
+<li>有些 CPU 只使用單核時，會比使用多核快，因此使用 Fork-Join 框架的成效感覺更少</li>
+</ul>
+</li>
+<li>相較於單一執行緒的循序執行，<strong>平行執行會有先切割工作的額外負擔，延長執行時間</strong></li>
+</ol>
 <hr>
 <h1 id="07-使用-jdbc-建立資料庫連線">07 使用 JDBC 建立資料庫連線</h1>
 <h2 id="了解-databasedbms-和-sql">了解 Database、DBMS 和 SQL</h2>
