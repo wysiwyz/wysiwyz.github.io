@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  6179 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  8587 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-18T17:50:34+08:00","dateModified": "2022-12-18T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6179 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;30 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8587 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;41 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -163,13 +163,13 @@
   </ul>
 
   <ul>
-    <li><a href="#nio2-基礎">NIO.2 基礎</a>
+    <li><a href="#nio2-基礎"><code>NIO.2</code> 基礎</a>
       <ul>
         <li><a href="#javajofile限制"><code>java.jo.File</code>限制</a></li>
         <li><a href="#java-io-套件發展歷史">Java I/O 套件發展歷史</a></li>
         <li><a href="#檔案系統路徑和檔案">檔案系統、路徑和檔案</a></li>
         <li><a href="#symbolic-link-檔案">Symbolic Link 檔案</a></li>
-        <li><a href="#nio2-的基本架構">NIO.2 的基本架構</a></li>
+        <li><a href="#nio2-的基本架構"><code>NIO.2</code> 的基本架構</a></li>
       </ul>
     </li>
     <li><a href="#使用-path-介面操作檔案目錄">使用 Path 介面操作檔案/目錄</a>
@@ -177,14 +177,14 @@
         <li><a href="#path-介面">Path 介面</a></li>
         <li><a href="#path-介面主要功能">Path 介面主要功能</a></li>
         <li><a href="#移除路徑裡的多餘組成">移除路徑裡的多餘組成</a></li>
-        <li><a href="#建立子路徑">建立子路徑</a></li>
-        <li><a href="#結合-2-個路徑">結合 2 個路徑</a></li>
-        <li><a href="#建立連接-2-個路徑的路徑">建立連接 2 個路徑的路徑</a></li>
+        <li><a href="#建立子路徑---subpath">建立子路徑 - <code>subpath()</code></a></li>
+        <li><a href="#結合-2-個路徑---resolve">結合 2 個路徑 - <code>resolve()</code></a></li>
+        <li><a href="#建立連接-2-個路徑的路徑---relativize">建立連接 2 個路徑的路徑 - <code>relativize()</code></a></li>
         <li><a href="#hard-link">Hard Link</a></li>
         <li><a href="#處理-symbolic-link">處理 Symbolic Link</a></li>
       </ul>
     </li>
-    <li><a href="#使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查刪除複製移動</a>
+    <li><a href="#使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查、刪除、複製、移動</a>
       <ul>
         <li><a href="#處理檔案">處理檔案</a></li>
         <li><a href="#檢查檔案--目錄是否存在">檢查檔案 / 目錄是否存在</a></li>
@@ -199,7 +199,7 @@
     </li>
     <li><a href="#使用-files-類別操作-channel-io-和-stream-io-讀寫檔案">使用 Files 類別操作 Channel I/O 和 Stream I/O 讀寫檔案</a>
       <ul>
-        <li><a href="#介面-channel-和類別-bytebuffer">介面 Channel 和類別 ByteBuffer</a></li>
+        <li><a href="#介面-channel-和類別-bytebuffer">介面 Channel 和類別 <code>ByteBuffer</code></a></li>
         <li><a href="#隨機存取檔案">隨機存取檔案</a></li>
         <li><a href="#對文字檔提供-buffered-io-方法">對文字檔提供 Buffered I/O 方法</a></li>
         <li><a href="#取得位元串流物件的方法">取得位元串流物件的方法</a></li>
@@ -298,9 +298,28 @@
   </ul>
 
   <ul>
-    <li><a href="#了解-databasedbms-和-sql">了解 Database、DBMS 和 SQL</a></li>
-    <li><a href="#eclipse-連線並存取資料庫">Eclipse 連線並存取資料庫</a></li>
-    <li><a href="#使用-jdbc">使用 JDBC</a></li>
+    <li><a href="#了解-databasedbms-和-sql">了解 Database、DBMS 和 SQL</a>
+      <ul>
+        <li></li>
+        <li><a href="#使用sql存取資料庫">使用<code>SQL</code>存取資料庫</a></li>
+        <li><a href="#derby-資料庫介紹">Derby 資料庫介紹</a></li>
+        <li><a href="#操作-derby-資料庫">操作 Derby 資料庫</a></li>
+        <li><a href="#heading"></a></li>
+      </ul>
+    </li>
+    <li><a href="#eclipse-連線並存取資料庫">Eclipse 連線並存取資料庫</a>
+      <ul>
+        <li><a href="#連線資料庫">連線資料庫</a></li>
+        <li><a href="#存取資料表">存取資料表</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-jdbc">使用 JDBC</a>
+      <ul>
+        <li><a href="#jdbc-api--概觀">JDBC API  概觀</a></li>
+        <li><a href="#專案引用資料庫驅動函式庫">專案引用資料庫驅動函式庫</a></li>
+        <li><a href="#認識-jdbc-驅動函式庫-jar-的組成">認識 JDBC 驅動函式庫 JAR 的組成</a></li>
+      </ul>
+    </li>
     <li><a href="#jdbc-進行交易">JDBC 進行交易</a></li>
     <li><a href="#使用-jdbc-41-的-rowsetprovider-和-rowsetfactory">使用 JDBC 4.1 的 RowSetProvider 和 RowSetFactory</a></li>
   </ul>
@@ -1994,55 +2013,1227 @@ java -ea HelloWorld
 </span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span></code></pre></div><h2 id="使用序列化技術讀寫物件">使用序列化技術讀寫物件</h2>
-<p>🚧🚧🚧🚧🚧</p>
 <h3 id="java-裡的資料保存-persistence">Java 裡的資料保存 <em>Persistence</em></h3>
+<p>將資料儲存於永久性的儲存硬體中，稱為「<strong>persistence</strong>」</p>
+<ol>
+<li>支援 persistence 的 Java 物件可儲存於本機硬體，或經由網路到另一個硬體裝置
+<ul>
+<li>未支援 persistence 的 Java 物件只能存活於執行中的 JVM</li>
+</ul>
+</li>
+<li>序列化 <em>serialization</em>：Java 將記憶體中的物件狀態儲存於硬體，成為「<strong>實體檔案</strong>」的標準機制
+<ul>
+<li>未來可用來建構物件的副本或是還原物件狀態</li>
+</ul>
+</li>
+<li>支援序列化的物件必須實作 <code>java.io.Serializable</code> 介面</li>
+</ol>
+<ul>
+<li>該介面是一個「<strong>maker interface</strong>」，沒有任何需要實作的方法</li>
+<li>類別實作此介面只是讓 Java 知道其物件有具備序列化的能力，具體序列化步驟由 Java 掌控</li>
+</ul>
 <h3 id="序列化和物件圖譜">序列化和物件圖譜</h3>
+<ul>
+<li>當物件被序列化時，只有「<strong>欄位值</strong>」會被保留
+<ul>
+<li>欄位值包含資料，也包含物件的狀態</li>
+<li>若物件的該欄位是參考型別，且被參考的物件也支援序列化，則該欄位物件也會一併被序列化</li>
+</ul>
+</li>
+<li><strong>物件圖譜 object graphs</strong>：
+<ul>
+<li>物件欄位參照其它物件，被參照的物件又可以再參照更多物件&hellip;所形成的樹狀結構</li>
+</ul>
+</li>
+</ul>
 <h3 id="不需要參加序列化的欄位">不需要參加序列化的欄位</h3>
+<ul>
+<li>
+<p>物件序列化時，預設所有欄位都會一併進行序列化</p>
+</li>
+<li>
+<p>如果欄位所屬類別沒有實作 <code>java.io.Serializable</code>，會中斷執行並丟出例外 <code>NotSerializableException</code></p>
+</li>
+<li>
+<p>若物件欄位只是記錄當下系統狀態的某些資訊（ex. 目前時間），屬於「<strong>短暫 <em>transient</em></strong>」資訊</p>
+<ul>
+<li>不需要再序列化過程中被保留</li>
+<li>重建副本時也不需要回復</li>
+<li>此類欄位不需要參與序列化流程，可以加上「<strong>transient</strong>」宣告</li>
+</ul>
+</li>
+<li>
+<p>宣告「<strong>static</strong>」的欄位和物件狀態無關，其值在物件序列化過程中也不會被保留</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#66d9ef">implements</span> Serializable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Set<span style="color:#f92672">&lt;</span>Shirt<span style="color:#f92672">&gt;</span> shirts <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashSet<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> staticField <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>        <span style="color:#75715e">// static
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">transient</span> <span style="color:#66d9ef">int</span> transientField <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>  <span style="color:#75715e">// transient
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><ul>
+<li>宣告 <code>transient</code> 以及 <code>static</code> 的欄位在「反序列化 / 還原」程序時
+<ol>
+<li>static : 會得到類別內原本定義的宣告值</li>
+<li>transient : 會得到該型態的預設值</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="定義物件保存的版本號碼">定義物件保存的版本號碼</h3>
+<ul>
+<li>
+<p><strong>序列化</strong>：保留物件「<code>當下狀態（欄位值）</code>」，並未保留類別架構</p>
+</li>
+<li>
+<p><strong>反序列化</strong>：將「<code>過去物件某個狀態</code>」，搭配「<code>目前類別架構</code>」進行還原</p>
+<ul>
+<li>
+<p>若還原時發現「<strong>過去物件狀態</strong>」和「<strong>目前類別架構</strong>」不一致，可能產生不預期的問題或錯誤</p>
+<ul>
+<li>過去某欄位現在已經不存在</li>
+<li>類別後來新增必要欄位，序列化卻沒有該欄位</li>
+</ul>
+</li>
+<li>
+<p>為了能夠使序列化後的檔案可以順利的被反序列化還原成物件：</p>
+<ol>
+<li>
+<p>在可序列化之類別定義一個欄位 <code>serialVersionUID</code> 作為版本控管號碼</p>
+<ul>
+<li>
+<p>每次增減類別內欄位時，都應該同步修改版本號碼並且記錄</p>
+</li>
+<li>
+<p>版本控管號碼必須宣告為 <strong>static</strong> 且 <strong>long</strong></p>
+<p><code>private static final long serialVersionUID = 1L;</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>InvalidClassException</code> 預先保護機制</p>
+<ul>
+<li>假設目前版本號為 1，序列化後得到的檔案內存版本也會是 1</li>
+<li>後來類別增減了欄位，版本修改為 2</li>
+<li>如果以「版本#2的最新類別定義」來還原「序列化時版本#1的檔案」會拋出上述錯誤</li>
+</ul>
+</li>
+<li>
+<p>若類別實作 <code>Serializable</code> 介面，但未宣告<code>serialVersionUID</code></p>
+<ul>
+<li>
+<p>Java 預設將主動宣告並提供欄位值，該值將考慮開發環境因素（IDE工具或Java版本）計算出一個複雜的長整數</p>
+<p><code>private static final long serialVersionUID =3696676879791539369L;</code></p>
+</li>
+<li>
+<p>此長整數在每次編譯階段，即使只是某方法內字串微調，也可能因為環境再改變而自動改變版本號碼</p>
+</li>
+<li>
+<p>可能導致先前序列化的檔案因為版本號改變，而無法還原回物件</p>
+</li>
+<li>
+<p>建議開發者應該自己宣告 <code>serialVersionUID</code> 欄位</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>&hellip;</p>
 <h3 id="序列化和反序列化範例">序列化和反序列化範例</h3>
+<p>以下範例將物件序列化產出檔案，再將檔案還原回物件，特殊情境：</p>
+<ul>
+<li>class Order 底下含數個 class Shirt(s)，其中 Shirt(s) 類別內的價錢欄位會因時因地改變，序列化過程中不需要特別保存，<strong>以 transient 宣告</strong></li>
+<li>Java 給物件可以控制自身序列化和反序列化的流程
+<ul>
+<li>序列化時可以額外寫入 <code>java.util.Date</code>物件，在反序列化的時候讀出，可知進行序列化時間點</li>
+</ul>
+</li>
+<li>反序列化時，希望 Shirt(s) 類別內的價錢欄位可以參考成本價，再加上 50 元管銷費用</li>
+</ul>
 <h4 id="1-class-shirt">1. class Shirt</h4>
-<h4 id="2-class-order">2. class Order</h4>
-<h3 id="3-serialization-and-de-serialization">3. Serialization and De-serialization</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Shirt</span> <span style="color:#66d9ef">implements</span> Serializable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> serialVersionUID <span style="color:#f92672">=</span> 1L<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> String brand<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> quantity<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">double</span> cost<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">transient</span> <span style="color:#66d9ef">double</span> price<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Shirt</span><span style="color:#f92672">(</span>String brand<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> quantity<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> cost<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">brand</span> <span style="color:#f92672">=</span> brand<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">quantity</span> <span style="color:#f92672">=</span> quantity<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cost</span> <span style="color:#f92672">=</span> cost<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> 2 <span style="color:#f92672">*</span> cost<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// This method is called post-serialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// 要修改Java反序列化(將物件自檔案中讀出)的流程，必須定義本方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readObject</span><span style="color:#f92672">(</span>ObjectInputStream ois<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// ois.defaultReadObject() 是物件原本的反序列化流程，仍須呼叫此
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		ois<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultReadObject</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// perform other initiliazation 將檔案還原成物件後，price欄位+50元
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cost</span> <span style="color:#f92672">+</span> 50<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Shirt: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">brand</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span> 
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Quantity: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">quantity</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span> 
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Cost: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">cost</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;Price: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;------------------\n&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h4 id="2-class-order">2. class Order</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Order</span> <span style="color:#66d9ef">implements</span> Serializable <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> serialVersionUID <span style="color:#f92672">=</span> 1L<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>Shirt<span style="color:#f92672">&gt;</span> shirts <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> staticField <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">transient</span> <span style="color:#66d9ef">int</span> transientField <span style="color:#f92672">=</span> 100<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Order</span><span style="color:#f92672">(</span>Shirt<span style="color:#f92672">...</span> shirts<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Shirt s <span style="color:#f92672">:</span> shirts<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">shirts</span><span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>		staticField <span style="color:#f92672">=</span> 99<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		transientField <span style="color:#f92672">=</span> 99<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;--- Constructor is launched ---&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeObject</span><span style="color:#f92672">(</span>ObjectOutputStream oos<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 使用此方法修改Java序列化(物件寫入檔案)的流程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		oos<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultWriteObject</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// keep the serialization date
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		Date now <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		oos<span style="color:#f92672">.</span><span style="color:#a6e22e">writeObject</span><span style="color:#f92672">(</span>now<span style="color:#f92672">);</span> <span style="color:#75715e">// 將日期物件寫入檔案
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\nSerialized at: &#34;</span> <span style="color:#f92672">+</span> now <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// This method is called post-serialization (修改Java反序列化(檔案還原成物件)的流程)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readObject</span><span style="color:#f92672">(</span>ObjectInputStream ois<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException<span style="color:#f92672">,</span> ClassNotFoundException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		ois<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultReadObject</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 進行物件原本的反序列化流程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\nRestored from date: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>Date<span style="color:#f92672">)</span> ois<span style="color:#f92672">.</span><span style="color:#a6e22e">readObject</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 讀出序列化時的日期物件，再轉型回Date型態
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Restored at: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		StringBuilder sb <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StringBuilder<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Order Summary ===\n&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span>Shirt s <span style="color:#f92672">:</span> shirts<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span>s<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>		sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;staticField = &#34;</span> <span style="color:#f92672">+</span> staticField<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\ntransientField = &#34;</span> <span style="color:#f92672">+</span> transientField<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		sb<span style="color:#f92672">.</span><span style="color:#a6e22e">append</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\n------------------&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> sb<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="3-serialization-and-de-serialization">3. Serialization and De-serialization</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SerializeOrder</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		String output <span style="color:#f92672">=</span> System<span style="color:#f92672">.</span><span style="color:#a6e22e">getProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user.dir&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\\src\\course\\c03\\ser\\file\\Order.ser&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		serialization<span style="color:#f92672">(</span>output<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//	System.out.println(&#34;\n-----------------------------------------\n&#34;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//	deSerialization(output);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">serialization</span><span style="color:#f92672">(</span>String output<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Create a shirts Order
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		Shirt s1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Shirt<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Brand1&#34;</span><span style="color:#f92672">,</span> 100<span style="color:#f92672">,</span> 100<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		Shirt s2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Shirt<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Brand2&#34;</span><span style="color:#f92672">,</span> 100<span style="color:#f92672">,</span> 200<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		Shirt s3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Shirt<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Brand3&#34;</span><span style="color:#f92672">,</span> 100<span style="color:#f92672">,</span> 300<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		Order o <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Order<span style="color:#f92672">(</span>s1<span style="color:#f92672">,</span> s2<span style="color:#f92672">,</span> s3<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		Order<span style="color:#f92672">.</span><span style="color:#a6e22e">staticField</span> <span style="color:#f92672">=</span> 22<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Write out the Order
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>FileOutputStream fos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream<span style="color:#f92672">(</span>output<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>				ObjectOutputStream out <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectOutputStream<span style="color:#f92672">(</span>fos<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			out<span style="color:#f92672">.</span><span style="color:#a6e22e">writeObject</span><span style="color:#f92672">(</span>o<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException i<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			i<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;=== Before Serialization, &#34;</span> <span style="color:#f92672">+</span> o<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deSerialization</span><span style="color:#f92672">(</span>String output<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Read the Order back in
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>FileInputStream fis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream<span style="color:#f92672">(</span>output<span style="color:#f92672">);</span> ObjectInputStream in <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectInputStream<span style="color:#f92672">(</span>fis<span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			Order restoredOrder <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Order<span style="color:#f92672">)</span> in<span style="color:#f92672">.</span><span style="color:#a6e22e">readObject</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;=== After Serialization, &#34;</span> <span style="color:#f92672">+</span> restoredOrder<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>ClassNotFoundException <span style="color:#f92672">|</span> IOException i<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			i<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<ol>
+<li><strong>Shirt</strong> 物件生成時的 price 都是 cost 的 2 倍，還原時在 <code>readObject()</code> 方法被改成 <code>price = cost + 50</code></li>
+<li><strong>Order</strong>物件序列化時，在<code>writeObject()</code>被特別寫入的日期，還原時在<code>readObject()</code>方法可一併輸出</li>
+<li><strong>static 欄位</strong> 會得到類別內原本定義的宣告值</li>
+<li><strong>transient 欄位</strong> 會得到該型態的預設值</li>
+</ol>
+</blockquote>
 <hr>
-<h1 id="04-nio2">04 NIO.2</h1>
-<h2 id="nio2-基礎">NIO.2 基礎</h2>
+<h1 id="04-nio2">04 <code>NIO.2</code></h1>
+<h2 id="nio2-基礎"><code>NIO.2</code> 基礎</h2>
 <h3 id="javajofile限制"><code>java.jo.File</code>限制</h3>
+<p>基礎 I/O 存在一些不方便的地方：</p>
+<ol>
+<li>很多方法遇到錯誤時回傳 <em>false</em>，而非丟出例外</li>
+<li>缺少很多存取檔案常用功能，ex. 複製 <em>copy</em>、移動 <em>move</em></li>
+<li>不是每一個作業系統都支援重新命名</li>
+<li>不支援 <em>symbolic link</em> 類型的檔案</li>
+<li>對於「<code>metadata</code>（描述檔案的資料）」檔案的取得很有限
+<ul>
+<li>例如：檔案權限、檔案擁有者、安全性設定</li>
+</ul>
+</li>
+<li>存取「<code>metadata</code>（描述檔案的資料）」檔案沒有效率
+<ul>
+<li>一次只能存取一個，每次呼叫都會轉呼叫系統指令 <code>system call</code></li>
+</ul>
+</li>
+<li>很多方法遇到檔案較大時，會呈現卡住狀態（<em>hang</em>），久無回應甚至當掉</li>
+<li>遞迴目錄結構時，遇到 <em>symbolic link</em> 類型的檔案無法適當處理</li>
+<li>遇到新型態作業系統或新檔案型態時，不易擴充 <code>API</code></li>
+</ol>
 <h3 id="java-io-套件發展歷史">Java I/O 套件發展歷史</h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th><code>JSR</code></th>
+<th>版本</th>
+<th>套件（Package）</th>
+<th>note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I/O</td>
+<td></td>
+<td>Java 2</td>
+<td><code>java.io.*</code></td>
+<td></td>
+</tr>
+<tr>
+<td>New I/O (<code>NIO</code>)</td>
+<td>51</td>
+<td>Java 4</td>
+<td><code>java.nio.*</code></td>
+<td>ex. Channel I/O</td>
+</tr>
+<tr>
+<td>New I/O 2 (<code>NIO.2</code>)</td>
+<td>203</td>
+<td>Java 7</td>
+<td><code>java.nio.file.*</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="檔案系統路徑和檔案">檔案系統、路徑和檔案</h3>
+<p><code>NIO.2</code> 裡面的檔案 / 目錄都以路徑（path）來表達，可分為絕對路徑 <em>absolute path</em> 和相對路徑 <em>relative path</em></p>
+<ol>
+<li><strong>絕對路徑</strong>
+<ul>
+<li>包含根目錄，ex. 「<code>/</code>」或 Windows 的「<code>C:</code>」</li>
+<li>定位檔案位置必須</li>
+</ul>
+</li>
+<li><strong>相對路徑</strong>
+<ul>
+<li>必須再結合絕對路徑才能找到檔案真正位置</li>
+</ul>
+</li>
+</ol>
 <h3 id="symbolic-link-檔案">Symbolic Link 檔案</h3>
-<h3 id="nio2-的基本架構">NIO.2 的基本架構</h3>
+<ul>
+<li>
+<p>又稱為 <code>symlink</code> 或者 <code>soft link</code>，並不是捷徑（<em>short cut</em>）</p>
+</li>
+<li>
+<p>執行時以系統管理員身分開啟 cmd，輸入指令</p>
+<pre tabindex="0"><code class="language-TERMINAL" data-lang="TERMINAL">mklink $(連結檔案) $(連結來源檔案)
+</code></pre><table>
+<thead>
+<tr>
+<th>comparison</th>
+<th><code>symlink</code></th>
+<th><code>short cut</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>檔案類型不同</td>
+<td>.symlink<!-- raw HTML omitted --><code>.sl</code></td>
+<td>捷徑<!-- raw HTML omitted --><code>.sc</code></td>
+</tr>
+<tr>
+<td>檔案大小不同</td>
+<td>0 KB</td>
+<td>2 KB</td>
+</tr>
+<tr>
+<td>分別複製兩者時</td>
+<td>複製 <strong>連結來源檔案</strong>，<!-- raw HTML omitted -->非 <code>symlink</code> 本身</td>
+<td>複製捷徑本身</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="nio2-的基本架構"><code>NIO.2</code> 的基本架構</h3>
+<ul>
+<li>Before JDK 7
+<ul>
+<li><code>java.io.File</code> 是所有檔案 / 目錄的操作基礎</li>
+</ul>
+</li>
+<li>After JDK 7 (推出 <code>NIO.2</code>)
+<ul>
+<li>改為三個基礎
+<ol>
+<li><code>java.nio.file.Path</code> : 用來<strong>找出</strong>檔案 / 目錄</li>
+<li><code>java.nio.file.Files</code> : 用來<strong>操作</strong>檔案 / 目錄</li>
+<li><code>java.nio.file.FileSystem</code> : 用來<strong>建立</strong> Path 或其它存取檔案系統的物件</li>
+</ol>
+</li>
+<li><code>NIO.2</code> 所有方法都丟出 <code>IOException</code> 或其子類別</li>
+</ul>
+</li>
+</ul>
 <h2 id="使用-path-介面操作檔案目錄">使用 Path 介面操作檔案/目錄</h2>
 <h3 id="path-介面">Path 介面</h3>
+<ul>
+<li>
+<p><code>java.nio.Path</code> 介面是 <code>NIO.2</code> 架構的進入點</p>
+</li>
+<li>
+<p>取得 <code>Path</code> 物件有兩種方法，物件建立後不能修改狀態 (即不可變物件 immutable)</p>
+<ol>
+<li>
+<p>藉由 <code>FileSystem</code> 物件的 <code>getPath()</code> 方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>FileSystem fs <span style="color:#f92672">=</span> FileSystems<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>Path p1 <span style="color:#f92672">=</span> fs<span style="color:#f92672">.</span><span style="color:#a6e22e">getPath</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;D:\\labs\\resources\\myFile.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>藉由 <code>java.nio.file.Paths</code> 類別的靜態 <code>get()</code> 方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path p0 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:\\fakeFile\\pseudoDir\\temp.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Path p1 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;C:/fakeFile/pseudoDir/temp.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Path p2 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;D:&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;fakeFile&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;pseudoDir&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;temp.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Path p3 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/temp/ferrero&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Path p4 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>URI<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;file:///~/someTempFile&#34;</span><span style="color:#f92672">));</span>
+</span></span></code></pre></div><blockquote>
+<p>Windows 檔案路徑接受以下兩種方向的斜線</p>
+<ul>
+<li>
+<p><code>\\</code> ( <code>\</code> + escape character <code>\</code>)</p>
+</li>
+<li>
+<p><code>/</code></p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
 <h3 id="path-介面主要功能">Path 介面主要功能</h3>
+<ul>
+<li>
+<p>Path 介面用來找出檔案 / 目錄，常用方法</p>
+<table>
+<thead>
+<tr>
+<th><strong>分解路徑</strong></th>
+<th><strong>操作路徑</strong></th>
+<th><strong>比較路徑</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>取得構成路徑的所有檔案 / 目錄。<!-- raw HTML omitted -->主要分成根目錄 <em>root</em> 和名稱 <em>name</em> 兩種路徑成員。<!-- raw HTML omitted -->root 路徑成員只有一個，name 路徑成員可以有多個。</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>getFileName()</code><!-- raw HTML omitted --><code>getParent()</code><!-- raw HTML omitted --><code>getRoot()</code><!-- raw HTML omitted --><code>getNameCount()</code> - 不含 root</td>
+<td><code>normalize()</code><!-- raw HTML omitted --><code>toUri()</code><!-- raw HTML omitted --><code>toAbsolutePath()</code><!-- raw HTML omitted --><code>subpath()</code><!-- raw HTML omitted --><code>resolve()</code><!-- raw HTML omitted --><code>relativize()</code></td>
+<td><code>startsWith()</code><!-- raw HTML omitted --><code>endsWith()</code><!-- raw HTML omitted --><code>equals()</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>getNameCount()</strong> 只計算 name 路徑成員個數，不包含 root，且索引從 0 ~ 2</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path p1 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;D:/Temp/Foo/file1.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getNameCount: %d%n&#34;</span><span style="color:#f92672">,</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">getNameCount</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// getNameCount: 3
+</span></span></span></code></pre></div><table>
+<thead>
+<tr>
+<th><strong>路徑組成</strong></th>
+<th><code>D:</code></th>
+<th><code>Temp</code></th>
+<th><code>Foo</code></th>
+<th><code>file1.txt</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>成員分類</strong></td>
+<td>root</td>
+<td>name<!-- raw HTML omitted -->0</td>
+<td>name<!-- raw HTML omitted -->1</td>
+<td>name<!-- raw HTML omitted -->2</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</li>
+</ul>
 <h3 id="移除路徑裡的多餘組成">移除路徑裡的多餘組成</h3>
-<h3 id="建立子路徑">建立子路徑</h3>
-<h3 id="結合-2-個路徑">結合 2 個路徑</h3>
-<h3 id="建立連接-2-個路徑的路徑">建立連接 2 個路徑的路徑</h3>
-<h3 id="hard-link">Hard Link</h3>
+<ul>
+<li>
+<p>檔案系統目錄</p>
+<ol>
+<li>「<code>.</code>」 當前目錄</li>
+<li>「<code>..</code>」 上一層目錄</li>
+</ol>
+</li>
+<li>
+<p>多餘的組成 可以<strong>使用 normalize() 方法</strong> 移除多餘部分，像是「<code>./</code>」和「<code>directory/../</code>」</p>
+<ul>
+<li>/home/<strong>./</strong> pseudo/himmel</li>
+<li>/home/<strong>acrawlingkitten/../</strong> pseudo/himmel</li>
+</ul>
+</li>
+</ul>
+<h3 id="建立子路徑---subpath">建立子路徑 - <code>subpath()</code></h3>
+<p>使用 <code>subpath()</code> 可取得路徑裡的部分路徑</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testSubPath</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Path p1 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;D:/Temp/finnish/schocolade&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    p1<span style="color:#f92672">.</span><span style="color:#a6e22e">subpath</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 3<span style="color:#f92672">);</span>  <span style="color:#75715e">// immutable test
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>p1<span style="color:#f92672">);</span>  <span style="color:#75715e">// D:\Temp\finnish\schocolade
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    p1 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">subpath</span><span style="color:#f92672">(</span>1<span style="color:#f92672">,</span> 3<span style="color:#f92672">);</span>   <span style="color:#75715e">// finnish\bar
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>p1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><blockquote>
+<p><code>subpath(1, 3)</code> 表示由 index=1 開始取，不含 index=3 的成員，即取出成員 1 和 2</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>D:</th>
+<th>Temp</th>
+<th>finnish</th>
+<th>schocolade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>root</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h3 id="結合-2-個路徑---resolve">結合 2 個路徑 - <code>resolve()</code></h3>
+<p>使用 <code>resolve()</code> 結合兩個路徑</p>
+<ol>
+<li>
+<p>傳入「<strong>相對路徑</strong>」- 將該「<strong>相對路徑</strong>」，連接在「<strong>原路徑</strong>」之後</p>
+</li>
+<li>
+<p>傳入「<strong>絕對路徑</strong>」- 方法回傳該「<strong>絕對路徑</strong>」，忽略「<strong>原路徑</strong>」</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testResolve</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    String p <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/home/clementine/fredrich&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    Path p1 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>p<span style="color:#f92672">).</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;bones&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>p1<span style="color:#f92672">);</span>  <span style="color:#75715e">// \home\clementine\fredrich\bones
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Path p2 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>p<span style="color:#f92672">).</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/home/clementine&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>p2<span style="color:#f92672">);</span>  <span style="color:#75715e">// \home\clementine
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="建立連接-2-個路徑的路徑---relativize">建立連接 2 個路徑的路徑 - <code>relativize()</code></h3>
+<p>使用 <code>relativize()</code> 建構兩個路徑間的路徑，由原路徑到 <code>relativize()</code> 方法所傳入的路徑範例如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testRelative</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Path p1 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;peon&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    Path p2 <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;julia&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    Path p1Top2 <span style="color:#f92672">=</span> p1<span style="color:#f92672">.</span><span style="color:#a6e22e">relative</span><span style="color:#f92672">(</span>p2<span style="color:#f92672">);</span>  <span style="color:#75715e">// 由p1到p2的走法  ..\julia
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>p1Top2<span style="color:#f92672">);</span> 
+</span></span><span style="display:flex;"><span>    Path p2Top1 <span style="color:#f92672">=</span> p2<span style="color:#f92672">.</span><span style="color:#a6e22e">relative</span><span style="color:#f92672">(</span>p1<span style="color:#f92672">);</span>  <span style="color:#75715e">// 由p2到p1的走法  ..\peon
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>p2Top1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="hard-link">Hard Link</h3>
+<p><code>hard link</code>類型的檔案，相對於 <code>soft link</code> 或 <code>symbolic link</code> 有更多限制：</p>
+<ol>
+<li>目標檔案一定要存在</li>
+<li>目標不可以是目錄，只能是檔案</li>
+<li>目標不可以跨磁碟，例如不能在 C磁碟建立 D磁碟的檔案 hard links</li>
+<li>行為、外觀、屬性和一般檔案相似，不容易判斷</li>
+</ol>
 <h3 id="處理-symbolic-link">處理 Symbolic Link</h3>
-<h2 id="使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查刪除複製移動</h2>
+<p><code>NIO.2</code>類別可以感知 <em>link</em> 類型檔案的存在，稱為「<em>link aware</em>」。相關方法具備以下能力</p>
+<ol>
+<li>
+<p>偵測是否遇到 symbolic link 檔案</p>
+</li>
+<li>
+<p>設定遇到 symbolic link 檔案時的處理方式</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">createSymbolicLink</span><span style="color:#f92672">(</span>Path p1<span style="color:#f92672">,</span> Path p2<span style="color:#f92672">,</span> FileAttribute<span style="color:#f92672">&lt;?&gt;);</span>
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">createLink</span><span style="color:#f92672">(</span>Path p1<span style="color:#f92672">,</span> Path p2<span style="color:#f92672">);</span>  <span style="color:#75715e">// 建立 hard link
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isSymbolicLink</span><span style="color:#f92672">(</span>Path p1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">readSymbolicLink</span><span style="color:#f92672">(</span>Path p1<span style="color:#f92672">);</span>     <span style="color:#75715e">// 找出 symbolic link 的 target
+</span></span></span></code></pre></div><p>&hellip;</p>
+</li>
+</ol>
+<h2 id="使用-files-類別對檔案目錄進行檢查刪除複製移動">使用 Files 類別對檔案/目錄進行檢查、刪除、複製、移動</h2>
 <h3 id="處理檔案">處理檔案</h3>
+<p>先使用 Path 物件定位檔案 / 目錄。再用 Files 類別操作 Path 物件，以達成：</p>
+<ol>
+<li>檔案與目錄的：
+<ul>
+<li>檢查 check | 刪除 delete | 複製 copy | 移動 move</li>
+</ul>
+</li>
+<li>管理屬性資料（<code>metadata</code>）</li>
+<li>讀 / 寫和建立檔案</li>
+<li>隨機存取檔案</li>
+<li>讀取目錄（<code>directory</code>）內的檔案</li>
+</ol>
 <h3 id="檢查檔案--目錄是否存在">檢查檔案 / 目錄是否存在</h3>
+<ul>
+<li>
+<p>Path 代表檔案 / 目錄位置</p>
+</li>
+<li>
+<p>存取之前應該先使用 Files 類別檢查是否存在（<em>symbolic link</em> 也算檔案），方法如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">exists</span><span style="color:#f92672">(</span>Path p<span style="color:#f92672">,</span> LinkOption<span style="color:#f92672">...</span> option<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">notExists</span><span style="color:#f92672">(</span>Path p<span style="color:#f92672">,</span> LinkOption<span style="color:#f92672">...</span> option<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>如果兩個方法測試結果都是 false，表示狀態無法確認（<code>unknown</code>），常見原因</p>
+<ol>
+<li>沒有權限</li>
+<li>離線磁碟機（Off-line Drive），例如 CD-ROM</li>
+</ol>
+</li>
+</ul>
 <h3 id="檢查檔案--目錄屬性">檢查檔案 / 目錄屬性</h3>
+<p>檢查權限的使用方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isReadable</span><span style="color:#f92672">(</span>Path p<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isWritable</span><span style="color:#f92672">(</span>Path p<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isExecutable</span><span style="color:#f92672">(</span>Path p<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>檢查是否為同一檔案的方法（常用於 symbolic link）</p>
+<p><code>isSameFile()</code>檢查一旦結束，就不再保證結果，因為檔案可能馬上被其它系統指令更改</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isSameFile</span><span style="color:#f92672">(</span>Path p1<span style="color:#f92672">,</span> Path p2<span style="color:#f92672">);</span>
+</span></span></code></pre></div><p>&hellip;</p>
 <h3 id="建立檔案--目錄">建立檔案 / 目錄</h3>
+<ul>
+<li>
+<p>建立檔案的方法 - <code>createFile()</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">createFile</span><span style="color:#f92672">(</span>Path file<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>建立單一目錄的方法 - <code>createDirectory()</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">createDirectory</span><span style="color:#f92672">(</span>Path dir<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>建立多重目錄的方法，通常用於將路徑裡缺少的 name 成員一次全部建立</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">createDirectories</span><span style="color:#f92672">(</span>Path dir<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>假設只有 <code>D:/Temp</code> 目錄存在，則使用 <code>Path.get(...)</code> 可將缺少的目錄一次建立完成</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">createDirectories</span><span style="color:#f92672">(</span>Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;D:/Temp/foo/bar/example&#34;</span><span style="color:#f92672">));</span>
+</span></span></code></pre></div></li>
+</ul>
 <h3 id="刪除檔案--目錄">刪除檔案 / 目錄</h3>
+<ul>
+<li>
+<p>刪除檔案 / 目錄使用的方法 <code>Files.delete(Path p);</code></p>
+</li>
+<li>
+<p>失敗時可能丟出以下例外</p>
+<ol>
+<li><code>java.nio.NoSuchFileException</code> : 要刪除的檔案不存在</li>
+<li><code>java.nio.file.DirectoryNotEmptyException</code> : 要刪除的目錄不為空</li>
+<li><code>java.io.IOException</code> : 其它錯誤</li>
+</ol>
+</li>
+<li>
+<p>也可以刪除檔案 / 目錄前先確認是否存在 - <code>deleteIfExists()</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">deleteIfExists</span><span style="color:#f92672">(</span>Path p<span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>則檔案不存在就不會刪除，因此不會有 <code>NoSuchFileException</code></p>
+</li>
+</ul>
 <h3 id="複製和移動檔案--目錄">複製和移動檔案 / 目錄</h3>
+<ul>
+<li>
+<p>複製和移動檔案 / 目錄的方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">copy</span><span style="color:#f92672">(</span>Path source<span style="color:#f92672">,</span> Path target<span style="color:#f92672">,</span> CopyOption<span style="color:#f92672">...);</span> 
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// source 來源路徑 (目錄 or 檔案)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">move</span><span style="color:#f92672">(</span>Path source<span style="color:#f92672">,</span> Path target<span style="color:#f92672">,</span> CopyOption<span style="color:#f92672">...);</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// target 目標路徑 (目錄 or 檔案)
+</span></span></span></code></pre></div></li>
+<li>
+<p><code>CopyOption</code> 介面，此傳入參數允許同時多個，有兩個列舉型別實作它</p>
+<table>
+<thead>
+<tr>
+<th>介面</th>
+<th>列舉型別（<code>enum</code>）</th>
+<th>列舉項目（<code>types</code>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CopyOption</code></td>
+<td><code>LinkOption</code></td>
+<td><code>NOFOLLOW_LINKS</code></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>StandCopyOption</code></td>
+<td><code>REPLACE_EXISTING</code></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>StandCopyOption</code></td>
+<td><code>COPY_ATTRIBUTES</code></td>
+</tr>
+<tr>
+<td>-</td>
+<td><code>StandCopyOption</code></td>
+<td><code>ATOMIC_MOVE</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>比較 <strong>複製</strong> 與 <strong>移動</strong> 兩種操作的相同之處</p>
+<ol>
+<li>如果目標路徑已經存在，但操作前沒有使用 <code>StandardCopyOption.REPLACE_EXISTING</code> 指定可以覆蓋的話，將失敗</li>
+<li>如果目標路徑不存在，則操作後將自動建立</li>
+<li>在操作<strong>之前</strong>來源和目標「非一致」是檔案 / 目錄，將不影響結果</li>
+</ol>
+</li>
+<li>
+<p>定義 <strong>目標路徑</strong> 需要注意</p>
+<ol>
+<li>如果目標路徑是存在的「檔案」或「空目錄」，使用 <strong>REPLACE_EXISTING</strong> 或 <strong>ATOMIC_MOVE</strong>，可避免拋出 <code>java.nio.file.FileAlreadyExistsException</code></li>
+<li>若目標路徑是存在的「非空目錄」，用 <strong>REPLACE_EXISTING</strong> 還不夠，還是會拋出 <code>java.nio.file.DirectoryNotEmptyException</code></li>
+</ol>
+</li>
+<li>
+<p>定義 <strong>來源路徑</strong> 需要注意</p>
+<ol>
+<li>必須為存在的「檔案」「目錄」，否則拋出 <code>java.nio.file.NoSuchFileException</code></li>
+<li>來源路徑是「目錄」時
+<ul>
+<li>即便「複製」成功，也無法複製內含檔案，只會產生新目錄，過程不會出錯</li>
+</ul>
+</li>
+<li>來源路徑是「目錄」時
+<ul>
+<li>如果「移動」成功，內含的檔案 / 目錄將一併搬家</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>複製或移動路徑時，可以在第三個參數開始傳入實作介面 <code>CopyOption</code> 的列舉型態，注意事項為</p>
+<ol>
+<li>「複製」檔案 / 目錄時的注意事項
+<ul>
+<li>來源路徑是 <code>symbolic link</code> 時，預設將複製「link 指向的檔案」</li>
+<li>列舉型態「<code>StandardCopyOption.COPY_ATTRIBUTES</code>」用於將檔案屬性一併複製。大部分屬性將依檔案系統不同而可能不被複製，但檔案最後修改時間（last-modified）將被支援</li>
+</ul>
+</li>
+<li>「移動」檔案 / 目錄時的注意事項
+<ul>
+<li>使用列舉型態 <code>StandardCopyOption.ATOMIC_MOVE</code>
+<ul>
+<li>若檔案系統不支援將丟出例外</li>
+<li>若支援則可避免移動過程中有其它系統程序存取檔案</li>
+<li>如果用於耗時較久的大檔案移動，可以保證接下來要存取該檔案的系統程序都可存取到完整的檔案</li>
+</ul>
+</li>
+<li>若移動 symbolic link 檔案，不需要使用列舉型態 <code>LinkOption.NOFOLLOW_LINKS</code></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
 <h3 id="stream-和-path-互相複製">Stream 和 Path 互相複製</h3>
+<ul>
+<li>
+<p>檔案複製來源或目標除了 Path 之外，也可以是基礎 I/O 提到的串流（Stream）物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">copy</span><span style="color:#f92672">(</span>InputStream source<span style="color:#f92672">,</span> Path target<span style="color:#f92672">,</span> CopyOption<span style="color:#f92672">...</span> options<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">copy</span><span style="color:#f92672">(</span>Path source<span style="color:#f92672">,</span> OutputStream target<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// source: 檔案複製來源，使用 InputStream
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#75715e">// target: 檔案複製後的輸出，使用 OutputStream
+</span></span></span></code></pre></div></li>
+<li>
+<p>以下示範如何將遠端網頁轉換成 <code>InputStream</code> 物件後，再複製為本機檔案</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CopyInputStreamTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Path to <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/oracle.html/&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAboslutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        URL url <span style="color:#f92672">=</span> URI<span style="color:#f92672">.</span><span style="color:#a6e22e">create</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;http://www.oracle.com/&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toURL</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span> InputStream from <span style="color:#f92672">=</span> url<span style="color:#f92672">.</span><span style="color:#a6e22e">openStream</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Files<span style="color:#f92672">.</span><span style="color:#a6e22e">copy</span><span style="color:#f92672">(</span>from<span style="color:#f92672">,</span> to<span style="color:#f92672">,</span> StadardCopyOption<span style="color:#f92672">.</span><span style="color:#a6e22e">REPLACE_EXISTING</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
 <h3 id="列出目錄內容">列出目錄內容</h3>
+<ul>
+<li>
+<p><code>DirectoryStream</code> 介面可以找出目錄下所有檔案 / 目錄，但只限制在目錄下第一層</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Path dir <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;D:/&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>DirectoryStream<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> stream <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">newDirectoryStream</span><span style="color:#f92672">(</span>dir<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;*&#34;</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>Path file <span style="color:#f92672">:</span> stream<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>file<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>PatternSyntaxException <span style="color:#f92672">|</span> DirectoryIteratorException <span style="color:#f92672">|</span> IOException x<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">err</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>x<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
 <h3 id="讀取和寫入檔案">讀取和寫入檔案</h3>
+<ul>
+<li>
+<p>Files 類別</p>
+<ul>
+<li>
+<p><code>readAllBytes()</code> 和 <code>readAllLines()</code> 可以一次讀取檔案全部內容（但檔案不建議太大）</p>
+</li>
+<li>
+<p><code>write()</code> 則提供寫入檔案的功能</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    Path source <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/file.txt&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    Charset cs <span style="color:#f92672">=</span> Charset<span style="color:#f92672">.</span><span style="color:#a6e22e">defaultCharset</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> lines <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">readAllLines</span><span style="color:#f92672">(</span>source<span style="color:#f92672">,</span> cs<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    Path target <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/file2.txt&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    Files<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>target<span style="color:#f92672">,</span> lines<span style="color:#f92672">,</span> cs<span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>               StandardOpenOption<span style="color:#f92672">.</span><span style="color:#a6e22e">CREATE</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>               StandardOpenOption<span style="color:#f92672">.</span><span style="color:#a6e22e">TRUNCATE_EXISTING</span><span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>               StandardOpenOption<span style="color:#f92672">.</span><span style="color:#a6e22e">WRITE</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;done...&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ul>
 <hr>
 <h2 id="使用-files-類別操作-channel-io-和-stream-io-讀寫檔案">使用 Files 類別操作 Channel I/O 和 Stream I/O 讀寫檔案</h2>
-<h3 id="介面-channel-和類別-bytebuffer">介面 Channel 和類別 ByteBuffer</h3>
+<h3 id="介面-channel-和類別-bytebuffer">介面 Channel 和類別 <code>ByteBuffer</code></h3>
+<ul>
+<li>搭配使用 <code>Channel</code> interface 和 <code>ByteBuffer</code> class，可提高 I/O 效率
+<ol>
+<li><strong>Stream I/O</strong> 每次讀取一個位元或字元；<strong>Channel I/O</strong> 每次讀取一塊記憶體（buffer）</li>
+<li><code>java.nio.channels.ByteChannel</code> interface 繼承 <code>Channel</code> interface，提供基本讀寫功能</li>
+<li><code>java.nio.channels.SeekableByteChannel</code> interface 繼承 <code>ByteChannel</code>
+<ul>
+<li>提供在 channel 中讀寫時紀錄目前位置，且改變讀寫位置的能力，讓 <strong>隨機存取</strong>（<strong>random access</strong>）變得可能</li>
+</ul>
+</li>
+<li>使用 <code>Files.newByteChannel(Path, OpenOption...)</code> 方法回傳 <code>SeekableByteChannel</code> 實例後，也可以再轉型為 <code>java.nio.channels.FileChannel</code> 類別</li>
+</ol>
+</li>
+</ul>
 <h3 id="隨機存取檔案">隨機存取檔案</h3>
+<ul>
+<li>
+<p><code>SeekableByteChannel</code>介面可進行檔案內容的「隨機存取」</p>
+<ol>
+<li><!-- raw HTML omitted -->st<!-- raw HTML omitted --> step : 打開檔案</li>
+<li><!-- raw HTML omitted -->nd<!-- raw HTML omitted --> step : 找到存取位置</li>
+<li><!-- raw HTML omitted -->rd<!-- raw HTML omitted --> step : 開始讀寫</li>
+</ol>
+</li>
+<li>
+<p>常用方法（以下 channel 代表檔案）</p>
+<table>
+<thead>
+<tr>
+<th>常用方法</th>
+<th>敘述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>position()</strong></td>
+<td>回傳在 <code>channel</code> 中的位置</td>
+</tr>
+<tr>
+<td><strong>position(long)</strong></td>
+<td>設定在 <code>channel</code> 中的位置</td>
+</tr>
+<tr>
+<td><strong>read(ByteBuffer)</strong></td>
+<td>由 <code>channel</code> 中將資料讀入 buffer</td>
+</tr>
+<tr>
+<td><strong>write(ByteBuffer)</strong></td>
+<td>將資料由 buffer 中寫入 <code>channel</code></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 使用 SeekableByteChannel 介面，將新增字串放在檔案指定位置
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		Path path <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/file.txt&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>SeekableByteChannel sbc <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">newByteChannel</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> StandardOpenOption<span style="color:#f92672">.</span><span style="color:#a6e22e">WRITE</span><span style="color:#f92672">))</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#75715e">/* 由 Files.newByteChannel() 取得 SeekableByteChannel 介面的實作物件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                該物件指向 path 所在檔案，並指定屬性為 StandardOpenOption.WRITE 所以可寫入 */</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">long</span> channelSize <span style="color:#f92672">=</span> sbc<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>			sbc<span style="color:#f92672">.</span><span style="color:#a6e22e">position</span><span style="color:#f92672">(</span>channelSize<span style="color:#f92672">);</span>     <span style="color:#75715e">// 將檔案讀取位置移到最尾端
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;position: &#34;</span> <span style="color:#f92672">+</span> sbc<span style="color:#f92672">.</span><span style="color:#a6e22e">position</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>			ByteBuffer buffer <span style="color:#f92672">=</span> ByteBuffer<span style="color:#f92672">.</span><span style="color:#a6e22e">wrap</span><span style="color:#f92672">((</span><span style="color:#e6db74">&#34;\n&#34;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;0&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">());</span> 
+</span></span><span style="display:flex;"><span>             <span style="color:#75715e">// 建立 ByteBuffer 物件，內容: &#34;\n&#34; + &#34;0&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			sbc<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>buffer<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;position: &#34;</span> <span style="color:#f92672">+</span> sbc<span style="color:#f92672">.</span><span style="color:#a6e22e">position</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>&hellip;</p>
+</li>
+</ul>
 <h3 id="對文字檔提供-buffered-io-方法">對文字檔提供 Buffered I/O 方法</h3>
+<ul>
+<li>
+<p><code>NIO.2</code> 一樣可用 <code>BufferedReader / BufferedWriter</code> 物件提高檔案讀寫效率</p>
+<ol>
+<li>
+<p>使用 <code>Files.newBufferedReader()</code> 取得 <code>java.io.BufferedReader</code> 物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>BufferedReader reader <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">newBufferedReader</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> charset<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>line <span style="color:#f92672">=</span> reader<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p>使用 <code>Files.newBufferedWriter()</code> 取得 <code>java.io.BufferedWriter</code> 物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>BufferedWriter writer <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">newBufferedWriter</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> charset<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>s<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">());</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
 <h3 id="取得位元串流物件的方法">取得位元串流物件的方法</h3>
+<ul>
+<li>
+<p><code>NIO.2</code> 也可以取得 <code>InputStream</code> 以及 <code>OutputStream</code> 物件</p>
+<ol>
+<li>
+<p>使用 <code>Files.newInputStream()</code> 取得 <code>java.io.InputStream</code> 物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>InputStream in <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">newInputStream</span><span style="color:#f92672">(</span>path<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>BufferedReader r <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InputStreamReader<span style="color:#f92672">(</span>in<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>String line <span style="color:#f92672">=</span> r<span style="color:#f92672">.</span><span style="color:#a6e22e">readLine</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p>使用 <code>Files.newOutputStream()</code> 取得 <code>java.io.OutputStream</code> 物件</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path path <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/logFile.txt&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>String s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hi, Jim...&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">byte</span> data<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span><span style="color:#a6e22e">getBytes</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">(</span>OutputStream out <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">newOutputStream</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> CREATE<span style="color:#f92672">,</span> APPEND<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    BufferedOutputStream bot <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedOutputStream<span style="color:#f92672">(</span>out<span style="color:#f92672">);)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    out<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>data<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> data<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
 <hr>
 <h2 id="讀寫檔案目錄的屬性">讀寫檔案/目錄的屬性</h2>
 <h3 id="使用-files-管理檔案的屬性資料">使用 Files 管理檔案的屬性資料</h3>
-<h3 id="讀取檔案屬性">讀取檔案屬性</h3>
+<p><code>Files</code> class 提供若干管理檔案 / 目錄屬性的方法</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>size</code></td>
+<td>回傳檔案大小（bytes）</td>
+</tr>
+<tr>
+<td><code>isDirectory</code></td>
+<td>判斷是否為目錄</td>
+</tr>
+<tr>
+<td><code>isRegularFile</code></td>
+<td>判斷是否為檔案</td>
+</tr>
+<tr>
+<td><code>isSymbolicLink</code></td>
+<td>判斷是否為 symbolic link</td>
+</tr>
+<tr>
+<td><code>isHidden</code></td>
+<td>是否為隱藏檔</td>
+</tr>
+<tr>
+<td><code>getLastModifiedTime</code></td>
+<td>取得最後修改時間</td>
+</tr>
+<tr>
+<td><code>setLastModifiedTime</code></td>
+<td>設定最後修改時間</td>
+</tr>
+<tr>
+<td><code>getAttribute</code></td>
+<td>取得屬性</td>
+</tr>
+<tr>
+<td><code>setAttribute</code></td>
+<td>設定屬性</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   Path basic <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/metadata&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 在相對路徑下，事先建立所有測試檔案
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;basic path: &#34;</span> <span style="color:#f92672">+</span> basic<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   Path common <span style="color:#f92672">=</span> basic<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;file.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>   Path shortcut <span style="color:#f92672">=</span> basic<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir.shortcut&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>   Path hidden <span style="color:#f92672">=</span> basic<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hiddenFile&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>   Path symlink <span style="color:#f92672">=</span> basic<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir.sl&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;size: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isDirectory: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isDirectory</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isRegularFile: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isRegularFile</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>     
+</span></span><span style="display:flex;"><span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isSymbolicLink(dir.sl): &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isSymbolicLink</span><span style="color:#f92672">(</span>symlink<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isSymbolicLink(dir.shortcut): &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isSymbolicLink</span><span style="color:#f92672">(</span>shortcut<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isHidden: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isHidden</span><span style="color:#f92672">(</span>hidden<span style="color:#f92672">));</span>    
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 取得並修改LastModifiedTime
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getLastModifiedTime: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">getLastModifiedTime</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>   FileTime t <span style="color:#f92672">=</span> FileTime<span style="color:#f92672">.</span><span style="color:#a6e22e">fromMillis</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">().</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 要設定檔案的時間屬性，必須使用類別 FileTime
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>   Files<span style="color:#f92672">.</span><span style="color:#a6e22e">setLastModifiedTime</span><span style="color:#f92672">(</span>common<span style="color:#f92672">,</span> t<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getLastModifiedTime: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">getLastModifiedTime</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 使用Files.setAttribute()方法設定hidden屬性	
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		Path basic <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/metadata&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;basic path: &#34;</span> <span style="color:#f92672">+</span> basic<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		Path common <span style="color:#f92672">=</span> basic<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;file.txt&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		Path shortcut <span style="color:#f92672">=</span> basic<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir.shortcut&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		Path hidden <span style="color:#f92672">=</span> basic<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;hiddenFile&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		Path symlink <span style="color:#f92672">=</span> basic<span style="color:#f92672">.</span><span style="color:#a6e22e">resolve</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir.sl&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;size: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isDirectory: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isDirectory</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isRegularFile: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isRegularFile</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>		
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isSymbolicLink(dir.sl): &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isSymbolicLink</span><span style="color:#f92672">(</span>symlink<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isSymbolicLink(dir.shortcut): &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isSymbolicLink</span><span style="color:#f92672">(</span>shortcut<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isHidden: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">isHidden</span><span style="color:#f92672">(</span>hidden<span style="color:#f92672">));</span>	
+</span></span><span style="display:flex;"><span>		
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//取得並修改LastModifiedTime
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getLastModifiedTime: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">getLastModifiedTime</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		FileTime t <span style="color:#f92672">=</span> FileTime<span style="color:#f92672">.</span><span style="color:#a6e22e">fromMillis</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">().</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>		Files<span style="color:#f92672">.</span><span style="color:#a6e22e">setLastModifiedTime</span><span style="color:#f92672">(</span>common<span style="color:#f92672">,</span> t<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getLastModifiedTime: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">getLastModifiedTime</span><span style="color:#f92672">(</span>common<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//設定hidden屬性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		Files<span style="color:#f92672">.</span><span style="color:#a6e22e">setAttribute</span> <span style="color:#f92672">(</span>hidden<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;dos:hidden&#34;</span><span style="color:#f92672">,</span> Boolean<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>		out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isHidden: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">getAttribute</span><span style="color:#f92672">(</span>hidden<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;dos:hidden&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   Files<span style="color:#f92672">.</span><span style="color:#a6e22e">setAttribute</span> <span style="color:#f92672">(</span>hidden<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;dos:hidden&#34;</span><span style="color:#f92672">,</span> Boolean<span style="color:#f92672">.</span><span style="color:#a6e22e">valueOf</span><span style="color:#f92672">(</span><span style="color:#66d9ef">false</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>   out<span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;isHidden: &#34;</span> <span style="color:#f92672">+</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">getAttribute</span><span style="color:#f92672">(</span>hidden<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;dos:hidden&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#75715e">// 除了用isHidden()方法測試屬性是否為hidden，也可以用getAttribute()方法搭配字串&#34;dos:hidden&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="讀取檔案屬性">讀取檔案屬性</h3>
+<ul>
+<li>
+<p>過去 Java I/O 讀取檔案一次只能一個，每次呼叫都必須轉呼叫系統指令（system call）</p>
+</li>
+<li>
+<p><code>NIO.2</code> 改進以上問題，可用 <code>DosFileAttributes</code> interface 一次取回檔案 / 目錄的所有屬性</p>
+</li>
+<li>
+<p>以 Windows 之 DOS 為例，使用 Files class 取得物件實例</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>DosFileAttributes attrs <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">readAttributes</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> DosFileAttributes<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p>注意 Java 7 的 <code>DosFileAttributes</code> interface 只能讀取屬性，不能修改</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	Path p <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/attributeTest.txt&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	DosFileAttributes attrs <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">readAttributes</span><span style="color:#f92672">(</span>p<span style="color:#f92672">,</span> DosFileAttributes<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// basic
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	FileTime creation <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">creationTime</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	FileTime modified <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">lastModifiedTime</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	FileTime lastAccess <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">lastAccessTime</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">(!</span>attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isDirectory</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">long</span> size <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> isDirectory <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isDirectory</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> isRegularFile <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isRegularFile</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> isSymbolicLink <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isSymbolicLink</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> isOther <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isOther</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// only for DOS
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">boolean</span> archive <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isArchive</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> hidden <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isHidden</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> readOnly <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isReadOnly</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">boolean</span> systemFile <span style="color:#f92672">=</span> attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isSystem</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/i4S6rSz.png"
+        data-srcset="https://i.imgur.com/i4S6rSz.png, https://i.imgur.com/i4S6rSz.png 1.5x, https://i.imgur.com/i4S6rSz.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/i4S6rSz.png"
+        title="1" /></p>
+</li>
+</ul>
 <h3 id="修改檔案屬性">修改檔案屬性</h3>
+<ul>
+<li>
+<p>建立檔案後可用 <code>Files</code> class 更改屬性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">createFile</span><span style="color:#f92672">(</span>path<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>Files<span style="color:#f92672">.</span><span style="color:#a6e22e">setAttribute</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;dos:hidden&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>setAttribute()</code> 方法可設定 4 種 <strong>DOS 屬性</strong>，須指定屬性字串</p>
+<ol>
+<li><strong>dos:hidden</strong></li>
+<li><strong>dos:readonly</strong></li>
+<li><strong>dos:system</strong></li>
+<li><strong>dos:archive</strong></li>
+</ol>
+</li>
+<li>
+<p>介面 <code>DosFileAttributeView</code> 也提供設定屬性的相關方法</p>
+<ol>
+<li><code>setHidden()</code></li>
+<li><code>setReadOnly()</code></li>
+<li><code>setSystem()</code></li>
+<li><code>setArchive()</code></li>
+</ol>
+</li>
+<li>
+<p>可以使用 class Files 取得該介面的物件實例</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>DosFileAttributeView view <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileAttributeView</span><span style="color:#f92672">(</span>p<span style="color:#f92672">,</span> DosFileAttributeView<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+<li>
+<p><code>DosFileAttributeView</code> 有直接方法可以設定檔案屬性</p>
+<ul>
+<li>
+<p>如果要讀取屬性，需先用 <code>readAttributes()</code> 方法取得 <code>DosFileAttributes</code>物件實例，分工：</p>
+<ol>
+<li>
+<p>interface <code>DosFileAttributeView</code> : <strong>改變</strong> 檔案屬性</p>
+</li>
+<li>
+<p>interface <code>DosFileAttributes</code> : <strong>讀取</strong> 檔案屬性</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Path p <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/cel/attributeTest.md&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>DosFileAttributeView view <span style="color:#f92672">=</span> Files<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileAttributeView</span><span style="color:#f92672">(</span>p<span style="color:#f92672">,</span> DosFileAttributeView<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 取得 DosFileAttributeView 的方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>view<span style="color:#f92672">.</span><span style="color:#a6e22e">setArchive</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>view<span style="color:#f92672">.</span><span style="color:#a6e22e">setReadOnly</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>view<span style="color:#f92672">.</span><span style="color:#a6e22e">setHidden</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>view<span style="color:#f92672">.</span><span style="color:#a6e22e">setSystem</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FileTime lastModifiedTime <span style="color:#f92672">=</span> FileTime<span style="color:#f92672">.</span><span style="color:#a6e22e">fromMillis</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">().</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>FileTime lastAccessTime <span style="color:#f92672">=</span> FileTime<span style="color:#f92672">.</span><span style="color:#a6e22e">fromMillis</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">().</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>FileTime createTime <span style="color:#f92672">=</span> FileTime<span style="color:#f92672">.</span><span style="color:#a6e22e">fromMillis</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Date<span style="color:#f92672">().</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>view<span style="color:#f92672">.</span><span style="color:#a6e22e">setTimes</span><span style="color:#f92672">(</span>lastModifiedTime<span style="color:#f92672">,</span> lastAccessTime<span style="color:#f92672">,</span> createTime<span style="color:#f92672">);</span>    
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/* 設定檔案相關時間，Windows每個檔案屬性都有3個時間：建立日期(createTime)、
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   最後修改日期(lastModifiedTime)、最後存取日期(lastAccessTime) */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DosFileAttributes attrs <span style="color:#f92672">=</span> view<span style="color:#f92672">.</span><span style="color:#a6e22e">readAttributes</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 取得 DosFileAttributes 的方法
+</span></span></span></code></pre></div></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="dos-之外的-file-attribute-views">DOS 之外的 File Attribute Views</h3>
+<p>除了 DOS 之外，<code>NIO.2</code> 其它可支援的 attribute views 還包含</p>
+<ol>
+<li>
+<p><code>BasicFileAttributeView</code> : 提供所有檔案系統都支援的基本屬性</p>
+</li>
+<li>
+<p><code>PosixFileAttributeView</code> : 支援 <code>POSIX</code> 家族，例如 <code>UNIX</code></p>
+</li>
+<li>
+<p><code>FileOwnerAttributeView</code> : 支援所有具備「<strong>檔案擁有者</strong>（file owner）」概念的檔案系統</p>
+</li>
+<li>
+<p><code>AclFileAttributeView</code> : 支援讀寫檔案的「<strong>存取控制清單</strong>（access control list）」</p>
+</li>
+<li>
+<p><code>UserDefinedFileAttributeView</code> : 讓使用者自行定義</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/IiluySs.png"
+        data-srcset="https://i.imgur.com/IiluySs.png, https://i.imgur.com/IiluySs.png 1.5x, https://i.imgur.com/IiluySs.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/IiluySs.png"
+        title="image-20221228143511740" /></p>
+</li>
+</ol>
 <h3 id="posix-檔案系統的權限"><code>POSIX</code> 檔案系統的權限</h3>
+<ul>
+<li>
+<p><code>NIO.2</code> 可以在如 MacOS、Linux、Solaris 等 POSIX（Portable Operating System Interface）檔案系統中建立檔案 / 目錄。Windows 非 POSIX 相容的作業系統</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 如何取得目前作業系統支援的所有 AttributeView
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>FileSystems<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">().</span><span style="color:#a6e22e">supportedFileAttributeViews</span><span style="color:#f92672">();</span>
+</span></span></code></pre></div></li>
+<li>
+<p>POSIX 檔案系統中，使用 ACL 進行檔案 / 目錄的權限控管</p>
+<ul>
+<li>ACL（Access Control List 存取控制清單）: 提供對檔案 / 目錄擁有權相關的三種使用者群組
+<ol>
+<li>owner（檔案擁有者）</li>
+<li>group（檔案擁有者所在群組）</li>
+<li>other（非 owner 和 group 的其它人）</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>對檔案 / 目錄的 read、write、execute（讀寫執行）權限設定格式</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">user</th>
+<th style="text-align:center">group</th>
+<th style="text-align:center">other</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">r    |    w    |    x</td>
+<td style="text-align:center">r    |   w   |   x</td>
+<td style="text-align:center">r   |   w   |    x</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
 <hr>
 <h2 id="遞迴存取目錄結構">遞迴存取目錄結構</h2>
 <h3 id="對檔案目錄進行遞迴操作">對檔案目錄進行遞迴操作</h3>
@@ -2055,7 +3246,6 @@ java -ea HelloWorld
 <h3 id="filestore-類別"><code>FileStore</code> 類別</h3>
 <h3 id="使用-watchservice">使用 <code>WatchService</code></h3>
 <h3 id="由基礎-io-轉換至-nio2">由基礎 I/O 轉換至 NIO.2</h3>
-<p>🚧🚧🚧🚧🚧</p>
 <hr>
 <h1 id="05-執行緒">05 執行緒</h1>
 <h2 id="介紹">介紹</h2>
@@ -3605,6 +4795,14 @@ java -ea HelloWorld
 <ol>
 <li>
 <p>原始資料處理量太大，分兩部分派給 <code>t1</code>、<code>t2</code>兩個 <code>ForkJoinTask</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/kCNCU6i.png"
+        data-srcset="https://i.imgur.com/kCNCU6i.png, https://i.imgur.com/kCNCU6i.png 1.5x, https://i.imgur.com/kCNCU6i.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/kCNCU6i.png"
+        title="image-20221222102832964" /></p>
 </li>
 <li>
 <p>呼叫方法：</p>
@@ -3616,14 +4814,144 @@ java -ea HelloWorld
 </li>
 <li>
 <p>呼叫 <code>t2.compute()</code>時候，若資料處理量仍太大，持續進行切割工作</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/U9RbOV0.png"
+        data-srcset="https://i.imgur.com/U9RbOV0.png, https://i.imgur.com/U9RbOV0.png 1.5x, https://i.imgur.com/U9RbOV0.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/U9RbOV0.png"
+        title="image-20221222102858500" /></p>
 </li>
 </ul>
 </li>
 <li>
 <p>累計 2 個計算結果未取回</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ySLWUCM.png"
+        data-srcset="https://i.imgur.com/ySLWUCM.png, https://i.imgur.com/ySLWUCM.png 1.5x, https://i.imgur.com/ySLWUCM.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ySLWUCM.png"
+        title="image-20221222102925858" /></p>
 </li>
-<li></li>
+<li>
+<p>每次切割出去的左半部資料處理結果（累計 3 個未取回）</p>
+<ul>
+<li>且右側資料已經夠少，將呼叫 <code>t2.compute()</code>不再切割，直接計算得到一個結果</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/GIRMKac.png"
+        data-srcset="https://i.imgur.com/GIRMKac.png, https://i.imgur.com/GIRMKac.png 1.5x, https://i.imgur.com/GIRMKac.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/GIRMKac.png"
+        title="image-20221222103013124" /></p>
+</li>
+<li>
+<p>開始將處理結果合併</p>
+<ul>
+<li>
+<p>要取得左半部資料處理結果，需要呼叫 <code>t1.join()</code> 方法</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/hcA97yC.png"
+        data-srcset="https://i.imgur.com/hcA97yC.png, https://i.imgur.com/hcA97yC.png 1.5x, https://i.imgur.com/hcA97yC.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/hcA97yC.png"
+        title="image-20221222104039589" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>承上步驟，繼續合併結果</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/6VVcebU.png"
+        data-srcset="https://i.imgur.com/6VVcebU.png, https://i.imgur.com/6VVcebU.png 1.5x, https://i.imgur.com/6VVcebU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/6VVcebU.png"
+        title="image-20221222104024864" /></p>
+</li>
+<li>
+<p>完全合併後，得到結果</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/OgdMxoQ.png"
+        data-srcset="https://i.imgur.com/OgdMxoQ.png, https://i.imgur.com/OgdMxoQ.png 1.5x, https://i.imgur.com/OgdMxoQ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/OgdMxoQ.png"
+        title="image-20221222103938211" /></p>
+</li>
 </ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FindMaxTask</span> <span style="color:#66d9ef">extends</span> RecursiveTask<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> counter <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> serialVersionUID <span style="color:#f92672">=</span> 1L<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span> threshold<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> data<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> begin<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> end<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">FindMaxTask</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> data<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> begin<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> end<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> threshold<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> data<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">begin</span> <span style="color:#f92672">=</span> begin<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">end</span> <span style="color:#f92672">=</span> end<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">threshold</span> <span style="color:#f92672">=</span> threshold<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">protected</span> Integer <span style="color:#a6e22e">compute</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>end <span style="color:#f92672">-</span> begin <span style="color:#f92672">&lt;</span> threshold<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%02d&#34;</span><span style="color:#f92672">,</span> <span style="color:#f92672">++</span>counter<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">print</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> Thread<span style="color:#f92672">.</span><span style="color:#a6e22e">currentThread</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>			System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; |Range: &#34;</span> <span style="color:#f92672">+</span> begin <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; ~ &#34;</span> <span style="color:#f92672">+</span> end<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 顯示目前是第N個進行的運算,由哪個執行緒執行,本例切為16等分,N&lt;=16
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> max <span style="color:#f92672">=</span> Integer<span style="color:#f92672">.</span><span style="color:#a6e22e">MIN_VALUE</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> begin<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;=</span> end<span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">int</span> n <span style="color:#f92672">=</span> data<span style="color:#f92672">[</span>i<span style="color:#f92672">];</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>n <span style="color:#f92672">&gt;</span> max<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>					max <span style="color:#f92672">=</span> n<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">}</span> <span style="color:#75715e">// 計算資料陣列裡最大值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#66d9ef">return</span> max<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">int</span> mid <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>end <span style="color:#f92672">-</span> begin<span style="color:#f92672">)</span> <span style="color:#f92672">/</span> 2 <span style="color:#f92672">+</span> begin<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>			FindMaxTask a1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FindMaxTask<span style="color:#f92672">(</span>data<span style="color:#f92672">,</span> begin<span style="color:#f92672">,</span> mid<span style="color:#f92672">,</span> threshold<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>			a1<span style="color:#f92672">.</span><span style="color:#a6e22e">fork</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>			FindMaxTask a2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FindMaxTask<span style="color:#f92672">(</span>data<span style="color:#f92672">,</span> mid <span style="color:#f92672">+</span> 1<span style="color:#f92672">,</span> end<span style="color:#f92672">,</span> threshold<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> Math<span style="color:#f92672">.</span><span style="color:#a6e22e">max</span><span style="color:#f92672">(</span>a2<span style="color:#f92672">.</span><span style="color:#a6e22e">compute</span><span style="color:#f92672">(),</span> a1<span style="color:#f92672">.</span><span style="color:#a6e22e">join</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 不斷切割資料到門檻值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ForkJoinMultiThreadTest</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>		Date begin <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 製作資料陣列
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">int</span><span style="color:#f92672">[]</span> bigData <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">int</span><span style="color:#f92672">[</span>1024 <span style="color:#f92672">*</span> 1024 <span style="color:#f92672">*</span> 256<span style="color:#f92672">];</span> <span style="color:#75715e">// 1G
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> bigData<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span><span style="color:#f92672">;</span> i<span style="color:#f92672">++)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>			bigData<span style="color:#f92672">[</span>i<span style="color:#f92672">]</span> <span style="color:#f92672">=</span> ThreadLocalRandom<span style="color:#f92672">.</span><span style="color:#a6e22e">current</span><span style="color:#f92672">().</span><span style="color:#a6e22e">nextInt</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">/* 使用fork-join框架
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">		   建立Fork-Join框架的工作內容物件FindMaxTask，且資料陣列會切割為16等分，才進行運算 */</span>
+</span></span><span style="display:flex;"><span>		FindMaxTask task <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FindMaxTask<span style="color:#f92672">(</span>bigData<span style="color:#f92672">,</span> 0<span style="color:#f92672">,</span> bigData<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> 1<span style="color:#f92672">,</span> bigData<span style="color:#f92672">.</span><span style="color:#a6e22e">length</span> <span style="color:#f92672">/</span> 16<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		ForkJoinPool pool <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ForkJoinPool<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		Integer max <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span><span style="color:#a6e22e">invoke</span><span style="color:#f92672">(</span>task<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 使用forkJoinPool的invoke()方法傳入要執行的工作，該方法會呼叫FindMaxTask的compute()方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\nMax value found:&#34;</span> <span style="color:#f92672">+</span> max<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 計時
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">long</span> t <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Date<span style="color:#f92672">().</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">()</span> <span style="color:#f92672">-</span> begin<span style="color:#f92672">.</span><span style="color:#a6e22e">getTime</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>		System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Complete task within &#34;</span> <span style="color:#f92672">+</span> t <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; milliseconds&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>&hellip;</p>
 <h3 id="fork-join-框架的使用建議"><code>Fork-Join</code> 框架的使用建議</h3>
 <p>Fork-Join 框架幾個需要注意的地方：</p>
 <ol>
@@ -3640,8 +4968,46 @@ java -ea HelloWorld
 <hr>
 <h1 id="07-使用-jdbc-建立資料庫連線">07 使用 JDBC 建立資料庫連線</h1>
 <h2 id="了解-databasedbms-和-sql">了解 Database、DBMS 和 SQL</h2>
+<p>Java 裡保存資料 : 物件序列化技術、使用 I/O 將資料儲存於檔案中、儲存於資料庫中</p>
+<h4 id="基本名詞介紹">基本名詞介紹</h4>
+<h3 id="使用sql存取資料庫">使用<code>SQL</code>存取資料庫</h3>
+<h3 id="derby-資料庫介紹">Derby 資料庫介紹</h3>
+<h3 id="操作-derby-資料庫">操作 Derby 資料庫</h3>
+<h3 id="heading"></h3>
 <h2 id="eclipse-連線並存取資料庫">Eclipse 連線並存取資料庫</h2>
+<h3 id="連線資料庫">連線資料庫</h3>
+<h3 id="存取資料表">存取資料表</h3>
 <h2 id="使用-jdbc">使用 JDBC</h2>
+<h3 id="jdbc-api--概觀">JDBC API  概觀</h3>
+<h3 id="專案引用資料庫驅動函式庫">專案引用資料庫驅動函式庫</h3>
+<h3 id="認識-jdbc-驅動函式庫-jar-的組成">認識 JDBC 驅動函式庫 JAR 的組成</h3>
+<h4 id="1-jdbc-40-之前">1. JDBC 4.0 之前</h4>
+<h4 id="2-jdbc-40-之後">2. JDBC 4.0 之後</h4>
+<blockquote>
+<p>🍪☕ <strong>Little Tips:</strong> Derby 資料庫再版本 10.14.2.0 與 10.15.2.0 的差別</p>
+<table>
+<thead>
+<tr>
+<th>Derby 資料庫版本 10.14.2.0</th>
+<th>Derby 資料庫版本 10.15.2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>支援 Java 8</td>
+<td>建議 Java 9 以上（使用模組化技術）</td>
+</tr>
+<tr>
+<td>版本驅動程式入口類別<!-- raw HTML omitted --><code>org.apache.derby.jdbc.ClientDriver</code></td>
+<td>後來是 <!-- raw HTML omitted --><code>org.apache.derby.client.ClientAutoloadedDriver</code></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
 <h2 id="jdbc-進行交易">JDBC 進行交易</h2>
 <h2 id="使用-jdbc-41-的-rowsetprovider-和-rowsetfactory">使用 JDBC 4.1 的 RowSetProvider 和 RowSetFactory</h2>
 <hr>
@@ -3726,7 +5092,7 @@ java -ea HelloWorld
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
         </div>
     </footer></div>
 
