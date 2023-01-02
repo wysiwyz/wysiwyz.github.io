@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  8587 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  8795 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-18T17:50:34+08:00","dateModified": "2022-12-18T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8587 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;41 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8795 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;42 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -3237,9 +3237,122 @@ java -ea HelloWorld
 <hr>
 <h2 id="遞迴存取目錄結構">遞迴存取目錄結構</h2>
 <h3 id="對檔案目錄進行遞迴操作">對檔案目錄進行遞迴操作</h3>
+<ul>
+<li>
+<p><code>DirectoryStream</code> 物件可拜訪目錄下所有檔案 / 目錄，但被限制在以下一層</p>
+</li>
+<li>
+<p><code>Files.walkFileTree(Path start, FileVisitor&lt;T&gt;visitor)</code> 則可以遞迴辦訪所有層級的所有檔案 / 目錄，並對拜訪過的所有檔案 / 目錄採取「<strong>特定動作</strong>」，將由覆寫<code>FileVisitor</code>介面的方法來提供</p>
+<ol>
+<li><code>preVisitDirectory()</code>：拜訪目錄<strong>前</strong>要做的事</li>
+<li><code>visitFile()</code>：拜訪檔案時要做的事</li>
+<li><code>postVisitDirectory()</code>：拜訪目錄<strong>後</strong>要做的事</li>
+<li><code>visitFileFailed()</code>：拜訪檔案若<strong>失敗</strong>要做的事</li>
+</ol>
+</li>
+<li>
+<p>藉由每次拜訪檔案 / 目錄後的回傳值（列舉型別<code>FileVisitResult</code>的列舉項目）決定是否繼續拜訪其他檔案 / 目錄</p>
+<ol>
+<li><code>CONTINUE</code>：繼續</li>
+<li><code>SKIP_SIBLINGS</code>：略過同一層的檔案 / 目錄</li>
+<li><code>SKIP_SUBTREE</code>：略過下一層檔案樹</li>
+<li><code>TERMINATE</code>：結束</li>
+</ol>
+</li>
+<li>
+<p>實作 <code>FileVisitor</code> 介面的類別必須覆寫所有抽象方法，比較麻煩</p>
+<ul>
+<li>可考慮改繼承 <code>SimpleFileVisitor</code>類別
+<ul>
+<li><code>SimpleFileVisitor</code>已實作<code>FileVisitor</code>介面所有抽象方法，且都回傳 CONTINUE，因此只要覆寫真正需要的方法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>範例</p>
+<ol>
+<li>
+<p>使用<code>Files.walkFileTree()</code>搭配<code>FileVistor</code>介面地回所有目錄</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ifqJI3C.png"
+        data-srcset="https://i.imgur.com/ifqJI3C.png, https://i.imgur.com/ifqJI3C.png 1.5x, https://i.imgur.com/ifqJI3C.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ifqJI3C.png"
+        title="11" /></p>
+</li>
+<li>
+<p>先以<strong>系統管理員</strong>身分開啟命令提示字元，再用<code>mklink</code>指令建立<em>symbolic link</em> 檔案與目錄</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">C:\java11\code\java11-ocp-2\dir\c06\walkFileTree&gt;mklink dir.sl dir
+symbolic link created for dir.sl &lt;&lt;===&gt;&gt; dir
+
+C:\java11\code\java11-ocp-2\dir\c06\walkFileTree&gt;mklink file.sl file.txt
+symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
+</code></pre></li>
+</ol>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SimplePrintTree</span> <span style="color:#66d9ef">extends</span> SimpleFileVisitor<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PrintTree</span> <span style="color:#66d9ef">implements</span> FileVisitor<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> i<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> FileVisitResult <span style="color:#a6e22e">preVisitDirectory</span><span style="color:#f92672">(</span>Path dir<span style="color:#f92672">,</span> BasicFileAttributes attrs<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(++</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;. preVisitDirectory: &#34;</span> <span style="color:#f92672">+</span> dir<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> FileVisitResult<span style="color:#f92672">.</span><span style="color:#a6e22e">CONTINUE</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> FileVisitResult <span style="color:#a6e22e">visitFile</span><span style="color:#f92672">(</span>Path file<span style="color:#f92672">,</span> BasicFileAttributes attrs<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(++</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.visitFile: &#34;</span> <span style="color:#f92672">+</span> file<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>attrs<span style="color:#f92672">.</span><span style="color:#a6e22e">isSymbolicLink</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;\t --&gt; &#34;</span> <span style="color:#f92672">+</span> file<span style="color:#f92672">.</span><span style="color:#a6e22e">getFileName</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; is SymbolicLink&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> FileVisitResult<span style="color:#f92672">.</span><span style="color:#a6e22e">CONTINUE</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> FileVisitResult <span style="color:#a6e22e">visitFileFailed</span><span style="color:#f92672">(</span>Path file<span style="color:#f92672">,</span> IOException exc<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(++</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;. visitFileFailed: &#34;</span> <span style="color:#f92672">+</span> file<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> FileVisitResult<span style="color:#f92672">.</span><span style="color:#a6e22e">CONTINUE</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> FileVisitResult <span style="color:#a6e22e">postVisitDirectory</span><span style="color:#f92672">(</span>Path dir<span style="color:#f92672">,</span> IOException exc<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(++</span>i <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;. postVisitDirectory: &#34;</span> <span style="color:#f92672">+</span> dir<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> FileVisitResult<span style="color:#f92672">.</span><span style="color:#a6e22e">CONTINUE</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WalkFileTreeExample</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Path path <span style="color:#f92672">=</span> Paths<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;dir/c04/walkFileTree&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">toAbsolutePath</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Files<span style="color:#f92672">.</span><span style="color:#a6e22e">walkFileTree</span><span style="color:#f92672">(</span>path<span style="color:#f92672">,</span> <span style="color:#66d9ef">new</span> PrintTree<span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Files.walkFileTree(path, new SimplePrintTree());
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Exception: &#34;</span> <span style="color:#f92672">+</span> e<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>執行順序示意圖：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/HyZY1QQ.png"
+        data-srcset="https://i.imgur.com/HyZY1QQ.png, https://i.imgur.com/HyZY1QQ.png 1.5x, https://i.imgur.com/HyZY1QQ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/HyZY1QQ.png"
+        title="11" /></p>
 <hr>
 <h2 id="使用-pathmatcher-類別找尋符合的檔案">使用 <code>PathMatcher</code> 類別找尋符合的檔案</h2>
 <h3 id="搜尋檔案">搜尋檔案</h3>
+<ul>
+<li>
+<p>在某路徑下，若想找出所有<code>java</code>程式碼檔案，含搜尋子目錄，Windows下可使用指令<code>dir /s *.java</code></p>
+</li>
+<li>
+<p>Java 則使用 <code>java.nio.file.PathMatcher</code>介面，用來搜尋符合特定字串的路徑</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JAVA" data-lang="JAVA"><span style="display:flex;"><span>PathMatcher matcher <span style="color:#f92672">=</span> FileSystems<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">()</span>
+</span></span></code></pre></div></li>
+<li></li>
+</ul>
 <h3 id="glob-樣式語法介紹"><code>glob</code> 樣式語法介紹</h3>
 <hr>
 <h2 id="其它">其它</h2>
