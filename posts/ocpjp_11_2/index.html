@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  8795 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  9380 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-18T17:50:34+08:00","dateModified": "2022-12-18T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;8795 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;42 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;9380 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;45 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -304,7 +304,6 @@
         <li><a href="#使用sql存取資料庫">使用<code>SQL</code>存取資料庫</a></li>
         <li><a href="#derby-資料庫介紹">Derby 資料庫介紹</a></li>
         <li><a href="#操作-derby-資料庫">操作 Derby 資料庫</a></li>
-        <li><a href="#heading"></a></li>
       </ul>
     </li>
     <li><a href="#eclipse-連線並存取資料庫">Eclipse 連線並存取資料庫</a>
@@ -313,11 +312,20 @@
         <li><a href="#存取資料表">存取資料表</a></li>
       </ul>
     </li>
-    <li><a href="#使用-jdbc">使用 JDBC</a>
+    <li><a href="#使用-jdbc">使用 <code>JDBC</code></a>
       <ul>
-        <li><a href="#jdbc-api--概觀">JDBC API  概觀</a></li>
+        <li><a href="#jdbc-api--概觀"><code>JDBC API</code>  概觀</a></li>
         <li><a href="#專案引用資料庫驅動函式庫">專案引用資料庫驅動函式庫</a></li>
-        <li><a href="#認識-jdbc-驅動函式庫-jar-的組成">認識 JDBC 驅動函式庫 JAR 的組成</a></li>
+        <li><a href="#認識-jdbc-驅動函式庫-jar-的組成">認識 <code>JDBC</code> 驅動函式庫 JAR 的組成</a></li>
+        <li><a href="#開發-jdbc-程式">開發 JDBC 程式</a></li>
+        <li><a href="#結束-jdbc-相關物件的使用">結束 <code>JDBC</code> 相關物件的使用</a></li>
+        <li><a href="#開發可攜式的-jdbc-程式碼">開發可攜式的 <code>JDBC</code> 程式碼</a></li>
+        <li><a href="#使用-javasqlsqlexception-類別">使用 <code>java.sql.SQLException</code> 類別</a></li>
+        <li><a href="#statement-介面與-sql-敘述的執行">Statement 介面與 <code>SQL</code> 敘述的執行</a></li>
+        <li><a href="#使用-resultsetmetadata-介面">使用 <code>ResultSetMetaData</code> 介面</a></li>
+        <li><a href="#取得查詢結果的資料筆數">取得查詢結果的資料筆數</a></li>
+        <li><a href="#控制-resultset-每次由資料庫取回的筆數">控制 <code>ResultSet</code> 每次由資料庫取回的筆數</a></li>
+        <li><a href="#使用-preparedstateme">使用 <code>PreparedStateme</code></a></li>
       </ul>
     </li>
     <li><a href="#jdbc-進行交易">JDBC 進行交易</a></li>
@@ -5083,19 +5091,339 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 <h2 id="了解-databasedbms-和-sql">了解 Database、DBMS 和 SQL</h2>
 <p>Java 裡保存資料 : 物件序列化技術、使用 I/O 將資料儲存於檔案中、儲存於資料庫中</p>
 <h4 id="基本名詞介紹">基本名詞介紹</h4>
+<ol>
+<li>
+<p><strong>Database</strong>：資料庫，放置電子資料的地方</p>
+</li>
+<li>
+<p><strong>DBMS</strong>（Database Management System）：</p>
+<ul>
+<li>
+<p>為管理資料庫設計的電腦軟體系統，具儲存、擷取、安全保障、備份等基礎功能</p>
+</li>
+<li>
+<p>可以依據所支援的資料庫模型來作分類，例如關聯式、XML 等等</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>SQL</strong>（Structured Query Language）：結構化查詢語言，特殊目的的程式語言，用於存取資料庫中的資料</p>
+</li>
+<li>
+<p><strong>JDBC</strong>（Java Database Connectivity）：</p>
+<ul>
+<li>Java 規範用戶端程式如何存取資料庫的應用程式介面</li>
+<li>提供了諸如查詢和更新資料庫中資料的方法</li>
+</ul>
+</li>
+<li>
+<p><strong>Table</strong>：</p>
+<ul>
+<li>資料庫中呈現資料的邏輯性作法</li>
+</ul>
+</li>
+</ol>
 <h3 id="使用sql存取資料庫">使用<code>SQL</code>存取資料庫</h3>
+<p>常用的兩大類 SQL（結構化查詢語言）</p>
+<ol>
+<li>
+<p><code>DDL</code> (Data Definition Language)，常用於</p>
+<ul>
+<li>建立、修改、刪除資料表</li>
+<li>描述資料庫中的資料，包括欄位、型態、資料結構</li>
+</ul>
+</li>
+<li>
+<p><code>DML</code>(Data Manipulation Language)，用於</p>
+<ul>
+<li>操作資料表</li>
+<li>允許使用者存取或處理資料庫中的資料，內容包括
+<ul>
+<li>擷取資料庫中的資訊、新增、刪除、更新資料庫中的資料</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="createinsert-新增">Create/insert 新增</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> EMPLOYEE (
+</span></span><span style="display:flex;"><span>    ID INTEGER <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    FIRSTNAME VARCHAR(<span style="color:#ae81ff">40</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    LASTNAME VARCHAR(<span style="color:#ae81ff">40</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>    BIRTHDATE DATE,
+</span></span><span style="display:flex;"><span>    SALARY REAL,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (ID)
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> EMPLOYEE <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Troy&#39;</span>, <span style="color:#e6db74">&#39;Hammer&#39;</span>, <span style="color:#e6db74">&#39;1966-03-31&#39;</span>, <span style="color:#ae81ff">100000</span>.<span style="color:#ae81ff">00</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> EMPLOYEE <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#39;Michael&#39;</span>, <span style="color:#e6db74">&#39;Walton&#39;</span>, <span style="color:#e6db74">&#39;1966-08-25&#39;</span>, <span style="color:#ae81ff">90000</span>.<span style="color:#ae81ff">20</span>);
+</span></span></code></pre></div><h4 id="readqueryselect-查詢">Read/query/select 查詢</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> EMPLOYEE;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> ID, SALARY <span style="color:#66d9ef">FROM</span> EMPLOYEE <span style="color:#66d9ef">WHERE</span> ID <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><h4 id="update-修改">Update 修改</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span><span style="color:#66d9ef">UPDATE</span> EMPLOYEE <span style="color:#66d9ef">SET</span> SALARY <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">WHERE</span> ID <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>; <span style="color:#75715e">--將ID為1的員工資料的SALARY欄位更改為0
+</span></span></span></code></pre></div><h4 id="delete-刪除">Delete 刪除</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span><span style="color:#66d9ef">DROP</span> <span style="color:#66d9ef">TABLE</span> EMPLOYEE;  <span style="color:#75715e">--刪除employee表格
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span><span style="color:#66d9ef">DELETE</span> <span style="color:#66d9ef">FROM</span> EMPLOYEE <span style="color:#66d9ef">WHERE</span> ID <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;  <span style="color:#75715e">--刪除 ID為1 的員工資料
+</span></span></span></code></pre></div><p>&hellip;</p>
 <h3 id="derby-資料庫介紹">Derby 資料庫介紹</h3>
+<ul>
+<li>
+<p>Apache 軟體基金組織的 Derby - 純 Java 開發的關聯式資料庫</p>
+</li>
+<li>
+<p>原為 Cloudscape，為 IBM 所有但是 2004 被捐給了 Apache軟體基金組織</p>
+</li>
+<li>
+<p>特色</p>
+<ol>
+<li>100% 以 Java 開發</li>
+<li>輕量級，大小 35.5 MB</li>
+<li>支援 JDBC 4.0 以上版本</li>
+<li>支援大部分 ANSI SQL 92 標準</li>
+<li>有 Table 和 View</li>
+<li>支援 BLOB 和 CLOB 資料類型</li>
+<li>支援預存程序（stored procedure）</li>
+</ol>
+</li>
+<li>
+<p>Derby 運行模式</p>
+<ol>
+<li><strong>內嵌模式</strong>（embedded mode）
+<ul>
+<li>Derby 資料庫與應用程式共用<code>JVM</code>，應用程式會在啟動和關閉時，分別自動啟動或停止資料庫</li>
+<li>使用「<code>derby.jar</code>」支援 Derby 資料庫引擎和嵌入式<code>JDBC</code>驅動程式</li>
+</ul>
+</li>
+<li><strong>網路伺服器模式</strong>（network server mode）
+<ul>
+<li>Derby 資料庫獨占一個 <code>JVM</code>，作為伺服器上的一個獨立程序（process）運行
+此模式下允許有多個應用程式來連線同一個 Derby 資料庫</li>
+<li>使用 <code>derbyclient.jar</code> 支援 Derby Network Server</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Derby 主要指令檔案（放在 <code>db-derby-10.14.2.0-bin / bin</code> 目錄下）用途</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>startNetworkServer.bat</code></td>
+<td>可啟動網路伺服器的批次檔</td>
+</tr>
+<tr>
+<td><code>stopNetworkServer.bat</code></td>
+<td>可停止網路伺服器的批次檔</td>
+</tr>
+<tr>
+<td><code>ij.bat</code></td>
+<td>互動式 <code>JDBC</code> 批次檔工具</td>
+</tr>
+<tr>
+<td><code>dblook.bat</code></td>
+<td>可檢視資料庫全部或部分 <code>DDL</code> 的批次檔</td>
+</tr>
+<tr>
+<td><code>sysinfo.bat</code></td>
+<td>可顯示有關環境版本資訊的批次檔</td>
+</tr>
+<tr>
+<td><code>NetworkServerControl.bat</code></td>
+<td>可在 <code>NetworkServerControl API</code> 上執行指令的批次檔</td>
+</tr>
+</tbody>
+</table>
+<p>&hellip;</p>
+</li>
+</ul>
 <h3 id="操作-derby-資料庫">操作 Derby 資料庫</h3>
-<h3 id="heading"></h3>
+<h4 id="啟動關閉-network-server">啟動/關閉 Network Server</h4>
+<p>要使用 Derby 資料庫，必須先啟動 Network Server</p>
+<ol>
+<li><em>啟動</em>：點擊<code>startNetworkServer.bat</code>，以啟動 Network Server</li>
+<li><em>關閉</em>：<code>ctrl</code> + <code>C</code> 或直接關閉啟動時出現的視窗</li>
+</ol>
+<h4 id="與-network-server-互動">與 Network Server 互動</h4>
+<p>啟動 Network Server 之後，點擊 <code>ij.bat</code>，出現對話主控台（console），可輸入指令來和 Network Server 互動</p>
+<p>指令包含建立 Derby 資料庫以及執行 DDL、DML、查詢等指令</p>
+<ol>
+<li>
+<p>連線 Derby 資料庫</p>
+<pre tabindex="0"><code>connect                             //要求連線Derby資料庫
+&#39;jdbc:derby://localhost:1527/myDB;  //表述資料庫連線位址, 使用JDBC URL, 含位址、port、
+create=true;                        //表示若資料庫不存在, 將自動建立, 建立在bin目錄下
+user=root;                          //提供建立連線的帳號
+password=sa&#39;;                       //提供建立連線的密碼
+</code></pre></li>
+<li>
+<p>連線到目標資料庫<code>myDB</code>後，使用<code>DDL</code>建立表格，並使用<code>DML</code>進行資料新刪改查</p>
+</li>
+</ol>
 <h2 id="eclipse-連線並存取資料庫">Eclipse 連線並存取資料庫</h2>
+<ul>
+<li>
+<p>使用<code>ij.bat</code>雖可以連線並操作資料庫，但並非視窗畫面</p>
+</li>
+<li>
+<p>Eclipse 提供 <strong>模組DTP</strong> 連線各式資料庫，雖然距離專業資料庫操作軟體還有距離，但已經很實用</p>
+</li>
+</ul>
 <h3 id="連線資料庫">連線資料庫</h3>
+<ol>
+<li>
+<p>開啟 <code>Database Development perspectives</code>，點選 <code>Database Development</code></p>
+</li>
+<li>
+<p>視景變為 <code>Data Source Explorer</code> 以及出現 <code>SQL Results</code> 和 <code>Execution Plan</code> 頁籤</p>
+</li>
+<li>
+<p>右鍵 <code>Database Connections</code> 資料夾，<code>New ...</code> → <code>Derby</code> (next)</p>
+</li>
+<li>
+<p><code>New Derby Connection Profile</code> 點選右側的 <code>New Driver Definition</code> 建立連線資料庫 Derby 的驅動程式</p>
+</li>
+<li>
+<p>在「Name/Type」頁籤裡，選擇第一筆「Derby Client JDBC Driver」</p>
+</li>
+<li>
+<p>切到「JAR List」頁籤，點預設的「<code>derbyclient.jar</code>」檔案，再點選「<code>Remove Jar/Zip</code>」移除之</p>
+</li>
+<li>
+<p>在此頁籤 <code>Add JAR/Zip</code>，彈出選擇連線 Derby 資料庫 JAR 檔的視窗</p>
+</li>
+<li>
+<p>在路徑 <code>db-derby-10.14.2.0-bin\lib</code> 內，找到檔案 <code>derbyclient.jar</code>，點擊<strong>開啟</strong>按鈕</p>
+</li>
+<li>
+<p>點選 OK，再鍵入要連線的 Derby 資料庫相關資訊</p>
+</li>
+<li>
+<p>先以 <code>startNetworkServer.bat</code> 啟動 Derby 資料庫，再點 <code>Test Connection</code> 測試與資料庫的連線</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/b7TgyDw.png"
+        data-srcset="https://i.imgur.com/b7TgyDw.png, https://i.imgur.com/b7TgyDw.png 1.5x, https://i.imgur.com/b7TgyDw.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/b7TgyDw.png"
+        title="image-20230118140615040" /></p>
+</li>
+</ol>
 <h3 id="存取資料表">存取資料表</h3>
-<h2 id="使用-jdbc">使用 JDBC</h2>
-<h3 id="jdbc-api--概觀">JDBC API  概觀</h3>
+<ol>
+<li>
+<p>建立連線後，「Data Source Explorer」會出現目前連線的資料庫狀態與架構</p>
+</li>
+<li>
+<p>切到 Java EE 視景，開啟 <code>xxxTable.sql</code>，再切回 Database Development perspective</p>
+</li>
+<li>
+<p>在 <code>xxxTable.sql</code> 檔案上方 Connection Profile 設定列裡選擇要連線的資料庫名稱，再右鍵選執行方式</p>
+<pre tabindex="0"><code>Execute All
+Execute Selected Text
+Execute Selected Text As One Statement
+Execute Current Text
+</code></pre></li>
+<li>
+<p>點選 <code>SQL Results</code> 頁籤，查看 Status | Operation，出現 Status Result 1 頁籤可看到以框格方式查看結果</p>
+</li>
+</ol>
+<p>&hellip;</p>
+<h2 id="使用-jdbc">使用 <code>JDBC</code></h2>
+<h3 id="jdbc-api--概觀"><code>JDBC API</code>  概觀</h3>
+<ul>
+<li>
+<p>主要由 1 個 class 和 3 個 interface 組成，除了 <code>DriverManager</code> 之外皆為介面</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/GUGklX3.png"
+        data-srcset="https://i.imgur.com/GUGklX3.png, https://i.imgur.com/GUGklX3.png 1.5x, https://i.imgur.com/GUGklX3.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/GUGklX3.png"
+        title="image-20230118151147434" /></p>
+<ol>
+<li>使用 <code>DriverManager</code> 取得 <code>Connection</code></li>
+<li>使用 <code>Connection</code> 取得 <code>Statement</code></li>
+<li>使用 <code>Statement</code> 取得 <code>ResultSet</code></li>
+</ol>
+</li>
+<li>
+<p><code>JDBC</code> 只定義抽象介面，連線資料庫的機制與實作類別由各別廠商提供</p>
+<ul>
+<li>
+<p>例：Derby 資料庫需要的 JAR 檔案，亦即驅動程式為 <code>derbyclient.jar</code>，</p>
+<p>位於路徑 <code>db-derby-10.14.2.0-bin\lib</code>內</p>
+</li>
+</ul>
+</li>
+</ul>
 <h3 id="專案引用資料庫驅動函式庫">專案引用資料庫驅動函式庫</h3>
-<h3 id="認識-jdbc-驅動函式庫-jar-的組成">認識 JDBC 驅動函式庫 JAR 的組成</h3>
-<h4 id="1-jdbc-40-之前">1. JDBC 4.0 之前</h4>
-<h4 id="2-jdbc-40-之後">2. JDBC 4.0 之後</h4>
+<ul>
+<li>要使用 Java 的 <code>JDBC</code> 程式直接連線 Derby 資料庫，需要在 Eclipse 專案裡引入該 JAR 檔
+<ol>
+<li>在專案中新建 Folder，慣例上命名為 <code>lib</code></li>
+<li>將 JAR 檔 <code>derbyclient.jar</code> 以拖拉方式複製到新建的 lib 目錄中</li>
+<li><code>FileOperation</code> 選擇 <code>Copy files</code></li>
+<li>複製 JAR 檔至 Eclipse 專案步驟完成</li>
+<li>右鍵專案節點，開啟 Project 頁籤的 <code>Properties</code> 選項</li>
+<li>點視窗左側清單中的 <code>Java Build Path</code> → <code>Libraries</code> → <code>Classpath</code> → <code>Add JARs</code> → 選擇 <code>derbyclient.jar</code></li>
+<li>設定完後可看到 <code>derbyclient.jar</code> 出現在專案 Libraries 中，此為專案類別路徑 <code>Classpath</code></li>
+</ol>
+</li>
+</ul>
+<h3 id="認識-jdbc-驅動函式庫-jar-的組成">認識 <code>JDBC</code> 驅動函式庫 JAR 的組成</h3>
+<p>用 7-zip 開啟 <code>derbyclient.jar</code>檔案之後，可看到內容基本結構</p>
+<ul>
+<li>逐層點開 <code>org</code>目錄後，可以看到許多 <code>*.class</code> 的類別檔 (<code>derbyclient.jar\org\apache\derby\jdbc</code>)</li>
+<li>因此除了把此 jar 檔放到專案類別路徑，還必須告訴 Java 如何在一堆類別檔案裡，找到主要入門/入口類別。
+方式在 <code>JDBC</code> 4.0 前後有很大不同</li>
+</ul>
+<h4 id="1-jdbc-40-之前">1. <code>JDBC 4.0</code> 之前</h4>
+<ul>
+<li>
+<p>呼叫 <code>DriverManager.getConnection()</code>前，必須用字串明確指出驅動程式主類別為何，如範例行2</p>
+<ul>
+<li>以 Derby drivers 為例，如以下範例行3</li>
+</ul>
+</li>
+<li>
+<p>因為有可能類別字串寫錯，或忘記將 JAR 檔加入 Eclipse 專案類別路徑中而找不到，因此必須處理例外 <code>ClassNotfoundException</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//java.lang.Class.forName(&#34;{fully qualified path of the driver}&#34;);  //ln#2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Class</span><span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.apache.derby.jdbc.ClientDriver&#34;</span><span style="color:#f92672">);</span>      <span style="color:#75715e">//ln#3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>ClassNotfoundException c<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// do something
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div></li>
+<li>
+<p>或是在指令列裡指定驅動程式的主類別字串</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java -djdbc.drivers={fully qualified path to the driver} {class to run}
+</code></pre></li>
+</ul>
+<h4 id="2-jdbc-40-之後">2. <code>JDBC 4.0</code> 之後</h4>
+<ul>
+<li>
+<p>驅動程式的主類別已註記再 JAR 的 <code>META_INF/services/java.sql.Driver</code> 檔案內，為 <code>org.apache.derby.jdbc.ClientDriver</code></p>
+</li>
+<li>
+<p>因此在 <code>DriverManager.getConnection()</code> 時，就不需要在程式碼裡特別註記驅動程式主類別</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/kDzXmEA.png"
+        data-srcset="https://i.imgur.com/kDzXmEA.png, https://i.imgur.com/kDzXmEA.png 1.5x, https://i.imgur.com/kDzXmEA.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/kDzXmEA.png"
+        title="image-20230118162247728" /></p>
+</li>
+</ul>
 <blockquote>
 <p>🍪☕ <strong>Little Tips:</strong> Derby 資料庫再版本 10.14.2.0 與 10.15.2.0 的差別</p>
 <table>
@@ -5115,12 +5443,29 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 <td>後來是 <!-- raw HTML omitted --><code>org.apache.derby.client.ClientAutoloadedDriver</code></td>
 </tr>
 <tr>
-<td></td>
+<td>設定 Eclipse 連線 Derby 資料庫的 <code>New Driver Definition</code> 時，<!-- raw HTML omitted -->第3個頁籤 Properties 之屬性「Driver Class」預設值是 <code>org.apache.derby.jdbc.ClientDriver</code></td>
+<td>需要改為 <code>org.apache.derby.client.ClientAutoloadedDriver</code></td>
+</tr>
+<tr>
+<td>加入驅動程式到 Java 專案時，<!-- raw HTML omitted -->早期版本引用 <code>derbyclient.jar</code></td>
 <td></td>
 </tr>
 </tbody>
 </table>
 </blockquote>
+<p>&hellip;</p>
+<h3 id="開發-jdbc-程式">開發 JDBC 程式</h3>
+<h4 id="jdbc-程式的組成">JDBC 程式的組成</h4>
+<h4 id="resultset的特性與使用方式"><code>ResultSet</code>的特性與使用方式</h4>
+<h4 id="jdbc程式完整範例"><code>JDBC</code>程式完整範例</h4>
+<h3 id="結束-jdbc-相關物件的使用">結束 <code>JDBC</code> 相關物件的使用</h3>
+<h3 id="開發可攜式的-jdbc-程式碼">開發可攜式的 <code>JDBC</code> 程式碼</h3>
+<h3 id="使用-javasqlsqlexception-類別">使用 <code>java.sql.SQLException</code> 類別</h3>
+<h3 id="statement-介面與-sql-敘述的執行">Statement 介面與 <code>SQL</code> 敘述的執行</h3>
+<h3 id="使用-resultsetmetadata-介面">使用 <code>ResultSetMetaData</code> 介面</h3>
+<h3 id="取得查詢結果的資料筆數">取得查詢結果的資料筆數</h3>
+<h3 id="控制-resultset-每次由資料庫取回的筆數">控制 <code>ResultSet</code> 每次由資料庫取回的筆數</h3>
+<h3 id="使用-preparedstateme">使用 <code>PreparedStateme</code></h3>
 <h2 id="jdbc-進行交易">JDBC 進行交易</h2>
 <h2 id="使用-jdbc-41-的-rowsetprovider-和-rowsetfactory">使用 JDBC 4.1 的 RowSetProvider 和 RowSetFactory</h2>
 <hr>
