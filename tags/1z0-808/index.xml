@@ -10,7 +10,7 @@
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/ocajp/</guid>
     <description><![CDATA[OCAJP 紀錄題目的地方&hellip;
-1. Hello Java public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos++) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.replace(pos, pos + 1, uc); } } } catch (Exception e) { System.out.println(&#34;Out of limits&#34;); } System.out.println(message); } } Out of limits]]></description>
+1. Hello Java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos++) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.]]></description>
 </item>
 </channel>
 </rss>

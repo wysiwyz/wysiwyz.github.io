@@ -10,7 +10,7 @@
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/ocpjp/</guid>
     <description><![CDATA[OCPJP pro to be or else &hellip; no else
-1. Regional Inner Class public class Vehicle { int distance; Vehicle(int x) { this.distance = x; } public void increSpeed(int time) { int timeTravel = time; class Car { // line n1 int value = 0; public void speed() { value = distance / timeTravel; // line n2 System.out.println(&#34;Velocity with new speed &#34; + value + &#34; kmph&#34;); } } new Car().]]></description>
+1. Regional Inner Class 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public class Vehicle { int distance; Vehicle(int x) { this.distance = x; } public void increSpeed(int time) { int timeTravel = time; class Car { // line n1 int value = 0; public void speed() { value = distance / timeTravel; // line n2 System.]]></description>
 </item>
 </channel>
 </rss>

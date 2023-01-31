@@ -13,8 +13,8 @@
 can be written in three languages: yaml, toml, json
 default language for front matter is yaml
 What does a toml-style front matter look like?
-+++ title = &#34;FirstPost&#34; date = YYYY-MM-ddTHH:mm:ss draft = true +++ versus a yaml-style front matter
---- title: &#34;firstPost&#34; date: YYYY-MM-ddTHH:mm:ss draft: true --- Create custom front matter such as]]></description>
+1 2 3 4 5 +++ title = &#34;FirstPost&#34; date = YYYY-MM-ddTHH:mm:ss draft = true +++ versus a yaml-style front matter
+1 2 3 4 5 --- title: &#34;firstPost&#34; date: YYYY-MM-ddTHH:mm:ss draft: true --- Create custom front matter such as]]></description>
 </item>
 </channel>
 </rss>
