@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Lesson 00: Linux 筆記 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Lesson 00: Linux 筆記" />
+<meta property="og:description" content="資安是一個循環 這次會過不代表下次會過，每年都要複驗 ISO27001 改版（LA - lead auditor） Log server Windows 的 GPO policy 是什麼 .twcertcc : https://www.twcert.org.tw/tw/mp-1.html 營利目標 依公司法，企業營運是為了向股東負責 企業營運 以永續經營與營利為目標 發展產品或服務解決客戶之問題，或者滿足其需求 有利企業發展的事才考慮執行 機密性 產生營利的過程中，衍生出只有甲乙雙方才能知道的事件 營運過程中，衍生無法完全透明的內部資訊 營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資) 營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力 目標 保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標 常用手法 人員階級、職等、業務範圍管理 實物管理（區域進出換證、資產盤點） 數位資訊管理 CentOS 8 安全措施 作業系統安全 作業系統安裝 系統紀錄 檔案稽核 檔案系統權限配置 系統防火牆 應用服務安全 Web SSL MariaDB (MySQL &hellip; audit 要付費) Samba(smb)/NFS [AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)
+NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/lesson_00_linux/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-11T10:08:41+08:00" />
+<meta property="article:modified_time" content="2023-02-11T10:08:41+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lesson 00: Linux 筆記"/>
+<meta name="twitter:description" content="資安是一個循環 這次會過不代表下次會過，每年都要複驗 ISO27001 改版（LA - lead auditor） Log server Windows 的 GPO policy 是什麼 .twcertcc : https://www.twcert.org.tw/tw/mp-1.html 營利目標 依公司法，企業營運是為了向股東負責 企業營運 以永續經營與營利為目標 發展產品或服務解決客戶之問題，或者滿足其需求 有利企業發展的事才考慮執行 機密性 產生營利的過程中，衍生出只有甲乙雙方才能知道的事件 營運過程中，衍生無法完全透明的內部資訊 營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資) 營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力 目標 保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標 常用手法 人員階級、職等、業務範圍管理 實物管理（區域進出換證、資產盤點） 數位資訊管理 CentOS 8 安全措施 作業系統安全 作業系統安裝 系統紀錄 檔案稽核 檔案系統權限配置 系統防火牆 應用服務安全 Web SSL MariaDB (MySQL &hellip; audit 要付費) Samba(smb)/NFS [AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)
+NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/lesson_00_linux/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ocpjp_11_2/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lesson 00: Linux 筆記",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/lesson_00_linux\/"
+        },"genre": "posts","keywords": "linux, security","wordcount":  846 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/lesson_00_linux\/","datePublished": "2023-02-11T10:08:41+08:00","dateModified": "2023-02-11T10:08:41+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson 00: Linux 筆記</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-11">2023-02-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;846 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#資安是一個循環">資安是一個循環</a></li>
+        <li><a href="#營利目標">營利目標</a></li>
+        <li><a href="#機密性">機密性</a></li>
+        <li><a href="#目標">目標</a></li>
+        <li><a href="#centos-8-安全措施">CentOS 8 安全措施</a></li>
+        <li><a href="#課程網路-22">課程網路 2/2</a></li>
+        <li><a href="#cent-os">Cent OS</a></li>
+        <li><a href="#redhat-歷史">RedHat 歷史</a></li>
+        <li><a href="#repo-來源">REPO 來源</a></li>
+        <li><a href="#openscap">OpenSCAP</a></li>
+      </ul>
+    </li>
+    <li><a href="#-course-notes">🔰 Course Notes</a></li>
+    <li><a href="#開另外一個-vmware-workstation-16-player-視窗建立-server">開另外一個 VMware Workstation 16 Player 視窗，建立 server</a></li>
+    <li><a href="#從-desktop-端-輸入-ssh-root1063011">從 <strong>desktop</strong> 端 輸入 ssh <a href="mailto:root@10.6.30.11">root@10.6.30.11</a></a></li>
+    <li><a href="#磁碟分割">磁碟分割</a></li>
+    <li><a href="#政府組態基準說明文件">政府組態基準說明文件</a></li>
+    <li><a href="#imghttpslh5googleusercontentcomzkh6pcqx7nv771lxnjgehsj6ijoqervqk0lreed7snhx-wfsslz2sim31aocagipgshjak7m-xxacnegwub-f4l9memizayhzwk-55aw5bodf7jbbs1hmvsjng-xq1tnyleoqnhng9ywohzc7eqj0dy"><img src="https://lh5.googleusercontent.com/ZKH6pCqx7nv771lxnJgeHSj6iJoQERvQK0lREEd7SnHx-wfSsLz2SiM31AocaGIpGShjak7M-xXACnEgWUB-F4l9mEmIZaYHZWk-55AW5bodf7Jbbs1HmvSjNG-xq1tNylEoqnHng9yWohZC7eqJ0dY" alt="img"></a></li>
+    <li><a href="#vi-文字編輯器">VI 文字編輯器</a>
+      <ul>
+        <li><a href="#一準備個檔案">一、準備個檔案</a></li>
+        <li><a href="#二操作-vi-說明">二、操作 Vi 說明</a></li>
+        <li><a href="#三一般模式">三、一般模式</a></li>
+        <li><a href="#四指令模式">四、指令模式</a></li>
+        <li><a href="#五編輯模式">五、編輯模式</a></li>
+        <li><a href="#六注意事項">六、注意事項</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="資安是一個循環">資安是一個循環</h3>
+<ul>
+<li>這次會過不代表下次會過，每年都要複驗</li>
+<li>ISO27001 改版（LA - lead auditor）</li>
+<li>Log server</li>
+<li>Windows 的 GPO policy 是什麼</li>
+<li><code>.twcertcc</code> : <a href="https://www.twcert.org.tw/tw/mp-1.html" target="_blank" rel="noopener noreffer ">https://www.twcert.org.tw/tw/mp-1.html</a></li>
+</ul>
+<h3 id="營利目標">營利目標</h3>
+<ul>
+<li>依公司法，企業營運是為了向股東負責</li>
+<li>企業營運
+<ul>
+<li>以<strong>永續經營</strong>與<strong>營利</strong>為目標</li>
+<li>發展產品或服務解決客戶之問題，或者滿足其需求</li>
+<li>有利企業發展的事才考慮執行</li>
+</ul>
+</li>
+</ul>
+<h3 id="機密性">機密性</h3>
+<ul>
+<li>產生營利的過程中，衍生出只有甲乙雙方才能知道的事件</li>
+<li>營運過程中，衍生無法完全透明的內部資訊</li>
+<li>營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資)</li>
+<li>營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力</li>
+</ul>
+<h3 id="目標">目標</h3>
+<ul>
+<li>保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標</li>
+<li>常用手法
+<ul>
+<li>人員階級、職等、業務範圍管理</li>
+<li>實物管理（區域進出換證、資產盤點）</li>
+<li>數位資訊管理</li>
+</ul>
+</li>
+</ul>
+<h3 id="centos-8-安全措施">CentOS 8 安全措施</h3>
+<ul>
+<li>作業系統安全
+<ul>
+<li>作業系統安裝</li>
+<li>系統紀錄</li>
+<li>檔案稽核</li>
+<li>檔案系統權限配置</li>
+<li>系統防火牆</li>
+</ul>
+</li>
+<li>應用服務安全
+<ul>
+<li>Web SSL</li>
+<li>MariaDB (MySQL &hellip; audit 要付費)</li>
+<li>Samba(smb)/NFS</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>[AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)</p>
+<ul>
+<li>NFS: 可以做到細度、哪個 IP 可以對資料做存取</li>
+<li>SRC</li>
+<li>cifs (smb)(smb3): 445/TCP 加密</li>
+</ul>
+<hr>
+<p>linux 777 是什麼?</p>
+</blockquote>
+<h3 id="課程網路-22">課程網路 2/2</h3>
+<ul>
+<li>
+<p>VM</p>
+<ul>
+<li>
+<p>desktop IP: 10.6.X.5</p>
+</li>
+<li>
+<p>server IP: 10.6.X.11</p>
+<p>(X = <strong>代號 30</strong>)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="cent-os">Cent OS</h3>
+<ul>
+<li>Cent OS Linux (到 version 7) 現在改叫 Cent OS Stream</li>
+</ul>
+<h3 id="redhat-歷史">RedHat 歷史</h3>
+<ol>
+<li>Redhat Linux ~ 9.0 (到第九版就結束了)</li>
+<li>第九版之後，分成兩條線:
+<ol>
+<li><strong>Fedora</strong> (遊戲場?) - 未來 RHEL 會長的樣子</li>
+<li><strong>RHEL 8</strong> ($)
+<ul>
+<li>因為有 GPL license，有掛此排的 Open Source 軟體都要公開 source code (<code>srpm</code>)</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>RHEL 8 再 build 出兩種
+<ol>
+<li><strong>Rocky Linux</strong> - 更版 1~2 天</li>
+<li><strong>AlmaLinux</strong> (背後有 cloud linux) - 弱點修補較及時, 更版比 rocky linux 較快</li>
+</ol>
+</li>
+</ol>
+<h3 id="repo-來源">REPO 來源</h3>
+<ul>
+<li>統一的安裝來源 (容易部署、容易維護)</li>
+<li>確保安裝環境一致</li>
+<li>節省外部流量</li>
+<li>http repo
+<ul>
+<li>http://10.6.X.5/repo/BaseOS/</li>
+<li>http://10.6.X.5/repo/AppStream/</li>
+</ul>
+</li>
+</ul>
+<h3 id="openscap">OpenSCAP</h3>
+<p>檢查目標主機的安全性設設定是否符合需求</p>
+<ul>
+<li><a href="https://csrc.nist.gov/" target="_blank" rel="noopener noreffer ">https://csrc.nist.gov/</a></li>
+<li>工具 <code>dnf install -y openscap-scanner</code></li>
+<li>指引參照 <code>dnf install -y scap-security-guide</code></li>
+</ul>
+<hr>
+<h2 id="-course-notes">🔰 Course Notes</h2>
+<p><strong>下次上課不要帶課本</strong></p>
+<hr>
+<p>大主倉: <a href="https://archive.kernel.org/centos-vault/Chat" target="_blank" rel="noopener noreffer ">https://archive.kernel.org/centos-vault/Chat</a></p>
+<p>GPT: Linux + Python (每個月 20 元)</p>
+<hr>
+<p>VM:</p>
+<p>desktop IP: 10.6.30.5</p>
+<p>server IP: 10.6.30.11</p>
+<hr>
+<p>VMware Workstation 16 player</p>
+<p>New 一個 desktop</p>
+<p>Network Adapter: NAT</p>
+<p>Network Adapter 2: Bridged (Automatic)選 4 GB 就好</p>
+<p>Power on</p>
+<hr>
+<p>Rocky Linux</p>
+<p>課程提供之 VM 登入密碼:</p>
+<p>​	ID: student</p>
+<p>​	PW: studentP@ssw0rd</p>
+<hr>
+<p>登入後語系都選 next &hellip;</p>
+<p>Activities (右上角) → Terminal</p>
+<pre tabindex="0"><code>$ sudo su -
+[sudo] password for student:
+[root@desktop-X ~]# head -n 1 /etc/shadow
+root:!::0:99999:7:::
+</code></pre><hr>
+<p>改成 desktop.30 ，如以下截圖<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh6.googleusercontent.com/hZhsxQuAKe-UXtgzrOQfVWbIW2ZYQEQqOrnGhCm92XYdr5QVU4_uhD0osfbdPIcO457kSOgQXkO6Bi2IUnYN35CTAH3F7HOtONal-XjWVj4hC8wcSSt8eqrElQD0iYMdH_yrassMyRvN11u9eyiMZp4"
+        data-srcset="https://lh6.googleusercontent.com/hZhsxQuAKe-UXtgzrOQfVWbIW2ZYQEQqOrnGhCm92XYdr5QVU4_uhD0osfbdPIcO457kSOgQXkO6Bi2IUnYN35CTAH3F7HOtONal-XjWVj4hC8wcSSt8eqrElQD0iYMdH_yrassMyRvN11u9eyiMZp4, https://lh6.googleusercontent.com/hZhsxQuAKe-UXtgzrOQfVWbIW2ZYQEQqOrnGhCm92XYdr5QVU4_uhD0osfbdPIcO457kSOgQXkO6Bi2IUnYN35CTAH3F7HOtONal-XjWVj4hC8wcSSt8eqrElQD0iYMdH_yrassMyRvN11u9eyiMZp4 1.5x, https://lh6.googleusercontent.com/hZhsxQuAKe-UXtgzrOQfVWbIW2ZYQEQqOrnGhCm92XYdr5QVU4_uhD0osfbdPIcO457kSOgQXkO6Bi2IUnYN35CTAH3F7HOtONal-XjWVj4hC8wcSSt8eqrElQD0iYMdH_yrassMyRvN11u9eyiMZp4 2x"
+        data-sizes="auto"
+        alt="https://lh6.googleusercontent.com/hZhsxQuAKe-UXtgzrOQfVWbIW2ZYQEQqOrnGhCm92XYdr5QVU4_uhD0osfbdPIcO457kSOgQXkO6Bi2IUnYN35CTAH3F7HOtONal-XjWVj4hC8wcSSt8eqrElQD0iYMdH_yrassMyRvN11u9eyiMZp4"
+        title="img" />
+接著輸入 reboot 重新開機</p>
+<ul>
+<li><code>nmtui</code> 進入編輯選單
+<ul>
+<li>選第二張 network adapter，改 Manual ，點 show</li>
+<li>Addresses: 10.6.30.5/24 (這裡的 24 指的是遮罩 8 bytes *4)</li>
+<li>Automatically connect，按空白鍵勾選它 [V]，點OK</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ nmcli connection show
+</span></span><span class="line"><span class="cl">NAME  UUID                         TYPE       DEVICE
+</span></span><span class="line"><span class="cl">$ nmcli connection up ens192   <span class="c1"># 這是使第二張網卡生效</span>
+</span></span><span class="line"><span class="cl">Connection successfully activated...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>對照 ens192 的 MAC address</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/W_9IX70XVauw1_LIP7y5B7BhxDYzR2ScDxdDPhagLJUxugqEBFj82e-Ns0TiaqXGt_Rz3itSxj8Dx1MK_ZGa1ZyhQOawY6SAtkxMlDtie80Yi_fzs9S_S7Blk4sXPffbOAnRd6a70i2EFtTDexgeIRY"
+        data-srcset="https://lh4.googleusercontent.com/W_9IX70XVauw1_LIP7y5B7BhxDYzR2ScDxdDPhagLJUxugqEBFj82e-Ns0TiaqXGt_Rz3itSxj8Dx1MK_ZGa1ZyhQOawY6SAtkxMlDtie80Yi_fzs9S_S7Blk4sXPffbOAnRd6a70i2EFtTDexgeIRY, https://lh4.googleusercontent.com/W_9IX70XVauw1_LIP7y5B7BhxDYzR2ScDxdDPhagLJUxugqEBFj82e-Ns0TiaqXGt_Rz3itSxj8Dx1MK_ZGa1ZyhQOawY6SAtkxMlDtie80Yi_fzs9S_S7Blk4sXPffbOAnRd6a70i2EFtTDexgeIRY 1.5x, https://lh4.googleusercontent.com/W_9IX70XVauw1_LIP7y5B7BhxDYzR2ScDxdDPhagLJUxugqEBFj82e-Ns0TiaqXGt_Rz3itSxj8Dx1MK_ZGa1ZyhQOawY6SAtkxMlDtie80Yi_fzs9S_S7Blk4sXPffbOAnRd6a70i2EFtTDexgeIRY 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/W_9IX70XVauw1_LIP7y5B7BhxDYzR2ScDxdDPhagLJUxugqEBFj82e-Ns0TiaqXGt_Rz3itSxj8Dx1MK_ZGa1ZyhQOawY6SAtkxMlDtie80Yi_fzs9S_S7Blk4sXPffbOAnRd6a70i2EFtTDexgeIRY"
+        title="img" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ip addr
+</span></span><span class="line"><span class="cl">$ nmtui
+</span></span><span class="line"><span class="cl">$ nmcli connection show
+</span></span><span class="line"><span class="cl">$ nmcli connection up ens192
+</span></span><span class="line"><span class="cl">$ dnf list
+</span></span><span class="line"><span class="cl"><span class="o">[</span>baseos<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>Class Base30
+</span></span><span class="line"><span class="cl"><span class="nv">baseurl</span><span class="o">=</span>http://10.6.X.5/repo/BaseOS/
+</span></span><span class="line"><span class="cl"><span class="nv">enabled</span><span class="o">=</span><span class="m">1</span>     <span class="c1"># 1 啟用 、 0 停用</span>
+</span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh3.googleusercontent.com/YPMewhOPa0Xvw79t5e6_7o6VnM29ksmNsYJsar6GYvs314DjJEySNVWE-LlfRSuBbVGyppfK9Et1fAUsRAWVyyKHplgwoTljh57if_J5arSWwxmWpb45VT5wUF5XdKQErweUAtjpSjrDoo8HJnOmgQs"
+        data-srcset="https://lh3.googleusercontent.com/YPMewhOPa0Xvw79t5e6_7o6VnM29ksmNsYJsar6GYvs314DjJEySNVWE-LlfRSuBbVGyppfK9Et1fAUsRAWVyyKHplgwoTljh57if_J5arSWwxmWpb45VT5wUF5XdKQErweUAtjpSjrDoo8HJnOmgQs, https://lh3.googleusercontent.com/YPMewhOPa0Xvw79t5e6_7o6VnM29ksmNsYJsar6GYvs314DjJEySNVWE-LlfRSuBbVGyppfK9Et1fAUsRAWVyyKHplgwoTljh57if_J5arSWwxmWpb45VT5wUF5XdKQErweUAtjpSjrDoo8HJnOmgQs 1.5x, https://lh3.googleusercontent.com/YPMewhOPa0Xvw79t5e6_7o6VnM29ksmNsYJsar6GYvs314DjJEySNVWE-LlfRSuBbVGyppfK9Et1fAUsRAWVyyKHplgwoTljh57if_J5arSWwxmWpb45VT5wUF5XdKQErweUAtjpSjrDoo8HJnOmgQs 2x"
+        data-sizes="auto"
+        alt="https://lh3.googleusercontent.com/YPMewhOPa0Xvw79t5e6_7o6VnM29ksmNsYJsar6GYvs314DjJEySNVWE-LlfRSuBbVGyppfK9Et1fAUsRAWVyyKHplgwoTljh57if_J5arSWwxmWpb45VT5wUF5XdKQErweUAtjpSjrDoo8HJnOmgQs"
+        title="img" /></p>
+<ol>
+<li>
+<p>變更 baseurl 的方法一：<code>vi local.repo</code><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/IJNkfEp9fOE_jhYy52tW02jd2qAZpzn3M-i1uQpTbNX_ze2v07y_wprBz3O0wi1YUwJmhm1p3bpNmW9zz3Tgxf266cWdyVT3FwdZsRkPUeE3IcnWt6WdWLy8Atm4yokpMLh0_jhDLC1Xfr10uBHbV9I"
+        data-srcset="https://lh4.googleusercontent.com/IJNkfEp9fOE_jhYy52tW02jd2qAZpzn3M-i1uQpTbNX_ze2v07y_wprBz3O0wi1YUwJmhm1p3bpNmW9zz3Tgxf266cWdyVT3FwdZsRkPUeE3IcnWt6WdWLy8Atm4yokpMLh0_jhDLC1Xfr10uBHbV9I, https://lh4.googleusercontent.com/IJNkfEp9fOE_jhYy52tW02jd2qAZpzn3M-i1uQpTbNX_ze2v07y_wprBz3O0wi1YUwJmhm1p3bpNmW9zz3Tgxf266cWdyVT3FwdZsRkPUeE3IcnWt6WdWLy8Atm4yokpMLh0_jhDLC1Xfr10uBHbV9I 1.5x, https://lh4.googleusercontent.com/IJNkfEp9fOE_jhYy52tW02jd2qAZpzn3M-i1uQpTbNX_ze2v07y_wprBz3O0wi1YUwJmhm1p3bpNmW9zz3Tgxf266cWdyVT3FwdZsRkPUeE3IcnWt6WdWLy8Atm4yokpMLh0_jhDLC1Xfr10uBHbV9I 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/IJNkfEp9fOE_jhYy52tW02jd2qAZpzn3M-i1uQpTbNX_ze2v07y_wprBz3O0wi1YUwJmhm1p3bpNmW9zz3Tgxf266cWdyVT3FwdZsRkPUeE3IcnWt6WdWLy8Atm4yokpMLh0_jhDLC1Xfr10uBHbV9I"
+        title="img" /></p>
+</li>
+<li>
+<p>變更 baseurl 的方法二：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sed -i -e <span class="s1">&#39;s/10.6.X.5/10.6.30.5/g&#39;</span> /etc/yum.repos.d/local.repo
+</span></span><span class="line"><span class="cl">$ cat local.repo
+</span></span><span class="line"><span class="cl">$ curl http://10.6.30.5
+</span></span><span class="line"><span class="cl">$ systemctl <span class="nb">enable</span> --now httpd
+</span></span><span class="line"><span class="cl">$ dnf list  <span class="c1"># 會出現一串藍色字清單</span>
+</span></span><span class="line"><span class="cl">$ systemctl status
+</span></span><span class="line"><span class="cl">$ <span class="nb">history</span> <span class="c1"># 可以列出之前打的指令</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/MxJ9feX.png"
+        data-srcset="https://i.imgur.com/MxJ9feX.png, https://i.imgur.com/MxJ9feX.png 1.5x, https://i.imgur.com/MxJ9feX.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/MxJ9feX.png"
+        title="image-20230211183048859" /></p>
+<h2 id="開另外一個-vmware-workstation-16-player-視窗建立-server">開另外一個 VMware Workstation 16 Player 視窗，建立 server</h2>
+<ol>
+<li>Step 01</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh6.googleusercontent.com/Y09X-7ABL4zxgMljxg7rHIMoVKwAA1X09oZqkXG8oFWmB6u3UZ2cQOjDRVnZzir6IQoKEtE_H0zkLv3LwofIyF7-yteYEfVp1aUEExU79bTwwhKc0bYQNzNMoOGjUHHwwi4Xz7Hf2ELYgFWbvQy9is0"
+        data-srcset="https://lh6.googleusercontent.com/Y09X-7ABL4zxgMljxg7rHIMoVKwAA1X09oZqkXG8oFWmB6u3UZ2cQOjDRVnZzir6IQoKEtE_H0zkLv3LwofIyF7-yteYEfVp1aUEExU79bTwwhKc0bYQNzNMoOGjUHHwwi4Xz7Hf2ELYgFWbvQy9is0, https://lh6.googleusercontent.com/Y09X-7ABL4zxgMljxg7rHIMoVKwAA1X09oZqkXG8oFWmB6u3UZ2cQOjDRVnZzir6IQoKEtE_H0zkLv3LwofIyF7-yteYEfVp1aUEExU79bTwwhKc0bYQNzNMoOGjUHHwwi4Xz7Hf2ELYgFWbvQy9is0 1.5x, https://lh6.googleusercontent.com/Y09X-7ABL4zxgMljxg7rHIMoVKwAA1X09oZqkXG8oFWmB6u3UZ2cQOjDRVnZzir6IQoKEtE_H0zkLv3LwofIyF7-yteYEfVp1aUEExU79bTwwhKc0bYQNzNMoOGjUHHwwi4Xz7Hf2ELYgFWbvQy9is0 2x"
+        data-sizes="auto"
+        alt="https://lh6.googleusercontent.com/Y09X-7ABL4zxgMljxg7rHIMoVKwAA1X09oZqkXG8oFWmB6u3UZ2cQOjDRVnZzir6IQoKEtE_H0zkLv3LwofIyF7-yteYEfVp1aUEExU79bTwwhKc0bYQNzNMoOGjUHHwwi4Xz7Hf2ELYgFWbvQy9is0"
+        title="img" /></p>
+<ol start="2">
+<li>Step 02</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh3.googleusercontent.com/HbSbtBIiXvwGmK-z1RN64QIpTJ5rclh1UsWSFvIs-RXnAaZ8fTrydQef-tvE1c6BLC8j40B05nrEw0fICECZTkqedlD3S83Kc-lZyLIKSaV2YGNGM6fC7AWCxVCLac5NXLVWamscCHoXJYHBTJTFyx8"
+        data-srcset="https://lh3.googleusercontent.com/HbSbtBIiXvwGmK-z1RN64QIpTJ5rclh1UsWSFvIs-RXnAaZ8fTrydQef-tvE1c6BLC8j40B05nrEw0fICECZTkqedlD3S83Kc-lZyLIKSaV2YGNGM6fC7AWCxVCLac5NXLVWamscCHoXJYHBTJTFyx8, https://lh3.googleusercontent.com/HbSbtBIiXvwGmK-z1RN64QIpTJ5rclh1UsWSFvIs-RXnAaZ8fTrydQef-tvE1c6BLC8j40B05nrEw0fICECZTkqedlD3S83Kc-lZyLIKSaV2YGNGM6fC7AWCxVCLac5NXLVWamscCHoXJYHBTJTFyx8 1.5x, https://lh3.googleusercontent.com/HbSbtBIiXvwGmK-z1RN64QIpTJ5rclh1UsWSFvIs-RXnAaZ8fTrydQef-tvE1c6BLC8j40B05nrEw0fICECZTkqedlD3S83Kc-lZyLIKSaV2YGNGM6fC7AWCxVCLac5NXLVWamscCHoXJYHBTJTFyx8 2x"
+        data-sizes="auto"
+        alt="https://lh3.googleusercontent.com/HbSbtBIiXvwGmK-z1RN64QIpTJ5rclh1UsWSFvIs-RXnAaZ8fTrydQef-tvE1c6BLC8j40B05nrEw0fICECZTkqedlD3S83Kc-lZyLIKSaV2YGNGM6fC7AWCxVCLac5NXLVWamscCHoXJYHBTJTFyx8"
+        title="img" /></p>
+<ol start="3">
+<li>
+<p>Step 03</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/SsztfCnEi2_nXcg9aBMIdb7an5Y5pqZHxjpAC0OfiLGpEKdtUu3JR7kETEsknPP4Eg2DXkJ3H4S2xUt6tRjGugsaDnLiKhuC_AwKiL7BVBFYyGHmzfPUP8nX5HV4cX8TUntkX5UH7tBOpTMTm1m2iSE"
+        data-srcset="https://lh4.googleusercontent.com/SsztfCnEi2_nXcg9aBMIdb7an5Y5pqZHxjpAC0OfiLGpEKdtUu3JR7kETEsknPP4Eg2DXkJ3H4S2xUt6tRjGugsaDnLiKhuC_AwKiL7BVBFYyGHmzfPUP8nX5HV4cX8TUntkX5UH7tBOpTMTm1m2iSE, https://lh4.googleusercontent.com/SsztfCnEi2_nXcg9aBMIdb7an5Y5pqZHxjpAC0OfiLGpEKdtUu3JR7kETEsknPP4Eg2DXkJ3H4S2xUt6tRjGugsaDnLiKhuC_AwKiL7BVBFYyGHmzfPUP8nX5HV4cX8TUntkX5UH7tBOpTMTm1m2iSE 1.5x, https://lh4.googleusercontent.com/SsztfCnEi2_nXcg9aBMIdb7an5Y5pqZHxjpAC0OfiLGpEKdtUu3JR7kETEsknPP4Eg2DXkJ3H4S2xUt6tRjGugsaDnLiKhuC_AwKiL7BVBFYyGHmzfPUP8nX5HV4cX8TUntkX5UH7tBOpTMTm1m2iSE 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/SsztfCnEi2_nXcg9aBMIdb7an5Y5pqZHxjpAC0OfiLGpEKdtUu3JR7kETEsknPP4Eg2DXkJ3H4S2xUt6tRjGugsaDnLiKhuC_AwKiL7BVBFYyGHmzfPUP8nX5HV4cX8TUntkX5UH7tBOpTMTm1m2iSE"
+        title="img" /></p>
+</li>
+<li>
+<p>Step 04</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/_7r4EiY6MQKB5OB2di6abTQAXLKutsq0bS7psYlt-fjsL3cgsp2vRZlPTM-NZLUcWzUVB1ZRbo0_hvkXk-5G-cMOoAmKij9sHsljJ5e2GxTdo1xq541wBm63S4_pZBWan77u0DQLQANIKojZzQ6v4gI"
+        data-srcset="https://lh4.googleusercontent.com/_7r4EiY6MQKB5OB2di6abTQAXLKutsq0bS7psYlt-fjsL3cgsp2vRZlPTM-NZLUcWzUVB1ZRbo0_hvkXk-5G-cMOoAmKij9sHsljJ5e2GxTdo1xq541wBm63S4_pZBWan77u0DQLQANIKojZzQ6v4gI, https://lh4.googleusercontent.com/_7r4EiY6MQKB5OB2di6abTQAXLKutsq0bS7psYlt-fjsL3cgsp2vRZlPTM-NZLUcWzUVB1ZRbo0_hvkXk-5G-cMOoAmKij9sHsljJ5e2GxTdo1xq541wBm63S4_pZBWan77u0DQLQANIKojZzQ6v4gI 1.5x, https://lh4.googleusercontent.com/_7r4EiY6MQKB5OB2di6abTQAXLKutsq0bS7psYlt-fjsL3cgsp2vRZlPTM-NZLUcWzUVB1ZRbo0_hvkXk-5G-cMOoAmKij9sHsljJ5e2GxTdo1xq541wBm63S4_pZBWan77u0DQLQANIKojZzQ6v4gI 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/_7r4EiY6MQKB5OB2di6abTQAXLKutsq0bS7psYlt-fjsL3cgsp2vRZlPTM-NZLUcWzUVB1ZRbo0_hvkXk-5G-cMOoAmKij9sHsljJ5e2GxTdo1xq541wBm63S4_pZBWan77u0DQLQANIKojZzQ6v4gI"
+        title="img" /></p>
+</li>
+<li>
+<p>Step 05</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh3.googleusercontent.com/k01VnrCgbEG3-58tQCEvtC_RW4vWOLteCLheIppRDUul-fkKAET8XFBVihl_jLiOPgCJbVeEZag--2YunKqUDNHZRb7g5bTZAHbI0ez4_lcX1OiwcHwFhY_g580ywO29k8f8SWq1O42Qsy3UMEscEuc"
+        data-srcset="https://lh3.googleusercontent.com/k01VnrCgbEG3-58tQCEvtC_RW4vWOLteCLheIppRDUul-fkKAET8XFBVihl_jLiOPgCJbVeEZag--2YunKqUDNHZRb7g5bTZAHbI0ez4_lcX1OiwcHwFhY_g580ywO29k8f8SWq1O42Qsy3UMEscEuc, https://lh3.googleusercontent.com/k01VnrCgbEG3-58tQCEvtC_RW4vWOLteCLheIppRDUul-fkKAET8XFBVihl_jLiOPgCJbVeEZag--2YunKqUDNHZRb7g5bTZAHbI0ez4_lcX1OiwcHwFhY_g580ywO29k8f8SWq1O42Qsy3UMEscEuc 1.5x, https://lh3.googleusercontent.com/k01VnrCgbEG3-58tQCEvtC_RW4vWOLteCLheIppRDUul-fkKAET8XFBVihl_jLiOPgCJbVeEZag--2YunKqUDNHZRb7g5bTZAHbI0ez4_lcX1OiwcHwFhY_g580ywO29k8f8SWq1O42Qsy3UMEscEuc 2x"
+        data-sizes="auto"
+        alt="https://lh3.googleusercontent.com/k01VnrCgbEG3-58tQCEvtC_RW4vWOLteCLheIppRDUul-fkKAET8XFBVihl_jLiOPgCJbVeEZag--2YunKqUDNHZRb7g5bTZAHbI0ez4_lcX1OiwcHwFhY_g580ywO29k8f8SWq1O42Qsy3UMEscEuc"
+        title="img" /></p>
+</li>
+<li>
+<p>Power On</p>
+</li>
+<li>
+<p>Editing ens192 (bridged network adapter)</p>
+<p>General - 勾選 Connect</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh6.googleusercontent.com/D7qydIUos_STgWWVhaqelwhqTj_fQjyV7EKeviF13I5ifJASg0NnFBoq7HffS3YCBS1XZKSBC7mJEMKvNFvgXih5K8BSbdJMA3ULjd4mBMah_SikK9q60KqpqF2vYmtMsN0pl9Vhc3eO5wFo6tMMFuk"
+        data-srcset="https://lh6.googleusercontent.com/D7qydIUos_STgWWVhaqelwhqTj_fQjyV7EKeviF13I5ifJASg0NnFBoq7HffS3YCBS1XZKSBC7mJEMKvNFvgXih5K8BSbdJMA3ULjd4mBMah_SikK9q60KqpqF2vYmtMsN0pl9Vhc3eO5wFo6tMMFuk, https://lh6.googleusercontent.com/D7qydIUos_STgWWVhaqelwhqTj_fQjyV7EKeviF13I5ifJASg0NnFBoq7HffS3YCBS1XZKSBC7mJEMKvNFvgXih5K8BSbdJMA3ULjd4mBMah_SikK9q60KqpqF2vYmtMsN0pl9Vhc3eO5wFo6tMMFuk 1.5x, https://lh6.googleusercontent.com/D7qydIUos_STgWWVhaqelwhqTj_fQjyV7EKeviF13I5ifJASg0NnFBoq7HffS3YCBS1XZKSBC7mJEMKvNFvgXih5K8BSbdJMA3ULjd4mBMah_SikK9q60KqpqF2vYmtMsN0pl9Vhc3eO5wFo6tMMFuk 2x"
+        data-sizes="auto"
+        alt="https://lh6.googleusercontent.com/D7qydIUos_STgWWVhaqelwhqTj_fQjyV7EKeviF13I5ifJASg0NnFBoq7HffS3YCBS1XZKSBC7mJEMKvNFvgXih5K8BSbdJMA3ULjd4mBMah_SikK9q60KqpqF2vYmtMsN0pl9Vhc3eO5wFo6tMMFuk"
+        title="img" /></p>
+</li>
+</ol>
+<p>Power On</p>
+<ol start="8">
+<li>
+<p>IPv4 Settings 增加 Addresses 以及 Netmask 24</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh3.googleusercontent.com/E-cdXHR-NsFaiU9_ozHQ6sp8JbuOnxwzUWCOIl9MaHZRWWBVeE1Dfj_WzgHXR102_DKJfJsU4LCUoqomyi0Xx1jgvC2FLgXi1x1mv9i_KLMEPiRy74xeyIgPQe_vKGCZc7QBA43gFT0wSQ8UD7jd3GI"
+        data-srcset="https://lh3.googleusercontent.com/E-cdXHR-NsFaiU9_ozHQ6sp8JbuOnxwzUWCOIl9MaHZRWWBVeE1Dfj_WzgHXR102_DKJfJsU4LCUoqomyi0Xx1jgvC2FLgXi1x1mv9i_KLMEPiRy74xeyIgPQe_vKGCZc7QBA43gFT0wSQ8UD7jd3GI, https://lh3.googleusercontent.com/E-cdXHR-NsFaiU9_ozHQ6sp8JbuOnxwzUWCOIl9MaHZRWWBVeE1Dfj_WzgHXR102_DKJfJsU4LCUoqomyi0Xx1jgvC2FLgXi1x1mv9i_KLMEPiRy74xeyIgPQe_vKGCZc7QBA43gFT0wSQ8UD7jd3GI 1.5x, https://lh3.googleusercontent.com/E-cdXHR-NsFaiU9_ozHQ6sp8JbuOnxwzUWCOIl9MaHZRWWBVeE1Dfj_WzgHXR102_DKJfJsU4LCUoqomyi0Xx1jgvC2FLgXi1x1mv9i_KLMEPiRy74xeyIgPQe_vKGCZc7QBA43gFT0wSQ8UD7jd3GI 2x"
+        data-sizes="auto"
+        alt="https://lh3.googleusercontent.com/E-cdXHR-NsFaiU9_ozHQ6sp8JbuOnxwzUWCOIl9MaHZRWWBVeE1Dfj_WzgHXR102_DKJfJsU4LCUoqomyi0Xx1jgvC2FLgXi1x1mv9i_KLMEPiRy74xeyIgPQe_vKGCZc7QBA43gFT0wSQ8UD7jd3GI"
+        title="img" /></p>
+</li>
+<li>
+<p>ens192 network adapter SWITCH ON</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/-mUG-pWLcMs8HK8DDSXWmA99gts5moDHGylQ69bfCRgCqhOmSSUCSd6C2mi4JF9l4exLVf1umfsqJFhIlYxndTyP3XVzp-DLoHW_pq9GijTQbeV5URq6oNHjiFYjUmqYsqryO0QUtDX_dA4sqidxvck"
+        data-srcset="https://lh4.googleusercontent.com/-mUG-pWLcMs8HK8DDSXWmA99gts5moDHGylQ69bfCRgCqhOmSSUCSd6C2mi4JF9l4exLVf1umfsqJFhIlYxndTyP3XVzp-DLoHW_pq9GijTQbeV5URq6oNHjiFYjUmqYsqryO0QUtDX_dA4sqidxvck, https://lh4.googleusercontent.com/-mUG-pWLcMs8HK8DDSXWmA99gts5moDHGylQ69bfCRgCqhOmSSUCSd6C2mi4JF9l4exLVf1umfsqJFhIlYxndTyP3XVzp-DLoHW_pq9GijTQbeV5URq6oNHjiFYjUmqYsqryO0QUtDX_dA4sqidxvck 1.5x, https://lh4.googleusercontent.com/-mUG-pWLcMs8HK8DDSXWmA99gts5moDHGylQ69bfCRgCqhOmSSUCSd6C2mi4JF9l4exLVf1umfsqJFhIlYxndTyP3XVzp-DLoHW_pq9GijTQbeV5URq6oNHjiFYjUmqYsqryO0QUtDX_dA4sqidxvck 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/-mUG-pWLcMs8HK8DDSXWmA99gts5moDHGylQ69bfCRgCqhOmSSUCSd6C2mi4JF9l4exLVf1umfsqJFhIlYxndTyP3XVzp-DLoHW_pq9GijTQbeV5URq6oNHjiFYjUmqYsqryO0QUtDX_dA4sqidxvck"
+        title="img" /></p>
+</li>
+<li>
+<p>設定 Root pcode，方便記憶這裡使用 1qaz1qaz</p>
+</li>
+<li>
+<p>Installation Source (SOFTWARE 中間第一個)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh6.googleusercontent.com/8QnAsETziErtcs-TJjWYH352XFQiHkaNHsRUnUD4TUgafHWBufu4m0Nzz_huAIBllg6-j6EeITZTlqwKodPNzw0PlNtQGRKjhL9Gm87Huuvzp8apUAILuxPrKQFEwloatT3IwBZeR5JAPrnXF6RaWZE"
+        data-srcset="https://lh6.googleusercontent.com/8QnAsETziErtcs-TJjWYH352XFQiHkaNHsRUnUD4TUgafHWBufu4m0Nzz_huAIBllg6-j6EeITZTlqwKodPNzw0PlNtQGRKjhL9Gm87Huuvzp8apUAILuxPrKQFEwloatT3IwBZeR5JAPrnXF6RaWZE, https://lh6.googleusercontent.com/8QnAsETziErtcs-TJjWYH352XFQiHkaNHsRUnUD4TUgafHWBufu4m0Nzz_huAIBllg6-j6EeITZTlqwKodPNzw0PlNtQGRKjhL9Gm87Huuvzp8apUAILuxPrKQFEwloatT3IwBZeR5JAPrnXF6RaWZE 1.5x, https://lh6.googleusercontent.com/8QnAsETziErtcs-TJjWYH352XFQiHkaNHsRUnUD4TUgafHWBufu4m0Nzz_huAIBllg6-j6EeITZTlqwKodPNzw0PlNtQGRKjhL9Gm87Huuvzp8apUAILuxPrKQFEwloatT3IwBZeR5JAPrnXF6RaWZE 2x"
+        data-sizes="auto"
+        alt="https://lh6.googleusercontent.com/8QnAsETziErtcs-TJjWYH352XFQiHkaNHsRUnUD4TUgafHWBufu4m0Nzz_huAIBllg6-j6EeITZTlqwKodPNzw0PlNtQGRKjhL9Gm87Huuvzp8apUAILuxPrKQFEwloatT3IwBZeR5JAPrnXF6RaWZE"
+        title="img" /></p>
+</li>
+<li>
+<p>Software Selection (SOFTWARE 中間第二個)：選 minimal install<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/qWa6Eu9S2LaUlQRsjhmBh_SXM5G6hkv4OGimK1qDc-bozDXbey387-VHP0tbfpDjN17ERkCxP6dggZsFOopqV9VhuemxHploiOvbltaMZSHmVHsszzihCfagBsTxXyy7jdZVt4eQ-d0PUZ54s3JKktk"
+        data-srcset="https://lh4.googleusercontent.com/qWa6Eu9S2LaUlQRsjhmBh_SXM5G6hkv4OGimK1qDc-bozDXbey387-VHP0tbfpDjN17ERkCxP6dggZsFOopqV9VhuemxHploiOvbltaMZSHmVHsszzihCfagBsTxXyy7jdZVt4eQ-d0PUZ54s3JKktk, https://lh4.googleusercontent.com/qWa6Eu9S2LaUlQRsjhmBh_SXM5G6hkv4OGimK1qDc-bozDXbey387-VHP0tbfpDjN17ERkCxP6dggZsFOopqV9VhuemxHploiOvbltaMZSHmVHsszzihCfagBsTxXyy7jdZVt4eQ-d0PUZ54s3JKktk 1.5x, https://lh4.googleusercontent.com/qWa6Eu9S2LaUlQRsjhmBh_SXM5G6hkv4OGimK1qDc-bozDXbey387-VHP0tbfpDjN17ERkCxP6dggZsFOopqV9VhuemxHploiOvbltaMZSHmVHsszzihCfagBsTxXyy7jdZVt4eQ-d0PUZ54s3JKktk 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/qWa6Eu9S2LaUlQRsjhmBh_SXM5G6hkv4OGimK1qDc-bozDXbey387-VHP0tbfpDjN17ERkCxP6dggZsFOopqV9VhuemxHploiOvbltaMZSHmVHsszzihCfagBsTxXyy7jdZVt4eQ-d0PUZ54s3JKktk"
+        title="img" /></p>
+</li>
+<li>
+<p>中間第一個 + additional repo，填入 http URL <code>10.6.30.5/repo/AppStream</code><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh3.googleusercontent.com/yxHkI23BwRwKOcy8WGv_ASGjBFHJkulUpR1ZrEnnoq6jgHtgLsn1gtTztgUpsURWluQ4XRpcxXPO3u3-9mTbFglTSdT82p3S4odmV0ILnYmVGLiV7xmsG7ulHlGszFmVnCrsXTHgzbYo68IBn7EnpK0"
+        data-srcset="https://lh3.googleusercontent.com/yxHkI23BwRwKOcy8WGv_ASGjBFHJkulUpR1ZrEnnoq6jgHtgLsn1gtTztgUpsURWluQ4XRpcxXPO3u3-9mTbFglTSdT82p3S4odmV0ILnYmVGLiV7xmsG7ulHlGszFmVnCrsXTHgzbYo68IBn7EnpK0, https://lh3.googleusercontent.com/yxHkI23BwRwKOcy8WGv_ASGjBFHJkulUpR1ZrEnnoq6jgHtgLsn1gtTztgUpsURWluQ4XRpcxXPO3u3-9mTbFglTSdT82p3S4odmV0ILnYmVGLiV7xmsG7ulHlGszFmVnCrsXTHgzbYo68IBn7EnpK0 1.5x, https://lh3.googleusercontent.com/yxHkI23BwRwKOcy8WGv_ASGjBFHJkulUpR1ZrEnnoq6jgHtgLsn1gtTztgUpsURWluQ4XRpcxXPO3u3-9mTbFglTSdT82p3S4odmV0ILnYmVGLiV7xmsG7ulHlGszFmVnCrsXTHgzbYo68IBn7EnpK0 2x"
+        data-sizes="auto"
+        alt="https://lh3.googleusercontent.com/yxHkI23BwRwKOcy8WGv_ASGjBFHJkulUpR1ZrEnnoq6jgHtgLsn1gtTztgUpsURWluQ4XRpcxXPO3u3-9mTbFglTSdT82p3S4odmV0ILnYmVGLiV7xmsG7ulHlGszFmVnCrsXTHgzbYo68IBn7EnpK0"
+        title="img" /></p>
+</li>
+<li>
+<p>右上第一個 : 磁碟分割Storage Configuration 選 [custom] → [DONE] → 跳進坑之後再點 <!-- raw HTML omitted -->I would like to automatically…<!-- raw HTML omitted --> → [DONE]</p>
+</li>
+<li>
+<p>Security Policy 據說要付費，不用選，中間上有個按鈕把它 [switch OFF]<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh5.googleusercontent.com/PFWVIm3QYOpKdeowuz7PXbFOexCQbNeTlYUYcK-uEMY3n9rjPmiaioIx50tgj4JWjCiMo3itpDi_NX1EzoTxGo5gy7vJnqIZXvGYKbA3ZmahOxrdDa2YWUKIrUqt1LWq1KtPz0CyYrrEI5tjv7Ixv6E"
+        data-srcset="https://lh5.googleusercontent.com/PFWVIm3QYOpKdeowuz7PXbFOexCQbNeTlYUYcK-uEMY3n9rjPmiaioIx50tgj4JWjCiMo3itpDi_NX1EzoTxGo5gy7vJnqIZXvGYKbA3ZmahOxrdDa2YWUKIrUqt1LWq1KtPz0CyYrrEI5tjv7Ixv6E, https://lh5.googleusercontent.com/PFWVIm3QYOpKdeowuz7PXbFOexCQbNeTlYUYcK-uEMY3n9rjPmiaioIx50tgj4JWjCiMo3itpDi_NX1EzoTxGo5gy7vJnqIZXvGYKbA3ZmahOxrdDa2YWUKIrUqt1LWq1KtPz0CyYrrEI5tjv7Ixv6E 1.5x, https://lh5.googleusercontent.com/PFWVIm3QYOpKdeowuz7PXbFOexCQbNeTlYUYcK-uEMY3n9rjPmiaioIx50tgj4JWjCiMo3itpDi_NX1EzoTxGo5gy7vJnqIZXvGYKbA3ZmahOxrdDa2YWUKIrUqt1LWq1KtPz0CyYrrEI5tjv7Ixv6E 2x"
+        data-sizes="auto"
+        alt="https://lh5.googleusercontent.com/PFWVIm3QYOpKdeowuz7PXbFOexCQbNeTlYUYcK-uEMY3n9rjPmiaioIx50tgj4JWjCiMo3itpDi_NX1EzoTxGo5gy7vJnqIZXvGYKbA3ZmahOxrdDa2YWUKIrUqt1LWq1KtPz0CyYrrEI5tjv7Ixv6E"
+        title="img" /></p>
+</li>
+<li>
+<p>然後就可以 Begin Installation 了</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/l0lySatyvIFXSggRUav1kNE0d7waJlRbdYzeqAytbb50C4hI7Z7I65YV36K0g0kYO5J_EPP1qPOuYAXlWkcFsO_pwEKsMl7Qa1JrP4SRZ36LllWhsHea7X4g79vnCzPENJxdmFVvBbEOpYyOxkwzWbg"
+        data-srcset="https://lh4.googleusercontent.com/l0lySatyvIFXSggRUav1kNE0d7waJlRbdYzeqAytbb50C4hI7Z7I65YV36K0g0kYO5J_EPP1qPOuYAXlWkcFsO_pwEKsMl7Qa1JrP4SRZ36LllWhsHea7X4g79vnCzPENJxdmFVvBbEOpYyOxkwzWbg, https://lh4.googleusercontent.com/l0lySatyvIFXSggRUav1kNE0d7waJlRbdYzeqAytbb50C4hI7Z7I65YV36K0g0kYO5J_EPP1qPOuYAXlWkcFsO_pwEKsMl7Qa1JrP4SRZ36LllWhsHea7X4g79vnCzPENJxdmFVvBbEOpYyOxkwzWbg 1.5x, https://lh4.googleusercontent.com/l0lySatyvIFXSggRUav1kNE0d7waJlRbdYzeqAytbb50C4hI7Z7I65YV36K0g0kYO5J_EPP1qPOuYAXlWkcFsO_pwEKsMl7Qa1JrP4SRZ36LllWhsHea7X4g79vnCzPENJxdmFVvBbEOpYyOxkwzWbg 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/l0lySatyvIFXSggRUav1kNE0d7waJlRbdYzeqAytbb50C4hI7Z7I65YV36K0g0kYO5J_EPP1qPOuYAXlWkcFsO_pwEKsMl7Qa1JrP4SRZ36LllWhsHea7X4g79vnCzPENJxdmFVvBbEOpYyOxkwzWbg"
+        title="img" /></p>
+</li>
+</ol>
+<h2 id="從-desktop-端-輸入-ssh-root1063011">從 <strong>desktop</strong> 端 輸入 ssh <a href="mailto:root@10.6.30.11" rel="">root@10.6.30.11</a></h2>
+<p>desktop 端是今天開的第一個 VMware Player 視窗</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh5.googleusercontent.com/KdtCF7tZxD0RBCq4XaACBh8GNWRF6wGWQU4SCqcSHrU6XE8kwy5r0sDaLQbJgG_bSlNckChcFJzmmQ3C79cUc1EFO6VRSxL_NqQUC74HFxW4XPwwH2Sy--56TNa05LLBcrzKdS0b6NPnj25LTAEWRAE"
+        data-srcset="https://lh5.googleusercontent.com/KdtCF7tZxD0RBCq4XaACBh8GNWRF6wGWQU4SCqcSHrU6XE8kwy5r0sDaLQbJgG_bSlNckChcFJzmmQ3C79cUc1EFO6VRSxL_NqQUC74HFxW4XPwwH2Sy--56TNa05LLBcrzKdS0b6NPnj25LTAEWRAE, https://lh5.googleusercontent.com/KdtCF7tZxD0RBCq4XaACBh8GNWRF6wGWQU4SCqcSHrU6XE8kwy5r0sDaLQbJgG_bSlNckChcFJzmmQ3C79cUc1EFO6VRSxL_NqQUC74HFxW4XPwwH2Sy--56TNa05LLBcrzKdS0b6NPnj25LTAEWRAE 1.5x, https://lh5.googleusercontent.com/KdtCF7tZxD0RBCq4XaACBh8GNWRF6wGWQU4SCqcSHrU6XE8kwy5r0sDaLQbJgG_bSlNckChcFJzmmQ3C79cUc1EFO6VRSxL_NqQUC74HFxW4XPwwH2Sy--56TNa05LLBcrzKdS0b6NPnj25LTAEWRAE 2x"
+        data-sizes="auto"
+        alt="https://lh5.googleusercontent.com/KdtCF7tZxD0RBCq4XaACBh8GNWRF6wGWQU4SCqcSHrU6XE8kwy5r0sDaLQbJgG_bSlNckChcFJzmmQ3C79cUc1EFO6VRSxL_NqQUC74HFxW4XPwwH2Sy--56TNa05LLBcrzKdS0b6NPnj25LTAEWRAE"
+        title="img" /></p>
+<ol>
+<li>
+<p>Copy [baseos] &amp; [appstream] 內文</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> /etc/yum.repos.d/
+</span></span><span class="line"><span class="cl">$ ls
+</span></span><span class="line"><span class="cl">$ cat local.repo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh5.googleusercontent.com/VQD6UCNKbwIK3YQv_zpoelRvPsOuExKl9VHpNZuJtp7CLXPivLmkBL6TqUpSw8GQ3DhGPRmc_6dgJrFoxCX8QoxfmhoD9gAoZlNUCC6aOKPTHFV94jievTbqLmWbMGCnZ0nXLWsUGgySZdBTqf0SQm4"
+        data-srcset="https://lh5.googleusercontent.com/VQD6UCNKbwIK3YQv_zpoelRvPsOuExKl9VHpNZuJtp7CLXPivLmkBL6TqUpSw8GQ3DhGPRmc_6dgJrFoxCX8QoxfmhoD9gAoZlNUCC6aOKPTHFV94jievTbqLmWbMGCnZ0nXLWsUGgySZdBTqf0SQm4, https://lh5.googleusercontent.com/VQD6UCNKbwIK3YQv_zpoelRvPsOuExKl9VHpNZuJtp7CLXPivLmkBL6TqUpSw8GQ3DhGPRmc_6dgJrFoxCX8QoxfmhoD9gAoZlNUCC6aOKPTHFV94jievTbqLmWbMGCnZ0nXLWsUGgySZdBTqf0SQm4 1.5x, https://lh5.googleusercontent.com/VQD6UCNKbwIK3YQv_zpoelRvPsOuExKl9VHpNZuJtp7CLXPivLmkBL6TqUpSw8GQ3DhGPRmc_6dgJrFoxCX8QoxfmhoD9gAoZlNUCC6aOKPTHFV94jievTbqLmWbMGCnZ0nXLWsUGgySZdBTqf0SQm4 2x"
+        data-sizes="auto"
+        alt="https://lh5.googleusercontent.com/VQD6UCNKbwIK3YQv_zpoelRvPsOuExKl9VHpNZuJtp7CLXPivLmkBL6TqUpSw8GQ3DhGPRmc_6dgJrFoxCX8QoxfmhoD9gAoZlNUCC6aOKPTHFV94jievTbqLmWbMGCnZ0nXLWsUGgySZdBTqf0SQm4"
+        title="img" /></p>
+</li>
+<li>
+<p><code>sudo su -</code> 切到 root 使用者下載 OpenSCAP 合規確認</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ sudo su -
+</span></span><span class="line"><span class="cl">$ dnf install -y openscap-scanner
+</span></span><span class="line"><span class="cl">$ dnf install -y scap-security-guide
+</span></span><span class="line"><span class="cl">$ oscap info /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml <span class="p">|</span> grep Id:
+</span></span><span class="line"><span class="cl">  <span class="c1"># 查看參考指引的指令</span>
+</span></span><span class="line"><span class="cl">$ oscap xccdf <span class="nb">eval</span> --report ~/report.html --profile xccdf_org.ssgproject.content_profile_standard /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
+</span></span><span class="line"><span class="cl">  <span class="c1"># eval : 執行</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/Bizh621nygH29RYMBcTyRyNq81v6xM3hy_7ddvM9aYFJ42Qst7q5jniZ0vQpfasJGsoph6AeBCufgDpbkpVyQnGDsfcerwCTbJQtI52B0_AypUsEQ9ooTaU-eav6ACh7UcFnShEChni-PdjO8ighYU0"
+        data-srcset="https://lh4.googleusercontent.com/Bizh621nygH29RYMBcTyRyNq81v6xM3hy_7ddvM9aYFJ42Qst7q5jniZ0vQpfasJGsoph6AeBCufgDpbkpVyQnGDsfcerwCTbJQtI52B0_AypUsEQ9ooTaU-eav6ACh7UcFnShEChni-PdjO8ighYU0, https://lh4.googleusercontent.com/Bizh621nygH29RYMBcTyRyNq81v6xM3hy_7ddvM9aYFJ42Qst7q5jniZ0vQpfasJGsoph6AeBCufgDpbkpVyQnGDsfcerwCTbJQtI52B0_AypUsEQ9ooTaU-eav6ACh7UcFnShEChni-PdjO8ighYU0 1.5x, https://lh4.googleusercontent.com/Bizh621nygH29RYMBcTyRyNq81v6xM3hy_7ddvM9aYFJ42Qst7q5jniZ0vQpfasJGsoph6AeBCufgDpbkpVyQnGDsfcerwCTbJQtI52B0_AypUsEQ9ooTaU-eav6ACh7UcFnShEChni-PdjO8ighYU0 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/Bizh621nygH29RYMBcTyRyNq81v6xM3hy_7ddvM9aYFJ42Qst7q5jniZ0vQpfasJGsoph6AeBCufgDpbkpVyQnGDsfcerwCTbJQtI52B0_AypUsEQ9ooTaU-eav6ACh7UcFnShEChni-PdjO8ighYU0"
+        title="img" /></p>
+<ol start="3">
+<li>
+<p>開始掃<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/aYio4m9l2Pf7qUoWVbCnKJbkSI9zyXeiiioLaCg_BFvAF206U-U8XRAm2NZQqAybrcVuqOwDhZCrBRHUFDYff0vWyeL-9mld-mkF1JwsloE-k8O486AmvjqZU4iDa7C-dknoqNuv8xJqJZuUOr4Z8_k"
+        data-srcset="https://lh4.googleusercontent.com/aYio4m9l2Pf7qUoWVbCnKJbkSI9zyXeiiioLaCg_BFvAF206U-U8XRAm2NZQqAybrcVuqOwDhZCrBRHUFDYff0vWyeL-9mld-mkF1JwsloE-k8O486AmvjqZU4iDa7C-dknoqNuv8xJqJZuUOr4Z8_k, https://lh4.googleusercontent.com/aYio4m9l2Pf7qUoWVbCnKJbkSI9zyXeiiioLaCg_BFvAF206U-U8XRAm2NZQqAybrcVuqOwDhZCrBRHUFDYff0vWyeL-9mld-mkF1JwsloE-k8O486AmvjqZU4iDa7C-dknoqNuv8xJqJZuUOr4Z8_k 1.5x, https://lh4.googleusercontent.com/aYio4m9l2Pf7qUoWVbCnKJbkSI9zyXeiiioLaCg_BFvAF206U-U8XRAm2NZQqAybrcVuqOwDhZCrBRHUFDYff0vWyeL-9mld-mkF1JwsloE-k8O486AmvjqZU4iDa7C-dknoqNuv8xJqJZuUOr4Z8_k 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/aYio4m9l2Pf7qUoWVbCnKJbkSI9zyXeiiioLaCg_BFvAF206U-U8XRAm2NZQqAybrcVuqOwDhZCrBRHUFDYff0vWyeL-9mld-mkF1JwsloE-k8O486AmvjqZU4iDa7C-dknoqNuv8xJqJZuUOr4Z8_k"
+        title="img" /></p>
+</li>
+<li>
+<p>檢視 Report</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cp ~/report.html ~student/
+</span></span><span class="line"><span class="cl">$ chown student ~student/report.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>使用 Firefox 開啟 ~/report.html<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh5.googleusercontent.com/eJfNUu8JYnMaRLS0TII6entFKeyplRiYdJPqsiQF6cwp3vZGQpE8XKob5aJjS4sTADAuuPvI7SaX_TVR8uhmO0-jckJiZQc1NQXYU-5F6YP-kkHP8sodtdGDE_5VxjZPqrO4OPkUuOJWZnMufCSS_Lg"
+        data-srcset="https://lh5.googleusercontent.com/eJfNUu8JYnMaRLS0TII6entFKeyplRiYdJPqsiQF6cwp3vZGQpE8XKob5aJjS4sTADAuuPvI7SaX_TVR8uhmO0-jckJiZQc1NQXYU-5F6YP-kkHP8sodtdGDE_5VxjZPqrO4OPkUuOJWZnMufCSS_Lg, https://lh5.googleusercontent.com/eJfNUu8JYnMaRLS0TII6entFKeyplRiYdJPqsiQF6cwp3vZGQpE8XKob5aJjS4sTADAuuPvI7SaX_TVR8uhmO0-jckJiZQc1NQXYU-5F6YP-kkHP8sodtdGDE_5VxjZPqrO4OPkUuOJWZnMufCSS_Lg 1.5x, https://lh5.googleusercontent.com/eJfNUu8JYnMaRLS0TII6entFKeyplRiYdJPqsiQF6cwp3vZGQpE8XKob5aJjS4sTADAuuPvI7SaX_TVR8uhmO0-jckJiZQc1NQXYU-5F6YP-kkHP8sodtdGDE_5VxjZPqrO4OPkUuOJWZnMufCSS_Lg 2x"
+        data-sizes="auto"
+        alt="https://lh5.googleusercontent.com/eJfNUu8JYnMaRLS0TII6entFKeyplRiYdJPqsiQF6cwp3vZGQpE8XKob5aJjS4sTADAuuPvI7SaX_TVR8uhmO0-jckJiZQc1NQXYU-5F6YP-kkHP8sodtdGDE_5VxjZPqrO4OPkUuOJWZnMufCSS_Lg"
+        title="img" /></p>
+</li>
+<li>
+<p>看報告<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh5.googleusercontent.com/N05tFiHIEuXOEJDhO7IhQweID1lAHPUopr3TEq90T7P2JcMpV2YFu8C6tWnZhy1xEKWNtfJx1EUSX5y6ZV-ZTqV40lQgzKZMDW9GHqNQng_07eULQGM_rZay5sfGl-MmrUwd-73KgCp6-7JNkMSS78w"
+        data-srcset="https://lh5.googleusercontent.com/N05tFiHIEuXOEJDhO7IhQweID1lAHPUopr3TEq90T7P2JcMpV2YFu8C6tWnZhy1xEKWNtfJx1EUSX5y6ZV-ZTqV40lQgzKZMDW9GHqNQng_07eULQGM_rZay5sfGl-MmrUwd-73KgCp6-7JNkMSS78w, https://lh5.googleusercontent.com/N05tFiHIEuXOEJDhO7IhQweID1lAHPUopr3TEq90T7P2JcMpV2YFu8C6tWnZhy1xEKWNtfJx1EUSX5y6ZV-ZTqV40lQgzKZMDW9GHqNQng_07eULQGM_rZay5sfGl-MmrUwd-73KgCp6-7JNkMSS78w 1.5x, https://lh5.googleusercontent.com/N05tFiHIEuXOEJDhO7IhQweID1lAHPUopr3TEq90T7P2JcMpV2YFu8C6tWnZhy1xEKWNtfJx1EUSX5y6ZV-ZTqV40lQgzKZMDW9GHqNQng_07eULQGM_rZay5sfGl-MmrUwd-73KgCp6-7JNkMSS78w 2x"
+        data-sizes="auto"
+        alt="https://lh5.googleusercontent.com/N05tFiHIEuXOEJDhO7IhQweID1lAHPUopr3TEq90T7P2JcMpV2YFu8C6tWnZhy1xEKWNtfJx1EUSX5y6ZV-ZTqV40lQgzKZMDW9GHqNQng_07eULQGM_rZay5sfGl-MmrUwd-73KgCp6-7JNkMSS78w"
+        title="img" /></p>
+</li>
+<li>
+<p>修補</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vi /etc/pam.d/system-auth
+</span></span><span class="line"><span class="cl">$ cp /etc/pam.d/system-auth<span class="o">{</span>,_backup<span class="o">}</span>
+</span></span><span class="line"><span class="cl">$ grep nullok /etc/pam.d/system-auth
+</span></span><span class="line"><span class="cl">$ sed -i -e <span class="s1">&#39;s/nullok//g&#39;</span> /etc/pam.d/system-auth
+</span></span><span class="line"><span class="cl">$ grep nullok /etc/pam.d/system-auth
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/Qj7uB4mK5ls75rP3oudk4QuqdVtAScuwbDEQ_u0gVhznfLbGaFXfqvxj_kUuEyQaLPXZSBRgyCwbaIpMHgDmwt45vd34yq31YDxrMTYNRb0vK9747NeXeDQbui1eRuA8fnWhDuj6yyBmpp988BOvycQ"
+        data-srcset="https://lh4.googleusercontent.com/Qj7uB4mK5ls75rP3oudk4QuqdVtAScuwbDEQ_u0gVhznfLbGaFXfqvxj_kUuEyQaLPXZSBRgyCwbaIpMHgDmwt45vd34yq31YDxrMTYNRb0vK9747NeXeDQbui1eRuA8fnWhDuj6yyBmpp988BOvycQ, https://lh4.googleusercontent.com/Qj7uB4mK5ls75rP3oudk4QuqdVtAScuwbDEQ_u0gVhznfLbGaFXfqvxj_kUuEyQaLPXZSBRgyCwbaIpMHgDmwt45vd34yq31YDxrMTYNRb0vK9747NeXeDQbui1eRuA8fnWhDuj6yyBmpp988BOvycQ 1.5x, https://lh4.googleusercontent.com/Qj7uB4mK5ls75rP3oudk4QuqdVtAScuwbDEQ_u0gVhznfLbGaFXfqvxj_kUuEyQaLPXZSBRgyCwbaIpMHgDmwt45vd34yq31YDxrMTYNRb0vK9747NeXeDQbui1eRuA8fnWhDuj6yyBmpp988BOvycQ 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/Qj7uB4mK5ls75rP3oudk4QuqdVtAScuwbDEQ_u0gVhznfLbGaFXfqvxj_kUuEyQaLPXZSBRgyCwbaIpMHgDmwt45vd34yq31YDxrMTYNRb0vK9747NeXeDQbui1eRuA8fnWhDuj6yyBmpp988BOvycQ"
+        title="img" /></p>
+</li>
+<li>
+<p>重新掃描，查看是否修正</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ oscap xccdf <span class="nb">eval</span> --report ~/report2.html --profile xccdf_org.ssgproject.content_profile_standard /usr/share/xml/scap/ssg/content/ssg-rl8-ds.xml
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>檢視 Report 第二版</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cp ~/report2.html ~student/
+</span></span><span class="line"><span class="cl">$ chown student ~student/report2.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p><strong>Version #1</strong></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh6.googleusercontent.com/H0gZHXwkBmw84cxm1Wz1L4AKiuFRFKfZoqoEcMqiPOFzjuBlNvLkI-JQpwt3FRw5oy0EVPdH02Eq5c89jmxZSsU1dkUBm-yW-aUlF9WIZxtaxkZc3Fn5f_lXZRjcc44I7Bdyhfbrh2zsSe_DxlsRSJ0"
+        data-srcset="https://lh6.googleusercontent.com/H0gZHXwkBmw84cxm1Wz1L4AKiuFRFKfZoqoEcMqiPOFzjuBlNvLkI-JQpwt3FRw5oy0EVPdH02Eq5c89jmxZSsU1dkUBm-yW-aUlF9WIZxtaxkZc3Fn5f_lXZRjcc44I7Bdyhfbrh2zsSe_DxlsRSJ0, https://lh6.googleusercontent.com/H0gZHXwkBmw84cxm1Wz1L4AKiuFRFKfZoqoEcMqiPOFzjuBlNvLkI-JQpwt3FRw5oy0EVPdH02Eq5c89jmxZSsU1dkUBm-yW-aUlF9WIZxtaxkZc3Fn5f_lXZRjcc44I7Bdyhfbrh2zsSe_DxlsRSJ0 1.5x, https://lh6.googleusercontent.com/H0gZHXwkBmw84cxm1Wz1L4AKiuFRFKfZoqoEcMqiPOFzjuBlNvLkI-JQpwt3FRw5oy0EVPdH02Eq5c89jmxZSsU1dkUBm-yW-aUlF9WIZxtaxkZc3Fn5f_lXZRjcc44I7Bdyhfbrh2zsSe_DxlsRSJ0 2x"
+        data-sizes="auto"
+        alt="https://lh6.googleusercontent.com/H0gZHXwkBmw84cxm1Wz1L4AKiuFRFKfZoqoEcMqiPOFzjuBlNvLkI-JQpwt3FRw5oy0EVPdH02Eq5c89jmxZSsU1dkUBm-yW-aUlF9WIZxtaxkZc3Fn5f_lXZRjcc44I7Bdyhfbrh2zsSe_DxlsRSJ0"
+        title="img" /></p>
+</li>
+<li>
+<p><strong>Version #2</strong><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/4k-vxukvT9ZmuSP3Xk0kS1GdDSaJpimydt9VtGmO1YnAVBcDRjwUr42T3fstjx5ViuBgYFCno-IOZMRdbmUn_w4aN70Zzz7woswsb6NfwCny5hPRRF8Kwp7b39EYyQOdsA-l28jcrbhbiBp3rsoJ178"
+        data-srcset="https://lh4.googleusercontent.com/4k-vxukvT9ZmuSP3Xk0kS1GdDSaJpimydt9VtGmO1YnAVBcDRjwUr42T3fstjx5ViuBgYFCno-IOZMRdbmUn_w4aN70Zzz7woswsb6NfwCny5hPRRF8Kwp7b39EYyQOdsA-l28jcrbhbiBp3rsoJ178, https://lh4.googleusercontent.com/4k-vxukvT9ZmuSP3Xk0kS1GdDSaJpimydt9VtGmO1YnAVBcDRjwUr42T3fstjx5ViuBgYFCno-IOZMRdbmUn_w4aN70Zzz7woswsb6NfwCny5hPRRF8Kwp7b39EYyQOdsA-l28jcrbhbiBp3rsoJ178 1.5x, https://lh4.googleusercontent.com/4k-vxukvT9ZmuSP3Xk0kS1GdDSaJpimydt9VtGmO1YnAVBcDRjwUr42T3fstjx5ViuBgYFCno-IOZMRdbmUn_w4aN70Zzz7woswsb6NfwCny5hPRRF8Kwp7b39EYyQOdsA-l28jcrbhbiBp3rsoJ178 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/4k-vxukvT9ZmuSP3Xk0kS1GdDSaJpimydt9VtGmO1YnAVBcDRjwUr42T3fstjx5ViuBgYFCno-IOZMRdbmUn_w4aN70Zzz7woswsb6NfwCny5hPRRF8Kwp7b39EYyQOdsA-l28jcrbhbiBp3rsoJ178"
+        title="img" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>安裝 scap workbench</p>
+<ol>
+<li>
+<p>Download</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ dnf install -y scap-workbench
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Open SCAP Security Guide : 選 Rl8</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh5.googleusercontent.com/NsdsfTwAYjnm48IRAiIstO8jWKdufBJU06aWjPWOYXYEHyEY7jSe_L-SdUhdP0wCu-c6H37rmekeE6IdeiHMmBueLIx2eCexBhydq1zyefha68hz0hpw0LTFH_8bV-wzg1Z9jN7ENmNsIWZzdJDmlII"
+        data-srcset="https://lh5.googleusercontent.com/NsdsfTwAYjnm48IRAiIstO8jWKdufBJU06aWjPWOYXYEHyEY7jSe_L-SdUhdP0wCu-c6H37rmekeE6IdeiHMmBueLIx2eCexBhydq1zyefha68hz0hpw0LTFH_8bV-wzg1Z9jN7ENmNsIWZzdJDmlII, https://lh5.googleusercontent.com/NsdsfTwAYjnm48IRAiIstO8jWKdufBJU06aWjPWOYXYEHyEY7jSe_L-SdUhdP0wCu-c6H37rmekeE6IdeiHMmBueLIx2eCexBhydq1zyefha68hz0hpw0LTFH_8bV-wzg1Z9jN7ENmNsIWZzdJDmlII 1.5x, https://lh5.googleusercontent.com/NsdsfTwAYjnm48IRAiIstO8jWKdufBJU06aWjPWOYXYEHyEY7jSe_L-SdUhdP0wCu-c6H37rmekeE6IdeiHMmBueLIx2eCexBhydq1zyefha68hz0hpw0LTFH_8bV-wzg1Z9jN7ENmNsIWZzdJDmlII 2x"
+        data-sizes="auto"
+        alt="https://lh5.googleusercontent.com/NsdsfTwAYjnm48IRAiIstO8jWKdufBJU06aWjPWOYXYEHyEY7jSe_L-SdUhdP0wCu-c6H37rmekeE6IdeiHMmBueLIx2eCexBhydq1zyefha68hz0hpw0LTFH_8bV-wzg1Z9jN7ENmNsIWZzdJDmlII"
+        title="img" /></p>
+</li>
+<li>
+<p>Customization <strong>Profile</strong> 選 SSSPRH En Linux 8(56)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh6.googleusercontent.com/Uheksew0c6C8Ry5XMh_WihHTFo4BjOpGd9r36oiRay_GzIc45wbAp4w85oCmCq-VW88sUgFRAsVYGJbh5w2jiTZFfImwdqd6eHTjWhTojG5EtjKRcBrdjnJKisnvUGPsyDygvlOohlo9evIcb6rgzJA"
+        data-srcset="https://lh6.googleusercontent.com/Uheksew0c6C8Ry5XMh_WihHTFo4BjOpGd9r36oiRay_GzIc45wbAp4w85oCmCq-VW88sUgFRAsVYGJbh5w2jiTZFfImwdqd6eHTjWhTojG5EtjKRcBrdjnJKisnvUGPsyDygvlOohlo9evIcb6rgzJA, https://lh6.googleusercontent.com/Uheksew0c6C8Ry5XMh_WihHTFo4BjOpGd9r36oiRay_GzIc45wbAp4w85oCmCq-VW88sUgFRAsVYGJbh5w2jiTZFfImwdqd6eHTjWhTojG5EtjKRcBrdjnJKisnvUGPsyDygvlOohlo9evIcb6rgzJA 1.5x, https://lh6.googleusercontent.com/Uheksew0c6C8Ry5XMh_WihHTFo4BjOpGd9r36oiRay_GzIc45wbAp4w85oCmCq-VW88sUgFRAsVYGJbh5w2jiTZFfImwdqd6eHTjWhTojG5EtjKRcBrdjnJKisnvUGPsyDygvlOohlo9evIcb6rgzJA 2x"
+        data-sizes="auto"
+        alt="https://lh6.googleusercontent.com/Uheksew0c6C8Ry5XMh_WihHTFo4BjOpGd9r36oiRay_GzIc45wbAp4w85oCmCq-VW88sUgFRAsVYGJbh5w2jiTZFfImwdqd6eHTjWhTojG5EtjKRcBrdjnJKisnvUGPsyDygvlOohlo9evIcb6rgzJA"
+        title="img" /></p>
+</li>
+<li>
+<p>Rules客製化：</p>
+</li>
+<li>
+<p>可以作policy調整，點右邊的 [Customize]</p>
+</li>
+<li>
+<p>還可以掃遠端：Target 選 [Remote Machine (over SSH)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh5.googleusercontent.com/944tKpcoC2DyCZudKI0vKFEJSyAK5gnNKQ_F-wpDDFDYjerBy2lczm2vNo7u_d3-nVleKMbrqyOGU-pN-4vEdsD6BcIc4pZx9Fg2MsXH1yyCTHhEvYUGo4FOGF8CJqpLGKy_J9D5qrXXGAOYIAX4ZiQ"
+        data-srcset="https://lh5.googleusercontent.com/944tKpcoC2DyCZudKI0vKFEJSyAK5gnNKQ_F-wpDDFDYjerBy2lczm2vNo7u_d3-nVleKMbrqyOGU-pN-4vEdsD6BcIc4pZx9Fg2MsXH1yyCTHhEvYUGo4FOGF8CJqpLGKy_J9D5qrXXGAOYIAX4ZiQ, https://lh5.googleusercontent.com/944tKpcoC2DyCZudKI0vKFEJSyAK5gnNKQ_F-wpDDFDYjerBy2lczm2vNo7u_d3-nVleKMbrqyOGU-pN-4vEdsD6BcIc4pZx9Fg2MsXH1yyCTHhEvYUGo4FOGF8CJqpLGKy_J9D5qrXXGAOYIAX4ZiQ 1.5x, https://lh5.googleusercontent.com/944tKpcoC2DyCZudKI0vKFEJSyAK5gnNKQ_F-wpDDFDYjerBy2lczm2vNo7u_d3-nVleKMbrqyOGU-pN-4vEdsD6BcIc4pZx9Fg2MsXH1yyCTHhEvYUGo4FOGF8CJqpLGKy_J9D5qrXXGAOYIAX4ZiQ 2x"
+        data-sizes="auto"
+        alt="https://lh5.googleusercontent.com/944tKpcoC2DyCZudKI0vKFEJSyAK5gnNKQ_F-wpDDFDYjerBy2lczm2vNo7u_d3-nVleKMbrqyOGU-pN-4vEdsD6BcIc4pZx9Fg2MsXH1yyCTHhEvYUGo4FOGF8CJqpLGKy_J9D5qrXXGAOYIAX4ZiQ"
+        title="img" /></p>
+</li>
+<li>
+<p>WorkBench 掃完的畫面長這樣!<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh4.googleusercontent.com/2N5K9dIjgxCtnPepNbj_Gc40XgmO1qbWkjz67qgqWyH5lG-Ysab81u5RgWF2eUCy0YUb0WSgK-awtLa94opd7Y0XlkN7Zk1a_onkmqDtEHAHxm7mIHouX_fqxrFc2Q9GqKLNa1ZnrQOGfmAgx7qccL0"
+        data-srcset="https://lh4.googleusercontent.com/2N5K9dIjgxCtnPepNbj_Gc40XgmO1qbWkjz67qgqWyH5lG-Ysab81u5RgWF2eUCy0YUb0WSgK-awtLa94opd7Y0XlkN7Zk1a_onkmqDtEHAHxm7mIHouX_fqxrFc2Q9GqKLNa1ZnrQOGfmAgx7qccL0, https://lh4.googleusercontent.com/2N5K9dIjgxCtnPepNbj_Gc40XgmO1qbWkjz67qgqWyH5lG-Ysab81u5RgWF2eUCy0YUb0WSgK-awtLa94opd7Y0XlkN7Zk1a_onkmqDtEHAHxm7mIHouX_fqxrFc2Q9GqKLNa1ZnrQOGfmAgx7qccL0 1.5x, https://lh4.googleusercontent.com/2N5K9dIjgxCtnPepNbj_Gc40XgmO1qbWkjz67qgqWyH5lG-Ysab81u5RgWF2eUCy0YUb0WSgK-awtLa94opd7Y0XlkN7Zk1a_onkmqDtEHAHxm7mIHouX_fqxrFc2Q9GqKLNa1ZnrQOGfmAgx7qccL0 2x"
+        data-sizes="auto"
+        alt="https://lh4.googleusercontent.com/2N5K9dIjgxCtnPepNbj_Gc40XgmO1qbWkjz67qgqWyH5lG-Ysab81u5RgWF2eUCy0YUb0WSgK-awtLa94opd7Y0XlkN7Zk1a_onkmqDtEHAHxm7mIHouX_fqxrFc2Q9GqKLNa1ZnrQOGfmAgx7qccL0"
+        title="img" /></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="磁碟分割">磁碟分割</h2>
+<ul>
+<li>
+<p>/boot - 1G (不用給多)</p>
+</li>
+<li>
+<p>/var - 動態，看需求(資料庫,etc.) 通常 20~40G</p>
+</li>
+<li>
+<p>/var/log - 5G</p>
+</li>
+<li>
+<p>audit - 2G (如果爆掉可能是被攻擊)</p>
+</li>
+<li>
+<p>/tmp, /var/tmp - 5G</p>
+</li>
+<li>
+<p>/home</p>
+</li>
+<li>
+<p>ps. swap 給 4G ~ 8G</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/4HCoJyE.png"
+        data-srcset="https://i.imgur.com/4HCoJyE.png, https://i.imgur.com/4HCoJyE.png 1.5x, https://i.imgur.com/4HCoJyE.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/4HCoJyE.png"
+        title="image-20230211195201490" /></p>
+</li>
+</ul>
+<h2 id="政府組態基準說明文件">政府組態基準說明文件</h2>
+<p>( TWGCB-01-008 )</p>
+<h2 id="imghttpslh5googleusercontentcomzkh6pcqx7nv771lxnjgehsj6ijoqervqk0lreed7snhx-wfsslz2sim31aocagipgshjak7m-xxacnegwub-f4l9memizayhzwk-55aw5bodf7jbbs1hmvsjng-xq1tnyleoqnhng9ywohzc7eqj0dy"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://lh5.googleusercontent.com/ZKH6pCqx7nv771lxnJgeHSj6iJoQERvQK0lREEd7SnHx-wfSsLz2SiM31AocaGIpGShjak7M-xXACnEgWUB-F4l9mEmIZaYHZWk-55AW5bodf7Jbbs1HmvSjNG-xq1tNylEoqnHng9yWohZC7eqJ0dY"
+        data-srcset="https://lh5.googleusercontent.com/ZKH6pCqx7nv771lxnJgeHSj6iJoQERvQK0lREEd7SnHx-wfSsLz2SiM31AocaGIpGShjak7M-xXACnEgWUB-F4l9mEmIZaYHZWk-55AW5bodf7Jbbs1HmvSjNG-xq1tNylEoqnHng9yWohZC7eqJ0dY, https://lh5.googleusercontent.com/ZKH6pCqx7nv771lxnJgeHSj6iJoQERvQK0lREEd7SnHx-wfSsLz2SiM31AocaGIpGShjak7M-xXACnEgWUB-F4l9mEmIZaYHZWk-55AW5bodf7Jbbs1HmvSjNG-xq1tNylEoqnHng9yWohZC7eqJ0dY 1.5x, https://lh5.googleusercontent.com/ZKH6pCqx7nv771lxnJgeHSj6iJoQERvQK0lREEd7SnHx-wfSsLz2SiM31AocaGIpGShjak7M-xXACnEgWUB-F4l9mEmIZaYHZWk-55AW5bodf7Jbbs1HmvSjNG-xq1tNylEoqnHng9yWohZC7eqJ0dY 2x"
+        data-sizes="auto"
+        alt="https://lh5.googleusercontent.com/ZKH6pCqx7nv771lxnJgeHSj6iJoQERvQK0lREEd7SnHx-wfSsLz2SiM31AocaGIpGShjak7M-xXACnEgWUB-F4l9mEmIZaYHZWk-55AW5bodf7Jbbs1HmvSjNG-xq1tNylEoqnHng9yWohZC7eqJ0dY"
+        title="img" /></h2>
+<h2 id="vi-文字編輯器">VI 文字編輯器</h2>
+<h3 id="一準備個檔案">一、準備個檔案</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> rm sample
+</span></span><span class="line"><span class="cl">$ cp /etc/passwd ./sample
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vi sample
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="二操作-vi-說明">二、操作 Vi 說明</h3>
+<p>Linux 發行版中，許多服務都要經過編輯器修改設定才能正確運作，所以學習文字編輯器能夠 <strong>有效提升</strong> Linux 管理效率。</p>
+<p><code>vi</code> 文字編輯器歷史悠久，在大部分 Linux 發行版本都有內建。<code>vi</code> 不僅能在 Linux/Unix 中應用，也適用於 *BSD、macOS 等系統。</p>
+<p><code>vi</code>編輯器常用的功能不外乎：</p>
+<ul>
+<li>文字編輯</li>
+<li>游標移動</li>
+<li>存檔</li>
+<li>文字搜尋</li>
+<li>離開</li>
+</ul>
+<p><code>vi</code>編輯器主要的三個模式：</p>
+<ul>
+<li>編輯模式</li>
+<li>一般模式</li>
+<li>指令模式</li>
+</ul>
+<p>離開模式的方法是使用鍵盤上的 [ESC] 鍵。</p>
+<h3 id="三一般模式">三、一般模式</h3>
+<ul>
+<li>
+<p>控制文件上的游標</p>
+<table>
+<thead>
+<tr>
+<th>KEY</th>
+<th>FUNCTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[k]</code></td>
+<td>游標往上</td>
+</tr>
+<tr>
+<td><code>[j]</code></td>
+<td>游標往下</td>
+</tr>
+<tr>
+<td><code>[h]</code></td>
+<td>游標往左</td>
+</tr>
+<tr>
+<td><code>[l]</code></td>
+<td>游標往右</td>
+</tr>
+<tr>
+<td><code>1G</code></td>
+<td>游標移到第 1 行</td>
+</tr>
+<tr>
+<td><code>5G</code></td>
+<td>游標移到第 5 行</td>
+</tr>
+<tr>
+<td>n<code>G</code></td>
+<td>游標移到第 n 行 (<code>n</code>= 數字)</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>游標移到最後行</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>游標移到行首</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>游標移到行尾</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>進行文件操作</p>
+<table>
+<thead>
+<tr>
+<th>KEY</th>
+<th>FUNCTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>yy</code></td>
+<td>複製</td>
+</tr>
+<tr>
+<td><code>2yy</code></td>
+<td>複製 2 行</td>
+</tr>
+<tr>
+<td>n<code>yy</code></td>
+<td>複製 n 行 (<code>n</code>= 數字)</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>在下一行貼上 (小寫p)</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>在上一行貼上 (大寫P)</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>剪下一個字元</td>
+</tr>
+<tr>
+<td><code>2x</code></td>
+<td>剪下 2 個字元</td>
+</tr>
+<tr>
+<td>n<code>x</code></td>
+<td>剪下 n 個字元 (<code>n</code>= 數字)</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>刪除一整行</td>
+</tr>
+<tr>
+<td><code>2dd</code></td>
+<td>刪除二行</td>
+</tr>
+<tr>
+<td>n<code>dd</code></td>
+<td>刪除 n 行 (<code>n</code>= 數字)</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="四指令模式">四、指令模式</h3>
+<p>在一般模式中直接輸入 <code>:</code> 開頭的指令就會進入指令模式</p>
+<table>
+<thead>
+<tr>
+<th>KEY</th>
+<th>FUNCTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:w</code></td>
+<td>存檔</td>
+</tr>
+<tr>
+<td><code>:q</code></td>
+<td>離開</td>
+</tr>
+<tr>
+<td><code>:wq</code></td>
+<td>存檔後離開</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>不存檔離開</td>
+</tr>
+<tr>
+<td><code>:w!</code></td>
+<td>強制存檔 (需要有相關權限)</td>
+</tr>
+<tr>
+<td><code>/{word}</code></td>
+<td>尋找字串 (<code>{word}</code>代表要找的字串)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="五編輯模式">五、編輯模式</h3>
+<p>使用以下方式可以從 <strong>一般模式</strong> 切換為 <strong>編輯模式</strong></p>
+<table>
+<thead>
+<tr>
+<th>KEY</th>
+<th>FUNCTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>i</code></td>
+<td>在目前位置開始編輯</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>在游標所在位置的下一個字元開始編輯</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>在目前所在行數的<strong>下方</strong>新增一行後，開始編輯</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>在目前所在行數的<strong>上方</strong>新增一行後，開始編輯</td>
+</tr>
+</tbody>
+</table>
+<p>從<strong>編輯模式</strong>回到<strong>一般模式</strong>，可以按 [ESC]</p>
+<h3 id="六注意事項">六、注意事項</h3>
+<p>啟動 <code>vi</code> 時，會在文件位置產生一個暫時性的交換檔，該交換檔會在 <code>vi</code> 關閉時自己刪掉。所以如果關閉方式不正確，那該交換檔就會被留下來，重新再該檔案的時候可能會出現警告訊息。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-02-11</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://wysiwyz.github.io/posts/lesson_00_linux/" data-title="Lesson 00: Linux 筆記" data-via="cel_yi" data-hashtags="linux,security"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/lesson_00_linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://wysiwyz.github.io/posts/lesson_00_linux/" data-title="Lesson 00: Linux 筆記"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/lesson_00_linux/" data-title="Lesson 00: Linux 筆記"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://wysiwyz.github.io/posts/lesson_00_linux/" data-title="Lesson 00: Linux 筆記"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ocpjp_11_2/" class="prev" rel="prev" title="1Z0-819 曾師筆記 (2/duology)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>1Z0-819 曾師筆記 (2/duology)</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

@@ -3,10 +3,26 @@
         <title>Tags - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/</link>
         <description>Tags - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 18 Dec 2022 17:50:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 11 Feb 2023 10:08:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>linux</title>
+    <link>http://wysiwyz.github.io/tags/linux/</link>
+    <pubDate>Sat, 11 Feb 2023 10:08:41 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/linux/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>security</title>
+    <link>http://wysiwyz.github.io/tags/security/</link>
+    <pubDate>Sat, 11 Feb 2023 10:08:41 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/security/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>1Z0-819</title>
     <link>http://wysiwyz.github.io/tags/1z0-819/</link>
-    <pubDate>Sun, 18 Dec 2022 17:50:34 &#43;0800</pubDate>
+    <pubDate>Sun, 05 Feb 2023 17:50:34 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/1z0-819/</guid>
     <description><![CDATA[]]></description>
@@ -14,7 +30,7 @@
 <item>
     <title>Java</title>
     <link>http://wysiwyz.github.io/tags/java/</link>
-    <pubDate>Sun, 18 Dec 2022 17:50:34 &#43;0800</pubDate>
+    <pubDate>Sun, 05 Feb 2023 17:50:34 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/java/</guid>
     <description><![CDATA[]]></description>
@@ -65,22 +81,6 @@
     <pubDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/jrock/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Literature</title>
-    <link>http://wysiwyz.github.io/tags/literature/</link>
-    <pubDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/literature/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>frontMatter</title>
-    <link>http://wysiwyz.github.io/tags/frontmatter/</link>
-    <pubDate>Fri, 14 Oct 2022 23:08:24 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/frontmatter/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

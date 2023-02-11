@@ -10,8 +10,8 @@
 使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wysiwyz.github.io/posts/ocpjp_11_2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-12-18T17:50:34+08:00" />
-<meta property="article:modified_time" content="2022-12-18T17:50:34+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta property="article:published_time" content="2023-02-05T17:50:34+08:00" />
+<meta property="article:modified_time" content="2023-02-05T17:50:34+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="1Z0-819 曾師筆記 (2/duology)"/>
@@ -19,7 +19,7 @@
 集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
 使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this."/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ocpjp_11_2/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ocpjp_11/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ocpjp_11_2/" /><link rel="prev" href="http://wysiwyz.github.io/posts/encrypt_decrypt/" /><link rel="next" href="http://wysiwyz.github.io/posts/lesson_00_linux/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -30,8 +30,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  11606 ,
-        "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2022-12-18T17:50:34+08:00","dateModified": "2022-12-18T17:50:34+08:00","publisher": {
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  13333 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-02-05T17:50:34+08:00","dateModified": "2023-02-05T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-12-18">2022-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;11606 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;55 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;13333 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;63 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -325,21 +325,46 @@
         <li><a href="#使用-resultsetmetadata-介面">使用 <code>ResultSetMetaData</code> 介面</a></li>
         <li><a href="#取得查詢結果的資料筆數">取得查詢結果的資料筆數</a></li>
         <li><a href="#控制-resultset-每次由資料庫取回的筆數">控制 <code>ResultSet</code> 每次由資料庫取回的筆數</a></li>
-        <li><a href="#使用-preparedstateme">使用 <code>PreparedStateme</code></a></li>
+        <li><a href="#使用-preparedstatement">使用 <code>PreparedStatement</code></a></li>
       </ul>
     </li>
-    <li><a href="#jdbc-進行交易">JDBC 進行交易</a></li>
-    <li><a href="#使用-jdbc-41-的-rowsetprovider-和-rowsetfactory">使用 JDBC 4.1 的 RowSetProvider 和 RowSetFactory</a></li>
+    <li><a href="#使用-jdbc-進行交易">使用 <code>JDBC</code> 進行交易</a>
+      <ul>
+        <li><a href="#何謂資料庫交易">何謂資料庫交易</a></li>
+        <li><a href="#使用-jdbc-的交易">使用 JDBC 的交易</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-jdbc-41-的-rowsetprovider-和-rowsetfactory">使用 JDBC 4.1 的 RowSetProvider 和 RowSetFactory</a>
+      <ul>
+        <li><a href="#jdbcrowset介面示範"><code>JdbcRowSet</code>介面示範</a></li>
+      </ul>
+    </li>
+    <li><a href="#回顧-dao-設計模式">回顧 DAO 設計模式</a></li>
   </ul>
 
   <ul>
-    <li><a href="#了解-java-的軟體區域化作法">了解 Java 的軟體區域化作法</a></li>
-    <li><a href="#使用-dateformat-類別提供日期的區域化顯示">使用 DateFormat 類別提供日期的區域化顯示</a></li>
-    <li><a href="#使用-numberformat-類別提供幣別區域化顯示">使用 NumberFormat 類別提供幣別區域化顯示</a></li>
+    <li><a href="#了解-java-的軟體區域化作法">了解 Java 的軟體區域化作法</a>
+      <ul>
+        <li><a href="#使用-locale-類別">使用 Locale 類別</a></li>
+        <li><a href="#建立多國語系文字檔">建立多國語系文字檔</a></li>
+        <li><a href="#使用-resourcebundle-類別">使用 <code>ResourceBundle</code> 類別</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-dateformat-類別提供日期的區域化顯示">使用 <code>DateFormat</code> 類別提供日期的區域化顯示</a>
+      <ul>
+        <li><a href="#日期格式選項">日期格式選項</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用-numberformat-類別提供幣別區域化顯示">使用 <code>NumberFormat</code> 類別提供幣別區域化顯示</a></li>
   </ul>
 
   <ul>
-    <li><a href="#使用-lambda-表示式">使用 Lambda 表示式</a></li>
+    <li><a href="#使用-lambda-表示式">使用 Lambda 表示式</a>
+      <ul>
+        <li><a href="#匿名類別與功能性介面回顧">匿名類別與功能性介面回顧</a></li>
+        <li><a href="#lambda-表示式語法回顧">Lambda 表示式語法回顧</a></li>
+      </ul>
+    </li>
     <li><a href="#使用內建的功能性介面">使用內建的功能性介面</a></li>
     <li><a href="#在泛型內使用萬用字元">在泛型內使用萬用字元</a></li>
     <li><a href="#使用其它內建的功能性介面">使用其它內建的功能性介面</a></li>
@@ -4711,19 +4736,469 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="n">PathMatcher</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">FileSystems</span><span class="o">.</span><span class="na">getDefault</span><span class="o">()</span>
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="n">PathMatcher</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">FileSystems</span><span class="o">.</span><span class="na">getDefault</span><span class="o">().</span><span class="na">getPathMatcher</span><span class="o">(</span><span class="n">String</span> <span class="n">syntaxAndPattern</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li></li>
+<li>
+<p>參數 <code>syntaxAndPattern</code> 的語法為「syntax:pattern」，有兩種 syntax</p>
+<ol>
+<li>glob 樣式（global command）
+<ul>
+<li>較 regex 簡單許多，廣泛應用於檔案系統中的檔案搜尋</li>
+</ul>
+</li>
+<li>regex 樣式（regular expression）
+<ul>
+<li>正規表示式</li>
+</ul>
+</li>
+</ol>
+</li>
 </ul>
 <h3 id="glob-樣式語法介紹"><code>glob</code> 樣式語法介紹</h3>
+<h4 id="常見字元或符號的代表意義">常見字元或符號的代表意義</h4>
+<table>
+<thead>
+<tr>
+<th>字元</th>
+<th>使用方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*</code></td>
+<td>任何個數的萬用字元，不跨目錄</td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>任何個數的萬用字元，跨目錄</td>
+</tr>
+<tr>
+<td><code>?</code></td>
+<td>代表 1 個字元</td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td>跳脫（Escape）符號</td>
+</tr>
+<tr>
+<td><code>[ ]</code></td>
+<td>找出符合的單一字元，例如<!-- raw HTML omitted -->1. <code>[abc]</code> 表示 a 或 b 或 c<!-- raw HTML omitted -->2. <code>[a-z]</code> 表示可以是 a~z 的任何一個字元<!-- raw HTML omitted -->3. <code>[abce-g]</code> 表示 a 或 b 或 c 或 e 或 f 或 g<!-- raw HTML omitted -->4. <code>[!a-c]</code> 表示非（a 或 b 或 c）<!-- raw HTML omitted --><code>[ ]</code> 裡面的 <code>*</code> 和 <code>?</code> 和 <code>\</code> 失去特殊意義<!-- raw HTML omitted -->符號 <code>-</code> 如果排第一個，或僅次於<code>!</code>，也只代表符號本身</td>
+</tr>
+<tr>
+<td><code>{ }</code></td>
+<td><code>{ }</code> 內可以有多個 sub-pattern，使用「,」區隔，滿足一個就成立</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>檔名前面以「<code>.</code>」開頭，例如「<code>.login</code>」，比較方式如同一般檔案<!-- raw HTML omitted -->這類檔案通常都是 hidden，可以使用 <code>Files.isHidden</code> 測試</td>
+</tr>
+</tbody>
+</table>
+<h4 id="global-pattern-使用範例">global pattern 使用範例</h4>
+<table>
+<thead>
+<tr>
+<th>樣式內容</th>
+<th>比對符合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>*.java</code></td>
+<td>檔名以 <code>.java</code> 結尾</td>
+</tr>
+<tr>
+<td><code>*.*</code></td>
+<td>檔名中間有 <code>.</code></td>
+</tr>
+<tr>
+<td><code>*.{java,class}</code></td>
+<td>檔名以 <code>.java</code> 或 <code>.class</code> 結尾</td>
+</tr>
+<tr>
+<td><code>foo.?</code></td>
+<td>檔名以 <code>foo.</code>開頭，後面接1個字元</td>
+</tr>
+<tr>
+<td><code>C:\\</code></td>
+<td><code>C:\foo</code> 或 <code>C:\bar</code> 都符合，在Java中，樣式為 <code>C:\\\\*</code></td>
+</tr>
+<tr>
+<td><code>/home/*</code></td>
+<td>滿足 <code>/home/gus</code>（未跨路徑）</td>
+</tr>
+<tr>
+<td><code>/home/*/*</code></td>
+<td>滿足 <code>/home/gus/data</code>（未跨路徑）</td>
+</tr>
+<tr>
+<td><code>/home/**</code></td>
+<td>滿足 <code>/home/gus</code> 和 <code>/home/gus/data</code>（跨路徑）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="相關-api-使用釋例">相關 API 使用釋例</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">publi</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">FileSystem</span> <span class="n">fs</span> <span class="o">=</span> <span class="n">FileSystems</span><span class="o">.</span><span class="na">getDefault</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;D:/1/2/3/Test.java&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">PathMatcher</span> <span class="n">pathMatcher1</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="na">getPathMatcher</span><span class="o">(</span><span class="s">&#34;glob:D:/*.java&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pathMatcher1</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">path</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">PathMatcher</span> <span class="n">pathMatcher2</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="na">getPathMatcher</span><span class="o">(</span><span class="s">&#34;glob:D:/*/*.java&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pathMatcher2</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">path</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">PathMatcher</span> <span class="n">pathMatcher3</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="na">getPathMatcher</span><span class="o">(</span><span class="s">&#34;glob:D:/**/*.java&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">pathMatcher3</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">path</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>Line#</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7</td>
+<td>滿足 D 磁碟機下的 java 程式檔（未跨目錄）= true</td>
+</tr>
+<tr>
+<td>10</td>
+<td>滿足 D 磁碟機下且第一層目錄裡面的 java 程式檔（未跨目錄）= false</td>
+</tr>
+<tr>
+<td>13</td>
+<td>滿足 D 磁碟機下且**跨目錄（需有目錄）**的 java 程式檔 = false</td>
+</tr>
+</tbody>
+</table>
+<h4 id="延伸案例">延伸案例</h4>
+<table>
+<thead>
+<tr>
+<th>glob 樣式內容</th>
+<th><code>D:/*.java</code></th>
+<th><code>D:/*/*.java</code></th>
+<th><code>D:/**/*.java</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>路徑：<code>D:/Test.java</code></td>
+<td><strong>TRUE</strong></td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>路徑：<code>D:/1/Test.java</code></td>
+<td>false</td>
+<td><strong>TRUE</strong></td>
+<td><strong>TRUE</strong></td>
+</tr>
+<tr>
+<td>路徑：<code>D:/1/2/Test.java</code></td>
+<td>false</td>
+<td>false</td>
+<td><strong>TRUE</strong></td>
+</tr>
+<tr>
+<td>路徑：<code>D:/1/2/3/Test.java</code></td>
+<td>false</td>
+<td>false</td>
+<td><strong>TRUE</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>也可以用 <code>Files.walkFileTree()</code> 架構走訪所有檔案，搭配 <code>PathMather</code> 的 <code>FileVisitor</code> 介面實作類別，判斷檔名是否符合 glob 樣式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Finder</span> <span class="kd">extends</span> <span class="n">SimpleFileVisitor</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PathMatcher</span> <span class="n">matcher</span> <span class="o">=</span> <span class="n">FileSystems</span><span class="o">.</span><span class="na">getDefault</span><span class="o">().</span><span class="na">getPathMatcher</span><span class="o">(</span><span class="s">&#34;glob:*.java&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">numMatches</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">find</span><span class="o">(</span><span class="n">Path</span> <span class="n">file</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Path</span> <span class="n">name</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">getFileName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">name</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">matcher</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">name</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">numMatches</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">FileVisitResult</span> <span class="nf">visitFIle</span><span class="o">(</span><span class="n">Path</span> <span class="n">file</span><span class="o">,</span> <span class="n">BasicFileAttributes</span> <span class="n">attrs</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">find</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">CONTINUE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PathMatcherTest2</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Path</span> <span class="n">root</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">).</span><span class="na">toAbsolutePath</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;root: &#34;</span> <span class="o">+</span> <span class="n">root</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Finder</span> <span class="n">finder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Finder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Files</span><span class="o">.</span><span class="na">walkFileTree</span><span class="o">(</span><span class="n">root</span><span class="o">,</span> <span class="n">finder</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Exception: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;----\n&#34;</span> <span class="o">+</span> <span class="n">finder</span><span class="o">.</span><span class="na">numMatches</span> <span class="o">+</span> <span class="s">&#34; found!!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
 <hr>
 <h2 id="其它">其它</h2>
 <h3 id="filestore-類別"><code>FileStore</code> 類別</h3>
+<ul>
+<li><code>FileStore</code> 用來提供檔案系統的使用狀況</li>
+<li>可以取得總容量、已用空間、未用空間等數據
+<ul>
+<li>例如 Windows OS 的磁碟、磁區；Linux OS 的掛載點 mount point</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFileStore</span><span class="o">(</span><span class="n">FileStore</span> <span class="n">store</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">toGB</span> <span class="o">=</span> <span class="n">1024</span> <span class="o">*</span> <span class="n">1024</span> <span class="o">*</span> <span class="n">1024</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">total</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="na">getTotalSpace</span><span class="o">()</span> <span class="o">/</span> <span class="n">toGB</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">used</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="na">getTotalSpace</span><span class="o">()</span> <span class="o">/</span> <span class="n">toGB</span> <span class="o">-</span> <span class="n">store</span><span class="o">.</span><span class="na">getUnallocatedSpace</span><span class="o">()</span> <span class="o">/</span> <span class="n">toGB</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">avail</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="na">getUsableSpace</span><span class="o">()</span> <span class="o">/</span> <span class="n">toGB</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;%-20s %12d(GB) %12d(GB) %12d(GB)\n&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">store</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="n">total</span><span class="o">,</span> <span class="n">used</span><span class="o">,</span> <span class="n">avail</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;%-20s %12s %12s %12s\n&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="s">&#34;Filesystem&#34;</span><span class="o">,</span> <span class="s">&#34;total&#34;</span><span class="o">,</span> <span class="s">&#34;used&#34;</span><span class="o">,</span> <span class="s">&#34;avail&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">args</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">FileStore</span> <span class="n">store</span> <span class="o">:</span> <span class="n">FileSystems</span><span class="o">.</span><span class="na">getDefault</span><span class="o">().</span><span class="na">getFileStores</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printFileStore</span><span class="o">(</span><span class="n">store</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">file</span> <span class="o">:</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">FileStore</span> <span class="n">store</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">getFileStore</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">printFileStore</span><span class="o">(</span><span class="n">store</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>Line#</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11</td>
+<td>取得檔案系統裡所有 <code>FileStore</code> 物件</td>
+</tr>
+<tr>
+<td>16</td>
+<td>根據 <code>Path</code> 取得 <code>FileStore</code> 物件</td>
+</tr>
+</tbody>
+</table>
 <h3 id="使用-watchservice">使用 <code>WatchService</code></h3>
-<h3 id="由基礎-io-轉換至-nio2">由基礎 I/O 轉換至 NIO.2</h3>
-<hr>
+<p>介面 <code>WatchService</code> 可用來監控目錄 Path 內的檔案何時被新增、刪除、修改</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MyWatchService</span> <span class="kd">implements</span> <span class="n">Runnable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">WatchService</span> <span class="n">ws</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">MyWatchService</span><span class="o">(</span><span class="n">WatchService</span> <span class="n">ws</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">ws</span> <span class="o">=</span> <span class="n">ws</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">WatchKey</span> <span class="n">key</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="o">(</span><span class="n">WatchEvent</span> <span class="n">event</span> <span class="o">:</span> <span class="n">key</span><span class="o">.</span><span class="na">pollEvents</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;Received event: %s for file: %s\n&#34;</span><span class="o">,</span> <span class="n">event</span><span class="o">.</span><span class="na">kind</span><span class="o">(),</span> <span class="n">event</span><span class="o">.</span><span class="na">context</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">key</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">                <span class="n">key</span> <span class="o">=</span> <span class="n">ws</span><span class="o">.</span><span class="na">take</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WatchServiceTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">DIRECTORY_TO_WATCH</span> <span class="o">=</span> <span class="s">&#34;D://WatchServiceTest&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">Path</span> <span class="n">watchPath</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">DIRECTORY_TO_WATCH</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">Files</span><span class="o">.</span><span class="na">exists</span><span class="o">(</span><span class="n">watchPath</span><span class="o">)</span> <span class="o">==</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Files</span><span class="o">.</span><span class="na">createDirectories</span><span class="o">(</span><span class="n">watchPath</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">WatchService</span> <span class="n">ws</span> <span class="o">=</span> <span class="n">watchPath</span><span class="o">.</span><span class="na">getFileSystem</span><span class="o">().</span><span class="na">newWatchService</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MyWatchService</span> <span class="n">fileWatcher</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MyWatchService</span><span class="o">(</span><span class="n">ws</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Thread</span> <span class="n">thread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">fileWatcher</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">thread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1">// register a file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">watchPath</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="n">ws</span><span class="o">,</span> <span class="n">ENTRY_CREATE</span><span class="o">,</span> <span class="n">ENTRY_MODIFY</span><span class="o">,</span> <span class="n">ENTRY_DELETE</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">thread</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="由基礎-io-轉換至-nio2">由基礎 I/O 轉換至 NIO.2</h3>
+<p>JDK.7 - 在傳統的 <code>java.io.File</code> 類別中新增方法，使其可以轉換至 NIO.2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="na">toPath</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Files</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Path 也可以轉換至傳統的 <code>java.io.File</code> 物件，方便從基礎 I/O 升級到 NIO.2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="na">toFile</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h1 id="05-執行緒">05 執行緒</h1>
 <h2 id="介紹">介紹</h2>
 <h3 id="名詞說明">名詞說明</h3>
@@ -8183,29 +8658,640 @@ Execute Current Text
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
+</span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// ...
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Java 會從資料庫中 &#34;每次抓回一定的筆數&#34; 才進行迴圈，減少對DB的頻繁I/O
+</span></span></span><span class="line"><span class="cl"><span class="cm">       筆數預設由 JDBC driver 驅動程式控制 */</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
-<li></li>
+<li>
+<p>要自行控制的作法 <code>rs.setFetchSize(25);</code></p>
+<ul>
+<li>每次只拿 25 筆資料，第 26 筆時再連線資料庫撈取下一批 25 筆資料</li>
+<li>避免一次取太多資料而影響 JVM</li>
 </ul>
-<h3 id="使用-preparedstateme">使用 <code>PreparedStateme</code></h3>
-<h2 id="jdbc-進行交易">JDBC 進行交易</h2>
+</li>
+</ul>
+<h3 id="使用-preparedstatement">使用 <code>PreparedStatement</code></h3>
+<p>先來看 Oracle SQL 使用**繫結變數（bind variables）<strong>的作法，以</strong>?**取代欄位內容，先送SQL，後送欄位內容，可避免該SQL敘述因為每次欄位內容被反覆編譯，造成資料庫主機負載</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="p">[</span><span class="n">Employee</span><span class="p">]</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">[</span><span class="n">Salary</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>這種作法在 JDBC 則稱為使用 <code>PreparedStatement</code> 介面，該介面繼承 <code>Statement</code> 介面，使預先編譯 pre-compiled SQL 可以再和傳入的參數配合</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">runPreparedStatement</span><span class="o">(</span><span class="n">Connection</span> <span class="n">con</span><span class="o">,</span> <span class="kt">double</span> <span class="n">value</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">query</span> <span class="o">=</span> <span class="s">&#34;SELECT * FROM Employee WHERE Salary &gt; ? &#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">PreparedStatement</span> <span class="n">pStmt</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>  <span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">pStmt</span><span class="o">.</span><span class="na">setDouble</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">pStmt</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printResultSet</span><span class="o">(</span><span class="n">rs</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note:</p>
+<ol>
+<li>SQL 裡的每一個 <strong>?</strong> 都必須有相應數值</li>
+<li>藉由 <code>setXXX(index, value)</code> 的方法帶入 value，index 從 1 起算，配合 <strong>?</strong> 的出現順序</li>
+<li>可避免每次執行 SQL 時候，DB重新編譯 SQL 耗費的資源</li>
+</ol>
+<h4 id="sql-injection">SQL injection</h4>
+<p>使用 <code>PreparedStatement</code> 另一個原因是可以避免 <em>SQL injection</em> 網路駭客攻擊</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">runSqlInjection</span><span class="o">(</span><span class="n">Connection</span> <span class="n">con</span><span class="o">,</span> <span class="n">String</span> <span class="n">value</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">query</span> <span class="o">=</span> <span class="s">&#34;SELECT * FROM Employee WHERE Salary &gt; &#34;</span> <span class="o">+</span> <span class="n">value</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Statement</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span> <span class="c1">// 容易被攻擊
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="n">query</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printResultSet</span><span class="o">(</span><span class="n">rs</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>與前一個方法（傳入 <strong>double</strong> value）相比，此方法（傳入 <strong>String</strong> value）如果有駭客剛好瞭解 Employee 的資料表結構，或故意在傳入字串後面加上 <code>or 1=1</code>，會帶出 table Employee 內所有資料，讓公司營業機密或個資外洩</p>
+<ul>
+<li><code>SELECT * FROM Employee WHERE Salary &gt; 100;</code></li>
+<li><code>SELECT * FROM Employee WHERE Salary &gt; 100 or 1=1;</code></li>
+</ul>
+<h2 id="使用-jdbc-進行交易">使用 <code>JDBC</code> 進行交易</h2>
+<h3 id="何謂資料庫交易">何謂資料庫交易</h3>
+<ul>
+<li>
+<p>將多個對資料庫的存取行為視為同一個，而且同進退：一起發生（commit）或一起未發生（rollback）</p>
+</li>
+<li>
+<p>一個交易裡的行為（query, delete, insert, update）可以跨資料庫</p>
+</li>
+<li>
+<p>交易的 ACID 特色</p>
+<ol>
+<li>Atomicity 原子性： 一個交易中的所有行為一起完成，或一起未完成（回復至未進行交易的狀態）</li>
+<li>Consistency 一致性：系統原來一致性的狀態 &mdash;[交易]&mdash;&gt; 另一個一致性的狀態</li>
+<li>Isolation 獨立性：兩個同時發生的交易，彼此互相不影響</li>
+<li>Durability 持久性：已完成的交易繼續保持，如果系統毀損可以用交易紀錄日誌 transaction log 還原</li>
+</ol>
+</li>
+<li>
+<p>commit (確認交易) 、rollback (取消交易)</p>
+</li>
+</ul>
+<h3 id="使用-jdbc-的交易">使用 JDBC 的交易</h3>
+<ul>
+<li>
+<p>當建立 connection 物件時，預設為「auto commit」模式，此時單一 SQL 會被視為獨立交易，完成後自動 commit</p>
+</li>
+<li>
+<p>如果要將兩個以上的 SQL 作成交易群組，必須先關 auto commit 模式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">con</span><span class="o">.</span><span class="na">setAutoCommit</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>接著完成交易時必須呼叫方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">con</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>也可以取消交易</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">con</span><span class="o">.</span><span class="na">rollback</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>關於啟動交易，JDBC 沒有明確的方法，依據 JDBC JSR (221) 綱要：</p>
+<ol>
+<li>以關閉 auto commit 模式的時候開始，接下來的所有 SQL 都算成同一個交易，一直到 commit 或者 rollback 被執行</li>
+<li>如果交易進行中 auto commit 模式被改變，則交易將自動 commit</li>
+</ol>
+<p>&hellip;</p>
 <h2 id="使用-jdbc-41-的-rowsetprovider-和-rowsetfactory">使用 JDBC 4.1 的 RowSetProvider 和 RowSetFactory</h2>
+<p>Java 7 的新版 <code>RowSet 1.1</code> 使用 <code>javax.sql.rowset.RowSetProvider</code>取得 <code>RowSetFactory</code> 物件，預設實作 <code>com.sun.rowset.RowSetFactoryImpl</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RowSetFactory</span> <span class="n">myRowSetFactory</span> <span class="o">=</span> <span class="n">RowSetProvider</span><span class="o">.</span><span class="na">newFactory</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>回傳的 <code>RowSetFactory</code> 則用來建立 <code>RowSet 1.1</code> 中的 <code>RowSet</code> 物件，常見如下：</p>
+<table>
+<thead>
+<tr>
+<th>介面</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CachedRowSet</code></td>
+<td>可以將資料庫取得的資料儲存在記憶體中，避免經常連線</td>
+</tr>
+<tr>
+<td><code>FilteredRowSet</code></td>
+<td>繼承<code>CachedRowSet</code>，可以有過濾資料的功能</td>
+</tr>
+<tr>
+<td><code>JdbcRowSet</code></td>
+<td>是 <code>ResultSet</code> 的 wrapper 物件，讓 <code>ResultSet</code> 行為像 <code>JavaBean</code><!-- raw HTML omitted -->也可以和資料庫保持連線狀態</td>
+</tr>
+<tr>
+<td><code>JoinRowSet</code></td>
+<td>可以把兩個不同 <code>RowSet</code> 合併成一個 <code>JoinRowSet</code>，功能像SQL表格的 join</td>
+</tr>
+<tr>
+<td><code>WebRowSet</code></td>
+<td>支援將 <code>RowSet</code> 以標準的 XML 格式表現</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jdbcrowset介面示範"><code>JdbcRowSet</code>介面示範</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">JdbcRowSetTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&#34;jdbc:derby://localhost:1527/myDB&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">username</span> <span class="o">=</span> <span class="s">&#34;root&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">&#34;sa&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RowSetFactory</span> <span class="n">myRowSetFactory</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">            <span class="n">RowSetProvider</span><span class="o">.</span><span class="na">newFactory</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">(</span><span class="n">JdbcRowSet</span> <span class="n">jdbcRs</span> <span class="o">=</span> <span class="n">myRowSetFactory</span><span class="o">.</span><span class="na">createJdbcRowSet</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">jdbcRs</span><span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">jdbcRs</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="n">username</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">jdbcRs</span><span class="o">.</span><span class="na">setPassword</span><span class="o">(</span><span class="n">password</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">jdbcRs</span><span class="o">.</span><span class="na">setCommand</span><span class="o">(</span><span class="s">&#34;SELECT * FROM Employee&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">jdbcRs</span><span class="o">.</span><span class="na">execute</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span> <span class="o">(</span><span class="n">jdbcRs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">int</span> <span class="n">empID</span> <span class="o">=</span> <span class="n">jdbcRs</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">&#34;ID&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">String</span> <span class="n">first</span> <span class="o">=</span> <span class="n">jdbcRs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&#34;FirstName&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">String</span> <span class="n">last</span> <span class="o">=</span> <span class="n">jdbcRs</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&#34;LastName&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Date</span> <span class="n">birthDate</span> <span class="o">=</span> <span class="n">jdbcRs</span><span class="o">.</span><span class="na">getDate</span><span class="o">(</span><span class="s">&#34;BirthDate&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="kt">float</span> <span class="n">salary</span> <span class="o">=</span> <span class="n">jdbcRs</span><span class="o">.</span><span class="na">getFloat</span><span class="o">(</span><span class="s">&#34;Salary&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="s">&#34;ID: &#34;</span> <span class="o">+</span> <span class="n">empID</span> <span class="o">+</span> <span class="s">&#34;\t&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                    <span class="s">&#34;Employee Name: &#34;</span> <span class="o">+</span> <span class="n">first</span> <span class="o">+</span> <span class="s">&#34; &#34;</span> <span class="o">+</span> <span class="n">last</span> <span class="o">+</span> <span class="s">&#34;\t&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                    <span class="s">&#34;Birth Date: &#34;</span> <span class="o">+</span> <span class="n">birthDate</span> <span class="o">+</span> <span class="s">&#34;\t&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">                    <span class="s">&#34;Salary: &#34;</span> <span class="o">+</span> <span class="n">salary</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>&hellip;</p>
+<h2 id="回顧-dao-設計模式">回顧 DAO 設計模式</h2>
+<p>幫 <code>EmployeeDAO</code> 介面增加實作類別 <code>EmployeeDAOJDBCImpl</code></p>
+<ul>
+<li><code>EmployeeDAO</code> <em>interface</em>
+<ul>
+<li><code>addEmployeeDAO()</code> : void</li>
+<li><code>update(Employee e)</code> : void</li>
+<li><code>delete(int id)</code> : void</li>
+<li><code>findById(int id)</code> : Employee</li>
+<li><code>getAllEmployees()</code> : Employee[]</li>
+</ul>
+</li>
+<li><code>EmployeeDAOMemoryImpl</code> implements <code>EmployeeDAO</code></li>
+<li><code>EmployeeDAOJDBCImpl</code> implements <code>EmployeeDAO</code></li>
+<li><code>EmployeeDAOFileImpl</code> implements <code>EmployeeDAO</code></li>
+</ul>
 <hr>
 <h1 id="08-java-的區域化-localization">08 Java 的區域化 <em>Localization</em></h1>
 <h2 id="了解-java-的軟體區域化作法">了解 Java 的軟體區域化作法</h2>
-<h2 id="使用-dateformat-類別提供日期的區域化顯示">使用 DateFormat 類別提供日期的區域化顯示</h2>
-<h2 id="使用-numberformat-類別提供幣別區域化顯示">使用 NumberFormat 類別提供幣別區域化顯示</h2>
-<hr>
+<p>Java 的軟體區域化 localization 方式：藉由增加和「特定地區 / 地域」相關的元件和翻譯文字，使軟體可呈現「特定地區 / 地域」的語言文字、日期、數字、幣別等與文化相關的特殊格式</p>
+<p>Java 滿足軟體區域化和支援多國語系的需要，不是藉由 (複製 -&gt; 修改文字呈現相關 codes) 的方式，這會讓程式碼越來越多份，違背 DRY 法則。</p>
+<p>Java 作法：事先準備多份各國語系的文字檔，依需求載入 JVM，再嵌入（plug-in）文字呈現的畫面或功能中。需要三個核心元件 -</p>
+<ol>
+<li><code>Locale</code> 類別 - 代表特定地區 / 地域</li>
+<li>多國語系文字檔（i.e. 資源綁定檔案）- 存放各國文字，檔案各自獨立</li>
+<li><code>ResourceBundle</code>類 - 用來對應多國語系文字檔，建立物件時，檔案內容自動載入到物件裡</li>
+</ol>
+<h3 id="使用-locale-類別">使用 Locale 類別</h3>
+<p>Java 用 Locale（場所、場域）不用國別決定不同語言，主要因為有些國家幅員廣大（可能有多個語言），所以用 Locale 類代表特定語言和國家的組合</p>
+<ol>
+<li><strong>語言</strong>
+<ul>
+<li>使用 alpha-2 或 alpha-3 ISO 639 編碼</li>
+<li>小寫 (e.g. de for German，en for English，fr for French，zh for Chinese)</li>
+</ul>
+</li>
+<li><strong>國家</strong>
+<ul>
+<li>使用 ISO 3166 alpha-2 country 編碼或 UN M.49 numeric area 編碼</li>
+<li>大寫 (e.g. DE for Germany, US for United States, FR for France, CN for China)</li>
+</ul>
+</li>
+</ol>
+<p>常見建構 Locale 物件的方式：</p>
+<ol>
+<li>
+<p>使用 Locale 類別已經定義的常數</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Locale</span> <span class="n">twLocale1</span> <span class="o">=</span> <span class="n">Locale</span><span class="o">.</span><span class="na">TAIWAN</span><span class="o">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>提供 language 和 country 代碼字串作為建構子的輸入參數</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Locale</span> <span class="n">twLocale2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Locale</span><span class="o">(</span><span class="s">&#34;zh&#34;</span><span class="o">,</span> <span class="s">&#34;TW&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="建立多國語系文字檔">建立多國語系文字檔</h3>
+<p>多國語系文字檔（資源綁定檔案_resource bundle files）的製作方式</p>
+<ol>
+<li>以 <code>.properties</code> 作為副檔名</li>
+<li>針對程式需要支援的每種語系建立獨立檔案
+<ul>
+<li>每個檔案的主要檔名相同，再加上<em>語言</em> 和 <em>國家</em> 代碼做區隔</li>
+<li>即需要對系統會用到的 locale 建立對應的檔案</li>
+<li>如檔案上都沒有 <em>語言</em> 和 <em>國家</em> 代碼，則為預設檔（程式找不到對應多國語系文字檔的最後防線）</li>
+</ul>
+</li>
+<li>檔案內含許多成對的 key、value
+<ul>
+<li>每個檔案的 key 數量、內容皆一致，會被使用於程式碼中</li>
+<li>value - 各 locale 的當地文字</li>
+</ul>
+</li>
+</ol>
+<p>主要檔名為 <code>MessageBundle</code>，所以預設檔案為 <code>MessageBundle.properties</code>，再依需求建立文字檔，規則</p>
+<pre tabindex="0"><code class="language-note" data-lang="note">MessageBundle_xx_YY.properties
+/* xx：語言代碼，小寫
+   YY：國家代碼，大寫 */
+</code></pre><ul>
+<li>
+<p><code>MessageBundle.properties</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-properties" data-lang="properties"><span class="line"><span class="cl"><span class="na">menu1</span> <span class="o">=</span> <span class="s">Set to English</span>
+</span></span><span class="line"><span class="cl"><span class="na">menu2</span> <span class="o">=</span> <span class="s">Set to French</span>
+</span></span><span class="line"><span class="cl"><span class="na">menu3</span> <span class="o">=</span> <span class="s">Set to Chinese</span>
+</span></span><span class="line"><span class="cl"><span class="na">menu4</span> <span class="o">=</span> <span class="s">Set to Russian</span>
+</span></span><span class="line"><span class="cl"><span class="na">menu5</span> <span class="o">=</span> <span class="s">Show the Date</span>
+</span></span><span class="line"><span class="cl"><span class="na">menu6</span> <span class="o">=</span> <span class="s">Show the money</span>
+</span></span><span class="line"><span class="cl"><span class="na">menuq</span> <span class="o">=</span> <span class="s">Enter q to quit</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>MessageBundle_fr_FR.properties</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-properties" data-lang="properties"><span class="line"><span class="cl"><span class="na">menu1</span> <span class="o">=</span> <span class="s">Régler à l&#39;anglais </span>
+</span></span><span class="line"><span class="cl"><span class="na">menu2</span> <span class="o">=</span> <span class="s">Régler au français </span>
+</span></span><span class="line"><span class="cl"><span class="na">menu3</span> <span class="o">=</span> <span class="s">Réglez chinoise </span>
+</span></span><span class="line"><span class="cl"><span class="na">menu4</span> <span class="o">=</span> <span class="s">Définir pour la Russie </span>
+</span></span><span class="line"><span class="cl"><span class="na">menu5</span> <span class="o">=</span> <span class="s">Afficher la date </span>
+</span></span><span class="line"><span class="cl"><span class="na">menu6</span> <span class="o">=</span> <span class="s">Montrez-moi l&#39;argent! </span>
+</span></span><span class="line"><span class="cl"><span class="na">menuq</span> <span class="o">=</span> <span class="s">Saisissez q pour quitter </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>以上檔案可以放在 Eclipse 的 src 路徑底下</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/5uE1dOx.png"
+        data-srcset="https://i.imgur.com/5uE1dOx.png, https://i.imgur.com/5uE1dOx.png 1.5x, https://i.imgur.com/5uE1dOx.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/5uE1dOx.png"
+        title="image-20230204002143295" /></p>
+</li>
+</ul>
+<h3 id="使用-resourcebundle-類別">使用 <code>ResourceBundle</code> 類別</h3>
+<ul>
+<li>使用 <code>ResourceBundle</code>（資源綁定）綁定像是多國語系文字檔的資源</li>
+<li>此類別又稱為 <strong>資源綁定檔案（resource bundle files）</strong></li>
+<li>資源還可以是 <code>.class</code>，只是一般比較少使用</li>
+</ul>
+<p>使用 <code>ResourceBundle</code> 類別建立物件時，必須提供</p>
+<ol>
+<li>
+<p>多國語系文字檔的主要檔案名稱，例如 <code>MessageBundle</code></p>
+</li>
+<li>
+<p>物件 <code>Locale</code>：代表某一個「語言」和「國家」的組合，例如 <code>zh</code> 和 <code>TW</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Locale</span> <span class="n">twLocale</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Locale</span><span class="o">(</span><span class="s">&#34;zh&#34;</span><span class="o">,</span> <span class="s">&#34;TW&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ResourceBundle</span> <span class="n">bundle</span> <span class="o">=</span> <span class="n">ResourceBundle</span><span class="o">.</span><span class="na">getBundle</span><span class="o">(</span><span class="s">&#34;MessageBundle&#34;</span><span class="o">,</span> <span class="n">twLocale</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="使用-dateformat-類別提供日期的區域化顯示">使用 <code>DateFormat</code> 類別提供日期的區域化顯示</h2>
+<p>Java 使用 <code>DateFormat</code> 類別搭配 <code>Locale</code> 物件，以提供日期的區域化顯示，如下步驟：</p>
+<ol>
+<li>取得 <code>java.util.Date</code> 日期物件</li>
+<li>搭配 <code>Locale</code> 取得 <code>DateFormat</code> 物件，並挑選格式</li>
+<li>呼叫 <code>DateFormat</code> 物件的 <code>format()</code> 方法，並傳入 <code>java.util.Date</code> 日期物件</li>
+</ol>
+<h3 id="日期格式選項">日期格式選項</h3>
+<p>日期格式選項可以是：</p>
+<ol>
+<li>由類別 <code>DateFormat</code> 提供的常數指定
+<ul>
+<li><strong>SHORT</strong>：「12.13.52」、「3:30 pm」</li>
+<li><strong>MEDIUM</strong>：「Jan 12, 1952」</li>
+<li><strong>LONG</strong>：「January 12, 1952」、「3:30:32 pm」</li>
+<li><strong>FULL</strong>：「Tuesday, April 12, 1952 AD」、「3:30:42 pm PST」</li>
+</ul>
+</li>
+<li>類別 <code>DateFormat</code> 的子類別 <code>SimpleDateFormat</code> 指定特定格式
+<ul>
+<li><code>yyyy/MM/dd HH:mm:ss</code></li>
+<li><code>yyyy/MMM/dd HH:mm:ss</code></li>
+<li><code>yyyy/MMMM/dd HH:mm:ss</code></li>
+</ul>
+</li>
+</ol>
+<h2 id="使用-numberformat-類別提供幣別區域化顯示">使用 <code>NumberFormat</code> 類別提供幣別區域化顯示</h2>
+<p>使用 <code>NumberFormat</code> 類別搭配 <code>Locale</code> 物件，提供幣別的區域化顯示，如下步驟：</p>
+<ol>
+<li><code>Locale</code>物件傳入 <code>NumberFormat</code> 類別的 static 工廠方法中，以取得幣別物件實例</li>
+<li>呼叫幣別物件實例的 <code>format()</code> 方法，並傳入數字金額
+<ul>
+<li>數字金額可以為基本型別或者其包覆類別</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">NumberFormat</span> <span class="n">nf</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">nf</span> <span class="o">=</span> <span class="n">NumberFormat</span><span class="o">.</span><span class="na">getCurrencyInstance</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">US</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Locale.US: &#34;</span> <span class="o">+</span> <span class="n">nf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">1000</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">nf</span> <span class="o">=</span> <span class="n">NumberFormat</span><span class="o">.</span><span class="na">getCurrencyInstance</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">TAIWAN</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Locale.TAIWAN: &#34;</span> <span class="o">+</span> <span class="n">nf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">1000</span><span class="o">.</span><span class="na">00</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">nf</span> <span class="o">=</span> <span class="n">NumberFormat</span><span class="o">.</span><span class="na">getCurrencyInstance</span><span class="o">(</span><span class="n">Locale</span><span class="o">.</span><span class="na">JAPAN</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Locale.JAPAN: &#34;</span> <span class="o">+</span> <span class="n">nf</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">1000</span><span class="o">.</span><span class="na">00</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h1 id="09-lambda-表示式的應用">09 Lambda 表示式的應用</h1>
 <h2 id="使用-lambda-表示式">使用 Lambda 表示式</h2>
+<h3 id="匿名類別與功能性介面回顧">匿名類別與功能性介面回顧</h3>
+<p>匿名內部類別（anonymous Inner Class）使用時機：</p>
+<ol>
+<li>只使用一次，所以不需要特別定義類別，可減少程式碼撰寫</li>
+<li>希望把相關程式碼擺在同一地方</li>
+<li>增加封裝程度</li>
+<li>提高程式碼可讀性</li>
+</ol>
+<p>Java 8 功能性介面（functional interface）的特色：</p>
+<ol>
+<li>只有一個抽象方法的介面</li>
+<li>該介面可以標註 <code>@FunctionalInterface</code></li>
+</ol>
+<p>功能性介面範例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">StringAnalyzer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">analyze</span><span class="o">(</span><span class="n">String</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">keyStr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>實作以上介面的類別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ContainsAnalyzer</span> <span class="kd">implements</span> <span class="n">StringAnalyzer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">analyze</span><span class="o">(</span><span class="n">String</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">keyStr</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">terget</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">keyStr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析目標字串裡面是否含有關鍵字串，在 <code>StringAnalyzerTest</code> 建立以下方法</p>
+<p>輸入字串陣列、關鍵字串和實作 <code>StringAnalyzer</code> 的子類別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">searchArr</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strArr</span><span class="o">,</span> <span class="n">String</span> <span class="n">keyStr</span><span class="o">,</span> <span class="n">StringAnalyzer</span> <span class="n">analyzer</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">str</span> <span class="o">:</span> <span class="n">strArr</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">analyzer</span><span class="o">.</span><span class="na">analyze</span><span class="o">(</span><span class="n">str</span><span class="o">,</span> <span class="n">keyStr</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可以直接建立單一類別處理，不實作介面，拋棄多型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringAnalyzeTool</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">contains</span><span class="o">(</span><span class="n">String</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">searchStr</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">target</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">searchStr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>但是如果未來需要有其他方法，像是「是否由某字串開頭（startsWith）」、「是否由某字串結尾（endsWith）」，則使用單一類別就必須不斷改程式以增加其他類似方法→違反 OCP法則、程式歡迎擴充、拒絕修改 <em>open for extension, close for modification</em></li>
+</ul>
+<p>比較是否使用「匿名內部類」的差異</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">test1</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="o">[]</span> <span class="n">strArr</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;&#34;</span><span class="o">,</span> <span class="s">&#34;&#34;</span><span class="o">,</span> <span class="s">&#34;&#34;</span> <span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">searchArr</span><span class="o">(</span><span class="n">strArr</span><span class="o">,</span> <span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="k">new</span> <span class="n">ContainsAnalyzer</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">             <span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">test2</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="o">[]</span> <span class="n">strArr</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;abc&#34;</span><span class="o">,</span> <span class="s">&#34;bcd&#34;</span><span class="o">,</span> <span class="s">&#34;efg&#34;</span> <span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">searchArr</span><span class="o">(</span><span class="n">strArr</span><span class="o">,</span> <span class="s">&#34;b&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">             <span class="k">new</span> <span class="n">StringAnalyzer</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                 <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">analyze</span><span class="o">(</span><span class="n">String</span> <span class="n">target</span><span class="o">,</span> <span class="n">String</span> <span class="n">keyStr</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                     <span class="k">return</span> <span class="n">target</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">keyStr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                 <span class="o">}</span>
+</span></span><span class="line"><span class="cl">             <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="lambda-表示式語法回顧">Lambda 表示式語法回顧</h3>
 <h2 id="使用內建的功能性介面">使用內建的功能性介面</h2>
+<p>Java 8 導入功能性介面的使用</p>
+<ol>
+<li>只能有一個抽象方法需要實作</li>
+<li>Lambda 表示式必須搭配這類型的介面</li>
+</ol>
+<p>因為功能性介面只有一個抽象方法，能夠預期它的使用方式。Java 8 在 <code>java.util.function</code> 下內建許多功能性介面，可直接使用。基礎如下四種：</p>
+<ol>
+<li><strong>評斷型（predicate）</strong></li>
+<li><strong>消費型（consumer）</strong></li>
+<li><strong>功能型（function）</strong></li>
+<li><strong>供應型（supplier）</strong></li>
+</ol>
 <h2 id="在泛型內使用萬用字元">在泛型內使用萬用字元</h2>
 <h2 id="使用其它內建的功能性介面">使用其它內建的功能性介面</h2>
 <h2 id="使用方法參照">使用方法參照</h2>
@@ -8258,7 +9344,7 @@ Execute Current Text
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2022-12-18</span>
+                <span>Updated on 2023-02-05</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -8275,7 +9361,8 @@ Execute Current Text
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/ocpjp_11/" class="prev" rel="prev" title="1Z0-819 曾師筆記 (1/duology)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>1Z0-819 曾師筆記 (1/duology)</a></div>
+    <div class="post-nav"><a href="/posts/encrypt_decrypt/" class="prev" rel="prev" title="Encrypt, Decrypt"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Encrypt, Decrypt</a>
+            <a href="/posts/lesson_00_linux/" class="next" rel="next" title="Lesson 00: Linux 筆記">Lesson 00: Linux 筆記<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
