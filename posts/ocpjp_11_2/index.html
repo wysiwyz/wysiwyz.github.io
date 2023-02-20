@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  13333 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  14778 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-02-05T17:50:34+08:00","dateModified": "2023-02-05T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;13333 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;63 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;14778 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;70 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -365,10 +365,37 @@
         <li><a href="#lambda-表示式語法回顧">Lambda 表示式語法回顧</a></li>
       </ul>
     </li>
-    <li><a href="#使用內建的功能性介面">使用內建的功能性介面</a></li>
-    <li><a href="#在泛型內使用萬用字元">在泛型內使用萬用字元</a></li>
-    <li><a href="#使用其它內建的功能性介面">使用其它內建的功能性介面</a></li>
-    <li><a href="#使用方法參照">使用方法參照</a></li>
+    <li><a href="#使用內建的功能性介面">使用內建的功能性介面</a>
+      <ul>
+        <li><a href="#評斷型功能性介面-predicate">評斷型功能性介面 Predicate</a></li>
+        <li><a href="#消費型功能性介面-consumer">消費型功能性介面 Consumer</a></li>
+        <li><a href="#功能型功能性介面-function">功能型功能性介面 Function</a></li>
+        <li><a href="#供應型功能介面-supplier">供應型功能介面 Supplier</a></li>
+      </ul>
+    </li>
+    <li><a href="#在泛型內使用萬用字元">在泛型內使用萬用字元</a>
+      <ul>
+        <li><a href="#在泛型裡使用多型">在泛型裡使用多型</a></li>
+        <li><a href="#存取使用--的泛型的集合物件">存取使用 <code>&lt;?&gt;</code> 的泛型的集合物件</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用其它內建功能性介面">使用其它內建功能性介面</a>
+      <ul>
+        <li></li>
+        <li><a href="#基於4個基礎功能性介面的基本型別變形版">基於4個基礎功能性介面的基本型別變形版</a></li>
+        <li><a href="#基於-binary二運算元相關以及其基本型別變形版">基於 Binary（二運算元相關）以及其基本型別變形版</a></li>
+        <li><a href="#基於-unary單運算元相關及其基本型別變形版">基於 Unary（單運算元相關）及其基本型別變形版</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用方法參照">使用方法參照</a>
+      <ul>
+        <li></li>
+        <li><a href="#方法參照---使用類別方法">方法參照 - 使用類別方法</a></li>
+        <li><a href="#方法參照---使用物件方法且物件參考來自-lambda-表示式之外">方法參照 - 使用物件方法，且物件參考來自 Lambda 表示式之外</a></li>
+        <li><a href="#方法參照---使用物件方法且物件參考來自-lambda-表示式之內">方法參照 - 使用物件方法，且物件參考來自 Lambda 表示式之內</a></li>
+        <li><a href="#使用-new-呼叫建構子且建構子不帶參數">使用 new 呼叫建構子，且建構子不帶參數</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -9287,14 +9314,1066 @@ Execute Current Text
 </ol>
 <p>因為功能性介面只有一個抽象方法，能夠預期它的使用方式。Java 8 在 <code>java.util.function</code> 下內建許多功能性介面，可直接使用。基礎如下四種：</p>
 <ol>
-<li><strong>評斷型（predicate）</strong></li>
-<li><strong>消費型（consumer）</strong></li>
-<li><strong>功能型（function）</strong></li>
-<li><strong>供應型（supplier）</strong></li>
+<li><strong>評斷型（predicate）</strong>：使用泛型傳入參數，回傳 boolean</li>
+<li><strong>消費型（consumer）</strong>：使用泛型傳入參數，沒有回傳（void）</li>
+<li><strong>功能型（function）</strong>：將傳入的參數由 T 型別轉換成 U 型別</li>
+<li><strong>供應型（supplier）</strong>：如同工廠方法，提供 T 型別的實例 / 物件</li>
 </ol>
+<h3 id="評斷型功能性介面-predicate">評斷型功能性介面 Predicate</h3>
+<p>代表介面是 Predicate</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">java.util.function</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Predicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Predicate&lt;T&gt;</code>：需要提供一個型別 T 滿足泛型，唯一方法 <code>test</code> 使用T型別作為參數</p>
+<p>方法內容通常和 <strong>測試T型別的某些欄位或方法</strong> 有關，結果回傳 true 或 false</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">olderThan23</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">23</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="n">Person</span> <span class="n">p</span> <span class="o">:</span> <span class="n">Person</span><span class="o">.</span><span class="na">createList</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">olderThan23</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">p</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上程式碼和以下的匿名類別是一樣的意思</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">olderThan23</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">Person</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">23</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="消費型功能性介面-consumer">消費型功能性介面 Consumer</h3>
+<p>代表介面是 Consumer</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">java.util.function</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Consumer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Consumer&lt;T&gt;</code>：提供一個 T 型別滿足泛型，並使用 T 型別作為參數，內容通常和 T 型別的某欄位/方法有關</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">printPerson</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">printPerson</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="n">Person</span> <span class="n">p</span> <span class="o">:</span> <span class="n">Person</span><span class="o">.</span><span class="na">createList</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printPerson</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上程式碼和以下的匿名類別是一樣的意思</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">printPerson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">accept</span><span class="o">(</span><span class="n">Person</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">printPerson</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="功能型功能性介面-function">功能型功能性介面 Function</h3>
+<p>代表介面是 Function</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">java.util.function</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Function</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">R</span> <span class="nf">apply</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Function&lt;T, R&gt;</code>：提供兩個型別 T、R 滿足泛型。唯一方法傳入 T 參數，回傳 R 型別 (R for result or reply)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nf">FunctionDemo</span> <span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Function</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">getNameFromPerson</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Person</span> <span class="n">p</span> <span class="o">:</span> <span class="n">Person</span><span class="o">.</span><span class="na">createList</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">getNameFromPerson</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">p</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上程式碼和以下的匿名類別是一樣的意思</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Function</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">getNameFromPerson</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">new</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">String</span> <span class="nf">apply</span><span class="o">(</span><span class="n">Person</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="供應型功能介面-supplier">供應型功能介面 Supplier</h3>
+<p>代表介面是 Supplier</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">java.util.function</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Supplier</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">T</span> <span class="nf">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Supplier&lt;T&gt;</code>：提供型別 T 滿足泛型。唯一方法沒有傳入參數，回傳 T 型別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">personSupplier</span> <span class="o">=</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">person</span><span class="o">(</span><span class="s">&#34;Newt&#34;</span><span class="o">,</span> <span class="s">&#34;Scamander@fantastic.beasts.org&#34;</span><span class="o">,</span> <span class="n">21</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">personSupplier</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上代碼相當於下面的匿名內部類</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">personSupplier</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="s">&#34;Newt&#34;</span><span class="o">,</span> <span class="s">&#34;Scamander@fantastic.beasts.org&#34;</span><span class="o">,</span> <span class="n">21</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>&hellip;</p>
 <h2 id="在泛型內使用萬用字元">在泛型內使用萬用字元</h2>
-<h2 id="使用其它內建的功能性介面">使用其它內建的功能性介面</h2>
+<p>泛型使用萬用字元 <code>wildcards</code>的符號為 <code>?</code></p>
+<ol>
+<li><code>&lt;?&gt;</code>
+<ul>
+<li>可以是任何型別，沒有上/下限</li>
+</ul>
+</li>
+<li><code>&lt;? extends T&gt;</code>
+<ul>
+<li>泛型型別必須是 <strong>型別T</strong> 或者 <strong>T的子型別</strong></li>
+<li><strong>以型別T為上邊界</strong>，但沒有下邊界</li>
+</ul>
+</li>
+<li><code>&lt;? super T&gt;</code>
+<ul>
+<li>泛型型別必須是 <strong>型別T</strong> 或者 <strong>T的父型別</strong></li>
+<li><strong>以型別T為下邊界</strong>，但沒有上邊界</li>
+</ul>
+</li>
+</ol>
+<h3 id="在泛型裡使用多型">在泛型裡使用多型</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/tUxMGOF.png"
+        data-srcset="https://i.imgur.com/tUxMGOF.png, https://i.imgur.com/tUxMGOF.png 1.5x, https://i.imgur.com/tUxMGOF.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/tUxMGOF.png"
+        title="image-20230214204322390" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// ✅
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="n">listA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span> <span class="n">listB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// ❌
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">listA</span> <span class="o">=</span> <span class="n">listB</span><span class="o">;</span> <span class="c1">// fail to compile
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="n">listA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;();</span> <span class="c1">// fail to compile
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>將宣告為 <code>List&lt;A&gt;</code> 的變數，指向 <code>ArrayList&lt;B&gt;</code> 的物件實例</p>
+<p>(宣告: List內可放A、B、C物件) = (物件實例: 實際只能放入B的物件)</p>
+<p>&hellip;</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// ❌
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">listB</span> <span class="o">=</span> <span class="n">listA</span><span class="o">;</span> <span class="c1">// fail to compile
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span> <span class="n">listB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;();</span> <span class="c1">// fail to compile
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>將宣告為 <code>List&lt;B&gt;</code> 的變數，指向 <code>ArrayList&lt;A&gt;</code> 的物件實例</p>
+<p>(只能拿出B的物件) = (物件實例: 可能拿出A、B、C的物件)</p>
+<p>&hellip;</p>
+</blockquote>
+<h4 id="如果要在泛型使用繼承或多型必須用--super-t-或--extends-t">如果要在泛型使用繼承或多型，必須用 <code>&lt;? super T&gt;</code> 或 <code>&lt;? extends T&gt;</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;?&gt;</span> <span class="n">listUnknown0</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// List裡可以是任何物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">listUnknown1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">listUnkown1Of1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 必須是 A 或者 A 的子類別
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">listUnknown2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">listUnknown2Of1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">AA</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">listUnknown2Of2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 必須是 A 或者 A 的父類別
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="存取使用--的泛型的集合物件">存取使用 <code>&lt;?&gt;</code> 的泛型的集合物件</h3>
+<ol>
+<li>
+<p>使用<code>&lt;?&gt;</code>時的注意事項</p>
+<ul>
+<li>
+<p>不允許使用<code>add()</code> 方法加入物件</p>
+</li>
+<li>
+<p>可以使用 Object class 作為參照型別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">processElements</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;?&gt;</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// elements.add(new A());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// elements.add(new B());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// elements.add(new C());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// elements.add(new Object());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="n">Object</span> <span class="n">o</span> <span class="o">:</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testProcessElements</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="n">listA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processElements</span><span class="o">(</span><span class="n">listA</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span> <span class="n">listB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processElements</span><span class="o">(</span><span class="n">listB</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;</span> <span class="n">listC</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processElements</span><span class="o">(</span><span class="n">listC</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>使用 <code>&lt;? extends A&gt;</code> 時的注意事項</p>
+<ul>
+<li>
+<p>表示傳入的物件泛型必須是A或A的子類別</p>
+</li>
+<li>
+<p>因為無交集，不允許使用 <code>add()</code> 方法放入物件</p>
+</li>
+<li>
+<p>因為 List<!-- raw HTML omitted --> 內物件一定是A或者A的子類別，可以用A類別作為參照型別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">processExtendsElements</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// elements.add(new A());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// elements.add(new B());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// elements.add(new C());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// elements.add(new Object());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="n">A</span> <span class="n">a</span> <span class="o">:</span> <span class="n">elements</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testProcessExtendsElements</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="n">listA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processExtendsElements</span><span class="o">(</span><span class="n">listA</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span> <span class="n">listB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processExtendsElements</span><span class="o">(</span><span class="n">listB</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;</span> <span class="n">listC</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">C</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">processExtendsElements</span><span class="o">(</span><span class="n">listC</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>使用 <code>&lt;? super A&gt;</code> 時的注意事項</p>
+<ul>
+<li>
+<p>表示傳入的物件泛型必須是A或A的父類別</p>
+<ul>
+<li>傳入實例 <code>ArrayList&lt;AA&gt;</code>：可以放物件A、B、C</li>
+<li>傳入實例 <code>ArrayList&lt;A&gt;</code>：可以放物件A、B、C</li>
+</ul>
+</li>
+<li>
+<p>允許使用 <code>add()</code> 方法加入 A 或 A的子類別</p>
+</li>
+<li>
+<p>只能用Object類別作為物件參考，因為可能是 A、AA、其他A的父類別、或Object類</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">void</span> <span class="nf">insertElements</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">A</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">B</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">C</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    for (A a : list) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">        System.out.println(a.getClass().getName());
+</span></span></span><span class="line"><span class="cl"><span class="cm">    }
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Object</span> <span class="n">object</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testInsertElements</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="n">listA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">insertElements</span><span class="o">(</span><span class="n">listA</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">AA</span><span class="o">&gt;</span> <span class="n">listAA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">AA</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">insertElements</span><span class="o">(</span><span class="n">listAA</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">listObject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">insertElements</span><span class="o">(</span><span class="n">listObject</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Generics</th>
+<th><code>&lt;?&gt;</code></th>
+<th><code>&lt;? extends T&gt;</code></th>
+<th><code>&lt;? super T&gt;</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>檢視成員</td>
+<td>只能用Object類檢視成員</td>
+<td>可用T或其父類別檢視成員</td>
+<td>只能用Object型別檢視成員</td>
+</tr>
+<tr>
+<td>增加成員</td>
+<td>無法</td>
+<td>無法</td>
+<td>可以增加T或者其<strong>子類別</strong>的成員</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用其它內建功能性介面">使用其它內建功能性介面</h2>
+<p>常見以下三類</p>
+<h4 id="1-四個基礎功能性介面的基本型別變形">1. 四個基礎功能性介面的基本型別變形</h4>
+<p>方法傳入參數或回傳物件的其中一個或全部改成基本型別，例如 <code>DoubleFunction</code>、<code>ToDoubleFunction</code></p>
+<h4 id="2-binary二運算元相關及其基本型別變形">2. Binary（二運算元相關）及其基本型別變形</h4>
+<p>將方法參數由一個增加為兩個，例如<code>BiPredicate</code></p>
+<h4 id="3-unary單一運算元相關及其基本型別變形">3. Unary（單一運算元相關）及其基本型別變形</h4>
+<p>繼承介面<code>Function&lt;T, T&gt;</code>，但泛型數量由兩個降成一個</p>
+<p><code>UnaryOperator</code> - 其方法傳入和回傳的型別一致</p>
+<h3 id="基於4個基礎功能性介面的基本型別變形版">基於4個基礎功能性介面的基本型別變形版</h3>
+<table>
+<thead>
+<tr>
+<th>functional interface</th>
+<th>input -&gt; output</th>
+<th>&hellip;</th>
+<th>基本型別變形版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Predicate&lt;T&gt;</code></td>
+<td></td>
+<td>int, long, double -&gt; boolean</td>
+<td></td>
+</tr>
+<tr>
+<td><code>Consumer&lt;T&gt;</code></td>
+<td>T -&gt; void</td>
+<td>int, long, double -&gt; void</td>
+<td><strong>Int</strong>Consumer<!-- raw HTML omitted --><strong>Long</strong>Consumer<!-- raw HTML omitted --><strong>Double</strong>Consumer</td>
+</tr>
+<tr>
+<td><code>Function&lt;T, R&gt;</code></td>
+<td>T -&gt; R</td>
+<td>int, long, double -&gt; R</td>
+<td><strong>Int</strong>Function<code>&lt;R&gt;</code><!-- raw HTML omitted --><strong>Long</strong>Function<code>&lt;R&gt;</code><!-- raw HTML omitted --><strong>Double</strong>Function<code>&lt;R&gt;</code></td>
+</tr>
+<tr>
+<td><code>Function&lt;T, R&gt;</code></td>
+<td>T -&gt; R</td>
+<td>T -&gt; int, long, double</td>
+<td>To<strong>Int</strong>Function<code>&lt;T&gt;</code><!-- raw HTML omitted -->To<strong>Long</strong>Function<code>&lt;T&gt;</code><!-- raw HTML omitted -->To<strong>Double</strong>Function<code>&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Function&lt;T, R&gt;</code></td>
+<td>T -&gt; R</td>
+<td>int, long, double -&gt; int, long, double</td>
+<td><strong>Long</strong>To<strong>Double</strong>Function<!-- raw HTML omitted --><strong>Long</strong>To<strong>Int</strong>Function<!-- raw HTML omitted --><strong>Double</strong>To<strong>Int</strong>Function<!-- raw HTML omitted --><strong>Double</strong>To<strong>Long</strong>Function<!-- raw HTML omitted --><strong>Int</strong>To<strong>Double</strong>Function<!-- raw HTML omitted --><strong>Int</strong>To<strong>Long</strong>Function</td>
+</tr>
+<tr>
+<td><code>Supplier&lt;T&gt;</code></td>
+<td>() -&gt; T</td>
+<td>() -&gt; boolean, int, long, double</td>
+<td><strong>Boolean</strong>Supplier<!-- raw HTML omitted --><strong>Int</strong>Supplier<!-- raw HTML omitted --><strong>Long</strong>Supplier<!-- raw HTML omitted --><strong>Double</strong>Supplier</td>
+</tr>
+</tbody>
+</table>
+<h4 id="介面-todoublefunction">介面 <code>ToDoubleFunction</code></h4>
+<p>使用時，須提供一個T型別作為泛型，方法<code>applyAsDouble()</code>傳入T型別物件，回傳double基本型別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">java.util.function</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ToDoubleFunction</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">applyAsDouble</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用範例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="na">createList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Person</span> <span class="n">first</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ToDoubleFunction</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">convertAgeToDouble</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">convertAgeToDouble</span><span class="o">.</span><span class="na">applyAsDouble</span><span class="o">(</span><span class="n">first</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>跟以下匿名類別同價</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ToDoubleFunction</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">convertAgeToDouble</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ToDoubleFunction</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">applyAsDouble</span><span class="o">(</span><span class="n">Person</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h4 id="介面-doublefunction">介面 <code>DoubleFunction</code></h4>
+<p>使用時需要提供R型別作為泛型，傳入double型別，回傳R型別的物件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">java.util.function</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DoubleFunction</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">R</span> <span class="nf">apply</span><span class="o">(</span><span class="kt">double</span> <span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用範例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">DoubleFucntion</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">calc</span> <span class="o">=</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">result</span> <span class="o">=</span> <span class="n">calc</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">3</span><span class="o">.</span><span class="na">1415926</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;New value is: &#34;</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>與以下匿名類別意思一樣</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">DoubleFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">calc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DoubleFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">public</span> <span class="n">String</span> <span class="nf">apply</span><span class="o">(</span><span class="kt">double</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       <span class="k">return</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">v</span> <span class="o">*</span> <span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">   <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="基於-binary二運算元相關以及其基本型別變形版">基於 Binary（二運算元相關）以及其基本型別變形版</h3>
+<p>以下介面的方法都有兩個傳入參數</p>
+<table>
+<thead>
+<tr>
+<th>Functional Interface</th>
+<th>input -&gt; output</th>
+<th>primitive variant..</th>
+<th>&hellip;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BinaryOperator&lt;T&gt;</code></td>
+<td>(T, T) -&gt; T</td>
+<td>將T換成 int, long, double</td>
+<td><strong>Int</strong>BinaryOperator<!-- raw HTML omitted --><strong>Long</strong>BinaryOperator<!-- raw HTML omitted --><strong>Double</strong>BinaryOperator</td>
+</tr>
+<tr>
+<td><code>BiPredicate&lt;L, R&gt;</code></td>
+<td>(L, R) -&gt; boolean</td>
+<td></td>
+<td>None</td>
+</tr>
+<tr>
+<td><code>BiConsumer&lt;T, U&gt;</code></td>
+<td>(T, U) &gt; void</td>
+<td>將U換成 int, long, double</td>
+<td>Obj<strong>Int</strong>Consumer<code>&lt;T&gt;</code><!-- raw HTML omitted -->Obj<strong>Long</strong>Consumer<code>&lt;T&gt;</code><!-- raw HTML omitted -->Obj<strong>Double</strong>Consumer<code>&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>BiFunction&lt;T, U, R&gt;</code></td>
+<td>(T, U) -&gt; R</td>
+<td>將R換成 int, long, double</td>
+<td>To<strong>Int</strong>BiFunction&lt;T, U&gt;<!-- raw HTML omitted -->To<strong>Long</strong>BiFunction&lt;T, U&gt;<!-- raw HTML omitted -->To<strong>Double</strong>BiFunction&lt;T, U&gt;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="介面-bipredicate">介面 <code>BiPredicate</code></h4>
+<p>使用時須提供一個T型別和一個U型別作為泛型，方法<code>test()</code>用T型別/U型別作為參數，回傳true/false</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">BiPredicate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">U</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">,</span> <span class="n">U</span> <span class="n">u</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用範例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="na">createList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Person</span> <span class="n">first</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">testName</span> <span class="o">=</span> <span class="s">&#34;john&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">BiPredicate</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">nameBiPred</span> <span class="o">=</span> <span class="o">(</span><span class="n">p</span><span class="o">,</span> <span class="n">s</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Is the first john? &#34;</span> <span class="o">+</span> <span class="n">nameBiPred</span><span class="o">.</span><span class="na">test</span><span class="o">(</span><span class="n">first</span><span class="o">,</span> <span class="n">testName</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>與以下匿名類別等價</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">BiPredicate</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">nameBiPred</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BiPredicate</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">test</span><span class="o">(</span><span class="n">Person</span> <span class="n">p</span><span class="o">,</span> <span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="基於-unary單運算元相關及其基本型別變形版">基於 Unary（單運算元相關）及其基本型別變形版</h3>
+<p><code>UnaryOperator&lt;T&gt;</code></p>
+<ul>
+<li>繼承介面 <code>Function&lt;T,T&gt;</code>，但泛型數量降為一個</li>
+<li>只傳入一個物件，傳入和回傳的型別一致</li>
+<li>過程通常會改變物件T的某些型態</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>functional interface</th>
+<th>input -&gt; output</th>
+<th>primitive variants</th>
+<th>&hellip;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UnaryOperator&lt;T&gt;</code></td>
+<td>T -&gt; T</td>
+<td>把T換成 int, long, double</td>
+<td><strong>Int</strong>UnaryOperator<!-- raw HTML omitted --><strong>Long</strong>UnaryOperator<!-- raw HTML omitted --><strong>Double</strong>UnaryOperator</td>
+</tr>
+</tbody>
+</table>
+<p>介面定義</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">java.util.function</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UnaryOperator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Function</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">T</span> <span class="nf">apply</span><span class="o">(</span><span class="n">T</span> <span class="n">t</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用範例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">Person</span><span class="o">.</span><span class="na">createList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Person</span> <span class="n">first</span> <span class="o">=</span> <span class="n">p1</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">unaryStr</span> <span class="o">=</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Before: &#34;</span> <span class="o">+</span> <span class="n">first</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;After: &#34;</span> <span class="o">+</span> <span class="n">unaryStr</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">first</span><span class="o">.</span><span class="na">getName</span><span class="o">()));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>與以下匿名類一樣意思</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">unaryStr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UnaryOperator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">apply</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="使用方法參照">使用方法參照</h2>
+<p>Lambda 匿名方法須包含三個部分</p>
+<ol>
+<li>方法參數（argument list）</li>
+<li>箭頭符號（arrow token），即<code>-&gt;</code></li>
+<li>方法內容（body）</li>
+</ol>
+<p>如果方法內只是呼叫另外一個方法(如委派 delegation)，可以再把lambda表達式簡化為方法參照（method reference），依被呼叫的方法種類與來源分為以下類型</p>
+<ol>
+<li>方法是 <strong>類別方法</strong></li>
+<li>方法是 <strong>物件方法</strong>，物件參考來自Lambda表示式之外</li>
+<li>方法是 <strong>物件方法</strong>，物件參考來自Lambda表示式之內</li>
+<li>使用new呼叫建構子，且建構子<strong>不帶參數</strong></li>
+<li>使用new呼叫建構子，且建構子<strong>帶少量參數</strong></li>
+<li>使用new呼叫建構子，且建構子<strong>帶多個參數</strong></li>
+</ol>
+<h4 id="示範情境">示範情境</h4>
+<ol>
+<li>
+<p>background: <code>Arrays.sort()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">sort</span><span class="o">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">a</span><span class="o">,</span> <span class="n">Comparator</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>background: <code>Comparator&lt;T&gt;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Comparator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">T</span> <span class="n">o1</span><span class="o">,</span> <span class="n">To2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>輔助類別 <code>StringUtil</code> 與 <code>Employee</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringUtil</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 類別方法: 大寫S結尾，用以區分方法以 static 宣告
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">static</span> <span class="kt">int</span> <span class="nf">compareS</span><span class="o">(</span><span class="n">String</span> <span class="n">s1</span><span class="o">,</span> <span class="n">String</span> <span class="n">s2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s1</span><span class="o">.</span><span class="na">compareToIgnoreCase</span><span class="o">(</span><span class="n">s2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 物件方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">String</span> <span class="n">s1</span><span class="o">,</span> <span class="n">String</span> <span class="n">s2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s1</span><span class="o">.</span><span class="na">compareToIgnoreCase</span><span class="o">(</span><span class="n">S2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Employee</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Employee</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Employee</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="方法參照---使用類別方法">方法參照 - 使用類別方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">ContainingClass:</span><span class="o">:</span><span class="n">staticMethodName</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如下示範</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">byClassMethod</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// Arrays.sort(arr, (a, b) -&gt; StringUtil.compareS(a, b)); // lambda expr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">StringUtil</span><span class="o">::</span><span class="n">compareS</span><span class="o">);</span>                <span class="c1">// 方法參照
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">printArray</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="方法參照---使用物件方法且物件參考來自-lambda-表示式之外">方法參照 - 使用物件方法，且物件參考來自 Lambda 表示式之外</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">objectReference:</span><span class="o">:</span><span class="n">instanceMethodName</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如下示範</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">byOutsideObjectMethod</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">StringUtil</span> <span class="n">util</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringUtil</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// Arrays.sort(arr, (a, b) -&gt; util.compare(a, b));  // lambda expr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">util</span><span class="o">::</span><span class="n">compare</span><span class="o">);</span>                 <span class="c1">// 方法參照
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">printArray</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="方法參照---使用物件方法且物件參考來自-lambda-表示式之內">方法參照 - 使用物件方法，且物件參考來自 Lambda 表示式之內</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">ObjectReferenceType:</span><span class="o">:</span><span class="n">instanceMethodName</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如下示範</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">byInsideObjectMethod</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// Arrays.sort(arr, (a, b) -&gt; a.compareToIgnoreCase(b));
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">String</span><span class="o">::</span><span class="n">compareToIgnoreCase</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">printArray</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>☕🍪 兩種使用物件參考的實例方法</p>
+<ol>
+<li>
+<p>物件參考來自 lambda expr 表示式外面，要傳進來只能用原來的變數名稱</p>
+</li>
+<li>
+<p>剩餘的不能再使用變數名稱，要改用類別名稱</p>
+<p>這樣很像使用靜態方法，都是把類別名稱放前面</p>
+<p>本例String類的 <code>compareToIgnoreCase()</code> 不是static，還是可以區分</p>
+</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id="使用-new-呼叫建構子且建構子不帶參數">使用 new 呼叫建構子，且建構子不帶參數</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nl">ClassName:</span><span class="o">:</span><span class="k">new</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以改用方法參照，以new呼叫建構子</p>
+<p>建構子不帶參數時，可讓介面<code>Supplier&lt;T&gt;</code>作為物件提供者的角色</p>
+<ol>
+<li></li>
+<li>以方法參照定義產生物件的方式，如下 line 3</li>
+<li>在 line 4 使用<code>Supplier&lt;T&gt;</code>的 <code>get()</code> 方法可直接提取新建物件</li>
+</ol>
 <hr>
 <h1 id="10-使用-stream-api">10 使用 <code>Stream API</code></h1>
 <h2 id="建構者設計模式和方法鏈結">建構者設計模式和方法鏈結</h2>
