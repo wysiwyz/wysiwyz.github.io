@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  14778 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  15380 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-02-05T17:50:34+08:00","dateModified": "2023-02-05T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;14778 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;70 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;15380 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;73 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -394,17 +394,46 @@
         <li><a href="#方法參照---使用物件方法且物件參考來自-lambda-表示式之外">方法參照 - 使用物件方法，且物件參考來自 Lambda 表示式之外</a></li>
         <li><a href="#方法參照---使用物件方法且物件參考來自-lambda-表示式之內">方法參照 - 使用物件方法，且物件參考來自 Lambda 表示式之內</a></li>
         <li><a href="#使用-new-呼叫建構子且建構子不帶參數">使用 new 呼叫建構子，且建構子不帶參數</a></li>
+        <li><a href="#使用-new-呼叫建構子且建構子帶少量參數">使用 new 呼叫建構子且建構子帶少量參數</a></li>
+        <li><a href="#使用-new-呼叫建構子且建構子帶多參數">使用 new 呼叫建構子且建構子帶多參數</a></li>
       </ul>
     </li>
   </ul>
 
   <ul>
     <li><a href="#建構者設計模式和方法鏈結">建構者設計模式和方法鏈結</a></li>
-    <li><a href="#使用-optional-類別">使用 Optional 類別</a></li>
-    <li><a href="#stream-api-介紹">Stream API 介紹</a></li>
-    <li><a href="#stream-api-操作">Stream API 操作</a></li>
-    <li><a href="#stream-api-和-nio2">Stream API 和 NIO.2</a></li>
-    <li><a href="#stream-api-操作平行化">Stream API 操作平行化</a></li>
+    <li><a href="#使用-optional-類別">使用 Optional 類別</a>
+      <ul>
+        <li><a href="#使用-null-造成的困擾">使用 null 造成的困擾</a></li>
+        <li><a href="#類別-optional-的使用情境">類別 Optional 的使用情境</a></li>
+        <li><a href="#類別-optional-的常用方法">類別 Optional 的常用方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#stream-api-介紹">Stream API 介紹</a>
+      <ul>
+        <li><a href="#介面-iterable-和-collection-的擴充">介面 Iterable 和 Collection 的擴充</a></li>
+        <li><a href="#stream-api">Stream API</a></li>
+      </ul>
+    </li>
+    <li><a href="#stream-api-操作">Stream API 操作</a>
+      <ul>
+        <li><a href="#中間作業">中間作業</a></li>
+        <li><a href="#終端作業">終端作業</a></li>
+        <li><a href="#終端作業-collect-與-collectors-api">終端作業 <code>collect()</code> 與 Collectors API</a></li>
+        <li><a href="#短路型終端作業">短路型終端作業</a></li>
+      </ul>
+    </li>
+    <li><a href="#stream-api-和-nio2">Stream API 和 NIO.2</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#stream-api-操作平行化">Stream API 操作平行化</a>
+      <ul>
+        <li><a href="#平行化的前提">平行化的前提</a></li>
+        <li><a href="#平行化的作法">平行化的作法</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -10370,18 +10399,354 @@ Execute Current Text
 </div><p>可以改用方法參照，以new呼叫建構子</p>
 <p>建構子不帶參數時，可讓介面<code>Supplier&lt;T&gt;</code>作為物件提供者的角色</p>
 <ol>
-<li></li>
+<li><code>T</code> Generic 為建構子建立的物件型態</li>
 <li>以方法參照定義產生物件的方式，如下 line 3</li>
 <li>在 line 4 使用<code>Supplier&lt;T&gt;</code>的 <code>get()</code> 方法可直接提取新建物件</li>
 </ol>
-<hr>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">byConstructorWithSupplier</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Supplier&lt;Employee&gt; supplier1 = () -&gt; new Employee();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">supplier</span> <span class="o">=</span> <span class="n">Employee</span><span class="o">::</span><span class="k">new</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Employee</span> <span class="n">emp</span> <span class="o">=</span> <span class="n">supplier2</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">emp</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">&#34;Jim&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">emp</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-new-呼叫建構子且建構子帶少量參數">使用 new 呼叫建構子且建構子帶少量參數</h3>
+<p>當建構子帶參數時，可改用介面<code>Function&lt;T,R&gt;</code>作為物件提供者的角色</p>
+<ol>
+<li><code>T</code>為建構子參數，<code>R</code>為建構子建立的物件型態</li>
+<li>以方法參照定義產生物件的方式，如 line 3</li>
+<li>line 4 使用 Function 的 <code>apply(T)</code> 方法，傳入建構子參數，回傳新建物件型態 <code>R</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">byConstructorWithFunction</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Function&lt;String, Employee&gt; factory1 = (s) -&gt; new Employee(s);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Function</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Employee</span><span class="o">&gt;</span> <span class="n">factory2</span> <span class="o">=</span> <span class="n">Employee</span><span class="o">::</span><span class="k">new</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Employee</span> <span class="n">emp</span> <span class="o">=</span> <span class="n">factory2</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="s">&#34;Jim&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">emp</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-new-呼叫建構子且建構子帶多參數">使用 new 呼叫建構子且建構子帶多參數</h3>
+<p>如果建構子帶多參數，例如 class Student：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">Student</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Student [name=]&#34;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&#34;, age=&#34;</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s">&#34;]&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可自訂功能性介面作為物件提供者的角色：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">StudentFactory</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Student</span> <span class="nf">createStudent</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用方法參照取代 Lambda expression：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">byConstructorWithCustomFunction</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// StudentFactory factory = (name, age) -&gt; new Student(name, age);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">StudentFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">Student</span><span class="o">::</span><span class="k">new</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Student</span> <span class="n">s</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">createStudent</span><span class="o">(</span><span class="s">&#34;Jim&#34;</span><span class="o">,</span> <span class="n">10</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h1 id="10-使用-stream-api">10 使用 <code>Stream API</code></h1>
 <h2 id="建構者設計模式和方法鏈結">建構者設計模式和方法鏈結</h2>
+<p>All-args-constructors 在欄位漸多的時候可能會產生以下問題</p>
+<ol>
+<li>某些類別會依傳入欄位不同而建構出不同功能性的物件（Overloaded建構子）</li>
+<li>建構子參數可能很多</li>
+<li>漸購子參數若有多個屬於相同型別，會造成組合複雜且設計困難</li>
+<li>須判斷 null 情況</li>
+</ol>
+<p><strong>建構者設計模式（builder design pattern）</strong>：改用建構者<code>builder</code>類別產生物件，抽出建構物件的邏輯</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">email</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="nf">Person</span><span class="o">(</span><span class="n">Builder</span> <span class="n">builder</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="na">email</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getAge</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getEmail</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">email</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;Name=&#34;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&#34;, Age=&#34;</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s">&#34;, email=&#34;</span> <span class="o">+</span> <span class="n">email</span> <span class="o">+</span> <span class="s">&#34;\n&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">printPerson</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * 靜態巢狀類別 Person.Builder 的定義
+</span></span></span><span class="line"><span class="cl"><span class="cm">     * Builder 的 setter() 方法，因為是 Builder 類，慣例上方法命名不以 set 開頭，
+</span></span></span><span class="line"><span class="cl"><span class="cm">     **/</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">Builder</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">email</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">name</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">age</span><span class="o">(</span><span class="kt">int</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">Builder</span> <span class="nf">email</span><span class="o">(</span><span class="n">String</span> <span class="n">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">this</span><span class="o">.</span><span class="na">email</span> <span class="o">=</span> <span class="n">val</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">Person</span> <span class="nf">build</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">Person</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>範例方法 <code>createPersonList()</code>-</p>
+<p>使用 <code>Person.Builder</code> 類別建構 Person 物件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">createPersonList</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">people</span><span class="o">.</span><span class="na">add</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">Person</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">name</span><span class="o">(</span><span class="s">&#34;Bob&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">age</span><span class="o">(</span><span class="n">21</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">email</span><span class="o">(</span><span class="s">&#34;bob@x.com&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">people</span><span class="o">.</span><span class="na">add</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    	<span class="k">new</span> <span class="n">Person</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">name</span><span class="o">(</span><span class="s">&#34;Jane&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">age</span><span class="o">(</span><span class="n">25</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">email</span><span class="o">(</span><span class="s">&#34;jane@x.com&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">build</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">people</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Person</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">name</span><span class="o">(</span><span class="s">&#34;John&#34;</span><span class="o">).</span><span class="na">age</span><span class="o">(</span><span class="n">25</span><span class="o">).</span><span class="na">email</span><span class="o">(</span><span class="s">&#34;john@x.com&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">people</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Person</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">name</span><span class="o">(</span><span class="s">&#34;Phil&#34;</span><span class="o">).</span><span class="na">age</span><span class="o">(</span><span class="n">55</span><span class="o">).</span><span class="na">email</span><span class="o">(</span><span class="s">&#34;phil@x.com&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">people</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Person</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">name</span><span class="o">(</span><span class="s">&#34;Betty&#34;</span><span class="o">).</span><span class="na">age</span><span class="o">(</span><span class="n">85</span><span class="o">).</span><span class="na">email</span><span class="o">(</span><span class="s">&#34;betty@x.com&#34;</span><span class="o">).</span><span class="na">build</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">people</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建構者設計模式讓物件可以用「方法鏈結（method chaining）」的方式進行</p>
+<p>這是Java 8 API 開始推廣的程式碼撰寫風格，特色如下</p>
+<ol>
+<li>多個方法可以用單一行程式碼表達，更容易理解程式碼</li>
+<li>物件建立方式更有彈性</li>
+<li>每一個設定屬性欄位的 <code>setter()</code> 方法都回傳物件自己</li>
+<li>程式碼更加流暢（fluent）</li>
+</ol>
 <h2 id="使用-optional-類別">使用 Optional 類別</h2>
+<h3 id="使用-null-造成的困擾">使用 null 造成的困擾</h3>
+<h3 id="類別-optional-的使用情境">類別 Optional 的使用情境</h3>
+<h3 id="類別-optional-的常用方法">類別 Optional 的常用方法</h3>
+<h4 id="java-8-的-optional-api">Java 8 的 Optional API</h4>
+<h4 id="java-8-之後的新增的-optional-api">Java 8 之後的新增的 Optional API</h4>
 <h2 id="stream-api-介紹">Stream API 介紹</h2>
+<h3 id="介面-iterable-和-collection-的擴充">介面 Iterable 和 Collection 的擴充</h3>
+<h3 id="stream-api">Stream API</h3>
+<h4 id="stream-特性">Stream 特性</h4>
+<h4 id="管線操作pipeline-operations的特性">管線操作（pipeline operations）的特性</h4>
+<hr>
 <h2 id="stream-api-操作">Stream API 操作</h2>
+<h3 id="中間作業">中間作業</h3>
+<h4 id="1-使用-map-轉換-stream-內容">1. 使用 <code>map()</code> 轉換 Stream 內容</h4>
+<h4 id="2-使用-peek-窺視-stream-內容">2. 使用 <code>peek()</code> 窺視 Stream 內容</h4>
+<h4 id="3-使用-sorted-做基本排序">3. 使用 <code>sorted()</code> 做基本排序</h4>
+<h4 id="4-搭配-comparator-進行多段式排序">4. 搭配 Comparator 進行多段式排序</h4>
+<h4 id="5-使用-flatmap-展開-stream-成員成子-stream-物件">5. 使用 <code>flatMap()</code> 展開 Stream 成員成子 Stream 物件</h4>
+<h3 id="終端作業">終端作業</h3>
+<h4 id="1-使用-count-計算-stream-成員數量">1. 使用 <code>count()</code> 計算 Stream 成員數量</h4>
+<h4 id="2-使用-max-和-min-取出-stream-成員的最大值與最小值">2. 使用 <code>max()</code> 和 <code>min()</code> 取出 Stream 成員的最大值與最小值</h4>
+<h4 id="3-使用-average-和-sum-計算-stream-成員的平均值與加總">3. 使用 <code>average()</code> 和 <code>sum()</code> 計算 Stream 成員的平均值與加總</h4>
+<h3 id="終端作業-collect-與-collectors-api">終端作業 <code>collect()</code> 與 Collectors API</h3>
+<h4 id="1-collectorstolistcollectorstoset">1. <code>Collectors.toList()</code>、<code>Collectors.toSet()</code></h4>
+<h4 id="2-collectorstomap">2. <code>Collectors.toMap()</code></h4>
+<h4 id="3-collectorsaveragingdouble">3. <code>Collectors.averagingDouble()</code></h4>
+<h4 id="4-collectorsjoining">4. <code>Collectors.joining()</code></h4>
+<h4 id="5-collectorsgroupingby">5. <code>Collectors.groupingBy()</code></h4>
+<h4 id="6-collectorspartitioningby">6. <code>Collectors.partitioningBy()</code></h4>
+<h4 id="7-collectorsmappingcollectorsflatmapping">7. <code>Collectors.mapping()</code>、<code>Collectors.flatMapping()</code></h4>
+<h4 id="8-collectorsfiltering">8. <code>Collectors.filtering()</code></h4>
+<h3 id="短路型終端作業">短路型終端作業</h3>
+<h4 id="1-allmatch">1. <code>allMatch()</code></h4>
+<h4 id="2-nonematch">2. <code>noneMatch()</code></h4>
+<h4 id="3-anymatch">3. <code>anyMatch()</code></h4>
+<h4 id="4-findfirst">4. <code>findFirst()</code></h4>
+<h4 id="5-findany">5. <code>findAny()</code></h4>
+<hr>
 <h2 id="stream-api-和-nio2">Stream API 和 NIO.2</h2>
+<h4 id="1-list">1. <code>list()</code></h4>
+<h4 id="2-find">2. <code>find()</code></h4>
+<h4 id="3-walk">3. <code>walk()</code></h4>
+<h4 id="4-lines">4. <code>lines()</code></h4>
+<hr>
 <h2 id="stream-api-操作平行化">Stream API 操作平行化</h2>
+<h3 id="平行化的前提">平行化的前提</h3>
+<h4 id="撰寫風格_1">撰寫風格_1</h4>
+<h4 id="撰寫風格_2">撰寫風格_2</h4>
+<h4 id="撰寫風格_3">撰寫風格_3</h4>
+<h3 id="平行化的作法">平行化的作法</h3>
+<h4 id="基本原則">基本原則</h4>
+<h4 id="管線操作的變數必須是沒有狀態stateless">管線操作的變數必須是「沒有狀態（stateless）」</h4>
+<h4 id="平行處理可能讓結果不同">平行處理可能讓結果不同</h4>
 <hr>
 <h1 id="11-datetime-api">11 Date/Time API</h1>
 <h2 id="date--time-相關類別的演進">Date &amp; Time 相關類別的演進</h2>
