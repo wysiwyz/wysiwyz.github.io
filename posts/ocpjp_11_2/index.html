@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  15380 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  16469 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-02-05T17:50:34+08:00","dateModified": "2023-02-05T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;15380 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;73 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;16469 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;78 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -432,15 +432,38 @@
       <ul>
         <li><a href="#平行化的前提">平行化的前提</a></li>
         <li><a href="#平行化的作法">平行化的作法</a></li>
+        <li><a href="#reduction-操作">Reduction 操作</a></li>
       </ul>
     </li>
   </ul>
 
   <ul>
-    <li><a href="#date--time-相關類別的演進">Date &amp; Time 相關類別的演進</a></li>
-    <li><a href="#當地日期與時間">當地日期與時間</a></li>
+    <li><a href="#date--time-相關類別演進">Date &amp; Time 相關類別演進</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#當地日期與時間">當地日期與時間</a>
+      <ul>
+        <li><a href="#類別-localdate">類別 <code>LocalDate</code></a></li>
+        <li><a href="#類別-localtime">類別 <code>LocalTime</code></a></li>
+        <li><a href="#類別-localdatetime">類別 <code>LocalDateTime</code></a></li>
+      </ul>
+    </li>
     <li><a href="#時區和日光節約時間">時區和日光節約時間</a></li>
-    <li><a href="#描述日期與時間的數量">描述日期與時間的數量</a></li>
+    <li><a href="#描述日期與時間的數量">描述日期與時間的數量</a>
+      <ul>
+        <li><a href="#時區和日光節約時間簡介">時區和日光節約時間簡介</a></li>
+        <li><a href="#java-在時區和日光節約時間的應用">Java 在時區和日光節約時間的應用</a></li>
+      </ul>
+    </li>
+    <li><a href="#描述日期與時間的數量-1">描述日期與時間的數量</a>
+      <ul>
+        <li><a href="#類別-instant">類別 Instant</a></li>
+        <li><a href="#類別-period-和-duration">類別 Period 和 Duration</a></li>
+        <li><a href="#使用流暢fluent的程式風格">使用流暢（fluent）的程式風格</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -10695,11 +10718,554 @@ Execute Current Text
 </ol>
 <h2 id="使用-optional-類別">使用 Optional 類別</h2>
 <h3 id="使用-null-造成的困擾">使用 null 造成的困擾</h3>
-<h3 id="類別-optional-的使用情境">類別 Optional 的使用情境</h3>
+<p>情境：有個方法允許輸入不同數量整數，計算平均值。如果呼叫該方法時沒有輸入任何整數，應該回傳什麼？</p>
+<p>如果回傳0，要如何區分<strong>輸入多個零</strong>以及<strong>什麼都沒有輸入</strong>的兩種情境？</p>
+<p>通常會直接回傳null，同時將方法回傳的值改用基本型別的包覆類別（wrapper class）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Double</span> <span class="nf">averageWithNull</span><span class="o">(</span><span class="kt">int</span><span class="o">...</span> <span class="n">scores</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">scores</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">score</span> <span class="o">:</span> <span class="n">scores</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">score</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">scores</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果沒有任何整數個數傳進 <code>averageWithNull()</code> 方法，會馬上回傳 null</p>
+<p>處理 null 的測試方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testNull</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">str</span><span class="o">[]</span> <span class="o">=</span> <span class="o">{</span> <span class="sc">&#39;D&#39;</span><span class="o">,</span> <span class="sc">&#39;u&#39;</span><span class="o">,</span> <span class="sc">&#39;k&#39;</span><span class="o">,</span> <span class="sc">&#39;e&#39;</span> <span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">c</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>  <span class="c1">// 和字元相連 nullDuke
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Object</span> <span class="n">o</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o</span><span class="o">);</span>  <span class="c1">// 處理物件, 遇到 null 就印出 null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// System.out.println(null); // can&#39;t compiled
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="類別-optional-的使用情境">類別 Optional 的使用情境</h3>
+<p><code>Optional&lt;T&gt;</code>類別於 Java 8 推出，支援泛型，概念用法如下：</p>
+<ol>
+<li>屬於 <code>java.util</code> 套件</li>
+<li>使用上像是「容器/箱子」，<code>&lt;T&gt;</code>表示箱子裡可存放 T物件也可以是空的（empty, i.e. null）</li>
+<li>方法 <code>isPresent()</code> 確認內容物T是否存在
+若回傳 true，則可用 <code>get()</code> 方法取得內容物件T</li>
+<li>和功能性介面一樣，有其他支援基本型別的擴充版本
+<ul>
+<li><code>Optional</code>Double</li>
+<li><code>Optional</code>Int</li>
+<li><code>Optional</code>Long</li>
+</ul>
+</li>
+</ol>
+<p>建立 Optional 物件的幾種方式</p>
+<table>
+<thead>
+<tr>
+<th>方法釋例</th>
+<th>物件內容</th>
+<th>備註</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>static <code>Optional.empty()</code></td>
+<td>沒有內容物件</td>
+<td>空Optional物件</td>
+</tr>
+<tr>
+<td>static <code>Optional.of(value)</code></td>
+<td>內含物件 value</td>
+<td>該物件不可為null</td>
+</tr>
+<tr>
+<td>static <code>Optional.ofNullable(value)</code></td>
+<td>可能有/可能沒有內容物件value</td>
+<td>結合前兩種方式</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">ofNullable</span><span class="o">(</span><span class="n">T</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">empty</span><span class="o">()</span> <span class="o">:</span> <span class="n">of</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接著把之前示範過的 <code>averageWithNull()</code> 方法由可能回傳 null 改成回傳 Optional</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="nf">averageWithOptional</span><span class="o">(</span><span class="kt">int</span><span class="o">...</span> <span class="n">scores</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">scores</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">score</span><span class="o">;</span> <span class="n">scores</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">score</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span> <span class="o">(</span><span class="kt">double</span><span class="o">)</span> <span class="n">sum</span> <span class="o">/</span> <span class="n">scores</span><span class="o">.</span><span class="na">length</span> <span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果回傳內容有可能為 null 時，都用 <code>Optional&lt;T&gt;</code> 型態回傳，那就不用每次都加 <code>if(x != null)</code>事先檢查</p>
 <h3 id="類別-optional-的常用方法">類別 Optional 的常用方法</h3>
 <h4 id="java-8-的-optional-api">Java 8 的 Optional API</h4>
+<p>以下是 Java 8 剛推出 <code>Optional&lt;T&gt;</code> 時常用的方法</p>
+<table>
+<thead>
+<tr>
+<th>方法簽名與回傳</th>
+<th>有內含物時</th>
+<th>內含物為null時</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>T get()</code></td>
+<td>回傳內含物</td>
+<td>throw <code>NoSuchElementException</code></td>
+</tr>
+<tr>
+<td><code>void ifPresent(Consumer)</code></td>
+<td>執行Consumer定義的方法</td>
+<td>啥也不做</td>
+</tr>
+<tr>
+<td><code>void isPresent()</code></td>
+<td>回傳 true</td>
+<td>回傳 false</td>
+</tr>
+<tr>
+<td><code>T orElse(T other)</code></td>
+<td>回傳內含物</td>
+<td>回傳指定的 other 物件</td>
+</tr>
+<tr>
+<td><code>T orElseGet(Supplier)</code></td>
+<td>回傳內含物</td>
+<td>回傳 Supplier 定義的方法執行結果</td>
+</tr>
+<tr>
+<td><code>T orElseThow(Supplier)</code></td>
+<td>回傳內含物</td>
+<td>拋出 Supplier 定義的方法例外</td>
+</tr>
+<tr>
+<td><code>Optional&lt;U&gt; map(Function&lt;T, U&gt;)</code></td>
+<td>回傳 Function 定義的方法的 Optional 結果</td>
+<td>回傳 <code>Optional.empty()</code></td>
+</tr>
+<tr>
+<td><code>Optional&lt;U&gt; flatMap(Function&lt;T, Optional&lt;U&gt;&gt;)</code></td>
+<td>回傳 Function 定義的方法的 Optional 結果</td>
+<td>回傳 <code>Optional.empty()</code></td>
+</tr>
+</tbody>
+</table>
+<p>程式碼示例：<code>get()</code>、<code>ifPresent()</code>、<code>isPresent()</code>、<code>orElse()</code>、<code>orElseGet()</code>、<code>orElseThrow()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testOptionalOfJava8</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show01: &#34;</span> <span class="o">+</span> <span class="n">averageWithOptional</span><span class="o">(</span><span class="n">90</span><span class="o">,</span> <span class="n">100</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show02: &#34;</span> <span class="o">+</span> <span class="n">averageWithOptional</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">optOK</span> <span class="o">=</span> <span class="n">averageWithOptional</span><span class="o">(</span><span class="n">90</span><span class="o">,</span> <span class="n">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">optOK</span><span class="o">.</span><span class="na">isPresent</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show03: &#34;</span> <span class="o">+</span> <span class="n">optOK</span><span class="o">.</span><span class="na">get</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">optNG</span> <span class="o">=</span> <span class="n">averageWithOptional</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">optNG</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchElementElement</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show04 throws: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">g</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">opt1</span> <span class="o">=</span> <span class="n">averageWithOptional</span><span class="o">(</span><span class="n">90</span><span class="o">,</span> <span class="n">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opt1</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">d</span> <span class="o">-&gt;</span> <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show05: &#34;</span> <span class="o">+</span> <span class="n">d</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// there is value in Optional
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">opt2</span> <span class="o">=</span> <span class="n">averageWithOptional</span><span class="o">(</span><span class="n">90</span><span class="o">,</span> <span class="n">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show06: &#34;</span> <span class="o">+</span> <span class="n">opt2</span><span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="n">Double</span><span class="o">.</span><span class="na">NaN</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show07: &#34;</span> <span class="o">+</span> <span class="n">opt2</span><span class="o">.</span><span class="na">orElseGet</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show08: &#34;</span> <span class="o">+</span> <span class="n">opt2</span><span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">MyOptionalException</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// there is no value in Optional
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">opt3</span> <span class="o">=</span> <span class="n">averageWithOptional</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show09: &#34;</span> <span class="o">+</span> <span class="n">opt3</span><span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="n">Double</span><span class="o">.</span><span class="na">NaN</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show10: &#34;</span> <span class="o">+</span> <span class="n">opt3</span><span class="o">.</span><span class="na">orElseGet</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">opt3</span><span class="o">.</span><span class="na">orElseThrow</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="k">new</span> <span class="n">MyOptionalException</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">MyOptionalException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;show11 throws: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>   
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<p>程式碼示例：<code>map()</code>、<code>flatMap()</code></p>
+<ul>
+<li>
+<p>因為都需要傳入一個功能性介面 <strong>Function</strong> 的 Lambda 表示式</p>
+</li>
+<li>
+<p>Lambda 表示式這裡用方法參照取代</p>
+<ol>
+<li>建立line 1~3 的 <code>getLength4map()</code> 方法，再以方法參照用於 <code>map()</code> 方法</li>
+<li>建立line 4~6 的 <code>getLength4flatMap()</code> 方法，再以方法參照用於 <code>flatMap()</code> 方法</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">getLength4map</span><span class="o">(</span><span class="n">String</span> <span class="n">in</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">in</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">getLength4flatMap</span><span class="o">(</span><span class="n">String</span> <span class="n">in</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">in</span><span class="o">).</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mapAndFlatMap</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;jim&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">oil</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">str</span><span class="o">).</span><span class="na">map</span><span class="o">(</span><span class="n">OptionalDemo</span><span class="o">::</span><span class="n">getLength4map</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">oi2</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">str</span><span class="o">).</span><span class="na">flatMap</span><span class="o">(</span><span class="n">OptionalDemo</span><span class="o">::</span><span class="n">getLength4flatMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>map()</code> 與 <code>flatMap()</code> 使用方式相同/差異</p>
+<table>
+<thead>
+<tr>
+<th>方法簽名與回傳</th>
+<th>相同</th>
+<th>差異</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Optional&lt;U&gt; map(Function&lt;T, U&gt;)</code></td>
+<td>回傳 <code>Optional&lt;U&gt;</code></td>
+<td>作為參數的的功能性介面<!-- raw HTML omitted -->Function 方法回傳</td>
+</tr>
+<tr>
+<td><code>Optional&lt;U&gt; flatMap(Function&lt;T, Optional&lt;U&gt;&gt;)</code></td>
+<td>回傳 <code>Optional&lt;U&gt;</code></td>
+<td>作為參數的功能性介面 Function 的方法回傳 <code>Optional&lt;U&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
 <h4 id="java-8-之後的新增的-optional-api">Java 8 之後的新增的 Optional API</h4>
-<h2 id="stream-api-介紹">Stream API 介紹</h2>
+<p><code>Optional&lt;T&gt;</code> 在 Java 8 之後推出較常用的方法如下</p>
+<table>
+<thead>
+<tr>
+<th>方法簽名與回傳</th>
+<th>有內含物</th>
+<th>內含物為null</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>void ifPresontOrElse(Consumer, Runnable)</code></td>
+<td>使用內含物執行 Consumer 定義的方法</td>
+<td>執行 Runnable 定義的方法</td>
+</tr>
+<tr>
+<td><code>Optional&lt;T&gt;</code> or <code>(Supplier)</code></td>
+<td>回傳自己（this），即原本的<code>Optional&lt;T&gt;</code></td>
+<td>執行 Supplier 定義的方法，回傳型態須為<code>Optional&lt;T&gt;</code></td>
+</tr>
+<tr>
+<td><code>Stream&lt;T&gt; stream()</code></td>
+<td>將內含物T以<code>Stream.of(T)</code>型態回傳</td>
+<td>回傳 <code>Stream.empty()</code></td>
+</tr>
+<tr>
+<td><code>T orElseThrow()</code></td>
+<td>回傳內含物</td>
+<td>拋出例外 <code>NoSuchElementException</code></td>
+</tr>
+<tr>
+<td><code>boolean isEmpty()</code></td>
+<td>回傳 false</td>
+<td>回傳 true</td>
+</tr>
+</tbody>
+</table>
+<p>程式碼示例：<code>ifPresentOrElse()</code>、<code>or()</code>、<code>orElseThrow()</code>、<code>isEmpty()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testOptionalAfterJava8</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">o1</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;value&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">o2</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">empty</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ifPresentOrElse()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">o1</span><span class="o">.</span><span class="na">ifPresentOrElse</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Found &#34;</span> <span class="o">+</span> <span class="n">s</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">        <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Not found&#34;</span><span class="o">)};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">o2</span><span class="o">.</span><span class="na">ifPresentOrElse</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Found &#34;</span> <span class="o">+</span> <span class="n">s</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">        <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Not found&#34;</span><span class="o">)};</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// or()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">o1</span> <span class="o">=</span> <span class="n">o1</span><span class="o">.</span><span class="na">or</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;default&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">o2</span> <span class="o">=</span> <span class="n">o2</span><span class="o">.</span><span class="na">or</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;default&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// orElseThrow()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">orElseThrow</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o2</span><span class="o">.</span><span class="na">orElseThrow</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// isEmpty()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o1</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">o2</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Optional 的 <code>stream()</code> 方法</p>
+<ul>
+<li>有內含物：<code>Stream.of(T)</code> 型態回傳</li>
+<li>無內含物：<code>Stream.empty()</code>中斷串流，方便處理來源可能為null的情況</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findUsersByName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="s">&#34;jim1&#34;</span><span class="o">,</span> <span class="n">1000</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="s">&#34;jim2&#34;</span><span class="o">,</span> <span class="n">1000</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="s">&#34;duke&#34;</span><span class="o">,</span> <span class="n">1000</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">user</span> <span class="o">-&gt;</span> <span class="n">user</span><span class="o">.</span><span class="na">getName</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="n">name</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* 以下兩個方法都可接受輸入參數為null的情況，但getTotalSalary()的執行效率略優於getTotalSalary2()，可以在確認輸入參數為null時就停止串流 */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">getTotalSalary</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">OptionalDemo</span><span class="o">::</span><span class="n">findUsersByName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">Collection</span><span class="o">::</span><span class="n">stream</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getSalary</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">Integer</span><span class="o">::</span><span class="n">valueOf</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">Integer</span> <span class="nf">getTotalSalary2</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">name</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">OptionalDemo</span><span class="o">::</span><span class="n">findUsersByName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">Collection</span><span class="o">::</span><span class="n">stream</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getSalary</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>比較三個在Collection領第一個物件之欄位name的字串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFirstUserName1</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">findFirst</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">&#34;user not found&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Optional= &#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Option1 throws &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFirstUserName2</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">users</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">list</span> <span class="o">-&gt;</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">&#34;user not found&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Sys</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Option2 throws &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFirstUserName3</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="stream-api-介紹">Stream API 介紹</h2>
 <h3 id="介面-iterable-和-collection-的擴充">介面 Iterable 和 Collection 的擴充</h3>
 <h3 id="stream-api">Stream API</h3>
 <h4 id="stream-特性">Stream 特性</h4>
@@ -10747,13 +11313,127 @@ Execute Current Text
 <h4 id="基本原則">基本原則</h4>
 <h4 id="管線操作的變數必須是沒有狀態stateless">管線操作的變數必須是「沒有狀態（stateless）」</h4>
 <h4 id="平行處理可能讓結果不同">平行處理可能讓結果不同</h4>
+<h3 id="reduction-操作">Reduction 操作</h3>
+<h4 id="reduction-的基礎操作">Reduction 的基礎操作</h4>
+<h4 id="reduction-的平行操作">Reduction 的平行操作</h4>
+<h4 id="平行化處理的注意事項">平行化處理的注意事項</h4>
+<ol>
+<li>平行處理效能不一定比較快，有時甚至會比循序處理慢。須有硬體支援，像是多核CPU和GPU</li>
+<li>平行處理必須考量<strong>最初拆解</strong>、<strong>最終合併</strong>作法是否合適。中間作業（例如<code>filter()</code>）也會影響拆解與合併的效能</li>
+<li>因為自動 **開箱/裝箱（boxing/unboxing）**會降低執行效率，直接用基本型別的變形Stream會有比較好的效能表現，例如<code>IntStream</code>、<code>LongStream</code>、<code>DoubleStream</code></li>
+</ol>
 <hr>
 <h1 id="11-datetime-api">11 Date/Time API</h1>
-<h2 id="date--time-相關類別的演進">Date &amp; Time 相關類別的演進</h2>
-<h2 id="當地日期與時間">當地日期與時間</h2>
-<h2 id="時區和日光節約時間">時區和日光節約時間</h2>
-<h2 id="描述日期與時間的數量">描述日期與時間的數量</h2>
+<h2 id="date--time-相關類別演進">Date &amp; Time 相關類別演進</h2>
+<h4 id="日期date與時間time的重要性">日期（Date）與時間（Time）的重要性</h4>
+<h4 id="java-8-之前的日期時間-api">Java 8 之前的日期時間 API</h4>
+<h4 id="java-8-之後的日期時間-api">Java 8 之後的日期時間 API</h4>
 <hr>
+<h2 id="當地日期與時間">當地日期與時間</h2>
+<h3 id="類別-localdate">類別 <code>LocalDate</code></h3>
+<h3 id="類別-localtime">類別 <code>LocalTime</code></h3>
+<h3 id="類別-localdatetime">類別 <code>LocalDateTime</code></h3>
+<hr>
+<h2 id="時區和日光節約時間">時區和日光節約時間</h2>
+<hr>
+<h2 id="描述日期與時間的數量">描述日期與時間的數量</h2>
+<h3 id="時區和日光節約時間簡介">時區和日光節約時間簡介</h3>
+<p>名詞簡介</p>
+<h4 id="gmtgreenwich-mean-time格林威治標準時間">GMT（Greenwich Mean Time，格林威治標準時間）</h4>
+<h4 id="utcuniversal-time-coordinated國際協調時間">UTC（Universal Time Coordinated，國際協調時間）</h4>
+<h4 id="全球-24-個時區">全球 24 個時區</h4>
+<h4 id="日光節約時間">日光節約時間</h4>
+<h5 id="1-日光節約時間的定義">1. 日光節約時間的定義</h5>
+<h5 id="2-日光節約時間的調整">2. 日光節約時間的調整</h5>
+<h5 id="3-日光節約時間的影響">3. 日光節約時間的影響</h5>
+<h3 id="java-在時區和日光節約時間的應用">Java 在時區和日光節約時間的應用</h3>
+<p>Java 8 支援時區 Time Zones 的應用類別如下：</p>
+<h4 id="類別-zoneid">類別 ZoneId</h4>
+<h4 id="類別-zonerules">類別 ZoneRules</h4>
+<p>此類別擁有的方法可取得該時區的相關規則（rules），像是</p>
+<h5 id="1-isdaylightsavingsinstant">1. <code>isDaylightSavings(Instant)</code></h5>
+<h5 id="2-getstandardoffsetinstant">2. <code>getStandardOffset(Instant)</code></h5>
+<h5 id="3-getoffsetinstand">3. <code>getOffset(Instand)</code></h5>
+<h4 id="類別-zoneoffset">類別 ZoneOffset</h4>
+<h4 id="綜合示範">綜合示範</h4>
+<h4 id="類別-zoneddatetime">類別 ZonedDateTime</h4>
+<h4 id="類別-zoneoffsettransition">類別 ZoneOffsetTransition</h4>
+<h4 id="類別-offsetdatetime">類別 OffsetDateTime</h4>
+<hr>
+<h2 id="描述日期與時間的數量-1">描述日期與時間的數量</h2>
+<h3 id="類別-instant">類別 Instant</h3>
+<p>Instant 類用來儲存時間軸上一剎那的時間，分成2部分儲存</p>
+<ol>
+<li><strong>epoch-seconds(long)</strong></li>
+<li><strong>nanosecond-of-second(int)</strong></li>
+</ol>
+<h3 id="類別-period-和-duration">類別 Period 和 Duration</h3>
+<ol>
+<li>Period:
+<ul>
+<li>以 years, months, days 建構日期的差量，依 ISO-8601 規範
+API文件 -&gt; <code>This class models a quantity or amount of time in terms of years, months, and days.</code></li>
+<li>使用 <code>plus()</code> 與 <code>minus()</code> 方法時，皆以天為概念，可保留日光節約時間的變化</li>
+</ul>
+</li>
+<li>Duration:
+<ul>
+<li>以 seconds, nanoseconds 建構時間的差量，也可以換算成 hours 和 minutes
+API文件 -&gt; <code>This class models a quantity or amount of time in terms of seconds and nanoseconds. It can be accessed using other duration-based units, such as minutes and hours.</code></li>
+<li>沒有日光節約時間的概念，<em>每一天</em> 被 <em>24小時</em> 的概念取代</li>
+</ul>
+</li>
+</ol>
+<h3 id="使用流暢fluent的程式風格">使用流暢（fluent）的程式風格</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FluentDemo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LocalDate</span> <span class="n">myDay0</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1977</span><span class="o">,</span> <span class="n">6</span><span class="o">,</span> <span class="n">11</span><span class="o">);</span>            <span class="c1">// 一般語法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">LocalDate</span> <span class="n">myDay1</span> <span class="o">=</span> <span class="n">Year</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1977</span><span class="o">).</span><span class="na">atMonth</span><span class="o">(</span><span class="n">06</span><span class="o">).</span><span class="na">atDay</span><span class="o">(</span><span class="n">11</span><span class="o">);</span>  <span class="c1">// 流暢語法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="cm">/* 以下line6-19同TimeZoneAcrossDemo，但是使用流暢語法 */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">LocalDateTime</span> <span class="n">meeting</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2022</span><span class="o">,</span> <span class="n">07</span><span class="o">,</span> <span class="n">10</span><span class="o">).</span><span class="na">atTime</span><span class="o">(</span><span class="n">11</span><span class="o">,</span> <span class="n">30</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">ZonedDateTime</span> <span class="n">host</span> <span class="o">=</span> <span class="n">meeting</span><span class="o">.</span><span class="na">atZone</span><span class="o">(</span><span class="n">ZoneId</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">host</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1">// 2023-02-24T13:27+08:00[Asia/Taipei]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="n">ZonedDateTime</span> <span class="n">meetingUK</span> <span class="o">=</span> <span class="n">host</span><span class="o">.</span><span class="na">withZoneSameInstant</span><span class="o">(</span><span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Europe/London&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">meetingUK</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 2023-02-24T06:27+01:00[Europe/London]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
+</span></span><span class="line"><span class="cl">        <span class="n">ZonedDateTime</span> <span class="n">meetingSF</span> <span class="o">=</span> <span class="n">host</span><span class="o">.</span><span class="na">withZoneSameInstant</span><span class="o">(</span><span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;America/New_York&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">meetingSF</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 2023-02-24T01:27-04:00[America/New_York]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h1 id="12-標註型別-annotation">12 標註型別 <em>Annotation</em></h1>
 <h2 id="認識標註型別">認識標註型別</h2>
 <h2 id="建立自定義標註型別">建立自定義標註型別</h2>

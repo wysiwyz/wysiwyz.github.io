@@ -3,7 +3,30 @@
         <title>All Posts - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/posts/</link>
         <description>All Posts | Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 11 Feb 2023 10:08:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 04 Mar 2023 09:54:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Lesson 01: Linux 筆記</title>
+    <link>http://wysiwyz.github.io/posts/lesson_01_linux/</link>
+    <pubDate>Sat, 04 Mar 2023 09:54:41 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_01_linux/</guid>
+    <description><![CDATA[憑證具有 CIA 三要素
+Confidentiality 機密性
+Integrity
+Availability
+Others
+Authenticity
+Accountability
+Non-repudiation
+AAA, Triple A - 認證授權紀錄
+基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC
+&mdash; ntpdate 舊時代的工具，別用
+Chrony_NTP_lab
+Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172.server desktopXX iburst systemctl restart chronydsystemctl enable chronydsystemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
+另外一個設定時區方式 podman.io (官方比較少推)
+兩種設定方式 官方主推指令方式 getent group wheet
+設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作]]></description>
+</item>
+<item>
     <title>Lesson 00: Linux 筆記</title>
     <link>http://wysiwyz.github.io/posts/lesson_00_linux/</link>
     <pubDate>Sat, 11 Feb 2023 10:08:41 &#43;0800</pubDate>
@@ -102,17 +125,6 @@ ps. 10/21 臺灣上映，10/22 的週六晚 7：35 場有好多好看的觀眾�
     <description><![CDATA[成為 C++ pro 的幾個建議（摘錄自 Big Sam Tsai）
 Read good C++ textbooks again and again Learn from practice Work in related field Right mentor Make learning thoughts public At least three years 這樣看來我能做到的有 1. 2. 5. 6. ，4. 的話可以抓親友充數
 Chapter 2 宣告敘述與變數 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 #include &lt;iostream&gt; // a PREPROCESSOR directive /* a C-style comment */ int main() { // function header { start of function body using namespace std; // make difinitions visible cout &lt;&lt; &#34;Come up and C++ me some time.]]></description>
-</item>
-<item>
-    <title>Secondpost</title>
-    <link>http://wysiwyz.github.io/posts/secondpost/</link>
-    <pubDate>Fri, 14 Oct 2022 23:53:33 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/secondpost/</guid>
-    <description><![CDATA[This is the second post.
-在 double short codes 裡面寫 markdown 語法不管用， 如果要加 markdown 語法的話，要把 {{&lt; &gt;}} 改成 {{% %}}
-**Testing doubly short code.** Testing doubly short code.
-short code]]></description>
 </item>
 </channel>
 </rss>

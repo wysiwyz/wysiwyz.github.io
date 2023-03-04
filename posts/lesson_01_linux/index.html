@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Lesson 01: Linux 筆記 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Lesson 01: Linux 筆記" />
+<meta property="og:description" content="憑證具有 CIA 三要素
+Confidentiality 機密性
+Integrity
+Availability
+Others
+Authenticity
+Accountability
+Non-repudiation
+AAA, Triple A - 認證授權紀錄
+基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC
+&mdash; ntpdate 舊時代的工具，別用
+Chrony_NTP_lab
+Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172.server desktopXX iburst systemctl restart chronydsystemctl enable chronydsystemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
+另外一個設定時區方式 podman.io (官方比較少推)
+兩種設定方式 官方主推指令方式 getent group wheet
+設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/lesson_01_linux/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-04T09:54:41+08:00" />
+<meta property="article:modified_time" content="2023-03-04T09:54:41+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lesson 01: Linux 筆記"/>
+<meta name="twitter:description" content="憑證具有 CIA 三要素
+Confidentiality 機密性
+Integrity
+Availability
+Others
+Authenticity
+Accountability
+Non-repudiation
+AAA, Triple A - 認證授權紀錄
+基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC
+&mdash; ntpdate 舊時代的工具，別用
+Chrony_NTP_lab
+Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172.server desktopXX iburst systemctl restart chronydsystemctl enable chronydsystemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
+另外一個設定時區方式 podman.io (官方比較少推)
+兩種設定方式 官方主推指令方式 getent group wheet
+設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/lesson_01_linux/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_00_linux/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lesson 01: Linux 筆記",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/lesson_01_linux\/"
+        },"genre": "posts","keywords": "linux, security","wordcount":  126 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/lesson_01_linux\/","datePublished": "2023-03-04T09:54:41+08:00","dateModified": "2023-03-04T09:54:41+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson 01: Linux 筆記</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-04">2023-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;126 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#---">&mdash;</a>
+      <ul>
+        <li><a href="#linux-history-morning">Linux history (morning)</a></li>
+        <li><a href="#recommended">Recommended</a></li>
+        <li><a href="#在-docker-設定時區">在 Docker 設定時區</a></li>
+        <li><a href="#另外一個設定時區方式">另外一個設定時區方式</a></li>
+        <li><a href="#兩種設定方式">兩種設定方式</a></li>
+        <li><a href="#設定帳號不能登入系統">設定帳號不能登入系統</a></li>
+        <li><a href="#帳號停用啟用">帳號停用/啟用</a></li>
+        <li><a href="#密碼更新政策">密碼更新政策</a></li>
+        <li><a href="#系統稽核">系統稽核</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>憑證具有 CIA 三要素</p>
+<ul>
+<li>
+<p>Confidentiality 機密性</p>
+</li>
+<li>
+<p>Integrity</p>
+</li>
+<li>
+<p>Availability</p>
+</li>
+<li>
+<p>Others</p>
+<ul>
+<li>
+<p>Authenticity</p>
+</li>
+<li>
+<p>Accountability</p>
+</li>
+<li>
+<p>Non-repudiation</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>AAA, Triple A - 認證授權紀錄</p>
+<p>基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC</p>
+<h2 id="---">&mdash;</h2>
+<p>ntpdate 舊時代的工具，別用</p>
+<p><a href="https://www.stdtime.gov.tw/chinese/bulletin/NTP%20promo.txt" target="_blank" rel="noopener noreffer ">Chrony_NTP_lab</a></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/9zUWt77.png"
+        data-srcset="https://i.imgur.com/9zUWt77.png, https://i.imgur.com/9zUWt77.png 1.5x, https://i.imgur.com/9zUWt77.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/9zUWt77.png"
+        title="image-20230304115103043" /></p>
+<h3 id="linux-history-morning">Linux history (morning)</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Lc20nFT.png"
+        data-srcset="https://i.imgur.com/Lc20nFT.png, https://i.imgur.com/Lc20nFT.png 1.5x, https://i.imgur.com/Lc20nFT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Lc20nFT.png"
+        title="image-20230304115914285" /></p>
+<h3 id="recommended">Recommended</h3>
+<ul>
+<li><code>.GUTS</code> - jsurf</li>
+<li>實戰 Linux 系統數位鑑識 (GoTop)</li>
+<li>圖解 Linux 核心工作原理（GoTop）</li>
+</ul>
+<pre tabindex="0"><code>server 172.
+server desktopXX iburst
+</code></pre><pre tabindex="0"><code>systemctl restart chronyd
+systemctl enable chronyd
+systemctl status chronyd
+</code></pre><h3 id="在-docker-設定時區">在 Docker 設定時區</h3>
+<p><a href="https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D" target="_blank" rel="noopener noreffer ">https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D</a>.</p>
+<h3 id="另外一個設定時區方式">另外一個設定時區方式</h3>
+<p>podman.io (官方比較少推)</p>
+<hr>
+<h3 id="兩種設定方式">兩種設定方式</h3>
+<p>官方主推指令方式 <code>getent group wheet</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/0dSLkbT.png"
+        data-srcset="https://i.imgur.com/0dSLkbT.png, https://i.imgur.com/0dSLkbT.png 1.5x, https://i.imgur.com/0dSLkbT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/0dSLkbT.png"
+        title="image-20230304140523402" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ImZMj34.png"
+        data-srcset="https://i.imgur.com/ImZMj34.png, https://i.imgur.com/ImZMj34.png 1.5x, https://i.imgur.com/ImZMj34.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ImZMj34.png"
+        title="image-20230304141702970" /></p>
+<h3 id="設定帳號不能登入系統">設定帳號不能登入系統</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/pldoJQn.png"
+        data-srcset="https://i.imgur.com/pldoJQn.png, https://i.imgur.com/pldoJQn.png 1.5x, https://i.imgur.com/pldoJQn.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/pldoJQn.png"
+        title="image-20230304142728425" /></p>
+<p>也可以在 <code>/opt/</code>目錄下寫個 <code>.sh</code> 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/HtlyJM8.png"
+        data-srcset="https://i.imgur.com/HtlyJM8.png, https://i.imgur.com/HtlyJM8.png 1.5x, https://i.imgur.com/HtlyJM8.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/HtlyJM8.png"
+        title="image-20230304144617332" /></p>
+<hr>
+<h3 id="帳號停用啟用">帳號停用/啟用</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/XnfPS47.png"
+        data-srcset="https://i.imgur.com/XnfPS47.png, https://i.imgur.com/XnfPS47.png 1.5x, https://i.imgur.com/XnfPS47.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/XnfPS47.png"
+        title="image-20230304150206448" /></p>
+<h3 id="密碼更新政策">密碼更新政策</h3>
+<ul>
+<li>
+<p>設定user1每60天改密碼</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/hAVOhTV.png"
+        data-srcset="https://i.imgur.com/hAVOhTV.png, https://i.imgur.com/hAVOhTV.png 1.5x, https://i.imgur.com/hAVOhTV.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/hAVOhTV.png"
+        title="image-20230304150348214" /></p>
+</li>
+<li>
+<p>設定 user1 密碼永久有效</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ydMjeze.png"
+        data-srcset="https://i.imgur.com/ydMjeze.png, https://i.imgur.com/ydMjeze.png 1.5x, https://i.imgur.com/ydMjeze.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ydMjeze.png"
+        title="image-20230304150555001" /></p>
+</li>
+<li>
+<p>設定 user1 密碼至少要用 2 天才能修改</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/q9ykljU.png"
+        data-srcset="https://i.imgur.com/q9ykljU.png, https://i.imgur.com/q9ykljU.png 1.5x, https://i.imgur.com/q9ykljU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/q9ykljU.png"
+        title="image-20230304150731570" /></p>
+</li>
+<li>
+<p>設定 user1 密碼可隨時修改</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/DA0FJBV.png"
+        data-srcset="https://i.imgur.com/DA0FJBV.png, https://i.imgur.com/DA0FJBV.png 1.5x, https://i.imgur.com/DA0FJBV.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/DA0FJBV.png"
+        title="image-20230304150810672" /></p>
+</li>
+<li></li>
+</ul>
+<blockquote>
+<p>CTRL + L clear terminal command</p>
+</blockquote>
+<hr>
+<h4 id="登入不用密碼">登入不用密碼</h4>
+<ul>
+<li>
+<p>@Desktop</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">student$ ssh-keygen
+student$ ssh-copy-id sysadmin@server{XX}
+student$ ssh sysadmin@server{XX}
+</code></pre></li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ceXOgei.png"
+        data-srcset="https://i.imgur.com/ceXOgei.png, https://i.imgur.com/ceXOgei.png 1.5x, https://i.imgur.com/ceXOgei.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ceXOgei.png"
+        title="image-20230304153804706" /></p>
+<hr>
+<h4 id="sshd-停用密碼登入">sshd 停用密碼登入</h4>
+<blockquote>
+<p>-i 指定密碼確切位置</p>
+<p>ssh -i keybackup/id_rsa sysadmin@server{XX}</p>
+<p>很少在 desktop 上面用 root</p>
+</blockquote>
+<h3 id="系統稽核">系統稽核</h3>
+<p>一些指令的簡單介紹</p>
+<p><a href="https://linux.die.net/man/8/auditctl" target="_blank" rel="noopener noreffer ">Linux.die.net</a></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/xaXaTYU.png"
+        data-srcset="https://i.imgur.com/xaXaTYU.png, https://i.imgur.com/xaXaTYU.png 1.5x, https://i.imgur.com/xaXaTYU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/xaXaTYU.png"
+        title="image-20230304165045772" /></p>
+<h4 id="檔案完整性">檔案完整性</h4>
+<p>搭配 <code>aide</code> 輔佐檢查檔案屬性是否有被修改，改了哪裡</p>
+<p>那裡的hash不同(如果是修改，但內文不變，則hash不變，但有modified紀錄)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/lfVUtt5.png"
+        data-srcset="https://i.imgur.com/lfVUtt5.png, https://i.imgur.com/lfVUtt5.png 1.5x, https://i.imgur.com/lfVUtt5.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/lfVUtt5.png"
+        title="image-20230304170418559" /></p>
+<blockquote>
+<p>auditd 可以知道被觸發了什麼</p>
+<p>aide 可以比較具體的知道屬性哪裡被改了</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-03-04</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://wysiwyz.github.io/posts/lesson_01_linux/" data-title="Lesson 01: Linux 筆記" data-via="cel_yi" data-hashtags="linux,security"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/lesson_01_linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://wysiwyz.github.io/posts/lesson_01_linux/" data-title="Lesson 01: Linux 筆記"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/lesson_01_linux/" data-title="Lesson 01: Linux 筆記"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://wysiwyz.github.io/posts/lesson_01_linux/" data-title="Lesson 01: Linux 筆記"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/lesson_00_linux/" class="prev" rel="prev" title="Lesson 00: Linux 筆記"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Lesson 00: Linux 筆記</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
