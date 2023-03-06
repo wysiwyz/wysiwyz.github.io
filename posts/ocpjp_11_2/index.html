@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  16469 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  19205 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-02-05T17:50:34+08:00","dateModified": "2023-02-05T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;16469 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;78 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;19205 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;91 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -432,6 +432,14 @@
       <ul>
         <li><a href="#平行化的前提">平行化的前提</a></li>
         <li><a href="#平行化的作法">平行化的作法</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
         <li><a href="#reduction-操作">Reduction 操作</a></li>
       </ul>
     </li>
@@ -11234,13 +11242,24 @@ Execute Current Text
 </span><span class="lnt">25
 </span><span class="lnt">26
 </span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFirstUserName1</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">users</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">findFirst</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">findFirst</span><span class="o">()</span>  <span class="c1">//NullPointerException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">&#34;user not found&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Optional= &#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
@@ -11248,70 +11267,1981 @@ Execute Current Text
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFirstUserName2</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFirstUserName2</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">users</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">list</span> <span class="o">-&gt;</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">))</span>
-</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">list</span> <span class="o">-&gt;</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">))</span> <span class="c1">//ArrayIndexOutOfBoundsException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">&#34;user not found&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Sys</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Option2 = &#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Option2 throws &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFirstUserName3</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="cm">/* 可同時處理空集合物件或者null的情況 */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printFirstUserName3</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">Optional</span><span class="o">.</span><span class="na">ofNullable</span><span class="o">(</span><span class="n">users</span><span class="o">)</span> <span class="c1">// prevent null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">Collection</span><span class="o">::</span><span class="n">stream</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">findFirst</span><span class="o">()</span> <span class="c1">// prevent empty collection
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">User</span><span class="o">::</span><span class="n">getName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">orElse</span><span class="o">(</span><span class="s">&#34;user not found&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Option3= &#34;</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">err</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Option3 throws &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getClass</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="stream-api-介紹">Stream API 介紹</h2>
 <h3 id="介面-iterable-和-collection-的擴充">介面 Iterable 和 Collection 的擴充</h3>
+<ul>
+<li>
+<p>interface <code>Iterable.forEach()</code> 允許傳入實作 Consumer 功能性介面的參考物件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Persion</span><span class="o">&gt;</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">createPersonList</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>interface <code>Collection.stream()</code> 幫 Collection 容器物件裝水龍頭，流出 Stream 物件，取代用迴圈存取 Collection 成員物件的舊方法</p>
+</li>
+</ul>
+<h4 id="stream">Stream</h4>
+<p>跟建構者設計模式（builder）一樣可以流暢的使用方法鏈結（method chaining）</p>
+<ol>
+<li><code>filter()</code>:
+<ul>
+<li>接受實作 Predicate 介面的參考物件</li>
+<li>對流過的集合物件成員使用 <code>Predicate.test()</code> 方法進行篩選</li>
+</ul>
+</li>
+<li><code>forEach()</code>:
+<ul>
+<li>接受實作 Consumer 介面的參考物件</li>
+<li>對流入的集合物件成員操作 <code>accept()</code> 方法</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">apples</span> <span class="o">=</span> <span class="n">getAllApples</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">apples</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">getDiameter</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">17</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="o">.</span><span class="na">getDiameter</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">23</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">a</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>增加程式的重複使用性：</p>
+<p>將 Lambda 表示式改用參考變數的方式呈現</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">apples</span> <span class="o">=</span> <span class="n">getAllApples</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">criteria</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">a</span><span class="o">.</span><span class="na">getDiameter</span><span class="o">()</span> <span class="o">&gt;=</span> <span class="n">17</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="o">.</span><span class="na">getDiameter</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">23</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">action</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">apples</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">criteria</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">action</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h3 id="stream-api">Stream API</h3>
+<ol>
+<li>套件 <code>java.util.stream</code></li>
+<li>方法鏈結 chaining methods</li>
+<li>比較 Collection 與 Stream 介面
+<ul>
+<li><code>Collection</code>依照成員物件屬性（List, Set, Queue）提供不同管理和存取方式</li>
+<li><code>Stream</code>沒有提供直接存取特定成員的方式，只是以宣告式描述做法對 Stream 來源進行操作</li>
+</ul>
+</li>
+</ol>
 <h4 id="stream-特性">Stream 特性</h4>
+<ol>
+<li>不可改變的 immutable</li>
+<li>Stream 介面中，定義鏈結方法的作用方式
+<ul>
+<li>連續的（serial / sequential）- 預設作用方式</li>
+<li>平行的（parallel）- 多執行緒</li>
+</ul>
+</li>
+<li>鏈結方法又稱為管線操作（pipeline operations）/串流方法</li>
+</ol>
 <h4 id="管線操作pipeline-operations的特性">管線操作（pipeline operations）的特性</h4>
+<ol>
+<li>Stream 在管線裡面傳輸</li>
+<li>管線分多段，來源（source）定義後，每一段代表一個作業（operation）
+<ul>
+<li>來源（Source）- Collection 物件、檔案、Stream 物件</li>
+<li>中間作業（Intermediate Operation）- 可以零或多個</li>
+<li>終端作業（Intermediate Operation）- 只有一個</li>
+<li>短路型終端作業（Short-Circuit Terminal Operation）- 只有一個</li>
+</ul>
+</li>
+<li><strong>Lazy情況（懶加載）</strong>
+<ul>
+<li>Java 會順著每段管線依序向下執行，但會先確認終端作業的方式，才會回頭要求 Stream 開始輸送資料</li>
+<li>只在開始執行時才要求輸送資料</li>
+</ul>
+</li>
+<li>搭配短路型終端作業時，相較迴圈處理而言，有效能上優勢</li>
+</ol>
 <hr>
 <h2 id="stream-api-操作">Stream API 操作</h2>
+<p>categories of pipeline operations</p>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>常用方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intermediate Operation<!-- raw HTML omitted -->中間作業</td>
+<td><code>filter()</code>, <code>map()</code>, <code>peek()</code>, <code>sorted()</code>, <code>flatMap()</code></td>
+</tr>
+<tr>
+<td>Terminal Operation<!-- raw HTML omitted -->終端作業</td>
+<td><code>forEach()</code>, <code>count()</code>, <code>sum()</code>, <code>average()</code>, <code>min()</code>, <code>max()</code>, <code>collect()</code></td>
+</tr>
+<tr>
+<td>Short-Circuit Terminal Operation<!-- raw HTML omitted -->短路型終端作業</td>
+<td><code>findFirst()</code>, <code>findAny()</code>, <code>anyMatch()</code>, <code>allMatch()</code>, <code>noneMatch()</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="中間作業">中間作業</h3>
 <h4 id="1-使用-map-轉換-stream-內容">1. 使用 <code>map()</code> 轉換 Stream 內容</h4>
+<p>Method declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">R</span><span class="o">&gt;</span> <span class="nf">map</span><span class="o">(</span><span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">mapper</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>傳入某型別，經過某些流程之後，回傳另一種型別</p>
+</li>
+<li>
+<p>使用 Function 介面的實作物件當參數</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Function</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">timesTwoFunc</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">2</span> <span class="o">*</span> <span class="n">n</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">mapResult</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">timesTwoFunc</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Object</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">mapResult</span><span class="o">.</span><span class="na">toArray</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">list</span><span class="o">);</span> <span class="c1">// [2, 4, 6, 8]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>其它基本型別的擴充版</p>
+<ol>
+<li><code>mapToInt()</code></li>
+<li><code>mapToLong()</code></li>
+<li><code>mapToDouble()</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ToIntFunction</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">::</span><span class="n">parseInt</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">ToIntFunction&lt;String&gt; mapper = new ToIntFunction&lt;String&gt;() {
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @Override
+</span></span></span><span class="line"><span class="cl"><span class="cm">    public int applyAsInt(String value) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">        return Integer.parseInt(value);
+</span></span></span><span class="line"><span class="cl"><span class="cm">    }
+</span></span></span><span class="line"><span class="cl"><span class="cm">};
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="n">IntStream</span> <span class="n">mapResult</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;a1&#34;</span><span class="o">,</span> <span class="s">&#34;a2&#34;</span><span class="o">,</span> <span class="s">&#34;a3&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">mapper</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">mapResult</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
 <h4 id="2-使用-peek-窺視-stream-內容">2. 使用 <code>peek()</code> 窺視 Stream 內容</h4>
+<p>Method declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">peek</span><span class="o">(</span><span class="n">Consumer</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">action</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以 <code>peek()</code> 方法窺視 Stream 內容</p>
+<ol>
+<li>
+<p>使用<code>Consumer</code>介面表示需要對資料成員套用的方法為</p>
+<ul>
+<li>可以傳入參數，且沒有回傳（void）</li>
+<li>方法結束後，成員回歸 Stream</li>
+</ul>
+</li>
+<li>
+<p><code>peek()</code>方法主要用於 debug</p>
+<ul>
+<li>使用情境：需要了解當 Stream 成員經過其他中間作業之後的變化情況</li>
+</ul>
+</li>
+<li>
+<p>若管線沒定義終端作業，則不會啟動 peek()</p>
+<ul>
+<li>反映 Stream 物件的 Lazy 特質</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="s">&#34;j&#34;</span><span class="o">,</span> <span class="s">&#34;y&#34;</span><span class="o">,</span> <span class="s">&#34;c&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">n</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Filtered value: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">String</span><span class="o">::</span><span class="n">toUpperCase</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">g</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Mapped value: &#34;</span> <span class="o">+</span> <span class="n">e</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>peek()</code> 也可以更改資料成員，但不建議用來修改資料成員</p>
+<ul>
+<li>
+<p>平行執行時可能會有執行緒安全（thread safe）問題</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">action</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* line 相當於以下程式
+</span></span></span><span class="line"><span class="cl"><span class="cm">Consumer&lt;Integer&gt; action = new Consumer&lt;Integer&gt;() {
+</span></span></span><span class="line"><span class="cl"><span class="cm">    public void accept(Integer t) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">        System.out.print(t);
+</span></span></span><span class="line"><span class="cl"><span class="cm">    }
+</span></span></span><span class="line"><span class="cl"><span class="cm">};
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">).</span><span class="na">peek</span><span class="o">(</span><span class="n">action</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Length: &#34;</span> <span class="o">+</span> <span class="n">stream</span><span class="o">.</span><span class="na">toArray</span><span class="o">().</span><span class="na">length</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">line2 的 peek() 不會被觸發，
+</span></span></span><span class="line"><span class="cl"><span class="cm">只有執行到 toArray() 終端作業後，
+</span></span></span><span class="line"><span class="cl"><span class="cm">才會觸發 peek() 方法
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ol>
 <h4 id="3-使用-sorted-做基本排序">3. 使用 <code>sorted()</code> 做基本排序</h4>
-<h4 id="4-搭配-comparator-進行多段式排序">4. 搭配 Comparator 進行多段式排序</h4>
-<h4 id="5-使用-flatmap-展開-stream-成員成子-stream-物件">5. 使用 <code>flatMap()</code> 展開 Stream 成員成子 Stream 物件</h4>
-<h3 id="終端作業">終端作業</h3>
+<p>Method Declaration - two ways</p>
+<ol>
+<li>
+<p>依自然順序重新排序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">sorted</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>依 Comparator 定義的順序重新排序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Stream</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">sorted</span><span class="o">(</span><span class="n">Comparator</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">comparator</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testSorted</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">lt</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;a2&#34;</span><span class="o">,</span> <span class="s">&#34;a1&#34;</span><span class="o">,</span> <span class="s">&#34;b1&#34;</span><span class="o">,</span> <span class="s">&#34;c2&#34;</span><span class="o">,</span> <span class="s">&#34;c1&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lt</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">sorted</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lt</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">String</span><span class="o">::</span><span class="n">compareTo</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lt</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">sorted</span><span class="o">((</span><span class="n">s1</span><span class="o">,</span> <span class="n">s2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">s1</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">s2</span><span class="o">)</span> <span class="o">+</span> <span class="o">-</span><span class="n">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-搭配-comparator-進行多段式排序">4. 搭配 Comparator 進行多段式排序</h4>
+<p>常見的三段式排序情境</p>
+<ol>
+<li>
+<p>先比較：成員特定欄位/特定條件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">comparing</span><span class="o">(</span><span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">U</span><span class="o">&gt;</span> <span class="n">keyExtractor</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>再比較：成員額外欄位/額外條件
+(視情況而使用，通常是步驟一比較不出結果時會用的)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">thenComparing</span><span class="o">(</span><span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">U</span><span class="o">&gt;</span> <span class="n">keyExtractor</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>最後：視情況倒置比較結果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">reversed</span><span class="o">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testComparing</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">apples</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">Apple</span><span class="o">(</span><span class="s">&#34;Fuji&#34;</span><span class="o">,</span> <span class="n">18</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">Apple</span><span class="o">(</span><span class="s">&#34;Gourmet&#34;</span><span class="o">,</span> <span class="n">23</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">Apple</span><span class="o">(</span><span class="s">&#34;Gala&#34;</span><span class="o">,</span> <span class="n">23</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">    	<span class="k">new</span> <span class="n">Apple</span><span class="o">(</span><span class="s">&#34;Anna&#34;</span><span class="o">,</span> <span class="n">12</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">getAppleCultivar</span> <span class="o">=</span> <span class="n">Apple</span><span class="o">::</span><span class="n">getCultivar</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">getAppleDiameter</span> <span class="o">=</span> <span class="n">Apple</span><span class="o">::</span><span class="n">getDiameter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">comp</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">        <span class="n">Comparator</span><span class="o">.</span><span class="na">comparing</span><span class="o">(</span><span class="n">getAppleDiameter</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        		  <span class="o">.</span><span class="na">thenComparing</span><span class="o">(</span><span class="n">getAppleCultivar</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">apple</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">comp</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Anna, Fuji, Gala, Gourmet
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="n">apple</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">sorted</span><span class="o">(</span><span class="n">comp</span><span class="o">.</span><span class="na">reversed</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">s</span> <span class="o">+</span> <span class="s">&#34;, &#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Gourmet, Gala, Fuji, Anna
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5-使用-flatmap-展開-stream-成員成子-stream-物件">5. 使用 <code>flatMap()</code> 展開 Stream 成員成子 Stream 物件</h4>
+<p>Method Declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">flatMap</span><span class="o">(</span><span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">Stream</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">mapper</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>使用 Function 介面將 Stream 成員欄位以 Stream 形式再展開/呈現</li>
+<li>有層層展開再將之攤平（flat）的效果</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Item</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Item</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Order</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Order</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">items</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DataSource</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="nf">getOrdersAndItems</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;</span> <span class="n">orders</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayLIst</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">IntStream</span><span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">orders</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">Order</span><span class="o">(</span><span class="s">&#34;Order_&#34;</span> <span class="o">+</span> <span class="n">i</span><span class="o">)));</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/* ⭐ range(1,4) 可以決定對 forEach()操作幾次
+</span></span></span><span class="line"><span class="cl"><span class="cm">               forEach() 的 i 變數會從1開始 ~ 3結束，不含4 */</span>
+</span></span><span class="line"><span class="cl">        <span class="n">orders</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">order</span> <span class="o">-&gt;</span> 
+</span></span><span class="line"><span class="cl">              <span class="n">IntStream</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">range</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">              <span class="o">.</span><span class="na">forEach</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">i</span> <span class="o">-&gt;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">order</span><span class="o">.</span><span class="na">items</span><span class="o">.</span><span class="na">add</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">new</span> <span class="n">Item</span><span class="o">(</span><span class="s">&#34;Item_&#34;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&#34; , from &lt;&#34;</span> <span class="o">+</span> <span class="n">order</span><span class="o">.</span><span class="na">name</span> <span class="o">+</span> <span class="s">&#34;&gt;&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                  <span class="c1">// orders內每個Order物件中，爛位 items 各新增3個Item物件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>              <span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">orders</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>flatMap()</code>的示例程式碼</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">qty</span> <span class="o">=</span> <span class="n">DataSource</span><span class="o">.</span><span class="na">getOrdersAndItems</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span> <span class="c1">// Stream&lt;Order&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//.peek(System.out::println)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">order</span> <span class="o">-&gt;</span> <span class="n">order</span><span class="o">.</span><span class="na">items</span><span class="o">.</span><span class="na">stream</span><span class="o">())</span>  <span class="c1">// Stream&lt;Item&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//.peek(System.out::println)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="o">.</span><span class="na">count</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">qty</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>以下範例：</p>
+<ol>
+<li>
+<p>將檔案 flatMap.txt 裡所有資料行讀入 <code>Stream&lt;String&gt;</code> 物件</p>
+</li>
+<li>
+<p>再用 <code>flatMap()</code> 以每行字串裡的空白作為切割符號，<strong>攤平</strong>成更長的 <code>Stream&lt;String&gt;</code> 物件</p>
+</li>
+<li>
+<p>最後以 <code>filter()</code> 濾出包含關鍵字的成員並計算數量</p>
+<p>用 <code>peek()</code>查看每段轉換成果</p>
+</li>
+</ol>
+</blockquote>
+<h5 id="flatmaptxt">flatMap.txt</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">my apple is bought for making pies
+</span></span><span class="line"><span class="cl">your apple is purchased for writing codes
+</span></span><span class="line"><span class="cl">his/her apple is in the eye of beholder
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="example">Example</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">flatMapDemo2</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 取得路徑
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Path</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;src/.../.../.../flatMap.txt&#34;</span><span class="o">)</span> <span class="o">.</span><span class="na">toAbsolutePath</span><span class="o">();</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// 傳回符合值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">long</span> <span class="n">matches</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="n">p</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1">// .peek(System.out::println) 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">flatMap</span><span class="o">(</span><span class="n">line</span> <span class="o">-&gt;</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">line</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">)))</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1">// .peek(System.out::println) 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">word</span> <span class="o">-&gt;</span> <span class="n">word</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;apple&#34;</span><span class="o">))</span> 
+</span></span><span class="line"><span class="cl">        <span class="c1">// .peek(System.out::println) 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">.</span><span class="na">count</span><span class="o">();</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">// 印出結果 - # of Matches: 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;# of Matches: &#34;</span> <span class="o">+</span> <span class="n">matches</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="終端作業">終端作業</h3>
 <h4 id="1-使用-count-計算-stream-成員數量">1. 使用 <code>count()</code> 計算 Stream 成員數量</h4>
-<h4 id="2-使用-max-和-min-取出-stream-成員的最大值與最小值">2. 使用 <code>max()</code> 和 <code>min()</code> 取出 Stream 成員的最大值與最小值</h4>
-<h4 id="3-使用-average-和-sum-計算-stream-成員的平均值與加總">3. 使用 <code>average()</code> 和 <code>sum()</code> 計算 Stream 成員的平均值與加總</h4>
-<h3 id="終端作業-collect-與-collectors-api">終端作業 <code>collect()</code> 與 Collectors API</h3>
-<h4 id="1-collectorstolistcollectorstoset">1. <code>Collectors.toList()</code>、<code>Collectors.toSet()</code></h4>
+<p>Method Declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">count</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testCount</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Hello&#34;</span><span class="o">,</span> <span class="s">&#34;World&#34;</span><span class="o">).</span><span class="na">count</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cnt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-使用-max-和-min-取出-stream-成員的最大值與最小值">2. 使用 <code>max()</code> 和 <code>min()</code> 取出 Stream 成員的最大值與最小值</h4>
+<p>Method Declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">max</span><span class="o">(</span><span class="n">Comparator</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">comparator</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">min</span><span class="o">(</span><span class="n">Comparator</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">comparator</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>取得最大值 &amp; 最小值</li>
+<li>回傳值以 Optional 包裹，因為 Stream 可能沒有成員</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testMaxMin</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">comparator</span> <span class="o">=</span> <span class="n">String</span><span class="o">::</span><span class="n">compareTo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">os</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;x&#34;</span><span class="o">,</span> <span class="s">&#34;y&#34;</span><span class="o">).</span><span class="na">max</span><span class="o">(</span><span class="n">comparator</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">os</span><span class="o">);</span>  
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">empty</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">max</span><span class="o">(</span><span class="n">comparator</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">empty</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">OptionalInt</span> <span class="n">oi</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        				   <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">.</span><span class="na">min</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">oi</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-使用-average-和-sum-計算-stream-成員的平均值與加總">3. 使用 <code>average()</code> 和 <code>sum()</code> 計算 Stream 成員的平均值與加總</h4>
+<p>Method Declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">average</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">sum</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>必須為基礎型別的擴充型 Stream，才能用數學計算相關方法，例如<code>average()</code>、<code>sum()</code></p>
+<ol>
+<li>DoubleStream</li>
+<li>IntStream</li>
+<li>LongStream</li>
+</ol>
+<h5 id="example---average">Example - <code>average()</code></h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testAverage</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OptionalDouble</span> <span class="n">avg</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                        	   <span class="o">.</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        					   <span class="o">.</span><span class="na">average</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">avg</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">avg</span><span class="o">.</span><span class="na">getAsDouble</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">IntStream</span> <span class="n">is</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">stream</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{});</span>
+</span></span><span class="line"><span class="cl">    <span class="n">OptionalDouble</span> <span class="n">emptyAvg</span> <span class="o">=</span> <span class="n">is</span><span class="o">.</span><span class="na">average</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">emptyAvg</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>IntStream、LongStream、DoubleStream 具備 average() 方法</p>
+</blockquote>
+<h5 id="example---sum">Example - <code>sum()</code></h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testSum</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Stream.of(1, 2, 3, 4).sum(); // 編譯失敗 - Stream&lt;Integer&gt; 沒有此方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="c1">// IntStream    10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">iSum</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">).</span><span class="na">mapToInt</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">iSum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// LongStream   10
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">long</span> <span class="n">iSum</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">).</span><span class="na">mapToLong</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">iSum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// DoubleStream 10.0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">double</span> <span class="n">dSum</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">4</span><span class="o">).</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="o">).</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">dSum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Empty Stream 0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">zero</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">of</span><span class="o">().</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">zero</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="終端作業-collect-與-collectors-api">終端作業 <code>collect()</code> 與 Collectors API</h3>
+<p>Method Declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">collect</span><span class="o">(</span><span class="n">Collector</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">collector</span><span class="o">);</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>java.util.stream.collect()</code> 方法可以彙整或轉化 Stream 成員</p>
+<p>常搭配 Collectors 類的靜態方法，把以下方法傳入 collect() 方法就可以</p>
+<ol>
+<li>Collectors.toList()、Collectors.toSet()</li>
+<li>Collectors.toMap()</li>
+<li>Collectors.averagingDouble()</li>
+<li>Collectors.joining()</li>
+<li>Collectors.groupingBy()</li>
+<li>Collectors.partitioningBy()</li>
+<li>Collectors.mapping()、Collectors.flatMapping()</li>
+<li>Collectors.filtering()</li>
+</ol>
+<h5 id="example-reference">Example reference</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Apple</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">cultivar</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">diameter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// others ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TerminalOpCollectDemo</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="nf">getAppleList</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">List</span><span class="o">&lt;</span><span class="n">Apple</span><span class="o">&gt;</span> <span class="n">apples</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Apple</span><span class="o">(</span><span class="s">&#34;Fuji&#34;</span><span class="o">,</span> <span class="n">18</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Apple</span><span class="o">(</span><span class="s">&#34;Gourmet&#34;</span><span class="o">,</span> <span class="n">23</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Apple</span><span class="o">(</span><span class="s">&#34;Gala&#34;</span><span class="o">,</span> <span class="n">23</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">Apple</span><span class="o">(</span><span class="s">&#34;Anna&#34;</span><span class="o">,</span> <span class="n">12</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">apples</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="1-collectorstolistcollectorstoset">1. <code>Collectors.toList()</code>、<code>Collectors.toSet()</code></h4>
+<p>API definition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="nf">toList</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="nf">toSet</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>轉存為List之後，會保留所有字串</p>
+<p>轉存為Set之後，會自動移除重複的字串</p>
+</blockquote>
 <h4 id="2-collectorstomap">2. <code>Collectors.toMap()</code></h4>
-<h4 id="3-collectorsaveragingdouble">3. <code>Collectors.averagingDouble()</code></h4>
-<h4 id="4-collectorsjoining">4. <code>Collectors.joining()</code></h4>
-<h4 id="5-collectorsgroupingby">5. <code>Collectors.groupingBy()</code></h4>
-<h4 id="6-collectorspartitioningby">6. <code>Collectors.partitioningBy()</code></h4>
-<h4 id="7-collectorsmappingcollectorsflatmapping">7. <code>Collectors.mapping()</code>、<code>Collectors.flatMapping()</code></h4>
+<p>API definition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">K</span><span class="o">,</span> <span class="n">U</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">U</span><span class="o">&gt;&gt;</span> <span class="nf">toMap</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    			<span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">K</span><span class="o">&gt;</span> <span class="n">keyMapper</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    			<span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">U</span><span class="o">&gt;</span> <span class="n">valueMapper</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example - 指定 k, v 來源後，轉存為 Map 物件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testToMap</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="n">getPersonList</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toMap</span><span class="o">(</span><span class="n">Person</span><span class="o">::</span><span class="n">getName</span><span class="o">,</span> <span class="n">Person</span><span class="o">::</span><span class="n">getAge</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-collectorsaveragingdouble">3. <code>Collectors.averagingDouble()</code></h4>
+<p>API Definition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">Double</span><span class="o">&gt;</span> <span class="nf">averagingDouble</span><span class="o">(</span><span class="n">ToDoubleFunction</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">mapper</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>ToDoubleFunction</code>定義的方法 - 將輸入物件轉換成 Double</li>
+</ul>
+<p>Example</p>
+<blockquote>
+<p>使用 collect() 方法，傳入 <code>Collectors.averagingDouble(ToDoubleFunction)</code>，可以將眾多 stream 成員的特定屬性轉換成 double，求得平均值</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testAveragingDouble</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Double</span> <span class="n">averageAge</span> <span class="o">=</span> <span class="n">getPersonList</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">averagingDouble</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">age</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">averagAge</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-collectorsjoining">4. <code>Collectors.joining()</code></h4>
+<p>API Definition (3 Overloaded methods)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">CharSequence</span><span class="o">,</span> <span class="o">?,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">joining</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">CharSequence</span><span class="o">,</span> <span class="o">?,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">joining</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CharSequence</span> <span class="n">delimiter</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">CharSequence</span><span class="o">,</span> <span class="o">?,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="nf">joining</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">CharSequence</span> <span class="n">delimiter</span><span class="o">,</span> <span class="n">CharSequence</span> <span class="n">prefix</span><span class="o">,</span> <span class="n">CharSequence</span> <span class="n">suffix</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testJoining</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">,</span> <span class="s">&#34;b&#34;</span><span class="o">,</span> <span class="s">&#34;c&#34;</span><span class="o">,</span> <span class="s">&#34;d&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s1Join</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s1Join</span><span class="o">);</span> <span class="c1">// abcd
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s2Join</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">&#34;-&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s2Join</span><span class="o">);</span> <span class="c1">// a-b-c-d
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">s3Join</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">&#34;-&#34;</span><span class="o">,</span> <span class="s">&#34;/*&#34;</span><span class="o">,</span> <span class="s">&#34;*/&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">s3Join</span><span class="o">);</span> <span class="c1">// /*a-b-c-d*/
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="5-collectorsgroupingby">5. <code>Collectors.groupingBy()</code></h4>
+<p>API Definition (3 overloaded)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">K</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="nf">groupingBy</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">K</span><span class="o">&gt;</span> <span class="n">classifier</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">	<span class="n">Collector</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="n">downstream</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">K</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;&gt;</span> <span class="nf">groupingBy</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">K</span><span class="o">&gt;</span> <span class="n">classifier</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">K</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">M</span> <span class="kd">extends</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">M</span><span class="o">&gt;</span> <span class="nf">groupingBy</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">K</span><span class="o">&gt;</span> <span class="n">classifier</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Supplier</span><span class="o">&lt;</span><span class="n">M</span><span class="o">&gt;</span> <span class="n">mapFactory</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Collector</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="n">downstream</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>用 collector() 方法傳入 <code>Collectors.groupingBy()</code>，可將 Stream 成員分類（grouping），如下步驟</p>
+<ol>
+<li>參數1使用 Function，以輸入型別T取得另一種型別K
+<ul>
+<li>K(分類的鍵值): 可能是T的屬性，或是T物件經處理後的某個結果</li>
+</ul>
+</li>
+<li>參數2決定分類後的Stream成員儲存型態
+<ul>
+<li>使用 Collector interface 定義</li>
+<li>如果是 <code>Collector.toList()</code>表示分類後以List集合物件儲存</li>
+<li><code>Collector.toList()</code>即為預設值，可省略此參數</li>
+</ul>
+</li>
+<li>結合前2參數可得分類後的key &amp; value</li>
+</ol>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testGroupingBy</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">classifier</span> <span class="o">=</span> <span class="n">Person</span><span class="o">::</span><span class="n">getAge</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;&gt;</span> <span class="n">personsByAge</span> <span class="o">=</span> <span class="n">getPersonList</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">groupingBy</span><span class="o">(</span><span class="n">classifier</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">personsByAge</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="o">(</span><span class="n">age</span><span class="o">,</span> <span class="n">personList</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="s">&#34;age %s: %s\n&#34;</span><span class="o">,</span> <span class="n">age</span><span class="o">,</span> <span class="n">personList</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="6-collectorspartitioningby">6. <code>Collectors.partitioningBy()</code></h4>
+<p>API Definition (2 overloaded)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">,</span> <span class="n">D</span><span class="o">&gt;&gt;</span> <span class="nf">partitioningBy</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Collector</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">D</span><span class="o">&gt;</span> <span class="n">downstream</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;&gt;</span> <span class="nf">partitioningBy</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>使用 collect() 方法，傳入<code>Collectors.partitioningBy()</code>，可以將 stream 成員依照 Predicate 定義的方法分成兩類（滿足/不滿足），如下步驟</p>
+<ol>
+<li>使用 Predicate 定義之方法進行測試，再依照測試結果分成兩類(key-true/false)</li>
+<li>參數2決定分類後的Stream成員儲存型態
+<ul>
+<li>使用 Collector interface 定義</li>
+<li>如果是 <code>Collector.toList()</code>表示分類後以List集合物件儲存</li>
+<li><code>Collector.toList()</code>即為預設值，可省略此參數</li>
+</ul>
+</li>
+<li>結合前2參數可得分類後的key &amp; value，回傳 Map&lt;Boolean, Object&gt;</li>
+</ol>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testPartitioningBy</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;&gt;</span> <span class="n">personByAge</span> <span class="o">=</span> <span class="n">getPersonList</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">partitioningBy</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">age</span> <span class="o">&gt;</span> <span class="n">20</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Is age &gt; 20 ?&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">personsByAge</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">val</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">key</span> <span class="o">+</span> <span class="s">&#34;:\t&#34;</span>
+</span></span><span class="line"><span class="cl">            			<span class="o">+</span> <span class="n">val</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">name</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                             <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">joining</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">                <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="7-collectorsmappingcollectorsflatmapping">7. <code>Collectors.mapping()</code>、<code>Collectors.flatMapping()</code></h4>
+<p><code>mapping()</code> 與 <code>flatMapping()</code> 功能相次但參數的 Function 介面定義不同，<code>flatMapping()</code> 必須回傳 Stream 物件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">U</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="nf">mapping</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">U</span><span class="o">&gt;</span> <span class="n">mapper</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Collector</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">U</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">downstream</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">U</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">Collector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="nf">flatMapping</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Function</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="o">?</span> <span class="kd">extends</span> <span class="n">Stream</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">U</span><span class="o">&gt;&gt;</span> <span class="n">mapper</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Collector</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">U</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">downstream</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>Collectors.mapping()</code>、<code>Collectors.flatMapping()</code> 與 <code>Collectors.groupingBy()</code>此三者目的相似，都是要進行分類</p>
+<ol>
+<li>對於分類的<strong>依據欄位的定義方式</strong>皆相同</li>
+<li>對於分類的<strong>對象</strong>與<strong>結果</strong>則各有特色</li>
+</ol>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testMappingFlatMapping</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Blog</span><span class="o">&gt;</span> <span class="n">blogs</span> <span class="o">=</span> <span class="n">Blog</span><span class="o">.</span><span class="na">getBlogs</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 1. groupingBy 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    參數1=分類的欄位依據, 參數2=分類之後以List儲存不同類的Blog物件
+</span></span></span><span class="line"><span class="cl"><span class="cm">    key=Blog物件的authorName, val=List&lt;Blog&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Blog</span><span class="o">&gt;&gt;</span> <span class="n">authorByName</span> <span class="o">=</span> <span class="n">blogs</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">groupingBy</span><span class="o">(</span><span class="n">Blog</span><span class="o">::</span><span class="n">getAuthorName</span><span class="o">,</span> <span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">authorByName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 2. groupingBy + mapping
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    分類的對象改由 Collectors.mapping()決定，可以不再是整個Blog物件，
+</span></span></span><span class="line"><span class="cl"><span class="cm">    而是Blog物件裡的某個欄位值
+</span></span></span><span class="line"><span class="cl"><span class="cm">    分類依據(key)=Blog.authorName
+</span></span></span><span class="line"><span class="cl"><span class="cm">    分類對象=Blog物件的comments欄位，型態為List&lt;String&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cm">      又因為分類後以List存放，所以value=List&lt;List&lt;String&gt;&gt;  
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;&gt;</span> <span class="n">authorComments1</span> <span class="o">=</span> <span class="n">blogs</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">groupingBy</span><span class="o">(</span><span class="n">Blog</span><span class="o">::</span><span class="n">getAuthorName</span><span class="o">,</span> <span class="n">Collectors</span><span class="o">.</span><span class="na">mapping</span><span class="o">(</span><span class="n">Blog</span><span class="o">::</span><span class="n">getComments</span><span class="o">,</span> <span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">())));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">authorComments</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 3. groupingBy + flatMapping
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">authorComments2</span> <span class="o">=</span> <span class="n">blogs</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Collectors</span><span class="o">.</span><span class="na">groupingBy</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Blog</span><span class="o">::</span><span class="n">getAuthorName</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">Collectors</span><span class="o">.</span><span class="na">flatMapping</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">blog</span> <span class="o">-&gt;</span> <span class="n">blog</span><span class="o">.</span><span class="na">getComments</span><span class="o">().</span><span class="na">stream</span><span class="o">(),</span> <span class="c1">//(param1)分類的對象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">())));</span> 
+</span></span><span class="line"><span class="cl">                <span class="cm">/* (param2)被分類的不是Blog物件的原始 List&lt;String&gt; comments，
+</span></span></span><span class="line"><span class="cl"><span class="cm">                   而是攤平後的眾多String，再以List存放，所以value=List&lt;String&gt;*/</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">authorComments2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>Collectors.flatMapping()</code> 使用方式類似 <code>Collectors.mapping()</code></p>
+<ul>
+<li>
+<p>最大差異是分類的對象欄位必須可以產生 Stream 物件，因為API定義</p>
+<p><code>Function&lt;? super T, ? extends Stream&lt;? extends U&gt;&gt; mapper</code></p>
+</li>
+<li>
+<p>好處: 如果遇到前例分類的回傳結果為<code>Map&lt;String, List&lt;List&lt;String&gt;&gt;&gt;</code>時，可攤平為<code>Map&lt;String, List&lt;String&gt;&gt;</code></p>
+<ul>
+<li><code>{Celia=[[Not bad, Ok, Just fine, all right]], Aaron=[[Nice, Very Nice, Great]]}</code></li>
+<li><code>{Celia=[Not bad, Ok, Just fine, all right], Aaron=[Nice, Very Nice, Great]} </code></li>
+</ul>
+</li>
+</ul>
+</blockquote>
 <h4 id="8-collectorsfiltering">8. <code>Collectors.filtering()</code></h4>
+<p>API Definition - 跟<code>Stream.filter()</code>差不多，都用於過濾</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">Collectors</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="o">?,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="nf">filtering</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">Collector</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">,</span> <span class="n">A</span><span class="o">,</span> <span class="n">R</span><span class="o">&gt;</span> <span class="n">downstream</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example - 不同方法, 相同結果</p>
+<blockquote>
+<ol>
+<li>
+<p>先用<code>Stream.filter()</code>過濾，再用<code>collect(Collectors.toList())</code>彙整</p>
+</li>
+<li>
+<p>使用<code>Stream.collect()</code>，同時以<code>Collectors.filtering()</code>、<code>Collectors.toList()</code>指定過濾條件&amp;彙整方式</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">filter</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">20</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//2.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">filtering</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">collect</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Collectors</span><span class="o">.</span><span class="na">filtering</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">20</span><span class="o">,</span> <span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">()));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>Example</p>
+<blockquote>
+<ol>
+<li>
+<p>先<code>Stream.filter()</code>，再<code>Collectors.groupingBy()</code>指定分組依據（<code>Person::getName</code>）、分組對象以<code>Collectors.counting()</code>表示符合的 Person 物件數量</p>
+</li>
+<li>
+<p>使用<code>Stream.collect()</code>與<code>Collectors.groupingBy()</code>指定分組依據為<code>Person::getName</code></p>
+<p>分組過程同時以<code>Collectors.filtering()</code>指定過濾條件與<code>Collectors.counting()</code>計算符合的 Person 物件數量</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1. Stream.filter() + Collectors.groupingBy()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">filter4Grouping</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">20</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">collect</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">Collectors</span><span class="o">.</span><span class="na">groupingBy</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Person</span><span class="o">::</span><span class="n">getName</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">Collectors</span><span class="o">.</span><span class="na">counting</span><span class="o">()</span> <span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// {Pamela=1, Peter=1}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//2. Collectors.filtering() + Collectors.groupingBy()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="n">filtering4Grouping</span> <span class="o">=</span> <span class="n">persons</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">collect</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    	<span class="n">Collectors</span><span class="o">.</span><span class="na">groupingBy</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Person</span><span class="o">::</span><span class="n">getName</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">Collectors</span><span class="o">.</span><span class="na">filtering</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">20</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Collectors</span><span class="o">.</span><span class="na">counting</span><span class="o">()</span> <span class="o">)));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// {Pamela=1, Max=0, David=0, Peter=1}
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h3 id="短路型終端作業">短路型終端作業</h3>
+<p>在Stream所有成員都被接觸/處理之前，能因為某些情況而提前終止</p>
+<p>作業目的：以搜尋為主，可以用最小成本執行並結束工作</p>
+<p><code>Stream&lt;T&gt;</code>依搜尋後回傳結果可分為兩類：</p>
+<table>
+<thead>
+<tr>
+<th>return</th>
+<th>method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>boolean <strong>allMatch</strong>(Predicate&lt;? super T&gt; predicate);<!-- raw HTML omitted -->boolean <strong>noneMatch</strong>(Predicate&lt;? super T&gt; predicate);<!-- raw HTML omitted -->boolean <strong>anyMatch</strong>(Predicate&lt;? super T&gt; predicate);<!-- raw HTML omitted --><em>以Predicate.test()判斷是否滿足搜尋條件的基準</em></td>
+</tr>
+<tr>
+<td>Optional&lt;T&gt;</td>
+<td>Optional&lt;T&gt; <strong>findFirst</strong>();<!-- raw HTML omitted -->Optional&lt;T&gt; <strong>findAny</strong>();</td>
+</tr>
+</tbody>
+</table>
 <h4 id="1-allmatch">1. <code>allMatch()</code></h4>
+<p>API Definition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="nf">allMatch</span><span class="o">(</span><span class="n">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ol>
+<li>如果所有成員都滿足Predicate介面定義的條件，回傳true</li>
+<li>一旦找到不滿足條件的成員，就結束搜尋，回傳false</li>
+<li>若Stream為空，不會執行<code>Predicate.test()</code>，直接回傳true</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testAllMatch</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;jean1&#34;</span><span class="o">,</span> <span class="s">&#34;jean2&#34;</span><span class="o">,</span> <span class="s">&#34;jean3&#34;</span><span class="o">,</span> <span class="s">&#34;jean4&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">containsJean</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">allMatch</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;jean&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 所有成員都包含&#34;jean&#34;，回傳true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">boolean</span> <span class="n">contains1</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">allMatch</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;1&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 第二筆資料不含&#34;1&#34;，故為false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h4 id="2-nonematch">2. <code>noneMatch()</code></h4>
+<p>API Definition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="nf">nonMatch</span><span class="o">(</span><span class="n">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ol>
+<li>如果全部成員**「皆不」**滿足Predicate介面定義的條件，回傳true</li>
+<li>一旦發現滿足條件的成員，就結束搜尋，回傳false</li>
+<li>若Stream為空，不會執行<code>Predicate.test()</code>，直接回傳true</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;jean1&#34;</span><span class="o">,</span> <span class="s">&#34;jean2&#34;</span><span class="o">,</span> <span class="s">&#34;jean3&#34;</span><span class="o">,</span> <span class="s">&#34;jean4&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="n">contains5</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">noneMatch</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;5&#34;</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h4 id="3-anymatch">3. <code>anyMatch()</code></h4>
+<p>API Definition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="nf">anyMatch</span><span class="o">(</span><span class="n">Predicate</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">predicate</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ol>
+<li>發現任何一個成員滿足Predicate介面定義的條件，就回傳true，結束搜尋</li>
+<li>若Stream為空，不會執行<code>Predicate.test()</code>，直接回傳false</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="n">lengthOver5</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;two&#34;</span><span class="o">,</span> <span class="s">&#34;three&#34;</span><span class="o">,</span> <span class="s">&#34;eighteen&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    	<span class="o">.</span><span class="na">anyMatch</span><span class="o">(</span><span class="n">s</span> <span class="o">-&gt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">5</span><span class="o">);</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h4 id="4-findfirst">4. <code>findFirst()</code></h4>
+<p>API Definition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">findFirst</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ol>
+<li>找到<code>Stream&lt;T&gt;</code>裡面<strong>第一個</strong>成員，就回傳<code>Optional&lt;T&gt;</code>，結束程式</li>
+<li>每次找到的結果<strong>都為固定</strong>，稱之為「<strong>決定性（deterministic）</strong>」</li>
+<li>沒成員時，回傳 empty 的 Optional 物件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;one&#34;</span><span class="o">,</span> <span class="s">&#34;two&#34;</span><span class="o">).</span><span class="na">findFirst</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Optional[one]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h4 id="5-findany">5. <code>findAny()</code></h4>
+<p>API Definition</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">findAny</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<ol>
+<li>找到<code>Stream&lt;T&gt;</code>裡面<strong>任何一個</strong>成員，就回傳<code>Optional&lt;T&gt;</code>，結束程式</li>
+<li>每次找到的結果<strong>不一定相同</strong>，稱之為「<strong>非決定性（non-deterministic）</strong>」
+尤其是平行執行時，如果要得到固定結果，需改用<code>findFirst()</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;jean1&#34;</span><span class="o">,</span> <span class="s">&#34;jean2&#34;</span><span class="o">,</span> <span class="s">&#34;jean3&#34;</span><span class="o">,</span> <span class="s">&#34;jean4&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">val</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">stream</span><span class="o">().</span><span class="na">findAny</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Optional[jean1]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <hr>
 <h2 id="stream-api-和-nio2">Stream API 和 NIO.2</h2>
+<p><code>java.nio.file.Files</code>有一些方法支援 Stream API，使 NIO.2 也可以用流暢的語法撰寫</p>
 <h4 id="1-list">1. <code>list()</code></h4>
-<h4 id="2-find">2. <code>find()</code></h4>
-<h4 id="3-walk">3. <code>walk()</code></h4>
-<h4 id="4-lines">4. <code>lines()</code></h4>
+<p>Method Declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/* list() 方法可以列出 Path dir 下的所有檔案，
+</span></span></span><span class="line"><span class="cl"><span class="cm">   但只在第一層，
+</span></span></span><span class="line"><span class="cl"><span class="cm">   即並不是以遞迴方式列出各層的所有檔案和目錄 */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="nf">list</span><span class="o">(</span><span class="n">Path</span> <span class="n">dir</span><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testList</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">list</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;src/cource/c10&#34;</span><span class="o">)))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stream</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">path</span> <span class="o">-&gt;</span> <span class="n">path</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">endsWith</span><span class="o">(</span><span class="s">&#34;.txt&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-find">2. <code>find()</code></h4>
+<p>Method Declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/* 
+</span></span></span><span class="line"><span class="cl"><span class="cm">   find() 方法可以找出符合條件的目錄或檔案
+</span></span></span><span class="line"><span class="cl"><span class="cm">   1. Path start - 搜尋起始目錄
+</span></span></span><span class="line"><span class="cl"><span class="cm">   2. int maxDepth - 搜尋指定的層數，非遞迴搜尋全部
+</span></span></span><span class="line"><span class="cl"><span class="cm">   3. BiPredicate&lt;Path,BasicFileAttributes&gt; matcher - 以此定義的方法當作搜尋條件
+</span></span></span><span class="line"><span class="cl"><span class="cm">   4. FileVisitOption... options - 定義其他搜尋條件(如果有需要)
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="nf">find</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">start</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">maxDepth</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">BiPredicate</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">,</span> <span class="n">BasicFileAttributes</span><span class="o">&gt;</span> <span class="n">matcher</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">FileVisitOption</span><span class="o">...</span> <span class="n">options</span>
+</span></span><span class="line"><span class="cl"><span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testFind</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">Files</span><span class="o">.</span><span class="na">find</span><span class="o">(</span><span class="n">Path</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;src&#34;</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">4</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">attr</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">path</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">endsWith</span><span class="o">(</span><span class="s">&#34;.txt&#34;</span><span class="o">)))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">stream</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-walk">3. <code>walk()</code></h4>
+<p>Method Declaration (2 overloaded)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//1. 指定要遞迴的層數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="nf">walk</span><span class="o">(</span><span class="n">Path</span> <span class="n">start</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="kt">int</span> <span class="n">maxDepth</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">FileVisitOption</span><span class="o">...</span> <span class="n">options</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//2. 不指定層數，要遞迴全部
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="nf">walk</span><span class="o">(</span><span class="n">Path</span> <span class="n">start</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">FileVisitOption</span><span class="o">...</span> <span class="n">options</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>方法概念類似 NIO.2 裡面的方法，都能遞迴拜訪相關層級的所有檔案/目錄</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Files</span><span class="o">.</span><span class="na">walkFileTree</span><span class="o">(</span><span class="n">Path</span> <span class="n">start</span><span class="o">,</span> <span class="n">FileVisitor</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">visitor</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但如果要對拜訪的檔案目錄採取特定動作時</p>
+<ol>
+<li><code>Files.walkFileTree()</code>：由 FileVisitor interface 的實作決定</li>
+<li><code>Files.walk()</code>：開啟 Stream 後，再由其管線方法 (pipeline) 決定</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">//只遞迴4層，如果附檔名為.txt，就將其輸出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">try</span> <span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;dir/NIO2Demo&#34;</span><span class="o">),</span> <span class="n">4</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stream</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">path</span> <span class="o">-&gt;</span> <span class="n">path</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">endsWith</span><span class="o">(</span><span class="s">&#34;.txt&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//遞迴所有層數，如果附檔名為.txt，就將其輸出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">try</span> <span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;dir/NIO2Demo&#34;</span><span class="o">)))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stream</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">path</span> <span class="o">-&gt;</span> <span class="n">path</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">endsWith</span><span class="o">(</span><span class="s">&#34;.txt&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-lines">4. <code>lines()</code></h4>
+<p>Method Declaration</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">lines</span><span class="o">(</span><span class="n">Path</span> <span class="n">path</span><span class="o">,</span> <span class="n">Charset</span> <span class="n">cs</span><span class="o">)</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">lines</span><span class="o">(</span><span class="n">Path</span><span class="o">)</span> <span class="o">{...}</span>    <span class="c1">// 預設UTF-8 charset
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span> <span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">lines</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;data.txt&#34;</span><span class="o">)))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stream</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">String</span><span class="o">::</span><span class="n">toLowerCase</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>method</th>
+<th>notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Files.lines()</code></td>
+<td>搭配管線作業只會處理需要的內容<!-- raw HTML omitted -->lazy、效能較佳<!-- raw HTML omitted -->回傳 Stream&lt;String&gt;</td>
+</tr>
+<tr>
+<td><code>Files.readAllLines()</code></td>
+<td>把所有檔案內容一次載入JVM<!-- raw HTML omitted -->回傳 List&lt;String&gt;</td>
+</tr>
+<tr>
+<td><code>BufferedReader.lines()</code></td>
+<td>回傳 Stream&lt;String&gt;</td>
+</tr>
+</tbody>
+</table>
+<p>Example - BufferedReader</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">try</span> <span class="o">(</span><span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">newBufferedReader</span><span class="o">(</span><span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;data.txt&#34;</span><span class="o">)))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">reader</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">lines</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">String</span><span class="o">::</span><span class="n">toLowerCase</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>NOTE:</p>
+<p>Stream也有實作AutoCloseable介面，可以放在try-with-resource的程式區塊裡</p>
+<ol>
+<li>如果Stream用在Collection：不用特別在使用完後關閉</li>
+<li>Stream搭配NIO.2開啟檔案：<strong>必須</strong>在結束時主動關閉，或者用try-with-resource架構處理</li>
+</ol>
+</blockquote>
 <hr>
 <h2 id="stream-api-操作平行化">Stream API 操作平行化</h2>
 <h3 id="平行化的前提">平行化的前提</h3>
-<h4 id="撰寫風格_1">撰寫風格_1</h4>
-<h4 id="撰寫風格_2">撰寫風格_2</h4>
+<p>Stream feature:</p>
+<ol>
+<li>無法更改內容 immutable：一旦更改都會回傳新物件，或拋出Exception</li>
+<li>無法重複使用：要使用就必須再產生新物件</li>
+<li>可以使用
+<ul>
+<li>循序處理 sequential</li>
+<li>平行處理 parallel</li>
+</ul>
+</li>
+</ol>
+<p>Stream API 支援建構者設計模式的流暢撰寫風格</p>
+<h4 id="撰寫風格_1指令式編程imperative-programming">撰寫風格_1：指令式編程（imperative programming）</h4>
+<blockquote>
+<p>特色</p>
+<ol>
+<li>迴圈必須經歷所有集合成員</li>
+<li>知道迴圈做了哪些事（how），但不是很清楚目的（what）</li>
+<li>迴圈中必須有其他變數，例如sum</li>
+<li>不容易以平行處理提高效能</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="n">Employee</span> <span class="n">e</span> <span class="o">:</span> <span class="n">getEmployees</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;Jim&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">e</span><span class="o">.</span><span class="na">salary</span> <span class="o">&gt;=</span> <span class="n">1500</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span><span class="o">.</span><span class="na">show</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">e</span><span class="o">.</span><span class="na">salary</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h4 id="撰寫風格_2流暢式編程streaming-programming">撰寫風格_2：流暢式編程（streaming programming）</h4>
+<blockquote>
+<p>特色</p>
+<ol>
+<li>程式本身清楚陳述目的（what）</li>
+<li>不需要額外變數</li>
+<li>可藉由「懶人（lazy）優化機制」提升效能</li>
+<li>可以平行處理提高效能</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">getEmployee</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;Jim&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">salary</span> <span class="o">&gt;=</span> <span class="n">1500</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">show</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">salary</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h4 id="撰寫風格_3">撰寫風格_3</h4>
+<blockquote>
+<p>此作法少了Stream管線操作的好處（如：懶人優化法、平行化處理），故不建議</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">streamingProgramming3</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">getEmployees</span><span class="o">().</span><span class="na">stream</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">s1</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">starsWith</span><span class="o">(</span><span class="s">&#34;Jim&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">s3</span> <span class="o">=</span> <span class="n">s2</span><span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">salary</span> <span class="o">&gt;=</span> <span class="n">1500</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Stream</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">s4</span> <span class="o">=</span> <span class="n">s3</span><span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">show</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">DoubleStream</span> <span class="n">s5</span> <span class="o">=</span> <span class="n">s4</span><span class="o">.</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">salary</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">s5</span><span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">sum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h3 id="平行化的作法">平行化的作法</h3>
 <h4 id="基本原則">基本原則</h4>
+<p>平行處理（parallel）：啟動多執行緒來減少執行時間</p>
+<ol>
+<li>
+<p>建議硬體要具備多核心CPU或GPU</p>
+</li>
+<li>
+<p>底層用Fork/Join架構，但不建議開發者直接使用，應該用高階API</p>
+</li>
+<li>
+<p>有許多因素可影響平行執行的加速效果</p>
+<ul>
+<li><strong>平行處理</strong> 不是每次都比 <strong>循序處理</strong> 快</li>
+<li>影響因素：資料大小、拆解方法、結果聚合方式、CPU核心數</li>
+</ul>
+</li>
+<li>
+<p>可以藉由以下方式啟動</p>
+<ol>
+<li>
+<p>從 Collection（集合物件）發動，使用<code>parallelStream()</code>方法</p>
+</li>
+<li>
+<p>由 Stream（串流物件）發動，使用<code>parallel()</code>方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">getEmployees</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;Jean&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">salary</span> <span class="o">&gt;=</span> <span class="n">1500</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">peek</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">show</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">salary</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">parallel</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+<li>
+<p>未呼叫<code>.parallel()</code>時，預設<code>.sequential()</code></p>
+</li>
+<li>
+<p>Stream（串流物件）發動平行化處理時，如果要<strong>各段管線操作都可以平行化</strong>，必須在尾端呼叫</p>
+</li>
+<li>
+<p>過程中不可以修改來源物件（例如 Collection）</p>
+</li>
+</ol>
 <h4 id="管線操作的變數必須是沒有狀態stateless">管線操作的變數必須是「沒有狀態（stateless）」</h4>
+<h1 id="p-327-">p 327 🍪☕</h1>
 <h4 id="平行處理可能讓結果不同">平行處理可能讓結果不同</h4>
 <h3 id="reduction-操作">Reduction 操作</h3>
 <h4 id="reduction-的基礎操作">Reduction 的基礎操作</h4>
