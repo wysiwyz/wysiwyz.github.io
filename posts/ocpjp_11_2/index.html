@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  19205 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  20877 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-02-05T17:50:34+08:00","dateModified": "2023-02-05T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;19205 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;91 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;20877 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;99 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -432,14 +432,6 @@
       <ul>
         <li><a href="#平行化的前提">平行化的前提</a></li>
         <li><a href="#平行化的作法">平行化的作法</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <ul>
-    <li>
-      <ul>
-        <li></li>
         <li><a href="#reduction-操作">Reduction 操作</a></li>
       </ul>
     </li>
@@ -458,14 +450,13 @@
         <li><a href="#類別-localdatetime">類別 <code>LocalDateTime</code></a></li>
       </ul>
     </li>
-    <li><a href="#時區和日光節約時間">時區和日光節約時間</a></li>
-    <li><a href="#描述日期與時間的數量">描述日期與時間的數量</a>
+    <li><a href="#時區和日光節約時間">時區和日光節約時間</a>
       <ul>
         <li><a href="#時區和日光節約時間簡介">時區和日光節約時間簡介</a></li>
         <li><a href="#java-在時區和日光節約時間的應用">Java 在時區和日光節約時間的應用</a></li>
       </ul>
     </li>
-    <li><a href="#描述日期與時間的數量-1">描述日期與時間的數量</a>
+    <li><a href="#描述日期與時間的數量">描述日期與時間的數量</a>
       <ul>
         <li><a href="#類別-instant">類別 Instant</a></li>
         <li><a href="#類別-period-和-duration">類別 Period 和 Duration</a></li>
@@ -475,19 +466,89 @@
   </ul>
 
   <ul>
-    <li><a href="#認識標註型別">認識標註型別</a></li>
-    <li><a href="#建立自定義標註型別">建立自定義標註型別</a></li>
-    <li><a href="#標註型別的應用">標註型別的應用</a></li>
-    <li><a href="#自定義標註型別時使用的內建標註型別">自定義標註型別時使用的內建標註型別</a></li>
-    <li><a href="#開發一般程式碼經常使用的內建標註型別">開發一般程式碼經常使用的內建標註型別</a></li>
+    <li><a href="#認識標註型別">認識標註型別</a>
+      <ul>
+        <li><a href="#認識metadata">認識Metadata</a></li>
+        <li><a href="#標註型別的目的">標註型別的目的</a></li>
+      </ul>
+    </li>
+    <li><a href="#建立自定義標註型別">建立自定義標註型別</a>
+      <ul>
+        <li><a href="#建立標註型別">建立標註型別</a></li>
+        <li><a href="#定義必要required元素">定義必要（required）元素</a></li>
+        <li><a href="#定義非必要optional元素">定義非必要（optional）元素</a></li>
+        <li><a href="#定義元素型態type">定義元素型態（type）</a></li>
+        <li><a href="#定義元素修飾詞">定義元素修飾詞</a></li>
+        <li><a href="#定義常數">定義常數</a></li>
+      </ul>
+    </li>
+    <li><a href="#標註型別的應用">標註型別的應用</a>
+      <ul>
+        <li><a href="#在宣告時使用標註型別">在宣告時使用標註型別</a></li>
+        <li><a href="#定義名稱為-value-的元素">定義名稱為 value() 的元素</a></li>
+        <li><a href="#元素值為陣列的應用方式">元素值為陣列的應用方式</a></li>
+      </ul>
+    </li>
+    <li><a href="#自定義標註型別時使用的內建標註型別">自定義標註型別時使用的內建標註型別</a>
+      <ul>
+        <li><a href="#以target限制使用標的">以<code>@Target</code>限制使用標的</a></li>
+        <li><a href="#以-retention-決定作用範圍">以 @Retention 決定作用範圍</a></li>
+        <li><a href="#以-documented-支援api文件顯示">以 @Documented 支援API文件顯示</a></li>
+        <li><a href="#以inherited取得父類別標註型別">以@Inherited取得父類別標註型別</a></li>
+        <li><a href="#以repeatable支援重複使用同一標註型別">以@Repeatable支援重複使用同一標註型別</a></li>
+        <li><a href="#本章內建標註型別總結">本章內建標註型別總結</a></li>
+      </ul>
+    </li>
+    <li><a href="#開發一般程式碼經常使用的內建標註型別">開發一般程式碼經常使用的內建標註型別</a>
+      <ul>
+        <li><a href="#使用-override-標註覆寫的方法">使用 @Override 標註覆寫的方法</a></li>
+        <li><a href="#使用-functionalinterface-宣告介面">使用 @FunctionalInterface 宣告介面</a></li>
+        <li><a href="#使用-deprecated-停用程式碼">使用 @Deprecated 停用程式碼</a></li>
+        <li><a href="#使用-supresswarnings-忽略警告">使用 @SupressWarnings 忽略警告</a></li>
+        <li><a href="#使用-safevarargs-保護參數">使用 @SafeVarargs 保護參數</a></li>
+        <li><a href="#本章內建標註型別總結-1">本章內建標註型別總結</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
-    <li><a href="#認識-java-模組化">認識 Java 模組化</a></li>
-    <li><a href="#建立和執行模組化程式">建立和執行模組化程式</a></li>
-    <li><a href="#建立相依模組程式">建立相依模組程式</a></li>
-    <li><a href="#認識-module-infojava-的宣告關鍵字">認識 <code>module-info.java</code> 的宣告關鍵字</a></li>
-    <li><a href="#在命令列-command-line-使用模組指令選項">在命令列 <code>command line</code> 使用模組指令選項</a></li>
+    <li><a href="#認識-java-模組化">認識 Java 模組化</a>
+      <ul>
+        <li><a href="#介紹模組module">介紹模組（Module）</a></li>
+        <li><a href="#模組化的效益">模組化的效益</a></li>
+      </ul>
+    </li>
+    <li><a href="#建立和執行模組化程式">建立和執行模組化程式</a>
+      <ul>
+        <li><a href="#建立模組專案">建立模組專案</a></li>
+        <li><a href="#編譯模組專案">編譯模組專案</a></li>
+        <li><a href="#執行模組專案">執行模組專案</a></li>
+        <li><a href="#打包模組專案">打包模組專案</a></li>
+      </ul>
+    </li>
+    <li><a href="#建立相依模組程式">建立相依模組程式</a>
+      <ul>
+        <li><a href="#使用exports開放模組內的套件">使用exports開放模組內的套件</a></li>
+        <li><a href="#使用requires相依外部模組的套件">使用requires相依外部模組的套件</a></li>
+        <li><a href="#使用-eclipse-設定專案的模組相依關係">使用 Eclipse 設定專案的模組相依關係</a></li>
+      </ul>
+    </li>
+    <li><a href="#認識-module-infojava-的宣告關鍵字">認識 <code>module-info.java</code> 的宣告關鍵字</a>
+      <ul>
+        <li><a href="#使用exports">使用exports</a></li>
+        <li><a href="#使用requires和requires-transitive">使用requires和requires transitive</a></li>
+        <li><a href="#使用providesusesopens">使用provides、uses、opens</a></li>
+      </ul>
+    </li>
+    <li><a href="#在命令列-command-line-使用模組指令選項">在命令列 <code>command line</code> 使用模組指令選項</a>
+      <ul>
+        <li><a href="#使用java指令">使用java指令</a></li>
+        <li><a href="#使用jar指令">使用jar指令</a></li>
+        <li><a href="#使用jdeps指令">使用jdeps指令</a></li>
+        <li><a href="#使用jmod指令">使用jmod指令</a></li>
+        <li><a href="#指令彙整">指令彙整</a></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
@@ -13241,11 +13302,300 @@ Execute Current Text
 </li>
 </ol>
 <h4 id="管線操作的變數必須是沒有狀態stateless">管線操作的變數必須是「沒有狀態（stateless）」</h4>
-<h1 id="p-327-">p 327 🍪☕</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">statefullStreaming</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">eList</span> <span class="o">=</span> <span class="n">getEmployee</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">blockList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">eList</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">starts</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">forEach</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* 無法平行化加速，因為變數blockList有狀態(成員持續增加)
+</span></span></span><span class="line"><span class="cl"><span class="cm">       導致多執行緒無法分頭進行 */</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>如果有此類需求，建議改用 collect() + <code>Colllectors.toList()</code></p>
+<ul>
+<li>
+<p>Java視需要自動調度，程式設計師不用介入物件狀態維護</p>
+<p>(何時建立List物件、新增成員、merge成員&hellip;)</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">eList</span> <span class="o">=</span> <span class="n">getEmployees</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">nonblockList</span> <span class="o">=</span> <span class="n">eList</span><span class="o">.</span><span class="na">parallelStream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;Jean&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h4 id="平行處理可能讓結果不同">平行處理可能讓結果不同</h4>
-<h3 id="reduction-操作">Reduction 操作</h3>
+<h5 id="決定性演算法deterministic-algorithm">決定性演算法（Deterministic Algorithm）</h5>
+<p>只要輸入相同參數，無論執行幾次結果都會相同。對Stream發動平行處理時，大部分結果都會固定。</p>
+<h6 id="sum方法無關乎平行處理時的順序先後結果都一定相同"><code>sum()</code>方法無關乎平行處理時的順序先後，結果都一定相同</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">eList</span> <span class="o">=</span> <span class="n">getEmployees</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">eList</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;Jean&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">Employee</span><span class="o">::</span><span class="n">getSalary</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">sequential</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">eList</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;Jean&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">mapToDouble</span><span class="o">(</span><span class="n">Employee</span><span class="o">::</span><span class="n">getSalary</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">parallel</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="findany方法只要找出一個就結束平行化處理可能每次結果不同"><code>findAny()</code>方法只要找出一個就結束，平行化處理可能每次結果不同</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">eList</span> <span class="o">=</span> <span class="n">getEmployees</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">e1</span> <span class="o">=</span> <span class="n">eList</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;Jean&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">sequential</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">findAny</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Employee</span><span class="o">&gt;</span> <span class="n">e2</span> <span class="o">=</span> <span class="n">eList</span><span class="o">.</span><span class="na">stream</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">e</span> <span class="o">-&gt;</span> <span class="n">e</span><span class="o">.</span><span class="na">name</span><span class="o">.</span><span class="na">startsWith</span><span class="o">(</span><span class="s">&#34;Jean&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">parallel</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">sum</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="reduction-操作">Reduction 操作</h3>
 <h4 id="reduction-的基礎操作">Reduction 的基礎操作</h4>
-<h4 id="reduction-的平行操作">Reduction 的平行操作</h4>
+<p>Reduction Operation - 歸納或簡化操作</p>
+<ol>
+<li>接受一連串項目（items）的輸入</li>
+<li>將輸入項目，經由逐一、反覆使用某結合功能（combining function）之後，得到單一結果。過程會讓原先輸入項目逐漸減少，所以稱之為<code>reduce</code></li>
+</ol>
+<p>Stream 物件的 <code>reduce()</code> 方法 - 以 sum() 改用 reduction 概念實作</p>
+<ol>
+<li>
+<p>以數字 0 為基礎值（base value）</p>
+</li>
+<li>
+<p>使用 + 運算子作為結合功能（combining function）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mathematica" data-lang="mathematica"><span class="line"><span class="cl"><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">an</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((((</span><span class="mi">0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="err">...</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">an</span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>整數加總 - 使用介面 IntStream 的 reduce() 方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">reduce</span><span class="o">(</span><span class="kt">int</span> <span class="n">identity</span><span class="o">,</span> <span class="n">IntBinaryOperator</span> <span class="n">op</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>介面 <code>IntBinaryOperator</code> 的定義</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IntBinaryOperator</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">applyAsInt</span><span class="o">(</span><span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將整數 <code>sum()</code> 以 IntStream 介面的 <code>reduce()</code> 方法詮釋 + Lambda 表示式如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">.</span><span class="na">reduct</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="o">(</span><span class="n">sum</span><span class="o">,</span> <span class="n">element</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">element</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testReduceInSequential</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="o">(</span><span class="n">sum</span><span class="o">,</span> <span class="n">element</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">element</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>IntStream的<code>rangeClosed(start, end)</code>以及<code>range(start, end)</code>兩個靜態方法差別在於end參數是否被包含</p>
+<ol>
+<li>
+<p><code>rangeClosed(int startInclusive, int endInclusive)</code>範圍包含參數 end，等同於</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">startInclusive</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">endInclusive</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>range(int startInclusive, int endExclusive)</code>範圍<strong>不</strong>包含參數 end，等同於</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">startInclusive</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">endExclusive</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/7iZnwOs.png"
+        data-srcset="https://i.imgur.com/7iZnwOs.png, https://i.imgur.com/7iZnwOs.png 1.5x, https://i.imgur.com/7iZnwOs.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/7iZnwOs.png"
+        title="以reduction概念實作 sum() 方法的分解示意圖" /></p>
+<p>Reduction概念除了可以用在 sum()，max()、min() 以及方法參照(method reference) 也可以使用，使程式更簡潔</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testReduceWithCompactly</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">Integer</span><span class="o">::</span><span class="n">sum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;sum = &#34;</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">Integer</span><span class="o">::</span><span class="n">max</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;max = &#34;</span> <span class="o">+</span> <span class="n">max</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">Integer</span><span class="o">::</span><span class="n">min</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;min = &#34;</span> <span class="o">+</span> <span class="n">min</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="reduction-的平行操作">Reduction 的平行操作</h4>
+<p>如果「結合功能（combining function）」是「可組合的（associative）」(==個別項目沒有特定關係，其順序不影響結果)，就能使用平行化處理</p>
+<p>如果不為可組合的，那使用 reduce() 會得到錯誤結果，其中<code>count()</code>就是<code>sum()</code>小變形，把 IntStream 裡面所有項目都轉化為1之後求總和</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">item</span> <span class="o">-&gt;</span> <span class="n">1</span><span class="o">).</span><span class="na">sum</span><span class="o">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>將原本的一根管線分流，加快處理速度</p>
+</blockquote>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testReduceInParallel</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">IntStream</span><span class="o">.</span><span class="na">rangeClosed</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">8</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">parallel</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="na">reduce</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="o">(</span><span class="n">sum</span><span class="o">,</span> <span class="n">element</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">element</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Result = &#34;</span> <span class="o">+</span> <span class="n">result</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>管線操作的平行化處理，底層是 Fork/Join 架構</p>
+<ol>
+<li>先將所有參與加總的整數進行<em>切割 &amp; 分組</em>（decomposition）</li>
+<li>加上 reduce() 處理架構，所有整數會<em>歸納 &amp; 加總</em>（merging）</li>
+</ol>
 <h4 id="平行化處理的注意事項">平行化處理的注意事項</h4>
 <ol>
 <li>平行處理效能不一定比較快，有時甚至會比循序處理慢。須有硬體支援，像是多核CPU和GPU</li>
@@ -13256,48 +13606,625 @@ Execute Current Text
 <h1 id="11-datetime-api">11 Date/Time API</h1>
 <h2 id="date--time-相關類別演進">Date &amp; Time 相關類別演進</h2>
 <h4 id="日期date與時間time的重要性">日期（Date）與時間（Time）的重要性</h4>
+<p>需要表現日期/時間，或者用於計算的程式情境，像是</p>
+<ol>
+<li>取得當地（local）的現在、過去、未來的日期/時間</li>
+<li>比較兩個時間點的差異，by years, months, days, hours, minutes, seconds</li>
+<li>不同國家的時差（time zone）</li>
+<li>日光節約時間（daylight savings time）調整</li>
+<li>描述日期/時間的<strong>區間</strong>
+<ul>
+<li><code>Duration</code>：描述時間區間, hours, minutes, seconds</li>
+<li><code>Period</code>：描述日期區間, years, months, days</li>
+</ul>
+</li>
+<li>閏年（leap year）時 2月的天數</li>
+<li>日期時間的顯示格式（format）</li>
+</ol>
 <h4 id="java-8-之前的日期時間-api">Java 8 之前的日期時間 API</h4>
+<p><code>java.util.Date</code> 和 <code>java.util.Calendar</code> 不足之處</p>
+<ol>
+<li>不支援流暢語法（fluent），無法用類似建構者模式的方式撰寫</li>
+<li>物件實例皆為mutable，與Lambda表示式不相容</li>
+<li>非執行緒安全（not thread-safe）</li>
+<li>API 種類不多</li>
+</ol>
 <h4 id="java-8-之後的日期時間-api">Java 8 之後的日期時間 API</h4>
+<p>Java 8 之後使用不同類別，分開表達日期與時間，優勢：</p>
+<ol>
+<li>類別/方法的使用相當直覺化</li>
+<li>可流暢語法</li>
+<li>物件實例皆 immutable，相容於 Lambda 表示式</li>
+<li>定義日期時間是依ISO標準</li>
+<li>執行緒安全</li>
+<li>API種類多，且方便自行再擴充</li>
+<li><code>toString()</code> 回傳有意義、可讀性高的說明</li>
+</ol>
 <hr>
 <h2 id="當地日期與時間">當地日期與時間</h2>
+<p>Java 8用<code>java.time</code>套件底下API定義<strong>當地</strong>的日期和時間，即不含時區（time zone）概念</p>
+<table>
+<thead>
+<tr>
+<th>&hellip;</th>
+<th>LocalDate</th>
+<th>LocalTime</th>
+<th>LocalDateTime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>def</td>
+<td>儲存years, months, days<!-- raw HTML omitted -->只有日期不含時間</td>
+<td>儲存hours, minutes, seconds, nanoseconds<!-- raw HTML omitted -->只有時間不含日期</td>
+<td>結合前兩者，包含日期時間</td>
+</tr>
+<tr>
+<td><code>toString()</code> return</td>
+<td>ISO8601格式的<!-- raw HTML omitted -->YYYY-MM-DD</td>
+<td>ISO8601格式的<!-- raw HTML omitted -->HH:mm:ss.SSSS</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="類別-localdate">類別 <code>LocalDate</code></h3>
+<p>可以得到以下問題的答案</p>
+<ol>
+<li>某日期是否屬於過去或為來</li>
+<li>是否為閏年leap year</li>
+<li>是一週裡面的哪一天</li>
+<li>是一個月裡面的哪一天</li>
+<li>下周六是哪一天</li>
+</ol>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">now</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">jeanBday</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2000</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">16</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="n">isInThePast</span> <span class="o">=</span> <span class="n">jeanBday</span><span class="o">.</span><span class="na">isBefore</span><span class="o">(</span><span class="n">now</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="n">isInALeapYear</span> <span class="o">=</span> <span class="n">jeanBday</span><span class="o">.</span><span class="na">isLeapYear</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">DayOfWeek</span> <span class="n">dayOfWeek</span> <span class="o">=</span> <span class="n">jeanBday</span><span class="o">.</span><span class="na">getDayOfWeek</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Enum: MONDAY, TUESDAY, etc.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">dayOfMonth</span> <span class="o">=</span> <span class="n">jeanBday</span><span class="o">.</span><span class="na">getDayOfMonth</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// from 1 to 31
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">dayOfYear</span> <span class="o">=</span> <span class="n">jeanBday</span><span class="o">.</span><span class="na">getDayOfYear</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// from 1 to 366  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">oneMonthAfterNow</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">plusMonths</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">nextMonday</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">with</span><span class="o">(</span><span class="n">TemporalAdjusters</span><span class="o">.</span><span class="na">next</span><span class="o">(</span><span class="n">DayOfWeek</span><span class="o">.</span><span class="na">MONDAY</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>java.util.Date</code>的某些時區日光節約時間下沒有午夜12點，但開發者有時候會用午夜12點來表達某一天，造成一些問題，較不適用</p>
+</blockquote>
 <h3 id="類別-localtime">類別 <code>LocalTime</code></h3>
-<h3 id="類別-localdatetime">類別 <code>LocalDateTime</code></h3>
-<hr>
+<p>用途</p>
+<ol>
+<li>儲存一天之內的時間</li>
+<li>從午夜12點（midnight）開始算</li>
+<li>使用24小時制顯示</li>
+<li>可得以下答案
+<ul>
+<li>何時可用餐?</li>
+<li>用餐時間結束?</li>
+<li>now + 1hr30min 之後是幾點</li>
+<li>還要幾分鐘幾小時之後才是用餐時間</li>
+<li>如何個別用hours和minutes來追蹤時間</li>
+</ul>
+</li>
+</ol>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LocalTime</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">LocalTime</span> <span class="n">nowPlus1hr15mins</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">plusHours</span><span class="o">(</span><span class="n">1</span><span class="o">).</span><span class="na">plusMinutes</span><span class="o">(</span><span class="n">15</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">LocalTime</span> <span class="n">nowHrsMins</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">truncatedTo</span><span class="o">(</span><span class="n">ChronoUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl"><span class="cm">/* set the second of minute and the nano of second field to zero
+</span></span></span><span class="line"><span class="cl"><span class="cm">   16:55:50.883581 -&gt; 16:55 */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">secondsAfterMidNight</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">toSecondOfDay</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">LocalTime</span> <span class="n">lunch</span> <span class="o">=</span> <span class="n">LocalTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">12</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="n">isLunchOver</span> <span class="o">=</span> <span class="n">lunch</span><span class="o">.</span><span class="na">isBefore</span><span class="o">(</span><span class="n">now</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">minsUntilLunch</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">until</span><span class="o">(</span><span class="n">lunch</span><span class="o">,</span> <span class="n">ChronoUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">LocalTime</span> <span class="n">bedtime</span> <span class="o">=</span> <span class="n">LocalTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">23</span><span class="o">,</span> <span class="n">20</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">hoursToBedtime</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">until</span><span class="o">(</span><span class="n">bedtime</span><span class="o">,</span> <span class="n">ChronoUnit</span><span class="o">.</span><span class="na">HOURS</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="類別-localdatetime">類別 <code>LocalDateTime</code></h3>
+<p>結合 LocalDate &amp; LocalTime，可更精準描述事件發生的時間點</p>
+<ol>
+<li>幾點開會</li>
+<li>何時放假</li>
+<li>會議延期到周五的話，會是何日何時</li>
+<li>周一早上8點~週五下午5點，這樣一共幾小時</li>
+</ol>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">flightDate</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2022</span><span class="o">,</span> <span class="n">Month</span><span class="o">.</span><span class="na">JULY</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">LocalTime</span> <span class="n">flightTime</span> <span class="o">=</span> <span class="n">LocalTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">21</span><span class="o">,</span> <span class="n">45</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">LocalDateTime</span> <span class="n">flight</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">flightDate</span><span class="o">,</span> <span class="n">flightTime</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">LocalDateTime</span> <span class="n">seminarStart</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2022</span><span class="o">,</span> <span class="n">Month</span><span class="o">.</span><span class="na">JULY</span><span class="o">,</span> <span class="n">2</span><span class="o">,</span> <span class="n">9</span><span class="o">,</span> <span class="n">30</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">LocalDateTime</span> <span class="n">seminarEnd</span> <span class="o">=</span> <span class="n">seminarStart</span><span class="o">.</span><span class="na">plusDay</span><span class="o">(</span><span class="n">2</span><span class="o">).</span><span class="na">plusHours</span><span class="o">(</span><span class="n">8</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">seminarHrs</span> <span class="o">=</span> <span class="n">seminarStart</span><span class="o">.</span><span class="na">until</span><span class="o">(</span><span class="n">seminarEnd</span><span class="o">,</span> <span class="n">ChronoUnits</span><span class="o">.</span><span class="na">HOURS</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="時區和日光節約時間">時區和日光節約時間</h2>
-<hr>
-<h2 id="描述日期與時間的數量">描述日期與時間的數量</h2>
 <h3 id="時區和日光節約時間簡介">時區和日光節約時間簡介</h3>
 <p>名詞簡介</p>
 <h4 id="gmtgreenwich-mean-time格林威治標準時間">GMT（Greenwich Mean Time，格林威治標準時間）</h4>
+<p>英國的海上霸權擴張計劃，以通過格林威治的子午線劃分地球為東西兩半球</p>
 <h4 id="utcuniversal-time-coordinated國際協調時間">UTC（Universal Time Coordinated，國際協調時間）</h4>
+<p>1967年國際度量衡大會把秒定義為銫原子進行固定震盪次數的時間</p>
+<p>搭配平均太陽時、地軸運動修正後的新時標、與國際原子時綜合精算成的時間</p>
+<p>UTC比GMT精準，但兩者誤差須在0.9秒以內，超過的話會由國際地球自轉事務中央局發布閏秒</p>
 <h4 id="全球-24-個時區">全球 24 個時區</h4>
+<p>每隔經度15degree，時差一小時</p>
+<p>經線180degree定為國際換日線</p>
 <h4 id="日光節約時間">日光節約時間</h4>
 <h5 id="1-日光節約時間的定義">1. 日光節約時間的定義</h5>
+<p>Daylight Saving Time(D.S.T.)在夏季充分使用光照資源，提前一小時，減少照明用電</p>
+<p>每年三月的第二個星期日開始 ~ 每年十一月的第一個星期日</p>
 <h5 id="2-日光節約時間的調整">2. 日光節約時間的調整</h5>
+<p>基於和UTC的差量（offset）計算DST。</p>
+<p>例如標準時間：紐約UTC-5hrs、DST情況：紐約UTC-4hrs</p>
 <h5 id="3-日光節約時間的影響">3. 日光節約時間的影響</h5>
+<ul>
+<li>啟用DST會讓時間跳空一小時，結束DST會讓時間重複一小時</li>
+<li>因為DST的調整會造成調整前時間不存在，加上每個地方調整時間的始點不同。
+如果調整在午夜凌晨，會無法使用 midnight 代表當天</li>
+</ul>
 <h3 id="java-在時區和日光節約時間的應用">Java 在時區和日光節約時間的應用</h3>
 <p>Java 8 支援時區 Time Zones 的應用類別如下：</p>
 <h4 id="類別-zoneid">類別 ZoneId</h4>
+<blockquote>
+<p>使用此類別 static 方法取得特定時區物件 ZoneId，再以ZoneId取得ZoneRules</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ZoneId</span> <span class="n">taipei</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZoneId</span> <span class="n">newYork</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;America/New_York&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZoneRules</span> <span class="n">taipeiRules</span> <span class="o">=</span> <span class="n">taipei</span><span class="o">.</span><span class="na">getRules</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h4 id="類別-zonerules">類別 ZoneRules</h4>
 <p>此類別擁有的方法可取得該時區的相關規則（rules），像是</p>
 <h5 id="1-isdaylightsavingsinstant">1. <code>isDaylightSavings(Instant)</code></h5>
+<p>​	確認傳入的Instant時間是否為DST時間
+​	<code>getStandardOffset(instand).equals(getOffset(instand)) == false</code></p>
 <h5 id="2-getstandardoffsetinstant">2. <code>getStandardOffset(Instant)</code></h5>
+<p>​	依據傳入時間判斷和UTC的時間差，不考慮是否為DST，回傳ZoneOffset物件</p>
 <h5 id="3-getoffsetinstand">3. <code>getOffset(Instand)</code></h5>
-<h4 id="類別-zoneoffset">類別 ZoneOffset</h4>
+<p>​	依據傳入時間判斷和UTC的時間差，是否是DST也會影響結果，回傳ZoneOffset物件</p>
+<blockquote>
+<p>JDK 8 會幫每個時區（ZoneId）內建相關ZoneRules，再由 ZoneRulesProvider 類提供時區的 ZoneRules</p>
+<ul>
+<li>若<code>System.getProperty(&quot;java.time.zone.DefaultZoneRulesProvider&quot;)</code>可得設定值，就由該設定決定</li>
+<li>如果無法取得，則由<code>TzdbZoneRulesProvider</code>類別提供</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ZoneRulesProvider</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">prop</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;java.time.zone.DefaultZoneRulesProvider&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">prop</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">prop</span><span class="o">,</span> <span class="kc">true</span><span class="o">,</span> <span class="n">ClassLoader</span><span class="o">.</span><span class="na">getSystemCLassLoader</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ZoneRulesProvider</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">ZoneRulesProvider</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">cast</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">newInstance</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">                <span class="n">registerProvider</span><span class="o">(</span><span class="n">provider</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">loaded</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">provider</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">throw</span> <span class="k">new</span> <span class="n">Error</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">registerProvider</span><span class="o">(</span><span class="k">new</span> <span class="n">TzdbZoneRulesProvider</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>由 IANA Time Zone Database（TZDB）定義時區資訊，檔案位置(JDK ver.8)位於<code>jdk1.8.0/jre/lib/tzdb.dat</code>，在JDK ver.11 則改為<code>jdk-11.0.13\lib\tzdb.dat</code>，如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">TzdbZoneRulesProvider</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">libDir</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">getProperty</span><span class="o">(</span><span class="s">&#34;java.home&#34;</span><span class="o">)</span> <span class="o">+</span> <span class="n">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="s">&#34;lib&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">(</span><span class="n">DataInputStream</span> <span class="n">dis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataInputStream</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">BufferedInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">libDir</span><span class="o">,</span> <span class="s">&#34;tzdb.dat&#34;</span><span class="o">)))))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">load</span><span class="o">(</span><span class="n">dis</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">ZoneRulesException</span><span class="o">(</span><span class="s">&#34;Unable to load TZDB time-zone rules&#34;</span><span class="o">,</span> <span class="n">ex</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="類別-zoneoffset">類別 ZoneOffset</h4>
+<p>代表該時區和UTC時間的差量（offset），繼承ZoneId類，所以也具備ZoneId的欄位與方法</p>
 <h4 id="綜合示範">綜合示範</h4>
-<h4 id="類別-zoneddatetime">類別 ZonedDateTime</h4>
-<h4 id="類別-zoneoffsettransition">類別 ZoneOffsetTransition</h4>
-<h4 id="類別-offsetdatetime">類別 OffsetDateTime</h4>
-<hr>
-<h2 id="描述日期與時間的數量-1">描述日期與時間的數量</h2>
-<h3 id="類別-instant">類別 Instant</h3>
-<p>Instant 類用來儲存時間軸上一剎那的時間，分成2部分儲存</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ZoneId</span> <span class="n">taipei</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">taipei</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// ZoneId &gt;&gt; ZoneRules
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ZoneRules</span> <span class="n">taipeiRules</span> <span class="o">=</span> <span class="n">taipei</span><span class="o">.</span><span class="na">getRules</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// US started DST
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Instant</span> <span class="n">beforeUsDST</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;2023-03-10T00:00:00Z&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Instant</span> <span class="n">inUsDST</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;2023-03-12T00:00:00Z&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Instant</span> <span class="n">now</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// zoneRules.isDaylightSavings()
+</span></span></span><span class="line"><span class="cl"><span class="c1">// zoneRules.getDaylightSavings(instant).toHours()
+</span></span></span><span class="line"><span class="cl"><span class="c1">// zoneRules.getOffset()
+</span></span></span><span class="line"><span class="cl"><span class="c1">// zoneRules.getStandardOffset()
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="類別-zoneddatetime">類別 ZonedDateTime</h4>
+<p>LocalDateTime 類只能處理當地、不含時區概念的日期和時間</p>
+<p>ZonedDateTime 物件可以結合 LocalDateTime、ZoneId 與 ZoneOffset 的資訊</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LocalDateTime</span> <span class="n">tpNow</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">truncatedTo</span><span class="o">(</span><span class="n">ChronoUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ZoneId</span> <span class="n">newYork</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;America/New_York&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">nyNow</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">(</span><span class="n">newYork</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">truncatedTo</span><span class="o">(</span><span class="n">ChronoUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">nyNow</span><span class="o">.</span><span class="na">getOffset</span><span class="o">();</span> <span class="c1">// -04:00
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">nyNow</span><span class="o">.</span><span class="na">getZone</span><span class="o">();</span>   <span class="c1">// America/New_York
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">zdTime1</span> <span class="o">=</span> <span class="n">ZoneDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">tpNow</span><span class="o">,</span> <span class="n">newYork</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*     YYYY-MM-ddThh:mm{getOffset}{getZone}
+</span></span></span><span class="line"><span class="cl"><span class="cm">   eg. 2022-06-29T16:42-04:00[America/New_York] */</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">zdTime2</span> <span class="o">=</span> <span class="n">zdTime1</span><span class="o">.</span><span class="na">plusDays</span><span class="o">(</span><span class="n">1</span><span class="o">).</span><span class="na">minusMinutes</span><span class="o">(</span><span class="n">15</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>ZonedDateTime</code>也可以在時間跨過 DTS 時，正確處理：</p>
 <ol>
-<li><strong>epoch-seconds(long)</strong></li>
-<li><strong>nanosecond-of-second(int)</strong></li>
+<li>當地時間（LocalDateTime）沒有改變</li>
+<li>和 UTC 的時差可以被正確的被管理</li>
 </ol>
-<h3 id="類別-period-和-duration">類別 Period 和 Duration</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ZoneId</span> <span class="n">usEast</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;America/New_York&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// DST Begins: 2022/03/13
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">LocalDateTime</span> <span class="n">beforeStartDTS</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2022</span><span class="o">,</span> <span class="n">03</span><span class="o">,</span> <span class="n">12</span><span class="o">,</span> <span class="n">16</span><span class="o">,</span> <span class="n">00</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">timeS1</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">beforeStartDTS</span><span class="o">,</span> <span class="n">usEast</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">//🥝 2022-03-12T16:00-05:00[America/New_York] 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ZonedDateTime</span> <span class="n">timeS2</span> <span class="o">=</span> <span class="n">timeS1</span><span class="o">.</span><span class="na">plusDays</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//🥝 2022-03-13T16:00-04:00[America/New_York] 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ZonedDateTime</span> <span class="n">timeS3</span> <span class="o">=</span> <span class="n">timeS1</span><span class="o">.</span><span class="na">plusHours</span><span class="o">(</span><span class="n">24</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//🥝 2022-03-13T17:00-04:00[America/New_York] 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//DST Ends: 2022/11/06
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">LocalDateTime</span> <span class="n">beforeEndDTS</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2022</span><span class="o">,</span> <span class="n">11</span><span class="o">,</span> <span class="n">16</span><span class="o">,</span> <span class="n">00</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">timeE1</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">beforeEndDTS</span><span class="o">,</span> <span class="n">usEast</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//🥝 2022-11-05T16:00-04:00[America/New_York] 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ZonedDateTime</span> <span class="n">timeE2</span> <span class="o">=</span> <span class="n">timeE1</span><span class="o">.</span><span class="na">plusDays</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//🥝 2022-11-06T16:00-05:00[America/New_York] 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ZonedDateTime</span> <span class="n">timeE3</span> <span class="o">=</span> <span class="n">timeE1</span><span class="o">.</span><span class="na">plusHours</span><span class="o">(</span><span class="n">24</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//🥝 2022-11-06T15:00-05:00[America/New_York] 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h4 id="類別-zoneoffsettransition">類別 ZoneOffsetTransition</h4>
+<p>ZoneRules &raquo; ZoneOffsetTransition，可判斷啟動或結束DTS時發生的時間斷層或時間重疊</p>
+<ol>
+<li>啟動DTS時：快轉1小時，造成時間 <strong>斷層（gap）</strong></li>
+<li>結束DTS時：倒回1小時，造成時間 <strong>重疊（overlap）</strong></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">gapOrOverlap</span><span class="o">(</span><span class="n">ZoneId</span> <span class="n">usEast</span><span class="o">,</span> <span class="n">LocalDateTime</span> <span class="n">dt</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ZoneOffsetTransition</span> <span class="n">zot</span> <span class="o">=</span> <span class="n">usEast</span><span class="o">.</span><span class="na">getRules</span><span class="o">().</span><span class="na">getTransition</span><span class="o">(</span><span class="n">dt</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ZoneRules.getTransition(LocalDateTime)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">zot</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">zot</span><span class="o">.</span><span class="na">isGap</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;gap&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        	<span class="c1">// 凌晨02時快轉到03時，造成時間斷層
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">zot</span><span class="o">.</span><span class="na">isOverlap</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;overlap&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 凌晨02時調回到01時，造成時間重疊
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;-- &#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="類別-offsetdatetime">類別 OffsetDateTime</h4>
+<p>此類別可以處理跨時區的問題</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LocalDateTime</span> <span class="n">meeting</span> <span class="o">=</span> <span class="n">LocalDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2023</span><span class="o">,</span> <span class="n">02</span><span class="o">,</span> <span class="n">16</span><span class="o">,</span> <span class="n">10</span><span class="o">,</span> <span class="n">30</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ZoneId</span> <span class="n">zoneTaipei</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">systemDefault</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">host</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">meeting</span><span class="o">,</span> <span class="n">zoneTaipei</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">OffsetDateTime</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">host</span><span class="o">.</span><span class="na">toOffsetDateTime</span><span class="o">();</span>  <span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">ZoneId</span> <span class="n">zoneLondon</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;Europe/London&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">callLondon</span> <span class="o">=</span> <span class="n">offset</span><span class="o">.</span><span class="na">atZoneSameInstant</span><span class="o">(</span><span class="n">zoneLondon</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ZoneId</span> <span class="n">zoneNewYork</span> <span class="o">=</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;America/New_York&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">callNewYork</span> <span class="o">=</span> <span class="n">offset</span><span class="o">.</span><span class="na">atZoneSameInstant</span><span class="o">(</span><span class="n">zoneNewYork</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="描述日期與時間的數量">描述日期與時間的數量</h2>
+<h3 id="類別-instant">類別 Instant</h3>
+<p>Instant 類用來儲存時間軸上<em>一剎那的時間</em>，分成2部分儲存</p>
+<ol>
+<li>
+<p><strong>epoch-seconds(long)</strong></p>
+<ul>
+<li>
+<p>是指從UTC/GMT的1970-01-01T00:00:00Z 開始起算後經歷的時間</p>
+<ul>
+<li>
+<p>因為認為此時間是Unix作業系統的時間起算點，又稱為</p>
+<ul>
+<li>Unix epoch</li>
+<li>Unix time</li>
+<li>POSIX time</li>
+<li>Unix timestamp</li>
+</ul>
+</li>
+<li>
+<p>大於此時間為正值，在這以前的時間為負值</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>nanosecond-of-second(int)</strong></p>
+<ul>
+<li>儲存值在 0 ~ 999,999,999 之間</li>
+<li>其依賴於 EPOCH 時間的狀況，與以下接近
+<ul>
+<li><code>System.currentTimeMillis()</code>的方法內容</li>
+<li>建構<code>java.util.Date</code>物件的方式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">().</span><span class="na">getEpochSecond</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 取得EPOCH時間，以秒計: 1656407085
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">Date</span><span class="o">().</span><span class="na">getTime</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 取得EPOCH時間，以毫秒計: 1468131459758
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example - Instant</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Instant</span> <span class="n">now</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">Thead</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// long milliseconds, int nanoseconds
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Instant</span> <span class="n">later</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="n">isNowBeforeLater</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="na">isBefore</span><span class="o">(</span><span class="n">later</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Instant</span> <span class="n">epoch</span> <span class="o">=</span> <span class="n">Instant</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">&#34;1970-01-01T00:00:00Z&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 1970-01-01T00:00:00Z 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="類別-period-和-duration">類別 Period 和 Duration</h3>
 <ol>
 <li>Period:
 <ul>
@@ -13313,6 +14240,41 @@ API文件 -&gt; <code>This class models a quantity or amount of time in terms of
 <li>沒有日光節約時間的概念，<em>每一天</em> 被 <em>24小時</em> 的概念取代</li>
 </ul>
 </li>
+</ol>
+<p>可以使用以下方式計算兩個日期的差距</p>
+<ol>
+<li>
+<p><code>ChronoUnit.DAYS.between(LocalDate, LocalDate)</code> 回傳差距的總天數</p>
+</li>
+<li>
+<p><code>Period.between(LocalDate, LocalDate)</code></p>
+<ul>
+<li><code>getMonths()</code> 回傳差幾個月</li>
+<li><code>getDays()</code> 回傳差幾天</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">christmas</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2023</span><span class="o">,</span> <span class="n">12</span><span class="o">,</span> <span class="n">25</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">today</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Today is &#34;</span> <span class="o">+</span> <span class="n">today</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">days</span> <span class="o">=</span> <span class="n">ChronoUnit</span><span class="o">.</span><span class="na">DAYS</span><span class="o">.</span><span class="na">between</span><span class="o">(</span><span class="n">today</span><span class="o">,</span> <span class="n">christmas</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Period</span> <span class="n">untilXMas</span> <span class="o">=</span> <span class="n">Period</span><span class="o">.</span><span class="na">between</span><span class="o">(</span><span class="n">today</span><span class="o">,</span> <span class="n">christmas</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// untilXMas.getMonths()
+</span></span></span><span class="line"><span class="cl"><span class="c1">// untilXMas.getDays())
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ol>
 <h3 id="使用流暢fluent的程式風格">使用流暢（fluent）的程式風格</h3>
 <div class="highlight"><div class="chroma">
@@ -13366,17 +14328,398 @@ API文件 -&gt; <code>This class models a quantity or amount of time in terms of
 </div><hr>
 <h1 id="12-標註型別-annotation">12 標註型別 <em>Annotation</em></h1>
 <h2 id="認識標註型別">認識標註型別</h2>
+<p>🚧🚧🚧🚧🚧</p>
+<h3 id="認識metadata">認識Metadata</h3>
+<h3 id="標註型別的目的">標註型別的目的</h3>
+<h4 id="目的與功能_1">目的與功能_1</h4>
+<h4 id="目的與功能_2">目的與功能_2</h4>
+<blockquote>
+<p>Little Tips☕🍪</p>
+</blockquote>
+<h4 id="目的與功能_3">目的與功能_3</h4>
+<h4 id="目的與功能_4">目的與功能_4</h4>
+<blockquote>
+<p>Little Tips☕🍪</p>
+</blockquote>
+<hr>
 <h2 id="建立自定義標註型別">建立自定義標註型別</h2>
+<h3 id="建立標註型別">建立標註型別</h3>
+<h3 id="定義必要required元素">定義必要（required）元素</h3>
+<h3 id="定義非必要optional元素">定義非必要（optional）元素</h3>
+<h4 id="定義預設元素值">定義預設元素值</h4>
+<h3 id="定義元素型態type">定義元素型態（type）</h3>
+<h3 id="定義元素修飾詞">定義元素修飾詞</h3>
+<h3 id="定義常數">定義常數</h3>
+<hr>
 <h2 id="標註型別的應用">標註型別的應用</h2>
+<h3 id="在宣告時使用標註型別">在宣告時使用標註型別</h3>
+<h3 id="定義名稱為-value-的元素">定義名稱為 value() 的元素</h3>
+<blockquote>
+<p>Little Tips 🍪☕ 正確使用 value() 元素</p>
+</blockquote>
+<h3 id="元素值為陣列的應用方式">元素值為陣列的應用方式</h3>
+<hr>
 <h2 id="自定義標註型別時使用的內建標註型別">自定義標註型別時使用的內建標註型別</h2>
+<h3 id="以target限制使用標的">以<code>@Target</code>限制使用標的</h3>
+<h4 id="了解-type_use-值">了解 TYPE_USE 值</h4>
+<h3 id="以-retention-決定作用範圍">以 @Retention 決定作用範圍</h3>
+<h3 id="以-documented-支援api文件顯示">以 @Documented 支援API文件顯示</h3>
+<blockquote>
+<p>Little Tips☕🍪 和指令javadoc有關的標註型別</p>
+</blockquote>
+<h3 id="以inherited取得父類別標註型別">以@Inherited取得父類別標註型別</h3>
+<h3 id="以repeatable支援重複使用同一標註型別">以@Repeatable支援重複使用同一標註型別</h3>
+<blockquote>
+<p>Little Tips🍪☕ 沒有@Repeatable時的作法</p>
+</blockquote>
+<h3 id="本章內建標註型別總結">本章內建標註型別總結</h3>
+<table>
+<thead>
+<tr>
+<th>內建annotation</th>
+<th>是否為標記型annotation</th>
+<th>元素value()型態</th>
+<th>未使用時的行為或者選項</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Target</td>
+<td>No</td>
+<td><code>ElementType[]</code></td>
+<td>TYPE_USE和TYPE_PARAMETER之外的任意目標</td>
+</tr>
+<tr>
+<td>@Retention</td>
+<td>No</td>
+<td><code>RetentionPolicy</code></td>
+<td><code>RetentionPolicy.CLASS</code></td>
+</tr>
+<tr>
+<td>@Documented</td>
+<td>Yes</td>
+<td>-</td>
+<td>annotation的資訊不會出現在API文件中</td>
+</tr>
+<tr>
+<td>@Inherited</td>
+<td>Yes</td>
+<td>-</td>
+<td>無法取得父類別的annotation</td>
+</tr>
+<tr>
+<td>@Repeatable</td>
+<td>No</td>
+<td>另一個annotation</td>
+<td>annotation不可重複</td>
+</tr>
+</tbody>
+</table>
+<hr>
 <h2 id="開發一般程式碼經常使用的內建標註型別">開發一般程式碼經常使用的內建標註型別</h2>
+<h3 id="使用-override-標註覆寫的方法">使用 @Override 標註覆寫的方法</h3>
+<h3 id="使用-functionalinterface-宣告介面">使用 @FunctionalInterface 宣告介面</h3>
+<h3 id="使用-deprecated-停用程式碼">使用 @Deprecated 停用程式碼</h3>
+<h3 id="使用-supresswarnings-忽略警告">使用 @SupressWarnings 忽略警告</h3>
+<h3 id="使用-safevarargs-保護參數">使用 @SafeVarargs 保護參數</h3>
+<h3 id="本章內建標註型別總結-1">本章內建標註型別總結</h3>
+<table>
+<thead>
+<tr>
+<th>內建annotation</th>
+<th>是否為標記annotation</th>
+<th>元素value()型態</th>
+<th>非必要元素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Override</td>
+<td>Yes</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>@FunctionalInterface</td>
+<td>Yes</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>@Deprecated</td>
+<td>No</td>
+<td>-</td>
+<td>String since()<!-- raw HTML omitted -->boolean forRemoval()</td>
+</tr>
+<tr>
+<td>@SuppressWarnings</td>
+<td>No</td>
+<td>String[]</td>
+<td>-</td>
+</tr>
+<tr>
+<td>@SafeVarargs</td>
+<td>Yes</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>標註型別</th>
+<th>標註目標</th>
+<th>無法標註的狀況</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Override</td>
+<td>方法</td>
+<td>不滿足覆寫的定義</td>
+</tr>
+<tr>
+<td>@FunctionalInterface</td>
+<td>介面</td>
+<td>介面不只有一個抽象方法</td>
+</tr>
+<tr>
+<td>@Deprecated</td>
+<td>大部分的Java宣告</td>
+<td>-</td>
+</tr>
+<tr>
+<td>@SuppressWarnings</td>
+<td>大部分的Java宣告</td>
+<td>-</td>
+</tr>
+<tr>
+<td>@SafeVarargs</td>
+<td>方法<!-- raw HTML omitted -->建構子</td>
+<td>參數不是可變動個數，或者方法未以private、static或者final宣告</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <h1 id="13-java-平台模組系統">13 Java 平台模組系統</h1>
 <h2 id="認識-java-模組化">認識 Java 模組化</h2>
+<h3 id="介紹模組module">介紹模組（Module）</h3>
+<h4 id="模組化需求">模組化需求</h4>
+<h4 id="本章範例專案說明">本章範例專案說明</h4>
+<h3 id="模組化的效益">模組化的效益</h3>
+<h4 id="1-更好的存取控制">1. 更好的存取控制</h4>
+<h4 id="2-更清晰的依賴管理">2. 更清晰的依賴管理</h4>
+<h4 id="3-自定義java構建build內容">3. 自定義Java構建（build）內容</h4>
+<h4 id="4-提升效能">4. 提升效能</h4>
+<h4 id="5-避免套件重複">5. 避免套件重複</h4>
+<blockquote>
+<p>Little Tips☕🍪 現有程式碼的模組化</p>
+</blockquote>
+<hr>
 <h2 id="建立和執行模組化程式">建立和執行模組化程式</h2>
+<h3 id="建立模組專案">建立模組專案</h3>
+<h4 id="建立套件類別與模組資訊檔案">建立套件、類別與模組資訊檔案</h4>
+<blockquote>
+<p>Little Tips🍪☕ <code>module-info.java</code> 檔案可以為空嗎？</p>
+</blockquote>
+<h3 id="編譯模組專案">編譯模組專案</h3>
+<blockquote>
+<p>Little Tips☕🍪 傳統類別路徑（classpath）的選項</p>
+</blockquote>
+<h3 id="執行模組專案">執行模組專案</h3>
+<h3 id="打包模組專案">打包模組專案</h3>
+<hr>
 <h2 id="建立相依模組程式">建立相依模組程式</h2>
+<h3 id="使用exports開放模組內的套件">使用exports開放模組內的套件</h3>
+<h3 id="使用requires相依外部模組的套件">使用requires相依外部模組的套件</h3>
+<h4 id="建立zooanimalcare模組">建立<code>zoo.animal.care</code>模組</h4>
+<h4 id="編譯和打包zooanimalcare模組">編譯和打包<code>zoo.animal.care</code>模組</h4>
+<h4 id="建立編譯打包zooanimalshows模組">建立、編譯、打包<code>zoo.animal.shows</code>模組</h4>
+<h4 id="建立編譯打包zoostaff模組">建立、編譯、打包<code>zoo.staff</code>模組</h4>
+<h3 id="使用-eclipse-設定專案的模組相依關係">使用 Eclipse 設定專案的模組相依關係</h3>
+<h4 id="專案zooanimalfeeding">專案<code>zoo.animal.feeding</code></h4>
+<h4 id="專案zooanimalcare">專案<code>zoo.animal.care</code></h4>
+<h4 id="專案zooanimalshows">專案<code>zoo.animal.shows</code></h4>
+<h4 id="專案zoostaff">專案<code>zoo.staff</code></h4>
+<hr>
 <h2 id="認識-module-infojava-的宣告關鍵字">認識 <code>module-info.java</code> 的宣告關鍵字</h2>
+<blockquote>
+<p>Little Tips🍪☕ 模組宣告指令exports和requires是Java關鍵字嗎</p>
+</blockquote>
+<h3 id="使用exports">使用exports</h3>
+<h3 id="使用requires和requires-transitive">使用requires和requires transitive</h3>
+<h4 id="1-修改模組zooanimalfeeding">1. 修改模組<code>zoo.animal.feeding</code></h4>
+<h4 id="2-修改模組zooanimalcare">2. 修改模組<code>zoo.animal.care</code></h4>
+<h4 id="3-修改模組zooanimalshows">3. 修改模組<code>zoo.animal.shows</code></h4>
+<h4 id="4-修改模組zoostaff">4. 修改模組<code>zoo.staff</code></h4>
+<blockquote>
+<p>Little Tips☕🍪 模組資訊檔 module-info.java 內的敘述如果重複會如何?</p>
+</blockquote>
+<h3 id="使用providesusesopens">使用provides、uses、opens</h3>
+<hr>
 <h2 id="在命令列-command-line-使用模組指令選項">在命令列 <code>command line</code> 使用模組指令選項</h2>
+<h3 id="使用java指令">使用java指令</h3>
+<h4 id="1-使用選項---describe-module">1. 使用選項 &ndash;describe-module</h4>
+<h4 id="2-使用選項---list-modules">2. 使用選項 &ndash;list-modules</h4>
+<h4 id="3-使用選項---show-module-resolution">3. 使用選項 &ndash;show-module-resolution</h4>
+<h3 id="使用jar指令">使用jar指令</h3>
+<h3 id="使用jdeps指令">使用jdeps指令</h3>
+<h4 id="-summary">-summary</h4>
+<h4 id="--list-deps">&ndash;list-deps</h4>
+<h3 id="使用jmod指令">使用jmod指令</h3>
+<h3 id="指令彙整">指令彙整</h3>
+<h4 id="1-指令列操作比較表-">1. 指令列操作比較表 🚧🚧🚧🚧🚧</h4>
+<table>
+<thead>
+<tr>
+<th>功能操作</th>
+<th>範例或語法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>編譯非模組化程式碼</td>
+<td><code>javac -cp &lt;lib/*&gt; &lt;src/lab/Test.java&gt;</code><!-- raw HTML omitted --><code>javac -cp &lt;lib/*&gt; -d &lt;src/lab/Test.java&gt;</code><!-- raw HTML omitted --><code>javac --class-path &lt;lib/*&gt; -d &lt;src/lab/Test.java&gt;</code><!-- raw HTML omitted --><code>javac -classpath &lt;lib/*&gt; -d &lt;src/lab/Test.java&gt;</code></td>
+</tr>
+<tr>
+<td>執行非模組化程式碼</td>
+<td><code>java -cp &lt;./src;./lib/*&gt; &lt;lab.Test&gt;</code><!-- raw HTML omitted --><code>java -cp &lt;./bin;./lib/*&gt; &lt;lab.Test&gt;</code><!-- raw HTML omitted --><code>java --class-path&lt;./bin;./lib/*&gt; &lt;lab.Test&gt;</code><!-- raw HTML omitted --><code>java -classpath &lt;./bin;./lib/*&gt; &lt;lab.Test&gt;</code></td>
+</tr>
+<tr>
+<td>編譯模組化程式碼</td>
+<td><code>javac -p &lt;mods&gt; -d &lt;src&gt; &lt;src/zoo/animal/feeding/*.java&gt; &lt;src/module-info.java&gt;</code><!-- raw HTML omitted --><code>javac --module-path &lt;mods&gt; -d &lt;src&gt; &lt;src/zoo/animal/feeding/*.java&gt; &lt;src/module-info.java&gt; </code></td>
+</tr>
+<tr>
+<td>執行模組化程式碼</td>
+<td><code>java -p &lt;mods&gt; -m &lt;zoo.animal.feeding/zoo.animal.feeding.Task&gt;</code><!-- raw HTML omitted --><code>java --module-path &lt;mods&gt; --module &lt;zoo.animal.feeding/zoo.animal. feeding.Task&gt; </code></td>
+</tr>
+<tr>
+<td>描述模組內容</td>
+<td><code>java -p &lt;mods&gt; -d &lt;zoo.animal.feeding&gt; </code><!-- raw HTML omitted --><code>java --module-path &lt;mods&gt; --describe-module &lt;zoo.animal.feeding&gt; </code><!-- raw HTML omitted --><code>jar --file &lt;mods/zoo.animal.feeding.jar&gt; --describe-module </code><!-- raw HTML omitted --><code>jar -f &lt;mods/zoo.animal.feeding.jar&gt; -d </code></td>
+</tr>
+<tr>
+<td>列舉模組清單</td>
+<td><code>java --module-path mods --list-modules </code><!-- raw HTML omitted --><code>&lt;br /&gt;</code></td>
+</tr>
+<tr>
+<td>檢視模組關聯</td>
+<td></td>
+</tr>
+<tr>
+<td>解析模組執行步驟</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-指令javac常用選項列表">2. 指令javac常用選項列表</h4>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-cp &lt;classpath&gt;<!-- raw HTML omitted -->-classpath &lt;classpath&gt;<!-- raw HTML omitted -->&ndash;class-path &lt;classpath&gt;</td>
+<td>非模組化程式指定JAR檔案位置</td>
+</tr>
+<tr>
+<td>-d &lt;dir&gt;</td>
+<td>指定產生 *.class 的資料夾</td>
+</tr>
+<tr>
+<td>-p &lt;path&gt;<!-- raw HTML omitted -->&ndash;module-path &lt;path&gt;</td>
+<td>模組化程式指定模組JAR檔案路徑</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3-指令java常用選項列表">3. 指令java常用選項列表</h4>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p &lt;path&gt;<!-- raw HTML omitted -->&ndash;module-path &lt;path&gt;</td>
+<td>模組化程式中指定JAR檔案路徑</td>
+</tr>
+<tr>
+<td>-m &lt;name&gt;<!-- raw HTML omitted -->&ndash;module &lt;name&gt;</td>
+<td>指定要執行的模組名稱</td>
+</tr>
+<tr>
+<td>-d<!-- raw HTML omitted -->&ndash;describe-module</td>
+<td>描述模組內容</td>
+</tr>
+<tr>
+<td>&ndash;list-modules</td>
+<td>列舉模組清單但未執行模組</td>
+</tr>
+<tr>
+<td>&ndash;show-module-resolution</td>
+<td>解析模組執行時步驟</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-指令jar常用選項列表">4. 指令jar常用選項列表</h4>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-c<!-- raw HTML omitted -->&ndash;create</td>
+<td>建立JAR檔案</td>
+</tr>
+<tr>
+<td>-v<!-- raw HTML omitted -->&ndash;verbose</td>
+<td>執行JAR檔案時輸出細節</td>
+</tr>
+<tr>
+<td>-f<!-- raw HTML omitted -->&ndash;file</td>
+<td>指定JAR檔案名稱</td>
+</tr>
+<tr>
+<td>-C</td>
+<td>指定資料夾內的檔案要產生JAR檔</td>
+</tr>
+<tr>
+<td>-d<!-- raw HTML omitted -->&ndash;describe-module</td>
+<td>描述模組內容</td>
+</tr>
+</tbody>
+</table>
+<h4 id="5-指令jdeps常用選項列表">5. 指令jdeps常用選項列表</h4>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&ndash;module-path &lt;path&gt;</td>
+<td>模組化程式中指定JAR檔案路徑</td>
+</tr>
+<tr>
+<td>-s<!-- raw HTML omitted -->-summary</td>
+<td>輸出概括性描述</td>
+</tr>
+<tr>
+<td>&ndash;list-deps</td>
+<td>列舉相依模組，若使用JDK內部API也會列出</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <h1 id="14-模組化應用程式">14 模組化應用程式</h1>
 <h2 id="回顧模組指令">回顧模組指令</h2>
