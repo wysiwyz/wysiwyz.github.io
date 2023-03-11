@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  20877 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  23188 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-02-05T17:50:34+08:00","dateModified": "2023-02-05T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;20877 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;99 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;23188 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;109 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -553,17 +553,58 @@
 
   <ul>
     <li><a href="#回顧模組指令">回顧模組指令</a></li>
-    <li><a href="#比較模組類型">比較模組類型</a></li>
-    <li><a href="#分析-jdk-依賴關係">分析 JDK 依賴關係</a></li>
-    <li><a href="#模組化既有應用程式">模組化既有應用程式</a></li>
+    <li><a href="#比較模組類型">比較模組類型</a>
+      <ul>
+        <li><a href="#命名模組">命名模組</a></li>
+        <li><a href="#自動模組">自動模組</a></li>
+        <li><a href="#未命名模組">未命名模組</a></li>
+        <li><a href="#比較模組類型-1">比較模組類型</a></li>
+      </ul>
+    </li>
+    <li><a href="#分析-jdk-依賴關係">分析 JDK 依賴關係</a>
+      <ul>
+        <li><a href="#識別內建模組">識別內建模組</a></li>
+        <li><a href="#使用-jdeps">使用 JDEPS</a></li>
+      </ul>
+    </li>
+    <li><a href="#模組化既有應用程式">模組化既有應用程式</a>
+      <ul>
+        <li><a href="#確定函式庫相依順序">確定函式庫相依順序</a></li>
+        <li><a href="#使用由下而上的模組化策略">使用由下而上的模組化策略</a></li>
+        <li><a href="#使用由上而下的模組化策略">使用由上而下的模組化策略</a></li>
+        <li><a href="#解構與模組化單體應用程式">解構與模組化單體應用程式</a></li>
+        <li><a href="#循環的相依性導致無法編譯">循環的相依性導致無法編譯</a></li>
+      </ul>
+    </li>
     <li><a href="#模組化-java-服務結構">模組化 Java 服務結構</a></li>
   </ul>
 
   <ul>
-    <li><a href="#設計安全物件">設計安全物件</a></li>
-    <li><a href="#注入-injection-攻擊與輸入-input-驗證">注入 <em>injection</em> 攻擊與輸入 <em>input</em> 驗證</a></li>
-    <li><a href="#處理機敏資訊">處理機敏資訊</a></li>
-    <li><a href="#序列化與反序列化物件">序列化與反序列化物件</a></li>
+    <li><a href="#設計安全物件">設計安全物件</a>
+      <ul>
+        <li><a href="#限制可存取性">限制可存取性</a></li>
+        <li><a href="#限制可繼承性">限制可繼承性</a></li>
+        <li><a href="#建立不可更改immutable物件">建立不可更改（immutable）物件</a></li>
+        <li><a href="#複製clone物件">複製（clone）物件</a></li>
+      </ul>
+    </li>
+    <li><a href="#注入-injection-攻擊與輸入-input-驗證">注入 <em>injection</em> 攻擊與輸入 <em>input</em> 驗證</a>
+      <ul>
+        <li></li>
+        <li><a href="#使用輸入驗證input-validation過濾無效輸入">使用輸入驗證（Input Validation）過濾無效輸入</a></li>
+      </ul>
+    </li>
+    <li><a href="#處理機敏資訊">處理機敏資訊</a>
+      <ul>
+        <li><a href="#保護機敏資料的輸出">保護機敏資料的輸出</a></li>
+        <li><a href="#保護記憶體中的資料">保護記憶體中的資料</a></li>
+      </ul>
+    </li>
+    <li><a href="#序列化與反序列化物件">序列化與反序列化物件</a>
+      <ul>
+        <li><a href="#使定序列化的物件欄位">使定序列化的物件欄位</a></li>
+      </ul>
+    </li>
     <li><a href="#建立保護機敏資料的安全物件">建立保護機敏資料的安全物件</a></li>
     <li><a href="#避免服務阻斷-denial-of-service-攻擊">避免服務阻斷 <em>denial of service</em> 攻擊</a></li>
   </ul>
@@ -14328,49 +14369,1107 @@ API文件 -&gt; <code>This class models a quantity or amount of time in terms of
 </div><hr>
 <h1 id="12-標註型別-annotation">12 標註型別 <em>Annotation</em></h1>
 <h2 id="認識標註型別">認識標註型別</h2>
-<p>🚧🚧🚧🚧🚧</p>
+<p>通常用於metadata（元資料、元數據），標註型別從Java1.5引入</p>
 <h3 id="認識metadata">認識Metadata</h3>
+<p>屬性欄位: 構成門票Ticket類別的基本資訊，像是價格、有效期間、購買的數量</p>
+<p>metadata: 比較不直接的關聯</p>
+<ul>
+<li>顧客必須至少購買一張票</li>
+<li>限制每人每天最多購買五張票</li>
+</ul>
+<blockquote>
+<p>Little Tips🍪☕
+metadata規則的值並不需要在程式碼中直接定義，即規則的值不用寫死在程式碼中</p>
+<p>可以在程式碼中定義規則和關係，但從其他地方讀取值(eg. 資料庫、設定檔)</p>
+</blockquote>
 <h3 id="標註型別的目的">標註型別的目的</h3>
-<h4 id="目的與功能_1">目的與功能_1</h4>
+<p>標註型別可以將metadata資訊安插給類別、方法、實例變數，或其他Java類型(interface or enum)</p>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">ZooAnimal</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="目的與功能_1">目的與功能_1</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Mammal</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">Bird</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ZooAnimal</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lion</span> <span class="kd">extends</span> <span class="n">Mammal</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ZooAnimal</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Eagle</span> <span class="kd">extends</span> <span class="n">Bird</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>標註型別具有與介面相似的目的，但如果改用 ZooAnimal 的介面或父類別，並與Lion類建立關係，必須變更類別繼承結構</p>
+</blockquote>
+<h6 id="使用標註型別首要功能是可以在不改變其繼承結構的情況下將實體類別分門別類">使用標註型別首要功能是可以在<strong>不改變其繼承結構的情況下，將實體類別分門別類</strong></h6>
 <h4 id="目的與功能_2">目的與功能_2</h4>
+<table>
+<thead>
+<tr>
+<th>types</th>
+<th>diff</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>介面或父類別</td>
+<td>只能套用在類別層級的宣告</td>
+</tr>
+<tr>
+<td>標註型別</td>
+<td>可應用於任何宣告，包括類別、方法、表達式、實例變數，甚至用來標註其他標註型別<!-- raw HTML omitted -->另外還可以在建立annotation時包含稱為元素element的屬性名稱與值</td>
+</tr>
+</tbody>
+</table>
+<p>Example - 屬性字串的預設值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">ZooAnimal</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">habitat</span><span class="o">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>若未宣告habitat屬性預設為空字串，則先前用<code>@ZooAnimal</code>標註的類別都會被要求加上habitat屬性，造成編譯失敗</p>
+</blockquote>
+<p>Example - override habitat field</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Veterinarian</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ZooAnimal</span><span class="o">(</span><span class="n">habitat</span> <span class="o">=</span> <span class="s">&#34;Infirmary&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Lion</span> <span class="n">sickLion</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ZooAnimal</span><span class="o">(</span><span class="n">habitat</span> <span class="o">=</span> <span class="s">&#34;Forest&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Lion</span> <span class="n">healthyLion</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>定義兩個實例變數，都以@ZooAnimal標註，也都有一個相關的棲息地屬性值</p>
+<p>棲息地屬性值不會因為實例變數指向其他Lion物件而改變，像變數名稱一樣屬於變數宣告的一部分</p>
+<p>沒有標註型別的作法:
+Lion類別須新增habitat屬性欄位，在實例化Lion之後設定habitat屬性值</p>
+</blockquote>
+<h6 id="使用標註型別的第二個功能讓系統的-metadata-維護工作變得更容易">使用標註型別的第二個功能：讓系統的 metadata 維護工作變得更容易</h6>
 <blockquote>
 <p>Little Tips☕🍪</p>
+<p>在沒有標註型別之前，Java通常用另一個class、interface、xml、json等文件管理metadata，通常是分開的，可看成單一責任制法則（SRP, single responsibility principle）的應用</p>
+<p>缺點：系統變複雜時，就需要增加維護成本。
+常見範例是部署描述檔 Deployment Descriptor 的變革 (web.xml -&gt; annotation)
+詳 <em>Java RWD Web 企業網站開發指南 | 使用 Spring MVC 與 Bootstrap</em></p>
 </blockquote>
 <h4 id="目的與功能_3">目的與功能_3</h4>
+<p>Example - 可用來標註方法，並且指示何時該執行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">ZooSchedule</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="o">[]</span> <span class="nf">hours</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ZooAnimal</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lion</span> <span class="kd">extends</span> <span class="n">Mammal</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ZooSchedule</span><span class="o">(</span><span class="n">hours</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;9am&#34;</span><span class="o">,</span> <span class="s">&#34;5pm&#34;</span><span class="o">,</span> <span class="s">&#34;10pm&#34;</span> <span class="o">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">feed</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&#34;Time to feed the lions!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ZooAnimal</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Eagle</span> <span class="kd">extends</span> <span class="n">Bird</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@ZooSchedule</span><span class="o">(</span><span class="n">hours</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;4am&#34;</span><span class="o">,</span> <span class="s">&#34;5pm&#34;</span> <span class="o">})</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">clean</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">&#34;Time to sweep up!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>雖然 feed() 與 clean() 在不同類別，但標註型別所帶資訊意義相似</p>
+</blockquote>
+<h6 id="標註型別第三個功能可將需要的metadata標註在完全不同的目標即便類別實例變數或方法不相關">標註型別第三個功能：可將需要的metadata標註在完全不同的目標，即便類別、實例變數或方法不相關</h6>
 <h4 id="目的與功能_4">目的與功能_4</h4>
+<h6 id="第四個功能last標註型別本身為optional">第四個功能(last)：標註型別本身為Optional</h6>
+<p>非必要的、不做任何事情，類似 marker interface。表示可以刪除一個專案裡所有標註型別，但不影響編譯，只是執行期間可能會出錯，或有不同行為/結果</p>
+<p>因為使用標註型別的地方通常不會是在標註的地方，通常是在底層框架或程式其他地方</p>
+<p>例如 @ZooSchedule 未標註時間會導致該方法不會被執行，或不知道何時該被執行</p>
+<p>但是如果新增標註型別到不適合的地方，可能會導致編譯錯誤。例:<code>@Override</code>必須可以覆寫父類別方法</p>
 <blockquote>
 <p>Little Tips☕🍪</p>
+<p>最受認可、最先普及以及使用標註型別的平台是Spring framework，將標註型別應用於依賴注入技術，以用於解耦合</p>
 </blockquote>
 <hr>
 <h2 id="建立自定義標註型別">建立自定義標註型別</h2>
 <h3 id="建立標註型別">建立標註型別</h3>
-<h3 id="定義必要required元素">定義必要（required）元素</h3>
+<blockquote>
+<p>指定運動型態的 metadata，全部小寫-@interface，駝峰法則-型別名稱Exercise</p>
+<p>也可以用巢狀類別的方式宣告標註型別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Exercise</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h6 id="標記型標註型別marker-annotation">標記型標註型別（marker annotation）</h6>
+<ul>
+<li>不包含任何元素，和marker interface不具備任何成員相似</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Exercise</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Cheetah</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Exercise</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Sleep</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Exercise</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">ZooEmployee</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>ln#1，使用時可以加上<code>()</code>，不影響編譯。但如果有宣告必要元素的化，就必須使用<code>()</code>，裡面囊括元素與其值</p>
+<p>ln#8，標註型別如同介面，可以應用於和一開始需求不一致、不相關的類別</p>
+</blockquote>
+<p>一個類別也可以同時套用多個標註型別，會作用在宣告位置的下一個<strong>非</strong>標註類的Java型態</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@AnnotationA</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AnnotationB</span><span class="o">(</span><span class="s">&#34;value1&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AnnotationC</span><span class="o">(</span><span class="s">&#34;value2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AnnotationD</span> <span class="nd">@AnnotationE</span> <span class="nd">@AnnotationF</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AnnotationG</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MarieJeanClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="定義必要required元素">定義必要（required）元素</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Exercise</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// element
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="nf">hoursPerDay</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Exercise</span><span class="o">(</span><span class="n">hoursPerDay</span> <span class="o">=</span> <span class="n">3</span><span class="o">)</span>  <span class="c1">// compile success
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">class</span> <span class="nc">Cheetah</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Exercise</span> <span class="n">hoursPerDay</span><span class="o">=</span><span class="n">0</span>     <span class="c1">// compiled fail
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">class</span> <span class="nc">Sleep</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Exercise</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">ZooEmployee</span> <span class="o">{</span>         <span class="c1">// compiled fail
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>建立標註型別時，只要沒用 default 關鍵字建立元素預設值，就算是必要元素(<strong>required</strong>)</p>
+</blockquote>
 <h3 id="定義非必要optional元素">定義非必要（optional）元素</h3>
+<p>如果元素是非必要的，就必須要包含預設值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Exercise</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">hoursPerDay</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">startHour</span><span class="o">()</span> <span class="k">default</span> <span class="n">6</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>簡單規則</p>
+<ol>
+<li>
+<p>Annotation如果有多個元素值，使用<strong>逗號</strong>分隔</p>
+</li>
+<li>
+<p>每一個元素編寫的語法<strong>元素名稱=元素值</strong></p>
+</li>
+<li>
+<p>元素先後順序不影響編譯</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Exercise</span><span class="o">(</span><span class="n">startHour</span> <span class="o">=</span> <span class="n">5</span><span class="o">,</span> <span class="n">hoursPerDay</span> <span class="o">=</span> <span class="n">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Cheetah</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Exercise</span><span class="o">(</span><span class="n">hoursPerDay</span> <span class="o">=</span> <span class="n">0</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Sleep</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Exercise</span><span class="o">(</span><span class="n">hoursPerDay</span> <span class="o">=</span> <span class="n">7</span><span class="o">,</span> <span class="n">startHour</span> <span class="o">=</span> <span class="s">&#34;8&#34;</span><span class="o">)</span> <span class="c1">// compile error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">class</span> <span class="nc">ZooEmployee</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
 <h4 id="定義預設元素值">定義預設元素值</h4>
-<h3 id="定義元素型態type">定義元素型態（type）</h3>
-<h3 id="定義元素修飾詞">定義元素修飾詞</h3>
-<h3 id="定義常數">定義常數</h3>
-<hr>
+<p>Annotation的預設值不能為任意值，必須是「非空常量表達式（non null constant expression）」</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">MehAnnotation</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">name</span><span class="o">()</span> <span class="k">default</span> <span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span> <span class="c1">// compile error,not constant expr
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="nf">address</span><span class="o">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">title</span><span class="o">()</span> <span class="k">default</span> <span class="kc">null</span><span class="o">;</span>          <span class="c1">// compile error, cannot be null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="定義元素型態type">定義元素型態（type）</h3>
+<p>元素也有限制型態</p>
+<ol>
+<li>primitive data type 基本型別</li>
+<li>String</li>
+<li>Class</li>
+<li>Enumeration 列舉型別</li>
+<li>Another annotation 另一個標註型別</li>
+<li>1D array of above types 以上的一維陣列</li>
+</ol>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/** 回報bug時可參照的文章id編號 */</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">Reference</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">id</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/** 定義bug狀態:未確認,已確認,已修復,非bug */</span>
+</span></span><span class="line"><span class="cl"><span class="kd">enum</span> <span class="n">Status</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UNCONFIRMED</span><span class="o">,</span> <span class="n">CONFIRMED</span><span class="o">,</span> <span class="n">FIXED</span><span class="o">,</span> <span class="n">NOTABUG</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">BugReport</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 是否可修復 */</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="nf">repeatable</span><span class="o">();</span>  
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 指定bugfix的工程師 */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">assignedTo</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 回報bug的測試人員 */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="o">[]</span> <span class="nf">reportedBy</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 驗證bug的測試案例 */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">testCase</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Status</span> <span class="nf">status</span><span class="o">();</span>       <span class="c1">//enumeration
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Reference</span> <span class="nf">ref</span><span class="o">();</span>       <span class="c1">//another annotation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MyTestCase</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@BugReport</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assignedTo</span> <span class="o">=</span> <span class="s">&#34;Jim&#34;</span><span class="o">,</span> <span class="n">ref</span> <span class="o">=</span> <span class="nd">@Reference</span><span class="o">(</span><span class="n">id</span><span class="o">=</span><span class="s">&#34;101&#34;</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repeatable</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">reportedBy</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;Jean&#34;</span><span class="o">,</span> <span class="s">&#34;Tony&#34;</span> <span class="o">},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">status</span> <span class="o">=</span> <span class="n">Status</span><span class="o">.</span><span class="na">UNCONFIRMED</span><span class="o">,</span> <span class="n">testCase</span> <span class="o">=</span> <span class="n">MyTestCase</span><span class="o">.</span><span class="na">class</span> <span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">BugReportUsage</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="定義元素修飾詞">定義元素修飾詞</h3>
+<p>@interface源於介面interface，在Java機制裡，標註型別的元素會被轉為介面方法</p>
+<p>與抽象介面方法一樣，標註型別元素為 public abstract</p>
+<p>如果有明確宣告的關鍵字也不能與 abstract public 衝突</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">ModifierLab</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">element1</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">abstract</span> <span class="kt">int</span> <span class="nf">element2</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">int</span> <span class="nf">element3</span><span class="o">();</span>  <span class="c1">// conflict against &#39;public&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">element4</span><span class="o">();</span>    <span class="c1">// conflict against &#39;public&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">final</span> <span class="kt">int</span> <span class="nf">element5</span><span class="o">();</span> <span class="c1">// conflict against &#39;abstract&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="定義常數">定義常數</h3>
+<p>在annotation裡定義變數，跟在介面裡定義變數的限制一致，預設是 public static final</p>
+<p>如果有明確宣告的關鍵字也不能與 public static final 衝突</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">ConstantVarLab</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">VAR1</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">VAR2</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">protected</span> <span class="kt">int</span> <span class="n">VAR3</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span> <span class="c1">// compile fail
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">VAR4</span> <span class="o">=</span> <span class="n">4</span><span class="o">;</span>   <span class="c1">// compile fail
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">ConstantVar</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">VAR1</span> <span class="o">=</span> <span class="n">999</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConstantVarLab2</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">ConstantVar</span><span class="o">.</span><span class="na">VAR1</span><span class="o">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="c1">// 使用時不用實際建立標註型別，同介面常數使用一致
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h2 id="標註型別的應用">標註型別的應用</h2>
 <h3 id="在宣告時使用標註型別">在宣告時使用標註型別</h3>
+<p>除了應用於類別和方法，標註型別也可以應用於任何Java宣告</p>
+<ol>
+<li>宣告類別(class)、介面(interface)、列舉型別(enum)、模組(module)</li>
+<li>宣告靜態變數(static)、實例變數(instance)、區域變數(local)</li>
+<li>宣告方法和建構子</li>
+<li>宣告參數(方法、建構子、Lambda表示式)</li>
+<li>宣告轉型表示式</li>
+<li>宣告其他標註型別</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">Anno</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">Anno2</span> <span class="o">{</span> 
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">Runner</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">go</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Anno</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Anno2</span>  <span class="c1">//宣告【類別】時可以使用多個標註型別
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">class</span> <span class="nc">Dog</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Anno</span> <span class="nd">@Anno2</span> <span class="c1">//宣告【建構子】時可以使用多個標註型別
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="nf">Dog</span><span class="o">(</span><span class="nd">@Anno</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//宣告【建構子參數】時可以使用標註型別
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Anno</span> <span class="nd">@Anno2</span> <span class="c1">//宣告【方法】時可以使用多個標註型別
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">eat</span><span class="o">(</span><span class="nd">@Anno</span> <span class="n">String</span> <span class="n">input</span><span class="o">)</span> <span class="o">{</span> <span class="c1">//宣告【方法參數】可以在型態前方使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nd">@Anno</span> <span class="c1">//宣告【區域變數】可以在型態前方使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span> <span class="n">m</span> <span class="o">=</span> <span class="o">(</span><span class="nd">@Anno</span> <span class="n">String</span><span class="o">)</span> <span class="s">&#34;test&#34;</span><span class="o">;</span> <span class="c1">//宣告【轉型表示式】可以在型態前方使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Runner</span> <span class="n">r1</span> <span class="o">=</span> <span class="k">new</span> <span class="nd">@Anno</span> <span class="n">Runner</span><span class="o">()</span> <span class="o">{</span> 
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">go</span><span class="o">(</span><span class="nd">@Anno</span> <span class="nd">@Anno2</span> <span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//宣告Lambda表示式時，可以用標註型別
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Runner</span> <span class="n">r2</span> <span class="o">=</span> <span class="o">(</span><span class="nd">@Anno</span> <span class="n">String</span> <span class="n">n</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>實務上可以使用<code>@Target</code>指定該標註型別可以應用於哪種宣告類型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">SOURCE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Override</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <h3 id="定義名稱為-value-的元素">定義名稱為 value() 的元素</h3>
+<p>有些標註型別帶有元素值，但沒有元素名稱</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Hurt</span><span class="o">(</span><span class="s">&#34;neck&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Giraffe</span> <span class="o">{}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="簡略版標註型別表達式的成立條件">簡略版標註型別表達式的成立條件</h5>
+<ol>
+<li>
+<p>建立此Annotation必須定義一個名為value()的元素，可為M/O</p>
+</li>
+<li>
+<p>建立時，<strong>不得</strong>再定義其他<strong>必要</strong>元素，非必要元素(default)則不受限制</p>
+</li>
+<li>
+<p>使用時，不得再為任何其他元素提供值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Hurt</span><span class="o">(</span><span class="s">&#34;neck&#34;</span><span class="o">,</span> <span class="n">age</span><span class="o">=</span><span class="n">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Giraffe</span> <span class="o">{}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Elephant</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Hurt</span><span class="o">(</span><span class="s">&#34;Legs&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fallDown</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Hurt</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;Legs&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">fallOver</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Hurt</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">injuries</span><span class="o">[];</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
 <blockquote>
 <p>Little Tips 🍪☕ 正確使用 value() 元素</p>
+<p>value() 應該要與標註型別的名稱相關，例如@Hurt的value()元素即為受傷部位</p>
+<p>使用 value()作為元素名稱時:</p>
+<ul>
+<li>value()元素不一定要有default值</li>
+<li>其他元素<strong>一定</strong>都要有default值，否則無法使用</li>
+</ul>
 </blockquote>
 <h3 id="元素值為陣列的應用方式">元素值為陣列的應用方式</h3>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Music</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="o">[]</span> <span class="nf">types</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>有兩種方式可以只提供一個值給陣列，如下ln# 2、ln# 4</p>
+<p>空元素值的表現方式如下ln#6、ln#8</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Monkey</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Music</span> <span class="o">(</span><span class="n">types</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;Rock and roll&#34;</span> <span class="o">})</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">dance</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Music</span> <span class="o">(</span><span class="n">types</span> <span class="o">=</span> <span class="s">&#34;Alternative&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">sleep</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Music</span> <span class="o">(</span><span class="n">types</span> <span class="o">=</span> <span class="o">{})</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">dislike1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Music</span> <span class="o">(</span><span class="n">types</span> <span class="o">=</span><span class="s">&#34;&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">dislike2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
 <hr>
 <h2 id="自定義標註型別時使用的內建標註型別">自定義標註型別時使用的內建標註型別</h2>
+<p>以下是自定義標註型別時，可能會用到的內建標註型別（即 metadata 的 metadata）</p>
 <h3 id="以target限制使用標的">以<code>@Target</code>限制使用標的</h3>
+<p>限制標註型別可以應用的宣告類型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">ANNOTATION_TYPE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Target</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ElementType</span><span class="o">[]</span> <span class="nf">value</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>ElementType enum</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">ElementType</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TYPE</span><span class="o">,</span>            <span class="c1">//
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">FIELD</span><span class="o">,</span>           <span class="c1">//實例變數,靜態變數,列舉項目
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">METHOD</span><span class="o">,</span>          <span class="c1">//方法宣告
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">PARAMETER</span><span class="o">,</span>       <span class="c1">//建構子參數,方法參數,lambda expr參數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">CONSTRUCTOR</span><span class="o">,</span>     <span class="c1">//建構子
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LOCAL_VARIABLE</span><span class="o">,</span>  <span class="c1">//區域變數
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ANNOTATION_TYPE</span><span class="o">,</span> <span class="c1">//annotation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">PACKAGE</span><span class="o">,</span>         <span class="c1">//用在package-info.java裡面的package宣告
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">TYPE_PARAMETER</span><span class="o">,</span>  <span class="c1">//泛型、泛型的參數化型態符號(parameterized types)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">TYPE_USE</span><span class="o">,</span>        <span class="c1">//任何宣告或使用Java型態的地方
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MODULE</span>           <span class="c1">//用在模組的宣告
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>某些 ElementType 的使用範圍是重疊的，例如要建立可用於其他標註型別的標註型別，可以用 <code>ANNOTATION_TYPE</code> 或者 <code>TYPE</code> 宣告</p>
+</blockquote>
 <h4 id="了解-type_use-值">了解 TYPE_USE 值</h4>
+<ul>
+<li><code>ElementType.TYPE_USE</code>幾乎可以應用在任何使用Java型態的地方，<strong>幾乎</strong>可以涵蓋ElementType的其他列舉項目值</li>
+<li>例外: 只能用於具有回傳值的方法，無法用於void方法宣告</li>
+</ul>
 <h3 id="以-retention-決定作用範圍">以 @Retention 決定作用範圍</h3>
-<h3 id="以-documented-支援api文件顯示">以 @Documented 支援API文件顯示</h3>
+<p>編譯器將的 *.java 程式碼轉為 .class位元組碼時，捨棄某些和型態有關的資訊，發生在泛型，就稱為 型態抹除 type erasure</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTINE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">ANNOTATION_TYPE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Retention</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RetentionPolicy</span> <span class="nf">value</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">RetentionPolicy</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SOURCE</span><span class="o">,</span>  <span class="c1">// annotation只存於 *.java，編譯時將被抹除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">CLASS</span><span class="o">,</span>   <span class="c1">// annotation可存在於 *.class，執行時將被抹除(未指定時預設為此)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">RUNTIME</span>  <span class="c1">// annotation可存在於 *.class，執行時期也存在
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.lang.annotation.Retention</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.lang.annotation.RetentionPolicy</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">SOURCE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">Anno1</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">CLASS</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">Anno2</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@interface</span> <span class="n">Anno3</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="以-documented-支援api文件顯示">以 @Documented 支援API文件顯示</h3>
+<p>是標記型（marker）標註型別，不存在任何元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">ANNOTATION_TYPE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Documented</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Hunter</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Hunter</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lion</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在Hunter.java與Lion.java類別所在目錄下執行指令<code>javadoc *.java</code>，產出的API文件可以發現具備annotation資訊</p>
 <blockquote>
 <p>Little Tips☕🍪 和指令javadoc有關的標註型別</p>
+<p>javadoc用來識別的標註型別，例如<code>@param</code>、<code>@return</code>、<code>@exception</code>。注意不要將javadoc標註型別Java標註型別混淆</p>
+<p>通常javadoc標註型別都是<strong>小寫字母開頭</strong>，Java標註型別都以<strong>大寫字母開頭</strong></p>
 </blockquote>
 <h3 id="以inherited取得父類別標註型別">以@Inherited取得父類別標註型別</h3>
-<h3 id="以repeatable支援重複使用同一標註型別">以@Repeatable支援重複使用同一標註型別</h3>
-<blockquote>
+<p>標記型(marker)標註型別，不存在任何元素</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">ANNOTATION_TYPE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Inherited</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>當父類別MySuper使用以@Inherited標註的自定義標註型別@InheritedAnno時，子類別MySub即便沒有直接用@InheritedAnno，一樣能取得此標註型別資訊</p>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Inherited</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">InheritedAnno</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@InheritedAnno</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MySuper</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MySub</span> <span class="kd">extends</span> <span class="n">MySuper</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 使用映射技術在執行期間找出子類別MySub所有標註型別
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="n">Annotation</span> <span class="n">anno</span> <span class="o">:</span> <span class="n">MySub</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">getAnnotations</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">anno</span><span class="o">.</span><span class="na">annotationType</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// lab.annotation.xxx.InheritedAnno
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="以repeatable支援重複使用同一標註型別">以@Repeatable支援重複使用同一標註型別</h3>
+<p>為何會需要可重複的標註型別？當需要應用具有不同元素值的相同標註型別時，就會使用可重複的標註型別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">ElementType</span><span class="o">.</span><span class="na">ANNOTATION_TYPE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Repeatable</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Annotation</span><span class="o">&gt;</span> <span class="nf">value</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* 另一個『以可重複標註型別的陣列作為唯一元素value()值』
+</span></span></span><span class="line"><span class="cl"><span class="cm">       的自定義annotation的類別型態 */</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">RiskFactor</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">desc</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">level</span><span class="o">()</span> <span class="k">default</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@RiskFactor</span><span class="o">(</span><span class="n">desc</span> <span class="o">=</span> <span class="s">&#34;Aggressive&#34;</span><span class="o">,</span> <span class="n">level</span> <span class="o">=</span> <span class="n">5</span><span class="o">)</span> <span class="c1">//failed to compile
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@RiskFactor</span><span class="o">(</span><span class="n">desc</span> <span class="o">=</span> <span class="s">&#34;Violent&#34;</span><span class="o">,</span> <span class="n">level</span> <span class="o">=</span> <span class="n">10</span><span class="o">)</span>   <span class="c1">//failed to compile
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Monkey</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>因為@RiskFactor沒有標註@Repeatable，一個標註型別只能應用一次</p>
+<p>但如果要在@RiskFactor直接標註@Repeatable，還需要先建立另一個 <strong>以<code>RiskFactor[]</code>為唯一元素value()型態的自定義標註型別</strong></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">RiskFactors</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">RiskFactor</span><span class="o">[]</span> <span class="nf">value</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>再以@RiskFactors的類別型態<code>RiskFactors.class</code>當作@Repeatable唯一元素值，然後標註在@RiskFactor上</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Repeatable</span><span class="o">(</span><span class="n">RiskFactors</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">RiskFactor</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">desc</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">level</span><span class="o">()</span> <span class="k">default</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>Little Tips🍪☕ 沒有@Repeatable時的作法</p>
+<p>Java 8 之前的自定義 annotation 沒有內建 <code>@Repeatable</code>，重複使用的做法如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@RiskFactors</span><span class="o">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@RiskFactor</span><span class="o">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#34;Aggressive&#34;</span><span class="o">,</span> <span class="n">level</span><span class="o">=</span><span class="n">5</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@RiskFactor</span><span class="o">(</span><span class="n">desc</span><span class="o">=</span><span class="s">&#34;Violent&#34;</span><span class="o">,</span> <span class="n">level</span><span class="o">=</span><span class="n">10</span><span class="o">)</span> <span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Dragon</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上作法，@RiskFactor就不用標註@Repeatable</p>
 </blockquote>
 <h3 id="本章內建標註型別總結">本章內建標註型別總結</h3>
 <table>
@@ -14417,12 +15516,372 @@ API文件 -&gt; <code>This class models a quantity or amount of time in terms of
 </table>
 <hr>
 <h2 id="開發一般程式碼經常使用的內建標註型別">開發一般程式碼經常使用的內建標註型別</h2>
+<p>上一章是自定義標註型別時，會用到的Java內建annotation。本章則是平常就會使用到的內建標註型別</p>
 <h3 id="使用-override-標註覆寫的方法">使用 @Override 標註覆寫的方法</h3>
+<ul>
+<li>標記型標註型別，指示一個方法正在覆寫一個繼承的方法（來自介面或父類別）</li>
+<li>覆寫方法必須有相同簽名、相同或者更廣泛的存取修飾詞（access modifier）與回傳類型，且不拋出任何新的或更廣泛的例外</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">MyInterface</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">myMethod</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MySuper</span> <span class="kd">implements</span> <span class="n">MyInterface</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">myMethod</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;from MySuper&#34;</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">MySub</span> <span class="kd">extends</span> <span class="n">MySuper</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">myMethod</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;from MySub&#34;</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>@Override <strong>並非</strong>一定要出現在覆寫的方法上，
+但如果標註@Override在<em>不是覆寫的方法中</em>會導致編譯失敗</p>
+<p>Pros:</p>
+<ol>
+<li>提供更直觀的程式碼內容，提高程式碼質量</li>
+<li>幫助發現開發時的錯誤</li>
+</ol>
+</blockquote>
 <h3 id="使用-functionalinterface-宣告介面">使用 @FunctionalInterface 宣告介面</h3>
-<h3 id="使用-deprecated-停用程式碼">使用 @Deprecated 停用程式碼</h3>
+<p>只有一個抽象方法的介面，違反原則就會編譯失敗</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">MyInterface1</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="nf">method1</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// failed to compile - 只能用於介面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">MyClass</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">abstract</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// failed to compile - 因為不包含任何抽象方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">MyInterface2</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">MyInterface3</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="nf">method3</span><span class="o">();</span>   <span class="c1">// ✅PASS: 只包含一個抽象方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// failed to compile - 包含兩個抽象方法，其中一個繼承自MyInterface3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">MyInterface4</span> <span class="kd">extends</span> <span class="n">MyInterface3</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">method4</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@FunctionalInterface</span>
+</span></span><span class="line"><span class="cl"><span class="kd">interface</span> <span class="nc">MyInterface5</span> <span class="kd">extends</span> <span class="n">MyInterface3</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="nf">equals</span><span class="o">(</span><span class="n">Object</span> <span class="n">unused</span><span class="o">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="cm">/* PASS: 雖然包含兩個抽象方法，但equals()與
+</span></span></span><span class="line"><span class="cl"><span class="cm">       Object.equals()方法簽名一致，為可以移除的 */</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用-deprecated-停用程式碼">使用 @Deprecated 停用程式碼</h3>
+<p>改寫既有方法(修正bug、JDK升級、提升效能)，如果方法變化太大，可能需要建立一個完全不同簽名的新版本，但不一定要刪除舊版本，因為如果該方法直接消失，可能會造成函式庫/程式呼叫者的編譯問題</p>
+<p>合理作法：通知新版本，給予合理時間調整，再刪除舊方法，此情境下可用<code>@Deprecated</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">(</span><span class="n">value</span><span class="o">={</span><span class="n">CONSTRUCTOR</span><span class="o">,</span> <span class="n">FIELD</span><span class="o">,</span> <span class="n">LOCAL_VARIABLE</span><span class="o">,</span> <span class="n">METHOD</span><span class="o">,</span> <span class="n">PACKAGE</span><span class="o">,</span> <span class="n">MODULE</span><span class="o">,</span> <span class="n">PARAMETER</span><span class="o">,</span> <span class="n">TYPE</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">Deprecated</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="nf">since</span><span class="o">()</span> <span class="k">default</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="nf">forRemoval</span><span class="o">()</span> <span class="k">default</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>JDK 5 &mdash; 標記型標註型別、無任何元素</p>
+<p>JDK 9 &mdash; 新增2個非必要元素: <code>since()</code>、<code>forRemoval()</code></p>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Design and plan stuff.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> *
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @deprecated Use EnhancedPlanner instead.
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Deprecated</span><span class="o">(</span><span class="n">since</span><span class="o">=</span><span class="s">&#34;1.8&#34;</span><span class="o">,</span> <span class="n">forRemoval</span><span class="o">=</span><span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Planner</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getTaskQty</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tasks</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">tasks</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="1-string-since">1. String since()</h6>
+<p>​	由哪一個版本開始棄用，預設空字串</p>
+<h6 id="2-boolean-forremoval">2. boolean forRemoval()</h6>
+<p>​	將來是否會完全刪除棄用程式碼，預設false</p>
 <h3 id="使用-supresswarnings-忽略警告">使用 @SupressWarnings 忽略警告</h3>
+<p>忽略編譯器警告的淺在問題，硬是要執行特定操作，且問題實際上不會發生時，用<code>@SuppressWarnings</code>標註型別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">({</span><span class="n">TYPE</span><span class="o">,</span> <span class="n">FIELD</span><span class="o">,</span> <span class="n">METHOD</span><span class="o">,</span> <span class="n">PARAMETER</span><span class="o">,</span> <span class="n">CONSTRUCTOR</span><span class="o">,</span> <span class="n">LOCAL_VARIABLE</span><span class="o">,</span> <span class="n">MODULE</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">SOURCE</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">SuppressWarnings</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span><span class="o">[]</span> <span class="nf">value</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@SupressWarnings 可以用在類別、方法、類型等宣告上</p>
+<table>
+<thead>
+<tr>
+<th>元素值</th>
+<th>忽略的警告對象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>deprecation</td>
+<td>使用以<code>@Deprecated</code>標註的類型/方法</td>
+</tr>
+<tr>
+<td>removal</td>
+<td>使用以<code>@Deprecated</code>標註，並指定forRemoval元素值的類型或方法</td>
+</tr>
+<tr>
+<td>rawtypes</td>
+<td>使用原始類型（raw types），例如使用List卻未使用List&lt;T&gt;</td>
+</tr>
+<tr>
+<td>unchecked</td>
+<td>無法檢查（check）型態安全的程式碼，如使用List卻未使用List&lt;T&gt;</td>
+</tr>
+<tr>
+<td>all</td>
+<td>所有的警告對象</td>
+</tr>
+</tbody>
+</table>
+<p>Example - 泛型</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SupressWarnings</span><span class="o">(</span><span class="s">&#34;removal&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PlannerUser</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Planner</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Planner</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="nd">@SupressWarnings</span><span class="o">({</span> <span class="s">&#34;rawtypes&#34;</span><span class="o">,</span> <span class="s">&#34;unchecked&#34;</span> <span class="o">})</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">qty</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">getTaskQty</span><span class="o">(</span><span class="k">new</span> <span class="n">ArrayList</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">qty</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>應該謹慎使用<code>@SuppressWarnings</code>標註型別，只有在不得已的情況下（程式重構很麻煩的時候，需要拿來忽略編譯器提醒的編碼問題）使用才適合</p>
+</blockquote>
 <h3 id="使用-safevarargs-保護參數">使用 @SafeVarargs 保護參數</h3>
-<h3 id="本章內建標註型別總結-1">本章內建標註型別總結</h3>
+<p>可變動參數個數(varargs)：</p>
+<ol>
+<li>以符號<code>...</code>指示方法可傳遞零或多個相同類型的參數</li>
+<li>一個方法最多可以有一個可變動個數參數，固定放最後一個</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="nd">@Documented</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Retention</span><span class="o">(</span><span class="n">RetentionPolicy</span><span class="o">.</span><span class="na">RUNTIME</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Target</span><span class="o">({</span><span class="n">ElementType</span><span class="o">.</span><span class="na">CONSTRUCTOR</span><span class="o">,</span> <span class="n">ElementType</span><span class="o">.</span><span class="na">METHOD</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="nd">@interface</span> <span class="n">SafeVarargs</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>@SafeVarargs</code></p>
+<ol>
+<li>指示被標註的方法的程式邏輯不會對其varargs參數執行任何潛在的不安全操作</li>
+<li>只能應用於不能被覆寫的建構子或方法，即宣告為private, static或final的方法</li>
+</ol>
+<p>Example</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UnSafeVarargsLab</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//@SafeVarargs
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">final</span> <span class="n">Integer</span> <span class="nf">unsafeOperation</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;...</span> <span class="n">manyIntegerList</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Object</span><span class="o">[]</span> <span class="n">objArray</span> <span class="o">=</span> <span class="n">manyIntergerList</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">objArray</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="s">&#34;error&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">manyIntegerList</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//會取得String, 非Integer, 拋出ClassCastException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">   
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">var</span> <span class="n">carrot</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">UnSafeVarargsLab</span><span class="o">().</span><span class="na">unsafeOperation</span><span class="o">(</span><span class="n">carrot</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Warnings:</p>
+<ol>
+<li>line#3 方法參數警告訊息 &ldquo;Type safety: Potential heap pollution via varargs parameter manyIntegerList&rdquo;</li>
+<li>line#12 使用方法警告訊息 &ldquo;Type safety: A generic array of List&lt;Integer&gt; is created for a varargs parameter&rdquo;</li>
+</ol>
+<p>加上@SafeVarargs除了是告訴編譯器此方法沒有執行任何不安全的操作，也抑制編譯器對varargs參數未經檢查的警告</p>
+</blockquote>
+<p>Example_error</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SafeVarargsLab</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@SafeVarargs</span>  <span class="c1">// 缺少可變動參數，不能標
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">method1</span><span class="o">(</span><span class="kt">int</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@SafeVarargs</span>  <span class="c1">// 未宣告為private, static或者final
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">method2</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@SafeVarargs</span> <span class="c1">// 為宣告為private, static或者final
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">method3</span><span class="o">(</span><span class="kt">boolean</span><span class="o">...</span> <span class="n">param</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="本章內建標註型別總結-1">本章內建標註型別總結</h3>
 <table>
 <thead>
 <tr>
@@ -14568,8 +16027,9 @@ API文件 -&gt; <code>This class models a quantity or amount of time in terms of
 <h4 id="-summary">-summary</h4>
 <h4 id="--list-deps">&ndash;list-deps</h4>
 <h3 id="使用jmod指令">使用jmod指令</h3>
+<p>🚧🚧🚧🚧🚧</p>
 <h3 id="指令彙整">指令彙整</h3>
-<h4 id="1-指令列操作比較表-">1. 指令列操作比較表 🚧🚧🚧🚧🚧</h4>
+<h4 id="1-指令列操作比較表">1. 指令列操作比較表</h4>
 <table>
 <thead>
 <tr>
@@ -14600,15 +16060,15 @@ API文件 -&gt; <code>This class models a quantity or amount of time in terms of
 </tr>
 <tr>
 <td>列舉模組清單</td>
-<td><code>java --module-path mods --list-modules </code><!-- raw HTML omitted --><code>&lt;br /&gt;</code></td>
+<td><code>java --module-path mods --list-modules </code><!-- raw HTML omitted --><code>java -p &lt;mods&gt; --list-modules</code><!-- raw HTML omitted --><code>java --list-modules</code></td>
 </tr>
 <tr>
 <td>檢視模組關聯</td>
-<td></td>
+<td><code>jdeps -summary --module-path &lt;mods&gt; &lt;mods/zoo.animal.care.jar&gt;</code> <!-- raw HTML omitted --><code>jdeps -s --module-path &lt;mods&gt; &lt;mods/zoo.animal.care.jar&gt;</code><!-- raw HTML omitted --><code>jdeps --list-deps --module-path &lt;mods&gt; &lt;mods/zoo.animal.care.jar&gt;</code></td>
 </tr>
 <tr>
 <td>解析模組執行步驟</td>
-<td></td>
+<td><code>java --show-module-resolution -p &lt;src&gt; -m &lt;zoo.animal.feeding/zoo.animal.feeding.Task&gt;</code><!-- raw HTML omitted --><code>java --show-module-resolution --module-path &lt;src&gt; --module &lt;zoo.animal.feeding/zoo.animal.feeding.Task&gt;</code></td>
 </tr>
 </tbody>
 </table>
@@ -14723,16 +16183,328 @@ API文件 -&gt; <code>This class models a quantity or amount of time in terms of
 <hr>
 <h1 id="14-模組化應用程式">14 模組化應用程式</h1>
 <h2 id="回顧模組指令">回顧模組指令</h2>
+<p>指令宣告（）接續上一章</p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>exports &lt;package&gt;</td>
+<td>允許所有模組存取*&lt;套件&gt;*</td>
+</tr>
+<tr>
+<td>exports &lt;package&gt; to &lt;module&gt;</td>
+<td>允許特定*&lt;模組&gt;<em>存取</em>&lt;套件&gt;*</td>
+</tr>
+<tr>
+<td>requires &lt;module&gt;</td>
+<td>表示模組依賴於另一個*&lt;模組&gt;*</td>
+</tr>
+<tr>
+<td>requires transitive &lt;module&gt;</td>
+<td>表示特定模組、和使用該模組的所有模組都依賴於另一個*&lt;模組&gt;*</td>
+</tr>
+<tr>
+<td>uses &lt;interface&gt;</td>
+<td>表示模組使用*&lt;服務介面&gt;*</td>
+</tr>
+<tr>
+<td>provides &lt;interface&gt; with &lt;class&gt;</td>
+<td>表示模組提供*&lt;服務介面&gt;<em>的</em>&lt;實作&gt;*</td>
+</tr>
+</tbody>
+</table>
 <h2 id="比較模組類型">比較模組類型</h2>
+<blockquote>
+<p>Little Tips🍪☕ 類別路徑 class path 和模組路徑 module path</p>
+</blockquote>
+<h3 id="命名模組">命名模組</h3>
+<h3 id="自動模組">自動模組</h3>
+<h4 id="manifestmf清單檔案"><code>MANIFEST.MF</code>清單檔案</h4>
+<h4 id="自動模組的命名規則">自動模組的命名規則</h4>
+<h3 id="未命名模組">未命名模組</h3>
+<h3 id="比較模組類型-1">比較模組類型</h3>
+<h4 id="1-命名模組">1. 命名模組</h4>
+<h4 id="2-未命名模組">2. 未命名模組</h4>
+<h4 id="3-自動模組">3. 自動模組</h4>
 <h2 id="分析-jdk-依賴關係">分析 JDK 依賴關係</h2>
+<h3 id="識別內建模組">識別內建模組</h3>
+<h3 id="使用-jdeps">使用 JDEPS</h3>
 <h2 id="模組化既有應用程式">模組化既有應用程式</h2>
+<h3 id="確定函式庫相依順序">確定函式庫相依順序</h3>
+<h3 id="使用由下而上的模組化策略">使用由下而上的模組化策略</h3>
+<h3 id="使用由上而下的模組化策略">使用由上而下的模組化策略</h3>
+<h3 id="解構與模組化單體應用程式">解構與模組化單體應用程式</h3>
+<h3 id="循環的相依性導致無法編譯">循環的相依性導致無法編譯</h3>
 <h2 id="模組化-java-服務結構">模組化 Java 服務結構</h2>
 <hr>
 <h1 id="15-開發安全的-java-程式">15 開發安全的 Java 程式</h1>
 <h2 id="設計安全物件">設計安全物件</h2>
+<h3 id="限制可存取性">限制可存取性</h3>
+<h3 id="限制可繼承性">限制可繼承性</h3>
+<h3 id="建立不可更改immutable物件">建立不可更改（immutable）物件</h3>
+<h3 id="複製clone物件">複製（clone）物件</h3>
+<h4 id="介面cloneable">介面Cloneable</h4>
+<h4 id="類別object的clone方法">類別Object的clone()方法</h4>
+<h4 id="使用clone方法進行防禦性複製">使用clone()方法進行防禦性複製</h4>
 <h2 id="注入-injection-攻擊與輸入-input-驗證">注入 <em>injection</em> 攻擊與輸入 <em>input</em> 驗證</h2>
+<p>漏洞利用（exploit）: 利用安全性弱點所進行的攻擊。</p>
+<p>只要不是直接由自己產生的資料，都應該被視為可疑資料而進行輸入驗證，例如使用者輸入、從檔案中讀取、從資料庫中查詢取得。</p>
+<h4 id="使用-preparedstatement-避免-sql-注入攻擊">使用 PreparedStatement 避免 SQL 注入攻擊</h4>
+<h4 id="不安全-使用statement物件查詢">[不安全] 使用Statement物件查詢</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">int</span> <span class="nf">getOpening1</span><span class="o">(</span><span class="n">Connection</span> <span class="n">conn</span><span class="o">,</span> <span class="n">String</span> <span class="n">day</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;SELECT opents FROM hours WHERE day =&#39;&#34;</span> <span class="o">+</span> <span class="n">day</span> <span class="o">+</span> <span class="s">&#34;&#39;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">(</span><span class="n">var</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">createStatement</span><span class="o">();</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">var</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="n">sql</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">&#34;opens&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>HackerInput</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// malicious statement
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">String</span> <span class="n">maliciousInput</span> <span class="o">=</span> <span class="s">&#34;monday&#39; OR day IS NOT NULL OR day = &#39;sunday&#34;</span><span class="o">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>使用開發者不預期的查詢條件，暴露更多資料 (SQL injection攻擊手法)</p>
+</blockquote>
+<h4 id="使用preparedstatement物件查詢">使用PreparedStatement物件查詢</h4>
+<blockquote>
+<p>使用PreparedStatement時，必須一併使用綁定變數(binding variable)，否則無效</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getOpening2</span><span class="o">(</span><span class="n">Connection</span> <span class="n">conn</span><span class="o">,</span> <span class="n">String</span> <span class="n">day</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;SELECT opens FROM hours WHERE day = &#39;&#34;</span> <span class="o">+</span> <span class="n">day</span> <span class="o">+</span> <span class="s">&#34;&#39;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">(</span><span class="n">var</span> <span class="n">stmt</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span><span class="n">sql</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">         <span class="n">var</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">stmt</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">&#34;opens&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// not safe enough, incorrect prepareStatement
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getOpening3</span><span class="o">(</span><span class="n">Connection</span> <span class="n">conn</span><span class="o">,</span> <span class="n">String</span> <span class="n">day</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">SQLException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="s">&#34;SELECT opens FROM hours WHERE day = ?&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">(</span><span class="n">var</span> <span class="n">ps</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">prepareStatement</span><span class="o">(</span><span class="n">sql</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ps</span><span class="o">.</span><span class="na">setString</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">day</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">(</span><span class="n">var</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">ps</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">rs</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="s">&#34;opens&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用輸入驗證input-validation過濾無效輸入">使用輸入驗證（Input Validation）過濾無效輸入</h3>
+<p>注入攻擊類型: (1) SQL注入攻擊、(2) 指令注入_command injection</p>
+<h5 id="指令注入">指令注入：</h5>
+<p>利用不周延程式設計，駭客透過輸入 <code>..\private</code> 取得機敏的log檔案（位於private目錄）</p>
+<h5 id="解決方式">解決方式：</h5>
+<p>採取輸入驗證（input validation），在程式中指定允許存取的<strong>白名單</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">invulnerable</span><span class="o">(</span><span class="n">String</span> <span class="n">dirName</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(!(</span><span class="n">dirName</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">()</span> <span class="o">||</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">dirName</span><span class="o">.</span><span class="na">equalsIgnoreCase</span><span class="o">(</span><span class="s">&#34;module2&#34;</span><span class="o">)))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;=== illegal input &amp; terminate! ===&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">path</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;lab/log/common/&#34;</span><span class="o">).</span><span class="na">resolve</span><span class="o">(</span><span class="n">dirName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">(</span><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Path</span><span class="o">&gt;</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">Files</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="n">path</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Stream</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">filter</span><span class="o">(</span><span class="n">p</span> <span class="o">-&gt;</span> <span class="n">p</span><span class="o">.</span><span class="na">toString</span><span class="o">().</span><span class="na">endsWith</span><span class="o">(</span><span class="s">&#34;.txt&#34;</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">::</span><span class="n">println</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>Little Tips☕🍪 安全性政策的<strong>白名單</strong>、<strong>黑名單</strong></p>
+<p>黑名單:</p>
+<ul>
+<li>不允許事項的列表</li>
+<li>提出關鍵在於開發者必須比駭客更清楚攻擊手法並防患未然</li>
+</ul>
+<p>白名單:</p>
+<ul>
+<li>允許的事項列表</li>
+<li>不需要預判所有可能的安全漏洞與攻擊手法，安全性較優</li>
+<li>但可能會經常更動白名單內容，維護成本較高</li>
+</ul>
+</blockquote>
 <h2 id="處理機敏資訊">處理機敏資訊</h2>
-<h2 id="序列化與反序列化物件">序列化與反序列化物件</h2>
+<p>系統常見機敏資訊</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Items</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登入資訊</td>
+<td>使用者帳號<!-- raw HTML omitted -->使用者密碼<!-- raw HTML omitted -->使用者密碼雜湊(hash)</td>
+</tr>
+<tr>
+<td>（帳務）付款</td>
+<td>信用卡號碼<!-- raw HTML omitted -->存款餘額<!-- raw HTML omitted -->信用評分(credit score)</td>
+</tr>
+<tr>
+<td>個人識別資訊（PII, <!-- raw HTML omitted -->personal identifiable information）</td>
+<td>社會安全碼(social security number)、身分證字號<!-- raw HTML omitted -->母親婚前姓氏(mother&rsquo;s maiden name)提示安全問題與答案</td>
+</tr>
+</tbody>
+</table>
+<h3 id="保護機敏資料的輸出">保護機敏資料的輸出</h3>
+<p>首先要避免將機敏資訊放入<code>toString()</code>方法中，確保資訊不會記錄在不預期出現的地方</p>
+<p>以下地方也要注意有無機敏資訊接露</p>
+<ol>
+<li>log 日誌記錄檔案</li>
+<li>程式異常輸出的Exception或者其軌跡堆疊stack trace</li>
+<li>System.out與System.err輸出資訊</li>
+<li>程式有寫入資料的檔案</li>
+</ol>
+<p>有時候專案會有揭露機敏資訊的必要，記得只處理使用者需求項目即可，別擅自擴大</p>
+<h3 id="保護記憶體中的資料">保護記憶體中的資料</h3>
+<p>記憶體內的緩衝快取（buffer cache）也要注意有無儲存機敏資訊</p>
+<p>Example</p>
+<p>讀取密碼 <code>readPassword()</code>方法回傳char[]而不是String的兩個安全性考量</p>
+<ol>
+<li>String儲存的話，會被Java放在字串池中，程式碼執行結束，密碼字串依然在記憶體中</li>
+<li>char[]的話，使用完畢後可以用<code>Arrays.fill()</code>將陣列元素覆蓋為其他值，不用等GC機制</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Console</span> <span class="n">cons</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">console</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="kt">boolean</span> <span class="n">userValid</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span><span class="o">[]</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[]</span> <span class="o">{</span> <span class="sc">&#39;p&#39;</span><span class="o">,</span> <span class="sc">&#39;a&#39;</span><span class="o">,</span> <span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="sc">&#39;w&#39;</span><span class="o">,</span> <span class="sc">&#39;@&#39;</span><span class="o">,</span> <span class="sc">&#39;r&#39;</span><span class="o">,</span> <span class="sc">&#39;d&#39;</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">cons</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">do</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">String</span> <span class="n">account</span> <span class="o">=</span> <span class="n">cons</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s">&#34;%s&#34;</span><span class="o">,</span> <span class="s">&#34;Input account: &#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span><span class="o">[]</span> <span class="n">password</span> <span class="o">=</span> <span class="n">cons</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s">&#34;%s&#34;</span><span class="o">,</span> <span class="s">&#34;Input password: &#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">account</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;jim&#34;</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">password</span><span class="o">,</span> <span class="n">ans</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            					<span class="c1">//比較正確密碼與使用者輸入密碼是否相同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Correct! System quits!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">			<span class="n">userValid</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">Arrays</span><span class="o">.</span><span class="na">fill</span><span class="o">(</span><span class="n">password</span><span class="o">,</span> <span class="sc">&#39;x&#39;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">//將陣列成員全部以字元&#39;x&#39;覆蓋
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="n">ans</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//將陣列指向null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="c1">// System.out.println(password);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Wrong! Try again!\n&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="o">}</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span> <span class="k">while</span> <span class="o">(!</span><span class="n">userValid</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="序列化與反序列化物件">序列化與反序列化物件</h2>
+<p>是經常用於系統函式庫或框架的底層技術，透過網路傳資料、儲存資料到資料庫/硬碟、呼叫遠端程式(RPC、RMI)都會用到序列化技術</p>
+<p>反序列化資安漏洞 OWASP資安組織也列為前十大熱門攻擊手法之一</p>
+<p>可藉由指定序列化欄位以及控制序列化本身的過程，使序列化更安全</p>
+<h3 id="使定序列化的物件欄位">使定序列化的物件欄位</h3>
+<ul>
+<li>
+<p>方式一: 以<code>transient</code>宣告可以避免機敏資訊被序列化</p>
+<p><code>private transient int age;</code></p>
+</li>
+<li>
+<p>方式二: 宣告一個靜態類別常數，並以陣列成員指定要序列化的欄位</p>
+<p>`Object</p>
+</li>
+</ul>
 <h2 id="建立保護機敏資料的安全物件">建立保護機敏資料的安全物件</h2>
 <h2 id="避免服務阻斷-denial-of-service-攻擊">避免服務阻斷 <em>denial of service</em> 攻擊</h2>
 <hr>
