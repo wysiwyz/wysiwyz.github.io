@@ -30,7 +30,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  23188 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  25040 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-02-05T17:50:34+08:00","dateModified": "2023-02-05T17:50:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;23188 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;109 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-05">2023-02-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;25040 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;118 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -564,7 +564,7 @@
     <li><a href="#分析-jdk-依賴關係">分析 JDK 依賴關係</a>
       <ul>
         <li><a href="#識別內建模組">識別內建模組</a></li>
-        <li><a href="#使用-jdeps">使用 JDEPS</a></li>
+        <li><a href="#使用-jdeps-sub用於識別模組依賴關係sub">使用 JDEPS <!-- raw HTML omitted -->(用於識別模組依賴關係)<!-- raw HTML omitted --></a></li>
       </ul>
     </li>
     <li><a href="#模組化既有應用程式">模組化既有應用程式</a>
@@ -576,15 +576,19 @@
         <li><a href="#循環的相依性導致無法編譯">循環的相依性導致無法編譯</a></li>
       </ul>
     </li>
-    <li><a href="#模組化-java-服務結構">模組化 Java 服務結構</a></li>
+    <li><a href="#模組化-java-服務結構">模組化 Java 服務結構</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
   </ul>
 
   <ul>
     <li><a href="#設計安全物件">設計安全物件</a>
       <ul>
-        <li><a href="#限制可存取性">限制可存取性</a></li>
-        <li><a href="#限制可繼承性">限制可繼承性</a></li>
-        <li><a href="#建立不可更改immutable物件">建立不可更改（immutable）物件</a></li>
+        <li><a href="#1-限制可存取性">(1) 限制可存取性</a></li>
+        <li><a href="#2-限制可繼承性">(2) 限制可繼承性</a></li>
+        <li><a href="#3-建立不可更改immutable物件">(3) 建立不可更改（immutable）物件</a></li>
         <li><a href="#複製clone物件">複製（clone）物件</a></li>
       </ul>
     </li>
@@ -15963,71 +15967,1065 @@ Lion類別須新增habitat屬性欄位，在實例化Lion之後設定habitat屬�
 <hr>
 <h1 id="13-java-平台模組系統">13 Java 平台模組系統</h1>
 <h2 id="認識-java-模組化">認識 Java 模組化</h2>
+<p>java 9 開始支援模組分類（module）</p>
 <h3 id="介紹模組module">介紹模組（Module）</h3>
 <h4 id="模組化需求">模組化需求</h4>
-<h4 id="本章範例專案說明">本章範例專案說明</h4>
+<p>一個大型專案會把數百/上千個類別規劃為套件，套件又再群組為JAR（Java archive），副檔名為<code>.jar</code></p>
+<p>要使用Spring框架或JUnit測試函式庫任何一種，都要先確保執行時擁有相關JAR的相容版本。其複雜的依賴關係和最低版本常被開源社群稱為JAR地獄，因為一旦載入錯誤版本，可能會有ClassNotFoundException，甚至是隨機異常，無法釐清是否為函式庫bug或版本不相容。</p>
+<p>Java 9導入的Java Platform Module System(JPMS)，藉由分類並群組相關的套件，以向開發人員提供一組特定功能。比如是一個可以讓開發人員設定開放那些套件的更大的JAR檔案。</p>
+<p>JPMS包括：</p>
+<ol>
+<li>模組化的JAR檔案格式</li>
+<li>模組化JDK套件</li>
+<li>提供模組化相關指令列（command-line）</li>
+</ol>
 <h3 id="模組化的效益">模組化的效益</h3>
+<p>雖然要不要模組化不是強制要求，但模組提供以下方法</p>
 <h4 id="1-更好的存取控制">1. 更好的存取控制</h4>
+<p>除了private, package(default), protected, public，模組可以讓A模組中的套件只對B模組的套件開放，對C模組、D模組的套件拒絕存取</p>
+<p>將模組作為第五個層級的存取控制，可以將模組化的JAR中的套件只公開給特定套件，是更強的封裝形式</p>
 <h4 id="2-更清晰的依賴管理">2. 更清晰的依賴管理</h4>
+<p>函式庫之間常見互相依賴，像是JUnit測試函式庫搭配Hamcrest函式庫，以改進測試斷言的可讀性</p>
+<p>通常函式庫之間的相依性只有在閱讀使用文件，或者執行到相依流程時，發現函式庫不在類別路徑上，噴ClassNotFoundException錯（JAR地獄）時才會發現</p>
+<p>不過在完全模組化環境中，每一個開源專案都會在module-info.java檔案中指定專案依賴項目。啟動程式時，Java會告知相依函式庫不在 module-path 中，可以馬上清楚知道</p>
 <h4 id="3-自定義java構建build內容">3. 自定義Java構建（build）內容</h4>
-<h4 id="4-提升效能">4. 提升效能</h4>
-<h4 id="5-避免套件重複">5. 避免套件重複</h4>
+<p>JDK(Java Development Kit/Java開發工具包)檔案很大，即便是底下的JRE(Java Runtime Environment/Java執行環境)都不小</p>
+<p>為了讓行動與嵌入式裝置都能安裝Java，SE8使用「compact profile」或簡稱「profile」，以完整Java SE平台API為基礎，精簡出三個層級的子集合</p>
+<table>
+<thead>
+<tr>
+<th>最精簡</th>
+<th>多一點API</th>
+<th>完整Java SE API</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>compact1</td>
+<td>compact2</td>
+<td>compact3</td>
+</tr>
+</tbody>
+</table>
 <blockquote>
-<p>Little Tips☕🍪 現有程式碼的模組化</p>
+<p>然而籠統三個層級的方式還是缺乏靈活性，因為每個compact所需API種類是Java自己定義的，不是開發者依專案性質不同需求所設計。例如：</p>
+<p>Java Native Interface(JNI)&mdash;處理特定於作業系統的程式</p>
+<p>JDBC&mdash;資料庫存取</p>
 </blockquote>
+<h5 id="jpms-指令工具-jlink">JPMS 指令工具 jlink</h5>
+<p>使開發人員能自定義自己需要的API，還可用來打包更小的執行映像檔（runtime image），另外也提高了安全性。</p>
+<p>假設不使用AWT套件，且AWT存在安全漏洞，那就打包不含AWT的執行映像檔的應用程式，即不存在AWT的安全漏洞。</p>
+<h4 id="4-提升效能">4. 提升效能</h4>
+<p>因為Java知道哪些模組有需要，所以載入類別時，只關注所需模組就好了</p>
+<p>Pros: 改善大型專案啟動時間、減少記憶體浪費</p>
+<h4 id="5-避免套件重複">5. 避免套件重複</h4>
+<p>JAR地獄其中一情境就是一個套件出現在多個JAR裡面</p>
+<ul>
+<li>有可能是因為JAR被重新命名，所以專案內有兩個實質相同的JAR</li>
+<li>也有可能是因為類別路徑上有兩個內容相同版本不同的JAR</li>
+</ul>
+<p>JPMS可避免上述情況，讓一個套件只由一個模組提供，就不會有套件重複問題</p>
 <hr>
 <h2 id="建立和執行模組化程式">建立和執行模組化程式</h2>
 <h3 id="建立模組專案">建立模組專案</h3>
 <h4 id="建立套件類別與模組資訊檔案">建立套件、類別與模組資訊檔案</h4>
+<ol>
+<li>
+<p>建立專案 zoo.animal.feeding、套件zoo.animal.feeding、簡單類別Task.java</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.feeding</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Task</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;All are fed!&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>建立模組資訊檔案 module-info.java，此檔案和Java類別主要區別如下</p>
+<ol>
+<li>module-info.java必須位於<strong>模組的根目錄</strong>中，Java類別在套件中</li>
+<li>module-info.java內容宣告模組時，使用關鍵字module而不是class/interface/enum</li>
+<li>模組名稱命名規則遵循套件名稱，中間通常包含<code>.</code></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在與src目錄的同一階層建立一個 <code>mods</code> 目錄，用來存放與自身模組相依的其他模組。可以任意命名，但<code>mods</code>是比較通用的名稱</p>
+<pre tabindex="0"><code>-zoo.animal.feeding    	  | -zoo.animal.feeding
+  -src					  |   -bin		
+    -zoo.animal.feeding	  |   -mods		[navigator]
+      -Task.java		  |   -src
+    -module-info.java	  |     -zoo
+  -mods					  |       -animal
+  						  |         -feeding
+  						  |           -Task.java
+    [explorer]         	  |       -module-info.java
+</code></pre><blockquote>
+<p>通常Eclipse建立的專案，編譯後的 *.class檔會存在專案內bin目錄中</p>
+</blockquote>
+</li>
+</ol>
 <blockquote>
-<p>Little Tips🍪☕ <code>module-info.java</code> 檔案可以為空嗎？</p>
+<p><code>module-info.java</code> 檔案可以被清空，不會有編譯錯誤問題</p>
+<p>編譯器看到檔案沒內容會直接結束編譯工作，也不會建*.class檔</p>
 </blockquote>
 <h3 id="編譯模組專案">編譯模組專案</h3>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">javac --module-path mods -d src src/zoo/animal/feeding/*.java src/module-info.java
+</code></pre><ul>
+<li><code>--module-path</code> 指示任何自定義模組檔案<code>*.jar</code>的位置(mods目錄)</li>
+<li><code>-d</code> 指定放置編譯完成的類別檔案的目錄</li>
+<li>結尾是要編譯的Java檔案清單，可單獨列出，以空白區隔，也可以使用萬用字元<code>*.java</code></li>
+</ul>
 <blockquote>
 <p>Little Tips☕🍪 傳統類別路徑（classpath）的選項</p>
+<p>java指令使用類別路徑引用專案相依的JAR檔案的三種語法</p>
+<ul>
+<li><code>-cp</code></li>
+<li><code>--class-path</code></li>
+<li><code>-classpath</code></li>
+</ul>
 </blockquote>
+<p>也可以在指令列使用縮寫，例如 <code>--module-path</code> -&gt; <code>-p</code></p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">javac -p mods -d src src/zoo/animal/feeding/*.java src/module-info.java
+</code></pre><blockquote>
+<p>執行指令必須在src資料夾</p>
+</blockquote>
+<p>可以詳閱 <em>Spring Boot 情境式網站開發指南:使用Spring Data JPA, Spring Security, Spring Web Flow</em></p>
 <h3 id="執行模組專案">執行模組專案</h3>
+<p>執行模組的語法</p>
+<p>​	⭐指定的模組名稱後接<code>/</code>之後才是完整的類別名稱</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java --module-path mode --module lab.module/org.some.Lab
+                模組路徑        模組名稱/套件名稱.類別名稱
+</code></pre><p>Example</p>
+<p>編寫指令執行zoo.animal.feeding套件中的Task類</p>
+<p>模組名稱經常和套件完整名稱相同，或是取套件開頭的幾個名稱空間</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java --module-path src --module zoo.animal.feeding/zoo.animal.feeding.Task
+</code></pre><blockquote>
+<p><code>--module-path</code> 可以使用 <code>-p</code>：用來指定模組路徑</p>
+<p><code>--module</code> 可以使用 <code>-m</code>：用來指定執行對象</p>
+</blockquote>
 <h3 id="打包模組專案">打包模組專案</h3>
+<p>打包模組讓該模組可以在其他地方執行，或是給其他模組使用</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jar -cvf mods/zoo.animal.feeding.jar -C src/ .
+</code></pre><blockquote>
+<p><code>-cvf</code>：指定要打包為JAR檔案</p>
+<p><code>mods</code>：JAR檔案的產出目錄，須事先建立</p>
+<p><code>zoo.animal.feeding.jar</code>：JAR檔案名稱</p>
+<p><code>-C</code>：指定編譯好的<code>*.class</code>檔案位置</p>
+<p><code>src/ .</code>：打包路徑<code>src</code>內的所有檔案</p>
+</blockquote>
+<p>以打包後的模組化JAR檔案執行程式</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java --module-path mods --module zoo.animal.feeding/zoo.animal.feeding.Task
+</code></pre><blockquote>
+<p>指定的模組路徑mods目錄存在已經打包好的<code>zoo.animal.feeding.jar</code></p>
+<p>src目錄只存放編譯好的鬆散<code>*.class</code>檔案</p>
+</blockquote>
 <hr>
 <h2 id="建立相依模組程式">建立相依模組程式</h2>
 <h3 id="使用exports開放模組內的套件">使用exports開放模組內的套件</h3>
+<p>在建立其他模組前，要先開放zoo.animal.feeding模組提供給其他模組相依，可由修改module-info.java達成需求</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>exports</code>：指示讓其他外部模組可以使用列舉的套件</p>
+</blockquote>
+<p>接著重新編譯和打包</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">javac -p mods -d src src/zoo/animal/feeding/*.java src/module-info.java
+jar -cvf mods/zoo.animal.feeding.jar -C src/ .
+</code></pre><p>就可以更新jar檔案了</p>
 <h3 id="使用requires相依外部模組的套件">使用requires相依外部模組的套件</h3>
 <h4 id="建立zooanimalcare模組">建立<code>zoo.animal.care</code>模組</h4>
-<h4 id="編譯和打包zooanimalcare模組">編譯和打包<code>zoo.animal.care</code>模組</h4>
-<h4 id="建立編譯打包zooanimalshows模組">建立、編譯、打包<code>zoo.animal.shows</code>模組</h4>
+<p>在此模組底下建立兩個套件</p>
+<ul>
+<li><code>zoo.animal.care.medical</code> 開放給其他模組使用的類別和方法</li>
+<li><code>zoo.animal.care.details</code> 不對外開放，只供模組內部使用</li>
+</ul>
+<p>Examples</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.care.medical</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Drug</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.care.details</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">zoo.animal.feeding.Task</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TigerBirthday</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Task</span> <span class="n">task</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">care</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">care</span><span class="o">.</span><span class="na">medical</span><span class="o">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//指出要公開的套件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span><span class="o">;</span>     
+</span></span><span class="line"><span class="cl">    <span class="c1">//指定care模組將相依於feeding模組
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="編譯和打包zooanimalcare模組">編譯和打包<code>zoo.animal.care</code>模組</h4>
+<p>使用 javac 指令編譯 <code>*.java</code> 檔案</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">javac --module-path mods -d src src/zoo/animal/care/details/*.java src/zoo/animal/care/medical/*.java src/module-info.java
+</code></pre><p>進行打包</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jar -cvf mods/zoo.animal.care.jar -c src/ .
+</code></pre><p>更新專案(refresh)後如下</p>
+<pre tabindex="0"><code>-zoo.animal.care
+  -bin
+  -mods
+    -zoo.animal.care.jar✅
+    -zoo.animal.feeding.jar
+  -src
+    -zoo
+      -animal
+        -care
+          -details
+            -TigerBirthDay.class✅
+            -TigerBirthday.java
+          -medical
+            -Drug.class✅
+            -Drug.java
+    module-info.class✅
+    module-info.java
+</code></pre><h4 id="建立編譯打包zooanimalshows模組">建立、編譯、打包<code>zoo.animal.shows</code>模組</h4>
+<p>zoo.animal.shows模組相依於feeding &amp; care模組</p>
+<p>shows底下三個套件全部開放</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span><span class="o">;</span>     
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">care</span><span class="o">;</span>     
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>
+<p>content package</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.shows.content</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ParrotScript</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.shows.content</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">LionScript</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>media package</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.shows.media</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Advertisement</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;We will be having shows&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.shows.media</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SuperStar</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>schedule package</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.shows.schedule</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Weekday</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">zoo.animal.shows.schedule</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Weekend</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>模組資訊檔 <code>module-info.java</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">.</span><span class="na">content</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">.</span><span class="na">media</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">.</span><span class="na">schedule</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">care</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>接著在zoo.animal.shows底下src目錄同一層建立一個<code>mods</code>目錄，把 care.jar、feeding.jar 放進去</p>
+<pre tabindex="0"><code>-zoo.animal.shows
+  -bin
+  -mods
+    -zoo.animal.care.jar
+    -zoo.animal.feeding.jar
+  -src
+    -zoo
+      -animal
+        -shows
+          -content
+            -LionScript.java
+            -ParrotScript.java
+          -media
+            -Advertisement.java
+            -SuperStar.java
+          -schedule
+            -Weekday.java
+            -Weekend.java
+      module-info.java
+</code></pre><p>接著執行以下指令編譯</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">javac --module-path mods -d src src/zoo/animal/shows/content/*.java src/zoo/animal/shows/media/*.java src/zoo/animal/shows/schedule/*.java src/module-info.java
+</code></pre><p>執行以下指令打包</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jar -cvf mods/zoo.animal.shows.jar -C src/ .
+</code></pre><p>就可以看到每個.java產生對應的.class檔案，且mods目錄內還有<code>zoo.animal.shows.jar</code>檔案</p>
 <h4 id="建立編譯打包zoostaff模組">建立、編譯、打包<code>zoo.staff</code>模組</h4>
-<h3 id="使用-eclipse-設定專案的模組相依關係">使用 Eclipse 設定專案的模組相依關係</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">staff</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">care</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>編譯指令</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">javac --module-path mods -d src src/zoo/staff/*.java src/module-info.java
+</code></pre><p>打包指令</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jar -cvf mods/zoo.staff.jar -C src/ .
+</code></pre><h3 id="使用-eclipse-設定專案的模組相依關係">使用 Eclipse 設定專案的模組相依關係</h3>
+<p>各模組間依賴關係表</p>
+<table>
+<thead>
+<tr>
+<th>模組</th>
+<th>依賴模組</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>zoo.animal.feeding</code></td>
+<td>無</td>
+</tr>
+<tr>
+<td><code>zoo.animal.care</code></td>
+<td><code>zoo.animal.feeding</code></td>
+</tr>
+<tr>
+<td><code>zoo.animal.shows</code></td>
+<td><code>zoo.animal.feeding</code><!-- raw HTML omitted --><code>zoo.animal.care</code></td>
+</tr>
+<tr>
+<td><code>zoo.staff</code></td>
+<td><code>zoo.animal.feeding</code><!-- raw HTML omitted --><code>zoo.animal.care</code><!-- raw HTML omitted --><code>zoo.animal.shows</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>在編譯新的模組前，都要先把相依的模組jar檔放到每個專案的mods資料夾內</p>
+<p>接著使用javac命令列指令，<code>--module-path</code>指定相依模組JAR檔目錄、<code>-d</code>指定程式碼目錄</p>
+</blockquote>
+<p>可以直接在Eclipse設定每個專案相依的模組</p>
 <h4 id="專案zooanimalfeeding">專案<code>zoo.animal.feeding</code></h4>
+<p>無相依的模組，略</p>
 <h4 id="專案zooanimalcare">專案<code>zoo.animal.care</code></h4>
+<p>專案right click Properties -&gt; Java Build Path -&gt; Projects label -&gt; Modulepath -&gt; Add -&gt; Required Project Selection -&gt; check <code>zoo.animal.feeding</code> -&gt; Apply and Close</p>
 <h4 id="專案zooanimalshows">專案<code>zoo.animal.shows</code></h4>
+<p>步驟同上，打勾兩個 (care module &amp; feeding module)</p>
 <h4 id="專案zoostaff">專案<code>zoo.staff</code></h4>
+<p>依循前例，打勾要相依的專案 (feeding, care, shows)</p>
 <hr>
 <h2 id="認識-module-infojava-的宣告關鍵字">認識 <code>module-info.java</code> 的宣告關鍵字</h2>
+<p>這裡介紹 module-info.java 編寫的宣告指令，像是 exports, requires, provides, uses, opens 等出現和使用的時機</p>
 <blockquote>
-<p>Little Tips🍪☕ 模組宣告指令exports和requires是Java關鍵字嗎</p>
+<p>Little Tips🍪☕ <strong>模組宣告指令exports和requires是Java關鍵字嗎</strong></p>
+<p><code>exports</code>、<code>requires</code>、<code>module</code>屬於編寫模組資訊檔 module-info.java 內的關鍵字，一旦不在此範圍就不是，所以類別或者介面仍然可以用這些字當作變數名稱</p>
+<p>為了要向前相容（Java 8編寫的程式碼，可以通過Java 11的編譯）不能隨意增加關鍵字，所以 exports, requires, provides 只定義在<code>module-info.java</code>範圍內，以因應Java 9才出現的模組化功能</p>
 </blockquote>
 <h3 id="使用exports">使用exports</h3>
+<p>exports package-name 可以將一個套件公開或導出給其他模組使用，也可以將套件導出給特定模組使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">.</span><span class="na">content</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// others
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">.</span><span class="na">content</span> <span class="n">to</span> <span class="n">zoo</span><span class="o">.</span><span class="na">staff</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 限制倒出對象只給zoo.staff模組
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>當export某一個套件時，該套件下所有public類別、介面、列舉型別的public/protected成員都將允許被其他模組使用。private和default層級的成員存取控制不受到模組化的影響。</p>
+<table>
+<thead>
+<tr>
+<th>存取層級</th>
+<th>模組內部</th>
+<th>模組外部</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>private</td>
+<td>只能讓同一類別內部的其他成員存取</td>
+<td>無法存取</td>
+</tr>
+<tr>
+<td>default</td>
+<td>只能讓同一套件內的其他類別存取</td>
+<td>無法存取</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>同一套件或具有繼承關係的子類別可以存取</td>
+<td>如果exports套件，則套件內具備繼承關係的子類別可以存取</td>
+</tr>
+<tr>
+<td>public</td>
+<td>不受限制</td>
+<td>如果exports套件則不受限制</td>
+</tr>
+</tbody>
+</table>
 <h3 id="使用requires和requires-transitive">使用requires和requires transitive</h3>
+<p><code>requires &lt;module&gt;</code>：當前模組依賴於指定的&lt;module&gt;</p>
+<p><code>requires transitive &lt;module&gt;</code>：任何需要當前模組的其他模組也將依賴於&lt;module&gt;</p>
+<ul>
+<li>
+<p>transitive - 可傳遞的，可理解為把這層依賴關係也傳遞出去</p>
+</li>
+<li>
+<p>常見於開源程式設計，例如B模組引用C模組，A模組要引用B模組時，也要引用模組C</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">B</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">B</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">C</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">A</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">B</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">C</span><span class="o">;</span>  <span class="c1">//因為B有引用C,但A沒有直接引用C
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>改用requires transitive的話，可簡化為</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">B</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">B</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">transitive</span> <span class="n">C</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">A</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">B</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
 <h4 id="1-修改模組zooanimalfeeding">1. 修改模組<code>zoo.animal.feeding</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span><span class="o">;</span>  
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>沒有變動</p>
 <h4 id="2-修改模組zooanimalcare">2. 修改模組<code>zoo.animal.care</code></h4>
-<h4 id="3-修改模組zooanimalshows">3. 修改模組<code>zoo.animal.shows</code></h4>
-<h4 id="4-修改模組zoostaff">4. 修改模組<code>zoo.staff</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">care</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">care</span><span class="o">.</span><span class="na">medical</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">transitive</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">feeding</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/*加上transitive之後，其他模組要引用care模組時，
+</span></span></span><span class="line"><span class="cl"><span class="cm">      就不用另外再參照模組zoo.animal.feeding */</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-修改模組zooanimalshows">3. 修改模組<code>zoo.animal.shows</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">.</span><span class="na">content</span> <span class="n">to</span> <span class="n">zoo</span><span class="o">.</span><span class="na">staff</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">.</span><span class="na">media</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">.</span><span class="na">schedule</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">transitive</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">care</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/*不用再requires feeding, care模組引用也加上transitive*/</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-修改模組zoostaff">4. 修改模組<code>zoo.staff</code></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">zoo</span><span class="o">.</span><span class="na">staff</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">zoo</span><span class="o">.</span><span class="na">animal</span><span class="o">.</span><span class="na">shows</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 不用再requires care &amp; shows module
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成以上步驟之後，都要重新編譯javac與打包jar指令，放置產出的模組JAR檔案到mods目錄，或者修改個別模組專案的module-info.java，並調整Eclipse Modulepath</p>
 <blockquote>
 <p>Little Tips☕🍪 模組資訊檔 module-info.java 內的敘述如果重複會如何?</p>
+<p>對同一個套件的exports、requires敘述不允許重複，也不允許同一套件同時宣告requires以及requires transitive，否則會編譯失敗</p>
 </blockquote>
 <h3 id="使用providesusesopens">使用provides、uses、opens</h3>
+<ul>
+<li>
+<p><code>uses</code>指令：用於指示該模組相依於一個服務(service)，通常是interface</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">service</span><span class="o">.</span><span class="na">consumer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uses</span> <span class="n">some</span><span class="o">.</span><span class="na">serviceApi</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>provides</code>指令：用於指示該模組提供一個服務的實作(implementation)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">service</span><span class="o">.</span><span class="na">provider</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">provides</span> <span class="n">some</span><span class="o">.</span><span class="na">serviceApi</span> <span class="n">with</span> <span class="n">some</span><span class="o">.</span><span class="na">serviceApiImpl</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>opens</code>指令：和Java的映射技術(reflection)有關</p>
+<p>使用映射技術時，程式呼叫端在編譯時期不需要知道物件參考型別，但在執行時期依然可以執行指定的物件方法</p>
+</li>
+</ul>
+<p>Example</p>
+<ol>
+<li>
+<p>映射技術的被呼叫端模組-<code>lab.reflection.provider</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">lab.reflection.provider.api</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getGreeting</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s">&#34;hi, greeting from lab.reflection.provider.api&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">lab</span><span class="o">.</span><span class="na">reflection</span><span class="o">.</span><span class="na">provider</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">lab</span><span class="o">.</span><span class="na">reflection</span><span class="o">.</span><span class="na">provider</span><span class="o">.</span><span class="na">api</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>呼叫端模組-<code>lab.reflection.consumer</code>專案建立，設定模組相依關係</p>
+</li>
+<li>
+<p>建立專案模組資訊檔，宣告此專案依賴模組 <code>lab.reflection.provider</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">lab</span><span class="o">.</span><span class="na">reflection</span><span class="o">.</span><span class="na">consumer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">lab</span><span class="o">.</span><span class="na">reflection</span><span class="o">.</span><span class="na">provider</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>建立套件<code>lab.reflection.consumer.user</code>與類別<code>AccessByNormal</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">lab.reflection.consumer.user</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">lab.reflection.provider.api.HelloWorld</span><span class="o">;</span><span class="c1">//類別引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AccessByNormal</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span> <span class="c1">//建立物件與物件參考
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">HelloWorld</span> <span class="n">om</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HelloWorld</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">              <span class="c1">//呼叫物件參考的方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">om</span><span class="o">.</span><span class="na">getGreeting</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>建立映射技術的呼叫者類別<code>AccessByReflection</code>，匯入的<code>java.lang.relect.Method</code>用於映射技術</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">lab.reflection.consumer.user</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.lang.reflect.Method</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AccessByReflection</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Class</span><span class="o">&lt;?&gt;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="s">&#34;lab.reflection.provider.api.HelloWorld&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">Method</span> <span class="n">m</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="na">getMethod</span><span class="o">(</span><span class="s">&#34;getGreeting&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">m</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">c</span><span class="o">.</span><span class="na">getDeclaredConstructor</span><span class="o">().</span><span class="na">newInstance</span><span class="o">()));</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<blockquote>
+<p>以上範例未曾建立類別HelloWorld物件並呼叫方法<code>getGreeting()</code>，只有將類別名稱和方法名稱以字串表示</p>
+<p>只要更換字串內容，就可以呼叫不同類別方法</p>
+</blockquote>
+<ol start="6">
+<li>
+<p>把<strong>被呼叫端模組</strong>的模組資訊檔由exports宣告改成opens</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">lab</span><span class="o">.</span><span class="na">reflection</span><span class="o">.</span><span class="na">consumer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">opens</span> <span class="n">lab</span><span class="o">.</span><span class="na">reflection</span><span class="o">.</span><span class="na">provider</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>使用宣告指令opens只開放<strong>執行</strong>時期使用</p>
+<p>exports則開放<strong>編譯</strong>和<strong>執行</strong>時期使用</p>
+</blockquote>
+</li>
+</ol>
 <hr>
 <h2 id="在命令列-command-line-使用模組指令選項">在命令列 <code>command line</code> 使用模組指令選項</h2>
+<p>Java 9 開始，JDK內建類別也模組化了，可使用使令了解模組</p>
 <h3 id="使用java指令">使用java指令</h3>
+<p><code>java</code>指令除了可以執行Java SE類的main()方法，還有模組相關選項</p>
+<table>
+<thead>
+<tr>
+<th>java指令選項</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--describe-module</code></td>
+<td>描述模組內容</td>
+</tr>
+<tr>
+<td><code>--list-modules</code></td>
+<td>列舉可用模組清單</td>
+</tr>
+<tr>
+<td><code>--show-module-resolution</code></td>
+<td>解析模組執行時的步驟</td>
+</tr>
+</tbody>
+</table>
 <h4 id="1-使用選項---describe-module">1. 使用選項 &ndash;describe-module</h4>
+<p>除了解壓縮JAR檔案，並瀏覽<code>module-info.java</code>檔案，有一種更簡單的方法</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java -p mods --describe-module zoo.animal.feeding
+</code></pre><blockquote>
+<p><code>--describe-module</code>可以使用<code>-d</code>簡化</p>
+</blockquote>
+<pre tabindex="0"><code>zoo.animal.care file:///C:/java11/code/zoo.animal.care/mods/zoo.animal.care.jar
+
+exports zoo.animal.care.medical
+requires java.base mandated
+requires zoo.animal.feeding transitive
+contains zoo.animal.care.details
+</code></pre><blockquote>
+<p>模組中沒有使用 exports 公開的套件，會使用contains宣告，表示提供模組<strong>內部</strong>使用</p>
+</blockquote>
 <h4 id="2-使用選項---list-modules">2. 使用選項 &ndash;list-modules</h4>
+<p>除了描述模組，還可以使用java指令列出可用模組</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java --list-modules
+</code></pre><p>會輸出Java內建所有模組以及其版本號的列表</p>
+<p>如果指令中包含zoo專案的所有模組JAR檔案</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java -p mods --list-modules
+</code></pre><p>就會列出Java內建所有模組+版本號 + 四個專案內模組的JAR檔案</p>
 <h4 id="3-使用選項---show-module-resolution">3. 使用選項 &ndash;show-module-resolution</h4>
+<p>這個選項可視為debug模組的一種手段，會執行模組、輸出過程、最後輸出執行結果</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">java --show-module-resolution -p src -m zoo.animal.feeding/zoo.animal.feeding.Task
+</code></pre><p>會列出根模組（root）、<code>java.base</code>模組所含的多行套件、所有具相依關係的模組、最後輸出指定類別<code>zoo.animal.feeding.Task</code>的執行結果</p>
 <h3 id="使用jar指令">使用jar指令</h3>
+<p>jar指令也可以描述一個模組</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jar --file mods/zoo.animal.feeding.jar --describe-module
+</code></pre><blockquote>
+<p><code>--file</code>選項也可以使用 <code>-f</code> 取代</p>
+<p><code>--describe-module</code>選項也可以使用 <code>-d</code> 取代，描述模組JAR檔內容</p>
+</blockquote>
+<pre tabindex="0"><code>zoo.animal.feeding jar:file:///C:/java11/code/zoo.animal.care/mods/zoo.animal.feeding.jar/!module-info.class
+exports zoo.animal.feeding
+requires java.base mandated
+</code></pre><blockquote>
+<p><code>--describe-module</code>可以同時用於指令java和jar</p>
+</blockquote>
 <h3 id="使用jdeps指令">使用jdeps指令</h3>
+<p>jdeps指令提供有關模組內依賴項目的資訊</p>
+<p>相較於java或jar的選項<code>--describe-module</code>，jdeps指令除了檢視模組資訊檔之外，還查看程式碼，可以反映更詳實的結果</p>
 <h4 id="-summary">-summary</h4>
+<p>使用選項<code>-summary</code>提供模組JAR檔的依賴項目概略說明</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jdeps -summary mods/zoo.animal.feeding.jar
+</code></pre><blockquote>
+<p><code>-summary</code>也可以使用<code>-s</code>簡化</p>
+</blockquote>
+<p>Example_1</p>
+<blockquote>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jdeps -summary mods/zoo.animal.feeding.jar
+zoo.animal.feeding -&gt; java.base
+</code></pre><p>以上結果 line#2 輸出顯示只有一個套件，並依賴於內建的java.base模組</p>
+<p>如果沒用<code>-summary</code>則可以得到完整結果</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jdeps mods/zoo.animal.feeding.jar
+</code></pre></blockquote>
+<p>Example_2</p>
+<p>檢視一個具備更複雜模組依賴關係的<code>zoo.animal.care</code></p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jdeps -summary --module-path mods mods/zoo.animal.care.jar
+</code></pre><blockquote>
+<p>這裡的<code>--module-path</code>不能用<code>-m</code>或<code>-p</code>取代</p>
+<p>結果如下</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">zoo.animal.care -&gt; java.base
+zoo.animal.care -&gt; zoo.animal.feeding
+</code></pre></blockquote>
+<p>去除<code>-summary</code>改用完整模式下執行</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jdeps --module-path mods mods/zoo.animal.care.jar
+</code></pre><blockquote>
+<p>結果如下</p>
+<pre tabindex="0"><code>zoo.animal.care 
+ [file:///C:/java11/code/zoo.staff/mods/zoo.animal.care.jar]
+ requires mandated java.base (@11.0.12)
+ requires transitive zoo.animal.feeding
+zoo.animal.care -&gt; java.base
+zoo.animal.care -&gt; zoo.animal.feeding
+ zoo.animal.care.details   -&gt; java.lang    java.base
+ zoo.animal.care.details   -&gt; zoo.animal.feeding  zoo.animal.feeding
+ zoo.animal.care.medical   -&gt; java.lang         java.base
+</code></pre><p>ln#5-6 輸出結果等同於<code>-summary</code>選項結果</p>
+<p>ln#7-9 則輸出相依的套件與模組細節</p>
+</blockquote>
 <h4 id="--list-deps">&ndash;list-deps</h4>
+<p>可以列舉相依的模組，也會列出有使用到的JDK內部API</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jdeps --list-deps mods/zoo.animal.feeding.jar
+</code></pre><blockquote>
+<p>輸出結果:</p>
+<pre tabindex="0"><code>java.base
+</code></pre></blockquote>
+<p>相依關係較複雜的模組，指令:</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">jdeps --list-deps --module-path mods mods/zoo.animal.care.jar
+</code></pre><blockquote>
+<p>輸出結果:</p>
+<pre tabindex="0"><code>java.base
+zoo.animal.feeding
+</code></pre></blockquote>
 <h3 id="使用jmod指令">使用jmod指令</h3>
-<p>🚧🚧🚧🚧🚧</p>
+<p>Java 9 的JAR檔案提升為可以支援模組化JAR，為了封裝模組，引入了兩種新的檔案格式：<code>JMOD</code> 與 <code>JIMAGE</code></p>
+<p>只需要知道的基本概念</p>
+<ol>
+<li>
+<p>Oracle建議大多數開發模組任務依然使用JAR檔案，只有少數情形用JMOD</p>
+<p><a href="https://docs.oracle.com/javase/9/tools/jmod.htm#JSWOR-GUID-0A0BDFF6-BE34-461B-86EF-AAC9A555E2AE" target="_blank" rel="noopener noreffer ">jmod api</a></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/eaM7y2d.png"
+        data-srcset="https://i.imgur.com/eaM7y2d.png, https://i.imgur.com/eaM7y2d.png 1.5x, https://i.imgur.com/eaM7y2d.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/eaM7y2d.png"
+        title="image-20230312222018283" /></p>
+</li>
+<li>
+<p><code>jmod</code>指令只用於處理 JMOD 檔案</p>
+<table>
+<thead>
+<tr>
+<th>選項</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create</td>
+<td>新建JMOD檔案</td>
+</tr>
+<tr>
+<td>extract</td>
+<td>由JMOD檔案中提取檔案，類似解壓縮</td>
+</tr>
+<tr>
+<td>describe</td>
+<td>描述模組內容</td>
+</tr>
+<tr>
+<td>list</td>
+<td>列出JMOD檔案中的檔案清單</td>
+</tr>
+<tr>
+<td>hash</td>
+<td>JMOD檔案的雜湊字串</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
 <h3 id="指令彙整">指令彙整</h3>
 <h4 id="1-指令列操作比較表">1. 指令列操作比較表</h4>
 <table>
@@ -16219,34 +17217,700 @@ Lion類別須新增habitat屬性欄位，在實例化Lion之後設定habitat屬�
 </tbody>
 </table>
 <h2 id="比較模組類型">比較模組類型</h2>
+<p>命名模組(named modules)：之前提的都是</p>
+<p>自動模組(automatic modules)、未命名模組(unnamed modules)</p>
 <blockquote>
 <p>Little Tips🍪☕ 類別路徑 class path 和模組路徑 module path</p>
+<p>Java執行時期能夠使用<strong>類別路徑</strong>和<strong>模組路徑</strong>中的類別和介面型態，兩者規則差異如下</p>
+<ol>
+<li>
+<p>Java程式可以依存取修飾詞（access modifiers, eg. public, protected）的定義，存取「<strong>類別路徑</strong>」裡的型態</p>
+</li>
+<li>
+<p>「<strong>模組路徑</strong>」裡的public型態，跟類別路徑裡面的public型態不同，並非預設或者自動公開給其他程式存取</p>
+</li>
+</ol>
+<p>除了依循存取修飾詞定義，該型態還必須位於由定義它的模組所exports的套件中(公開給其他模組使用)，此外使用該型態的模組需要設定對要使用的模組的<code>requires</code>依賴關係</p>
 </blockquote>
 <h3 id="命名模組">命名模組</h3>
-<h3 id="自動模組">自動模組</h3>
-<h4 id="manifestmf清單檔案"><code>MANIFEST.MF</code>清單檔案</h4>
-<h4 id="自動模組的命名規則">自動模組的命名規則</h4>
+<p>命名模組：包含module-info.java檔案的模組，會與一個或多個套件一起出現在JAR檔案的根目錄下</p>
+<p>一般談論模組時，預設就是指命名模組。命名模組應位於模組路徑(Modulepath)，而不是類別路徑上；如果模組檔案不在模組路徑上，將不被視為命名模組。</p>
+<p>命名模組名稱定義在module-info.java裡面</p>
+<h5 id="example---命名模組的jar檔案內容">Example - 命名模組的JAR檔案內容</h5>
+<pre tabindex="0"><code>Module Path
+named.module.jar
+some.package1
+some.package2
+module-info.class
+</code></pre><h3 id="自動模組">自動模組</h3>
+<p>自動模組也出現在模組路徑上，但不包含module-info.java</p>
+<p>它只是一個放在模組路徑上，並被視為模組的一般JAR檔案，Java會自動確定模組名稱</p>
+<h5 id="example---帶有兩個套件的自動模組">Example - 帶有兩個套件的自動模組</h5>
+<pre tabindex="0"><code>automatic.module.jar
+some.package1
+some.package2
+</code></pre><h4 id="manifestmf清單檔案"><code>MANIFEST.MF</code>清單檔案</h4>
+<p>JAR檔是個帶有名稱為META-INF的特殊目錄的zip檔案</p>
+<p>該目錄包含一個清單檔案<code>MANIFEST.MF</code>與其他檔案</p>
+<pre tabindex="0"><code>-shirt
+  -META-INF
+  	-MANIFEST.MF
+  Shirt.class
+  ShirtTest.class
+</code></pre><p>MANIFEST.MF帶有JAR檔案的相關資訊，檔案中每一行都是以冒號進行鍵值對的區隔</p>
+<pre tabindex="0"><code class="language-manifest" data-lang="manifest">Manifest-Version: 1.0
+Created-By: 11.0.12 (Oracle Corporation)
+Main-Class: ShirtTest
+</code></pre><h4 id="自動模組的命名規則">自動模組的命名規則</h4>
+<p>如果MANIFEST.MF檔沒有設定Automatic-Module-Name屬性值，最終就以JAR的檔名作為模組名稱的參考</p>
+<p>Example: 將<code>company-calender-1.0.0.jar</code>JAR檔案轉換成模組名稱</p>
+<ol>
+<li>移除副檔名<code>.jar</code></li>
+<li>移除版本資訊，通常位於JAR檔案名稱末尾<code>-1.0.0</code></li>
+<li>把<code>.</code>置換成 <code>-</code></li>
+<li>把英數字以外的符號取代為<code>.</code>，重複/相鄰/位於開頭結尾的<code>.</code>都會被自動移除</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>以JAR檔名為基礎決定模組名稱</th>
+<th>example_1</th>
+<th>example_2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0_原始JAR檔名</td>
+<td>commons2-x-1.0.0-SNAPSHOT.jar</td>
+<td>util_$-1.0.jar</td>
+</tr>
+<tr>
+<td>1_由JAR檔名中移除副檔名</td>
+<td>commons2-x-1.0.0-SNAPSHOT</td>
+<td>util_$-1.0</td>
+</tr>
+<tr>
+<td>2_由名稱末尾移除版本相關資訊</td>
+<td>commons2-x</td>
+<td>util_$</td>
+</tr>
+<tr>
+<td>3_用<code>.</code>取代除了英文字母和數字以外的其他字元</td>
+<td>commons2.x</td>
+<td>util..</td>
+</tr>
+<tr>
+<td>4_連續兩個以上的<code>.</code>字元只留一個</td>
+<td>commons2.x</td>
+<td>util.</td>
+</tr>
+<tr>
+<td>5_移除開頭結尾的<code>.</code></td>
+<td>commons2.x</td>
+<td>util</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>還是會有少數JAR檔案不依慣例命名，e.g. <code>1.2.0-category-1.2.2-name-1.jar</code></p>
+</blockquote>
 <h3 id="未命名模組">未命名模組</h3>
+<p>未命名模組跟自動模組一樣是一般的JAR檔案</p>
+<p>但自動模組使用在模組路徑（Modulepath），未命名模組則用在類別路徑（Classpath），即未命名模組屬於遺留的舊程式碼（legacy）</p>
+<p>未命名模組通常不含<code>module-info.java</code></p>
 <h3 id="比較模組類型-1">比較模組類型</h3>
+<table>
+<thead>
+<tr>
+<th>feature</th>
+<th>命名模組</th>
+<th>自動模組</th>
+<th>未命名模組</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>包含module-info.java?</td>
+<td>YES</td>
+<td>NO</td>
+<td>NO<!-- raw HTML omitted -->即便存在也忽略</td>
+</tr>
+<tr>
+<td>export套件到其他模組?</td>
+<td>以module-info.java定義要export的套件</td>
+<td>exports所有套件</td>
+<td>不會exports任何套件</td>
+</tr>
+<tr>
+<td>可被位於模組路徑的其他模組檔案存取?</td>
+<td>YES</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>可被位於類別路徑的其他JAR檔案存取?</td>
+<td>YES</td>
+<td>YES</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
 <h4 id="1-命名模組">1. 命名模組</h4>
+<p>只有具備模組名稱的<strong>命名模組</strong>和<strong>自動模組</strong>才能被命名模組存取</p>
+<h6 id="命名模組存取其他模組的結果">命名模組存取其他模組的結果</h6>
+<table>
+<thead>
+<tr>
+<th>存取對象</th>
+<th>結果</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命名模組</td>
+<td>OK</td>
+<td>同種類模組可以互相存取</td>
+</tr>
+<tr>
+<td>自動模組</td>
+<td>OK</td>
+<td>自動模組自動exports所有套件<!-- raw HTML omitted -->有推導的模組名稱</td>
+</tr>
+<tr>
+<td>未命名模組</td>
+<td>NG</td>
+<td>未命名模組無法exports套件，沒有模組名稱，無法被命名模組存取<!-- raw HTML omitted -->解法：將未命名模組的JAR檔案從類別路徑放到模組路徑</td>
+</tr>
+</tbody>
+</table>
 <h4 id="2-未命名模組">2. 未命名模組</h4>
+<p>在類別路徑上的舊版本JAR檔案，從Java 9開始會被轉換成未命名模組</p>
+<p>沒有模組資訊檔案、沒有模組名稱、無法匯出套件</p>
+<p>可以被<strong>未命名模組</strong>或<strong>自動模組</strong>存取</p>
+<h6 id="未命名模組存取其他模組的結果">未命名模組存取其他模組的結果</h6>
+<table>
+<thead>
+<tr>
+<th>存取對象</th>
+<th>結果</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命名群組</td>
+<td>OK</td>
+<td>可以存取命名模組 exports 的套件<!-- raw HTML omitted -->套件重複在不同模組時，以命名模組的套件優先</td>
+</tr>
+<tr>
+<td>自動模組</td>
+<td>OK</td>
+<td>皆為舊種類的JAR檔，只是放在不同的模組與類別路徑上<!-- raw HTML omitted -->自動模組自動exports所有套件</td>
+</tr>
+<tr>
+<td>未命名模組</td>
+<td>OK</td>
+<td>同種類模組之間可以互相存取</td>
+</tr>
+</tbody>
+</table>
 <h4 id="3-自動模組">3. 自動模組</h4>
+<p>放在模組路徑上的未命名模組，就會被轉換成自動模組</p>
+<p>自動模組沒有模組資訊檔案，但會自動匯出所有套件，可供命名模組和同類型的自動模組存取其套件</p>
+<p>雖然未命名模組不能匯出任何套件，但因為舊JAR檔案相容性，自動模組仍然可以存取未命名模組。命名模組則無法存取未命名模組。</p>
+<h6 id="自動模組存取其他模組的結果">自動模組存取其他模組的結果</h6>
+<table>
+<thead>
+<tr>
+<th>存取對象</th>
+<th>結果</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命名模組</td>
+<td>OK</td>
+<td>可以存取命名模組exports的套件<!-- raw HTML omitted -->套件重複在不同模組時，以命名模組的套件為優先</td>
+</tr>
+<tr>
+<td>自動模組</td>
+<td>OK</td>
+<td>同種類模組之間可互相存取</td>
+</tr>
+<tr>
+<td>未命名模組</td>
+<td>OK</td>
+<td>都是舊種類JAR檔案，只是放在不同路徑上</td>
+</tr>
+</tbody>
+</table>
+<hr>
 <h2 id="分析-jdk-依賴關係">分析 JDK 依賴關係</h2>
 <h3 id="識別內建模組">識別內建模組</h3>
-<h3 id="使用-jdeps">使用 JDEPS</h3>
+<p>因為 <code>java.base</code> 模組的基礎性如同 <code>java.lang</code> 套件，故預設使用，不需要特別以 requires 指令宣告（有宣告也不會有問題）</p>
+<h6 id="常用模組">常用模組</h6>
+<table>
+<thead>
+<tr>
+<th>模組名稱</th>
+<th>包含內容</th>
+<th>isDiscussed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java.base</td>
+<td>Collections, Math, IO, NIO.2, Concurrency</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>java.desktop</td>
+<td>Abstract Windows, Toolkit(AWT), Swing</td>
+<td>X</td>
+</tr>
+<tr>
+<td>java.logging</td>
+<td>Logging</td>
+<td>X</td>
+</tr>
+<tr>
+<td>java.sql</td>
+<td>JDBC</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>java.xml</td>
+<td>Extensible Markup Language(XML)</td>
+<td>X</td>
+</tr>
+</tbody>
+</table>
+<h6 id="java-內建模組---開發程式相關">java.* 內建模組 - 開發程式相關</h6>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>java.base</td>
+<td>java.naming</td>
+<td>java.smartcardio</td>
+</tr>
+<tr>
+<td>java.compiler</td>
+<td>java.net.http</td>
+<td>java.sql</td>
+</tr>
+<tr>
+<td>java.datatransfer</td>
+<td>java.prefs</td>
+<td>java.sql.rowset</td>
+</tr>
+<tr>
+<td>java.desktop</td>
+<td>java.rmi</td>
+<td>java.transaction.xa</td>
+</tr>
+<tr>
+<td>java.instrument</td>
+<td>java.scripting</td>
+<td>java.xml</td>
+</tr>
+<tr>
+<td>java.logging</td>
+<td>java.se</td>
+<td>java.xml.crypto</td>
+</tr>
+<tr>
+<td>java.management</td>
+<td>java.security.jgss</td>
+<td></td>
+</tr>
+<tr>
+<td>java.management.rmi</td>
+<td>java.security.sasl</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h6 id="jdk-內建模組---jdk功能相關">jdk.* 內建模組 - JDK功能相關</h6>
+<p>(略)</p>
+<h3 id="使用-jdeps-sub用於識別模組依賴關係sub">使用 JDEPS <!-- raw HTML omitted -->(用於識別模組依賴關係)<!-- raw HTML omitted --></h3>
+<p><code>jar -cvf mods/zoo.legacy.jar</code></p>
+<p><code>jdeps mods/zoo.legacy.jar</code></p>
+<ul>
+<li>一般模式</li>
+</ul>
+<p><code>jdeps -s mods/zoo.legacy.jar</code></p>
+<ul>
+<li>摘要模式</li>
+</ul>
+<p><code>jdeps --jdk-internals mods/zoo.legacy.jar</code></p>
+<ul>
+<li><code>--jdk-internals</code>選項可以提供和JDK內部API關聯的詳細資訊，並提供開發參考資訊</li>
+</ul>
+<blockquote>
+<p>Little Tips☕🍪 <strong>sun.misc.Unsafe</strong></p>
+<p>這命名是昇陽公司為了避免在JDK開源程式碼以外的地方使用他</p>
+<p>jdeps指令可幫助查看當甲骨文最後停用此類別時，是否會遇到任何問題</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.time.LocalDate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sun.misc.Unsafe</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UnsafeBean</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">LocalDate</span> <span class="n">date</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">UnsafeBean</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">,</span> <span class="n">LocalDate</span> <span class="n">date</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">list</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">date</span> <span class="o">=</span> <span class="n">date</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">unsafeMethod</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Unsafe</span> <span class="n">unsafe</span> <span class="o">=</span> <span class="n">Unsafe</span><span class="o">.</span><span class="na">getUnsafe</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<hr>
 <h2 id="模組化既有應用程式">模組化既有應用程式</h2>
 <h3 id="確定函式庫相依順序">確定函式庫相依順序</h3>
 <h3 id="使用由下而上的模組化策略">使用由下而上的模組化策略</h3>
+<p>最簡單的模組化方法「由下而上」移轉，如下步驟</p>
+<ol>
+<li>選擇尚未移轉的關聯圖內<strong>最低層</strong>JAR專案，優先模組化</li>
+<li>在該JAR專案新增一個module-info.java檔案(未命名-&gt;命名模組)
+<ul>
+<li>使用exports匯出需要給較高層別JAR檔用的套件</li>
+<li>使用requires新增依賴的套件(由較低層別的JAR提供)</li>
+</ul>
+</li>
+<li>將新移轉的命名模組從Classpath搬到Modulepath</li>
+<li>確保尚未移轉的JAR專案在Classpath中，保留為未命名模組</li>
+<li>反覆模組化直到完成</li>
+</ol>
 <h3 id="使用由上而下的模組化策略">使用由上而下的模組化策略</h3>
+<p>使用情境：當無法對應用程式每個JAR專案都有掌控能力時，使用由上而下的模組化策略比較有用</p>
+<p>步驟：</p>
+<ol>
+<li>把所有JAR檔案都搬到模組路徑Modulepath，變成自動模組</li>
+<li>從最高層別JAR專案優先進行模組化</li>
+<li>新增 module-info.java 到該專案(自動模組-&gt;命名模組)
+<ul>
+<li>編寫exports指令</li>
+<li>requires指令可以用自動模組名稱</li>
+</ul>
+</li>
+<li>反覆模組化直到完成</li>
+</ol>
 <h3 id="解構與模組化單體應用程式">解構與模組化單體應用程式</h3>
+<p>模組關係規劃有一個關鍵原則「模組系統不允許循環依賴」，即兩個模組不可以間接/直接地相互依賴，避免執行時無窮迴圈</p>
+<ul>
+<li>即module.A requires module.B時，module.B不能同時requires module.A</li>
+</ul>
+<p>常見解決方式是在兩個模組間再建立第三個模組，抽出其他兩個模組共用的程式碼，排除循環依賴的問題</p>
 <h3 id="循環的相依性導致無法編譯">循環的相依性導致無法編譯</h3>
+<p>在yyy.module 的 module-info.java 撰寫 requires xxx.module -&gt; 右鍵 yyy.module 專案 -&gt; Properties -&gt; Java Build Path -&gt; Projects -&gt; Modulepath [Add] -&gt; 加入 xxx.module [打勾] -&gt; yyy.module 的模組資訊檔通過編譯</p>
+<h4 id="驗證兩個模組的依賴關係出現循環現象將編譯失敗">驗證兩個模組的依賴關係出現循環現象將編譯失敗</h4>
+<p>yyy.module 跟 xxx.module 互相依賴的話，會提示錯誤訊息警告模組間的依賴關係出現循環</p>
+<pre tabindex="0"><code>Cycle exists in module dependencies, Module yyy.module requires itself via xxx.module
+</code></pre><hr>
 <h2 id="模組化-java-服務結構">模組化 Java 服務結構</h2>
+<blockquote>
+<p>⚠️這一段筆記寫的很差，有心複習的話要找原文本⚠️</p>
+</blockquote>
+<p>服務由以下三者組成</p>
+<ol>
+<li>服務提供者的介面 Service Provider Interface (SPI)</li>
+<li>該介面引用的類別</li>
+<li>取得該介面實作的機制，即「服務定位器」(service locator)</li>
+</ol>
+<p>SPI常見的應用</p>
+<ol>
+<li>Java Database Connectivity</li>
+<li>Java Cryptography Extension</li>
+<li>Java Naming and Directory Interface</li>
+<li>Java API for XML Processing</li>
+<li>Java Business Integration</li>
+<li>Java Sound</li>
+<li>Java Image I/O</li>
+<li>Java File System</li>
+</ol>
+<h4 id="serviceloaders-的-load-方法">ServiceLoader&lt;S&gt; 的 load() 方法</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">ServiceLoader</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="n">ServiceLoader</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="nf">load</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span> <span class="n">service</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// implementation content
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// other methods
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>使用SPI架構提供服務</p>
+<p>只要將服務提供者介面的型態傳遞給它的<code>load()</code>方法，即可回傳找到的服務實作</p>
+<p>實務上使用ServiceLoader的成本相對比較高，建議把搜尋結果快取在記憶體內</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TourFinder</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">Tour</span> <span class="nf">findTour</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ServiceLoader</span><span class="o">&lt;</span><span class="n">Tour</span><span class="o">&gt;</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">ServiceLoader</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">Tour</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Tour</span> <span class="n">tour</span> <span class="o">:</span> <span class="n">loader</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">tour</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Tour</span><span class="o">&gt;</span> <span class="nf">findAllTours</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ServiceLoader</span><span class="o">&lt;</span><span class="n">Tour</span><span class="o">&gt;</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">ServiceLoader</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">Tour</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Tour</span> <span class="n">tour</span> <span class="o">:</span> <span class="n">loader</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">tours</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">tour</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">tours</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<p>建立服務提供者介面實作的模組時，模組資訊檔這樣寫</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">travel</span><span class="o">.</span><span class="na">agency</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">travel</span><span class="o">.</span><span class="na">api</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">provides</span> <span class="n">travel</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Tour</span> <span class="n">with</span> <span class="n">travel</span><span class="o">.</span><span class="na">agency</span><span class="o">.</span><span class="na">TourImpl</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"> <span class="cm">/* ⭐沒有直接exports完成後的服務實作，
+</span></span></span><span class="line"><span class="cl"><span class="cm">       改用指令provides指示該模組提供一個滿足服務介面travel.api.Tour
+</span></span></span><span class="line"><span class="cl"><span class="cm">       的實作travel.agency.TourImpl，
+</span></span></span><span class="line"><span class="cl"><span class="cm">       以藉由服務定位器找出服務實作
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="serviceloaders-的-stream-方法">ServiceLoader&lt;S&gt; 的 stream() 方法</h4>
+<p>stream()方法回傳<code>Stream&lt;Provider&lt;S&gt;&gt;</code>物件，Provider是ServiceLoader的內部靜態介面，同時有提供它的內部靜態實作 ProviderImpl</p>
+<p>取得 ProviderImpl之後，可再呼叫 get() 取得服務的實作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">travel</span><span class="o">.</span><span class="na">mix</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">requires</span> <span class="n">travel</span><span class="o">.</span><span class="na">api</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uses</span> <span class="n">travel</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Tour</span><span class="o">;</span> <span class="c1">// TourImpl2 實作介面Tour
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">provides</span> <span class="n">travel</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">Tour</span> <span class="n">with</span> <span class="n">travel</span><span class="o">.</span><span class="na">mix</span><span class="o">.</span><span class="na">TourImpl2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="conclusion">Conclusion</h4>
+<table>
+<thead>
+<tr>
+<th>分類</th>
+<th>服務一部分</th>
+<th>模組專案</th>
+<th>module-info keyword</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service Provider Interface <!-- raw HTML omitted -->服務提供者介面</td>
+<td>YES</td>
+<td>travel.api</td>
+<td>exports</td>
+</tr>
+<tr>
+<td>Service Locator<!-- raw HTML omitted -->服務定位器</td>
+<td>YES</td>
+<td>travel.reservations</td>
+<td>requires<!-- raw HTML omitted -->exports<!-- raw HTML omitted -->uses</td>
+</tr>
+<tr>
+<td>Service Provider<!-- raw HTML omitted -->服務提供者(實作)</td>
+<td>NO</td>
+<td>travel.agency</td>
+<td>requires<!-- raw HTML omitted -->provides with</td>
+</tr>
+<tr>
+<td>Consumer<!-- raw HTML omitted -->服務使用者</td>
+<td>NO</td>
+<td>travel.buyer</td>
+<td>requires</td>
+</tr>
+<tr>
+<td>服務定位器<!-- raw HTML omitted -->服務提供者(實作)<!-- raw HTML omitted -->服務使用者</td>
+<td>N/A</td>
+<td>travel.mix</td>
+<td>requires<!-- raw HTML omitted -->uses<!-- raw HTML omitted -->provides with</td>
+</tr>
+</tbody>
+</table>
 <hr>
 <h1 id="15-開發安全的-java-程式">15 開發安全的 Java 程式</h1>
 <h2 id="設計安全物件">設計安全物件</h2>
-<h3 id="限制可存取性">限制可存取性</h3>
-<h3 id="限制可繼承性">限制可繼承性</h3>
-<h3 id="建立不可更改immutable物件">建立不可更改（immutable）物件</h3>
+<p>保護物件免受駭客攻擊的方法：存取控制、可繼承性、驗證和建立不可改變物件</p>
+<h3 id="1-限制可存取性">(1) 限制可存取性</h3>
+<p>設計類別時，應該使用「最小權限（least privilege）」原則，建議改為private，且設計安全的存取方式</p>
+<ul>
+<li>
+<p>private &gt; default &gt; public</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">PasswdManagerV2</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">passwdRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="n">is</span> <span class="nf">PasswdValid</span><span class="o">(</span><span class="n">String</span> <span class="n">account</span><span class="o">,</span> <span class="n">String</span> <span class="n">passwd</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">var</span> <span class="n">pwd</span> <span class="o">=</span> <span class="n">passwdRepo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">passwd</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">pwd</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>如果程式本身使用Java模組系統，又需要exports模組，也應該exports套件給需要此套件的模組</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">module</span> <span class="n">some</span><span class="o">.</span><span class="na">security</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exports</span> <span class="n">some</span><span class="o">.</span><span class="na">security</span> <span class="n">to</span> <span class="n">zoo</span><span class="o">.</span><span class="na">staff</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 表示只有 zoo.staff 可以使用 some.security 套件內的 public 類別
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-限制可繼承性">(2) 限制可繼承性</h3>
+<p>延續上個存取授權漏洞，駭客可能改用反覆試驗（trial and error）方法逐一破解帳號密碼，作法是建立PasswordManagerV2的惡意子類別</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MaliciousPasswdManager</span> <span class="kd">extends</span> <span class="n">PasswdManagerV2</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="n">is</span> <span class="nf">PasswdValid</span><span class="o">(</span><span class="n">String</span> <span class="n">account</span><span class="o">,</span> <span class="n">String</span> <span class="n">passwd</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">var</span> <span class="n">valid</span> <span class="o">=</span> <span class="kd">super</span><span class="o">.</span><span class="na">isPasswdValid</span><span class="o">(</span><span class="n">account</span><span class="o">,</span> <span class="n">passwd</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">valid</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// email the passwd to Hacker
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">valid</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只要將機敏類別宣告為 final，就可以防止被繼承</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="nc">PasswdManagerV3</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">passwdRepo</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isPasswdValid</span><span class="o">(</span><span class="n">String</span> <span class="n">account</span><span class="o">,</span> <span class="n">String</span> <span class="n">passwd</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">var</span> <span class="n">pwd</span> <span class="o">=</span> <span class="n">passwdRepo</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">account</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">passwd</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">pwd</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-建立不可更改immutable物件">(3) 建立不可更改（immutable）物件</h3>
 <h3 id="複製clone物件">複製（clone）物件</h3>
 <h4 id="介面cloneable">介面Cloneable</h4>
 <h4 id="類別object的clone方法">類別Object的clone()方法</h4>

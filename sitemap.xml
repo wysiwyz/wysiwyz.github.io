@@ -2,13 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2023-03-04T09:54:41&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/</loc><lastmod>2023-03-04T09:54:41&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2023-03-13T09:32:57&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/</loc><lastmod>2023-03-13T09:32:57&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/moviereviews/</loc><lastmod>2023-03-13T09:32:57&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/mypuppy/</loc><lastmod>2023-03-13T09:32:57&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2023-03-13T09:32:57&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/spring/</loc><lastmod>2023-03-13T09:25:24&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2023-03-13T09:25:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/lesson_01_linux/</loc><lastmod>2023-03-04T09:54:41&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/linux/</loc><lastmod>2023-03-04T09:54:41&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2023-03-04T09:54:41&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/security/</loc><lastmod>2023-03-04T09:54:41&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2023-03-04T09:54:41&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2023-03-04T09:54:41&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/lesson_00_linux/</loc><lastmod>2023-02-11T10:08:41&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/1z0-819/</loc><lastmod>2023-02-05T17:50:34&#43;08:00</lastmod></url><url>
@@ -26,7 +29,6 @@
             <loc>http://wysiwyz.github.io/tags/japanese/</loc><lastmod>2022-10-23T02:14:30&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/jrock/</loc><lastmod>2022-10-23T02:14:30&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/literature/</loc><lastmod>2022-10-23T02:14:30&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/moviereviews/</loc><lastmod>2022-10-23T02:14:30&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/inu_oh/</loc><lastmod>2022-10-23T02:14:30&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/see_primer_plus/</loc><lastmod>2022-10-16T10:08:10&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/secondpost/</loc><lastmod>2022-10-14T23:53:33&#43;08:00</lastmod></url><url>
