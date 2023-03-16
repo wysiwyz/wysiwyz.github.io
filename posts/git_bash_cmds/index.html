@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Git Bash - some awesome commands - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Git Bash - some awesome commands" />
+<meta property="og:description" content="紀錄一些 git bash 指令
+git log -oneline 跟sourceTree_History_Description欄位基本一樣
+git log 跟樓上一樣, 但多了些author/date訊息
+Interactive Rebase 可用來修改local端的commit message 刪除local端commit 整理local端commits 合併多個commits為一個 將一個commit拆分為多個commits 注意：會重寫commit history，產生新的hash ID(i.e. new commit)
+所以不能對已經push上remote repository的commits執行interactive rebase
+git rebase -i HEAD~3
+rebase interactive head till the three
+要回去幾個節點之前? base commit是哪個?
+(1) copy hash id 9a23775
+(2) Head minus 3
+接著會出現一個editor window，可控制head&#43;前兩個commit
+reword
+不直接改commit msg，而是將pick改成reword，存檔關閉
+接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc&#43;:wq)
+squash
+將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
+Voilà! 原本的兩個commits合併成一個惹！
+git commit amend 可修改最近一筆local端本分支的 msg" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/git_bash_cmds/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-16T14:20:15+08:00" />
+<meta property="article:modified_time" content="2023-03-16T14:20:15+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Git Bash - some awesome commands"/>
+<meta name="twitter:description" content="紀錄一些 git bash 指令
+git log -oneline 跟sourceTree_History_Description欄位基本一樣
+git log 跟樓上一樣, 但多了些author/date訊息
+Interactive Rebase 可用來修改local端的commit message 刪除local端commit 整理local端commits 合併多個commits為一個 將一個commit拆分為多個commits 注意：會重寫commit history，產生新的hash ID(i.e. new commit)
+所以不能對已經push上remote repository的commits執行interactive rebase
+git rebase -i HEAD~3
+rebase interactive head till the three
+要回去幾個節點之前? base commit是哪個?
+(1) copy hash id 9a23775
+(2) Head minus 3
+接著會出現一個editor window，可控制head&#43;前兩個commit
+reword
+不直接改commit msg，而是將pick改成reword，存檔關閉
+接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc&#43;:wq)
+squash
+將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
+Voilà! 原本的兩個commits合併成一個惹！
+git commit amend 可修改最近一筆local端本分支的 msg"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/git_bash_cmds/" /><link rel="prev" href="http://wysiwyz.github.io/posts/javascript_2018/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Git Bash - some awesome commands",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/git_bash_cmds\/"
+        },"genre": "posts","keywords": "Git Bash","wordcount":  304 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/git_bash_cmds\/","datePublished": "2023-03-16T14:20:15+08:00","dateModified": "2023-03-16T14:20:15+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git Bash - some awesome commands</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-16">2023-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;304 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#interactive-rebase">Interactive Rebase</a></li>
+        <li><a href="#cherry-picking---合併特定一筆特定幾筆commits">Cherry-Picking - 合併特定一筆/特定幾筆commits</a></li>
+        <li><a href="#reflog---every-movement-of-the-head-pointer-日誌">Reflog - every movement of the HEAD Pointer (日誌)</a></li>
+        <li><a href="#submodules---repo-nested-inside-another-parent-repo">Submodules - repo nested inside another parent repo</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>紀錄一些 git bash 指令</p>
+</blockquote>
+<ol>
+<li>
+<p><code>git log -oneline</code> 跟sourceTree_History_Description欄位基本一樣</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/k8WeUJx.png"
+        data-srcset="https://i.imgur.com/k8WeUJx.png, https://i.imgur.com/k8WeUJx.png 1.5x, https://i.imgur.com/k8WeUJx.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/k8WeUJx.png"
+        title="image-20230316142443067" /></p>
+</li>
+<li>
+<p><code>git log</code> 跟樓上一樣, 但多了些author/date訊息</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/gNQhL0n.png"
+        data-srcset="https://i.imgur.com/gNQhL0n.png, https://i.imgur.com/gNQhL0n.png 1.5x, https://i.imgur.com/gNQhL0n.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/gNQhL0n.png"
+        title="image-20230316142421145" /></p>
+</li>
+</ol>
+<h3 id="interactive-rebase">Interactive Rebase</h3>
+<ul>
+<li>可用來修改local端的commit message</li>
+<li>刪除local端commit</li>
+<li>整理local端commits</li>
+<li>合併多個commits為一個</li>
+<li>將一個commit拆分為多個commits</li>
+</ul>
+<blockquote>
+<p>注意：會重寫commit history，產生新的hash ID(i.e. new commit)</p>
+<p>所以不能對已經push上remote repository的commits執行interactive rebase</p>
+</blockquote>
+<ol>
+<li>
+<p><code>git rebase -i HEAD~3</code></p>
+<ul>
+<li>
+<p>rebase interactive head till the three</p>
+</li>
+<li>
+<p>要回去幾個節點之前? base commit是哪個?</p>
+</li>
+<li>
+<p>(1) copy hash id <code>9a23775</code></p>
+</li>
+<li>
+<p>(2) Head minus 3</p>
+</li>
+<li>
+<p>接著會出現一個editor window，可控制head+前兩個commit</p>
+</li>
+<li>
+<p><code>reword</code></p>
+<ul>
+<li>
+<p>不直接改commit msg，而是將pick改成reword，存檔關閉</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/N49E1nu.png"
+        data-srcset="https://i.imgur.com/N49E1nu.png, https://i.imgur.com/N49E1nu.png 1.5x, https://i.imgur.com/N49E1nu.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/N49E1nu.png"
+        title="image-20230316152150688" /></p>
+</li>
+<li>
+<p>接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (<code>esc</code>+<code>:wq</code>)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/R131Dvu.png"
+        data-srcset="https://i.imgur.com/R131Dvu.png, https://i.imgur.com/R131Dvu.png 1.5x, https://i.imgur.com/R131Dvu.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/R131Dvu.png"
+        title="image-20230316152031070" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/JmR3HPm.png"
+        data-srcset="https://i.imgur.com/JmR3HPm.png, https://i.imgur.com/JmR3HPm.png 1.5x, https://i.imgur.com/JmR3HPm.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/JmR3HPm.png"
+        title="image-20230316152123443" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>squash</code></p>
+<ul>
+<li>
+<p>將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Dj5c7XP.png"
+        data-srcset="https://i.imgur.com/Dj5c7XP.png, https://i.imgur.com/Dj5c7XP.png 1.5x, https://i.imgur.com/Dj5c7XP.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Dj5c7XP.png"
+        title="image-20230316152237018" /></p>
+</li>
+<li>
+<p>跳新視窗，寫入合併後的commit msg，存檔關閉</p>
+</li>
+<li>
+<p>Voilà! 原本的兩個commits合併成一個惹！</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="C:%5cUsers%5ctpi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230316150122078.png"
+        data-srcset="C:%5cUsers%5ctpi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230316150122078.png, C:%5cUsers%5ctpi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230316150122078.png 1.5x, C:%5cUsers%5ctpi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230316150122078.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\tpi\AppData\Roaming\Typora\typora-user-images\image-20230316150122078.png"
+        title="image-20230316150122078" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/N4SIKQQ.png"
+        data-srcset="https://i.imgur.com/N4SIKQQ.png, https://i.imgur.com/N4SIKQQ.png 1.5x, https://i.imgur.com/N4SIKQQ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/N4SIKQQ.png"
+        title="image-20230316150048329" /></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>git commit amend</code> 可修改最近一筆local端本分支的 msg</p>
+</li>
+</ol>
+<h3 id="cherry-picking---合併特定一筆特定幾筆commits">Cherry-Picking - 合併特定一筆/特定幾筆commits</h3>
+<pre tabindex="0"><code>[j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;
+  ↖
+   [j2]&lt;--[j4]--&lt;branch_J&gt;
+</code></pre><p>主要還是用 rebase 跟 merge，只有特殊情境才用</p>
+<h5 id="example">Example</h5>
+<p>天！小白把變更 commit 到 master 分支了，但是團隊老大說過要 commit 在 feature_newsletter 才對！</p>
+<p>小白可以這麼做&hellip;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git checkout feature_newsletter
+</span></span><span class="line"><span class="cl">Switched to branch <span class="s1">&#39;feature_newsletter&#39;</span>
+</span></span><span class="line"><span class="cl">$ git cherry-pick &lt;that_hash_id&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>viola！newsletter signup page 被接木到 feature_newsletter 惹！</p>
+<p>想重寫歷史 <del>毀屍滅跡</del> 的話，小白還可以&hellip;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git checkout master
+</span></span><span class="line"><span class="cl">Switched to branch <span class="s1">&#39;master&#39;</span>
+</span></span><span class="line"><span class="cl">$ git reset --hard HEAD~1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>HEAD~1</code>(head till the one): 在這裡指的是one behind the head</p>
+</blockquote>
+<h3 id="reflog---every-movement-of-the-head-pointer-日誌">Reflog - every movement of the HEAD Pointer (日誌)</h3>
+<p>可列出各種 actions history
+例如 commit/checkout/merge/rebase/cherry-pick/reset</p>
+<h5 id="example_1">Example_1</h5>
+<ol>
+<li>
+<p>小綠討厭分支內的其中幾個commits</p>
+</li>
+<li>
+<p>小綠使用<code>git reset</code>之術</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git reset --hard &lt;想刪除的commits『之前』的commit_hash_id&gt;
+</span></span><span class="line"><span class="cl">HEAD is now at &lt;貼上的該commit_hash_id&gt; &lt;該commit msg&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>小綠後悔了</p>
+</li>
+<li>
+<p>小綠😭😱</p>
+</li>
+</ol>
+<p>解決之道：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git reflog
+</span></span><span class="line"><span class="cl">&lt;commit_id&gt; <span class="o">(</span>HEAD -&gt; xxx, xxxx<span class="o">)</span> HEAD@<span class="o">{</span>0<span class="o">}</span>: reset: moving to &lt;commit_id&gt;
+</span></span><span class="line"><span class="cl">&lt;another_cmt_id&gt; 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到過去的 actions(從上而下，新到舊_chronologically)</p>
+<p>想要回到過去的話，只要複製line# 3的commit_id，再執行以下作法其中一個</p>
+<ul>
+<li><code>git reset</code></li>
+<li><code>git branch happy-ending &lt;another_cmt_id&gt;</code> 
+開新的分支</li>
+</ul>
+<h5 id="example_2---使用git-reflog之術復原已刪除的分支-featurelogin">Example_2 - 使用<code>git reflog</code>之術復原已刪除的分支 feature/login</h5>
+<p>小青的客戶說這個產品不需要login功能了，小青信以為真把它刪了</p>
+<p>因為有沒合併到其他分支的commit，需要使用 force delete</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/O748uRt.png"
+        data-srcset="https://i.imgur.com/O748uRt.png, https://i.imgur.com/O748uRt.png 1.5x, https://i.imgur.com/O748uRt.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/O748uRt.png"
+        title="image-20230316165331703" /></p>
+<p>經過一夜，三心二意的客戶告訴小青他們要重測 feature/login 分支的API了</p>
+<p>這時候可以查看<code>git reflog</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/4Ph5tir.png"
+        data-srcset="https://i.imgur.com/4Ph5tir.png, https://i.imgur.com/4Ph5tir.png 1.5x, https://i.imgur.com/4Ph5tir.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/4Ph5tir.png"
+        title="image-20230316165530356" /></p>
+<p>複製 <code>9abcca5</code>，用此 command_id 開新的分支</p>
+<blockquote>
+<p>嫌視窗佔滿可以輸入<code>clear</code>(put that on top)，
+作用跟 <code>CTRL + L</code> clear terminal command 差不多</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git branch feature/login 9abcca5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="submodules---repo-nested-inside-another-parent-repo">Submodules - repo nested inside another parent repo</h3>
+<p>複製貼上第三方程式碼的缺點</p>
+<ol>
+<li>外部程式碼跟自己的code可能會衝突/搞混</li>
+<li>手工更新外部程式碼，反覆同樣行為</li>
+</ol>
+<h5 id="example-1">Example</h5>
+<ol>
+<li>
+<p>在某repository目錄下建立一個目錄，名稱為<code>lib</code> or <code>vendor folder</code> 之類的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir lib
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> lib
+</span></span><span class="line"><span class="cl">$ git submodule add &lt;遠端倉庫的網址 https://github.com/xxx/yyy&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/2RS3hJk.png"
+        data-srcset="https://i.imgur.com/2RS3hJk.png, https://i.imgur.com/2RS3hJk.png 1.5x, https://i.imgur.com/2RS3hJk.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/2RS3hJk.png"
+        title="image-20230316173931365" /></p>
+</li>
+<li>
+<p>[注意] submodule <code>lib</code>目錄下的東西並不存在於parent repository
+parent repository 只會存：</p>
+<ul>
+<li>sub module 的遠端 URL</li>
+<li>本地端的路徑</li>
+<li>checkout revision</li>
+</ul>
+</li>
+<li>
+<p>加入sub-module之後，會發現 parent repo目錄內除了<code>.gitignore</code>，還多了一個<code>.gitmodules</code>檔案</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat .gitmodules
+</span></span><span class="line"><span class="cl"><span class="o">[</span>submodule <span class="s2">&#34;lib/ToProgress&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">			<span class="nv">path</span> <span class="o">=</span> lib/ToProgress
+</span></span><span class="line"><span class="cl">			<span class="nv">url</span> <span class="o">=</span> https://github.com/xxx/yyy
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>還可以查看 <code>.git/config</code> 多一個配置</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Qulj4qZ.png"
+        data-srcset="https://i.imgur.com/Qulj4qZ.png, https://i.imgur.com/Qulj4qZ.png 1.5x, https://i.imgur.com/Qulj4qZ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Qulj4qZ.png"
+        title="image-20230316174413999" /></p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-03-16</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://wysiwyz.github.io/posts/git_bash_cmds/" data-title="Git Bash - some awesome commands" data-via="cel_yi" data-hashtags="Git Bash"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/git_bash_cmds/" data-hashtag="Git Bash"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://wysiwyz.github.io/posts/git_bash_cmds/" data-title="Git Bash - some awesome commands"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/git_bash_cmds/" data-title="Git Bash - some awesome commands"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://wysiwyz.github.io/posts/git_bash_cmds/" data-title="Git Bash - some awesome commands"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git-bash/">Git Bash</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/javascript_2018/" class="prev" rel="prev" title="Javascript dashing dashshound"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Javascript dashing dashshound</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

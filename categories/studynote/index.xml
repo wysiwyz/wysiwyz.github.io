@@ -3,7 +3,32 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>Git Bash - some awesome commands</title>
+    <link>http://wysiwyz.github.io/posts/git_bash_cmds/</link>
+    <pubDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/git_bash_cmds/</guid>
+    <description><![CDATA[紀錄一些 git bash 指令
+git log -oneline 跟sourceTree_History_Description欄位基本一樣
+git log 跟樓上一樣, 但多了些author/date訊息
+Interactive Rebase 可用來修改local端的commit message 刪除local端commit 整理local端commits 合併多個commits為一個 將一個commit拆分為多個commits 注意：會重寫commit history，產生新的hash ID(i.e. new commit)
+所以不能對已經push上remote repository的commits執行interactive rebase
+git rebase -i HEAD~3
+rebase interactive head till the three
+要回去幾個節點之前? base commit是哪個?
+(1) copy hash id 9a23775
+(2) Head minus 3
+接著會出現一個editor window，可控制head+前兩個commit
+reword
+不直接改commit msg，而是將pick改成reword，存檔關閉
+接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc+:wq)
+squash
+將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
+Voilà! 原本的兩個commits合併成一個惹！
+git commit amend 可修改最近一筆local端本分支的 msg]]></description>
+</item>
+<item>
     <title>Javascript dashing dashshound</title>
     <link>http://wysiwyz.github.io/posts/javascript_2018/</link>
     <pubDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</pubDate>
@@ -108,15 +133,6 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
     <guid>http://wysiwyz.github.io/posts/ocpjp/</guid>
     <description><![CDATA[OCPJP pro to be or else &hellip; no else
 1. Regional Inner Class 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public class Vehicle { int distance; Vehicle(int x) { this.distance = x; } public void increSpeed(int time) { int timeTravel = time; class Car { // line n1 int value = 0; public void speed() { value = distance / timeTravel; // line n2 System.]]></description>
-</item>
-<item>
-    <title>// Reading club</title>
-    <link>http://wysiwyz.github.io/posts/reading_club/</link>
-    <pubDate>Tue, 08 Nov 2022 10:41:52 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/reading_club/</guid>
-    <description><![CDATA[// Reading club 想要參加但是怕題目重複所以在這裡放歷史紀錄
-阿里斯 郭歐烏 帖伊特 乎阿米 湍梯玩 費德生 書寫修復練習 v 超級思維 v 我們所能承擔的，多過我們所能想像 v 研究室：談一場不追不求 v 神啊！我不想再努力了，請直接告訴我成功的方法吧 v In-dis-tractable 專注力協定 v Designing Your Life 做自己的生命設計師 v 最高學以致用法 v 活出意義來 v 最高閒聊法 v The Bullet Journal Method — 子彈思考整理術 v 深夜加油站．遇見蘇格拉底 v 蛤蟆先生去看心理師 v ]]></description>
 </item>
 </channel>
 </rss>

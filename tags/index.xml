@@ -3,7 +3,15 @@
         <title>Tags - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/</link>
         <description>Tags - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Git Bash</title>
+    <link>http://wysiwyz.github.io/tags/git-bash/</link>
+    <pubDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/git-bash/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>javasc</title>
     <link>http://wysiwyz.github.io/tags/javasc/</link>
     <pubDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</pubDate>
@@ -73,14 +81,6 @@
     <pubDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/animation/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Japanese</title>
-    <link>http://wysiwyz.github.io/tags/japanese/</link>
-    <pubDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/japanese/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
