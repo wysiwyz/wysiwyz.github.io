@@ -1,0 +1,27 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>javasc - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/javasc/</link>
+        <description>javasc - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/javasc/" rel="self" type="application/rss+xml" /><item>
+    <title>Javascript dashing dashshound</title>
+    <link>http://wysiwyz.github.io/posts/javascript_2018/</link>
+    <pubDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/javascript_2018/</guid>
+    <description><![CDATA[下周工作開始要用到 javascript, jQuery, HTML, CSS，特此複習
+🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
+後面可接英文字母、底線_、錢字號$、數字
+大小寫有區別
+關鍵字、保留字不能當變數名稱，詳閱MDN
+JavaScript 1.3 起支援Unicode，可用中文(盡量避免)
+ES6之後可用var(變數)、let(作用範圍與var不同)、const
+所有沒透過var宣告的變數，都會自動變成全域變數
+1 2 m = 1; console.log(m); //未宣告var會有後遺症 已經被 var 宣告過的變數可以再次被宣告 [合法]
+1 2 3 var m = 1; var m = 2; var m = 3; 透過 let 宣告的變數不能被再次宣告
+1 2 3 let m = 1; let m = 2; //⚠️Uncaught SyntaxError: Identifier &#39;m&#39; has already been declared. 變數資料型別 變數本身不帶有資料型別資訊，其中的值/物件才有
+變數沒有型別，值才有 JavaScript支援型別
+基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別]]></description>
+</item>
+</channel>
+</rss>

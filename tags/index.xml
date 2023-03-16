@@ -3,7 +3,15 @@
         <title>Tags - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/</link>
         <description>Tags - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 04 Mar 2023 09:54:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>javasc</title>
+    <link>http://wysiwyz.github.io/tags/javasc/</link>
+    <pubDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/javasc/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>linux</title>
     <link>http://wysiwyz.github.io/tags/linux/</link>
     <pubDate>Sat, 04 Mar 2023 09:54:41 &#43;0800</pubDate>
@@ -73,14 +81,6 @@
     <pubDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/japanese/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>JRock</title>
-    <link>http://wysiwyz.github.io/tags/jrock/</link>
-    <pubDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/jrock/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
