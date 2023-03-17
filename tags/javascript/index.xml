@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>javasc - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/javasc/</link>
-        <description>javasc - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/javasc/" rel="self" type="application/rss+xml" /><item>
-    <title>Javascript dashing dashshound</title>
+        <title>JavaScript - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/javascript/</link>
+        <description>JavaScript - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
+    <title>JavaScript - dashing dashshound</title>
     <link>http://wysiwyz.github.io/posts/javascript_2018/</link>
     <pubDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</pubDate>
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/javascript_2018/</guid>
-    <description><![CDATA[下周工作開始要用到 javascript, jQuery, HTML, CSS，特此複習
+    <description><![CDATA[下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
 🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
 後面可接英文字母、底線_、錢字號$、數字
 大小寫有區別

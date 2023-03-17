@@ -3,7 +3,44 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 17 Mar 2023 16:44:11 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>Lesson 02: Linux 筆記</title>
+    <link>http://wysiwyz.github.io/posts/lesson_02_linux/</link>
+    <pubDate>Fri, 17 Mar 2023 16:44:11 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_02_linux/</guid>
+    <description><![CDATA[請假六小時，來補課arrrhh
+何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
+UGO User Group Other
+由三組位元所組成（八進制）
+l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 // drwxr-xr-x, dr-xr-x---, 數字:
+❔ r w x - 數值 4 2 1 0 常用UGO
+setting num values meaning -rw&mdash;&mdash;- -rw-r&ndash;r&ndash; -rwx&mdash;&mdash; -rwxr-xr-x -rwx&ndash;x&ndash;x -rw-rw-rw- -rwxrwxrwx drwx&mdash;&mdash; drwxr-xr-x ⚠️666&amp; 777 注意]]></description>
+</item>
+<item>
+    <title>1Z0-819 曾師筆記 (2/duology)</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
+    <pubDate>Fri, 17 Mar 2023 16:30:34 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp_11_2/</guid>
+    <description><![CDATA[# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
+集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
+使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.]]></description>
+</item>
+<item>
+    <title>Cloud native - the next gen</title>
+    <link>http://wysiwyz.github.io/posts/native_cloud/</link>
+    <pubDate>Fri, 17 Mar 2023 14:02:55 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/native_cloud/</guid>
+    <description><![CDATA[現在沒有雲原生可是不行的，了解一下下
+Cloud native 公有雲、私有雲、混合雲 動態環境 - Node上下, stateless vs stateful 可擴展 - auto scaling (HPA) 聲明式 - ansible, terraform, K8S yaml 容器、微服務、無服務器 - K8S, OCP, Cloud Run, Cloud Function 最小化用戶的操作負擔 - auto healing (liveness, readiness) 所有的服務最好都是stateless
+Stateless vs Stateful Stateless Stateful def 無狀態，每次請求都是獨立 有狀態，每次請求與過去相關 eg. JWTMap (coding)Vue/React/Angular serviceDeployment (K8S) SessionReduce (coding)MySqlVolume/StatefulSet(K8S) 聲明式 - Ansible 聲明式 - Terraform CKA Kubernetes 認證使用命令式 kubectl run nginx -image=nginx
+實務上用聲明式
+Cloud native 的時代
+Spring boot 3]]></description>
+</item>
+<item>
     <title>Git Bash - some awesome commands</title>
     <link>http://wysiwyz.github.io/posts/git_bash_cmds/</link>
     <pubDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</pubDate>
@@ -17,24 +54,23 @@ Interactive Rebase 可用來修改local端的commit message 刪除local端commit
 git rebase -i HEAD~3
 rebase interactive head till the three
 要回去幾個節點之前? base commit是哪個?
-(1) copy hash id 9a23775
-(2) Head minus 3
-接著會出現一個editor window，可控制head+前兩個commit
+copy hash id 9a23775 Head minus 3 接著會出現一個editor window，可控制head+前兩個commit
 reword
 不直接改commit msg，而是將pick改成reword，存檔關閉
 接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc+:wq)
 squash
 將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
 Voilà! 原本的兩個commits合併成一個惹！
-git commit amend 可修改最近一筆local端本分支的 msg]]></description>
+git commit amend 可修改最近一筆local端本分支的 msg
+Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用]]></description>
 </item>
 <item>
-    <title>Javascript dashing dashshound</title>
+    <title>JavaScript - dashing dashshound</title>
     <link>http://wysiwyz.github.io/posts/javascript_2018/</link>
     <pubDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</pubDate>
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/javascript_2018/</guid>
-    <description><![CDATA[下周工作開始要用到 javascript, jQuery, HTML, CSS，特此複習
+    <description><![CDATA[下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
 🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
 後面可接英文字母、底線_、錢字號$、數字
 大小寫有區別
@@ -89,16 +125,6 @@ Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑�
 NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?]]></description>
 </item>
 <item>
-    <title>1Z0-819 曾師筆記 (2/duology)</title>
-    <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
-    <pubDate>Sun, 05 Feb 2023 17:50:34 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ocpjp_11_2/</guid>
-    <description><![CDATA[# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
-集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
-使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.]]></description>
-</item>
-<item>
     <title>Encrypt, Decrypt</title>
     <link>http://wysiwyz.github.io/posts/encrypt_decrypt/</link>
     <pubDate>Wed, 01 Feb 2023 14:01:22 &#43;0800</pubDate>
@@ -115,24 +141,6 @@ NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3
     <description><![CDATA[# 03 OOP 程式設計思維 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 01 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
 java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 程式碼附檔名必須為 .java，否則編譯器將拒絕編譯 class 檔案內可以有多個沒有 public 修飾的 class，檔案名稱不一定要與那些 classes 名稱相同。編譯時，檔案內宣告的每一個 class 都會各自產生附檔名為 .]]></description>
-</item>
-<item>
-    <title>Oracle Certified Associate Java PG</title>
-    <link>http://wysiwyz.github.io/posts/ocajp/</link>
-    <pubDate>Sun, 04 Dec 2022 14:57:52 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ocajp/</guid>
-    <description><![CDATA[OCAJP 紀錄題目的地方&hellip;
-1. Hello Java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos++) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.]]></description>
-</item>
-<item>
-    <title>Oracle Certified Professional Java PG</title>
-    <link>http://wysiwyz.github.io/posts/ocpjp/</link>
-    <pubDate>Tue, 08 Nov 2022 15:00:44 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ocpjp/</guid>
-    <description><![CDATA[OCPJP pro to be or else &hellip; no else
-1. Regional Inner Class 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 public class Vehicle { int distance; Vehicle(int x) { this.distance = x; } public void increSpeed(int time) { int timeTravel = time; class Car { // line n1 int value = 0; public void speed() { value = distance / timeTravel; // line n2 System.]]></description>
 </item>
 </channel>
 </rss>

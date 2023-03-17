@@ -17,16 +17,15 @@ Interactive Rebase 可用來修改local端的commit message 刪除local端commit
 git rebase -i HEAD~3
 rebase interactive head till the three
 要回去幾個節點之前? base commit是哪個?
-(1) copy hash id 9a23775
-(2) Head minus 3
-接著會出現一個editor window，可控制head+前兩個commit
+copy hash id 9a23775 Head minus 3 接著會出現一個editor window，可控制head+前兩個commit
 reword
 不直接改commit msg，而是將pick改成reword，存檔關閉
 接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc+:wq)
 squash
 將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
 Voilà! 原本的兩個commits合併成一個惹！
-git commit amend 可修改最近一筆local端本分支的 msg]]></description>
+git commit amend 可修改最近一筆local端本分支的 msg
+Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用]]></description>
 </item>
 </channel>
 </rss>
