@@ -3,7 +3,53 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 17 Mar 2023 16:44:11 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 27 Mar 2023 17:30:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>1Z0-819 曾師筆記 (2/duology)</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
+    <pubDate>Mon, 27 Mar 2023 17:30:34 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp_11_2/</guid>
+    <description><![CDATA[# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
+集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
+使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.]]></description>
+</item>
+<item>
+    <title>Cloud_architect_GCP</title>
+    <link>http://wysiwyz.github.io/posts/cloud_architect_gcp/</link>
+    <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/cloud_architect_gcp/</guid>
+    <description><![CDATA[Active learning - think and take notes
+Review - every once in a while
+Section 01 Section 02 Section 03 Section 04 Section 05 Section 06 Section 07 Section 08 Section 09 Section 10 Google Cloud Functions Section 11 Section 12 Section 13 Section 14 Section 15 Section 16 Section 17 Section 18 Section 19
+Section 20
+Section 21
+Section 22
+Section 23
+Section 24
+Section 25
+Section 26]]></description>
+</item>
+<item>
+    <title>Lesson_03_linux</title>
+    <link>http://wysiwyz.github.io/posts/lesson_03_linux/</link>
+    <pubDate>Sat, 18 Mar 2023 09:30:38 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_03_linux/</guid>
+    <description><![CDATA[LUKS 加密服務 適用對象 移動式設備資料保護
+notebook, USB磁碟加密
+提供32組插槽使用
+把partition切成小塊加密，裡面放密碼、key_file
+可以使用設定的密碼解密或者用key解密
+注意事項 LUKS並不對檔案本身進行加密(針對整個partition,整個D槽) LUKS對於單一磁碟取走後能夠起保護作用 KUKS對於已經解密之磁碟內容不起保護作用 指令 cryptsetup luksFormat 建立加密磁碟 luksOpen 開啟加密磁碟 close 關閉已經開啟的加密磁碟 luks - 解密
+mount - 掛起來
+umount - 卸載
+​ (順便同步, 如果未正確卸載可能會造成檔案毀損)
+1 2 3 4 5 6 7 8 lsblk /dev/sdb cryptsetup luksFormat /dev/sdb cryptsetup luksOpen /dev/sdb secDisk mkfs.xfs /dev/mapper/secDisk mount /dev/mapper/secDisk /mnt touch /mnt/myfile umount /mnt cryptsetup close secDisk Dump/Status more cmds 使用插槽 刪除插槽 memcached的使用
+Luks資料加密架構與資料救援方法
+Linux檔案加密_GPG_GnuPG]]></description>
+</item>
+<item>
     <title>Lesson 02: Linux 筆記</title>
     <link>http://wysiwyz.github.io/posts/lesson_02_linux/</link>
     <pubDate>Fri, 17 Mar 2023 16:44:11 &#43;0800</pubDate>
@@ -13,19 +59,11 @@
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
 UGO User Group Other
 由三組位元所組成（八進制）
-l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 // drwxr-xr-x, dr-xr-x---, 數字:
-❔ r w x - 數值 4 2 1 0 常用UGO
-setting num values meaning -rw&mdash;&mdash;- -rw-r&ndash;r&ndash; -rwx&mdash;&mdash; -rwxr-xr-x -rwx&ndash;x&ndash;x -rw-rw-rw- -rwxrwxrwx drwx&mdash;&mdash; drwxr-xr-x ⚠️666&amp; 777 注意]]></description>
-</item>
-<item>
-    <title>1Z0-819 曾師筆記 (2/duology)</title>
-    <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
-    <pubDate>Fri, 17 Mar 2023 16:30:34 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ocpjp_11_2/</guid>
-    <description><![CDATA[# 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
-集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
-使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.]]></description>
+l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
+❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
+允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
+SUID &amp; SGID &amp; SBIT
+檔案系統 特殊權限 1. SetUID nosuid 在根目錄建立一個secure folder，設定成777，查看/secure/目錄的權限，]]></description>
 </item>
 <item>
     <title>Cloud native - the next gen</title>
@@ -35,10 +73,8 @@ setting num values meaning -rw&mdash;&mdash;- -rw-r&ndash;r&ndash; -rwx&mdash;&m
     <guid>http://wysiwyz.github.io/posts/native_cloud/</guid>
     <description><![CDATA[現在沒有雲原生可是不行的，了解一下下
 Cloud native 公有雲、私有雲、混合雲 動態環境 - Node上下, stateless vs stateful 可擴展 - auto scaling (HPA) 聲明式 - ansible, terraform, K8S yaml 容器、微服務、無服務器 - K8S, OCP, Cloud Run, Cloud Function 最小化用戶的操作負擔 - auto healing (liveness, readiness) 所有的服務最好都是stateless
-Stateless vs Stateful Stateless Stateful def 無狀態，每次請求都是獨立 有狀態，每次請求與過去相關 eg. JWTMap (coding)Vue/React/Angular serviceDeployment (K8S) SessionReduce (coding)MySqlVolume/StatefulSet(K8S) 聲明式 - Ansible 聲明式 - Terraform CKA Kubernetes 認證使用命令式 kubectl run nginx -image=nginx
-實務上用聲明式
-Cloud native 的時代
-Spring boot 3]]></description>
+Stateless vs Stateful Stateless 無狀態，每次請求都是獨立 example JWT .map() Vue/React/Angular service Deployment (K8S) Stateful 有狀態，每次請求與過去相關 example Session .reduce() MySQL Volume/StatefulSet(K8S) 聲明式 - Ansible 聲明式 - Terraform CKA Kubernetes 認證使用命令式 kubectl run nginx -image=nginx
+實務上用聲明式]]></description>
 </item>
 <item>
     <title>Git Bash - some awesome commands</title>
@@ -123,24 +159,6 @@ Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑�
     <guid>http://wysiwyz.github.io/posts/lesson_00_linux/</guid>
     <description><![CDATA[資安是一個循環 這次會過不代表下次會過，每年都要複驗 ISO27001 改版（LA - lead auditor） Log server Windows 的 GPO policy 是什麼 .twcertcc : https://www.twcert.org.tw/tw/mp-1.html 營利目標 依公司法，企業營運是為了向股東負責 企業營運 以永續經營與營利為目標 發展產品或服務解決客戶之問題，或者滿足其需求 有利企業發展的事才考慮執行 機密性 產生營利的過程中，衍生出只有甲乙雙方才能知道的事件 營運過程中，衍生無法完全透明的內部資訊 營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資) 營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力 目標 保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標 常用手法 人員階級、職等、業務範圍管理 實物管理（區域進出換證、資產盤點） 數位資訊管理 CentOS 8 安全措施 作業系統安全 作業系統安裝 系統紀錄 檔案稽核 檔案系統權限配置 系統防火牆 應用服務安全 Web SSL MariaDB (MySQL &hellip; audit 要付費) Samba(smb)/NFS [AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)
 NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?]]></description>
-</item>
-<item>
-    <title>Encrypt, Decrypt</title>
-    <link>http://wysiwyz.github.io/posts/encrypt_decrypt/</link>
-    <pubDate>Wed, 01 Feb 2023 14:01:22 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/encrypt_decrypt/</guid>
-    <description><![CDATA[用途 怕被別人看見 弄成被看到也沒關係 [加密] 想給特定人看 避免對方也看不懂 [解密] 分類 類型 對稱加解密 非對稱加解密 實例 AES、3DES RSA、ECDSA &hellip; 加解密方式寫在同一張紙上[加解密方式] public key 加解密方式寫在不同紙上[加密方式] public key &hellip; client get by calling api[解密方式] private key &hellip; saved at Server side 概論 簡單、速度快、安全性低 複雜速度慢、安全性較高 特色 1. Client 和 Server 用同一把密鑰加解密2. AES/ {ECB/CBC...}/PaddingPattern 應用 1. 對大量明文的加密2. Https 的 SessionKey Appendix AES 加密結構說明 金鑰長度(bit) : AES-128 AES-192 AES-256 區塊間加密方式 : ECB - 可以被密推 CBC - 亂數 initial value 初始值 CFB - 亂數 initial value 初始值 OFB CTR 區塊填充方式: NoPadding - 不建議、會影響加密強度 ZeroBytePadding - 缺兩個填入 0 PKCS5Padding PKCS7Padding Example: AES-256/CBC/PKCS7Padding]]></description>
-</item>
-<item>
-    <title>1Z0-819 曾師筆記 (1/duology)</title>
-    <link>http://wysiwyz.github.io/posts/ocpjp_11/</link>
-    <pubDate>Tue, 13 Dec 2022 21:10:22 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ocpjp_11/</guid>
-    <description><![CDATA[# 03 OOP 程式設計思維 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 01 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
-java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
-程式碼附檔名必須為 .java，否則編譯器將拒絕編譯 class 檔案內可以有多個沒有 public 修飾的 class，檔案名稱不一定要與那些 classes 名稱相同。編譯時，檔案內宣告的每一個 class 都會各自產生附檔名為 .]]></description>
 </item>
 </channel>
 </rss>

@@ -50,7 +50,7 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/javascript_2018\/"
-        },"genre": "posts","keywords": "JavaScript","wordcount":  792 ,
+        },"genre": "posts","keywords": "JavaScript","wordcount":  1256 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/javascript_2018\/","datePublished": "2023-03-15T10:09:41+08:00","dateModified": "2023-03-15T10:09:41+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -92,8 +92,8 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JavaScript - dashing dashshound</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-15">2023-03-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;792 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-15">2023-03-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1256 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -116,12 +116,42 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
         <li><a href="#傳值還是傳址">傳值還是傳址</a></li>
       </ul>
     </li>
-    <li><a href="#javascript--browser">JavaScript @ browser</a>
+    <li><a href="#javascript--browser-1supstsup">JavaScript @ browser (1<!-- raw HTML omitted -->st<!-- raw HTML omitted -->)</a>
       <ul>
         <li><a href="#瀏覽器的物件模型dombom">瀏覽器的物件模型：DOM、BOM</a></li>
         <li><a href="#透過-dom-api-查找遍歷節點">透過 DOM API 查找&amp;遍歷節點</a></li>
         <li><a href="#dom-node-建立刪除修改外觀">DOM Node 建立、刪除、修改、外觀</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
         <li><a href="#bom-與-window-物件">BOM 與 window 物件</a></li>
+      </ul>
+    </li>
+    <li><a href="#javascript--browser-2supndsup">JavaScript @ browser (2<!-- raw HTML omitted -->nd<!-- raw HTML omitted -->)</a>
+      <ul>
+        <li><a href="#事件機制原理">事件機制原理</a></li>
+        <li><a href="#網頁事件與生命週期">網頁事件與生命週期</a></li>
+        <li><a href="#隱藏在事件之中的秘密">隱藏在事件之中的秘密</a></li>
+      </ul>
+    </li>
+    <li><a href="#函式物件原型鍊上">函式、物件、原型鍊（上）</a>
+      <ul>
+        <li><a href="#再談函式與參數">再談函式與參數</a></li>
+        <li><a href="#callback-function-與-iife">Callback Function 與 IIFE</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#從-callback-到-promise">從 Callback 到 Promise</a></li>
+        <li><a href="#從-settimeout-與-setinterval-理解-eventqueue">從 setTimeout 與 setInterval 理解 EventQueue</a></li>
       </ul>
     </li>
   </ul>
@@ -336,7 +366,7 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
 <hr>
 <h3 id="傳值還是傳址">傳值還是傳址</h3>
 <hr>
-<h2 id="javascript--browser">JavaScript @ browser</h2>
+<h2 id="javascript--browser-1supstsup">JavaScript @ browser (1<!-- raw HTML omitted -->st<!-- raw HTML omitted -->)</h2>
 <h3 id="瀏覽器的物件模型dombom">瀏覽器的物件模型：DOM、BOM</h3>
 <h3 id="透過-dom-api-查找遍歷節點">透過 DOM API 查找&amp;遍歷節點</h3>
 <h4 id="documentgetelementsbydocumentqueryselectordocumentqueryselectorall差異"><code>document.getElementsBy**</code>、<code>document.querySelector</code>/<code>document.querySelectorAll</code>差異</h4>
@@ -728,8 +758,355 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
 <p>修改元素style屬性(行內樣式)容易帶來不易維護/除錯的問題，基於關注點分離的原則，實務上還是會把預先定義的樣式統一在CSS的class內處理</p>
 <p>⭐注意，因為<code>class</code>是JavaScript保留的關鍵字，所以是透過 <strong>className</strong> 操作</p>
 </blockquote>
+<h1 id="page150">🥝page150🚧</h1>
 <h5 id="用-javascript-直接寫入-css-樣式">用 JavaScript 直接寫入 CSS 樣式</h5>
 <h3 id="bom-與-window-物件">BOM 與 window 物件</h3>
+<h4 id="bombrowser-object-model-瀏覽器物件模型">BOM(Browser Object Model 瀏覽器物件模型)</h4>
+<h4 id="window-物件">window 物件</h4>
+<h4 id="與網址列相關-location-與-history">與網址列相關: location 與 history</h4>
+<hr>
+<h2 id="javascript--browser-2supndsup">JavaScript @ browser (2<!-- raw HTML omitted -->nd<!-- raw HTML omitted -->)</h2>
+<h3 id="事件機制原理">事件機制原理</h3>
+<h4 id="事件流程">事件流程</h4>
+<h4 id="事件冒泡">事件冒泡</h4>
+<h4 id="事件捕獲">事件捕獲</h4>
+<h4 id="事件註冊綁定">事件註冊綁定</h4>
+<h5 id="on-event處理器html屬性">on-event處理器（HTML屬性）</h5>
+<h5 id="on-event處理器非html屬性">on-event處理器（非HTML屬性）</h5>
+<h4 id="事件監聽-eventtargetaddeventlistener">事件監聽 EventTarget.addEventListener()</h4>
+<h4 id="關於addeventlistener的第三個參數">關於addEventListener的第三個參數</h4>
+<h4 id="非侵入式-javascript">非侵入式 JavaScript</h4>
+<p>在頁面載入到瀏覽器中，才去相應地執行事件設定。</p>
+<p>是在原有基礎增加<strong>行為層分離</strong>，做到關注點分離，避免在HTML標籤裡面夾一對<code>onchange</code>、<code>onclick</code>屬性來註冊 Javascript 事件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// window 的 DOMContentLoaded 事件: 網頁上的 DOM 已經解析完畢
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;DOMContentLoaded&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kd">var</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;btn&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">clickHandler</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="網頁事件與生命週期">網頁事件與生命週期</h3>
+<h4 id="事件種類">事件種類</h4>
+<h4 id="網頁介面相關事件">網頁介面相關事件</h4>
+<ul>
+<li>
+<p>load()事件: 網頁資源(CSS、JS、圖片)全數載入完畢後才觸發</p>
+</li>
+<li>
+<p>unload()事件: 在離開頁面或重新整理時觸發</p>
+</li>
+<li>
+<p>beforeunload()事件: 會跳出對話框詢問是否要離開目前頁面</p>
+</li>
+<li>
+<p>error()事件: document或image載入錯誤時觸發</p>
+<ul>
+<li>
+<p>大多數事件註冊建議使用非侵入式JavaScript，
+只有error事件適合以on-event handler寫法來處理</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">img</span> <span class="na">sroc</span><span class="o">=</span><span class="s">&#34;image.jpg&#34;</span> <span class="na">onerror</span><span class="o">=</span><span class="s">&#34;this.src=&#39;default.jpg&#39;&#34;</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>resize()事件: 瀏覽器<code>window</code>或指定元素<code>element</code>尺寸變更時</p>
+</li>
+<li>
+<p>fullscreenchange()事件: 使用</p>
+</li>
+<li>
+<p>scroll</p>
+</li>
+<li>
+<p>DOMContentLoaded()</p>
+</li>
+</ul>
+<h4 id="滑鼠相關事件">滑鼠相關事件</h4>
+<h4 id="鍵盤相關事件">鍵盤相關事件</h4>
+<h4 id="表單相關事件">表單相關事件</h4>
+<h4 id="特殊事件">特殊事件</h4>
+<h5 id="composition-event組成事件">Composition Event（組成事件）</h5>
+<h5 id="剪貼簿事件">剪貼簿事件</h5>
+<h4 id="自定義事件">自定義事件</h4>
+<h3 id="隱藏在事件之中的秘密">隱藏在事件之中的秘密</h3>
+<p>註冊事件的方法<code>addEventListener()</code>的三個參數</p>
+<ol>
+<li>事件名稱</li>
+<li>事件處理器 Event Handler</li>
+<li>捕獲或冒泡的機制切換</li>
+</ol>
+<h4 id="隱藏在handler中的event">隱藏在Handler中的&quot;event&quot;</h4>
+<h4 id="阻擋預設行為eventpreventdefault">阻擋預設行為event.preventDefault()</h4>
+<p>用來取消預設行為，但不會阻止事件向上傳遞（事件冒泡）</p>
+<h4 id="阻擋事件冒泡傳遞eventstoppropagation">阻擋事件冒泡傳遞event.stopPropagation()</h4>
+<h4 id="在事件中找回自己">在事件中找回自己</h4>
+<h4 id="事件指派event-delegation">事件指派（Event Delegation）</h4>
+<hr>
+<h2 id="函式物件原型鍊上">函式、物件、原型鍊（上）</h2>
+<h3 id="再談函式與參數">再談函式與參數</h3>
+<h4 id="一級函式first-class-functions">一級函式（First class functions）</h4>
+<p>可以將函式存在變數、物件甚至是陣列之中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 函式存進變數中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">funcA</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 函式存進陣列裡
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">funcB</span> <span class="o">=</span> <span class="p">[</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{}];</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* 函式存入物件屬性
+</span></span></span><span class="line"><span class="cl"><span class="cm">   呼叫時執行 funcC.method() 或者
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">funcC</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">method</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{}</span> <span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>函式是一種物件，值也是物件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 把函式當作參數，傳入到另外一個函式中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">funcD</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">func</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 另一個函式: 存放的是 funcD，參數為一個匿名函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">runFuncPassedToFuncD</span> <span class="o">=</span> <span class="nx">funcD</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Hi&#34;</span><span class="p">);</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 呼叫另一個函式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">runFuncPassedToFuncD</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 函式是物件的一種，也可以有自己的屬性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">funcE</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">funcE</span><span class="p">.</span><span class="nx">answer</span> <span class="o">=</span> <span class="s2">&#34;yoshimite&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="函式的參數">函式的參數</h4>
+<p>&lt;函式名稱&gt; &lt;小括號(&gt; <code>參數</code>&gt; &lt;小括號)&gt;</p>
+<h4 id="es6的箭頭函式">ES6的箭頭函式</h4>
+<p>Arrow Function expression features:</p>
+<ul>
+<li>韓式寫法更簡短</li>
+<li>this變數強制綁定</li>
+</ul>
+<p>即使箭頭函式不需要參數時，前面的小括號也不能省略</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">bienvenue</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;Bonjour, bonsoir, bonne nuit&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bienvenue</span><span class="p">();</span> <span class="c1">// &#34;Bonjour, bonsoir, bonne nuit&#34;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>只有一個參數時可省略前面的小括號</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">willkommen</span> <span class="o">=</span> <span class="nx">darcy</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">darcy</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">willkommen</span><span class="p">(</span><span class="s2">&#34;Mr. Darcy&#34;</span><span class="p">);</span> <span class="c1">// Mr. Darcy
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="call-與-apply"><code>call()</code> 與 <code>apply()</code></h4>
+<ol>
+<li>call():
+<ul>
+<li>param1: this (可傳入null)</li>
+<li>params &hellip;: 呼叫函式的參數，以<code>, </code>相隔</li>
+</ul>
+</li>
+<li>apply():
+<ul>
+<li>param1: this</li>
+<li>param2: 呼叫函式的參數，用一個陣列包覆</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>JavaScript不會檢查代入的參數數量，所以如果沒有傳入制，那麼未指定的參數預設就會是undefined</p>
+</blockquote>
+<h4 id="arguments-物件">arguments 物件</h4>
+<p>arguments代表實際傳入的參數。</p>
+<p>即使函式定義只有兩個參數，還是可以透過 arguments 取得多餘的傳入參數。</p>
+<ul>
+<li>
+<p>雖然像是陣列，實際上只是帶有索引特性的物件，並且內建length屬性</p>
+</li>
+<li>
+<p>沒有陣列才有的<code>.map()</code>、<code>.filter()</code>方法</p>
+</li>
+<li>
+<p>內建另外一個屬性<code>callee</code>，指的是目前執行的函式</p>
+<ul>
+<li>執行遞迴(在函式內呼叫本函式)可透過<code>arguments.callee()</code>達成</li>
+</ul>
+</li>
+<li>
+<p>可以透過<code>slice()</code>或者 <code>Array.from</code>(ES6) 將arguments轉成陣列</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arugments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//or in ES6
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="其餘參數rest-parameter">其餘參數(rest parameter)</h4>
+<p><code>...args</code> :</p>
+<ul>
+<li>
+<p>當函式的最後一個參數以&hellip;作為開頭來命名，會被視為一個陣列，並且將所有參數存入這個陣列中</p>
+</li>
+<li>
+<p>可以使用 arguments 沒有的 reduce 方法，讓此 plus 函式更加簡短</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">plus</span> <span class="o">=</span> <span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">args</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">plus</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">pluc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="以物件作為參數">以物件作為參數</h4>
+<p>將多個參數用一個物件包裝起來</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">staff</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">firstName</span><span class="o">:</span> <span class="s2">&#34;Ginnelle&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">lastName</span><span class="o">:</span> <span class="s2">&#34;Yeh&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">phone</span><span class="o">:</span> <span class="s2">&#34;0912345678&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">email</span><span class="o">:</span> <span class="s2">&#34;merde@1771.com&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">gender</span><span class="o">:</span> <span class="s2">&#34;male&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">addres</span><span class="o">:</span> <span class="s2">&#34;PseudoStreet&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">addPerson</span><span class="p">(</span><span class="nx">staff</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="參數的預設檢查">參數的預設檢查</h4>
+<p>避免少傳遞的參數變成 undefined ，結果變成 NaN 的時候&hellip;</p>
+<p>小花可以這樣做</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">plus</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">numA</span><span class="p">,</span> <span class="nx">numB</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">numA</span> <span class="o">=</span> <span class="nx">numA</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">numB</span> <span class="o">=</span> <span class="nx">numB</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">numA</span> <span class="o">+</span> <span class="nx">numB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>比較嚴謹的寫法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">plus</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">numA</span><span class="p">,</span> <span class="nx">numB</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">numA</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">numA</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="nx">numA</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">numB</span> <span class="o">=</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">numB</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="nx">numB</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">numA</span> <span class="o">+</span> <span class="nx">numB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更好的寫法 (after ES6) - 替參數指定預設值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">plus</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">numA</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">numB</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">numA</span> <span class="o">+</span> <span class="nx">numB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="callback-function-與-iife">Callback Function 與 IIFE</h3>
+<h1 id="page-226">page 226🚧🚧🚧🥝🥝🥝</h1>
+<h3 id="從-callback-到-promise">從 Callback 到 Promise</h3>
+<h3 id="從-settimeout-與-setinterval-理解-eventqueue">從 setTimeout 與 setInterval 理解 EventQueue</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

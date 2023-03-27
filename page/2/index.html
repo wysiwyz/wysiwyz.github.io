@@ -54,6 +54,55 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/yicelwen" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://twitter.com/cel_yi" title="Twitter" target="_blank" rel="noopener noreffer me"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/y_cel_w" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/git_bash_cmds/">Git Bash - some awesome commands</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-16">2023-03-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">紀錄一些 git bash 指令
+git log -oneline 跟sourceTree_History_Description欄位基本一樣
+git log 跟樓上一樣, 但多了些author/date訊息
+Interactive Rebase 可用來修改local端的commit message 刪除local端commit 整理local端commits 合併多個commits為一個 將一個commit拆分為多個commits 注意：會重寫commit history，產生新的hash ID(i.e. new commit)
+所以不能對已經push上remote repository的commits執行interactive rebase
+git rebase -i HEAD~3
+rebase interactive head till the three
+要回去幾個節點之前? base commit是哪個?
+copy hash id 9a23775 Head minus 3 接著會出現一個editor window，可控制head+前兩個commit
+reword
+不直接改commit msg，而是將pick改成reword，存檔關閉
+接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc+:wq)
+squash
+將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
+Voilà! 原本的兩個commits合併成一個惹！
+git commit amend 可修改最近一筆local端本分支的 msg
+Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用</div><div class="post-footer">
+        <a href="/posts/git_bash_cmds/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git-bash/">Git Bash</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/javascript_2018/">JavaScript - dashing dashshound</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-15">2023-03-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
+🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
+後面可接英文字母、底線_、錢字號$、數字
+大小寫有區別
+關鍵字、保留字不能當變數名稱，詳閱MDN
+JavaScript 1.3 起支援Unicode，可用中文(盡量避免)
+ES6之後可用var(變數)、let(作用範圍與var不同)、const
+所有沒透過var宣告的變數，都會自動變成全域變數
+1 2 m = 1; console.log(m); //未宣告var會有後遺症 已經被 var 宣告過的變數可以再次被宣告 [合法]
+1 2 3 var m = 1; var m = 2; var m = 3; 透過 let 宣告的變數不能被再次宣告
+1 2 3 let m = 1; let m = 2; //⚠️Uncaught SyntaxError: Identifier &#39;m&#39; has already been declared. 變數資料型別 變數本身不帶有資料型別資訊，其中的值/物件才有
+變數沒有型別，值才有 JavaScript支援型別
+基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別</div><div class="post-footer">
+        <a href="/posts/javascript_2018/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/javascript/">JavaScript</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/mypuppy/">My Heart Puppy 超完美狗保母 멍뭉이</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-13">2023-03-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/moviereviews/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>movieReviews</a></span></div><div class="content">應朋友邀約在超完美狗保母上檔隔天的早晨看電影，這部影片是由柳演錫和車太鉉所主演的韓國寵物劇情片。據朋友說劇組在拍攝期間花了很多時間與電影中出現的狗勾們朝夕相處，想必這樣拍攝起來會減輕不少適應困難吧。
+主角民秀是一位出版社社員，在與美麗的空服員女友求婚當晚，發現她的家族都對狗勾的口水過敏，每次去對方家裡之前都需要吃抗過敏藥。與表哥真國商量下，決定透過社群媒體影響力的方式，幫黃金獵犬魯尼尋找下一位家人，他們拜訪了怕吵的新生兒家庭、有嚴重潔癖的暴發戶創業家、尚未走出喪犬之痛的小男孩的家、家裡環境優渥的遠親的家，發現都不太適合，決定驅車前往濟州島拜訪當地的動物之家。
+前往港口的路途中，他們在高速公路下救援了五隻米克斯幼犬，在附近中途之家收留了一隻巴哥犬，更在airB&amp;B主人庭院贖回了遭到虐待的毛小孩，一行人沿著濟州島達米安麵包店的線索找到患有帕金森氏症的富商女兒家，在一切條件近乎完美的情況下，卻因為女孩關於家人不會拋棄彼此的話而收回了請求。
+回到首爾的民秀決定回到母親故居，正視傷痛並重新建立一個適合未婚妻與毛小孩共生的環境，而表哥真國則暫時住在親戚家幫忙照顧狗狗們，同時準備未來重開狗狗寵物咖啡廳的夢想。
+這部電影有很多溫暖人心的寵物畫面、濟州島觀光美景、賺人熱淚的母子情誼、荒謬幽默的喜劇情節，可惜自己覺得在高速公路到橋下，接著前往動物中途之家，甚至救回即將被安樂死的狗狗這段情節意外的有點讓人出戲。另外他們千里迢迢來到濟洲島，卻未留下任何一名途中收留的毛小孩也有點讓人意外。只能說有些事情是要透過時間洗禮才能找到答案吧。
+推薦這部電影給任何對狗狗、韓國旅遊、車太鉉(?)、金裕珍(??) 有興趣的人。
+但如果你是極務實主義者可能就不太適合🤣</div><div class="post-footer">
+        <a href="/posts/mypuppy/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/spring/">Spring</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-13">2023-03-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Spring Architecture Core Container Core - 提供框架最基本的部分 Bean - 提供Bean工廠 Context - 存取任何定義且被配置的物件 SpEL - Spring express language Data Access JDBC - 提供JDBC抽象層 ORM - 提供Object-Relational Mapping API物件關係映射的整合層 OXM - 提供抽象層 JMS - 包含產出與使用訊息的功能 Transaction - 支援programmatic與declarative交易管理 Web WebSocket - 支援two-way溝通(client-server) Servlet - 包含Spring MVC給予web應用的實作 Web - 提供web導向整合的基本功能 Portlet - 提供MVC實作，且鏡像web-servlet模組的功能 Misc. AOP Aspects - 提供AspectJ的整合 Instrumentation - 支援class instrumentation(在已編譯的.class檔案加入字節碼byte-code) 以及class loader implementation(在執行時將java類別動態載入JVM) Messaging - 支援STOMP作為WebSocket的sub-protocol STOMP: 流文本定向消息協議 Test - 支援Spring組件(component)的測試 原本的物件建構長這樣</div><div class="post-footer">
         <a href="/posts/spring/">Read More</a><div class="post-tags">
@@ -84,24 +133,6 @@ Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑�
 NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?</div><div class="post-footer">
         <a href="/posts/lesson_00_linux/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/encrypt_decrypt/">Encrypt, Decrypt</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-01">2023-02-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">用途 怕被別人看見 弄成被看到也沒關係 [加密] 想給特定人看 避免對方也看不懂 [解密] 分類 類型 對稱加解密 非對稱加解密 實例 AES、3DES RSA、ECDSA &hellip; 加解密方式寫在同一張紙上[加解密方式] public key 加解密方式寫在不同紙上[加密方式] public key &hellip; client get by calling api[解密方式] private key &hellip; saved at Server side 概論 簡單、速度快、安全性低 複雜速度慢、安全性較高 特色 1. Client 和 Server 用同一把密鑰加解密2. AES/ {ECB/CBC...}/PaddingPattern 應用 1. 對大量明文的加密2. Https 的 SessionKey Appendix AES 加密結構說明 金鑰長度(bit) : AES-128 AES-192 AES-256 區塊間加密方式 : ECB - 可以被密推 CBC - 亂數 initial value 初始值 CFB - 亂數 initial value 初始值 OFB CTR 區塊填充方式: NoPadding - 不建議、會影響加密強度 ZeroBytePadding - 缺兩個填入 0 PKCS5Padding PKCS7Padding Example: AES-256/CBC/PKCS7Padding</div><div class="post-footer">
-        <a href="/posts/encrypt_decrypt/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ocpjp_11/">1Z0-819 曾師筆記 (1/duology)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-12-13">2022-12-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content"># 03 OOP 程式設計思維 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 01 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
-java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
-程式碼附檔名必須為 .java，否則編譯器將拒絕編譯 class 檔案內可以有多個沒有 public 修飾的 class，檔案名稱不一定要與那些 classes 名稱相同。編譯時，檔案內宣告的每一個 class 都會各自產生附檔名為 .</div><div class="post-footer">
-        <a href="/posts/ocpjp_11/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ocajp/">Oracle Certified Associate Java PG</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-12-04">2022-12-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">OCAJP 紀錄題目的地方&hellip;
-1. Hello Java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos++) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.</div><div class="post-footer">
-        <a href="/posts/ocajp/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-808/">1Z0-808</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -119,8 +150,10 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
                         <a href="/page/4/">4</a>
                     </span>
                 </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/5/">5</a>
+                        <a href="/page/6/">6</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

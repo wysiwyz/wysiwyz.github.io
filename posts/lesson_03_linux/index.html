@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Lesson_03_linux - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Lesson_03_linux" />
+<meta property="og:description" content="LUKS 加密服務 適用對象 移動式設備資料保護
+notebook, USB磁碟加密
+提供32組插槽使用
+把partition切成小塊加密，裡面放密碼、key_file
+可以使用設定的密碼解密或者用key解密
+注意事項 LUKS並不對檔案本身進行加密(針對整個partition,整個D槽) LUKS對於單一磁碟取走後能夠起保護作用 KUKS對於已經解密之磁碟內容不起保護作用 指令 cryptsetup luksFormat 建立加密磁碟 luksOpen 開啟加密磁碟 close 關閉已經開啟的加密磁碟 luks - 解密
+mount - 掛起來
+umount - 卸載
+​ (順便同步, 如果未正確卸載可能會造成檔案毀損)
+1 2 3 4 5 6 7 8 lsblk /dev/sdb cryptsetup luksFormat /dev/sdb cryptsetup luksOpen /dev/sdb secDisk mkfs.xfs /dev/mapper/secDisk mount /dev/mapper/secDisk /mnt touch /mnt/myfile umount /mnt cryptsetup close secDisk Dump/Status more cmds 使用插槽 刪除插槽 memcached的使用
+Luks資料加密架構與資料救援方法
+Linux檔案加密_GPG_GnuPG" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/lesson_03_linux/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-18T09:30:38+08:00" />
+<meta property="article:modified_time" content="2023-03-18T09:30:38+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lesson_03_linux"/>
+<meta name="twitter:description" content="LUKS 加密服務 適用對象 移動式設備資料保護
+notebook, USB磁碟加密
+提供32組插槽使用
+把partition切成小塊加密，裡面放密碼、key_file
+可以使用設定的密碼解密或者用key解密
+注意事項 LUKS並不對檔案本身進行加密(針對整個partition,整個D槽) LUKS對於單一磁碟取走後能夠起保護作用 KUKS對於已經解密之磁碟內容不起保護作用 指令 cryptsetup luksFormat 建立加密磁碟 luksOpen 開啟加密磁碟 close 關閉已經開啟的加密磁碟 luks - 解密
+mount - 掛起來
+umount - 卸載
+​ (順便同步, 如果未正確卸載可能會造成檔案毀損)
+1 2 3 4 5 6 7 8 lsblk /dev/sdb cryptsetup luksFormat /dev/sdb cryptsetup luksOpen /dev/sdb secDisk mkfs.xfs /dev/mapper/secDisk mount /dev/mapper/secDisk /mnt touch /mnt/myfile umount /mnt cryptsetup close secDisk Dump/Status more cmds 使用插槽 刪除插槽 memcached的使用
+Luks資料加密架構與資料救援方法
+Linux檔案加密_GPG_GnuPG"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/lesson_03_linux/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_02_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/cloud_architect_gcp/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lesson_03_linux",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/lesson_03_linux\/"
+        },"genre": "posts","keywords": "linux, security","wordcount":  539 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/lesson_03_linux\/","datePublished": "2023-03-18T09:30:38+08:00","dateModified": "2023-03-18T09:30:38+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson_03_linux</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-18">2023-03-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;539 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#luks-加密服務">LUKS 加密服務</a></li>
+      </ul>
+    </li>
+    <li><a href="#磁碟加密">磁碟加密</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#開機自動掛載加密磁碟">開機自動掛載加密磁碟</a>
+      <ul>
+        <li><a href="#取消自動掛載">取消自動掛載</a></li>
+      </ul>
+    </li>
+    <li><a href="#apache安裝">Apache安裝</a>
+      <ul>
+        <li><a href="#apache--sslsecure-socket-layer">Apache + SSL(secure socket layer)</a></li>
+        <li><a href="#nginx-安裝">Nginx 安裝</a></li>
+        <li><a href="#nginx--ssl">Nginx + SSL</a></li>
+        <li><a href="#strict-transport-security-hsts">Strict Transport Security (HSTS)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="luks-加密服務">LUKS 加密服務</h3>
+<h4 id="適用對象">適用對象</h4>
+<ul>
+<li>
+<p>移動式設備資料保護</p>
+</li>
+<li>
+<p>notebook, USB磁碟加密</p>
+</li>
+<li>
+<p>提供32組插槽使用</p>
+<blockquote>
+<p>把partition切成小塊加密，裡面放密碼、key_file</p>
+<p>可以使用設定的密碼解密或者用key解密</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="注意事項">注意事項</h4>
+<ul>
+<li>LUKS並不對檔案本身進行加密(針對整個partition,整個D槽)</li>
+<li>LUKS對於單一磁碟取走後能夠起保護作用</li>
+<li>KUKS對於已經解密之磁碟內容不起保護作用</li>
+</ul>
+<h4 id="指令">指令</h4>
+<ul>
+<li><code>cryptsetup</code>
+<ul>
+<li><code>luksFormat</code> 建立加密磁碟</li>
+<li><code>luksOpen</code> 開啟加密磁碟</li>
+<li><code>close</code> 關閉已經開啟的加密磁碟</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>luks - 解密</p>
+<p>mount - 掛起來</p>
+<p>umount - 卸載</p>
+<p>​    (順便同步, 如果未正確卸載可能會造成檔案毀損)</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">lsblk /dev/sdb
+</span></span><span class="line"><span class="cl">cryptsetup luksFormat /dev/sdb
+</span></span><span class="line"><span class="cl">cryptsetup luksOpen /dev/sdb secDisk
+</span></span><span class="line"><span class="cl">mkfs.xfs /dev/mapper/secDisk
+</span></span><span class="line"><span class="cl">mount /dev/mapper/secDisk /mnt
+</span></span><span class="line"><span class="cl">touch /mnt/myfile
+</span></span><span class="line"><span class="cl">umount /mnt
+</span></span><span class="line"><span class="cl">cryptsetup close secDisk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="dumpstatus">Dump/Status</h4>
+<ul>
+<li>more cmds</li>
+</ul>
+<h4 id="使用插槽">使用插槽</h4>
+<h4 id="刪除插槽">刪除插槽</h4>
+<blockquote>
+<p>memcached的使用</p>
+<p><a href="osslab.tv/research-luks/" rel="">Luks資料加密架構與資料救援方法</a></p>
+<p><a href="https://www.redhat.com/sysadmin/getting-started-gpg" target="_blank" rel="noopener noreffer ">Linux檔案加密_GPG_GnuPG</a></p>
+<p><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/security_hardening/encrypting-block-devices-using-luks_security-hardening" target="_blank" rel="noopener noreffer ">LUKS加密裝置</a></p>
+<p>一定要備分 一定要備份 一定要備份</p>
+</blockquote>
+<hr>
+<h2 id="磁碟加密">磁碟加密</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo su -
+</span></span><span class="line"><span class="cl">ssh student@server58
+</span></span><span class="line"><span class="cl">id
+</span></span><span class="line"><span class="cl">sudo su -
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>安裝 cryptsetup</p>
+</li>
+<li>
+<p>將 /dev/sdb 設定加密磁碟區</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cryptsetup luksFormat /dev/sdb
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>查看磁碟資訊</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Z2HoDuB.png"
+        data-srcset="https://i.imgur.com/Z2HoDuB.png, https://i.imgur.com/Z2HoDuB.png 1.5x, https://i.imgur.com/Z2HoDuB.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Z2HoDuB.png"
+        title="image-20230318105936415" /></p>
+</li>
+<li>
+<p>啟用加密磁碟，將<code>/dev/sdb</code>掛載為secDisk</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/TCjsTrk.png"
+        data-srcset="https://i.imgur.com/TCjsTrk.png, https://i.imgur.com/TCjsTrk.png 1.5x, https://i.imgur.com/TCjsTrk.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/TCjsTrk.png"
+        title="image-20230318110421399" /></p>
+</li>
+<li>
+<p>格式化</p>
+<blockquote>
+<p>mkfs.xfs {the_Disk_to_be_formatted}</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">blkid /dev/mapper/secDisk
+</span></span><span class="line"><span class="cl">mkfs.xfs /dev/mapper/secDisk
+</span></span><span class="line"><span class="cl">blkid /dev/mapper/secDisk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/AHP6NKa.png"
+        data-srcset="https://i.imgur.com/AHP6NKa.png, https://i.imgur.com/AHP6NKa.png 1.5x, https://i.imgur.com/AHP6NKa.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/AHP6NKa.png"
+        title="image-20230318111139632" /></p>
+</li>
+<li>
+<p>掛載使用</p>
+<blockquote>
+<p><code>mnt</code>被設計來臨時掛載使用</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mount /dev/mapper/secDisk /mnt
+</span></span><span class="line"><span class="cl">df -h /mnt
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /mnt/
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">touch a b c d e f
+</span></span><span class="line"><span class="cl">ls -lh
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/5u6hL0O.png"
+        data-srcset="https://i.imgur.com/5u6hL0O.png, https://i.imgur.com/5u6hL0O.png 1.5x, https://i.imgur.com/5u6hL0O.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/5u6hL0O.png"
+        title="image-20230318111613052" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/un7l5F6.png"
+        data-srcset="https://i.imgur.com/un7l5F6.png, https://i.imgur.com/un7l5F6.png 1.5x, https://i.imgur.com/un7l5F6.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/un7l5F6.png"
+        title="image-20230318111710595" /></p>
+</li>
+<li>
+<p>卸載 <code>/mnt</code></p>
+<blockquote>
+<p>要先 <code>cd</code>跳出目錄才能 <code>umount</code>，否則會有以下錯誤訊息</p>
+<pre tabindex="0"><code>umount: /mnt: target is busy.
+</code></pre></blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">umount /mnt/
+</span></span><span class="line"><span class="cl">ls -lh /dev/mapper/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ifEy9L5.png"
+        data-srcset="https://i.imgur.com/ifEy9L5.png, https://i.imgur.com/ifEy9L5.png 1.5x, https://i.imgur.com/ifEy9L5.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ifEy9L5.png"
+        title="image-20230318111858395" /></p>
+</li>
+<li>
+<p>關閉加密磁碟</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cryptsetup luksClose secDisk
+</span></span><span class="line"><span class="cl">ls -lh /dev/mapper
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/kDskBQG.png"
+        data-srcset="https://i.imgur.com/kDskBQG.png, https://i.imgur.com/kDskBQG.png 1.5x, https://i.imgur.com/kDskBQG.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/kDskBQG.png"
+        title="image-20230318112403700" /></p>
+</li>
+</ul>
+<h4 id="新增-password-到插槽">新增 Password 到插槽</h4>
+<ul>
+<li>
+<p>查看現有的插槽</p>
+<blockquote>
+<p><code>luksDump</code> 查看目前存了啥密碼</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cryptsetup luksDump /dev/sdb
+</span></span><span class="line"><span class="cl">cryptsetup luksDump /dev/sdb <span class="p">|</span> grep luks2
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>新增密碼</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cryptsetup luksAddKey /dev/sdb
+</span></span><span class="line"><span class="cl">// 輸入之前存的密碼
+</span></span><span class="line"><span class="cl">// 建立新密碼<span class="o">(</span>passphrase <span class="k">for</span> key slot<span class="o">)</span>
+</span></span><span class="line"><span class="cl">// 重新輸入新密碼<span class="o">(</span>verify passphrase<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="C:%5cUsers%5ctpi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230318113349477.png"
+        data-srcset="C:%5cUsers%5ctpi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230318113349477.png, C:%5cUsers%5ctpi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230318113349477.png 1.5x, C:%5cUsers%5ctpi%5cAppData%5cRoaming%5cTypora%5ctypora-user-images%5cimage-20230318113349477.png 2x"
+        data-sizes="auto"
+        alt="C:\Users\tpi\AppData\Roaming\Typora\typora-user-images\image-20230318113349477.png"
+        title="image-20230318113349477" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cryptsetup luksDump /dev/sdb <span class="p">|</span> grep luks2
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h4 id="新增-key-到插槽">新增 Key 到插槽</h4>
+<ul>
+<li>
+<p>使用密碼把 key1 插到插槽</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>key1 <span class="nv">bs</span><span class="o">=</span>1K <span class="nv">count</span><span class="o">=</span><span class="m">64</span>
+</span></span><span class="line"><span class="cl">cryptsetup luksAddKey /dev/sdb key1
+</span></span><span class="line"><span class="cl"><span class="o">(</span>這裡輸入第一個or第二個passwd都可,<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/GfaZ525.png"
+        data-srcset="https://i.imgur.com/GfaZ525.png, https://i.imgur.com/GfaZ525.png 1.5x, https://i.imgur.com/GfaZ525.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/GfaZ525.png"
+        title="image-20230318113740963" /></p>
+</li>
+<li>
+<p>查看使用的插槽數</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/LWHxLKZ.png"
+        data-srcset="https://i.imgur.com/LWHxLKZ.png, https://i.imgur.com/LWHxLKZ.png 1.5x, https://i.imgur.com/LWHxLKZ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/LWHxLKZ.png"
+        title="image-20230318114149051" /></p>
+</li>
+<li>
+<p>使用 key1 把 key2 插到插槽</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/T3QGasX.png"
+        data-srcset="https://i.imgur.com/T3QGasX.png, https://i.imgur.com/T3QGasX.png 1.5x, https://i.imgur.com/T3QGasX.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/T3QGasX.png"
+        title="image-20230318114448911" /></p>
+</li>
+</ul>
+<h4 id="刪除插槽-1">刪除插槽</h4>
+<ul>
+<li>
+<p>使用 key1 刪除插槽3 (key2)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/pEy9TWI.png"
+        data-srcset="https://i.imgur.com/pEy9TWI.png, https://i.imgur.com/pEy9TWI.png 1.5x, https://i.imgur.com/pEy9TWI.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/pEy9TWI.png"
+        title="image-20230318114947146" /></p>
+</li>
+</ul>
+<blockquote>
+<p><code>man cryptsetup</code></p>
+<p>man + {xxxxxx} 就是個 user manual 可以查看文件</p>
+</blockquote>
+<hr>
+<h4 id="image-加密">Image 加密</h4>
+<p>@Server</p>
+<p>Disk Image Cryption</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/tDcBmV4.png"
+        data-srcset="https://i.imgur.com/tDcBmV4.png, https://i.imgur.com/tDcBmV4.png 1.5x, https://i.imgur.com/tDcBmV4.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/tDcBmV4.png"
+        title="image-20230318131241693" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/i9hxFyx.png"
+        data-srcset="https://i.imgur.com/i9hxFyx.png, https://i.imgur.com/i9hxFyx.png 1.5x, https://i.imgur.com/i9hxFyx.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/i9hxFyx.png"
+        title="image-20230318131441744" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/QZmlV7Q.png"
+        data-srcset="https://i.imgur.com/QZmlV7Q.png, https://i.imgur.com/QZmlV7Q.png 1.5x, https://i.imgur.com/QZmlV7Q.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/QZmlV7Q.png"
+        title="image-20230318131705159" /></p>
+<p>複製 Image 到 Desktop</p>
+<p>[Server]      [Desktop]</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/alExjRK.png"
+        data-srcset="https://i.imgur.com/alExjRK.png, https://i.imgur.com/alExjRK.png 1.5x, https://i.imgur.com/alExjRK.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/alExjRK.png"
+        title="image-20230318132306522" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/CF7RD4L.png"
+        data-srcset="https://i.imgur.com/CF7RD4L.png, https://i.imgur.com/CF7RD4L.png 1.5x, https://i.imgur.com/CF7RD4L.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/CF7RD4L.png"
+        title="image-20230318132602606" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/tEnLGN5.png"
+        data-srcset="https://i.imgur.com/tEnLGN5.png, https://i.imgur.com/tEnLGN5.png 1.5x, https://i.imgur.com/tEnLGN5.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/tEnLGN5.png"
+        title="image-20230318133421392" /></p>
+<blockquote>
+<p><code>c100</code>、<code>s100</code> 沒什麼意義，只是一個名稱(block device)</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/9Rfhe7v.png"
+        data-srcset="https://i.imgur.com/9Rfhe7v.png, https://i.imgur.com/9Rfhe7v.png 1.5x, https://i.imgur.com/9Rfhe7v.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/9Rfhe7v.png"
+        title="image-20230318134446942" /></p>
+<hr>
+<h2 id="開機自動掛載加密磁碟">開機自動掛載加密磁碟</h2>
+<blockquote>
+<p>key 為什麼要放在 /etc/ 目錄裡？為了避免非super用戶篡改資料。</p>
+</blockquote>
+<p>@Server</p>
+<blockquote>
+<p><code>;</code>如果前面的指令執行完，接著執行下個指令</p>
+</blockquote>
+<blockquote>
+<p>cp -a 的-a指的是包含權限</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/cOUHbGG.png"
+        data-srcset="https://i.imgur.com/cOUHbGG.png, https://i.imgur.com/cOUHbGG.png 1.5x, https://i.imgur.com/cOUHbGG.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/cOUHbGG.png"
+        title="image-20230318140133033" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/SeflM1E.png"
+        data-srcset="https://i.imgur.com/SeflM1E.png, https://i.imgur.com/SeflM1E.png 1.5x, https://i.imgur.com/SeflM1E.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/SeflM1E.png"
+        title="image-20230318140013366" /></p>
+<p>備份開機掛載設定檔</p>
+<pre tabindex="0"><code>貼到 /etc/fstab 最尾巴新檔
+...
+(預設的)
+/dev/mapper/secDisk /sec xfs defaults 0 0
+
+(包含之前設定內容)
+/dev/mapper/secDisk /sec xfs _netdev,nofail,defaults,x-systemd.device-timeout= 1 0 0
+</code></pre><blockquote>
+<p>重開機之後要把硬碟掛在 sec 目錄</p>
+<p>檔案格式為 xfs</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Ph5zMsS.png"
+        data-srcset="https://i.imgur.com/Ph5zMsS.png, https://i.imgur.com/Ph5zMsS.png 1.5x, https://i.imgur.com/Ph5zMsS.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Ph5zMsS.png"
+        title="image-20230318140957907" /></p>
+</blockquote>
+<p>關機前測試</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">df -h /sec
+</span></span><span class="line"><span class="cl">mount -a
+</span></span><span class="line"><span class="cl">df -h /sec
+</span></span><span class="line"><span class="cl">reboot
+</span></span><span class="line"><span class="cl">df -h /sec/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/FiGXHTv.png"
+        data-srcset="https://i.imgur.com/FiGXHTv.png, https://i.imgur.com/FiGXHTv.png 1.5x, https://i.imgur.com/FiGXHTv.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/FiGXHTv.png"
+        title="image-20230318142322693" /></p>
+<h3 id="取消自動掛載">取消自動掛載</h3>
+<p>@Server</p>
+<pre tabindex="0"><code>cat /etc/fstab_backup &gt; /etc/fstab
+reboot
+</code></pre><hr>
+<h2 id="apache安裝">Apache安裝</h2>
+<hr>
+<h3 id="apache--sslsecure-socket-layer">Apache + SSL(secure socket layer)</h3>
+<h5 id="https準備">HTTPS準備</h5>
+<ol>
+<li>Server產生<strong>憑證請求檔</strong></li>
+<li>向 SSL_x509的CA認證中心申請<strong>簽證</strong>，裝在Server上</li>
+<li>憑證檔案
+<ul>
+<li>SSL x.509 憑證格式
+<ul>
+<li>常用<code>.DER</code>格式，Java使用的是<code>.JKS</code>(二進制)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="apache設定檔案">Apache設定檔案</h5>
+<ul>
+<li>/etc/httpd/conf.d/ssl.conf</li>
+</ul>
+<h5 id="nginx設定檔案">Nginx設定檔案</h5>
+<ul>
+<li>/etc/nginx/conf.d/default.conf</li>
+</ul>
+<p>SSL1.0 -&gt; SSL2.0 -&gt; SSL3.0 -&gt;</p>
+<p>TLS 1.0 -&gt; TLS 1.1 -&gt; TLS 1.2(金融政府最低限制) -&gt; TLS1.3</p>
+<h5 id="ssl連線四個步驟">SSL連線四個步驟</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/DGtVV33.png"
+        data-srcset="https://i.imgur.com/DGtVV33.png, https://i.imgur.com/DGtVV33.png 1.5x, https://i.imgur.com/DGtVV33.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/DGtVV33.png"
+        title="image-20230318153244671" /></p>
+<h5 id="設定ssl使用憑證位置">設定ssl使用憑證位置</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/h7Sjq4W.png"
+        data-srcset="https://i.imgur.com/h7Sjq4W.png, https://i.imgur.com/h7Sjq4W.png 1.5x, https://i.imgur.com/h7Sjq4W.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/h7Sjq4W.png"
+        title="image-20230318153829980" /></p>
+<h5 id="設定防火牆">設定防火牆</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# firewall-cmd --permanent --add-service<span class="o">=</span>https
+</span></span><span class="line"><span class="cl">root# firewall-cmd --reload
+</span></span><span class="line"><span class="cl">root# firewall-cmd --list-all
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="重新啟動-httpd-服務">重新啟動 httpd 服務</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart httpd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/6Rx0IhT.png"
+        data-srcset="https://i.imgur.com/6Rx0IhT.png, https://i.imgur.com/6Rx0IhT.png 1.5x, https://i.imgur.com/6Rx0IhT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/6Rx0IhT.png"
+        title="image-20230318154218959" /></p>
+<blockquote>
+<p>SSL建議簽署時間為一年</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/eHKe87S.png"
+        data-srcset="https://i.imgur.com/eHKe87S.png, https://i.imgur.com/eHKe87S.png 1.5x, https://i.imgur.com/eHKe87S.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/eHKe87S.png"
+        title="image-20230318154454326" /></p>
+</blockquote>
+<h5 id="新增信任的根憑證">新增信任的根憑證</h5>
+<p>@Client [root]</p>
+<ul>
+<li>
+<p>將CA加入作業系統信任憑證中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /etc/pki/ca-trust/source/anchors/
+</span></span><span class="line"><span class="cl">curl -OJL http://192.168.60.253/ssl-key/ca/ca.crt
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>重新載入信任憑證</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">update-ca-trust
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>用戶端再次確認</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/St4iLHQ.png"
+        data-srcset="https://i.imgur.com/St4iLHQ.png, https://i.imgur.com/St4iLHQ.png 1.5x, https://i.imgur.com/St4iLHQ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/St4iLHQ.png"
+        title="image-20230318155639877" /></p>
+</li>
+</ul>
+<blockquote>
+<p><a href="https://www.informationsecurity.com.tw/article/article_detail.aspx?aid=7327" target="_blank" rel="noopener noreffer ">PKI架構、CA、中間人攻擊</a></p>
+</blockquote>
+<hr>
+<h3 id="nginx-安裝">Nginx 安裝</h3>
+<h4 id="環境清除">環境清除</h4>
+<p>@Server (停止服務、移除相依)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# systemctl stop httpd
+</span></span><span class="line"><span class="cl">root# dnf remove httpd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="服務設定">服務設定</h4>
+<p>安裝套件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# dnf install -y nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>設定首頁，啟動Nginx</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span> /usr/share/nginx/html/
+</span></span><span class="line"><span class="cl">root# <span class="nb">echo</span> Hello server58 in nginx &gt; index.html
+</span></span><span class="line"><span class="cl">root# systemctl <span class="nb">enable</span> --now nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 curl 或 firefox 檢驗服務</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student $ curl http://server58.linux.class
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Fx5dOHJ.png"
+        data-srcset="https://i.imgur.com/Fx5dOHJ.png, https://i.imgur.com/Fx5dOHJ.png 1.5x, https://i.imgur.com/Fx5dOHJ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Fx5dOHJ.png"
+        title="image-20230318162624478" /></p>
+<h4 id="image-20230318162521199httpsiimgurcomaqqwbetpng"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/aqQWbeT.png"
+        data-srcset="https://i.imgur.com/aqQWbeT.png, https://i.imgur.com/aqQWbeT.png 1.5x, https://i.imgur.com/aqQWbeT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/aqQWbeT.png"
+        title="image-20230318162521199" /></h4>
+<hr>
+<h3 id="nginx--ssl">Nginx + SSL</h3>
+<ol>
+<li>建立憑證目錄</li>
+<li>下載憑證</li>
+<li>設定 https 預設站台 <code>cd /etc/nginx/conf.d/</code></li>
+<li>新增設定檔案 <code>vi default.conf</code></li>
+<li>測試設定檔案 <code>nginx -t</code></li>
+<li>重啟服務 <code>systemctl restart nginx</code></li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/wfK9Rrz.png"
+        data-srcset="https://i.imgur.com/wfK9Rrz.png, https://i.imgur.com/wfK9Rrz.png 1.5x, https://i.imgur.com/wfK9Rrz.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/wfK9Rrz.png"
+        title="image-20230318163407424" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/e8dMSbg.png"
+        data-srcset="https://i.imgur.com/e8dMSbg.png, https://i.imgur.com/e8dMSbg.png 1.5x, https://i.imgur.com/e8dMSbg.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/e8dMSbg.png"
+        title="image-20230318163258070" /></p>
+<h4 id="用戶端測試">用戶端測試</h4>
+<ol>
+<li>
+<p>curl</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/32JYjH4.png"
+        data-srcset="https://i.imgur.com/32JYjH4.png, https://i.imgur.com/32JYjH4.png 1.5x, https://i.imgur.com/32JYjH4.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/32JYjH4.png"
+        title="image-20230318163512524" /></p>
+</li>
+<li>
+<p>Firefox</p>
+</li>
+</ol>
+<hr>
+<h3 id="strict-transport-security-hsts">Strict Transport Security (HSTS)</h3>
+<p>@Desktop</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/vxx2Yra.png"
+        data-srcset="https://i.imgur.com/vxx2Yra.png, https://i.imgur.com/vxx2Yra.png 1.5x, https://i.imgur.com/vxx2Yra.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/vxx2Yra.png"
+        title="image-20230318163954322" /></p>
+<p>@Server</p>
+<p>在nginx增加header輸出</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vi /etc/nginx/conf.d/default.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>line 14 add</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">add_header Strict-Transport-Security &#34;max-age=31536000; includeSubDomains&#34; always;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# nginx -t
+</span></span><span class="line"><span class="cl">root# systemctl reload nginx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/AnW558P.png"
+        data-srcset="https://i.imgur.com/AnW558P.png, https://i.imgur.com/AnW558P.png 1.5x, https://i.imgur.com/AnW558P.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/AnW558P.png"
+        title="image-20230318164142207" /></p>
+<p>@Desktop</p>
+<p>檢查是否支援 HSTS</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/8EkMHob.png"
+        data-srcset="https://i.imgur.com/8EkMHob.png, https://i.imgur.com/8EkMHob.png 1.5x, https://i.imgur.com/8EkMHob.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/8EkMHob.png"
+        title="image-20230318164237949" /></p>
+<h4 id="apache-設定-hsts">Apache 設定 HSTS</h4>
+<p>@Server</p>
+<ol>
+<li>
+<p>重裝 Apache</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# systemctl stop nginx<span class="p">;</span> dnf remove -y nginx
+</span></span><span class="line"><span class="cl">root# dnf install -y httpd mod_ssl<span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>新增設定</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# cat /etc/httpd/conf.d/ssl.conf.rpmsave &gt; /etc/httpd/conf.d/ssl.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/0vSZBIL.png"
+        data-srcset="https://i.imgur.com/0vSZBIL.png, https://i.imgur.com/0vSZBIL.png 1.5x, https://i.imgur.com/0vSZBIL.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/0vSZBIL.png"
+        title="image-20230318165828265" /></p>
+<h6 id="vi-etchttpdconfdsslconf">vi /etc/httpd/conf.d/ssl.conf</h6>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yhCCbGA.png"
+        data-srcset="https://i.imgur.com/yhCCbGA.png, https://i.imgur.com/yhCCbGA.png 1.5x, https://i.imgur.com/yhCCbGA.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yhCCbGA.png"
+        title="image-20230318165554752" /></p>
+<p>驗證</p>
+<p>@Desktop</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/1LpiLQv.png"
+        data-srcset="https://i.imgur.com/1LpiLQv.png, https://i.imgur.com/1LpiLQv.png 1.5x, https://i.imgur.com/1LpiLQv.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/1LpiLQv.png"
+        title="image-20230318170010681" /></p>
+<h4 id="ssl-report">SSL Report</h4>
+<p>Qualys</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Nr7FTae.png"
+        data-srcset="https://i.imgur.com/Nr7FTae.png, https://i.imgur.com/Nr7FTae.png 1.5x, https://i.imgur.com/Nr7FTae.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Nr7FTae.png"
+        title="image-20230318170154800" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-03-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://wysiwyz.github.io/posts/lesson_03_linux/" data-title="Lesson_03_linux" data-via="cel_yi" data-hashtags="linux,security"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/lesson_03_linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://wysiwyz.github.io/posts/lesson_03_linux/" data-title="Lesson_03_linux"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/lesson_03_linux/" data-title="Lesson_03_linux"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://wysiwyz.github.io/posts/lesson_03_linux/" data-title="Lesson_03_linux"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/lesson_02_linux/" class="prev" rel="prev" title="Lesson 02: Linux 筆記"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Lesson 02: Linux 筆記</a>
+            <a href="/posts/cloud_architect_gcp/" class="next" rel="next" title="Cloud_architect_GCP">Cloud_architect_GCP<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

@@ -58,7 +58,7 @@ Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/git_bash_cmds\/"
-        },"genre": "posts","keywords": "Git Bash","wordcount":  302 ,
+        },"genre": "posts","keywords": "Git Bash","wordcount":  357 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/git_bash_cmds\/","datePublished": "2023-03-16T14:20:15+08:00","dateModified": "2023-03-16T14:20:15+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -100,7 +100,7 @@ Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git Bash - some awesome commands</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-16">2023-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;302 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-16">2023-03-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;357 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -441,7 +441,44 @@ parent repository 只會存：</p>
         title="image-20230316174413999" /></p>
 </li>
 </ol>
-</div><div class="post-footer" id="post-footer">
+<hr>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git fetch 
+</span></span><span class="line"><span class="cl">$ git branch -a 
+</span></span><span class="line"><span class="cl">  //列出可checkout的所有分支
+</span></span><span class="line"><span class="cl">$ git checkout -b develop origin/develop
+</span></span><span class="line"><span class="cl">  //從遠端拉分支到本地端 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git add .
+</span></span><span class="line"><span class="cl">  //全部stage
+</span></span><span class="line"><span class="cl">$ git add &lt;要stage的file&gt;
+</span></span><span class="line"><span class="cl">  //stage partially
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">$ git commit -m <span class="s2">&#34;[UAT][accident] mod validation&#34;</span>
+</span></span><span class="line"><span class="cl">$ git commit --amend
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git push
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
