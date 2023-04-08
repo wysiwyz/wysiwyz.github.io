@@ -3,8 +3,20 @@
         <title>security - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/security/</link>
         <description>security - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 18 Mar 2023 09:30:38 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/security/" rel="self" type="application/rss+xml" /><item>
-    <title>Lesson_03_linux</title>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 08 Apr 2023 09:15:16 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/security/" rel="self" type="application/rss+xml" /><item>
+    <title>Lesson 04: Linux 筆記</title>
+    <link>http://wysiwyz.github.io/posts/lesson_04_linux/</link>
+    <pubDate>Sat, 08 Apr 2023 09:15:16 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_04_linux/</guid>
+    <description><![CDATA[Strict Transport Security (HSTS) Apache Nginx HTTPS 加密流程 Client 連到 Server 時，Server 將 Public key 傳給 Client Client 使用 Public key 產生隨機碼，和 Server 建立加密通道。 Client 用 Public key 進行傳輸資料加解密，Server 用 Private key 進行傳輸資料加解密 實際的資料使用對稱式加密方式，透過已經建好的加密通道進行傳輸 https 使用了非對稱式與對稱式加密 Khoor, Olqxa 怎麼在廣大的領域中發現小小的弱點，突破當前使用之演算法的弱點 &ndash; Dr. Mathematics
+凱薩加密演算法
+字母位移預設三個字 @Desktop
+1 2 root# mkdir demo; cd demo/ root# vi caesar-cipher.sh shellscript
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 #!]]></description>
+</item>
+<item>
+    <title>Lesson 02: Linux 筆記</title>
     <link>http://wysiwyz.github.io/posts/lesson_03_linux/</link>
     <pubDate>Sat, 18 Mar 2023 09:30:38 &#43;0800</pubDate>
     <author>celine</author>

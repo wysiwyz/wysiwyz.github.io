@@ -3,7 +3,30 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 27 Mar 2023 17:30:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 08 Apr 2023 09:15:16 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>Lesson 04: Linux 筆記</title>
+    <link>http://wysiwyz.github.io/posts/lesson_04_linux/</link>
+    <pubDate>Sat, 08 Apr 2023 09:15:16 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_04_linux/</guid>
+    <description><![CDATA[Strict Transport Security (HSTS) Apache Nginx HTTPS 加密流程 Client 連到 Server 時，Server 將 Public key 傳給 Client Client 使用 Public key 產生隨機碼，和 Server 建立加密通道。 Client 用 Public key 進行傳輸資料加解密，Server 用 Private key 進行傳輸資料加解密 實際的資料使用對稱式加密方式，透過已經建好的加密通道進行傳輸 https 使用了非對稱式與對稱式加密 Khoor, Olqxa 怎麼在廣大的領域中發現小小的弱點，突破當前使用之演算法的弱點 &ndash; Dr. Mathematics
+凱薩加密演算法
+字母位移預設三個字 @Desktop
+1 2 root# mkdir demo; cd demo/ root# vi caesar-cipher.sh shellscript
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 #!]]></description>
+</item>
+<item>
+    <title>1Z0-819 曾師筆記 (2/duology)</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</link>
+    <pubDate>Wed, 05 Apr 2023 17:10:34 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</guid>
+    <description><![CDATA[#62 1 2 3 4 5 6 7 8 9 10 class Employee { private String name; public void setName(String name) { String title = &#34;Dr. &#34;; name = title + name; } public String toString() { return name; } } And
+1 2 3 4 5 public static void main(String[] args) { Employee p = new Employee(); p.setName(&#34;Who&#34;); System.out.println(p); } What&rsquo;s the resuld?
+A. Dr. Who
+B. Dr. Null]]></description>
+</item>
+<item>
     <title>1Z0-819 曾師筆記 (2/duology)</title>
     <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
     <pubDate>Mon, 27 Mar 2023 17:30:34 &#43;0800</pubDate>
@@ -31,7 +54,7 @@ Section 25
 Section 26]]></description>
 </item>
 <item>
-    <title>Lesson_03_linux</title>
+    <title>Lesson 02: Linux 筆記</title>
     <link>http://wysiwyz.github.io/posts/lesson_03_linux/</link>
     <pubDate>Sat, 18 Mar 2023 09:30:38 &#43;0800</pubDate>
     <author>celine</author>
@@ -127,38 +150,6 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/spring/</guid>
     <description><![CDATA[Spring Architecture Core Container Core - 提供框架最基本的部分 Bean - 提供Bean工廠 Context - 存取任何定義且被配置的物件 SpEL - Spring express language Data Access JDBC - 提供JDBC抽象層 ORM - 提供Object-Relational Mapping API物件關係映射的整合層 OXM - 提供抽象層 JMS - 包含產出與使用訊息的功能 Transaction - 支援programmatic與declarative交易管理 Web WebSocket - 支援two-way溝通(client-server) Servlet - 包含Spring MVC給予web應用的實作 Web - 提供web導向整合的基本功能 Portlet - 提供MVC實作，且鏡像web-servlet模組的功能 Misc. AOP Aspects - 提供AspectJ的整合 Instrumentation - 支援class instrumentation(在已編譯的.class檔案加入字節碼byte-code) 以及class loader implementation(在執行時將java類別動態載入JVM) Messaging - 支援STOMP作為WebSocket的sub-protocol STOMP: 流文本定向消息協議 Test - 支援Spring組件(component)的測試 原本的物件建構長這樣]]></description>
-</item>
-<item>
-    <title>Lesson 01: Linux 筆記</title>
-    <link>http://wysiwyz.github.io/posts/lesson_01_linux/</link>
-    <pubDate>Sat, 04 Mar 2023 09:54:41 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_01_linux/</guid>
-    <description><![CDATA[憑證具有 CIA 三要素
-Confidentiality 機密性
-Integrity
-Availability
-Others
-Authenticity
-Accountability
-Non-repudiation
-AAA, Triple A - 認證授權紀錄
-基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC
-&mdash; ntpdate 舊時代的工具，別用
-Chrony_NTP_lab
-Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172.server desktopXX iburst systemctl restart chronydsystemctl enable chronydsystemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
-另外一個設定時區方式 podman.io (官方比較少推)
-兩種設定方式 官方主推指令方式 getent group wheet
-設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作]]></description>
-</item>
-<item>
-    <title>Lesson 00: Linux 筆記</title>
-    <link>http://wysiwyz.github.io/posts/lesson_00_linux/</link>
-    <pubDate>Sat, 11 Feb 2023 10:08:41 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_00_linux/</guid>
-    <description><![CDATA[資安是一個循環 這次會過不代表下次會過，每年都要複驗 ISO27001 改版（LA - lead auditor） Log server Windows 的 GPO policy 是什麼 .twcertcc : https://www.twcert.org.tw/tw/mp-1.html 營利目標 依公司法，企業營運是為了向股東負責 企業營運 以永續經營與營利為目標 發展產品或服務解決客戶之問題，或者滿足其需求 有利企業發展的事才考慮執行 機密性 產生營利的過程中，衍生出只有甲乙雙方才能知道的事件 營運過程中，衍生無法完全透明的內部資訊 營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資) 營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力 目標 保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標 常用手法 人員階級、職等、業務範圍管理 實物管理（區域進出換證、資產盤點） 數位資訊管理 CentOS 8 安全措施 作業系統安全 作業系統安裝 系統紀錄 檔案稽核 檔案系統權限配置 系統防火牆 應用服務安全 Web SSL MariaDB (MySQL &hellip; audit 要付費) Samba(smb)/NFS [AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)
-NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?]]></description>
 </item>
 </channel>
 </rss>

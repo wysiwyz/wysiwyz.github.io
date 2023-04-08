@@ -3,7 +3,18 @@
         <title>1Z0-819 - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/1z0-819/</link>
         <description>1Z0-819 - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 27 Mar 2023 17:30:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/1z0-819/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 05 Apr 2023 17:10:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/1z0-819/" rel="self" type="application/rss+xml" /><item>
+    <title>1Z0-819 曾師筆記 (2/duology)</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</link>
+    <pubDate>Wed, 05 Apr 2023 17:10:34 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</guid>
+    <description><![CDATA[#62 1 2 3 4 5 6 7 8 9 10 class Employee { private String name; public void setName(String name) { String title = &#34;Dr. &#34;; name = title + name; } public String toString() { return name; } } And
+1 2 3 4 5 public static void main(String[] args) { Employee p = new Employee(); p.setName(&#34;Who&#34;); System.out.println(p); } What&rsquo;s the resuld?
+A. Dr. Who
+B. Dr. Null]]></description>
+</item>
+<item>
     <title>1Z0-819 曾師筆記 (2/duology)</title>
     <link>http://wysiwyz.github.io/posts/ocpjp_11_2/</link>
     <pubDate>Mon, 27 Mar 2023 17:30:34 &#43;0800</pubDate>
