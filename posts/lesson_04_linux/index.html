@@ -34,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/lesson_04_linux\/"
-        },"genre": "posts","keywords": "linux, security","wordcount":  395 ,
+        },"genre": "posts","keywords": "linux, security","wordcount":  2650 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/lesson_04_linux\/","datePublished": "2023-04-08T09:15:16+08:00","dateModified": "2023-04-08T09:15:16+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -76,8 +76,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson 04: Linux 筆記</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-08">2023-04-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;395 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/posts/lesson_04_linux/" class="leancloud_visitors" data-flag-title="Lesson 04: Linux 筆記">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-08">2023-04-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2650 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;<span id="/posts/lesson_04_linux/" class="leancloud_visitors" data-flag-title="Lesson 04: Linux 筆記">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -102,9 +102,16 @@
         <li><a href="#查看憑證內容">查看憑證內容</a></li>
         <li><a href="#建立內部pki">建立內部PKI</a></li>
         <li><a href="#selinux-簡述">SELinux 簡述</a></li>
+        <li><a href="#檔案與目錄權限">檔案與目錄權限</a></li>
+        <li><a href="#網路連接埠">網路連接埠</a></li>
+        <li><a href="#apache-功能">Apache 功能</a></li>
         <li><a href="#selinux">SELinux</a></li>
       </ul>
     </li>
+    <li><a href="#目標-留言">目標 留言</a></li>
+    <li><a href="#ssh-改-port">SSH 改 Port</a></li>
+    <li><a href="#apache-預設目錄">Apache 預設目錄</a></li>
+    <li><a href="#apache-mount-nfs">Apache Mount NFS</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h3 id="strict-transport-security-hsts">Strict Transport Security (HSTS)</h3>
@@ -440,14 +447,822 @@
         data-sizes="auto"
         alt="https://i.imgur.com/OSu9VzW.png"
         title="image-20230408111756496" /></p>
+<hr>
 <h3 id="查看憑證內容">查看憑證內容</h3>
+<p>@Server</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span> /etc/httpd/conf/ssl/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# openssl x509 -in server58.linux.class.crt -text -noout
+</span></span><span class="line"><span class="cl">Certificate:
+</span></span><span class="line"><span class="cl">    Data:
+</span></span><span class="line"><span class="cl">        ....
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Desktop</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ <span class="nb">cd</span> /etc/pki/ca-trust/source/anchors/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ openssl x509 -in ca.crt -text -noout
+</span></span><span class="line"><span class="cl">Certificate:
+</span></span><span class="line"><span class="cl">    Data:
+</span></span><span class="line"><span class="cl">        ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <h3 id="建立內部pki">建立內部PKI</h3>
+<h4 id="rootca-憑證設定檔">RootCA 憑證設定檔</h4>
+<p>@Desktop</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span>
+</span></span><span class="line"><span class="cl">root# mkdir ssl-ca
+</span></span><span class="line"><span class="cl">root# <span class="nb">cd</span> ssl-ca
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建立 CA v3 設定檔案</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi v3.cfg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"># <span class="nx">OpenSSL</span> <span class="nx">root</span> <span class="nx">CA</span> <span class="nx">configuration</span> <span class="nx">file</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Copy</span> <span class="nx">to</span> `<span class="sr">/root/</span><span class="nx">ca</span>/<span class="nx">openssl</span>.<span class="nx">cnf</span>`.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">ca</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># `<span class="nx">man</span> <span class="nx">ca</span>`<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">default_ca</span> <span class="p">=</span> <span class="nx">CA_default</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">CA_default</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Directory</span> <span class="nx">and</span> <span class="nx">file</span> <span class="nx">locations</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">dir</span>               <span class="p">=</span> <span class="sr">/home/</span><span class="nx">centos</span><span class="sr">/tmp/</span><span class="nx">linuxclass</span>/<span class="nx">RootCA</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">certs</span>             <span class="p">=</span> $<span class="nx">dir</span>/<span class="nx">certs</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">crl_dir</span>           <span class="p">=</span> $<span class="nx">dir</span>/<span class="nx">crl</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">new_certs_dir</span>     <span class="p">=</span> $<span class="nx">dir</span>/<span class="nx">newcerts</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">database</span>          <span class="p">=</span> $<span class="nx">dir</span>/<span class="nx">index</span>.<span class="nx">txt</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">serial</span>            <span class="p">=</span> $<span class="nx">dir</span>/<span class="nx">serial</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">RANDFILE</span>          <span class="p">=</span> $<span class="nx">dir</span><span class="sr">/private/</span>.<span class="nx">rand</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">The</span> <span class="nx">root</span> <span class="nx">key</span> <span class="nx">and</span> <span class="nx">root</span> <span class="nx">certificate</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">private_key</span>       <span class="p">=</span> $<span class="nx">dir</span><span class="sr">/private/</span><span class="nx">ca</span>.<span class="nx">key</span>.<span class="nx">pem</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">certificate</span>       <span class="p">=</span> $<span class="nx">dir</span><span class="sr">/certs/</span><span class="nx">ca</span>.<span class="nx">cert</span>.<span class="nx">pem</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">For</span> <span class="nx">certificate</span> <span class="nx">revocation</span> <span class="nx">lists</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">crlnumber</span>         <span class="p">=</span> $<span class="nx">dir</span>/<span class="nx">crlnumber</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">crl</span>               <span class="p">=</span> $<span class="nx">dir</span><span class="sr">/crl/</span><span class="nx">ca</span>.<span class="nx">crl</span>.<span class="nx">pem</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">crl_extensions</span>    <span class="p">=</span> <span class="nx">crl_ext</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">default_crl_days</span>  <span class="p">=</span> <span class="m">30</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">SHA</span><span class="m">-1</span> <span class="nx">is</span> <span class="nx">deprecated</span><span class="p">,</span> <span class="nx">so</span> <span class="nx">use</span> <span class="nx">SHA</span><span class="m">-2</span> <span class="nx">instead</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">default_md</span>        <span class="p">=</span> <span class="nx">sha256</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">name_opt</span>          <span class="p">=</span> <span class="nx">ca_default</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">cert_opt</span>          <span class="p">=</span> <span class="nx">ca_default</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">default_days</span>      <span class="p">=</span> <span class="m">7500</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">preserve</span>          <span class="p">=</span> <span class="nx">no</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">policy</span>            <span class="p">=</span> <span class="nx">policy_strict</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">policy_strict</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">The</span> <span class="nx">root</span> <span class="nx">CA</span> <span class="nx">should</span> <span class="nx">only</span> <span class="nx">sign</span> <span class="nx">intermediate</span> <span class="nx">certificates</span> <span class="nx">that</span> <span class="nx">match</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">See</span> <span class="nx">the</span> <span class="nx">POLICY</span> <span class="nx">FORMAT</span> <span class="nx">section</span> <span class="nx">of</span> `<span class="nx">man</span> <span class="nx">ca</span>`.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">countryName</span>             <span class="p">=</span> <span class="nx">match</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">stateOrProvinceName</span>     <span class="p">=</span> <span class="nx">match</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">organizationName</span>        <span class="p">=</span> <span class="nx">match</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">organizationalUnitName</span>  <span class="p">=</span> <span class="nx">optional</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">commonName</span>              <span class="p">=</span> <span class="nx">supplied</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">emailAddress</span>            <span class="p">=</span> <span class="nx">optional</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">policy_loose</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Allow</span> <span class="nx">the</span> <span class="nx">intermediate</span> <span class="nx">CA</span> <span class="nx">to</span> <span class="nx">sign</span> <span class="nx">a</span> <span class="nx">more</span> <span class="nx">diverse</span> <span class="nx">range</span> <span class="nx">of</span> <span class="nx">certificates</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">See</span> <span class="nx">the</span> <span class="nx">POLICY</span> <span class="nx">FORMAT</span> <span class="nx">section</span> <span class="nx">of</span> <span class="nx">the</span> `<span class="nx">ca</span>` <span class="nx">man</span> <span class="nx">page</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">countryName</span>             <span class="p">=</span> <span class="nx">optional</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">stateOrProvinceName</span>     <span class="p">=</span> <span class="nx">optional</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">localityName</span>            <span class="p">=</span> <span class="nx">optional</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">organizationName</span>        <span class="p">=</span> <span class="nx">optional</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">organizationalUnitName</span>  <span class="p">=</span> <span class="nx">optional</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">commonName</span>              <span class="p">=</span> <span class="nx">supplied</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">emailAddress</span>            <span class="p">=</span> <span class="nx">optional</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">req</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Options</span> <span class="nx">for</span> <span class="nx">the</span> `<span class="nx">req</span>` <span class="nx">tool</span> <span class="p">(</span>`<span class="nx">man</span> <span class="nx">req</span>`<span class="p">)</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">default_bits</span>        <span class="p">=</span> <span class="m">2048</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">distinguished_name</span>  <span class="p">=</span> <span class="nx">req_distinguished_name</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">string_mask</span>         <span class="p">=</span> <span class="nx">utf8only</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">SHA</span><span class="m">-1</span> <span class="nx">is</span> <span class="nx">deprecated</span><span class="p">,</span> <span class="nx">so</span> <span class="nx">use</span> <span class="nx">SHA</span><span class="m">-2</span> <span class="nx">instead</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">default_md</span>          <span class="p">=</span> <span class="nx">sha256</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Extension</span> <span class="nx">to</span> <span class="nx">add</span> <span class="nx">when</span> <span class="nx">the</span> <span class="p">-</span><span class="nx">x509</span> <span class="nx">option</span> <span class="nx">is</span> <span class="nx">used</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">x509_extensions</span>     <span class="p">=</span> <span class="nx">v3_ca</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">req_distinguished_name</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">See</span> <span class="p">&lt;</span><span class="nx">https</span>:<span class="sr">//</span><span class="nx">en</span>.<span class="nx">wikipedia</span>.<span class="nx">org</span><span class="sr">/wiki/</span><span class="nx">Certificate_signing_request</span><span class="p">&gt;</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">countryName</span>                     <span class="p">=</span> <span class="nx">Country</span> <span class="nx">Name</span> <span class="p">(</span><span class="m">2</span> <span class="nx">letter</span> <span class="nx">code</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">stateOrProvinceName</span>             <span class="p">=</span> <span class="nx">State</span> <span class="nx">or</span> <span class="nx">Province</span> <span class="nx">Name</span> <span class="p">(</span><span class="nx">full</span> <span class="nx">name</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">localityName</span>                    <span class="p">=</span> <span class="nx">Locality</span> <span class="nx">Name</span> <span class="p">(</span><span class="nx">eg</span><span class="p">,</span> <span class="nx">city</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="m">0</span>.<span class="nx">organizationName</span>              <span class="p">=</span> <span class="nx">Organization</span> <span class="nx">Name</span> <span class="p">(</span><span class="nx">eg</span><span class="p">,</span> <span class="nx">company</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">organizationalUnitName</span>          <span class="p">=</span> <span class="nx">Organizational</span> <span class="nx">Unit</span> <span class="nx">Name</span> <span class="p">(</span><span class="nx">eg</span><span class="p">,</span> <span class="nx">section</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">commonName</span>                      <span class="p">=</span> <span class="nx">Common</span> <span class="nx">Name</span> <span class="p">(</span><span class="nx">eg</span><span class="p">,</span> <span class="nx">your</span> <span class="nx">name</span> <span class="nx">or</span> <span class="nx">your</span> <span class="nx">server</span>&#39;<span class="nx">s</span> <span class="nx">hostname</span><span class="p">)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">emailAddress</span>                    <span class="p">=</span> <span class="nx">Email</span> <span class="nx">Address</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Optionally</span><span class="p">,</span> <span class="nx">specify</span> <span class="nx">some</span> <span class="nx">defaults</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">countryName_default</span>             <span class="p">=</span> <span class="nx">TW</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">stateOrProvinceName_default</span>     <span class="p">=</span> <span class="nx">Zhongshan</span> <span class="nx">Dist</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">localityName_default</span>            <span class="p">=</span> <span class="nx">Taipei</span> <span class="nx">City</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="m">0</span>.<span class="nx">organizationName_default</span>      <span class="p">=</span> <span class="nx">LinuxClass</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">organizationalUnitName_default</span>  <span class="p">=</span> <span class="nx">Class</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">emailAddress_default</span>            <span class="p">=</span> <span class="nx">ca</span>@<span class="nx">linux</span>.<span class="nx">class</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">v3_ca</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Extensions</span> <span class="nx">for</span> <span class="nx">a</span> <span class="nx">typical</span> <span class="nx">CA</span> <span class="p">(</span>`<span class="nx">man</span> <span class="nx">x509v3_config</span>`<span class="p">)</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">subjectKeyIdentifier</span> <span class="p">=</span> <span class="nx">hash</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">authorityKeyIdentifier</span> <span class="p">=</span> <span class="nx">keyid</span>:<span class="nx">always</span><span class="p">,</span><span class="nx">issuer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">basicConstraints</span> <span class="p">=</span> <span class="nx">critical</span><span class="p">,</span> <span class="nx">CA</span>:<span class="nx">true</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">keyUsage</span> <span class="p">=</span> <span class="nx">critical</span><span class="p">,</span> <span class="nx">digitalSignature</span><span class="p">,</span> <span class="nx">cRLSign</span><span class="p">,</span> <span class="nx">keyCertSign</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">v3_intermediate_ca</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Extensions</span> <span class="nx">for</span> <span class="nx">a</span> <span class="nx">typical</span> <span class="nx">intermediate</span> <span class="nx">CA</span> <span class="p">(</span>`<span class="nx">man</span> <span class="nx">x509v3_config</span>`<span class="p">)</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">subjectKeyIdentifier</span> <span class="p">=</span> <span class="nx">hash</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">authorityKeyIdentifier</span> <span class="p">=</span> <span class="nx">keyid</span>:<span class="nx">always</span><span class="p">,</span><span class="nx">issuer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">basicConstraints</span> <span class="p">=</span> <span class="nx">critical</span><span class="p">,</span> <span class="nx">CA</span>:<span class="nx">true</span><span class="p">,</span> <span class="nx">pathlen</span>:<span class="m">0</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">keyUsage</span> <span class="p">=</span> <span class="nx">critical</span><span class="p">,</span> <span class="nx">digitalSignature</span><span class="p">,</span> <span class="nx">cRLSign</span><span class="p">,</span> <span class="nx">keyCertSign</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">usr_cert</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Extensions</span> <span class="nx">for</span> <span class="nx">client</span> <span class="nx">certificates</span> <span class="p">(</span>`<span class="nx">man</span> <span class="nx">x509v3_config</span>`<span class="p">)</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">basicConstraints</span> <span class="p">=</span> <span class="nx">CA</span>:<span class="nx">FALSE</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nsCertType</span> <span class="p">=</span> <span class="nx">client</span><span class="p">,</span> <span class="nx">email</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nsComment</span> <span class="p">=</span> <span class="s2">&#34;OpenSSL Generated Client Certificate&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">subjectKeyIdentifier</span> <span class="p">=</span> <span class="nx">hash</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">authorityKeyIdentifier</span> <span class="p">=</span> <span class="nx">keyid</span><span class="p">,</span><span class="nx">issuer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">keyUsage</span> <span class="p">=</span> <span class="nx">critical</span><span class="p">,</span> <span class="nx">nonRepudiation</span><span class="p">,</span> <span class="nx">digitalSignature</span><span class="p">,</span> <span class="nx">keyEncipherment</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">extendedKeyUsage</span> <span class="p">=</span> <span class="nx">clientAuth</span><span class="p">,</span> <span class="nx">emailProtection</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">server_cert</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Extensions</span> <span class="nx">for</span> <span class="nx">server</span> <span class="nx">certificates</span> <span class="p">(</span>`<span class="nx">man</span> <span class="nx">x509v3_config</span>`<span class="p">)</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">basicConstraints</span> <span class="p">=</span> <span class="nx">CA</span>:<span class="nx">FALSE</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nsCertType</span> <span class="p">=</span> <span class="nx">server</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">nsComment</span> <span class="p">=</span> <span class="s2">&#34;OpenSSL Generated Server Certificate&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">subjectKeyIdentifier</span> <span class="p">=</span> <span class="nx">hash</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">authorityKeyIdentifier</span> <span class="p">=</span> <span class="nx">keyid</span><span class="p">,</span><span class="nx">issuer</span>:<span class="nx">always</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">keyUsage</span> <span class="p">=</span> <span class="nx">critical</span><span class="p">,</span> <span class="nx">digitalSignature</span><span class="p">,</span> <span class="nx">keyEncipherment</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">extendedKeyUsage</span> <span class="p">=</span> <span class="nx">serverAuth</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">crl_ext</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Extension</span> <span class="nx">for</span> <span class="nx">CRLs</span> <span class="p">(</span>`<span class="nx">man</span> <span class="nx">x509v3_config</span>`<span class="p">)</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">authorityKeyIdentifier</span><span class="p">=</span><span class="nx">keyid</span>:<span class="nx">always</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span>[ <span class="nx">ocsp</span> ]<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span># <span class="nx">Extension</span> <span class="nx">for</span> <span class="nx">OCSP</span> <span class="nx">signing</span> <span class="nx">certificates</span> <span class="p">(</span>`<span class="nx">man</span> <span class="nx">ocsp</span>`<span class="p">)</span>.<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">basicConstraints</span> <span class="p">=</span> <span class="nx">CA</span>:<span class="nx">FALSE</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">subjectKeyIdentifier</span> <span class="p">=</span> <span class="nx">hash</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">authorityKeyIdentifier</span> <span class="p">=</span> <span class="nx">keyid</span><span class="p">,</span><span class="nx">issuer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">keyUsage</span> <span class="p">=</span> <span class="nx">critical</span><span class="p">,</span> <span class="nx">digitalSignature</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">extendedKeyUsage</span> <span class="p">=</span> <span class="nx">critical</span><span class="p">,</span> <span class="nx">OCSPSigning</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="產-ca-憑證">產 ca 憑證</h4>
+<p>產生 CA Private/Public Key</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# openssl req -config v3.config -new -x509 -days <span class="m">7500</span> -keyout ca.key -out ca.crt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ls -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="建立新憑證組">建立新憑證組</h4>
+<p>建立用戶端 Private 與 Request 檔案</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# openssl req -nodes -newkey rsa:2048 -sha256 -keyout lab-server58.linux.class.key -nodes -utf8 -out lab-server58.linux.class.csr
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>CommonName 設定 lab-server58.linux.class</p>
+</blockquote>
+<h4 id="簽憑證">簽憑證</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span> ~/ssl-ca
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>設定簽證設定檔</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi csr-v3.cfg
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="line"><span class="cl"><span class="nx">authorityKeyIdentifier</span><span class="p">=</span><span class="nx">keyid</span><span class="p">,</span><span class="nx">issuer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">basicConstraints</span><span class="p">=</span><span class="nx">CA</span>:<span class="nx">FALSE</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="nx">keyUsage</span> <span class="p">=</span> <span class="nx">digitalSignature</span><span class="p">,</span> <span class="nx">nonRepudiation</span><span class="p">,</span> <span class="nx">keyEncipherment</span><span class="p">,</span> <span class="nx">dataEncipherment</span><span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用CA簽屬用戶端憑證</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# openssl x509 -req -days <span class="m">365</span> -in lab-server58.linux.class.csr -extfile csr-v3.cfg -CA ca.crt -CAkey ca.key -CAcreateserial -out lab-server58.linux.class.crt -sha256
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ls -l
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# cp lab-server58.crt /etc/httpd/conf/ssl
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>CA 簽 CSR，get CRT</p>
+</blockquote>
+<h4 id="套新憑證">套新憑證</h4>
+<ol>
+<li>
+<p>將<code>lab-server58.linux.class.crt</code>與<code>lab-server58.linux.class.key</code>複製到<code>Server</code>
+@Desktop</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">echo</span> <span class="s2">&#34;put lab-server58.linux.class.crt&#34;</span> <span class="p">|</span> sftp root@server58:/etc/httpd/conf/ssl/
+</span></span><span class="line"><span class="cl">root# <span class="nb">echo</span> <span class="s2">&#34;put lab-server58.linux.class.key&#34;</span> <span class="p">|</span> sftp root@server58:/etc/httpd/conf/ssl/
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>參考 Apache + SSL 設定 Apache 憑證</p>
+<blockquote>
+<p>有重置的話要再裝一次 Apache &amp; SSL</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="client-驗證">Client 驗證</h4>
+<p>@Desktop</p>
+<ol>
+<li>
+<p>把新的 ca.crt 放到 <code>/etc/pki/ca-trust/source/anchors/</code>，執行 update-ca-trust</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span> ~/ssl-ca
+</span></span><span class="line"><span class="cl">root# cp ca.crt /etc/pki/ca-trust/source/anchors/
+</span></span><span class="line"><span class="cl">root# sudo update-ca-trust
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>在 <code>/etc/hosts</code> 新增 lab-server58.linux.class 對應</p>
+</li>
+<li>
+<p>FireFox:
+<a href="https://lab-server58.linux.class/" target="_blank" rel="noopener noreffer ">https://lab-server58.linux.class</a></p>
+</li>
+</ol>
+<hr>
 <h3 id="selinux-簡述">SELinux 簡述</h3>
 <ul>
 <li>SELinux: 系統安全防禦的預設值</li>
 <li>因為處理網頁無法開啟的問題更為複雜，所以一開始導入時，管理人員傾向於關閉SELinux，以讓服務正常運作</li>
 </ul>
+<p>本文使用 Apache <code>httpd</code> 服務來說明 SELinux 對於行程的影響，其邏輯也能在其它服務中適用。</p>
+<p>有關於 SELinux 對 <code>httpd</code> 運作的影響，大致有如下範圍：</p>
+<ul>
+<li>目錄能否有權限存取</li>
+<li>程式把檔案寫入指定的目錄位置</li>
+<li>程式能否經由網路和別的系統服務交換資料</li>
+<li><code>httpd</code> 能否在其它自訂的連埠服提供服務</li>
+</ul>
+<p>要處理 SELinux 對 httpd 的運作影響，必須先區分幾個類別：</p>
+<ol>
+<li>
+<p>檔案與目錄權限</p>
+<p>檔案或目錄只有在正確的 SELinux 安全標籤才可以操作。</p>
+</li>
+<li>
+<p>網路連接埠</p>
+<p>程式只有在 SELinux 允許的連接埠才能提供服務。</p>
+</li>
+<li>
+<p>Apache 功能</p>
+<p>針對服務所提供的特別功能，必須要在 SELinux 中設定開關才能使用。</p>
+</li>
+</ol>
+<p>Apache 在 SELinux 中的關鍵字，多以 <code>http_</code> 字眼出現，在操作 SELinux 條入之前，大部份使用 <code>semanage</code> 與 <code>setsebool</code> 進行設定。<code>semenage</code> 為查修條件的工具，另一個則是用來開關 <code>httpd</code> 可用功能的開關。</p>
+<p><code>semanage</code> 預設並不會安裝，主要是期望管理者能夠依標準原則來處理系統服務，比如檔案應放在預先設好的路徑而非另行指定。話雖如此仍可以另行設定 SELinux 條件來新增或修改其條件，讓系統管理更有彈性。</p>
+<p>若要安裝 <code>semanage</code> 指令工具可以進行如下操作：</p>
+<pre tabindex="0"><code>student$ sudo dnf -y install policycoreutils-python-utils
+</code></pre><p>除了 <code>semanage</code> 之外，我們還需要 <code>sesearch</code> 工具來找出作業行程能夠存取目錄與檔案的相關資訊，<code>sesearch</code> 被收錄在 <code>setools-console</code> 套件中，使用下列方式可以將它安裝好：</p>
+<pre tabindex="0"><code>student$ sudo dnf install -y setools-console
+</code></pre><p>由於 SELinux 對於行程的規範非常多，在此小節上，僅針對檔案與目錄權限、網路連接埠與 Apaache 功能做示範。</p>
+<h3 id="檔案與目錄權限">檔案與目錄權限</h3>
+<p>檔案與目錄權限是受 SELinux 規範最多的部份，在設定 SELinux 政策之前，必須以行程為首往下找出可以用的標籤規則，再從這些規則中找出有哪些目錄是符合的。</p>
+<p>使用下列方式找出有關 <code>httpd</code> 的 SELinux 標籤：</p>
+<pre tabindex="0"><code>student$ sudo ps -uxZ | grep -w httpd
+system_u:system_r:httpd_t:s0    root     19053  0.0  0.5 230556  5352 ?        Ss    3月03   0:38 /usr/sbin/httpd -DFOREGROUND
+</code></pre><p>上述結果中找到有關 <code>httpd</code> 行程所被設定的行程標籤為 <code>httpd_t</code>，接著再利用找出來的標籤找出所符合的行程可以存取哪些目錄檔案標籤，使用 <code>sesearch</code> 工具可以找出這些項目：</p>
+<pre tabindex="0"><code>student$ sudo sesearch -s httpd_t --allow
+~~ 以上略 ~~
+allow httpd_t httpd_sys_content_t : lnk_file { read getattr } ; 
+allow httpd_t httpd_sys_content_t : dir { ioctl read getattr lock search open } ; 
+allow httpd_t httpd_sys_content_t : file { ioctl read getattr lock map open } ;
+~~ 以下略 ~~
+</code></pre><p>因為找出的項目有成千上萬，但經由確認後可以發現有關 <code>httpd_sys_content_t</code> 可以針對目錄與檔案進行開啟的行為（<code>open</code>）。接下來我們可以使用 <code>httpd_sys_content_t</code> 為關鍵，找出符合該檔案標籤有哪些路徑。</p>
+<p>使用 <code>semanage</code> 再指定的標簽可以找出相關資訊，如下範例所示：</p>
+<pre tabindex="0"><code>student$ sudo semanage fcontext -l | grep httpd_sys_content_t
+/srv/([^/]*/)?www(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/www(/.*)?                                     all files          system_u:object_r:httpd_sys_content_t:s0 
+/etc/htdig(/.*)?                                   all files          system_u:object_r:httpd_sys_content_t:s0 
+/srv/gallery2(/.*)?                                all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/lib/trac(/.*)?                                all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/lib/htdig(/.*)?                               all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/www/icons(/.*)?                               all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/glpi(/.*)?                              all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/htdig(/.*)?                             all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/drupal.*                                all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/z-push(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/www/svn/conf(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/icecast(/.*)?                           all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/lib/cacti/rra(/.*)?                           all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/ntop/html(/.*)?                         all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/nginx/html(/.*)?                        all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/doc/ghc/html(/.*)?                      all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/openca/htdocs(/.*)?                     all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/selinux-policy[^/]*/html(/.*)?          all files          system_u:object_r:httpd_sys_content_t:s0
+</code></pre><p>以上找到的結果，就是預設可以放置網頁檔案的位置（如: <code>/var/www(/.*)?</code> 項目），這些位置可以讓 Apache 行程讀取目錄與檔案的內容。</p>
+<h3 id="網路連接埠">網路連接埠</h3>
+<p><code>httpd</code> 所能佔用的網路連接埠被 SELinux 的 <code>http_port_t</code> 所規範，必須在項目所允許的列表中才能夠啟用該連接埠，否則在 <code>httpd</code> 啟動的時候就會發生錯誤。</p>
+<p>要檢查目前 <code>httpd</code> 被允許使用哪些連接埠，可以使用下列方式：</p>
+<pre tabindex="0"><code>student$ sudo semanage port -l | grep http_port_t
+http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
+</code></pre><p>從上列所顯示的連接埠中，除了眾所皆知的 80、443 之外，還包含了如 81、488⋯⋯等項目可以使用。</p>
+<p>如果要增加可用連接埠，一樣必須使用 <code>semanage</code> 工具進行設定，為 <code>http_port_t</code> 標籤新增一個連接埠讓 <code>httpd</code> 可以使用。</p>
+<p>假設預計要為 <code>http_port_t</code> 新增一個 tcp 8888 的連接埠，可以使用下列方式達成：</p>
+<pre tabindex="0"><code>student$ sudo semanage port -a -p tcp 8888 -t http_port_t
+</code></pre><p>完成後再重新列表一次，確認 tcp 8888 已經被加入到 <code>http_port_t</code> 標籤中：</p>
+<pre tabindex="0"><code>student$ sudo semanage port -l | grep http_port_t
+http_port_t                    tcp      8888, 80, 81, 443, 488, 8008, 8009, 8443, 9000
+</code></pre><p>完成之後，您可以在 <code>httpd</code> 的設定檔（如 <code>/etc/httpd/conf/httpd.conf</code>）中，將 Listen 8888 加入讓 <code>httpd</code> 可以使用 TCP/8888 的連接埠。</p>
+<blockquote>
+<p>若要刪除先前所指定的可用連接埠，將 <code>-a</code> 參數改為 <code>-d</code> 就可以將該項目刪除。</p>
+</blockquote>
+<h3 id="apache-功能">Apache 功能</h3>
+<p>Apache 提供了多個功能，某些功能會被 SELinux 所規範，SELinux 將 Apache 的功能設成多個開關，若有必要時再開啟讓 Apache 能夠正常提供。</p>
+<p>這些功能開啟與關閉的關鍵字為 <code>on</code> 與 <code>off</code>，使用 <code>boolean</code> 的型態所指示。</p>
+<p>若要顯示 SELinux 規範的 Apache 功能有哪些，可以使用 <code>semanager</code> 來檢視：</p>
+<pre tabindex="0"><code>student$ sudo semanage boolean -l | grep -w httpd
+httpd_can_network_relay        (off  ,  off)  Allow httpd to can network relay
+httpd_can_connect_mythtv       (off  ,  off)  Allow httpd to can connect mythtv
+httpd_can_network_connect_db   (off  ,  off)  Allow httpd to can network connect db
+httpd_use_gpg                  (off  ,  off)  Allow httpd to use gpg
+httpd_dbus_sssd                (off  ,  off)  Allow httpd to dbus sssd
+httpd_enable_cgi               (on   ,   on)  Allow httpd to enable cgi
+httpd_verify_dns               (off  ,  off)  Allow httpd to verify dns
+httpd_dontaudit_search_dirs    (off  ,  off)  Allow httpd to dontaudit search dirs
+httpd_use_cifs                 (off  ,  off)  Allow httpd to use cifs
+httpd_manage_ipa               (off  ,  off)  Allow httpd to manage ipa
+~~ 以下略 ~~
+</code></pre><p>以上所列的訊息中，在第 2 欄位使用括弧所包起來的項目，分別為 <strong>現行狀態</strong> 與 <strong>預設值</strong>。假設要讓 <code>httpd</code> 可以使用 cifs 協定進行檔案存取，那麼就必須把 <code>httpd_use_cifs</code> 設定為 <code>on</code>。</p>
+<p>設定 SELinux boolean 可以使用 <code>setsebool</code> 工具進行設定：</p>
+<pre tabindex="0"><code>student$ sudo setsebool httpd_use_cifs on
+</code></pre><p>完成後再次檢查 <code>httpd_use_cifs</code> 是否被正確設定：</p>
+<pre tabindex="0"><code>student$ sudo  semanage boolean -l | grep -w httpd | grep -w httpd_use_cifs
+httpd_use_cifs                 (on   ,  off)  Allow httpd to use cifs
+</code></pre><p>請注意所輸出之項目，第二欄位由括弧所包起來的項目中，現行狀態若為 <code>on</code> 代表已啟用功能，若是預設狀值仍為 <code>off</code> 的話代表在下次系統重開機時會關閉該功能，必須再次執行啟用的設定。</p>
+<p>如果經過測試後確定要讓指定的功能永久啟用（重開機時也會啟用）那麼就可以使用 <code>-P</code> 參數讓該設定永久生效，使用的方式如下：</p>
+<pre tabindex="0"><code>student$ sudo setsebool -P httpd_use_cifs on
+</code></pre><blockquote>
+<p>針對 SELinux 對 Apache 各功能的項目，可以參考 httpd_selinux(8) 有完整的說明。</p>
+</blockquote>
+<hr>
 <h3 id="selinux">SELinux</h3>
+<p>查看目前系統的 SELinux 有沒有跑起來</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# sestatus
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/nLSA6jJ.png"
+        data-srcset="https://i.imgur.com/nLSA6jJ.png, https://i.imgur.com/nLSA6jJ.png 1.5x, https://i.imgur.com/nLSA6jJ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/nLSA6jJ.png"
+        title="image-20230408151627269" /></p>
+<hr>
+<h2 id="目標-留言">目標 留言</h2>
+<ul>
+<li>瞭解 SELinux 對於 File Context/Port/Function 的管理方法。</li>
+<li>使用工具確認是否違反 SELinux 政策。</li>
+<li>使用 <code>-Z</code> 參數、semanager、sesearch、getsebool、setsebool、chcon、restorecon 等 SELinux 工具的使用。</li>
+</ul>
+<h2 id="ssh-改-port">SSH 改 Port</h2>
+<p>這個 LAB 用來演練修改服務的使用 Port 與 SELinux 需要調配的項目。</p>
+<p>@Server</p>
+<pre tabindex="0"><code>root# dnf install -y policycoreutils-python-utils-2.9-20.el8.noarch
+root# cp /etc/ssh/sshd_config{,_backup}
+</code></pre><p>設定將 Port 改成 <code>8866</code></p>
+<pre tabindex="0"><code>root# vi /etc/ssh/sshd_config
+修改 Port
+
+...
+
+Port 8866
+root# systemctl restart sshd
+FAIL
+root# ausearch -m avc
+</code></pre><p>列出 sshd 能夠使用的 Port</p>
+<pre tabindex="0"><code>root# semanage port -l | grep ssh_port_t
+</code></pre><p>新增 sshd 能夠使用的 Port</p>
+<pre tabindex="0"><code>root# semanage port -a -p tcp 8866 -t ssh_port_t
+</code></pre><p>重新啟動服務</p>
+<pre tabindex="0"><code>root# systemctl restart sshd
+OK
+</code></pre><p>設定防火牆允許 tcp/p8866 連入</p>
+<pre tabindex="0"><code>root# ss -ntulp | grep 8866
+root# firewall-cmd --permanent --add-port=8866/tcp
+root# firewall-cmd --reload
+</code></pre><p>將 Port 改為原本的 22</p>
+<p>@Desktop</p>
+<pre tabindex="0"><code>root# ssh -p 8866 root@serverX
+</code></pre><p>@Server</p>
+<pre tabindex="0"><code>root# vi /etc/ssh/sshd_config
+修改 Port
+
+...
+
+Port 22
+root# systemctl restart sshd
+</code></pre><p>移除防火牆可連入 tcp/8866</p>
+<pre tabindex="0"><code>root# firewall-cmd --permanent --remove-port=8866/tcp
+root# firewall-cmd --reload
+</code></pre><p>移除 sshd 可使用 Port 8866 的設定</p>
+<pre tabindex="0"><code>root# semanage port -l | grep ssh_port_t
+
+root# semanage port -d -p tcp 8866 -t ssh_port_t
+
+root# semanage port -l | grep ssh_port_t
+</code></pre><h2 id="apache-預設目錄">Apache 預設目錄</h2>
+<p>這個 LAB 用來演練修改網頁服務對於 檔案/目錄 的 <code>fcontext</code> 操作方法。</p>
+<p>@Server</p>
+<pre tabindex="0"><code>root# dnf install -y policycoreutils-python-utils
+root# dnf install -y setools-console
+</code></pre><p>安裝與啟用 httpd</p>
+<pre tabindex="0"><code>root# dnf install -y httpd
+root# systemctl enable --now httpd
+root# firewall-cmd --permanent --add-service=http
+root# firewall-cmd --reload
+
+root# echo HelloX &gt; /var/www/html/index.html
+</code></pre><p>@Desktop</p>
+<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX/</a>
+HelloX</p>
+<p>@Server</p>
+<pre tabindex="0"><code>root# mkdir /web
+
+root# echo HelloX &gt; /web/index.html
+
+root# cd /etc/httpd/conf
+root# cp httpd.conf httpd.conf_backup
+</code></pre><p>修改網頁根目錄</p>
+<pre tabindex="0"><code>root# vi httpd.conf
+修改下列行
+...
+
+Line 122: DocumentRoot &#34;/web&#34;
+Line 127: &lt;Directory &#34;/web&#34;&gt;
+Line 134: &lt;Directory &#34;/web&#34;&gt;
+root# mv /etc/httpd/conf.d/welcome.conf{,_disable}
+root# systemctl restart httpd
+</code></pre><p>@Desktop</p>
+<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX</a>
+Forbidden</p>
+<p>@Server</p>
+<p>檢查存取檔案是否被 SELinux 阻擋。</p>
+<pre tabindex="0"><code>root# ausearch -m avc | tail
+----
+time-&gt;Tue Aug 24 22:34:49 2021
+type=PROCTITLE msg=audit(1629815689.260:493): proctitle=2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+type=SYSCALL msg=audit(1629815689.260:493): arch=c000003e syscall=4 success=no exit=-13 a0=7f67b4045630 a1=7f67ac7ef890 a2=7f67ac7ef890 a3=7f67ac7f04f0 items=0 ppid=13555 pid=13559 auid=4294967295 uid=48 gid=48 euid=48 suid=48 fsuid=48 egid=48 sgid=48 fsgid=48 tty=(none) ses=4294967295 comm=&#34;httpd&#34; exe=&#34;/usr/sbin/httpd&#34; subj=system_u:system_r:httpd_t:s0 key=(null)
+type=AVC msg=audit(1629815689.260:493): avc:  denied  { getattr } for  pid=13559 comm=&#34;httpd&#34; path=&#34;/web/index.html&#34; dev=&#34;dm-0&#34; ino=254636 scontext=system_u:system_r:httpd_t:s0 tcontext=unconfined_u:object_r:default_t:s0 tclass=file permissive=0
+----
+time-&gt;Tue Aug 24 22:34:49 2021
+type=PROCTITLE msg=audit(1629815689.260:494): proctitle=2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+type=SYSCALL msg=audit(1629815689.260:494): arch=c000003e syscall=6 success=no exit=-13 a0=7f67b4045700 a1=7f67ac7ef890 a2=7f67ac7ef890 a3=1 items=0 ppid=13555 pid=13559 auid=4294967295 uid=48 gid=48 euid=48 suid=48 fsuid=48 egid=48 sgid=48 fsgid=48 tty=(none) ses=4294967295 comm=&#34;httpd&#34; exe=&#34;/usr/sbin/httpd&#34; subj=system_u:system_r:httpd_t:s0 key=(null)
+type=AVC msg=audit(1629815689.260:494): avc:  denied  { getattr } for  pid=13559 comm=&#34;httpd&#34; path=&#34;/web/index.html&#34; dev=&#34;dm-0&#34; ino=254636 scontext=system_u:system_r:httpd_t:s0 tcontext=unconfined_u:object_r:default_t:s0 tclass=file permissive=0
+</code></pre><blockquote>
+<p>SELinux 擋住 <code>/web/index.html</code> 存取</p>
+</blockquote>
+<p>查看 httpd 使用的 process 被貼上的 <code>context</code></p>
+<pre tabindex="0"><code>root# ps auxZ | grep httpd
+</code></pre><p>查看預設根目錄中的 <code>context</code></p>
+<pre tabindex="0"><code>root# ls -lhdZ /var/www/html
+drwxr-xr-x. 2 root root system_u:object_r:httpd_sys_content_t:s0 24 Aug 22 11:40 /var/www/html
+</code></pre><p>查看 <code>httpd</code> 行程 context 對於哪些指定的 <code>檔案/目錄</code> context 有哪些已知的權限。</p>
+<pre tabindex="0"><code>root# sesearch -s httpd_t --allow | grep httpd_sys_content_t
+allow daemon httpd_sys_content_t:dir { getattr open search };
+allow httpd_t httpd_sys_content_t:dir { add_name getattr ioctl lock open read remove_name search write }; [ ( httpd_builtin_scripting &amp;&amp; httpd_unified &amp;&amp; httpd_enable_cgi ) ]:True
+allow httpd_t httpd_sys_content_t:dir { getattr ioctl lock open read search };
+allow httpd_t httpd_sys_content_t:file { getattr ioctl lock map open read };
+allow httpd_t httpd_sys_content_t:lnk_file { getattr read };
+</code></pre><p>列出 fcontext 中預設被貼上 context 的目錄規則。</p>
+<pre tabindex="0"><code>root# semanage fcontext -l | grep httpd_sys_content_t
+/etc/htdig(/.*)?                                   all files          system_u:object_r:httpd_sys_content_t:s0 
+/srv/([^/]*/)?www(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+/srv/gallery2(/.*)?                                all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/doc/ghc/html(/.*)?                      all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/drupal.*                                all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/glpi(/.*)?                              all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/htdig(/.*)?                             all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/icecast(/.*)?                           all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/nginx/html(/.*)?                        all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/ntop/html(/.*)?                         all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/openca/htdocs(/.*)?                     all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/selinux-policy[^/]*/html(/.*)?          all files          system_u:object_r:httpd_sys_content_t:s0 
+/usr/share/z-push(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/lib/cacti/rra(/.*)?                           all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/lib/htdig(/.*)?                               all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/lib/trac(/.*)?                                all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/www(/.*)?                                     all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/www/icons(/.*)?                               all files          system_u:object_r:httpd_sys_content_t:s0 
+/var/www/svn/conf(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+</code></pre><p>將新的位置加入 httpd 可使用的規則中。</p>
+<pre tabindex="0"><code>root# semanage fcontext -a -t httpd_sys_content_t &#39;/web(/.*)?&#39;
+
+root# semanage fcontext -l | grep httpd_sys_content_t | grep web
+/web(/.*)?                                         all files          system_u:object_r:httpd_sys_content_t:s0
+</code></pre><p>使用 restorecon 還原並檢查結果。</p>
+<pre tabindex="0"><code>root# ls -ldZ /web
+
+root# restorecon -R /web
+
+root# ls -ldZ /web
+</code></pre><p>@Desktop</p>
+<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX</a>
+HelloX</p>
+<h2 id="apache-mount-nfs">Apache Mount NFS</h2>
+<p>這個 LAB 用來演練啟用服務功能對於 SELinux 需要進行開關的項目。</p>
+<p>在 Desktop 中建立 NFS 服務並啟用。</p>
+<p>@Desktop</p>
+<pre tabindex="0"><code>root# dnf install -y nfs-utils
+
+root# mkdir /web
+root# echo HelloX from Desktop &gt; /web/index.html
+root# vi /etc/exports
+/web 172.16.2.X(ro)
+root# systemctl enable --now nfs-server
+root# firewall-cmd --permanent --add-service=nfs
+root# firewall-cmd --reload
+</code></pre><p>在 Server 中掛載 Desktop 的 NFS 分享目錄。</p>
+<p>@Server</p>
+<pre tabindex="0"><code>root# dnf install -y nfs-utils
+root# mount -t nfs 172.16.1.X:/web /web
+</code></pre><p>@Desktop</p>
+<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX</a>
+Forbidden</p>
+<p>@Server</p>
+<p>在 Server 中查看 SELinux 阻檔原因</p>
+<pre tabindex="0"><code>root# # ausearch -m avc | tail
+----
+time-&gt;Tue Aug 24 22:54:35 2021
+type=PROCTITLE msg=audit(1629816875.274:575): proctitle=2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+type=SYSCALL msg=audit(1629816875.274:575): arch=c000003e syscall=4 success=no exit=-13 a0=7f67b40436d0 a1=7f67ad7f1890 a2=7f67ad7f1890 a3=7f67ad7f24f0 items=0 ppid=13555 pid=13559 auid=4294967295 uid=48 gid=48 euid=48 suid=48 fsuid=48 egid=48 sgid=48 fsgid=48 tty=(none) ses=4294967295 comm=&#34;httpd&#34; exe=&#34;/usr/sbin/httpd&#34; subj=system_u:system_r:httpd_t:s0 key=(null)
+type=AVC msg=audit(1629816875.274:575): avc:  denied  { getattr } for  pid=13559 comm=&#34;httpd&#34; path=&#34;/web/index.html&#34; dev=&#34;0:48&#34; ino=68301488 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:nfs_t:s0 tclass=file permissive=0
+----
+time-&gt;Tue Aug 24 22:54:35 2021
+type=PROCTITLE msg=audit(1629816875.275:576): proctitle=2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+type=SYSCALL msg=audit(1629816875.275:576): arch=c000003e syscall=6 success=no exit=-13 a0=7f67b40437a0 a1=7f67ad7f1890 a2=7f67ad7f1890 a3=1 items=0 ppid=13555 pid=13559 auid=4294967295 uid=48 gid=48 euid=48 suid=48 fsuid=48 egid=48 sgid=48 fsgid=48 tty=(none) ses=4294967295 comm=&#34;httpd&#34; exe=&#34;/usr/sbin/httpd&#34; subj=system_u:system_r:httpd_t:s0 key=(null)
+type=AVC msg=audit(1629816875.275:576): avc:  denied  { getattr } for  pid=13559 comm=&#34;httpd&#34; path=&#34;/web/index.html&#34; dev=&#34;0:48&#34; ino=68301488 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:nfs_t:s0 tclass=file permissive=0
+</code></pre><blockquote>
+<p>SELinux 拒絕 httpd 存取 nfs</p>
+</blockquote>
+<p>檢視 SELinux 針對 httpd 的功能開關。</p>
+<pre tabindex="0"><code>root# getsebool -a | grep httpd_use_nfs
+httpd_use_nfs --&gt; off
+</code></pre><p>啟用 httpd 可使用 NFS 的功能。</p>
+<pre tabindex="0"><code>root# setsebool -P httpd_use_nfs on
+</code></pre><p>@Desktop</p>
+<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX</a>
+HelloX from Desktop</p>
+<hr>
+<blockquote>
+<h1 id="很值得參考的文檔">很值得參考的文檔</h1>
+<p>如果以上lab太多錯難以除去，那就看這篇吧🥲</p>
+<p><a href="https://linux.die.net/man/8/httpd_selinux" target="_blank" rel="noopener noreffer ">httpd_selinux(8) - Linux man page</a></p>
+</blockquote>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
