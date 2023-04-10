@@ -5,9 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Cascading style sheet - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cascading style sheet" />
-<meta property="og:description" content="這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮&hellip;
+<meta property="og:description" content="這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
+看到什麼就記下來，之後複習的話再分類
 overflow: hidden 直接隱藏超出範圍的文字
-參考: css overflow" />
+overflow: auto 與 overflow: scroll 類似，但 overflow:auto 只有在有需要時才會出現 scroll bar
+參考: css overflow
+list-style-type 設定清單的項目編碼符號
+1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&quot;foo&quot; 一個元素可以有多個class，用空格區別 class=&quot;foo bar&quot; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wysiwyz.github.io/posts/cascading_style_sheet/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-04-10T09:53:01+08:00" />
@@ -15,9 +19,13 @@ overflow: hidden 直接隱藏超出範圍的文字
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cascading style sheet"/>
-<meta name="twitter:description" content="這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮&hellip;
+<meta name="twitter:description" content="這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
+看到什麼就記下來，之後複習的話再分類
 overflow: hidden 直接隱藏超出範圍的文字
-參考: css overflow"/>
+overflow: auto 與 overflow: scroll 類似，但 overflow:auto 只有在有需要時才會出現 scroll bar
+參考: css overflow
+list-style-type 設定清單的項目編碼符號
+1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&quot;foo&quot; 一個元素可以有多個class，用空格區別 class=&quot;foo bar&quot; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象"/>
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/cascading_style_sheet/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_04_linux/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -30,7 +38,7 @@ overflow: hidden 直接隱藏超出範圍的文字
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/cascading_style_sheet\/"
-        },"genre": "posts","keywords": "css","wordcount":  7 ,
+        },"genre": "posts","keywords": "css","wordcount":  510 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/cascading_style_sheet\/","datePublished": "2023-04-10T09:53:01+08:00","dateModified": "2023-04-10T09:53:01+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +80,8 @@ overflow: hidden 直接隱藏超出範圍的文字
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cascading style sheet</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-10">2023-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;7 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/cascading_style_sheet/" class="leancloud_visitors" data-flag-title="Cascading style sheet">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-10">2023-04-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;510 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/cascading_style_sheet/" class="leancloud_visitors" data-flag-title="Cascading style sheet">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -86,17 +94,400 @@ overflow: hidden 直接隱藏超出範圍的文字
     <li>
       <ul>
         <li><a href="#overflow-hidden">overflow: hidden</a></li>
+        <li><a href="#overflow-auto">overflow: auto</a></li>
+        <li><a href="#list-style-type">list-style-type</a></li>
+        <li><a href="#-以及-"><code>.</code> 以及 <code>#</code></a></li>
+        <li><a href="#yicon--img">#yIcon <code>&gt;</code> img</a></li>
+        <li><a href="#yicon-img">#yIcon img</a></li>
+        <li><a href="#ul--p">ul <code>+</code> p</a></li>
+        <li><a href="#display-flex">display: flex</a></li>
+        <li><a href="#固定大小寫-text-transform">固定大小寫: text-transform</a></li>
+        <li><a href="#元素內空白格white-space">元素內空白格：white-space</a></li>
+        <li><a href="#排版-display">排版: display</a></li>
+        <li><a href="#wnotchecked-ycheckedzafter">W:not(:checked) 、Y:checked、Z:after</a></li>
       </ul>
     </li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮&hellip;</p>
+<p>這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮</p>
+<p>看到什麼就記下來，之後複習的話再分類</p>
 </blockquote>
 <h3 id="overflow-hidden">overflow: hidden</h3>
 <p>直接隱藏超出範圍的文字</p>
+<h3 id="overflow-auto">overflow: auto</h3>
+<p>與 <code>overflow: scroll</code> 類似，但 <code>overflow:auto</code> 只有在有需要時才會出現 scroll bar</p>
 <p>參考: <a href="https://www.w3schools.com/css/css_overflow.asp" target="_blank" rel="noopener noreffer ">css overflow</a></p>
-</div><div class="post-footer" id="post-footer">
+<h3 id="list-style-type">list-style-type</h3>
+<p>設定清單的項目編碼符號</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">ul</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">list-style-type</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">/*
+</span></span></span><span class="line"><span class="cl"><span class="c">    list-style-type: disc;   //實心黑圓點
+</span></span></span><span class="line"><span class="cl"><span class="c">    list-style-type: circle; //空心圓圈
+</span></span></span><span class="line"><span class="cl"><span class="c">    list-style-type: square; 
+</span></span></span><span class="line"><span class="cl"><span class="c">    list-style-type: decimal;
+</span></span></span><span class="line"><span class="cl"><span class="c">    list-style-type: georgian;
+</span></span></span><span class="line"><span class="cl"><span class="c">    list-style-type: &#34;\1F44D&#34;; //👍 
+</span></span></span><span class="line"><span class="cl"><span class="c">    */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="-以及-"><code>.</code> 以及 <code>#</code></h3>
+<ul>
+<li><code>#foo {}</code>：id selector，像是<code>id=foo</code></li>
+<li><code>.foo {}</code>：class selector，例如<code>class=&quot;foo&quot;</code>
+<ul>
+<li>一個元素可以有多個class，用空格區別
+<code>class=&quot;foo bar&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="yicon--img">#yIcon <code>&gt;</code> img</h3>
+<p>只選擇 id 為 yIcon 元素底下的直接子對象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">#</span><span class="nn">homeIcon</span> <span class="o">&gt;</span> <span class="nt">img</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">#</span><span class="nn">backIcon</span> <span class="o">&gt;</span> <span class="nt">img</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">#</span><span class="nn">fundHomeIcon</span> <span class="o">&gt;</span> <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mi">44</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p><code>#yIcon ul</code> 比較 <code>#yIcon &gt; ul</code>:</p>
+<p><code>#yIcon &gt; ul</code>只會選中 id 名為 <code>yIcon</code> 的<code>div</code>下的直接子對象<code>ul</code>，不會指向<code>ul</code>下第一個<code>li</code>的子對象<code>ul</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl">   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;yIcon&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span> List Item
+</span></span><span class="line"><span class="cl">           <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">              <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span> Excluded in &gt; selector <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">           <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span> List Item <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span> List Item <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span> List Item <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+<h3 id="yicon-img">#yIcon img</h3>
+<p>選擇 id 為 yIcon 元素筆項的圖片對象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">nav_icon</span> <span class="nt">img</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">vertical-align</span><span class="p">:</span> <span class="kc">middle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ul--p">ul <code>+</code> p</h3>
+<p>相鄰兄弟選擇器，只會選擇第一個<code>ul</code>之後的<code>p</code>段落標籤</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">ul</span> <span class="o">+</span> <span class="nt">p</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">color</span><span class="p">:</span> <span class="kc">red</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;container&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>a<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>j<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>i<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>n<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">            This paragraph will be selected and marked red per the css style.
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="display-flex">display: flex</h3>
+<ul>
+<li>display: flex | inline-flex;
+<ul>
+<li>需要一開始宣告此，相關屬性才能有作用</li>
+<li>inline-flex作用: flex + inline-block</li>
+</ul>
+</li>
+<li>flex-direction: column | column-reverse | row | row-reverse;
+<ul>
+<li>flex items由上而下</li>
+</ul>
+</li>
+<li>justify-content: center
+<ul>
+<li>使 container 內的 flex items 置中對齊</li>
+</ul>
+</li>
+</ul>
+<p>參考：<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener noreffer ">A complete guide to Flexbox</a> 、<a href="https://www.casper.tw/css/2017/07/21/css-flex/" target="_blank" rel="noopener noreffer ">Casper說CSS Flex屬性</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-CSS" data-lang="CSS"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">agreeTitle</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">flex-direction</span><span class="p">:</span> <span class="kc">column</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">justify-content</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border-bottom</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">149</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">149</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">padding</span><span class="p">:</span> <span class="mi">15</span><span class="kt">px</span> <span class="mi">9</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="固定大小寫-text-transform">固定大小寫: text-transform</h3>
+<p>常用的有 capitalize | uppercase | lowercase | none | full-width(全型) &hellip;</p>
+<p>參考: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform" target="_blank" rel="noopener noreffer ">text-transform at MDN</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">uppercase</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">text-transform</span><span class="p">:</span> <span class="kc">uppercase</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">lowercase</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">text-transform</span><span class="p">:</span> <span class="kc">lowercase</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="元素內空白格white-space">元素內空白格：white-space</h3>
+<p>white-space: normal | nowrap | pre | pre-wrap | pre-line | break-spaces;</p>
+<p>normal: 遇空白<code> </code>或<code>-</code>時換行，多個空格合併為一個</p>
+<p>nowrap: 多個空格合併為一個，但不斷行(suppress text wrapping)</p>
+<p>pre: 保留多個空白格，只有&lt;br&gt;和new line character之後斷行</p>
+<p>參考：<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/white-space#collapsing_of_white_space" target="_blank" rel="noopener noreffer ">white-space at MDN</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="c">/* 強迫不斷行 */</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">nowrap</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">white-space</span><span class="p">:</span> <span class="kc">nowrap</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="排版-display">排版: display</h3>
+<p>display: inline | inline-block | block;</p>
+<ul>
+<li>inline: span標籤預設值
+<ul>
+<li>可依照元素內容決定寬高</li>
+<li>不會占滿容器橫向剩餘空間</li>
+<li>可以與其他元素並列(同一行)</li>
+</ul>
+</li>
+<li>inline-block:
+<ul>
+<li>可依照元素內容決定寬高</li>
+<li>不會占滿容器橫向剩餘空間</li>
+<li><strong>可額外</strong>透過 width、height、max-width、max-height 等 CSS 屬性來<strong>更改該元素的寬高</strong></li>
+</ul>
+</li>
+<li>block:
+<ul>
+<li>具有 inline-block 特性</li>
+<li>在元素後會自動增加一個 line-break (整個高度都是它的, 其餘留白)</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">bigRadiusBtn</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="kc">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">170</span><span class="p">,</span> <span class="mi">230</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">120</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">height</span><span class="p">:</span> <span class="mf">1.8</span><span class="kt">em</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border-radius</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">font-weight</span><span class="p">:</span> <span class="kc">bold</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="wnotchecked-ycheckedzafter">W:not(:checked) 、Y:checked、Z:after</h3>
+<ul>
+<li>
+<p><code>:checked</code></p>
+<ul>
+<li>pseudo class 的一種，用來設定radio、checkbox或者option元素選擇過的格式</li>
+</ul>
+</li>
+<li>
+<p><code>:not</code>與<code>:checked</code>合併</p>
+<ul>
+<li>設定還沒選擇時的格式，<code>input:not(:checked) {}</code></li>
+</ul>
+</li>
+<li>
+<p><code>.w:after</code></p>
+<ul>
+<li>
+<p>在選擇的某元素(.w)之後插入一些東西</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nc">www</span><span class="p">:</span><span class="nd">after</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">content</span><span class="p">:</span> <span class="s2">&#34; - Good morning Good afternoon Good evening&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;www&#34;</span><span class="p">&gt;</span>WaterMelonHun<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;www&#34;</span><span class="p">&gt;</span>AhaJingleCitrus<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<h5 id="-vs-"><code>::</code> vs <code>:</code></h5>
+<p><code>::</code>是比較新式的寫法，如果不需要IE8支援的話，可以用此</p>
+<p>除了IE8以外的所有瀏覽器都支援<code>::</code>(CSS3語法)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">&#39;checkbox&#39;</span><span class="o">]</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="p">:</span><span class="nd">checked</span><span class="o">)</span> <span class="o">+</span> <span class="p">.</span><span class="nc">showBlack</span><span class="p">:</span><span class="nd">before</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">&#39;checkbox&#39;</span><span class="o">]</span><span class="p">:</span><span class="nd">checked</span> <span class="o">+</span> <span class="p">.</span><span class="nc">showBlack</span><span class="p">:</span><span class="nd">before</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c">/*⚠️ 如果不是加 content: xx，那是怎麼互動的? 🚧*/</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">&#39;checkbox&#39;</span><span class="o">]</span><span class="p">:</span><span class="nd">not</span><span class="o">(</span><span class="p">:</span><span class="nd">checked</span><span class="o">)</span> <span class="o">+</span> <span class="p">.</span><span class="nc">showBlack</span><span class="p">:</span><span class="nd">after</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span><span class="nt">type</span><span class="o">=</span><span class="s1">&#39;checkbox&#39;</span><span class="o">]</span><span class="p">:</span><span class="nd">checked</span> <span class="o">+</span> <span class="p">.</span><span class="nc">showBlack</span><span class="p">:</span><span class="nd">before</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">

@@ -55,9 +55,13 @@
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cascading_style_sheet/">Cascading style sheet</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-10">2023-04-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮&hellip;
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-10">2023-04-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
+看到什麼就記下來，之後複習的話再分類
 overflow: hidden 直接隱藏超出範圍的文字
-參考: css overflow</div><div class="post-footer">
+overflow: auto 與 overflow: scroll 類似，但 overflow:auto 只有在有需要時才會出現 scroll bar
+參考: css overflow
+list-style-type 設定清單的項目編碼符號
+1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&quot;foo&quot; 一個元素可以有多個class，用空格區別 class=&quot;foo bar&quot; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象</div><div class="post-footer">
         <a href="/posts/cascading_style_sheet/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/css/">css</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
@@ -99,14 +103,7 @@ B. Dr.</div><div class="post-footer">
         <a href="/posts/cloud_architect_gcp/">Cloud_architect_GCP</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-24">2023-03-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Section 05 Section 06 Section 07 Section 08 Section 09 Section 10 Google Cloud Functions Section 11 Section 12 Section 13 Section 14 Section 15 Section 16 Section 17 Section 18 Section 19
-Section 20
-Section 21
-Section 22
-Section 23
-Section 24
-Section 25
-Section 26</div><div class="post-footer">
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧</div><div class="post-footer">
         <a href="/posts/cloud_architect_gcp/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/google_cloud/">google_cloud</a>,&nbsp;<a href="/tags/ca/">CA</a></div></div>
 </article><ul class="pagination"><li class="page-item active">

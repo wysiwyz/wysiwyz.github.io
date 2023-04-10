@@ -11,9 +11,13 @@
     <pubDate>Mon, 10 Apr 2023 09:53:01 &#43;0800</pubDate>
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/cascading_style_sheet/</guid>
-    <description><![CDATA[這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮&hellip;
+    <description><![CDATA[這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
+看到什麼就記下來，之後複習的話再分類
 overflow: hidden 直接隱藏超出範圍的文字
-參考: css overflow]]></description>
+overflow: auto 與 overflow: scroll 類似，但 overflow:auto 只有在有需要時才會出現 scroll bar
+參考: css overflow
+list-style-type 設定清單的項目編碼符號
+1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&quot;foo&quot; 一個元素可以有多個class，用空格區別 class=&quot;foo bar&quot; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象]]></description>
 </item>
 <item>
     <title>Lesson 04: Linux 筆記 - CA憑證、SELinux</title>
@@ -70,14 +74,7 @@ B. Dr.]]></description>
     <guid>http://wysiwyz.github.io/posts/cloud_architect_gcp/</guid>
     <description><![CDATA[Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Section 05 Section 06 Section 07 Section 08 Section 09 Section 10 Google Cloud Functions Section 11 Section 12 Section 13 Section 14 Section 15 Section 16 Section 17 Section 18 Section 19
-Section 20
-Section 21
-Section 22
-Section 23
-Section 24
-Section 25
-Section 26]]></description>
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧]]></description>
 </item>
 <item>
     <title>Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL</title>

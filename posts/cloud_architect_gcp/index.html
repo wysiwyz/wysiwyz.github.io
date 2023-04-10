@@ -7,14 +7,7 @@
         <title>Cloud_architect_GCP - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cloud_architect_GCP" />
 <meta property="og:description" content="Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Section 05 Section 06 Section 07 Section 08 Section 09 Section 10 Google Cloud Functions Section 11 Section 12 Section 13 Section 14 Section 15 Section 16 Section 17 Section 18 Section 19
-Section 20
-Section 21
-Section 22
-Section 23
-Section 24
-Section 25
-Section 26" />
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wysiwyz.github.io/posts/cloud_architect_gcp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-03-24T13:39:15+08:00" />
@@ -24,14 +17,7 @@ Section 26" />
 <meta name="twitter:title" content="Cloud_architect_GCP"/>
 <meta name="twitter:description" content="Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Section 05 Section 06 Section 07 Section 08 Section 09 Section 10 Google Cloud Functions Section 11 Section 12 Section 13 Section 14 Section 15 Section 16 Section 17 Section 18 Section 19
-Section 20
-Section 21
-Section 22
-Section 23
-Section 24
-Section 25
-Section 26"/>
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧"/>
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/cloud_architect_gcp/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_03_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/suzume_no_tojimari/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -44,7 +30,7 @@ Section 26"/>
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/cloud_architect_gcp\/"
-        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  91 ,
+        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  506 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/cloud_architect_gcp\/","datePublished": "2023-03-24T13:39:15+08:00","dateModified": "2023-03-24T13:39:15+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -86,8 +72,8 @@ Section 26"/>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloud_architect_GCP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;91 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/cloud_architect_gcp/" class="leancloud_visitors" data-flag-title="Cloud_architect_GCP">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;506 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/cloud_architect_gcp/" class="leancloud_visitors" data-flag-title="Cloud_architect_GCP">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -95,7 +81,15 @@ Section 26"/>
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><blockquote>
 <p>Active learning - think and take notes</p>
 <p>Review - every once in a while</p>
@@ -104,6 +98,138 @@ Section 26"/>
 <h1 id="section-02">Section 02</h1>
 <h1 id="section-03">Section 03</h1>
 <h1 id="section-04">Section 04</h1>
+<h4 id="step00">Step00</h4>
+<h4 id="step02---create-managed-instance-groups-mig-v2">Step02 - create managed instance groups (MIG) V2</h4>
+<h5 id="instance-groups">Instance Groups</h5>
+<ul>
+<li>How do you create a group of VM instances?
+<ul>
+<li>Instance Group - Group of VM instances managed as a single entity
+<ul>
+<li>Manage group of similar VMs having similar lifecycle as ONE UNIT</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Two Types of Instance Groups:
+<ul>
+<li>Managed: Identical VMs created using a template:
+<ul>
+<li>Features: Auto scaling, auto healing and managed releases</li>
+</ul>
+</li>
+<li>Unmanaged: Different configuration for VMs in same group:
+<ul>
+<li>Does NOT offer auto scaling, auto healing and other services</li>
+<li>NOT Recommended unless you need different kinds of VMs</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Location can be Zonal or Regional
+<ul>
+<li>Regional gives you higher availability (RECOMMENDED)</li>
+</ul>
+</li>
+</ul>
+<h5 id="建立-mig-managed-instance-group">建立 MIG (managed instance group)</h5>
+<ul>
+<li>Instance template is mandatory</li>
+<li>Configure auto-scaling to automatically adjust number of instances based on load:
+<ul>
+<li>Minimum number of instances</li>
+<li>Maximum number of instances</li>
+<li>Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver
+<ul>
+<li>Cool-down period</li>
+<li>Scale in controls</li>
+</ul>
+</li>
+<li>Autohealing: Configure a heath check with initial delay</li>
+</ul>
+</li>
+</ul>
+<p>🚧</p>
+<h4 id="step-04---updating-a-managed-instance-group">Step 04 - Updating a Managed Instance Group</h4>
+<ul>
+<li>Rolling update - Gradual update of instances in an instance group to the new instance template
+<ul>
+<li>Specify new template:
+<ul>
+<li>(Optional) Specify a template for canary testing</li>
+</ul>
+</li>
+<li>Specify how you want the update to be down
+<ul>
+<li>When should the update happen?
+<ul>
+<li>Start the update immediately (Proactive) or when instance group is resized later(Opportunistic)</li>
+</ul>
+</li>
+<li>How should the update happen?
+<ul>
+<li>Maximum surge: How many instances are added at any point in time?</li>
+<li>Maximum unavailable: How many instances can be offline during the update?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Rolling Restart/replace: Gradual restart or replace of all instances in the group
+<ul>
+<li>No change in template BUT replace/restart existing VMs</li>
+<li>Configure Maximum surge, Maximum unavailable and What you want to do? (Restart/Replace)</li>
+</ul>
+</li>
+</ul>
+<h4 id="step-05-getting-started-with-cloud-load-balancing">Step 05: Getting started with cloud load balancing</h4>
+<h5 id="cloud-load-balancing">Cloud load balancing</h5>
+<ul>
+<li>Distributes user traffic across instances of any application in single region or multiple regions
+<ul>
+<li>Fully distributed, software defined managed service</li>
+<li>Important Features:
+<ul>
+<li>Health check - Route to healthy instances
+<ul>
+<li>Recover from failures</li>
+</ul>
+</li>
+<li>Auto Scaling</li>
+<li>Global load balancing with single anycast IP
+<ul>
+<li>Also supports internal load balancing</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Enables
+<ul>
+<li>High Availability</li>
+<li>Auto Scaling</li>
+<li>Resiliency</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="step-06-understanding-http-https-udp-and-tcp-protocols">Step 06: Understanding HTTP, HTTPS, UDP and TCP protocols</h4>
+<pre tabindex="0"><code>[Application Layer_layer 7]  --&gt; HTTP HTTPS SMTP
+
+[Transport Layer_layer4] --&gt; TCP TLS UDP
+
+[Network Layer_layer3] --&gt; 
+</code></pre><h5 id="http-vs-https-vs-tcp-vs-tls-vs-udp">HTTP vs HTTPS vs TCP vs TLS vs UDP</h5>
+<ul>
+<li>Computers use protocols to communicate</li>
+<li>Multiple layers and multiple protocols</li>
+<li><strong>Network Layer</strong> - Tranfer bits and bytes</li>
+<li><strong>Transport Layer</strong> - Are the bits and bytes transferred properly?</li>
+<li><strong>Application Layer</strong> - Make REST API calls and Send Emails</li>
+<li></li>
+</ul>
 <h1 id="section-05">Section 05</h1>
 <h1 id="section-06">Section 06</h1>
 <h1 id="section-07">Section 07</h1>
