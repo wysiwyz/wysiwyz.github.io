@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Lesson 02: Linux 筆記 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Lesson 02: Linux 筆記" />
+        <title>Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP" />
 <meta property="og:description" content="請假六小時，來補課arrrhh
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
 UGO User Group Other
@@ -20,7 +20,7 @@ SUID &amp; SGID &amp; SBIT
 <meta property="article:modified_time" content="2023-03-17T16:44:11+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Lesson 02: Linux 筆記"/>
+<meta name="twitter:title" content="Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP"/>
 <meta name="twitter:description" content="請假六小時，來補課arrrhh
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
 UGO User Group Other
@@ -37,7 +37,7 @@ SUID &amp; SGID &amp; SBIT
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Lesson 02: Linux 筆記",
+        "headline": "Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP",
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -82,10 +82,10 @@ SUID &amp; SGID &amp; SBIT
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson 02: Linux 筆記</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-17">2023-03-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;297 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/posts/lesson_02_linux/" class="leancloud_visitors" data-flag-title="Lesson 02: Linux 筆記">
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/posts/lesson_02_linux/" class="leancloud_visitors" data-flag-title="Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -386,7 +386,7 @@ echo Hello
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/lesson_02_linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/lesson_02_linux/" data-title="Lesson 02: Linux 筆記"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/lesson_02_linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/lesson_02_linux/" data-title="Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -399,7 +399,7 @@ echo Hello
     </div>
 
     <div class="post-nav"><a href="/posts/native_cloud/" class="prev" rel="prev" title="Cloud native - the next gen"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Cloud native - the next gen</a>
-            <a href="/posts/lesson_03_linux/" class="next" rel="next" title="Lesson 02: Linux 筆記">Lesson 02: Linux 筆記<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/posts/lesson_03_linux/" class="next" rel="next" title="Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL">Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

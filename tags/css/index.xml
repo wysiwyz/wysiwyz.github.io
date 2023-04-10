@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>css - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/css/</link>
+        <description>css - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 10 Apr 2023 09:53:01 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/css/" rel="self" type="application/rss+xml" /><item>
+    <title>Cascading style sheet</title>
+    <link>http://wysiwyz.github.io/posts/cascading_style_sheet/</link>
+    <pubDate>Mon, 10 Apr 2023 09:53:01 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/cascading_style_sheet/</guid>
+    <description><![CDATA[這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮&hellip;
+overflow: hidden 直接隱藏超出範圍的文字
+參考: css overflow]]></description>
+</item>
+</channel>
+</rss>
