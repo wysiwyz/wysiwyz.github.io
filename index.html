@@ -54,7 +54,14 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/lesson_04_linux/">Lesson 04: Linux 筆記</a>
+        <a href="/posts/cascading_style_sheet/">Cascading style sheet</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-10">2023-04-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮&hellip;
+overflow: hidden 直接隱藏超出範圍的文字
+參考: css overflow</div><div class="post-footer">
+        <a href="/posts/cascading_style_sheet/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/css/">css</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_04_linux/">Lesson 04: Linux 筆記 - CA憑證、SELinux</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-08">2023-04-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Strict Transport Security (HSTS) Apache Nginx HTTPS 加密流程 Client 連到 Server 時，Server 將 Public key 傳給 Client Client 使用 Public key 產生隨機碼，和 Server 建立加密通道。 Client 用 Public key 進行傳輸資料加解密，Server 用 Private key 進行傳輸資料加解密 實際的資料使用對稱式加密方式，透過已經建好的加密通道進行傳輸 https 使用了非對稱式與對稱式加密 Khoor, Olqxa 怎麼在廣大的領域中發現小小的弱點，突破當前使用之演算法的弱點 &ndash; Dr. Mathematics
 凱薩加密演算法
 字母位移預設三個字 @Desktop
@@ -63,11 +70,12 @@
         <a href="/posts/lesson_04_linux/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ocpjp_11_mockexam/">1Z0-819 曾師筆記 (2/duology)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-05">2023-04-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">#62 1 2 3 4 5 6 7 8 9 10 class Employee { private String name; public void setName(String name) { String title = &#34;Dr. &#34;; name = title + name; } public String toString() { return name; } } And
+        <a href="/posts/ocpjp_11_mockexam/">1Z0-819 題目KO</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-05">2023-04-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這裡放比較tricky的題目們
+#62 1 2 3 4 5 6 7 8 9 10 class Employee { private String name; public void setName(String name) { String title = &#34;Dr. &#34;; name = title + name; } public String toString() { return name; } } And
 1 2 3 4 5 public static void main(String[] args) { Employee p = new Employee(); p.setName(&#34;Who&#34;); System.out.println(p); } What&rsquo;s the resuld?
 A. Dr. Who
-B. Dr. Null</div><div class="post-footer">
+B. Dr.</div><div class="post-footer">
         <a href="/posts/ocpjp_11_mockexam/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
@@ -80,9 +88,9 @@ B. Dr. Null</div><div class="post-footer">
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/suzume_no_tojimari/">すずめの戸締(toji)まり- 我出門了，我回來了 </a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-27">2023-03-27</time></span>&nbsp;<span class="post-category">included in <a href="/categories/moviereviews/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>movieReviews</a></span></div><div class="content">
-鈴芽是一位平凡的高二少女，某天騎著自行車上學的下坡路上遇見東京地理系大學生（教師考生/斜槓家業關門師）草太，留著及肩捲髮，皮膚白皙的他右下眼角有一顆淚痣，穿著白色T恤、色長大衣、掛著一把鑰匙的他獨自一人背對波光粼粼的海面，徒步走向宮崎當地的山區廢墟。
-一句請問這附近有廢墟嗎，在鈴芽心中發芽，開啟了這部作品的序幕。毅然決定翹課的鈴芽騎著單車來到廢棄小鎮，尋無他的身影，倒是來到了一個看似廢棄圓頂溫室花園前。積窪上奇妙的立者一扇木門，鈴芽看見門後那個叫做常世的地方，滿天繁星草原卻在一踏進門時轉瞬消失。
-中午回到學校，正和朋友聊天配飯的鈴芽驚見天有異象，不安於室地回到廢墟，再次遇見souda，他們跟著大臣白貓貓，意外踏上關門之旅，愛媛 神戶 東京 岩手縣&hellip;.（這裡決定要好好守護這個故事就不爆雷了）
+鈴芽是一位平凡的高二少女，某天騎著自行車上學的下坡路上遇見東京地理系大學生（教師考生/斜槓家業關門師）草太，留著及肩捲髮，皮膚白皙的他右下眼角有一顆淚痣，穿著白色T恤、天藍色（azure; hex: #f0ffff）長大衣、脖子上掛著一把鑰匙的他獨自一人背對波光粼粼的海面，徒步走向宮崎當地的山區廢墟。
+一句請問這附近有門、有廢墟嗎，在鈴芽心中發芽，開啟了這部作品的序幕。毅然決定翹課的鈴芽騎著單車來到廢棄小鎮，尋無他的身影，倒是來到了一個看似廢棄圓頂溫室花園前。積窪上奇妙的立者一扇木門，鈴芽看見門後那個叫做常世的地方，滿天繁星草原卻在一踏進門時轉瞬消失。
+中午回到學校，正和朋友聊天配飯的鈴芽驚見天有異象，不安於室地回到廢墟，再次遇見草太哥，他們跟著大臣白貓貓，意外踏上關門之旅，愛媛 神戶 東京 仙台 岩手縣&hellip;.（這裡決定要好好守護這個故事就不爆雷了）
 先把有觸及到我的閃光點條列下來&ndash;
 劇情 鼓勵自己 常世裡的燦爛星空 渴望得到鈴芽關愛的大臣白貓🥰🤍 戲份不多但是很帥很成熟的大黑貓 撫養外甥女鈴芽12年的姨 念咒語之前，要想著這片土地上孕育的人與情 2011/3/11的地震到現在十二年了ಥ_ಥ 勇敢無畏的高中女生 特效 蚯蚓的各種型態 從地面向上蒸發的金色光束 鑰匙旁飄散的藍色雲絲光 </div><div class="post-footer">
         <a href="/posts/suzume_no_tojimari/">Read More</a><div class="post-tags">
@@ -101,22 +109,6 @@ Section 25
 Section 26</div><div class="post-footer">
         <a href="/posts/cloud_architect_gcp/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/google_cloud/">google_cloud</a>,&nbsp;<a href="/tags/ca/">CA</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/lesson_03_linux/">Lesson 02: Linux 筆記</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-18">2023-03-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">LUKS 加密服務 適用對象 移動式設備資料保護
-notebook, USB磁碟加密
-提供32組插槽使用
-把partition切成小塊加密，裡面放密碼、key_file
-可以使用設定的密碼解密或者用key解密
-注意事項 LUKS並不對檔案本身進行加密(針對整個partition,整個D槽) LUKS對於單一磁碟取走後能夠起保護作用 KUKS對於已經解密之磁碟內容不起保護作用 指令 cryptsetup luksFormat 建立加密磁碟 luksOpen 開啟加密磁碟 close 關閉已經開啟的加密磁碟 luks - 解密
-mount - 掛起來
-umount - 卸載
-​ (順便同步, 如果未正確卸載可能會造成檔案毀損)
-1 2 3 4 5 6 7 8 lsblk /dev/sdb cryptsetup luksFormat /dev/sdb cryptsetup luksOpen /dev/sdb secDisk mkfs.xfs /dev/mapper/secDisk mount /dev/mapper/secDisk /mnt touch /mnt/myfile umount /mnt cryptsetup close secDisk Dump/Status more cmds 使用插槽 刪除插槽 memcached的使用
-Luks資料加密架構與資料救援方法
-Linux檔案加密_GPG_GnuPG</div><div class="post-footer">
-        <a href="/posts/lesson_03_linux/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -146,7 +138,7 @@ Linux檔案加密_GPG_GnuPG</div><div class="post-footer">
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"data":{"id-1":"If your memories leaks like water from a claypot, perhaps writing could help."},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"data":{"id-1":"If your memories leaked like water from a claypot, perhaps writing could help."},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
             window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
             gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
         </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>

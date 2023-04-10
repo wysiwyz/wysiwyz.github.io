@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Lesson 04: Linux 筆記 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Lesson 04: Linux 筆記" />
+        <title>Lesson 04: Linux 筆記 - CA憑證、SELinux - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Lesson 04: Linux 筆記 - CA憑證、SELinux" />
 <meta property="og:description" content="Strict Transport Security (HSTS) Apache Nginx HTTPS 加密流程 Client 連到 Server 時，Server 將 Public key 傳給 Client Client 使用 Public key 產生隨機碼，和 Server 建立加密通道。 Client 用 Public key 進行傳輸資料加解密，Server 用 Private key 進行傳輸資料加解密 實際的資料使用對稱式加密方式，透過已經建好的加密通道進行傳輸 https 使用了非對稱式與對稱式加密 Khoor, Olqxa 怎麼在廣大的領域中發現小小的弱點，突破當前使用之演算法的弱點 &ndash; Dr. Mathematics
 凱薩加密演算法
 字母位移預設三個字 @Desktop
@@ -16,25 +16,25 @@
 <meta property="article:modified_time" content="2023-04-08T09:15:16+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Lesson 04: Linux 筆記"/>
+<meta name="twitter:title" content="Lesson 04: Linux 筆記 - CA憑證、SELinux"/>
 <meta name="twitter:description" content="Strict Transport Security (HSTS) Apache Nginx HTTPS 加密流程 Client 連到 Server 時，Server 將 Public key 傳給 Client Client 使用 Public key 產生隨機碼，和 Server 建立加密通道。 Client 用 Public key 進行傳輸資料加解密，Server 用 Private key 進行傳輸資料加解密 實際的資料使用對稱式加密方式，透過已經建好的加密通道進行傳輸 https 使用了非對稱式與對稱式加密 Khoor, Olqxa 怎麼在廣大的領域中發現小小的弱點，突破當前使用之演算法的弱點 &ndash; Dr. Mathematics
 凱薩加密演算法
 字母位移預設三個字 @Desktop
 1 2 root# mkdir demo; cd demo/ root# vi caesar-cipher.sh shellscript
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 #!"/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/lesson_04_linux/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ocpjp_11_mockexam/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/lesson_04_linux/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ocpjp_11_mockexam/" /><link rel="next" href="http://wysiwyz.github.io/posts/cascading_style_sheet/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Lesson 04: Linux 筆記",
+        "headline": "Lesson 04: Linux 筆記 - CA憑證、SELinux",
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/lesson_04_linux\/"
-        },"genre": "posts","keywords": "linux, security","wordcount":  2650 ,
+        },"genre": "posts","keywords": "linux, security","wordcount":  2830 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/lesson_04_linux\/","datePublished": "2023-04-08T09:15:16+08:00","dateModified": "2023-04-08T09:15:16+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -74,10 +74,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson 04: Linux 筆記</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson 04: Linux 筆記 - CA憑證、SELinux</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-08">2023-04-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2650 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;<span id="/posts/lesson_04_linux/" class="leancloud_visitors" data-flag-title="Lesson 04: Linux 筆記">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-08">2023-04-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2830 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;<span id="/posts/lesson_04_linux/" class="leancloud_visitors" data-flag-title="Lesson 04: Linux 筆記 - CA憑證、SELinux">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -108,7 +108,7 @@
         <li><a href="#selinux">SELinux</a></li>
       </ul>
     </li>
-    <li><a href="#目標-留言">目標 留言</a></li>
+    <li><a href="#目標">目標</a></li>
     <li><a href="#ssh-改-port">SSH 改 Port</a></li>
     <li><a href="#apache-預設目錄">Apache 預設目錄</a></li>
     <li><a href="#apache-mount-nfs">Apache Mount NFS</a></li>
@@ -960,58 +960,141 @@
 <p>Apache 在 SELinux 中的關鍵字，多以 <code>http_</code> 字眼出現，在操作 SELinux 條入之前，大部份使用 <code>semanage</code> 與 <code>setsebool</code> 進行設定。<code>semenage</code> 為查修條件的工具，另一個則是用來開關 <code>httpd</code> 可用功能的開關。</p>
 <p><code>semanage</code> 預設並不會安裝，主要是期望管理者能夠依標準原則來處理系統服務，比如檔案應放在預先設好的路徑而非另行指定。話雖如此仍可以另行設定 SELinux 條件來新增或修改其條件，讓系統管理更有彈性。</p>
 <p>若要安裝 <code>semanage</code> 指令工具可以進行如下操作：</p>
-<pre tabindex="0"><code>student$ sudo dnf -y install policycoreutils-python-utils
-</code></pre><p>除了 <code>semanage</code> 之外，我們還需要 <code>sesearch</code> 工具來找出作業行程能夠存取目錄與檔案的相關資訊，<code>sesearch</code> 被收錄在 <code>setools-console</code> 套件中，使用下列方式可以將它安裝好：</p>
-<pre tabindex="0"><code>student$ sudo dnf install -y setools-console
-</code></pre><p>由於 SELinux 對於行程的規範非常多，在此小節上，僅針對檔案與目錄權限、網路連接埠與 Apaache 功能做示範。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo dnf -y install policycoreutils-python-utils
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>除了 <code>semanage</code> 之外，我們還需要 <code>sesearch</code> 工具來找出作業行程能夠存取目錄與檔案的相關資訊，<code>sesearch</code> 被收錄在 <code>setools-console</code> 套件中，使用下列方式可以將它安裝好：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo dnf install -y setools-console
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由於 SELinux 對於行程的規範非常多，在此小節上，僅針對檔案與目錄權限、網路連接埠與 Apaache 功能做示範。</p>
 <h3 id="檔案與目錄權限">檔案與目錄權限</h3>
 <p>檔案與目錄權限是受 SELinux 規範最多的部份，在設定 SELinux 政策之前，必須以行程為首往下找出可以用的標籤規則，再從這些規則中找出有哪些目錄是符合的。</p>
 <p>使用下列方式找出有關 <code>httpd</code> 的 SELinux 標籤：</p>
-<pre tabindex="0"><code>student$ sudo ps -uxZ | grep -w httpd
-system_u:system_r:httpd_t:s0    root     19053  0.0  0.5 230556  5352 ?        Ss    3月03   0:38 /usr/sbin/httpd -DFOREGROUND
-</code></pre><p>上述結果中找到有關 <code>httpd</code> 行程所被設定的行程標籤為 <code>httpd_t</code>，接著再利用找出來的標籤找出所符合的行程可以存取哪些目錄檔案標籤，使用 <code>sesearch</code> 工具可以找出這些項目：</p>
-<pre tabindex="0"><code>student$ sudo sesearch -s httpd_t --allow
-~~ 以上略 ~~
-allow httpd_t httpd_sys_content_t : lnk_file { read getattr } ; 
-allow httpd_t httpd_sys_content_t : dir { ioctl read getattr lock search open } ; 
-allow httpd_t httpd_sys_content_t : file { ioctl read getattr lock map open } ;
-~~ 以下略 ~~
-</code></pre><p>因為找出的項目有成千上萬，但經由確認後可以發現有關 <code>httpd_sys_content_t</code> 可以針對目錄與檔案進行開啟的行為（<code>open</code>）。接下來我們可以使用 <code>httpd_sys_content_t</code> 為關鍵，找出符合該檔案標籤有哪些路徑。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo ps -uxZ <span class="p">|</span> grep -w httpd
+</span></span><span class="line"><span class="cl">system_u:system_r:httpd_t:s0    root     <span class="m">19053</span>  0.0  0.5 <span class="m">230556</span>  <span class="m">5352</span> ?        Ss    3月03   0:38 /usr/sbin/httpd -DFOREGROUND
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述結果中找到有關 <code>httpd</code> 行程所被設定的行程標籤為 <code>httpd_t</code>，接著再利用找出來的標籤找出所符合的行程可以存取哪些目錄檔案標籤，使用 <code>sesearch</code> 工具可以找出這些項目：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo sesearch -s httpd_t --allow
+</span></span><span class="line"><span class="cl">~~ 以上略 ~~
+</span></span><span class="line"><span class="cl">allow httpd_t httpd_sys_content_t : lnk_file <span class="o">{</span> <span class="nb">read</span> getattr <span class="o">}</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">allow httpd_t httpd_sys_content_t : dir <span class="o">{</span> ioctl <span class="nb">read</span> getattr lock search open <span class="o">}</span> <span class="p">;</span> 
+</span></span><span class="line"><span class="cl">allow httpd_t httpd_sys_content_t : file <span class="o">{</span> ioctl <span class="nb">read</span> getattr lock map open <span class="o">}</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl">~~ 以下略 ~~
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因為找出的項目有成千上萬，但經由確認後可以發現有關 <code>httpd_sys_content_t</code> 可以針對目錄與檔案進行開啟的行為（<code>open</code>）。接下來我們可以使用 <code>httpd_sys_content_t</code> 為關鍵，找出符合該檔案標籤有哪些路徑。</p>
 <p>使用 <code>semanage</code> 再指定的標簽可以找出相關資訊，如下範例所示：</p>
-<pre tabindex="0"><code>student$ sudo semanage fcontext -l | grep httpd_sys_content_t
-/srv/([^/]*/)?www(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/www(/.*)?                                     all files          system_u:object_r:httpd_sys_content_t:s0 
-/etc/htdig(/.*)?                                   all files          system_u:object_r:httpd_sys_content_t:s0 
-/srv/gallery2(/.*)?                                all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/lib/trac(/.*)?                                all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/lib/htdig(/.*)?                               all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/www/icons(/.*)?                               all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/glpi(/.*)?                              all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/htdig(/.*)?                             all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/drupal.*                                all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/z-push(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/www/svn/conf(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/icecast(/.*)?                           all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/lib/cacti/rra(/.*)?                           all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/ntop/html(/.*)?                         all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/nginx/html(/.*)?                        all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/doc/ghc/html(/.*)?                      all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/openca/htdocs(/.*)?                     all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/selinux-policy[^/]*/html(/.*)?          all files          system_u:object_r:httpd_sys_content_t:s0
-</code></pre><p>以上找到的結果，就是預設可以放置網頁檔案的位置（如: <code>/var/www(/.*)?</code> 項目），這些位置可以讓 Apache 行程讀取目錄與檔案的內容。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo semanage fcontext -l <span class="p">|</span> grep httpd_sys_content_t
+</span></span><span class="line"><span class="cl">/srv/<span class="o">([</span>^/<span class="o">]</span>*/<span class="o">)</span>?www<span class="o">(</span>/.*<span class="o">)</span>?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/www<span class="o">(</span>/.*<span class="o">)</span>?                                     all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/etc/htdig<span class="o">(</span>/.*<span class="o">)</span>?                                   all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/srv/gallery2<span class="o">(</span>/.*<span class="o">)</span>?                                all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/lib/trac<span class="o">(</span>/.*<span class="o">)</span>?                                all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/lib/htdig<span class="o">(</span>/.*<span class="o">)</span>?                               all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/www/icons<span class="o">(</span>/.*<span class="o">)</span>?                               all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/glpi<span class="o">(</span>/.*<span class="o">)</span>?                              all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/htdig<span class="o">(</span>/.*<span class="o">)</span>?                             all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/drupal.*                                all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/z-push<span class="o">(</span>/.*<span class="o">)</span>?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/www/svn/conf<span class="o">(</span>/.*<span class="o">)</span>?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/icecast<span class="o">(</span>/.*<span class="o">)</span>?                           all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/lib/cacti/rra<span class="o">(</span>/.*<span class="o">)</span>?                           all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/ntop/html<span class="o">(</span>/.*<span class="o">)</span>?                         all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/nginx/html<span class="o">(</span>/.*<span class="o">)</span>?                        all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/doc/ghc/html<span class="o">(</span>/.*<span class="o">)</span>?                      all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/openca/htdocs<span class="o">(</span>/.*<span class="o">)</span>?                     all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/selinux-policy<span class="o">[</span>^/<span class="o">]</span>*/html<span class="o">(</span>/.*<span class="o">)</span>?          all files          system_u:object_r:httpd_sys_content_t:s0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上找到的結果，就是預設可以放置網頁檔案的位置（如: <code>/var/www(/.*)?</code> 項目），這些位置可以讓 Apache 行程讀取目錄與檔案的內容。</p>
 <h3 id="網路連接埠">網路連接埠</h3>
 <p><code>httpd</code> 所能佔用的網路連接埠被 SELinux 的 <code>http_port_t</code> 所規範，必須在項目所允許的列表中才能夠啟用該連接埠，否則在 <code>httpd</code> 啟動的時候就會發生錯誤。</p>
 <p>要檢查目前 <code>httpd</code> 被允許使用哪些連接埠，可以使用下列方式：</p>
-<pre tabindex="0"><code>student$ sudo semanage port -l | grep http_port_t
-http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
-</code></pre><p>從上列所顯示的連接埠中，除了眾所皆知的 80、443 之外，還包含了如 81、488⋯⋯等項目可以使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo semanage port -l <span class="p">|</span> grep http_port_t
+</span></span><span class="line"><span class="cl">http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, <span class="m">9000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>從上列所顯示的連接埠中，除了眾所皆知的 80、443 之外，還包含了如 81、488⋯⋯等項目可以使用。</p>
 <p>如果要增加可用連接埠，一樣必須使用 <code>semanage</code> 工具進行設定，為 <code>http_port_t</code> 標籤新增一個連接埠讓 <code>httpd</code> 可以使用。</p>
 <p>假設預計要為 <code>http_port_t</code> 新增一個 tcp 8888 的連接埠，可以使用下列方式達成：</p>
-<pre tabindex="0"><code>student$ sudo semanage port -a -p tcp 8888 -t http_port_t
-</code></pre><p>完成後再重新列表一次，確認 tcp 8888 已經被加入到 <code>http_port_t</code> 標籤中：</p>
-<pre tabindex="0"><code>student$ sudo semanage port -l | grep http_port_t
-http_port_t                    tcp      8888, 80, 81, 443, 488, 8008, 8009, 8443, 9000
-</code></pre><p>完成之後，您可以在 <code>httpd</code> 的設定檔（如 <code>/etc/httpd/conf/httpd.conf</code>）中，將 Listen 8888 加入讓 <code>httpd</code> 可以使用 TCP/8888 的連接埠。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo semanage port -a -p tcp <span class="m">8888</span> -t http_port_t
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成後再重新列表一次，確認 tcp 8888 已經被加入到 <code>http_port_t</code> 標籤中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo semanage port -l <span class="p">|</span> grep http_port_t
+</span></span><span class="line"><span class="cl">http_port_t                    tcp      8888, 80, 81, 443, 488, 8008, 8009, 8443, <span class="m">9000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成之後，您可以在 <code>httpd</code> 的設定檔（如 <code>/etc/httpd/conf/httpd.conf</code>）中，將 Listen 8888 加入讓 <code>httpd</code> 可以使用 TCP/8888 的連接埠。</p>
 <blockquote>
 <p>若要刪除先前所指定的可用連接埠，將 <code>-a</code> 參數改為 <code>-d</code> 就可以將該項目刪除。</p>
 </blockquote>
@@ -1019,28 +1102,68 @@ http_port_t                    tcp      8888, 80, 81, 443, 488, 8008, 8009, 8443
 <p>Apache 提供了多個功能，某些功能會被 SELinux 所規範，SELinux 將 Apache 的功能設成多個開關，若有必要時再開啟讓 Apache 能夠正常提供。</p>
 <p>這些功能開啟與關閉的關鍵字為 <code>on</code> 與 <code>off</code>，使用 <code>boolean</code> 的型態所指示。</p>
 <p>若要顯示 SELinux 規範的 Apache 功能有哪些，可以使用 <code>semanager</code> 來檢視：</p>
-<pre tabindex="0"><code>student$ sudo semanage boolean -l | grep -w httpd
-httpd_can_network_relay        (off  ,  off)  Allow httpd to can network relay
-httpd_can_connect_mythtv       (off  ,  off)  Allow httpd to can connect mythtv
-httpd_can_network_connect_db   (off  ,  off)  Allow httpd to can network connect db
-httpd_use_gpg                  (off  ,  off)  Allow httpd to use gpg
-httpd_dbus_sssd                (off  ,  off)  Allow httpd to dbus sssd
-httpd_enable_cgi               (on   ,   on)  Allow httpd to enable cgi
-httpd_verify_dns               (off  ,  off)  Allow httpd to verify dns
-httpd_dontaudit_search_dirs    (off  ,  off)  Allow httpd to dontaudit search dirs
-httpd_use_cifs                 (off  ,  off)  Allow httpd to use cifs
-httpd_manage_ipa               (off  ,  off)  Allow httpd to manage ipa
-~~ 以下略 ~~
-</code></pre><p>以上所列的訊息中，在第 2 欄位使用括弧所包起來的項目，分別為 <strong>現行狀態</strong> 與 <strong>預設值</strong>。假設要讓 <code>httpd</code> 可以使用 cifs 協定進行檔案存取，那麼就必須把 <code>httpd_use_cifs</code> 設定為 <code>on</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo semanage boolean -l <span class="p">|</span> grep -w httpd
+</span></span><span class="line"><span class="cl">httpd_can_network_relay        <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to can network relay
+</span></span><span class="line"><span class="cl">httpd_can_connect_mythtv       <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to can connect mythtv
+</span></span><span class="line"><span class="cl">httpd_can_network_connect_db   <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to can network connect db
+</span></span><span class="line"><span class="cl">httpd_use_gpg                  <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to use gpg
+</span></span><span class="line"><span class="cl">httpd_dbus_sssd                <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to dbus sssd
+</span></span><span class="line"><span class="cl">httpd_enable_cgi               <span class="o">(</span>on   ,   on<span class="o">)</span>  Allow httpd to <span class="nb">enable</span> cgi
+</span></span><span class="line"><span class="cl">httpd_verify_dns               <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to verify dns
+</span></span><span class="line"><span class="cl">httpd_dontaudit_search_dirs    <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to dontaudit search <span class="nb">dirs</span>
+</span></span><span class="line"><span class="cl">httpd_use_cifs                 <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to use cifs
+</span></span><span class="line"><span class="cl">httpd_manage_ipa               <span class="o">(</span>off  ,  off<span class="o">)</span>  Allow httpd to manage ipa
+</span></span><span class="line"><span class="cl">~~ 以下略 ~~
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上所列的訊息中，在第 2 欄位使用括弧所包起來的項目，分別為 <strong>現行狀態</strong> 與 <strong>預設值</strong>。假設要讓 <code>httpd</code> 可以使用 cifs 協定進行檔案存取，那麼就必須把 <code>httpd_use_cifs</code> 設定為 <code>on</code>。</p>
 <p>設定 SELinux boolean 可以使用 <code>setsebool</code> 工具進行設定：</p>
-<pre tabindex="0"><code>student$ sudo setsebool httpd_use_cifs on
-</code></pre><p>完成後再次檢查 <code>httpd_use_cifs</code> 是否被正確設定：</p>
-<pre tabindex="0"><code>student$ sudo  semanage boolean -l | grep -w httpd | grep -w httpd_use_cifs
-httpd_use_cifs                 (on   ,  off)  Allow httpd to use cifs
-</code></pre><p>請注意所輸出之項目，第二欄位由括弧所包起來的項目中，現行狀態若為 <code>on</code> 代表已啟用功能，若是預設狀值仍為 <code>off</code> 的話代表在下次系統重開機時會關閉該功能，必須再次執行啟用的設定。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo setsebool httpd_use_cifs on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成後再次檢查 <code>httpd_use_cifs</code> 是否被正確設定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo  semanage boolean -l <span class="p">|</span> grep -w httpd <span class="p">|</span> grep -w httpd_use_cifs
+</span></span><span class="line"><span class="cl">httpd_use_cifs                 <span class="o">(</span>on   ,  off<span class="o">)</span>  Allow httpd to use cifs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>請注意所輸出之項目，第二欄位由括弧所包起來的項目中，現行狀態若為 <code>on</code> 代表已啟用功能，若是預設狀值仍為 <code>off</code> 的話代表在下次系統重開機時會關閉該功能，必須再次執行啟用的設定。</p>
 <p>如果經過測試後確定要讓指定的功能永久啟用（重開機時也會啟用）那麼就可以使用 <code>-P</code> 參數讓該設定永久生效，使用的方式如下：</p>
-<pre tabindex="0"><code>student$ sudo setsebool -P httpd_use_cifs on
-</code></pre><blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ sudo setsebool -P httpd_use_cifs on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>針對 SELinux 對 Apache 各功能的項目，可以參考 httpd_selinux(8) 有完整的說明。</p>
 </blockquote>
 <hr>
@@ -1063,7 +1186,7 @@ httpd_use_cifs                 (on   ,  off)  Allow httpd to use cifs
         alt="https://i.imgur.com/nLSA6jJ.png"
         title="image-20230408151627269" /></p>
 <hr>
-<h2 id="目標-留言">目標 留言</h2>
+<h2 id="目標">目標</h2>
 <ul>
 <li>瞭解 SELinux 對於 File Context/Port/Function 的管理方法。</li>
 <li>使用工具確認是否違反 SELinux 政策。</li>
@@ -1072,190 +1195,476 @@ httpd_use_cifs                 (on   ,  off)  Allow httpd to use cifs
 <h2 id="ssh-改-port">SSH 改 Port</h2>
 <p>這個 LAB 用來演練修改服務的使用 Port 與 SELinux 需要調配的項目。</p>
 <p>@Server</p>
-<pre tabindex="0"><code>root# dnf install -y policycoreutils-python-utils-2.9-20.el8.noarch
-root# cp /etc/ssh/sshd_config{,_backup}
-</code></pre><p>設定將 Port 改成 <code>8866</code></p>
-<pre tabindex="0"><code>root# vi /etc/ssh/sshd_config
-修改 Port
-
-...
-
-Port 8866
-root# systemctl restart sshd
-FAIL
-root# ausearch -m avc
-</code></pre><p>列出 sshd 能夠使用的 Port</p>
-<pre tabindex="0"><code>root# semanage port -l | grep ssh_port_t
-</code></pre><p>新增 sshd 能夠使用的 Port</p>
-<pre tabindex="0"><code>root# semanage port -a -p tcp 8866 -t ssh_port_t
-</code></pre><p>重新啟動服務</p>
-<pre tabindex="0"><code>root# systemctl restart sshd
-OK
-</code></pre><p>設定防火牆允許 tcp/p8866 連入</p>
-<pre tabindex="0"><code>root# ss -ntulp | grep 8866
-root# firewall-cmd --permanent --add-port=8866/tcp
-root# firewall-cmd --reload
-</code></pre><p>將 Port 改為原本的 22</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# dnf install -y policycoreutils-python-utils-2.9-20.el8.noarch
+</span></span><span class="line"><span class="cl">root# cp /etc/ssh/sshd_config<span class="o">{</span>,_backup<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>設定將 Port 改成 <code>8866</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">修改 Port
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Port <span class="m">8866</span>
+</span></span><span class="line"><span class="cl">root# systemctl restart sshd
+</span></span><span class="line"><span class="cl">FAIL
+</span></span><span class="line"><span class="cl">root# ausearch -m avc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>列出 sshd 能夠使用的 Port</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# semanage port -l <span class="p">|</span> grep ssh_port_t
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>新增 sshd 能夠使用的 Port</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# semanage port -a -p tcp <span class="m">8866</span> -t ssh_port_t
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>重新啟動服務</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# systemctl restart sshd
+</span></span><span class="line"><span class="cl">OK
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>設定防火牆允許 tcp/p8866 連入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ss -ntulp <span class="p">|</span> grep <span class="m">8866</span>
+</span></span><span class="line"><span class="cl">root# firewall-cmd --permanent --add-port<span class="o">=</span>8866/tcp
+</span></span><span class="line"><span class="cl">root# firewall-cmd --reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將 Port 改為原本的 22</p>
 <p>@Desktop</p>
-<pre tabindex="0"><code>root# ssh -p 8866 root@serverX
-</code></pre><p>@Server</p>
-<pre tabindex="0"><code>root# vi /etc/ssh/sshd_config
-修改 Port
-
-...
-
-Port 22
-root# systemctl restart sshd
-</code></pre><p>移除防火牆可連入 tcp/8866</p>
-<pre tabindex="0"><code>root# firewall-cmd --permanent --remove-port=8866/tcp
-root# firewall-cmd --reload
-</code></pre><p>移除 sshd 可使用 Port 8866 的設定</p>
-<pre tabindex="0"><code>root# semanage port -l | grep ssh_port_t
-
-root# semanage port -d -p tcp 8866 -t ssh_port_t
-
-root# semanage port -l | grep ssh_port_t
-</code></pre><h2 id="apache-預設目錄">Apache 預設目錄</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ssh -p <span class="m">8866</span> root@server58
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Server</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">修改 Port
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Port <span class="m">22</span>
+</span></span><span class="line"><span class="cl">root# systemctl restart sshd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>移除防火牆可連入 tcp/8866</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# firewall-cmd --permanent --remove-port<span class="o">=</span>8866/tcp
+</span></span><span class="line"><span class="cl">root# firewall-cmd --reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>移除 sshd 可使用 Port 8866 的設定</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# semanage port -l <span class="p">|</span> grep ssh_port_t
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# semanage port -d -p tcp <span class="m">8866</span> -t ssh_port_t
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# semanage port -l <span class="p">|</span> grep ssh_port_t
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="apache-預設目錄">Apache 預設目錄</h2>
 <p>這個 LAB 用來演練修改網頁服務對於 檔案/目錄 的 <code>fcontext</code> 操作方法。</p>
 <p>@Server</p>
-<pre tabindex="0"><code>root# dnf install -y policycoreutils-python-utils
-root# dnf install -y setools-console
-</code></pre><p>安裝與啟用 httpd</p>
-<pre tabindex="0"><code>root# dnf install -y httpd
-root# systemctl enable --now httpd
-root# firewall-cmd --permanent --add-service=http
-root# firewall-cmd --reload
-
-root# echo HelloX &gt; /var/www/html/index.html
-</code></pre><p>@Desktop</p>
-<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX/</a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# dnf install -y policycoreutils-python-utils
+</span></span><span class="line"><span class="cl">root# dnf install -y setools-console
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安裝與啟用 httpd</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# dnf install -y httpd
+</span></span><span class="line"><span class="cl">root# systemctl <span class="nb">enable</span> --now httpd
+</span></span><span class="line"><span class="cl">root# firewall-cmd --permanent --add-service<span class="o">=</span>http
+</span></span><span class="line"><span class="cl">root# firewall-cmd --reload
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# <span class="nb">echo</span> HelloX &gt; /var/www/html/index.html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Desktop</p>
+<p>Firefox: <a href="http://server58/" target="_blank" rel="noopener noreffer ">http://server58/</a>
 HelloX</p>
 <p>@Server</p>
-<pre tabindex="0"><code>root# mkdir /web
-
-root# echo HelloX &gt; /web/index.html
-
-root# cd /etc/httpd/conf
-root# cp httpd.conf httpd.conf_backup
-</code></pre><p>修改網頁根目錄</p>
-<pre tabindex="0"><code>root# vi httpd.conf
-修改下列行
-...
-
-Line 122: DocumentRoot &#34;/web&#34;
-Line 127: &lt;Directory &#34;/web&#34;&gt;
-Line 134: &lt;Directory &#34;/web&#34;&gt;
-root# mv /etc/httpd/conf.d/welcome.conf{,_disable}
-root# systemctl restart httpd
-</code></pre><p>@Desktop</p>
-<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX</a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# mkdir /web
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# <span class="nb">echo</span> HelloX &gt; /web/index.html
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# <span class="nb">cd</span> /etc/httpd/conf
+</span></span><span class="line"><span class="cl">root# cp httpd.conf httpd.conf_backup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改網頁根目錄</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi httpd.conf
+</span></span><span class="line"><span class="cl">修改下列行
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Line 122: DocumentRoot <span class="s2">&#34;/web&#34;</span>
+</span></span><span class="line"><span class="cl">Line 127: &lt;Directory <span class="s2">&#34;/web&#34;</span>&gt;
+</span></span><span class="line"><span class="cl">Line 134: &lt;Directory <span class="s2">&#34;/web&#34;</span>&gt;
+</span></span><span class="line"><span class="cl">root# mv /etc/httpd/conf.d/welcome.conf<span class="o">{</span>,_disable<span class="o">}</span>
+</span></span><span class="line"><span class="cl">root# systemctl restart httpd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Desktop</p>
+<p>Firefox: <a href="http://server58/" target="_blank" rel="noopener noreffer ">http://server58</a>
 Forbidden</p>
 <p>@Server</p>
 <p>檢查存取檔案是否被 SELinux 阻擋。</p>
-<pre tabindex="0"><code>root# ausearch -m avc | tail
-----
-time-&gt;Tue Aug 24 22:34:49 2021
-type=PROCTITLE msg=audit(1629815689.260:493): proctitle=2F7573722F7362696E2F6874747064002D44464F524547524F554E44
-type=SYSCALL msg=audit(1629815689.260:493): arch=c000003e syscall=4 success=no exit=-13 a0=7f67b4045630 a1=7f67ac7ef890 a2=7f67ac7ef890 a3=7f67ac7f04f0 items=0 ppid=13555 pid=13559 auid=4294967295 uid=48 gid=48 euid=48 suid=48 fsuid=48 egid=48 sgid=48 fsgid=48 tty=(none) ses=4294967295 comm=&#34;httpd&#34; exe=&#34;/usr/sbin/httpd&#34; subj=system_u:system_r:httpd_t:s0 key=(null)
-type=AVC msg=audit(1629815689.260:493): avc:  denied  { getattr } for  pid=13559 comm=&#34;httpd&#34; path=&#34;/web/index.html&#34; dev=&#34;dm-0&#34; ino=254636 scontext=system_u:system_r:httpd_t:s0 tcontext=unconfined_u:object_r:default_t:s0 tclass=file permissive=0
-----
-time-&gt;Tue Aug 24 22:34:49 2021
-type=PROCTITLE msg=audit(1629815689.260:494): proctitle=2F7573722F7362696E2F6874747064002D44464F524547524F554E44
-type=SYSCALL msg=audit(1629815689.260:494): arch=c000003e syscall=6 success=no exit=-13 a0=7f67b4045700 a1=7f67ac7ef890 a2=7f67ac7ef890 a3=1 items=0 ppid=13555 pid=13559 auid=4294967295 uid=48 gid=48 euid=48 suid=48 fsuid=48 egid=48 sgid=48 fsgid=48 tty=(none) ses=4294967295 comm=&#34;httpd&#34; exe=&#34;/usr/sbin/httpd&#34; subj=system_u:system_r:httpd_t:s0 key=(null)
-type=AVC msg=audit(1629815689.260:494): avc:  denied  { getattr } for  pid=13559 comm=&#34;httpd&#34; path=&#34;/web/index.html&#34; dev=&#34;dm-0&#34; ino=254636 scontext=system_u:system_r:httpd_t:s0 tcontext=unconfined_u:object_r:default_t:s0 tclass=file permissive=0
-</code></pre><blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ausearch -m avc <span class="p">|</span> tail
+</span></span><span class="line"><span class="cl">----
+</span></span><span class="line"><span class="cl">time-&gt;Tue Aug <span class="m">24</span> 22:34:49 <span class="m">2021</span>
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>PROCTITLE <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629815689.260:493<span class="o">)</span>: <span class="nv">proctitle</span><span class="o">=</span>2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>SYSCALL <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629815689.260:493<span class="o">)</span>: <span class="nv">arch</span><span class="o">=</span>c000003e <span class="nv">syscall</span><span class="o">=</span><span class="m">4</span> <span class="nv">success</span><span class="o">=</span>no <span class="nv">exit</span><span class="o">=</span>-13 <span class="nv">a0</span><span class="o">=</span>7f67b4045630 <span class="nv">a1</span><span class="o">=</span>7f67ac7ef890 <span class="nv">a2</span><span class="o">=</span>7f67ac7ef890 <span class="nv">a3</span><span class="o">=</span>7f67ac7f04f0 <span class="nv">items</span><span class="o">=</span><span class="m">0</span> <span class="nv">ppid</span><span class="o">=</span><span class="m">13555</span> <span class="nv">pid</span><span class="o">=</span><span class="m">13559</span> <span class="nv">auid</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">uid</span><span class="o">=</span><span class="m">48</span> <span class="nv">gid</span><span class="o">=</span><span class="m">48</span> <span class="nv">euid</span><span class="o">=</span><span class="m">48</span> <span class="nv">suid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsuid</span><span class="o">=</span><span class="m">48</span> <span class="nv">egid</span><span class="o">=</span><span class="m">48</span> <span class="nv">sgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">tty</span><span class="o">=(</span>none<span class="o">)</span> <span class="nv">ses</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&#34;httpd&#34;</span> <span class="nv">exe</span><span class="o">=</span><span class="s2">&#34;/usr/sbin/httpd&#34;</span> <span class="nv">subj</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">key</span><span class="o">=(</span>null<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629815689.260:493<span class="o">)</span>: avc:  denied  <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">13559</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&#34;httpd&#34;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&#34;/web/index.html&#34;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&#34;dm-0&#34;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">254636</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:default_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">----
+</span></span><span class="line"><span class="cl">time-&gt;Tue Aug <span class="m">24</span> 22:34:49 <span class="m">2021</span>
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>PROCTITLE <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629815689.260:494<span class="o">)</span>: <span class="nv">proctitle</span><span class="o">=</span>2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>SYSCALL <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629815689.260:494<span class="o">)</span>: <span class="nv">arch</span><span class="o">=</span>c000003e <span class="nv">syscall</span><span class="o">=</span><span class="m">6</span> <span class="nv">success</span><span class="o">=</span>no <span class="nv">exit</span><span class="o">=</span>-13 <span class="nv">a0</span><span class="o">=</span>7f67b4045700 <span class="nv">a1</span><span class="o">=</span>7f67ac7ef890 <span class="nv">a2</span><span class="o">=</span>7f67ac7ef890 <span class="nv">a3</span><span class="o">=</span><span class="m">1</span> <span class="nv">items</span><span class="o">=</span><span class="m">0</span> <span class="nv">ppid</span><span class="o">=</span><span class="m">13555</span> <span class="nv">pid</span><span class="o">=</span><span class="m">13559</span> <span class="nv">auid</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">uid</span><span class="o">=</span><span class="m">48</span> <span class="nv">gid</span><span class="o">=</span><span class="m">48</span> <span class="nv">euid</span><span class="o">=</span><span class="m">48</span> <span class="nv">suid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsuid</span><span class="o">=</span><span class="m">48</span> <span class="nv">egid</span><span class="o">=</span><span class="m">48</span> <span class="nv">sgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">tty</span><span class="o">=(</span>none<span class="o">)</span> <span class="nv">ses</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&#34;httpd&#34;</span> <span class="nv">exe</span><span class="o">=</span><span class="s2">&#34;/usr/sbin/httpd&#34;</span> <span class="nv">subj</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">key</span><span class="o">=(</span>null<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629815689.260:494<span class="o">)</span>: avc:  denied  <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">13559</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&#34;httpd&#34;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&#34;/web/index.html&#34;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&#34;dm-0&#34;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">254636</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>unconfined_u:object_r:default_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>SELinux 擋住 <code>/web/index.html</code> 存取</p>
 </blockquote>
 <p>查看 httpd 使用的 process 被貼上的 <code>context</code></p>
-<pre tabindex="0"><code>root# ps auxZ | grep httpd
-</code></pre><p>查看預設根目錄中的 <code>context</code></p>
-<pre tabindex="0"><code>root# ls -lhdZ /var/www/html
-drwxr-xr-x. 2 root root system_u:object_r:httpd_sys_content_t:s0 24 Aug 22 11:40 /var/www/html
-</code></pre><p>查看 <code>httpd</code> 行程 context 對於哪些指定的 <code>檔案/目錄</code> context 有哪些已知的權限。</p>
-<pre tabindex="0"><code>root# sesearch -s httpd_t --allow | grep httpd_sys_content_t
-allow daemon httpd_sys_content_t:dir { getattr open search };
-allow httpd_t httpd_sys_content_t:dir { add_name getattr ioctl lock open read remove_name search write }; [ ( httpd_builtin_scripting &amp;&amp; httpd_unified &amp;&amp; httpd_enable_cgi ) ]:True
-allow httpd_t httpd_sys_content_t:dir { getattr ioctl lock open read search };
-allow httpd_t httpd_sys_content_t:file { getattr ioctl lock map open read };
-allow httpd_t httpd_sys_content_t:lnk_file { getattr read };
-</code></pre><p>列出 fcontext 中預設被貼上 context 的目錄規則。</p>
-<pre tabindex="0"><code>root# semanage fcontext -l | grep httpd_sys_content_t
-/etc/htdig(/.*)?                                   all files          system_u:object_r:httpd_sys_content_t:s0 
-/srv/([^/]*/)?www(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
-/srv/gallery2(/.*)?                                all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/doc/ghc/html(/.*)?                      all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/drupal.*                                all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/glpi(/.*)?                              all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/htdig(/.*)?                             all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/icecast(/.*)?                           all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/nginx/html(/.*)?                        all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/ntop/html(/.*)?                         all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/openca/htdocs(/.*)?                     all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/selinux-policy[^/]*/html(/.*)?          all files          system_u:object_r:httpd_sys_content_t:s0 
-/usr/share/z-push(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/lib/cacti/rra(/.*)?                           all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/lib/htdig(/.*)?                               all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/lib/trac(/.*)?                                all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/www(/.*)?                                     all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/www/icons(/.*)?                               all files          system_u:object_r:httpd_sys_content_t:s0 
-/var/www/svn/conf(/.*)?                            all files          system_u:object_r:httpd_sys_content_t:s0 
-</code></pre><p>將新的位置加入 httpd 可使用的規則中。</p>
-<pre tabindex="0"><code>root# semanage fcontext -a -t httpd_sys_content_t &#39;/web(/.*)?&#39;
-
-root# semanage fcontext -l | grep httpd_sys_content_t | grep web
-/web(/.*)?                                         all files          system_u:object_r:httpd_sys_content_t:s0
-</code></pre><p>使用 restorecon 還原並檢查結果。</p>
-<pre tabindex="0"><code>root# ls -ldZ /web
-
-root# restorecon -R /web
-
-root# ls -ldZ /web
-</code></pre><p>@Desktop</p>
-<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX</a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ps auxZ <span class="p">|</span> grep httpd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看預設根目錄中的 <code>context</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ls -lhdZ /var/www/html
+</span></span><span class="line"><span class="cl">drwxr-xr-x. <span class="m">2</span> root root system_u:object_r:httpd_sys_content_t:s0 <span class="m">24</span> Aug <span class="m">22</span> 11:40 /var/www/html
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查看 <code>httpd</code> 行程 context 對於哪些指定的 <code>檔案/目錄</code> context 有哪些已知的權限。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# sesearch -s httpd_t --allow <span class="p">|</span> grep httpd_sys_content_t
+</span></span><span class="line"><span class="cl">allow daemon httpd_sys_content_t:dir <span class="o">{</span> getattr open search <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">allow httpd_t httpd_sys_content_t:dir <span class="o">{</span> add_name getattr ioctl lock open <span class="nb">read</span> remove_name search write <span class="o">}</span><span class="p">;</span> <span class="o">[</span> <span class="o">(</span> httpd_builtin_scripting <span class="o">&amp;&amp;</span> httpd_unified <span class="o">&amp;&amp;</span> httpd_enable_cgi <span class="o">)</span> <span class="o">]</span>:True
+</span></span><span class="line"><span class="cl">allow httpd_t httpd_sys_content_t:dir <span class="o">{</span> getattr ioctl lock open <span class="nb">read</span> search <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">allow httpd_t httpd_sys_content_t:file <span class="o">{</span> getattr ioctl lock map open <span class="nb">read</span> <span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">allow httpd_t httpd_sys_content_t:lnk_file <span class="o">{</span> getattr <span class="nb">read</span> <span class="o">}</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>列出 fcontext 中預設被貼上 context 的目錄規則。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# semanage fcontext -l <span class="p">|</span> grep httpd_sys_content_t
+</span></span><span class="line"><span class="cl">/etc/htdig<span class="o">(</span>/.*<span class="o">)</span>?                                   all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/srv/<span class="o">([</span>^/<span class="o">]</span>*/<span class="o">)</span>?www<span class="o">(</span>/.*<span class="o">)</span>?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/srv/gallery2<span class="o">(</span>/.*<span class="o">)</span>?                                all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/doc/ghc/html<span class="o">(</span>/.*<span class="o">)</span>?                      all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/drupal.*                                all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/glpi<span class="o">(</span>/.*<span class="o">)</span>?                              all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/htdig<span class="o">(</span>/.*<span class="o">)</span>?                             all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/icecast<span class="o">(</span>/.*<span class="o">)</span>?                           all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/nginx/html<span class="o">(</span>/.*<span class="o">)</span>?                        all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/ntop/html<span class="o">(</span>/.*<span class="o">)</span>?                         all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/openca/htdocs<span class="o">(</span>/.*<span class="o">)</span>?                     all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/selinux-policy<span class="o">[</span>^/<span class="o">]</span>*/html<span class="o">(</span>/.*<span class="o">)</span>?          all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/usr/share/z-push<span class="o">(</span>/.*<span class="o">)</span>?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/lib/cacti/rra<span class="o">(</span>/.*<span class="o">)</span>?                           all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/lib/htdig<span class="o">(</span>/.*<span class="o">)</span>?                               all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/lib/trac<span class="o">(</span>/.*<span class="o">)</span>?                                all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/www<span class="o">(</span>/.*<span class="o">)</span>?                                     all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/www/icons<span class="o">(</span>/.*<span class="o">)</span>?                               all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span><span class="line"><span class="cl">/var/www/svn/conf<span class="o">(</span>/.*<span class="o">)</span>?                            all files          system_u:object_r:httpd_sys_content_t:s0 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>將新的位置加入 httpd 可使用的規則中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# semanage fcontext -a -t httpd_sys_content_t <span class="s1">&#39;/web(/.*)?&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# semanage fcontext -l <span class="p">|</span> grep httpd_sys_content_t <span class="p">|</span> grep web
+</span></span><span class="line"><span class="cl">/web<span class="o">(</span>/.*<span class="o">)</span>?                                         all files          system_u:object_r:httpd_sys_content_t:s0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用 restorecon 還原並檢查結果。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ls -ldZ /web
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# restorecon -R /web
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# ls -ldZ /web
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Desktop</p>
+<p>Firefox: <a href="http://server58/" target="_blank" rel="noopener noreffer ">http://server58</a>
 HelloX</p>
 <h2 id="apache-mount-nfs">Apache Mount NFS</h2>
 <p>這個 LAB 用來演練啟用服務功能對於 SELinux 需要進行開關的項目。</p>
 <p>在 Desktop 中建立 NFS 服務並啟用。</p>
 <p>@Desktop</p>
-<pre tabindex="0"><code>root# dnf install -y nfs-utils
-
-root# mkdir /web
-root# echo HelloX from Desktop &gt; /web/index.html
-root# vi /etc/exports
-/web 172.16.2.X(ro)
-root# systemctl enable --now nfs-server
-root# firewall-cmd --permanent --add-service=nfs
-root# firewall-cmd --reload
-</code></pre><p>在 Server 中掛載 Desktop 的 NFS 分享目錄。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# dnf install -y nfs-utils
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# mkdir /web
+</span></span><span class="line"><span class="cl">root# <span class="nb">echo</span> HelloX from Desktop &gt; /web/index.html
+</span></span><span class="line"><span class="cl">root# vi /etc/exports
+</span></span><span class="line"><span class="cl">/web 172.16.2.X<span class="o">(</span>ro<span class="o">)</span>
+</span></span><span class="line"><span class="cl">root# systemctl <span class="nb">enable</span> --now nfs-server
+</span></span><span class="line"><span class="cl">root# firewall-cmd --permanent --add-service<span class="o">=</span>nfs
+</span></span><span class="line"><span class="cl">root# firewall-cmd --reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 Server 中掛載 Desktop 的 NFS 分享目錄。</p>
 <p>@Server</p>
-<pre tabindex="0"><code>root# dnf install -y nfs-utils
-root# mount -t nfs 172.16.1.X:/web /web
-</code></pre><p>@Desktop</p>
-<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX</a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# dnf install -y nfs-utils
+</span></span><span class="line"><span class="cl">root# mount -t nfs 172.16.1.X:/web /web
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Desktop</p>
+<p>Firefox: <a href="http://server58/" target="_blank" rel="noopener noreffer ">http://server58</a>
 Forbidden</p>
 <p>@Server</p>
 <p>在 Server 中查看 SELinux 阻檔原因</p>
-<pre tabindex="0"><code>root# # ausearch -m avc | tail
-----
-time-&gt;Tue Aug 24 22:54:35 2021
-type=PROCTITLE msg=audit(1629816875.274:575): proctitle=2F7573722F7362696E2F6874747064002D44464F524547524F554E44
-type=SYSCALL msg=audit(1629816875.274:575): arch=c000003e syscall=4 success=no exit=-13 a0=7f67b40436d0 a1=7f67ad7f1890 a2=7f67ad7f1890 a3=7f67ad7f24f0 items=0 ppid=13555 pid=13559 auid=4294967295 uid=48 gid=48 euid=48 suid=48 fsuid=48 egid=48 sgid=48 fsgid=48 tty=(none) ses=4294967295 comm=&#34;httpd&#34; exe=&#34;/usr/sbin/httpd&#34; subj=system_u:system_r:httpd_t:s0 key=(null)
-type=AVC msg=audit(1629816875.274:575): avc:  denied  { getattr } for  pid=13559 comm=&#34;httpd&#34; path=&#34;/web/index.html&#34; dev=&#34;0:48&#34; ino=68301488 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:nfs_t:s0 tclass=file permissive=0
-----
-time-&gt;Tue Aug 24 22:54:35 2021
-type=PROCTITLE msg=audit(1629816875.275:576): proctitle=2F7573722F7362696E2F6874747064002D44464F524547524F554E44
-type=SYSCALL msg=audit(1629816875.275:576): arch=c000003e syscall=6 success=no exit=-13 a0=7f67b40437a0 a1=7f67ad7f1890 a2=7f67ad7f1890 a3=1 items=0 ppid=13555 pid=13559 auid=4294967295 uid=48 gid=48 euid=48 suid=48 fsuid=48 egid=48 sgid=48 fsgid=48 tty=(none) ses=4294967295 comm=&#34;httpd&#34; exe=&#34;/usr/sbin/httpd&#34; subj=system_u:system_r:httpd_t:s0 key=(null)
-type=AVC msg=audit(1629816875.275:576): avc:  denied  { getattr } for  pid=13559 comm=&#34;httpd&#34; path=&#34;/web/index.html&#34; dev=&#34;0:48&#34; ino=68301488 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:nfs_t:s0 tclass=file permissive=0
-</code></pre><blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="c1"># ausearch -m avc | tail</span>
+</span></span><span class="line"><span class="cl">----
+</span></span><span class="line"><span class="cl">time-&gt;Tue Aug <span class="m">24</span> 22:54:35 <span class="m">2021</span>
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>PROCTITLE <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629816875.274:575<span class="o">)</span>: <span class="nv">proctitle</span><span class="o">=</span>2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>SYSCALL <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629816875.274:575<span class="o">)</span>: <span class="nv">arch</span><span class="o">=</span>c000003e <span class="nv">syscall</span><span class="o">=</span><span class="m">4</span> <span class="nv">success</span><span class="o">=</span>no <span class="nv">exit</span><span class="o">=</span>-13 <span class="nv">a0</span><span class="o">=</span>7f67b40436d0 <span class="nv">a1</span><span class="o">=</span>7f67ad7f1890 <span class="nv">a2</span><span class="o">=</span>7f67ad7f1890 <span class="nv">a3</span><span class="o">=</span>7f67ad7f24f0 <span class="nv">items</span><span class="o">=</span><span class="m">0</span> <span class="nv">ppid</span><span class="o">=</span><span class="m">13555</span> <span class="nv">pid</span><span class="o">=</span><span class="m">13559</span> <span class="nv">auid</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">uid</span><span class="o">=</span><span class="m">48</span> <span class="nv">gid</span><span class="o">=</span><span class="m">48</span> <span class="nv">euid</span><span class="o">=</span><span class="m">48</span> <span class="nv">suid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsuid</span><span class="o">=</span><span class="m">48</span> <span class="nv">egid</span><span class="o">=</span><span class="m">48</span> <span class="nv">sgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">tty</span><span class="o">=(</span>none<span class="o">)</span> <span class="nv">ses</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&#34;httpd&#34;</span> <span class="nv">exe</span><span class="o">=</span><span class="s2">&#34;/usr/sbin/httpd&#34;</span> <span class="nv">subj</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">key</span><span class="o">=(</span>null<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629816875.274:575<span class="o">)</span>: avc:  denied  <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">13559</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&#34;httpd&#34;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&#34;/web/index.html&#34;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&#34;0:48&#34;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">68301488</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>system_u:object_r:nfs_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">----
+</span></span><span class="line"><span class="cl">time-&gt;Tue Aug <span class="m">24</span> 22:54:35 <span class="m">2021</span>
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>PROCTITLE <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629816875.275:576<span class="o">)</span>: <span class="nv">proctitle</span><span class="o">=</span>2F7573722F7362696E2F6874747064002D44464F524547524F554E44
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>SYSCALL <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629816875.275:576<span class="o">)</span>: <span class="nv">arch</span><span class="o">=</span>c000003e <span class="nv">syscall</span><span class="o">=</span><span class="m">6</span> <span class="nv">success</span><span class="o">=</span>no <span class="nv">exit</span><span class="o">=</span>-13 <span class="nv">a0</span><span class="o">=</span>7f67b40437a0 <span class="nv">a1</span><span class="o">=</span>7f67ad7f1890 <span class="nv">a2</span><span class="o">=</span>7f67ad7f1890 <span class="nv">a3</span><span class="o">=</span><span class="m">1</span> <span class="nv">items</span><span class="o">=</span><span class="m">0</span> <span class="nv">ppid</span><span class="o">=</span><span class="m">13555</span> <span class="nv">pid</span><span class="o">=</span><span class="m">13559</span> <span class="nv">auid</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">uid</span><span class="o">=</span><span class="m">48</span> <span class="nv">gid</span><span class="o">=</span><span class="m">48</span> <span class="nv">euid</span><span class="o">=</span><span class="m">48</span> <span class="nv">suid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsuid</span><span class="o">=</span><span class="m">48</span> <span class="nv">egid</span><span class="o">=</span><span class="m">48</span> <span class="nv">sgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">fsgid</span><span class="o">=</span><span class="m">48</span> <span class="nv">tty</span><span class="o">=(</span>none<span class="o">)</span> <span class="nv">ses</span><span class="o">=</span><span class="m">4294967295</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&#34;httpd&#34;</span> <span class="nv">exe</span><span class="o">=</span><span class="s2">&#34;/usr/sbin/httpd&#34;</span> <span class="nv">subj</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">key</span><span class="o">=(</span>null<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">type</span><span class="o">=</span>AVC <span class="nv">msg</span><span class="o">=</span>audit<span class="o">(</span>1629816875.275:576<span class="o">)</span>: avc:  denied  <span class="o">{</span> getattr <span class="o">}</span> <span class="k">for</span>  <span class="nv">pid</span><span class="o">=</span><span class="m">13559</span> <span class="nv">comm</span><span class="o">=</span><span class="s2">&#34;httpd&#34;</span> <span class="nv">path</span><span class="o">=</span><span class="s2">&#34;/web/index.html&#34;</span> <span class="nv">dev</span><span class="o">=</span><span class="s2">&#34;0:48&#34;</span> <span class="nv">ino</span><span class="o">=</span><span class="m">68301488</span> <span class="nv">scontext</span><span class="o">=</span>system_u:system_r:httpd_t:s0 <span class="nv">tcontext</span><span class="o">=</span>system_u:object_r:nfs_t:s0 <span class="nv">tclass</span><span class="o">=</span>file <span class="nv">permissive</span><span class="o">=</span><span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
 <p>SELinux 拒絕 httpd 存取 nfs</p>
 </blockquote>
 <p>檢視 SELinux 針對 httpd 的功能開關。</p>
-<pre tabindex="0"><code>root# getsebool -a | grep httpd_use_nfs
-httpd_use_nfs --&gt; off
-</code></pre><p>啟用 httpd 可使用 NFS 的功能。</p>
-<pre tabindex="0"><code>root# setsebool -P httpd_use_nfs on
-</code></pre><p>@Desktop</p>
-<p>Firefox: <a href="http://serverx/" target="_blank" rel="noopener noreffer ">http://serverX</a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# getsebool -a <span class="p">|</span> grep httpd_use_nfs
+</span></span><span class="line"><span class="cl">httpd_use_nfs --&gt; off
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>啟用 httpd 可使用 NFS 的功能。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# setsebool -P httpd_use_nfs on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@Desktop</p>
+<p>Firefox: <a href="http://server58/" target="_blank" rel="noopener noreffer ">http://server58</a>
 HelloX from Desktop</p>
 <hr>
 <blockquote>
@@ -1272,7 +1681,7 @@ HelloX from Desktop</p>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/lesson_04_linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/lesson_04_linux/" data-title="Lesson 04: Linux 筆記"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/lesson_04_linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/lesson_04_linux/" data-title="Lesson 04: Linux 筆記 - CA憑證、SELinux"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -1284,7 +1693,8 @@ HelloX from Desktop</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/ocpjp_11_mockexam/" class="prev" rel="prev" title="1Z0-819 曾師筆記 (2/duology)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>1Z0-819 曾師筆記 (2/duology)</a></div>
+    <div class="post-nav"><a href="/posts/ocpjp_11_mockexam/" class="prev" rel="prev" title="1Z0-819 題目KO"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>1Z0-819 題目KO</a>
+            <a href="/posts/cascading_style_sheet/" class="next" rel="next" title="Cascading style sheet">Cascading style sheet<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

@@ -2,14 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2023-04-08T09:15:16&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/</loc><lastmod>2023-04-08T09:15:16&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/cascading_style_sheet/</loc><lastmod>2023-04-10T09:53:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2023-04-10T09:53:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/css/</loc><lastmod>2023-04-10T09:53:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/</loc><lastmod>2023-04-10T09:53:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2023-04-10T09:53:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2023-04-10T09:53:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2023-04-10T09:53:01&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/lesson_04_linux/</loc><lastmod>2023-04-08T09:15:16&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/linux/</loc><lastmod>2023-04-08T09:15:16&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2023-04-08T09:15:16&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/security/</loc><lastmod>2023-04-08T09:15:16&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2023-04-08T09:15:16&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2023-04-08T09:15:16&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/1z0-819/</loc><lastmod>2023-04-05T17:10:34&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</loc><lastmod>2023-04-05T17:10:34&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/java/</loc><lastmod>2023-04-05T17:10:34&#43;08:00</lastmod></url><url>
@@ -41,8 +43,6 @@
             <loc>http://wysiwyz.github.io/posts/ocajp/</loc><lastmod>2022-12-04T14:57:52&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/1z0-809/</loc><lastmod>2022-11-08T15:00:44&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ocpjp/</loc><lastmod>2022-11-08T15:00:44&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/reading_club/</loc><lastmod>2022-11-08T10:41:52&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/tags/social_path/</loc><lastmod>2022-11-08T10:41:52&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/japanese/</loc><lastmod>2022-10-23T02:14:30&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/jrock/</loc><lastmod>2022-10-23T02:14:30&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/literature/</loc><lastmod>2022-10-23T02:14:30&#43;08:00</lastmod></url><url>
@@ -53,8 +53,6 @@
             <loc>http://wysiwyz.github.io/tags/frontmatter/</loc><lastmod>2022-10-14T23:08:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/hugo/</loc><lastmod>2022-10-14T23:08:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/taxonomy/</loc><lastmod>2022-10-14T23:08:24&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/pua_blk_mail/</loc><lastmod>2022-01-17T15:07:19&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/quotient/</loc><lastmod>2022-01-17T15:07:19&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/categories/novelreadinglog/</loc><lastmod>2019-11-18T21:50:30&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ataleforthetimebeing/</loc><lastmod>2019-11-18T21:50:30&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/thestoriedlifeofajfikry/</loc><lastmod>2019-10-29T21:49:17&#43;08:00</lastmod></url><url>
