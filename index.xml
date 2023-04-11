@@ -3,9 +3,19 @@
         <title>Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 10 Apr 2023 09:53:01 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</lastBuildDate>
             <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>JavaScript 常見內建方法</title>
+    <link>http://wysiwyz.github.io/posts/javascript_functions/</link>
+    <pubDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/javascript_functions/</guid>
+    <description><![CDATA[這裡紀錄上班看遇到的常用 JavaScript 內建方法 ╚(•⌂•)╝
+Object.prototype.hasOwnProperty(param) 回傳 boolean 值
+true: 如果該param是該物件的直接屬性(direct property)，即便值為 null 或者 undefined false: 如果屬性是繼承來的，或從沒被宣告 1 2 3 4 5 6 7 8 9 10 11 12 13 _self._getCurrencyFlagPath = (function () { var imageList = Object.freeze({ AUD: &#39;images/lilyRose/flag_AUD.svg&#39;, CAD: &#39;images/lilyRose/flag_CAD.svg&#39;, EUR: &#39;images/lilyRose/flag_EUR.svg&#39;, JPY: &#39;images/lilyRose/flag_JPY.svg&#39;, TWD: &#39;images/lilyRose/flag_TWD.svg&#39;, NTD: &#39;images/lilyRose/flag_TWD.svg&#39; }); return function (currency) { return imageList.hasOwnProperty(currency) ? imageList[currency] : &#39;&#39;; } })(); Object.freeze() 淺凍結 Freezing an object prevents extensions and makes existing properties non-writable and non-configurable.]]></description>
+</item>
+<item>
     <title>Cascading style sheet</title>
     <link>http://wysiwyz.github.io/posts/cascading_style_sheet/</link>
     <pubDate>Mon, 10 Apr 2023 09:53:01 &#43;0800</pubDate>
@@ -67,14 +77,14 @@ B. Dr.]]></description>
 劇情 鼓勵自己 常世裡的燦爛星空 渴望得到鈴芽關愛的大臣白貓🥰🤍 戲份不多但是很帥很成熟的大黑貓 撫養外甥女鈴芽12年的姨 念咒語之前，要想著這片土地上孕育的人與情 2011/3/11的地震到現在十二年了ಥ_ಥ 勇敢無畏的高中女生 特效 蚯蚓的各種型態 從地面向上蒸發的金色光束 鑰匙旁飄散的藍色雲絲光 ]]></description>
 </item>
 <item>
-    <title>Cloud_architect_GCP</title>
+    <title>Cloud_architect_GCP 🚧</title>
     <link>http://wysiwyz.github.io/posts/cloud_architect_gcp/</link>
     <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/cloud_architect_gcp/</guid>
     <description><![CDATA[Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧]]></description>
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually).]]></description>
 </item>
 <item>
     <title>Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL</title>
@@ -121,30 +131,6 @@ SUID &amp; SGID &amp; SBIT
 Cloud native 公有雲、私有雲、混合雲 動態環境 - Node上下, stateless vs stateful 可擴展 - auto scaling (HPA) 聲明式 - ansible, terraform, K8S yaml 容器、微服務、無服務器 - K8S, OCP, Cloud Run, Cloud Function 最小化用戶的操作負擔 - auto healing (liveness, readiness) 所有的服務最好都是stateless
 Stateless vs Stateful Stateless 無狀態，每次請求都是獨立 example JWT .map() Vue/React/Angular service Deployment (K8S) Stateful 有狀態，每次請求與過去相關 example Session .reduce() MySQL Volume/StatefulSet(K8S) 聲明式 - Ansible 聲明式 - Terraform CKA Kubernetes 認證使用命令式 kubectl run nginx -image=nginx
 實務上用聲明式]]></description>
-</item>
-<item>
-    <title>Git Bash - some awesome commands</title>
-    <link>http://wysiwyz.github.io/posts/git_bash_cmds/</link>
-    <pubDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/git_bash_cmds/</guid>
-    <description><![CDATA[紀錄一些 git bash 指令
-git log -oneline 跟sourceTree_History_Description欄位基本一樣
-git log 跟樓上一樣, 但多了些author/date訊息
-Interactive Rebase 可用來修改local端的commit message 刪除local端commit 整理local端commits 合併多個commits為一個 將一個commit拆分為多個commits 注意：會重寫commit history，產生新的hash ID(i.e. new commit)
-所以不能對已經push上remote repository的commits執行interactive rebase
-git rebase -i HEAD~3
-rebase interactive head till the three
-要回去幾個節點之前? base commit是哪個?
-copy hash id 9a23775 Head minus 3 接著會出現一個editor window，可控制head+前兩個commit
-reword
-不直接改commit msg，而是將pick改成reword，存檔關閉
-接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc+:wq)
-squash
-將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
-Voilà! 原本的兩個commits合併成一個惹！
-git commit amend 可修改最近一筆local端本分支的 msg
-Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用]]></description>
 </item>
 </channel>
 </rss>

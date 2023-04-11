@@ -3,7 +3,17 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 10 Apr 2023 09:53:01 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>JavaScript 常見內建方法</title>
+    <link>http://wysiwyz.github.io/posts/javascript_functions/</link>
+    <pubDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/javascript_functions/</guid>
+    <description><![CDATA[這裡紀錄上班看遇到的常用 JavaScript 內建方法 ╚(•⌂•)╝
+Object.prototype.hasOwnProperty(param) 回傳 boolean 值
+true: 如果該param是該物件的直接屬性(direct property)，即便值為 null 或者 undefined false: 如果屬性是繼承來的，或從沒被宣告 1 2 3 4 5 6 7 8 9 10 11 12 13 _self._getCurrencyFlagPath = (function () { var imageList = Object.freeze({ AUD: &#39;images/lilyRose/flag_AUD.svg&#39;, CAD: &#39;images/lilyRose/flag_CAD.svg&#39;, EUR: &#39;images/lilyRose/flag_EUR.svg&#39;, JPY: &#39;images/lilyRose/flag_JPY.svg&#39;, TWD: &#39;images/lilyRose/flag_TWD.svg&#39;, NTD: &#39;images/lilyRose/flag_TWD.svg&#39; }); return function (currency) { return imageList.hasOwnProperty(currency) ? imageList[currency] : &#39;&#39;; } })(); Object.freeze() 淺凍結 Freezing an object prevents extensions and makes existing properties non-writable and non-configurable.]]></description>
+</item>
+<item>
     <title>Cascading style sheet</title>
     <link>http://wysiwyz.github.io/posts/cascading_style_sheet/</link>
     <pubDate>Mon, 10 Apr 2023 09:53:01 &#43;0800</pubDate>
@@ -52,14 +62,14 @@ B. Dr.]]></description>
 使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.]]></description>
 </item>
 <item>
-    <title>Cloud_architect_GCP</title>
+    <title>Cloud_architect_GCP 🚧</title>
     <link>http://wysiwyz.github.io/posts/cloud_architect_gcp/</link>
     <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/cloud_architect_gcp/</guid>
     <description><![CDATA[Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧]]></description>
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually).]]></description>
 </item>
 <item>
     <title>Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL</title>
@@ -130,26 +140,6 @@ squash
 Voilà! 原本的兩個commits合併成一個惹！
 git commit amend 可修改最近一筆local端本分支的 msg
 Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用]]></description>
-</item>
-<item>
-    <title>JavaScript - dashing dashshound</title>
-    <link>http://wysiwyz.github.io/posts/javascript_2018/</link>
-    <pubDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/javascript_2018/</guid>
-    <description><![CDATA[下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
-🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
-後面可接英文字母、底線_、錢字號$、數字
-大小寫有區別
-關鍵字、保留字不能當變數名稱，詳閱MDN
-JavaScript 1.3 起支援Unicode，可用中文(盡量避免)
-ES6之後可用var(變數)、let(作用範圍與var不同)、const
-所有沒透過var宣告的變數，都會自動變成全域變數
-1 2 m = 1; console.log(m); //未宣告var會有後遺症 已經被 var 宣告過的變數可以再次被宣告 [合法]
-1 2 3 var m = 1; var m = 2; var m = 3; 透過 let 宣告的變數不能被再次宣告
-1 2 3 let m = 1; let m = 2; //⚠️Uncaught SyntaxError: Identifier &#39;m&#39; has already been declared. 變數資料型別 變數本身不帶有資料型別資訊，其中的值/物件才有
-變數沒有型別，值才有 JavaScript支援型別
-基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別]]></description>
 </item>
 </channel>
 </rss>

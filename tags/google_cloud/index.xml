@@ -4,14 +4,14 @@
         <link>http://wysiwyz.github.io/tags/google_cloud/</link>
         <description>google_cloud - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/google_cloud/" rel="self" type="application/rss+xml" /><item>
-    <title>Cloud_architect_GCP</title>
+    <title>Cloud_architect_GCP 🚧</title>
     <link>http://wysiwyz.github.io/posts/cloud_architect_gcp/</link>
     <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/cloud_architect_gcp/</guid>
     <description><![CDATA[Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧]]></description>
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually).]]></description>
 </item>
 </channel>
 </rss>

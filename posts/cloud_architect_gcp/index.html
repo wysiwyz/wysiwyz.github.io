@@ -4,20 +4,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Cloud_architect_GCP - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cloud_architect_GCP" />
+        <title>Cloud_architect_GCP 🚧 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cloud_architect_GCP 🚧" />
 <meta property="og:description" content="Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧" />
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually)." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wysiwyz.github.io/posts/cloud_architect_gcp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-03-24T13:39:15+08:00" />
 <meta property="article:modified_time" content="2023-03-24T13:39:15+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Cloud_architect_GCP"/>
+<meta name="twitter:title" content="Cloud_architect_GCP 🚧"/>
 <meta name="twitter:description" content="Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) 建立 MIG (managed instance group) Instance template is mandatory Configure auto-scaling to automatically adjust number of instances based on load: Minimum number of instances Maximum number of instances Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver Cool-down period Scale in controls Autohealing: Configure a heath check with initial delay 🚧"/>
+Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually)."/>
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/cloud_architect_gcp/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_03_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/suzume_no_tojimari/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -25,12 +25,12 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Cloud_architect_GCP",
+        "headline": "Cloud_architect_GCP 🚧",
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/cloud_architect_gcp\/"
-        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  506 ,
+        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  1347 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/cloud_architect_gcp\/","datePublished": "2023-03-24T13:39:15+08:00","dateModified": "2023-03-24T13:39:15+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -70,10 +70,10 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloud_architect_GCP</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloud_architect_GCP 🚧</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;506 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/cloud_architect_gcp/" class="leancloud_visitors" data-flag-title="Cloud_architect_GCP">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1347 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/posts/cloud_architect_gcp/" class="leancloud_visitors" data-flag-title="Cloud_architect_GCP 🚧">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -132,7 +132,38 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
 </ul>
 </li>
 </ul>
-<h5 id="建立-mig-managed-instance-group">建立 MIG (managed instance group)</h5>
+<h5 id="managed-instance-groups-mig">Managed Instance Groups (MIG)</h5>
+<ul>
+<li>Managed Instance Group
+<ul>
+<li>Identical VMs created using an instance template</li>
+</ul>
+</li>
+<li>Important Features
+<ul>
+<li>Maintain certain number of instances
+<ul>
+<li>If an instance crashes, MIG launches another instance</li>
+</ul>
+</li>
+<li>Detect application failures using health checks (Self Healing)</li>
+<li>Increase and decrease instances based on load (Auto Scaling)</li>
+<li>Add <strong>Load Balancer</strong> to distribute load</li>
+<li>Create instances in multiple zones (regional MIGs)
+<ul>
+<li>Regional MIGs provide higher availability compared to zonal MIGs</li>
+</ul>
+</li>
+<li>Release new application versions without downtime
+<ul>
+<li>Rolling updates: Release new version step by step (gradually). Update a percentage of instances to the new version at a time</li>
+<li>Canary Deployment: Test new version with a group of instances before releasing it across all instances.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="creating-mig-managed-instance-group">Creating MIG (managed instance group)</h5>
 <ul>
 <li>Instance template is mandatory</li>
 <li>Configure auto-scaling to automatically adjust number of instances based on load:
@@ -141,15 +172,22 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
 <li>Maximum number of instances</li>
 <li>Autoscaling metrics: CPU Utilization target or Load Balancer Utilization target, or Any other metric from Stack Driver
 <ul>
-<li>Cool-down period</li>
-<li>Scale in controls</li>
+<li>Cool-down period
+<ul>
+<li>How long to wait before looking at auto scaling metrics again?</li>
+<li>Scale In Controls: Prevent a sudden drop in no of VM instances
+<ul>
+<li>Example: Don&rsquo;t scale in by more than 10% or 3 instances in 5 minutes</li>
 </ul>
 </li>
-<li>Autohealing: Configure a heath check with initial delay</li>
 </ul>
 </li>
 </ul>
-<p>🚧</p>
+</li>
+<li>Autohealing: Configure a heath check with initial delay (How long should you wait for your app to intialize before runing a health check?)</li>
+</ul>
+</li>
+</ul>
 <h4 id="step-04---updating-a-managed-instance-group">Step 04 - Updating a Managed Instance Group</h4>
 <ul>
 <li>Rolling update - Gradual update of instances in an instance group to the new instance template
@@ -220,15 +258,253 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
 
 [Transport Layer_layer4] --&gt; TCP TLS UDP
 
-[Network Layer_layer3] --&gt; 
+[Network Layer_layer3] --&gt; IP
 </code></pre><h5 id="http-vs-https-vs-tcp-vs-tls-vs-udp">HTTP vs HTTPS vs TCP vs TLS vs UDP</h5>
 <ul>
-<li>Computers use protocols to communicate</li>
-<li>Multiple layers and multiple protocols</li>
-<li><strong>Network Layer</strong> - Tranfer bits and bytes</li>
-<li><strong>Transport Layer</strong> - Are the bits and bytes transferred properly?</li>
-<li><strong>Application Layer</strong> - Make REST API calls and Send Emails</li>
-<li></li>
+<li>
+<p>Computers use protocols to communicate</p>
+</li>
+<li>
+<p>Multiple layers and multiple protocols</p>
+</li>
+<li>
+<p><strong>Network Layer</strong> - Transfer bits and bytes</p>
+</li>
+<li>
+<p><strong>Transport Layer</strong> - Are the bits and bytes transferred properly?</p>
+</li>
+<li>
+<p><strong>Application Layer</strong> - Make REST API calls and Send Emails</p>
+</li>
+<li>
+<p>(Remember) Each layer makes use of the layers beneath it</p>
+</li>
+<li>
+<p>(Remember) Most applications talk at application layer. BUT some applications talk at network layer directly</p>
+</li>
+<li>
+<p>Network Layer:</p>
+<ul>
+<li>IP (internet protocol): Transfer bytes. Unreliable.</li>
+</ul>
+</li>
+<li>
+<p>Transport Layer:</p>
+<ul>
+<li>TCP(Transmission Control): Reliability &gt; Performance</li>
+<li>TLS (Transport Layer Security): Secure TCP</li>
+<li>UDP (User Datagram Protocol): Performance &gt; Reliability</li>
+</ul>
+</li>
+<li>
+<p>Application Layer:</p>
+<ul>
+<li>HTTP(Hypertext Transfer Protocol): Stateless Request Response Cycle</li>
+<li>HTTPS: Secure HTTP</li>
+<li>SMTP: Email Transfer Protocol</li>
+<li>and a lot of others&hellip;</li>
+</ul>
+</li>
+<li>
+<p>Most applications typically communicate at application layer</p>
+</li>
+<li>
+<p>HOWEVER applications needing high performance directly communicate at transport layer:</p>
+<ul>
+<li>Gaming applications and live video streaming use UDP (sacrifice reliability for performance)</li>
+</ul>
+</li>
+<li>
+<p>Objective: Understand Big Picture. Its OK if you do not understand all details.</p>
+</li>
+</ul>
+<h5 id="cloud-load-balancing---terminology">Cloud Load Balancing - Terminology</h5>
+<ul>
+<li>Backend - Group of endpoints that receive traffic from a Google Cloud load balancer (example: instance groups)</li>
+<li>Frontend - Specify an IP address, port and protocol. This IP address is the frontend IP for your clients requests.
+<ul>
+<li>For SSL, a certificate must also be assigned.</li>
+</ul>
+</li>
+<li>Host and path rules (For HTTP(S) Load Balancing) - Define rules redirecting the traffic to difference backends:
+<ul>
+<li>Based on path</li>
+<li>Based on Host</li>
+<li>Based on HTTP headers (Authorization header) and methods</li>
+</ul>
+</li>
+<li>Client to Load Balancer: Over internet
+<ul>
+<li>HTTPS recommended</li>
+</ul>
+</li>
+<li>Load Balancer to VM instance: Through Google internal network
+<ul>
+<li>HTTP is ok. HTTPS is preferred</li>
+</ul>
+</li>
+<li>SSL/TLS Termination/Offloading
+<ul>
+<li>Client to Load Balancer: HTTPS/TLS</li>
+<li>Load Balancer to VM instance: HTTP/TCP</li>
+</ul>
+</li>
+</ul>
+<h5 id="cloud-load-balancing---features">Cloud Load Balancing - Features</h5>
+<table>
+<thead>
+<tr>
+<th>Load Balancer</th>
+<th>Type of Traffic</th>
+<th>Proxy or pass-through</th>
+<th>Destination Ports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External HTTP(S)</td>
+<td>Global, External, HTTP or HTTPS</td>
+<td>Proxy</td>
+<td>HTTP on 80 or 8080<!-- raw HTML omitted -->HTTPS on 443</td>
+</tr>
+<tr>
+<td>Internal HTTP(S)</td>
+<td>Regional, Internal, HTTP or HTTPS</td>
+<td>Proxy</td>
+<td>HTTP on 80 or 8080<!-- raw HTML omitted -->HTTPS on 443</td>
+</tr>
+<tr>
+<td>SSL Proxy</td>
+<td>Global, External, TCP with SSL offload</td>
+<td>Proxy</td>
+<td>A big list</td>
+</tr>
+<tr>
+<td>TCP Proxy</td>
+<td>Global, External, TCP without SSL offload</td>
+<td>Proxy</td>
+<td>A big list</td>
+</tr>
+<tr>
+<td>External Network TCP/UDP</td>
+<td>Regional, External, TCP or UDP</td>
+<td>pass-through</td>
+<td>any</td>
+</tr>
+<tr>
+<td>Internal TCP/UDP</td>
+<td>Regional, Internal, TCP or UDP</td>
+<td>pass-through</td>
+<td>any</td>
+</tr>
+</tbody>
+</table>
+<h5 id="load-balancing-across-migs-in-multiple-regions">Load Balancing Across MIGs in Multiple Regions</h5>
+<ul>
+<li>Regional MIG can distribute instances in different zones of a single region
+<ul>
+<li>Create multiple Regional MIGs in different regions (in the same project)</li>
+</ul>
+</li>
+<li>HTTP(S) Load Balancing can distribute load to the multiple MIGs behind a single external IP address
+<ul>
+<li>User requests are redirected to the nearest region (Low latency)</li>
+</ul>
+</li>
+<li>Load balancing sends traffic to healthy instances:
+<ul>
+<li>If health check fails instances are restarted:
+<ul>
+<li>(REMEMBER) Ensure that health check from load balancer can reach the instances in an instance group (Firewall rules)</li>
+</ul>
+</li>
+<li>If all backends within a region are unhealthy, traffic is distributed to healthy backends in other regions</li>
+<li>Can contain preemptible instances(先占虛擬機器) as well</li>
+</ul>
+</li>
+</ul>
+<h5 id="quck-review-of-https-load-balancing-concepts">Quck Review of HTTP(S) Load Balancing Concepts</h5>
+<ul>
+<li>Backend Service - Group of backends or a bucket</li>
+<li>Backend - A managed instance group</li>
+<li>URL Maps - Route requests to backend services or backend buckets
+<ul>
+<li>URL/service-a maps to Backend Service A</li>
+<li>URL/service-b maps to Backend Service B</li>
+</ul>
+</li>
+<li>(Remember) Each Backend Service can have multiple backends in multiple regions</li>
+</ul>
+<h5 id="https-load-balancing---1---multi-regional-microservice">HTTP(S) Load Balancing - 1 - Multi Regional Microservice</h5>
+<ul>
+<li>Backend Services
+<ul>
+<li>One Backend Service for the Microservice</li>
+</ul>
+</li>
+<li>Backends
+<ul>
+<li>Multiple backends for each microservice MIG in each region</li>
+</ul>
+</li>
+<li>URL Maps
+<ul>
+<li>URL/service-a maps to the microservice Backend Service</li>
+</ul>
+</li>
+<li>Global routing: Route user to nearest instance (nearest regional MIG)
+<ul>
+<li>Needs Networking Premium Tier
+<ul>
+<li>As in STANDARD Tier:
+<ul>
+<li>Forwarding rule and its external IP address are regional</li>
+<li>All backends for a backend service must be in the same region as the forwarding rule</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Backend Service:
+<ul>
+<li>One Backend Service for each the Microservice</li>
+</ul>
+</li>
+<li>Backends:
+<ul>
+<li>Each microservice can have multiple backend MIGs in different regions</li>
+<li>In the example, we see one backend per microservice</li>
+</ul>
+</li>
+<li>URL Maps:
+<ul>
+<li>URL / service-a -&gt; Microservice A Backend Service</li>
+<li>URL /service-b -&gt; Microservice B Backend Service</li>
+</ul>
+</li>
+<li>Backend Services
+<ul>
+<li>A Backend Service for each Microservice version</li>
+</ul>
+</li>
+<li>Backends
+<ul>
+<li>Each microervice version can have multiple backend MIG in different regions
+<ul>
+<li>In the example, we see one backend per microservice version</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>URL Maps
+<ul>
+<li>/service-a/v1 -&gt; Microservice A V1 Backend Service</li>
+<li>/service-a/v2 -&gt; Microservice A V2 Backend Service</li>
+<li>/service-b -&gt; Microservice B Backend Service</li>
+</ul>
+</li>
+<li>Flexible Architecture: With HTTP(S) load balancing, route global requests across multiple versions of multiple microservices!</li>
 </ul>
 <h1 id="section-05">Section 05</h1>
 <h1 id="section-06">Section 06</h1>
@@ -272,7 +548,7 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-hashtag="google_cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-title="Cloud_architect_GCP"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-hashtag="google_cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-title="Cloud_architect_GCP 🚧"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
