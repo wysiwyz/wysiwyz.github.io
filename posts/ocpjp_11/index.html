@@ -12,7 +12,6 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <meta property="og:url" content="http://wysiwyz.github.io/posts/ocpjp_11/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-12-13T21:10:22+08:00" />
 <meta property="article:modified_time" content="2022-12-13T21:10:22+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="1Z0-819 曾師筆記 (1/duology)"/>
 <meta name="twitter:description" content="# 03 OOP 程式設計思維 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 01 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
@@ -558,12 +557,12 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">20</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">20</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">d</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="n">count</span><span class="o">++;</span>   <span class="c1">// a = 20 | count = 21
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">b</span> <span class="o">=</span> <span class="n">count</span><span class="o">;</span>     <span class="c1">// b = 21
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">c</span> <span class="o">=</span> <span class="o">++</span><span class="n">count</span><span class="o">;</span>   <span class="c1">// c = 22 | count = 22
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">d</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// d = 23 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">d</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="c1">// d = 23 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="o">);</span>                <span class="c1">// 86 
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Result=&#34;</span> <span class="o">+</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="o">);</span>    <span class="c1">// Result=20212223
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="s">&#34;Result&#34;</span> <span class="o">+</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span><span class="o">);</span>     <span class="c1">// 41Result=2223
@@ -603,26 +602,26 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="cm">/* Automatic Promotion for assigning small to large */</span>
-</span></span><span class="line"><span class="cl"><span class="kt">byte</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">byte</span> <span class="n">x1</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">short</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">y1</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">y1</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">z1</span> <span class="o">=</span> <span class="n">10</span><span class="o">.</span><span class="na">0f</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">z1</span> <span class="o">=</span> <span class="mf">10.0f</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">z2</span> <span class="o">=</span> <span class="n">z1</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cm">/* Automatic Promotion for assigning integer to floating point */</span>
-</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">e</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">f</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">g</span> <span class="o">=</span> <span class="n">2L</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">h</span> <span class="o">=</span> <span class="n">2L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">2L</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">double</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">2L</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cm">/* Can not assign floating point to integer! 
 </span></span></span><span class="line"><span class="cl"><span class="cm">   It will cause the lost of decimal point! */</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">2</span><span class="o">.</span><span class="na">34f</span><span class="o">;</span>  <span class="c1">// compilation error
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="n">b</span> <span class="o">=</span> <span class="n">2</span><span class="o">.</span><span class="na">34f</span><span class="o">;</span> <span class="c1">// compilation error
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">2</span><span class="o">.</span><span class="na">34</span><span class="o">;</span>   <span class="c1">// compilation error
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="n">d</span> <span class="o">=</span> <span class="n">2</span><span class="o">.</span><span class="na">34</span><span class="o">;</span>  <span class="c1">// compilation error
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">2.34f</span><span class="o">;</span>  <span class="c1">// compilation error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">2.34f</span><span class="o">;</span> <span class="c1">// compilation error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mf">2.34</span><span class="o">;</span>   <span class="c1">// compilation error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">long</span> <span class="n">d</span> <span class="o">=</span> <span class="mf">2.34</span><span class="o">;</span>  <span class="c1">// compilation error
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="型別轉型-casting">型別轉型 casting</h3>
@@ -647,12 +646,12 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/* example 1: cast to bigger type to get 3.333 ... */</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="kt">double</span><span class="o">)</span><span class="n">number</span> <span class="o">/</span> <span class="n">3</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">((</span><span class="kt">double</span><span class="o">)</span><span class="n">number</span> <span class="o">/</span> <span class="mi">3</span><span class="o">);</span> 
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="cm">/* example 2 */</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="n">53</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">47</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="mi">53</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i2</span> <span class="o">=</span> <span class="mi">47</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">byte</span> <span class="n">b3</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">b3</span> <span class="o">=</span> <span class="n">i1</span> <span class="o">+</span> <span class="n">i2</span><span class="o">;</span>  
@@ -689,20 +688,20 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">3</span> <span class="o">*</span> <span class="n">4</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">x</span><span class="o">);</span>  <span class="c1">// =12
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="c1">// 55555 * 66666 = 3703629630
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">55555</span> <span class="o">*</span> <span class="n">66666</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">55555</span> <span class="o">*</span> <span class="mi">66666</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span><span class="o">);</span>    <span class="c1">// -591337666 tempSpace overflow
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">b</span> <span class="o">=</span> <span class="n">55555</span> <span class="o">*</span> <span class="n">66666</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">55555</span> <span class="o">*</span> <span class="mi">66666</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>    <span class="c1">// 將溢位的結果指定給 long 型別的變數 b
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span> <span class="o">(</span><span class="n">55555</span> <span class="o">*</span> <span class="n">66666</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span> <span class="o">(</span><span class="mi">55555</span> <span class="o">*</span> <span class="mi">66666</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>    <span class="c1">// 將溢位的結果轉型成 long 不影響輸出結果
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">d</span> <span class="o">=</span> <span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="n">55555</span><span class="o">)</span> <span class="o">*</span> <span class="n">66666</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">d</span> <span class="o">=</span> <span class="o">((</span><span class="kt">long</span><span class="o">)</span> <span class="mi">55555</span><span class="o">)</span> <span class="o">*</span> <span class="mi">66666</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">d</span><span class="o">);</span>    <span class="c1">// correct
 </span></span></span></code></pre></td></tr></table>
 </div>
@@ -907,8 +906,8 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Shirt</span> <span class="n">shirt1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Shirt</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl"><span class="n">Shirt</span> <span class="n">shirt2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Shirt</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl"><span class="n">shirt1</span> <span class="o">=</span> <span class="n">shirt2</span><span class="o">;</span>  <span class="c1">// to the same heap
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">shirt1</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">1000</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">shirt2</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">500</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">shirt1</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">shirt2</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="mi">500</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Shirt price: &#34;</span> <span class="o">+</span> <span class="n">shirt1</span><span class="o">.</span><span class="na">price</span><span class="o">);</span> 
 </span></span><span class="line"><span class="cl"><span class="c1">// console → Shirt price: 500.0
 </span></span></span></code></pre></td></tr></table>
@@ -1029,13 +1028,13 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">short</span> <span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="n">10</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="n">5</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">1_000_000</span><span class="o">;</span> <span class="c1">// compilation error
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">short</span> <span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="mi">5</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="mi">1_000_000</span><span class="o">;</span> <span class="c1">// compilation error
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="n">var</span> <span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="n">10</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="n">5</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="n">1_000_000</span><span class="o">;</span> <span class="c1">// compilation error
+</span></span><span class="line"><span class="cl"><span class="n">var</span> <span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">short</span><span class="o">)</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="mi">5</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">s</span> <span class="o">=</span> <span class="mi">1_000_000</span><span class="o">;</span> <span class="c1">// compilation error
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -1066,12 +1065,12 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">doesThisCompile</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">check</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">question</span><span class="o">;</span>  <span class="c1">// compilation error
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">question</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">question</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">answer</span><span class="o">;</span>    <span class="c1">// compilation error
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">check</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">answer</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">answer</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">answer</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">answer</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">answer</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -1114,8 +1113,8 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">compoundDeclarationWithNonVar</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">2</span><span class="o">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">e</span><span class="o">,</span> <span class="n">f</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">g</span> <span class="o">=,</span> <span class="n">h</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">;</span>    <span class="c1">// Compilation error, not compound declaration
@@ -1123,14 +1122,14 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">compoundDeclarationWithVar</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>     <span class="c1">// compilation error  
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">var</span> <span class="n">c</span> <span class="o">=</span> <span class="n">2</span><span class="o">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span> <span class="c1">// compilation error
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">e</span><span class="o">,</span> <span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span> <span class="c1">// compilation error, NON-compound declaration   
+</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">a</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>     <span class="c1">// compilation error  
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">var</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">2</span><span class="o">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="c1">// compilation error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">e</span><span class="o">,</span> <span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span> <span class="c1">// compilation error, NON-compound declaration   
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">notCompoundDeclartion</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="o">;</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c</span><span class="o">;</span> <span class="n">var</span> <span class="n">d</span> <span class="o">=</span> <span class="n">3</span><span class="o">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="o">;</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">c</span><span class="o">;</span> <span class="n">var</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>  
 </span></span><span class="line"><span class="cl">    <span class="c1">// 只要用 ; 區隔變數，就不再是複合宣告
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
@@ -1152,7 +1151,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">testVarAndNull</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">n</span> <span class="o">=</span> <span class="s">&#34;myData&#34;</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">n</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">m</span> <span class="o">=</span> <span class="n">4</span>
+</span></span><span class="line"><span class="cl">    <span class="n">var</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">4</span>
 </span></span><span class="line"><span class="cl">    <span class="n">m</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// compilation error
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">var</span> <span class="n">o</span> <span class="o">=</span> <span class="o">(</span><span class="n">String</span><span class="o">)</span> <span class="kc">null</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -1491,7 +1490,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></span><span class="line"><span class="cl">    <span class="c1">// array_identifier: 陣列名稱
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// type: 陣列成員型別
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// length: 陣列長度
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">chars</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">20</span><span class="o">];</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">chars</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="mi">20</span><span class="o">];</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
@@ -1520,8 +1519,8 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">array_identifier</span> <span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// array_identifier: 陣列名稱
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// index: 成員位置，從0開始，最大為長度-1
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ints</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">13</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">strings</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="s">&#34;Hola!&#34;</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">ints</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">13</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">strings</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="s">&#34;Hola!&#34;</span><span class="o">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -1534,7 +1533,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">type</span><span class="o">[]</span> <span class="n">array_identifier</span> <span class="o">=</span> <span class="o">{</span><span class="n">element_1</span><span class="o">,</span> <span class="n">element_2</span><span class="o">,</span> <span class="o">...};</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[]</span> <span class="n">ints</span> <span class="o">=</span> <span class="o">{</span><span class="n">10</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span> <span class="n">30</span><span class="o">,</span> <span class="n">40</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[]</span> <span class="n">ints</span> <span class="o">=</span> <span class="o">{</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">40</span><span class="o">};</span>
 </span></span><span class="line"><span class="cl"><span class="n">String</span><span class="o">[]</span> <span class="n">strings</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;Hola&#34;</span><span class="o">,</span> <span class="s">&#34;Hallo&#34;</span><span class="o">,</span> <span class="s">&#34;Ciao&#34;</span><span class="o">,</span> <span class="s">&#34;Ohayo&#34;</span><span class="o">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1546,7 +1545,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[]</span> <span class="n">ints</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">ints</span> <span class="o">=</span> <span class="o">{</span><span class="n">10</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span> <span class="n">30</span><span class="o">,</span> <span class="n">40</span><span class="o">};</span>  <span class="c1">// compilation error
+</span></span><span class="line"><span class="cl"><span class="n">ints</span> <span class="o">=</span> <span class="o">{</span><span class="mi">10</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">30</span><span class="o">,</span> <span class="mi">40</span><span class="o">};</span>  <span class="c1">// compilation error
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
@@ -1599,7 +1598,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// type 陣列成員型別
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// number_of_arrays : 內含的一維成員陣列個數，不可為空
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// length : 每個成員陣列的成員個數，可以為空
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">rowColumns</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">3</span><span class="o">][</span><span class="n">2</span><span class="o">];</span> <span class="c1">// 三個陣列，每個陣列兩個成員
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">rowColumns</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">][</span><span class="mi">2</span><span class="o">];</span> <span class="c1">// 三個陣列，每個陣列兩個成員
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -1618,7 +1617,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></span><span class="line"><span class="cl">    <span class="c1">// array_identifier 陣列名稱
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// index_1 指定成員陣列
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// index_2 指定成員陣列裡的成員位置
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">rowColumns</span><span class="o">[</span><span class="n">0</span><span class="o">][</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">rowColumns</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><blockquote>
@@ -1633,7 +1632,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="n">type</span><span class="o">[][]</span> <span class="n">array_identifier</span> <span class="o">=</span> <span class="o">{{},</span> <span class="o">{},</span> <span class="o">...};</span> <span class="c1">// 以,區隔成員陣列
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[][]</span> <span class="n">int2d</span> <span class="o">=</span> <span class="o">{{</span><span class="n">6</span><span class="o">,</span> <span class="n">77</span><span class="o">},</span> <span class="o">{</span><span class="n">88</span><span class="o">},</span> <span class="o">{</span><span class="n">9</span><span class="o">,</span> <span class="n">10</span><span class="o">}};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">[][]</span> <span class="n">int2d</span> <span class="o">=</span> <span class="o">{{</span><span class="mi">6</span><span class="o">,</span> <span class="mi">77</span><span class="o">},</span> <span class="o">{</span><span class="mi">88</span><span class="o">},</span> <span class="o">{</span><span class="mi">9</span><span class="o">,</span> <span class="mi">10</span><span class="o">}};</span>
 </span></span><span class="line"><span class="cl"><span class="n">String</span><span class="o">[][]</span> <span class="n">string2d</span> <span class="o">=</span> <span class="o">{{</span><span class="s">&#34;swift&#34;</span><span class="o">,</span> <span class="s">&#34;sword&#34;</span><span class="o">},</span> <span class="o">{</span><span class="s">&#34;Guten&#34;</span><span class="o">},</span> <span class="o">{</span><span class="s">&#34;Morgen&#34;</span><span class="o">}};</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1660,13 +1659,13 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ArrayCreateTest</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="o">[]</span> <span class="n">a1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">5</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a2</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">5</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="o">[]</span> <span class="n">a1</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a2</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// int a3[5] = new int[];
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span><span class="o">[][]</span> <span class="n">a4</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">5</span><span class="o">][];</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="o">[]</span> <span class="n">a5</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">5</span><span class="o">][</span><span class="n">3</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="o">[][][]</span> <span class="n">a6</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">5</span><span class="o">][][];</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a7</span><span class="o">[][][]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">5</span><span class="o">][</span><span class="n">3</span><span class="o">][</span><span class="n">2</span><span class="o">];</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span><span class="o">[][]</span> <span class="n">a4</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">][];</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="o">[]</span> <span class="n">a5</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">][</span><span class="mi">3</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="o">[][][]</span> <span class="n">a6</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">][][];</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a7</span><span class="o">[][][]</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">5</span><span class="o">][</span><span class="mi">3</span><span class="o">][</span><span class="mi">2</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
@@ -1753,9 +1752,9 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">chars</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="sc">&#39;H&#39;</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">ints</span><span class="o">[</span><span class="n">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">80</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">strings</span><span class="o">[</span><span class="n">3</span><span class="o">]</span> <span class="o">=</span> <span class="s">&#34;Willkommen&#34;</span><span class="o">;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">chars</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="sc">&#39;H&#39;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ints</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="mi">80</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">strings</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="s">&#34;Willkommen&#34;</span><span class="o">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -1768,9 +1767,9 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ints</span><span class="o">[</span><span class="n">2</span><span class="o">];</span>
-</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">strings</span><span class="o">[</span><span class="n">3</span><span class="o">];</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">ints</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">strings</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
@@ -1945,15 +1944,15 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">getSquareRoot</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">input</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">input</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// 計算10的平方根
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">squareRoot</span> <span class="o">=</span> <span class="n">input</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// 假設答案就是10
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">accurate</span> <span class="o">=</span> <span class="n">0</span><span class="o">.</span><span class="na">01f</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">float</span> <span class="n">accurate</span> <span class="o">=</span> <span class="mf">0.01f</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">      <span class="c1">// 定義計算值和真實值之間的可接受誤差範圍
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="o">(</span><span class="n">squareRoot</span> <span class="o">*</span> <span class="n">squareRoot</span> <span class="o">-</span> <span class="n">input</span> <span class="o">&gt;</span> <span class="n">accurate</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">             <span class="c1">// 定義計算值和真實值的可接受誤差範圍
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">squareRoot</span> <span class="o">=</span> <span class="o">(</span><span class="n">squareRoot</span> <span class="o">+</span> <span class="n">input</span> <span class="o">/</span> <span class="n">squareRoot</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">squareRoot</span> <span class="o">=</span> <span class="o">(</span><span class="n">squareRoot</span> <span class="o">+</span> <span class="n">input</span> <span class="o">/</span> <span class="n">squareRoot</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">          <span class="c1">// 2分逼近法公式
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;trying... &#34;</span> <span class="o">+</span> <span class="n">squareRoot</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
@@ -1986,10 +1985,10 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">doubleYourMoney</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">money</span> <span class="o">=</span> <span class="n">500</span><span class="o">;</span>      <span class="c1">// 本金
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">double</span> <span class="n">interest</span> <span class="o">=</span> <span class="n">0</span><span class="o">.</span><span class="na">18</span><span class="o">;</span>  <span class="c1">// 年息18% 🙃
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">years</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="n">money</span> <span class="o">&lt;=</span> <span class="n">1000</span><span class="o">)</span> <span class="o">{</span>        <span class="c1">// 2倍本金
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">money</span> <span class="o">=</span> <span class="mi">500</span><span class="o">;</span>      <span class="c1">// 本金
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">double</span> <span class="n">interest</span> <span class="o">=</span> <span class="mf">0.18</span><span class="o">;</span>  <span class="c1">// 年息18% 🙃
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">years</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="n">money</span> <span class="o">&lt;=</span> <span class="mi">1000</span><span class="o">)</span> <span class="o">{</span>        <span class="c1">// 2倍本金
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">money</span> <span class="o">+=</span> <span class="n">money</span> <span class="o">*</span> <span class="n">interest</span><span class="o">;</span>   <span class="c1">// 複利計息
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">years</span><span class="o">++;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Year &#34;</span> <span class="o">+</span> <span class="n">years</span> <span class="o">+</span> <span class="s">&#34;: &#34;</span> <span class="o">+</span> <span class="n">money</span><span class="o">);</span>
@@ -2021,8 +2020,8 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">commentBlock</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34; /*&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="n">counter</span> <span class="o">&lt;</span> <span class="n">4</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(</span><span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34; *&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">counter</span><span class="o">++;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
@@ -2064,13 +2063,13 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>      <span class="c1">// initialize
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">7</span><span class="o">)</span> <span class="o">{</span>  <span class="c1">// boolean_expression
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>      <span class="c1">// initialize
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="o">)</span> <span class="o">{</span>  <span class="c1">// boolean_expression
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;$&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">++;</span>        <span class="c1">// update
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">7</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">7</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;$&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
@@ -2089,7 +2088,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">i</span> <span class="o">=</span> <span class="s">&#34;$&#34;</span><span class="o">,</span> <span class="n">t</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="o">;</span> <span class="n">i</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">5</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="s">&#34;$&#34;</span><span class="o">,</span> <span class="n">t</span><span class="o">+=</span> <span class="s">&#34;-&#34;</span><span class="o">)</span> <span class="o">{</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">i</span> <span class="o">=</span> <span class="s">&#34;$&#34;</span><span class="o">,</span> <span class="n">t</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="o">;</span> <span class="n">i</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="s">&#34;$&#34;</span><span class="o">,</span> <span class="n">t</span><span class="o">+=</span> <span class="s">&#34;-&#34;</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">t</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
@@ -2112,9 +2111,9 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">NestedLoopTest</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">5</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="sc">&#39;*&#39;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
@@ -2147,11 +2146,11 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">guessWord</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">word</span> <span class="o">=</span> <span class="s">&#34;jim&#34;</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">guessWord</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">tryCounts</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">tryCounts</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="o">(!</span><span class="n">guessWord</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">word</span><span class="o">.</span><span class="na">toUpperCase</span><span class="o">()))</span> <span class="o">{</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">guessWord</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="n">guessWord</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">word</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span>  
-</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="n">26</span> <span class="o">+</span> <span class="n">65</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">26</span> <span class="o">+</span> <span class="mi">65</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">            <span class="c1">// 隨機產生 65 ~ 91 (A~Z大寫英文)
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">guessWord</span> <span class="o">=</span> <span class="n">guessWord</span> <span class="o">+</span> <span class="n">c</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="c1">// line 7 - 11 內迴圈: 製作和原始長度一樣的新單字
@@ -2181,13 +2180,13 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">loopArray</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span><span class="o">[]</span> <span class="n">longArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="n">9</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span><span class="o">[]</span> <span class="n">longArray</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">long</span><span class="o">[</span><span class="mi">9</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// set up array content
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">longArray</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">longArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="n">100</span><span class="o">);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">longArray</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">longArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">Math</span><span class="o">.</span><span class="na">random</span><span class="o">()</span> <span class="o">*</span> <span class="mi">100</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// access array content
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">longArray</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">longArray</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">&#34;: &#34;</span> <span class="o">+</span> <span class="n">longArray</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
@@ -2238,7 +2237,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></span></span><span class="line"><span class="cl"><span class="c1">// expression: 欲存取的集合物件(Collection)或陣列(Array)變數
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">enhancedLoopArray</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="o">{</span> <span class="n">99</span><span class="o">,</span> <span class="n">88</span><span class="o">,</span> <span class="n">77</span><span class="o">,</span> <span class="n">66</span><span class="o">,</span> <span class="n">55</span><span class="o">,</span> <span class="n">44</span><span class="o">,</span> <span class="n">33</span><span class="o">,</span> <span class="n">22</span><span class="o">,</span> <span class="n">11</span> <span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">intArray</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">99</span><span class="o">,</span> <span class="mi">88</span><span class="o">,</span> <span class="mi">77</span><span class="o">,</span> <span class="mi">66</span><span class="o">,</span> <span class="mi">55</span><span class="o">,</span> <span class="mi">44</span><span class="o">,</span> <span class="mi">33</span><span class="o">,</span> <span class="mi">22</span><span class="o">,</span> <span class="mi">11</span> <span class="o">};</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">element</span> <span class="o">:</span> <span class="n">intArray</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">element</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
@@ -2296,9 +2295,9 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">useBreak</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">passScore</span> <span class="o">=</span> <span class="n">60</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span> <span class="n">40</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span> <span class="n">55</span><span class="o">,</span> <span class="n">59</span><span class="o">,</span> <span class="n">63</span><span class="o">,</span> <span class="n">33</span><span class="o">,</span> <span class="n">98</span> <span class="o">};</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">passAt</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">passScore</span> <span class="o">=</span> <span class="mi">60</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">55</span><span class="o">,</span> <span class="mi">59</span><span class="o">,</span> <span class="mi">63</span><span class="o">,</span> <span class="mi">33</span><span class="o">,</span> <span class="mi">98</span> <span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">passAt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">s</span> <span class="o">:</span> <span class="n">scores</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">passAt</span><span class="o">++;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">passScore</span><span class="o">)</span> <span class="o">{</span>
@@ -2309,8 +2308,8 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">useContinue</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">passScore</span> <span class="o">=</span> <span class="n">60</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span> <span class="n">40</span><span class="o">,</span> <span class="n">20</span><span class="o">,</span> <span class="n">55</span><span class="o">,</span> <span class="n">59</span><span class="o">,</span> <span class="n">63</span><span class="o">,</span> <span class="n">33</span><span class="o">,</span> <span class="n">98</span> <span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">passScore</span> <span class="o">=</span> <span class="mi">60</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">scores</span> <span class="o">=</span> <span class="o">{</span> <span class="mi">40</span><span class="o">,</span> <span class="mi">20</span><span class="o">,</span> <span class="mi">55</span><span class="o">,</span> <span class="mi">59</span><span class="o">,</span> <span class="mi">63</span><span class="o">,</span> <span class="mi">33</span><span class="o">,</span> <span class="mi">98</span> <span class="o">};</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">s</span> <span class="o">:</span> <span class="n">scores</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">passScore</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">            <span class="k">continue</span><span class="o">;</span> <span class="c1">// 跳過, check next 

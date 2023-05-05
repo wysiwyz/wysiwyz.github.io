@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Cloud_architect_GCP 🚧 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cloud_architect_GCP 🚧" />
+        <title>Cloud architect GCP 🚧 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cloud architect GCP 🚧" />
 <meta property="og:description" content="Active learning - think and take notes
 Review - every once in a while
 Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually)." />
@@ -12,9 +12,8 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
 <meta property="og:url" content="http://wysiwyz.github.io/posts/cloud_architect_gcp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-03-24T13:39:15+08:00" />
 <meta property="article:modified_time" content="2023-03-24T13:39:15+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Cloud_architect_GCP 🚧"/>
+<meta name="twitter:title" content="Cloud architect GCP 🚧"/>
 <meta name="twitter:description" content="Active learning - think and take notes
 Review - every once in a while
 Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually)."/>
@@ -25,12 +24,12 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Cloud_architect_GCP 🚧",
+        "headline": "Cloud architect GCP 🚧",
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/cloud_architect_gcp\/"
-        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  1347 ,
+        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  6262 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/cloud_architect_gcp\/","datePublished": "2023-03-24T13:39:15+08:00","dateModified": "2023-03-24T13:39:15+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -70,10 +69,10 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloud_architect_GCP 🚧</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloud architect GCP 🚧</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1347 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/posts/cloud_architect_gcp/" class="leancloud_visitors" data-flag-title="Cloud_architect_GCP 🚧">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6262 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;30 minutes&nbsp;<span id="/posts/cloud_architect_gcp/" class="leancloud_visitors" data-flag-title="Cloud architect GCP 🚧">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -86,6 +85,109 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
     <li>
       <ul>
         <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#cloud-storage">Cloud Storage</a></li>
+        <li><a href="#objects-and-buckets">Objects and Buckets</a></li>
+        <li><a href="#storage-class---introduction">Storage Class - Introduction</a></li>
+        <li><a href="#storage-classes---comparision">Storage Classes - Comparision</a></li>
+        <li><a href="#features-across-storage-classes">Features across Storage Classes</a></li>
+        <li><a href="#ｏbject-versioning">Ｏbject Versioning</a></li>
+        <li><a href="#object-lifecycle-management">Object Lifecycle Management</a></li>
+        <li><a href="#encription">Encription</a></li>
+        <li><a href="#unstanding-cloud-storage-metadata">Unstanding Cloud Storage Metadata</a></li>
+        <li><a href="#cloud-storage-bucket-lock---meet-compliance-needs">Cloud Storage Bucket Lock - Meet Compliance Needs</a></li>
+        <li><a href="#transferring-data-from-on-premises-to-cloud">Transferring data from on premises to cloud</a></li>
+        <li><a href="#migrating-data-with-transfer-appliance">Migrating Data with Transfer Appliance</a></li>
+        <li><a href="#understanding-cloud-storage-best-practices">Understanding Cloud Storage Best Practices</a></li>
+        <li><a href="#cloud-storage---command-line">Cloud Storage - command line</a></li>
+        <li><a href="#scenarios">Scenarios</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#cloud-debugger">Cloud Debugger</a></li>
+        <li><a href="#cloud-proflier">Cloud Proflier</a></li>
+        <li><a href="#error-reporting">Error Reporting</a></li>
+        <li><a href="#cloud-logging-monitoring----stackdriver">Cloud Logging, Monitoring .. - Stackdriver</a></li>
+        <li><a href="#cloud-operations-scenarios">Cloud Operations Scenarios</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#heading"></a></li>
+        <li><a href="#resource-hierarchy---recommendations-for-enterprises">Resource Hierarchy - Recommendations for Enterprises</a></li>
+        <li><a href="#billing-accounts">Billing Accounts</a></li>
+        <li><a href="#managing-billing---budget-alerts-and-exports">Managing Billing - Budget, Alerts and Exports</a></li>
+        <li><a href="#iam-best-practices">IAM Best Practices</a></li>
+        <li><a href="#user-identity-management-in-google-cloud">User Identity Management in Google Cloud</a></li>
+        <li><a href="#corporate-directory-federation">Corporate Directory Federation</a></li>
+        <li><a href="#iam-membersidentities">IAM Members/Identities</a></li>
+        <li><a href="#iam-membersidentities---use-cases">IAM Members/Identities - Use Cases</a></li>
+        <li><a href="#organization-policy-service">Organization Policy Service</a></li>
+        <li><a href="#resource-hierarchy--iam-policy">Resource Hierarchy &amp; IAM Policy</a></li>
+        <li><a href="#cloud-bigquery-roles">Cloud BigQuery Roles</a></li>
+        <li><a href="#corporate-directory-federation-1">Corporate Directory Federation</a></li>
+        <li><a href="#iam---scenarios">IAM - Scenarios</a></li>
+        <li><a href="#ｎeed-for-asynchronous-communication">Ｎeed for Asynchronous Communication</a></li>
+        <li><a href="#asynchronous-communication---decoupled">Asynchronous Communication - Decoupled</a></li>
+        <li><a href="#pubsub">Pub/Sub</a></li>
+        <li><a href="#pubsub---how-does-it-work">Pub/Sub - How does it work?</a></li>
+        <li><a href="#pubsub---getting-ready-with-topic-and-subscriptions">Pub/Sub - Getting ready with Topic and Subscriptions</a></li>
+        <li><a href="#pubsub---sending-and-receiving-a-message">Pub/Sub - Sending and Receiving a message</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#cloud-vpn">Cloud VPN</a></li>
+        <li><a href="#cloud-vpn---vpn-gateway-peer-gateway-and-cloud-router">Cloud VPN - VPN Gateway, peer gateway and cloud router</a></li>
+        <li><a href="#cloud-interconnect">Cloud Interconnect</a></li>
+        <li><a href="#hybrid-connectivity---remember">Hybrid Connectivity - Remember</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#bigquery---datawarehouse">BigQuery - Datawarehouse</a></li>
+        <li><a href="#bigquery---accessing-and-querying-data">BigQuery - Accessing and Querying Data</a></li>
+        <li><a href="#partitioning-and-clustering-bigquery-tables---use-case">Partitioning and Clustering BigQuery Tables - Use Case</a></li>
+        <li><a href="#partitioning-and-clustering-bigquery-tables">Partitioning and Clustering BigQuery Tables</a></li>
+        <li><a href="#partitioning-and-clustering-bigquery-tables---syntax">Partitioning and Clustering BigQuery Tables - Syntax</a></li>
+        <li><a href="#expiring-data-in-bigquery">Expiring Data in BigQuery</a></li>
+        <li><a href="#importing-data-into-bigquery">Importing Data into BigQuery</a></li>
+        <li><a href="#streaming-data-into-bigquery">Streaming Data into BigQuery</a></li>
+        <li><a href="#understanding-bigquery-best-practices">Understanding BigQuery Best Practices</a></li>
+        <li><a href="#cloud-dataproc">Cloud Dataproc</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#data-lifecycle">Data Lifecycle</a></li>
+        <li><a href="#data-lifecycle---1---ingest">Data Lifecycle - 1 - Ingest</a></li>
+        <li><a href="#data-lifecycle---2---store">Data Lifecycle - 2 - Store</a></li>
+        <li><a href="#data-lifecycle---3---process-and-analysis">Data Lifecycle - 3 - Process and analysis</a></li>
+        <li><a href="#data-lifecycle---4---explore-and-visualize">Data Lifecycle - 4 - Explore and visualize</a></li>
+        <li><a href="#big-data-and-analytics-in-gcp">Big Data and Analytics in GCP</a></li>
+        <li><a href="#heading-1">&hellip;</a></li>
       </ul>
     </li>
   </ul>
@@ -517,28 +619,1600 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
 <h1 id="section-13">Section 13</h1>
 <h1 id="section-14">Section 14</h1>
 <h1 id="section-15">Section 15</h1>
-<h1 id="section-16">Section 16</h1>
+<blockquote>
+<p>Exploring Object Storage in Google Cloud Platform - Cloud Storage</p>
+</blockquote>
+<h3 id="cloud-storage">Cloud Storage</h3>
+<ul>
+<li>
+<p>Most popular, very flexible &amp; inexpensive storage service</p>
+<ul>
+<li>Serverless: Autoscaling and infinite scale</li>
+</ul>
+</li>
+<li>
+<p>Store large objects using a <strong>key-value</strong> approach:</p>
+<ul>
+<li>Treats entire object as a unit (Partial updates not allowed)
+<ul>
+<li>Recommended when you operate on entire object most of the time</li>
+<li>Access Control at Object level</li>
+</ul>
+</li>
+<li>Also called <strong>Object Storage</strong></li>
+</ul>
+</li>
+<li>
+<p>Provides REST API to access and modify objects</p>
+<ul>
+<li>
+<p>Also provides CLI (gsutil) &amp; Client Libraries (C++, C#, Java, Node.js, PHP, Python &amp; Ruby)</p>
+<blockquote>
+<p><code>gsutil</code>, not <code>gcloud</code></p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>Stores all file types - text, binary, backup &amp; archives</p>
+<ul>
+<li>Media files and archives, Application packages and logs</li>
+<li>Backups of your databases</li>
+<li>Staging data during on-premise to cloud database migration</li>
+</ul>
+</li>
+</ul>
+<h3 id="objects-and-buckets">Objects and Buckets</h3>
+<ul>
+<li>Objects are stored in buckets
+<ul>
+<li>Bucket names are <strong>globally unique</strong></li>
+<li>Bucket names are used as part of object URLs
+<ul>
+<li>Naming rule: 只能有小寫字母、數字、-、_、. (hyphen, underscore, period)</li>
+</ul>
+</li>
+<li>3 ~ 63 characters max. Can&rsquo;t start with <strong>goog</strong> prefix or should not contain <strong>google</strong> (even misspelled)</li>
+<li>Unlimited objects in a bucket</li>
+<li>Each bucket is associated with a project</li>
+<li>Each object is identified by an <strong>unique key</strong>
+<ul>
+<li>Key is unique in a bucket</li>
+</ul>
+</li>
+<li>Max object size is <strong>5 TB</strong> (single object)
+<ul>
+<li>but you can store unlimited number of such objects</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="storage-class---introduction">Storage Class - Introduction</h3>
+<ul>
+<li>Different kinds of data can be store in Cloud Storage
+<ul>
+<li>Media files, archives</li>
+<li>App packages and logs</li>
+<li>Backups of your databases or storage devices</li>
+<li>Long term archives</li>
+</ul>
+</li>
+<li>Huge variation in <strong>access patterns</strong></li>
+<li>If accessed less frequently, can the storaged object be paid at a cheaper price?
+<ul>
+<li><strong>Storage classes</strong> help to optimize your costs based on your access needs
+<ul>
+<li>Design for durability of 99.999999999% (11 9&rsquo;s)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="storage-classes---comparision">Storage Classes - Comparision</h3>
+<table>
+<thead>
+<tr>
+<th>Storage Class</th>
+<th>Name</th>
+<th>Min storage duration</th>
+<th>Typical monthly availability</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard</td>
+<td>STANDARD</td>
+<td>None</td>
+<td>Multi/dual region: &gt; 99.99%<!-- raw HTML omitted -->Regions: 99.99%</td>
+<td>Frequently used data</td>
+</tr>
+<tr>
+<td>Nearline storage</td>
+<td>NEARLINE</td>
+<td>30 days</td>
+<td>Multi/dual region: 99.95%<!-- raw HTML omitted -->Regions: 99.99%</td>
+<td>Read or modify once a month on average</td>
+</tr>
+<tr>
+<td>Coldline storage</td>
+<td>COLDLINE</td>
+<td>90 days</td>
+<td>Multi/dual region: 99.95%<!-- raw HTML omitted -->Regions: 99.99%</td>
+<td>Read or modify at most  once a quarter</td>
+</tr>
+<tr>
+<td>Archive storage</td>
+<td>ARCHIVE</td>
+<td>365 days</td>
+<td>Multi/dual region: 99.95%<!-- raw HTML omitted -->Regions: 99.99%</td>
+<td>Less less once a year</td>
+</tr>
+</tbody>
+</table>
+<h3 id="features-across-storage-classes">Features across Storage Classes</h3>
+<ul>
+<li>High durability (99.999999999% annual durability)</li>
+<li>Low latency (first byte typically in tens of milliseconds)</li>
+<li>Unlimited storage
+<ul>
+<li>Autoscaling (No configuration needed)</li>
+<li>NO minimum object size</li>
+</ul>
+</li>
+<li>Same APIs across storage classes</li>
+<li><strong>Committed SLA</strong> is 99.95% for multi region and
+99.9% for single region for Standard, Nearline, Coldline storage classes
+<ul>
+<li>No committed SLA for archive storage</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Committed SLA 服務等級協定/服務級別協定</p>
+</blockquote>
+<h3 id="ｏbject-versioning">Ｏbject Versioning</h3>
+<ul>
+<li>Prevents <strong>accidental deletion</strong> and provides history
+<ul>
+<li>Enabled at bucket level
+<ul>
+<li>Can be turned on/off at any time</li>
+</ul>
+</li>
+<li>Live version is the latest version
+<ul>
+<li>If you delete live object, it becomes noncurrent object version</li>
+<li>If you delete noncurrent object version,</li>
+</ul>
+</li>
+<li>Older versions are uniquely identified by (obejct key + a generation number)</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="object-lifecycle-management">Object Lifecycle Management</h3>
+<ul>
+<li>Files are frequently accessed when they are created
+<ul>
+<li>Generally <strong>usage reduces with time</strong></li>
+<li>How do you save costs by <strong>moving files automatically between storage classes</strong>?
+<ul>
+<li>Solution: Object Lifecycle Management</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Identify objects using conditions based on:
+<ul>
+<li>Age, CreatedBefore, IsLive, MatchesStorageClass, NumberOfNewerVersions etc</li>
+<li>Set multiple conditions: all conditions must be satisfied for action to happen</li>
+</ul>
+</li>
+<li>Two kinds of actions:
+<ul>
+<li><strong>SetStorageClass</strong> actions (change from one storage class to another)</li>
+<li><strong>Deletion</strong> actions (delete objects)</li>
+</ul>
+</li>
+<li>Allowed Transitions:
+<ul>
+<li>(Standard or Multi-Regional or Regional) to (Nearline or Coldline or Archive)</li>
+<li>Nearline to (Coldline or Archive)</li>
+<li>Coldline to Archive</li>
+</ul>
+</li>
+</ul>
+<h3 id="encription">Encription</h3>
+<ul>
+<li>(Default) Cloud storage encrypts data on the server side.</li>
+<li><strong>Server-side</strong> encryption: Performed by GCS after it receives data
+<ol>
+<li>Google-managed - default (No configuration needed)</li>
+<li>Customer-managed - keys managed by customer in <strong>Cloud KMS</strong>
+<ul>
+<li>GCS service account should have access to customer-managed keys in KMS to be able to encrypt and decrypt files</li>
+</ul>
+</li>
+<li>Customer-supplied - customer supplies the keys with every GCS operation
+<ul>
+<li>Cloud storage does NOT store the key</li>
+<li>Customer is responsible for storing and using it when making API calls
+<ul>
+<li>Use API headers when making API calls
+<ul>
+<li>x-goog-encrytion-algorithm,
+x-goog-encryption-key (Base64 encryption key),
+x-goog-encryption-key-sha256 (encryption key hash)</li>
+</ul>
+</li>
+<li>OR when using gsutil: In both configuration file, configure encryption_key under GSUtil section</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>(Optional) <strong>Client-side</strong> encryption - encryption performed by customer before upload
+<ul>
+<li>GCP does NOT know about the keys used</li>
+<li>GCP is NOT involved in encryption or decryption</li>
+</ul>
+</li>
+</ul>
+<h3 id="unstanding-cloud-storage-metadata">Unstanding Cloud Storage Metadata</h3>
+<ul>
+<li>Each object in Cloud Storage can have <strong>Metadata</strong> associated with it
+<ul>
+<li>Key value pairs ex: <code>storageClass:STANDARD</code></li>
+<li><strong>Fixed-key metadata</strong>: Fixed key - Changing value
+<ul>
+<li><code>Cache-Control: public, max-age=3600</code>
+(Is caching allowed? If so, for how long?)</li>
+<li><code>Content-Disposition: attachment; filename=&quot;myfile.pdf&quot;</code>
+(Should content be displayed inline in the browser or should it be an attachment, which can be downloaded)</li>
+<li><code>Content-Type: application/pdf</code>
+(What kind of content does this object have?)</li>
+<li>etc&hellip;</li>
+</ul>
+</li>
+<li><strong>Custom metadata</strong>: You can define your own keys and values</li>
+<li><strong>Non-editable metadata</strong>: You cannot edit these directly
+<ul>
+<li>Storage class of the object, customer-managed encryption keys etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-storage-bucket-lock---meet-compliance-needs">Cloud Storage Bucket Lock - Meet Compliance Needs</h3>
+<ul>
+<li>How do you ensure that you <strong>comply with regulatory and compliance requirements</strong> around immutable storage in a Cloud Storage bucket?</li>
+<li>Configure <strong>data retention policy</strong> with retention period:（數據保存策略)
+<ul>
+<li>How long should objects in the bucket be retained for?
+<ul>
+<li>&ldquo;Objects in the bucket can only be deleted or replaced once their age is greater than the retention period&rdquo;</li>
+</ul>
+</li>
+<li>You can set it <strong>while creating a bucket or at a later point in time</strong>
+<ul>
+<li>Applies automatically to existing objects in the bucket (as well as new objects added in)</li>
+</ul>
+</li>
+<li>Once a retention policy is locked:
+<ul>
+<li>You <strong>CANNOT</strong> remove retention policy or reduce retention period (but you can increase retention period)</li>
+<li>You <strong>CANNOT</strong> delete the bucket unless all objects in bucket have age greater than retention period</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="transferring-data-from-on-premises-to-cloud">Transferring data from on premises to cloud</h3>
+<ul>
+<li>Most popular data destination is <strong>Google Cloud Storage</strong></li>
+<li>Options:
+<ol>
+<li><strong>Online Transfer</strong>: Use <code>gsutil</code> or API to transfer data to GCS
+<ul>
+<li>Good for one time transfers</li>
+</ul>
+</li>
+<li><strong>Storage Transfer Service</strong>: Recommended for large-scale (petabytes) online data transfers from your private data centers, AWS, Azure, and Google Cloud
+<ul>
+<li>You can set up a repeating schedule</li>
+<li>Supports incremental transfer (only transfer changed objects)</li>
+<li>Reliable and fault tolerant - continues from where it left off in case of errors</li>
+</ul>
+</li>
+<li>Storage Transfer Service vs gsutil:
+<ul>
+<li><code>gsutil</code> is recommended only when you are transferring less than 1TB from on-premises or another GCS bucket</li>
+<li><code>Storage Transfer Service</code> is recommended if either -
+<ol>
+<li>Transferring more than 1TB from anywhere, or</li>
+<li>Transferring from another cloud</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="migrating-data-with-transfer-appliance">Migrating Data with Transfer Appliance</h3>
+<ul>
+<li>Transfer Appliance:
+<ul>
+<li>Copy ship and upload data to GCS</li>
+<li>Recommended if your data size is greater than <strong>20TB</strong>, or online <strong>transfer time takes &gt; 1 week</strong></li>
+<li>Process:
+<ol>
+<li>Request an appliance</li>
+<li>Upload your data</li>
+<li>Ship the appliance back</li>
+<li>Google uploads the data</li>
+</ol>
+</li>
+<li>Fast copy (upto 40 Gbps)</li>
+<li>AES256 encryption - Customer-managed encryption keys</li>
+<li>Order <strong>multiple devices</strong> (TA40, TA300) if need</li>
+</ul>
+</li>
+</ul>
+<h3 id="understanding-cloud-storage-best-practices">Understanding Cloud Storage Best Practices</h3>
+<ul>
+<li>Avoid use of sensitive info in bucket or object names</li>
+<li>Store data in the <strong>closest region</strong> (to your users)</li>
+<li>Ramp up <strong>request rate gradually</strong>
+<ul>
+<li>No problems upto 1000 write request per second or 5000 read requests per second</li>
+<li>BUT beyond that, take at least 20 minutes to double request rates</li>
+</ul>
+</li>
+<li>Use <strong>Exponential backoff</strong> if you receive 5xx (server error) or 429 (to many requests) error
+<ul>
+<li>Retry after 1, 2, 4, 8, 16, &hellip;seconds</li>
+</ul>
+</li>
+<li><strong>Do NOT use sequential</strong> numbers or timestamp as object keys
+<ul>
+<li>Recommended to use completely random object names</li>
+<li>Recommended to add a hash value before the sequence number or timestamp</li>
+</ul>
+</li>
+<li><strong>Use Cloud Storage FUSE</strong> to enable file system access to Cloud Storage
+<ul>
+<li>Mount Cloud Storage buckets as file systems on Linux or macOS systems</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-storage---command-line">Cloud Storage - command line</h3>
+<ul>
+<li>
+<p><code>gsutil</code> is the CLI for Cloud Storage (NOT <code>gcloud</code>)</p>
+</li>
+<li>
+<p>Cloud Storage</p>
+<ul>
+<li>
+<p><code>gsutil mb gs://BKT_NAME</code> -&gt; Create Cloud Storage bucket</p>
+</li>
+<li>
+<p><code>gsutil ls -a gs://BKT_NAME</code> -&gt; List current and non-current object versions</p>
+<blockquote>
+<p><code>-a</code> for displaying non-current ones</p>
+</blockquote>
+</li>
+<li>
+<p><code>gsutil cp gs://SOURCE_BKT/SRC_OBJ gs://DESTINATION_BKT/NAM_COPY</code> -&gt; Copy objects</p>
+<ul>
+<li><code>-o 'GSUtil:encryption_key=ENCRYPTION_KEY'</code> -&gt; Encrypt object</li>
+</ul>
+</li>
+<li>
+<p><code>gsutil mv</code> (Rename or move objects)</p>
+<ul>
+<li><code>gsutil mv gs://BKT_NAME/OLD_OBJ_NAME gs://BKT_NAME/NEW_OBJ_NAME</code></li>
+<li><code>gsutil mv gs://OLD_BUCKET_NAME/OLD_OBJ_NAME gs://NEW_BKT_NAME/NEW_OBJ_NAME</code></li>
+</ul>
+</li>
+<li>
+<p><code>gsutil rewrite -s STORAGE_CLASS gs://BKT_NAME/OBJ_PATH</code> (e.g. Change Storage Class for objects)</p>
+</li>
+<li>
+<p><code>gsutil cp</code>: Upload and Download Objects</p>
+<ul>
+<li><code>gsutil cp LOCAL_LOCATION gs://DESTINATION_BKT_NAME/</code> -&gt; Upload</li>
+<li><code>gsutil cp gs://BKT_NAME/OBJ_PATH LOCAL_LOCATION</code> -&gt; Download</li>
+</ul>
+</li>
+<li>
+<p><code>gsutil versioning set on/off gs://BKT_NAME</code> -&gt; Enable/Disable versioning</p>
+</li>
+<li>
+<p><code>gsutil uniformbucketlevelaccess set on/off gs://BKT_NAME</code>
+-&gt; If set off, you can configure permissions to objects at the level of individual objects</p>
+</li>
+<li>
+<p><code>gsutil acl ch</code> -&gt; Set access permissions for specific objects
+-&gt; Used when uniform-bucket-level-access is set OFF.</p>
+<blockquote>
+<p><code>acl</code> - access control list</p>
+<p><code>ch</code> - change</p>
+<p>E.g.: <code>gsutil acl ch -u AllUsers:R gs://BKT_NAME/OBJ_PATH</code>
+-&gt; make specific object public</p>
+<p>E.g.: <code>gsutil acl ch -u john.doe@gmail.com:WRITE gs://BKT_NAME/OBJ_PATH</code>
+-&gt; <strong>Permissions</strong> - READ(R), WRITE(W), OWNER(O)
+-&gt; <strong>Scope</strong> - User, allAuthenticatedUsers, allUsers(-u), Group(-g), Project(-p) etc</p>
+<p>E.g.: <code>gsutil acl set JSON_FILE gs://BKT_NAME</code>
+-&gt; use Json files to set ACLs on the bucket</p>
+</blockquote>
+</li>
+<li>
+<p><code>gsutil iam ch MBR_TYPE:MBR_NAME:IAM_ROLE gs://BKT_NAME</code>
+-&gt; set up IAM role.</p>
+<blockquote>
+<p>{memberType}:{memberName}:{IAMrole}
+E.g.: <code>gsutil iam ch user:melissa@gmail.com:objectCreator gs://BKT_NAME</code>
+E.g.: <code>gsutil iam ch allUsers:objectViewer gs://BKT_NAME</code>
+-&gt; make the entire bucket readable to public</p>
+</blockquote>
+</li>
+<li>
+<p>[Temporary] <code>gsutil signal -d 10m YOUR_KEY gs://BKT_NAME/OBJ_PATH</code>
+-&gt; signed URL for temporary access ( -d {10_minutes} {service_account_key})</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="scenarios">Scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I will frequently access objects in a bucket for 30 days. After that I don&rsquo;t expect to access objects at all. We have compliance requirements to store objects for 4 years. How can I minimize my costs?</td>
+<td>Initial Storage Class - Standard.  Lifecycle policy: Move to Archive class after 30 days. Delete after years.</td>
+</tr>
+<tr>
+<td>I want to transfer 2 TB of data from Azure Storage to Cloud Storage</td>
+<td>Use Cloud Storage Transfer Service</td>
+</tr>
+<tr>
+<td>I want to transfer 40TB of data from on premises to Cloud Storage</td>
+<td>Use Transfer Appliance</td>
+</tr>
+<tr>
+<td>Customer wants to manage their Keys</td>
+<td><strong>Customer-managed</strong>: Keys managed by customer in <strong>Cloud KMS</strong></td>
+</tr>
+<tr>
+<td>Regulatory compliance: Object should not modified for 2 years</td>
+<td>Configure and lock <strong>data retention policy</strong></td>
+</tr>
+</tbody>
+</table>
+<h1 id="section-16--">Section 16 -</h1>
+<blockquote>
+<p>Identity and access management - IAM</p>
+</blockquote>
 <h1 id="section-17">Section 17</h1>
 <h1 id="section-18">Section 18</h1>
 <p>Section 19</p>
 <p>Section 20</p>
-<p>Section 21</p>
-<p>Section 22</p>
+<h1 id="section-21">Section 21</h1>
+<ul>
+<li>To operate cloud app effectively
+<ul>
+<li>Is my app healthy?</li>
+<li>Are the users experiencing any issues?</li>
+<li>Does my db have enough space?</li>
+<li>Are my servers running in an optimum capacity?</li>
+</ul>
+</li>
+<li><strong>Cloud Monitoring</strong> - infrastructure monitoring</li>
+</ul>
+<h3 id="cloud-debugger">Cloud Debugger</h3>
+<h3 id="cloud-proflier">Cloud Proflier</h3>
+<ul>
+<li>How do you identify performance bottlenecks in production?</li>
+<li>Cloud Profiler - Statistical, low-overhead profiler
+<ul>
+<li>Continuously gathers CPU and Memory usage from production</li>
+</ul>
+</li>
+</ul>
+<h3 id="error-reporting">Error Reporting</h3>
+<ul>
+<li>How do you idenfiy production problems in real time?</li>
+<li>Real-time exception monitoring:
+<ul>
+<li>Aggregates and displays error reported from cloud services (using stack traces)</li>
+<li>Centralized Error Management console:
+<ul>
+<li>Identity and manage top errors or recent errors</li>
+</ul>
+</li>
+<li>Use Firebase Crash Reporting for errors from Android and iOS client applications</li>
+<li>Supported for GO, Java, .NET, Node.js, PHP, Python and Ruby</li>
+</ul>
+</li>
+<li></li>
+<li></li>
+</ul>
+<h3 id="cloud-logging-monitoring----stackdriver">Cloud Logging, Monitoring .. - Stackdriver</h3>
+<table>
+<thead>
+<tr>
+<th>Stackdriver Service</th>
+<th>New Service Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>old names - new names: these are the same</p>
+</blockquote>
+<h3 id="cloud-operations-scenarios">Cloud Operations Scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>Se</th>
+<th>So</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>To record all operations/requests on all objects in a bucket (for auditing)</td>
+<td>Turn on data access audit logging for the bucket</td>
+</tr>
+<tr>
+<td>To trace a request across multiple microservices</td>
+<td>Cloud Trace</td>
+</tr>
+<tr>
+<td>To identify prominent exceptions (or errors) for a specific microservice</td>
+<td>Error Reporting</td>
+</tr>
+<tr>
+<td>To debug a problem in production by executing step by step</td>
+<td>Cloud Debugger</td>
+</tr>
+<tr>
+<td>To look at the logs for a specific request</td>
+<td>Cloud Logging</td>
+</tr>
+<tr>
+<td>​</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="section-22">Section 22</h1>
+<h3 id="heading"></h3>
+<ul>
+<li>Well defined hierarchy:
++</li>
+<li>Resources are created in projects</li>
+<li>A folder can contain multiple projects</li>
+<li>Organization can contain multiple folders</li>
+</ul>
+<h3 id="resource-hierarchy---recommendations-for-enterprises">Resource Hierarchy - Recommendations for Enterprises</h3>
+<ul>
+<li>Create separate projects for different environments
+<ul>
+<li>Complete isolation between test and production environments</li>
+</ul>
+</li>
+<li>Create separate folders for each department
+<ul>
+<li>Isolate production applications of one department from another</li>
+<li>We can create a shared folder</li>
+</ul>
+</li>
+<li>One project per application per environment
++</li>
+</ul>
+<h3 id="billing-accounts">Billing Accounts</h3>
+<ul>
+<li>Billing Account is mandatory for creating resources in a project:
++</li>
+<li>Billing Accounts can be associated with one or more projects</li>
+<li>You can have multiple billing accounts in a Organization</li>
+<li>(Recommendation)</li>
+<li>Two Types
+<ul>
+<li>Self Serve</li>
+<li>Invoiced</li>
+</ul>
+</li>
+</ul>
+<h3 id="managing-billing---budget-alerts-and-exports">Managing Billing - Budget, Alerts and Exports</h3>
+<ul>
+<li>Setup a Cloud Billing Budget to avoid surprises:
+<ul>
+<li>()</li>
+<li>Default alert thresholds</li>
+</ul>
+</li>
+<li>Billing data can be exported (on a schedule) to:
+<ul>
+<li>BigQuery</li>
+<li>Cloud Storage ()</li>
+</ul>
+</li>
+</ul>
+<h3 id="iam-best-practices">IAM Best Practices</h3>
+<ul>
+<li><strong>Principle of Least Privilege</strong> - Give least possible privilege needed for a role
+<ul>
+<li>Basic Roles are NOT recommended
+<ul>
+<li>Prefer predefined roles when possible</li>
+</ul>
+</li>
+<li>Use Service Accounts with minimum privileges
+<ul>
+<li>Use different Service Accounts for different apps/purposes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Separation of Duties</strong> - Involve at least two people in sensitive tasks
+<ul>
+<li>Example: Have separate deployer and traffic migrator roles
+<ul>
+<li>AppEngine provides App Engine</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Constant Monitoring:
+<ul>
+<li>Archive Cloud Audit Logs in Cloud Storage buckets for long term retention</li>
+</ul>
+</li>
+<li>Use Groups when possible
+<ul>
+<li>Makes it easy to manage users</li>
+</ul>
+</li>
+</ul>
+<h3 id="user-identity-management-in-google-cloud">User Identity Management in Google Cloud</h3>
+<ul>
+<li>Email used to create free trial account =&gt; &ldquo;Super Admin&rdquo;
++</li>
+<li></li>
+<li>However &hellip;</li>
+<li>Option1:</li>
+<li>Option2:
+<ul>
+<li>Federate Google Cloud with your identity provider</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Google Workspace (formerly G Suite)</p>
+</blockquote>
+<h3 id="corporate-directory-federation">Corporate Directory Federation</h3>
+<ul>
+<li>Federate Cloud Identity or Google Workspace with your external identity provider (IdP) such as Active Directory of Azure Active Directory</li>
+<li>Enable Single Sign On:
+<ol>
+<li>Users are redirected to an external IdP to authenticate</li>
+<li>When users are authenticated, SAML assertion is sent to Google sign-in</li>
+</ol>
+</li>
+<li>Examples
+<ul>
+<li>Federate Active Directory with Cloud Identity by using Google Cloud Directory Sync (GCDS) and Active Directory Federation Services (AD FS)</li>
+<li>Federating Azure</li>
+</ul>
+</li>
+</ul>
+<h3 id="iam-membersidentities">IAM Members/Identities</h3>
+<ul>
+<li>Google Account - Represents a person (an)</li>
+<li>Service account - Represents an application account (Not person)</li>
+<li>Google group - Collection - Google and Service Accounts
++</li>
+<li>Google Workspace domain: Google Workspace (formerly G suite) provides collaboration services for enterprises:
++</li>
+<li></li>
+</ul>
+<h3 id="iam-membersidentities---use-cases">IAM Members/Identities - Use Cases</h3>
+<table>
+<thead>
+<tr>
+<th>Sc</th>
+<th>Sol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All members in your team have G Suite accounts. You are creating a new production project and would want to provide access to your operations team.</td>
+<td>Create a Group with all your operations team. Provide access to production project to the Group.</td>
+</tr>
+<tr>
+<td>All members in your team have G Suite accounts. You are setting up a new project. You want to provide a one time quick access to a team member.</td>
+<td>Assign the necessary role directory to G Suite email address of your team member. If it&rsquo;s not a one time quick access, the recommended approach would be to create a Group.</td>
+</tr>
+<tr>
+<td>You want to provide an external auditor access to view all resources in your project BUT he should NOT be able to make any changes.</td>
+<td>Give them roles/viewer role (Generally basic roles are NOT recommended BUT it is the simplest way to provide view only access to all resources!)</td>
+</tr>
+<tr>
+<td>Your application deployed on a GCE VM (Project A) needs to access cloud storage bucket from a different project (Project B)</td>
+<td>In Project B, assign the right role &hellip;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="organization-policy-service">Organization Policy Service</h3>
+<ul>
+<li>How to enable <strong>centralized constraints</strong> on all resources created in an Organization?
+<ul>
+<li>Configure Organization Policy</li>
+<li>e.g.: Disable creation of Service Accounts</li>
+<li>e.g.: Allow/Deny creation of resources in specific regions</li>
+</ul>
+</li>
+<li>Needs a Role - Organization Policy Administrator</li>
+<li>(Remember) IAM focuses on Who
+<ul>
+<li>Who can take specific actions on resources?</li>
+</ul>
+</li>
+<li>(Remember) Organization Policy focuses on What
+<ul>
+<li>What can be done on specific resources?</li>
+</ul>
+</li>
+</ul>
+<h3 id="resource-hierarchy--iam-policy">Resource Hierarchy &amp; IAM Policy</h3>
+<ul>
+<li>IAM Policy can be set at any level of the hierarchy</li>
+<li>Resources inherit the policies of All parents</li>
+<li>The effective policy for a resource is the union of the policy on that resource and its parents</li>
+<li>Policy inheritance is transitive
++</li>
+<li>You cannot restrict</li>
+</ul>
+<h3 id="cloud-bigquery-roles">Cloud BigQuery Roles</h3>
+<blockquote>
+<p>Data Operations: View</p>
+<p>Query Operations:</p>
+</blockquote>
+<ul>
+<li>Cloud BigQuery IAM Roles
+<ul>
+<li>BigQuery Admin</li>
+<li>BigQuery Data Owner</li>
+<li>BigQuery Data Editor</li>
+<li>BigQuery Data Viewer</li>
+<li>BigQuery Job User</li>
+<li>BigQuery User</li>
+</ul>
+</li>
+<li>To see data,</li>
+<li>BigQUery DO or Data Viewer roles do NOT have access to jobs</li>
+</ul>
+<h3 id="corporate-directory-federation-1">Corporate Directory Federation</h3>
+<ul>
+<li>Federate Cloud Identity or Google Workspace with your external identity provider (IdP) such as Active Directory or Azure AD</li>
+<li>Enable Single Sign On:
+<ol>
+<li>Users are redirected to an external IdP to authenticate</li>
+<li>When users are authenticated, SAML assertion is sent to Google Sign-In</li>
+</ol>
+</li>
+<li>Examples
+<ul>
+<li>Use Identity as a service (IDaaS) such as Okta as IdP (identity provider)
+<ul>
+<li>Use IDaaS (like Okta) for single sign-on</li>
+</ul>
+</li>
+<li>Use Active Directory as IdP
+<ul>
+<li>Use Active Directory Federation Services (AD FS) for single sign-on</li>
+<li>Use Google</li>
+</ul>
+</li>
+<li>Use Azure AD as IdP
+<ul>
+<li>Use Azure AD for single sign-on</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="iam---scenarios">IAM - Scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>Sc</th>
+<th>Des</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>To give permanent access to a sub set of objects in a Cloud Storage bucket</td>
+<td>Use ACLs</td>
+</tr>
+<tr>
+<td>To give permanent access to the entire bucket in a Cloud Storage bucket</td>
+<td>Use IAM</td>
+</tr>
+<tr>
+<td>To provide time limited access to a specific obj in a Cloud Storage bucket</td>
+<td>Create a Signed URL</td>
+</tr>
+<tr>
+<td>To give access to a set of resources to your development team</td>
+<td>Create a group with your development team as member. Bind the right predefined roles to your group.</td>
+</tr>
+<tr>
+<td>Which role? Upload obj to Cloud Storage</td>
+<td>Storage Object Creator</td>
+</tr>
+<tr>
+<td>Which role? Manage K8S API objects</td>
+<td>Kubernetes Engine Developer</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <p>Section 23</p>
+<p>221</p>
 <p>Section 24</p>
-<p>Section 25</p>
-<p>Section 26</p>
-<p>Section 27</p>
+<h3 id="ｎeed-for-asynchronous-communication">Ｎeed for Asynchronous Communication</h3>
+<h3 id="asynchronous-communication---decoupled">Asynchronous Communication - Decoupled</h3>
+<ul>
+<li>Create a topic and have your applications put log messages on the topic</li>
+<li>Logging service picks them up for processing when ready</li>
+<li>Advantages
+<ul>
+<li>Decoupling: Publishers (apps) don&rsquo;t care</li>
+<li>Availability:</li>
+<li>Scalability:</li>
+<li>Durability:</li>
+</ul>
+</li>
+</ul>
+<h3 id="pubsub">Pub/Sub</h3>
+<ul>
+<li>Reliable, scalable, fully-managed asynchronous messaging service</li>
+<li>Backbone for <strong>highly available</strong> and <strong>highly scalable</strong> solutions
+<ul>
+<li>Auto scale to process billions of messages per day</li>
+<li></li>
+</ul>
+</li>
+<li>Usecases: Event ingestion and delivery for streaming analytics pipelines</li>
+<li>Supports push and pull message deliveries</li>
+</ul>
+<h3 id="pubsub---how-does-it-work">Pub/Sub - How does it work?</h3>
+<ul>
+<li><strong>Publisher</strong> - Sender of a message
+<ul>
+<li>Publisher send messages by making HTTPS requests to pubsub.googleapis.com</li>
+</ul>
+</li>
+<li><strong>Subscriber</strong> - Receiver of the message
+<ul>
+<li><strong>Pull</strong> - Subscriber pulls messages when ready
+<ul>
+<li>Subscriber makes HTTPs requests to pubs.googleapis.com</li>
+</ul>
+</li>
+<li><strong>Push</strong> - Messages are snet to subscribers
+<ul>
+<li>Subscribers provide a web hook endpoint at the time of registration</li>
+<li>When a message is received on the topic, a HTTPS POST request is sent to the web hook endpoints</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Very Flexible</strong>:
+<ul>
+<li>Publisher(s) and Subscriber(s) relationships: one to many, many to one, many to many</li>
+</ul>
+</li>
+</ul>
+<h3 id="pubsub---getting-ready-with-topic-and-subscriptions">Pub/Sub - Getting ready with Topic and Subscriptions</h3>
+<ol>
+<li>create topic</li>
+<li>create subscription
+<ul>
+<li>subscribers register to the topic</li>
+<li>each subscription represents discrete pull of messages form a topic
++</li>
+</ul>
+</li>
+</ol>
+<h3 id="pubsub---sending-and-receiving-a-message">Pub/Sub - Sending and Receiving a message</h3>
+<ul>
+<li>Publisher sends a message to topic</li>
+<li>Message <strong>individually</strong> deliver to each and every subscription</li>
+<li>Subscribers send acknowledgements(s)</li>
+<li>Messages(s) are removed</li>
+</ul>
+<blockquote>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">gcloud config set project glowing-gracias-304608
+gcloud pubsub topics create topic-from-gcloud
+gcloud pubsub subscriptions create subscription-gcloud-1 --topic=topic-from-gcloud
+gcloud pubsub subscriptions create subscription-gcloud-2 --topic=topic-from-gcloud
+gcloud pubsub subscriptions pull subscription-gcloud-2
+gcloud pubsub subscriptions pull subscription-gcloud-1
+gcloud pubsub topics publish topic-from-gcloud --message=&#34;My First Message&#34;
+gcloud pubsub topics publish topic-from-gcloud --message=&#34;My Second Message&#34;
+gcloud pubsub topics publish topic-from-gcloud --message=&#34;My Third Message&#34;
+</code></pre></blockquote>
+<h1 id="section-25">Section 25</h1>
+<blockquote>
+<p>Hybrid Cloud options</p>
+</blockquote>
+<h3 id="cloud-vpn">Cloud VPN</h3>
+<ul>
+<li>Cloud VPN - Connect on-premise to GCP network over internet
+<ul>
+<li>Implemented using <strong>IPSec VPN Tunnel</strong></li>
+<li>Traffic through internet (public)</li>
+<li>Traffic encrypted using <strong>Internet Key Exchange</strong> protocol</li>
+</ul>
+</li>
+<li>Two types of Cloud VPN solutions:
+<ul>
+<li><strong>HA VPN</strong> (SLA of 99.99% service availability with two external IP address)
+<ul>
+<li>Only dynamic routing (BGP) supported</li>
+</ul>
+</li>
+<li><strong>Classic VPN</strong> (SLA of 99.9% service availability, a single external IP address)
+<ul>
+<li>Supports Static routing (policy-based, route-based) and dynamic routing using BGP</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Easy to establish: Does NOT need carrier circuits or contracts</li>
+<li>Go for Cloud VPN if:
+<ul>
+<li>You want the network to encrypt traffic OR</li>
+<li>You want a lower throughput, low cost solution OR</li>
+<li></li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h3 id="cloud-vpn---vpn-gateway-peer-gateway-and-cloud-router">Cloud VPN - VPN Gateway, peer gateway and cloud router</h3>
+<ol>
+<li>HA VPN (<strong>high availability VPN</strong>)
+<ul>
+<li>High availability (99.99 SLA, within region)</li>
+<li>Needs a cloud HA VPN gateway
+<ul>
+<li>Regional resources within two interfaces</li>
+<li>Connects to an on-premises VPN gateway (or peer gateway) through VPN tunnels</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Classic VPN</strong>
+<ol>
+<li>No high availability</li>
+<li>Needs a Google Compute Engine VPN gateway</li>
+</ol>
+</li>
+</ol>
+<p>(REMEMBER) VPN gateway - regional resource</p>
+<p>(REMEMBER) Cloud router enables dynamic routing: Enables automatic route update when network topology changes</p>
+<h3 id="cloud-interconnect">Cloud Interconnect</h3>
+<ul>
+<li>
+<p>High speed, highly available, low-latency private connection into Google Cloud from your company&rsquo;s on-premises network</p>
+</li>
+<li>
+<p><strong>Dedicate Interconnect</strong>: Ideal if you need high-bandwidth connection for large data transfers</p>
+<ul>
+<li>Min private connection speed of 10Gbps (OPTIONS: 10 GBps or 100 Gbps)
+<ul>
+<li>Go upto 8 x 10 Gbps (80Gbps) circuits, or 2 x 100 Gbps(200 Gbps) circuits for each connection</li>
+</ul>
+</li>
+<li>Takes time to establish</li>
+</ul>
+</li>
+<li>
+<p><strong>Partner Interconnect</strong>: Ideal if you need a private connection with lower bandwidth needs</p>
+<ul>
+<li>50Mbps to 10Gbps</li>
+</ul>
+</li>
+<li>
+<p>Data exchange happens through a private network:</p>
+<ul>
+<li>Communicate using VPC network&rsquo;s internal IP addresses from on-premise network</li>
+<li>Reduces egress costs
+<ul>
+<li>As public internet is not used</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="hybrid-connectivity---remember">Hybrid Connectivity - Remember</h3>
+<ul>
+<li>When you connect networks, ensure that resources on the networks <strong>use different range of IP address</strong>!</li>
+<li>Always think: What will we do if things go wrong?
+<ul>
+<li>Have a fallback option if the primary connection from on-premise to GCP fails
+<ul>
+<li>Dedicated interconnect as primary</li>
+<li>VPN as backup in case of failure</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Remember that there is a third hybrid connectivity option:
+<ul>
+<li>Direct Peering: Connect customer network to google network using network peering
+<ul>
+<li>Direct path from on-ppremises network to Google services</li>
+<li>Not a GCP Service
+<ul>
+<li>Lower level network connection outside of GCP</li>
+</ul>
+</li>
+<li>NOT RECOMMENDED:
+<ul>
+<li>Use Cloud Interconnect and Cloud VPN</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="section-26">Section 26</h1>
+<h3 id="bigquery---datawarehouse">BigQuery - Datawarehouse</h3>
+<ul>
+<li>Exabyte scale modern Datawarehousing solution from GCP
+<ul>
+<li>Relational database (SQL, schema, consistency etc)
+<ul>
+<li>Use <strong>SQL-like commands</strong> to query massive datasets</li>
+</ul>
+</li>
+<li>Traditional (Storage + Compute) + Modern (Realtime + Serverless)</li>
+</ul>
+</li>
+<li>When we are talking about a Datawarehouse, <strong>importing and exporting data (and formate) becomes very important</strong>
+<ul>
+<li>Load data form a variety of sources, incl. streaming data
+<ul>
+<li>Variety of import formats - CSV/JSON/Avro/Parquet/ORCDatastore backup</li>
+</ul>
+</li>
+<li>Export to Cloud Storage (long term storage) &amp; Data Studio (visualization)
+<ul>
+<li>Formats - CSV/JSON (with Gzip compression), Avro (with deflate or snappy compression)</li>
+</ul>
+</li>
+<li>Automatically expire data (Configurable Table Expiration)</li>
+<li>Query external data sources without storing data in BigQuery
+<ul>
+<li>Cloud Storage, Cloud SQL, BigTable, Google Drive</li>
+<li>Use <strong>Permanent or Temporary</strong> external tables</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Automatically expire data (<strong>Configurable Table Expiration</strong>)</li>
+<li>Query <strong>external data sources</strong> without storing data in BigQuery
+<ul>
+<li>Cloud Storage, Cloud SQL, BigTable, Google Drive</li>
+<li>Use <strong>Permanent</strong> or <strong>Temporary</strong> external tables</li>
+</ul>
+</li>
+</ul>
+<h3 id="bigquery---accessing-and-querying-data">BigQuery - Accessing and Querying Data</h3>
+<ul>
+<li>Access databases using
+<ul>
+<li>Cloud console</li>
+<li>Bq command-line tool (NOT gcloud)</li>
+<li>BigQuery Rest API, or</li>
+<li>HBase API based libraries (Java, .NET, Python)</li>
+</ul>
+</li>
+<li>(Remember) BigQuery queries can be expensive as you are running them on large data sets</li>
+<li>(Best practice) <strong>Estimate BigQuery queries before running</strong>
+<ol>
+<li>Use UI(console) / bq (&ndash;dry-run) : Get scanned data volume (estimated)</li>
+<li>Use Pricing Calculator : Find price for scanning 1MB data. Calculate cost.</li>
+</ol>
+</li>
+</ul>
+<h3 id="partitioning-and-clustering-bigquery-tables---use-case">Partitioning and Clustering BigQuery Tables - Use Case</h3>
+<ul>
+<li>You pay for BigQuery queries by the amount of data scanned</li>
+<li>How do you reduce your costs of querying BigQuery and improve performance?</li>
+<li>Scenario: Imagine a Questions table with millions of rows
+<ul>
+<li>You want to find all questions asked between a date range (date between 2022-10-02 and 2028-10-02) belonging to a specific category
+<ul>
+<li>If you have a single questions table you need to scan all the rows
+<ul>
+<li>Partitioning - Divide table into multiple segments (e.g. by date)</li>
+<li>Clustering - Group related data (e.g. by category)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="partitioning-and-clustering-bigquery-tables">Partitioning and Clustering BigQuery Tables</h3>
+<ul>
+<li><strong>Partitioning</strong>: Table is divided into segments
+<ul>
+<li>Makes it easy to manage and query your data</li>
+<li>Improves performance and reduces costs</li>
+<li>Partition based on Ingestion time (arrival time) OR a column (TIMESTAMP, DATE, or DATETIME, or INTEGER)</li>
+<li>(DEFAULT) All partitions will share same schema as table</li>
+<li>Allows you to expire (delete) parts of table data easily (portion_expiration_days)</li>
+</ul>
+</li>
+<li><strong>Clustering</strong>: Organize table data based on the contents of one or more columns
+<ul>
+<li>Goal: colocate related data and eliminate scans of unnecessary data</li>
+<li>Avoid creating too many small partitions (of less than 1GB). In those cases, prefer Clustering</li>
+</ul>
+</li>
+</ul>
+<h3 id="partitioning-and-clustering-bigquery-tables---syntax">Partitioning and Clustering BigQuery Tables - Syntax</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-SQL" data-lang="SQL"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">my_data_set</span><span class="p">.</span><span class="n">questions_partitioned_and_clustered</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">PARTITIONED</span><span class="w"> </span><span class="k">BY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nb">DATE</span><span class="p">(</span><span class="n">created_date</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">CLUSTER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">category</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">expiration_timestamp</span><span class="o">=</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s2">&#34;2023-05-01 03:02:00 UTC&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">partition_expiration_days</span><span class="o">=</span><span class="mi">7</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="expiring-data-in-bigquery">Expiring Data in BigQuery</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">mydataset</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">OPTIONS</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">default_table_expiration_days</span><span class="o">=</span><span class="mi">3</span><span class="p">.</span><span class="mi">75</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">A</span><span class="w"> </span><span class="n">LTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">mydataset</span><span class="p">.</span><span class="n">mytable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SET</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">expiration_timestamp</span><span class="o">=</span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="s2">&#34;2025-01-01 00:00:00 UTC&#34;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="n">partition_expiration_days</span><span class="o">=</span><span class="mi">7</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">)</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>You pay for data stored in BigQuery:</p>
+<ul>
+<li>How can you automatically delete (expire) data which is not needed?</li>
+</ul>
+</li>
+<li>
+<p>Big Query Hierarchy: Data Set &gt; Table &gt; Partitions</p>
+<ul>
+<li>You can configure expiration at each level
+<ul>
+<li>Configure default table expiration (default_table_expiration_days) for datasets</li>
+<li>Configure expiration time (expiration_timestamp) for tables</li>
+<li>Configure partition expiration (partition_expiration_days) for partitioned tables</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Best Practice: Expire Tables and Partitions you are NOT using!</p>
+</li>
+</ul>
+<h3 id="importing-data-into-bigquery">Importing Data into BigQuery</h3>
+<ul>
+<li><strong>Batch Import</strong> (FREE):
+<ul>
+<li>Import from Cloud Storage and local files</li>
+<li>Import after processing by Cloud Dataflow and Cloud Dataproc</li>
+</ul>
+</li>
+<li><strong>Streaming Import</strong> ($$$$):
+<ul>
+<li>From Cloud Pub/Sub, Streaming Inserts</li>
+<li>Import after processing by Cloud Dataflow and Cloud Dataproc</li>
+</ul>
+</li>
+<li><strong>Federated Queries</strong>: Query external data
+<ul>
+<li>Cloud Storage, Cloud SQL, BigTable, Google Drive</li>
+</ul>
+</li>
+<li><strong>BigQuery Data Transfer Service</strong>:  Import from
+<ul>
+<li>Google SaaS apps (Google Ads, Cloud Storage, etc)</li>
+<li>External cloud storage providers, e.g. Amazon S3</li>
+<li>Data warehouses - Teradata, Amazon Redshift</li>
+</ul>
+</li>
+</ul>
+<h3 id="streaming-data-into-bigquery">Streaming Data into BigQuery</h3>
+<ul>
+<li>Loading data in bulk is free <strong>but streaming data is NOT FREE</strong>
+<ul>
+<li>AND there are a lot of limitations (Use with caution!)</li>
+</ul>
+</li>
+<li>Streaming data can contain duplicates. How can you avoid duplicates?
+<ul>
+<li>Add <strong>insertId</strong> with each streaming insert:
+<ul>
+<li><code>insertId</code> is used to provide best effort de-duplication (for up to one minute)
+<ul>
+<li>For strict de-duplication and transactions, try Google Cloud Datastore</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>There are <strong>strict streaming quotas</strong> with BigQuery
+<ul>
+<li>IF you are NOT populating <code>insertId</code>
+<ul>
+<li>Max bytes per second - 1GB per sec, per project
+(REMEMBER per project - NOT per table)</li>
+</ul>
+</li>
+<li>ELSE (i.e. you are using <code>insertId</code>)
+<ul>
+<li>Maximum rows per second per project
+<ul>
+<li>US and EU multi-regions: 500,000
+Other locations: 100,000</li>
+<li>Per table limitation: 100,000</li>
+</ul>
+</li>
+<li>Maximum bytes per second: 100 MB</li>
+</ul>
+</li>
+<li>If you have streaming of millions of rows per second, prefer BigTable!</li>
+</ul>
+</li>
+</ul>
+<h3 id="understanding-bigquery-best-practices">Understanding BigQuery Best Practices</h3>
+<ul>
+<li>Estimate your queries before running them
+<ul>
+<li><code>bq --dry_run flag</code> or dryRun API parameter</li>
+</ul>
+</li>
+<li>Use clustering and partitioning for your tables</li>
+<li><strong>Avoid streaming inserts</strong> when possible
+<ul>
+<li>Loading data in bulk is free but streaming data is NOT FREE</li>
+<li>Offers Best effort de-duplication (when you use <code>insertId</code>)</li>
+<li>Remember Quota limits</li>
+</ul>
+</li>
+<li><strong>Expire Data Automatically</strong>
+<ul>
+<li>Configure default table expiration (default_table_expiration_days) for datasets</li>
+<li>Configure expiration time for tables</li>
+<li>Configure partition expiration for partitioned tables</li>
+</ul>
+</li>
+<li>Consider <strong>Long-term storage</strong> option
+<ul>
+<li>Long-term storage: table in which data is NOT edited for 90 consecutive days</li>
+<li>Low Storage cost - similar to Cloud Storage Nearline</li>
+</ul>
+</li>
+<li>BigQuery is fast for <strong>complex queries</strong>
+<ul>
+<li>BUT it is not as well optimized for narrow-range queries (prefer Cloud Bigtables)</li>
+<li>(REMEMBER) Too much complexity in setting up a query</li>
+</ul>
+</li>
+<li><strong>Optimize BigQuery usage</strong> using audit logs:
+<ul>
+<li>Analyze queries/jobs that were run earlier</li>
+<li>Stream your audit logs (BigQueriesAuditMetadata) to BigQuery</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h3 id="cloud-dataproc">Cloud Dataproc</h3>
+<ul>
+<li>Managed <strong>Spark and Hadoop</strong> service:
+<ul>
+<li>Variety of jobs are supported
+<ul>
+<li>Spark, PySpark, SparkR, Hive, SparkSQL, Pig, Hadoop</li>
+</ul>
+</li>
+<li>Perform complex batch processing</li>
+</ul>
+</li>
+<li><strong>Multiple Cluster Modes</strong>:
+<ul>
+<li>Single Node / Standard / High Availability (3 masters)</li>
+<li>Use regular / preemptible VMs</li>
+</ul>
+</li>
+<li>Use case: Move your Hadoop and Spark clusters to the cloud
+<ul>
+<li>Perform your machine learning and AI development using open source frameworks</li>
+</ul>
+</li>
+<li>(REMEMBER) Cloud Dataproc is a data analysis platform
+<ul>
+<li>You can export cluster configuration but NOT data</li>
+</ul>
+</li>
+<li>(ALTERNATIVE) BigQuery - When you run SQL queries on Petabytes
+<ul>
+<li>Go for Cloud Dataproc when you need more than queries
+(e.g. Complex batch processing Machine Learning and AI workloads)</li>
+</ul>
+</li>
+</ul>
+<h1 id="section-27">Section 27</h1>
+<h3 id="data-lifecycle">Data Lifecycle</h3>
+<ul>
+<li>Four Steps:
+<ol>
+<li>Ingest: Stream or batch ingest</li>
+<li>Store: Durably and cost efficiently store data in a convenient format</li>
+<li>Process and analysis: Convert data to information (normalization or aggregations)</li>
+<li>Explore and visualize: Flexibility to play with data/information. Get and share insights</li>
+</ol>
+</li>
+</ul>
+<h3 id="data-lifecycle---1---ingest">Data Lifecycle - 1 - Ingest</h3>
+<ul>
+<li>Streaming: Pub/Sub</li>
+<li>Batch: Storage Transfer Service, BigQuery Transfer Service, Transfer Appliance, gsutil etc</li>
+<li>Database migration: Migrate data from other sources to Google Cloud
+<ul>
+<li>Data Migration Service (Simplifying migrations to Cloud SQL)</li>
+<li>Batch transfer to Cloud Storage</li>
+<li>Load data into database from Cloud Storage using Dataflow</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-lifecycle---2---store">Data Lifecycle - 2 - Store</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Storage</td>
+<td>Object Storage (unstructured data)</td>
+</tr>
+<tr>
+<td>Cloud SQL</td>
+<td>Managed MySQL, PostgreSQL, and MS SQL Server databases<!-- raw HTML omitted -->Relational, pre-defined schema, strong transactions, regional</td>
+</tr>
+<tr>
+<td>Cloud Spanner</td>
+<td>Horizontally scalable relational database<!-- raw HTML omitted -->Relational, pre-defined schema, strong transactions, high availability, and global scale</td>
+</tr>
+<tr>
+<td>Cloud Firestore</td>
+<td>Flexible, scalable, transactional NoSQL database</td>
+</tr>
+<tr>
+<td>Cloud Bigtable</td>
+<td>Managed wide-column NoSQL.  <!-- raw HTML omitted -->Petabyte scale, Real-time apps and large-scale analytical time-series workloads, single-row transactions</td>
+</tr>
+<tr>
+<td>BigQuery</td>
+<td>Managed data warehouse</td>
+</tr>
+<tr>
+<td>Custom Database</td>
+<td>Use cloud marketplace to deploy an open source database of your choice - MongoDB, Cassandra, etc.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-lifecycle---3---process-and-analysis">Data Lifecycle - 3 - Process and analysis</h3>
+<blockquote>
+<p>Row Data &gt; Actionable Information (Clean, Transform)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dataprep</td>
+<td>Clean and prepare data.  Fully managed, No-Ops.<!-- raw HTML omitted -->Usecases: Clean data on-boarded from external sources. Prepare data for ML.<!-- raw HTML omitted -->Visual approach for non programmers</td>
+</tr>
+<tr>
+<td>Cloud Data Loss Prevention</td>
+<td>Scan, discover, classify, and report on data in Cloud Storage, BigQuery, and Datastore (mask, tokenize, and transform sensitive elements)</td>
+</tr>
+<tr>
+<td>Dataflow</td>
+<td>More flexible ETL pipelines (Fully managed, No-Ops, Batch and Streaming)</td>
+</tr>
+<tr>
+<td>Dataproc</td>
+<td>Complex processing using Spark and Hadoop. <!-- raw HTML omitted -->Needs a cluster with compute engine VMs. <!-- raw HTML omitted -->Usecases: Machine learning, migrate existing Spark and Hadoop workloads</td>
+</tr>
+</tbody>
+</table>
+<h3 id="data-lifecycle---4---explore-and-visualize">Data Lifecycle - 4 - Explore and visualize</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud BigQuery</td>
+<td>Managed data warehouse, Standard SQL,<!-- raw HTML omitted --> serverless, separate storage and compute</td>
+</tr>
+<tr>
+<td>ML - pre built models</td>
+<td>Vision API, Speech-to-Text, Natural Language API, Video Intelligence API etc</td>
+</tr>
+<tr>
+<td>ML - custom models</td>
+<td>Use AI platform (based on TensorFlow)<!-- raw HTML omitted -->Use Dataflow for pre-processing</td>
+</tr>
+<tr>
+<td>Cloud Datalab</td>
+<td>Web based tool to explore, analyze and visualize data. <!-- raw HTML omitted -->Based on Jupyter notebooks (Use Python, SQL queries etc).  <!-- raw HTML omitted -->Support for popular data-science toolkits - pandas, numpy and scikit-learn</td>
+</tr>
+<tr>
+<td>Cloud Data Studio</td>
+<td>Dashboarding and visualization<!-- raw HTML omitted -->Live charts and graphs based on data in Cloud SQL, BigQuery etc</td>
+</tr>
+<tr>
+<td>Cloud Data Catalog</td>
+<td>Data discovery and metadata management<!-- raw HTML omitted -->Unified view of all datasets<!-- raw HTML omitted -->Tag sensitive data using Cloud Data Loss Prevention (DLP)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="big-data-and-analytics-in-gcp">Big Data and Analytics in GCP</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pub/Sub</td>
+<td>Foundation for stream analytics and event-driven systems</td>
+</tr>
+<tr>
+<td>BigQuery</td>
+<td>Serverless data warehouse to analyze petabytes of data.  Scale storage and compute separately.</td>
+</tr>
+<tr>
+<td>Google Data Studio</td>
+<td>Managed visual analytics service</td>
+</tr>
+<tr>
+<td>Dataflow</td>
+<td>Data pipelines for (Stream + Batch) use cases</td>
+</tr>
+<tr>
+<td>Dataproc</td>
+<td>Managed Apache Spark and Apache Hadoop clusters</td>
+</tr>
+<tr>
+<td>Dataprep</td>
+<td>Clean and prepare data (structured and unstructured)</td>
+</tr>
+<tr>
+<td>Datalab</td>
+<td>Explore, analyze and visualize data on Jupyter notebooks (use python, SQL queries etc).  <!-- raw HTML omitted -->Integrates well with BigQuery</td>
+</tr>
+<tr>
+<td>Cloud Composer</td>
+<td>Managed workflow orchestration service<!-- raw HTML omitted -->Create pipelines across clouds and on-premises data centers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="heading-1">&hellip;</h3>
+<p>&hellip;</p>
 <p>Section 28</p>
+<p>252</p>
 <p>Section 29</p>
+<p>257</p>
 <p>Section 30</p>
+<p>270</p>
 <p>Section 31</p>
+<p>278</p>
 <p>Section 32</p>
+<p>281</p>
 <p>Section 33</p>
+<p>284</p>
 <p>Section 34</p>
+<p>298</p>
 <p>Section 35</p>
+<p>310</p>
 <p>Section 36</p>
+<p>315</p>
 <p>Section 37</p>
+<p>325</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -548,7 +2222,7 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-hashtag="google_cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-title="Cloud_architect_GCP 🚧"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-hashtag="google_cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-title="Cloud architect GCP 🚧"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>

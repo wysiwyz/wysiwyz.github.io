@@ -21,12 +21,11 @@ squash
 將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
 Voilà! 原本的兩個commits合併成一個惹！
 git commit amend 可修改最近一筆local端本分支的 msg
-Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用" />
+Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt; ↖ [j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wysiwyz.github.io/posts/git_bash_cmds/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-03-16T14:20:15+08:00" />
 <meta property="article:modified_time" content="2023-03-16T14:20:15+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Git Bash - some awesome commands"/>
 <meta name="twitter:description" content="紀錄一些 git bash 指令
@@ -45,7 +44,7 @@ squash
 將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
 Voilà! 原本的兩個commits合併成一個惹！
 git commit amend 可修改最近一筆local端本分支的 msg
-Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用"/>
+Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt; ↖ [j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用"/>
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/git_bash_cmds/" /><link rel="prev" href="http://wysiwyz.github.io/posts/javascript_2018/" /><link rel="next" href="http://wysiwyz.github.io/posts/native_cloud/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -339,7 +338,7 @@ Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]
 <p>想要回到過去的話，只要複製line# 3的commit_id，再執行以下作法其中一個</p>
 <ul>
 <li><code>git reset</code></li>
-<li><code>git branch happy-ending &lt;another_cmt_id&gt;</code> 
+<li><code>git branch happy-ending &lt;another_cmt_id&gt;</code>
 開新的分支</li>
 </ul>
 <h5 id="example_2---使用git-reflog之術復原已刪除的分支-featurelogin">Example_2 - 使用<code>git reflog</code>之術復原已刪除的分支 feature/login</h5>

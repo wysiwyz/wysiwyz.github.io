@@ -3,9 +3,33 @@
         <title>Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate>
             <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
+    <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
+    <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_06_linux/</guid>
+    <description><![CDATA[Shell Script 與排程
+Linux 安全應用演練及總複習
+shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
+Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10.]]></description>
+</item>
+<item>
+    <title>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</title>
+    <link>http://wysiwyz.github.io/posts/lesson_05_linux/</link>
+    <pubDate>Sat, 15 Apr 2023 09:10:47 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_05_linux/</guid>
+    <description><![CDATA[Log Server 實作
+MariaDB 權限與加密, nmap 檢測工具介紹
+User ID Report
+aureport -u -i --failed | less 1.Write message to syslog BIOS/UEF ➡ grub2 ➡ kernel ➡ systemd ➡ journalctl
+rsyslog : 如果選 minimal installation，err不會由rsyslog接，改由journalctl接error接收 將訊息寫入系統紀錄中 @Server
+1 root# logger hello World 1 root# tail /var/log/messages 1 root# journalctl 1 root# journalctl --since &#34;2023-04-15&#34; 1 root# reboot 將journalctl紀錄持久化 推書時間: 實戰Linux系統數位鑑識 (江湖海) (Practical Linux Forensics: A guide for digital investigators, by Bruce Nikkel)]]></description>
+</item>
+<item>
     <title>JavaScript 常見內建方法</title>
     <link>http://wysiwyz.github.io/posts/javascript_functions/</link>
     <pubDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</pubDate>
@@ -77,7 +101,7 @@ B. Dr.]]></description>
 劇情 鼓勵自己 常世裡的燦爛星空 渴望得到鈴芽關愛的大臣白貓🥰🤍 戲份不多但是很帥很成熟的大黑貓 撫養外甥女鈴芽12年的姨 念咒語之前，要想著這片土地上孕育的人與情 2011/3/11的地震到現在十二年了ಥ_ಥ 勇敢無畏的高中女生 特效 蚯蚓的各種型態 從地面向上蒸發的金色光束 鑰匙旁飄散的藍色雲絲光 ]]></description>
 </item>
 <item>
-    <title>Cloud_architect_GCP 🚧</title>
+    <title>Cloud architect GCP 🚧</title>
     <link>http://wysiwyz.github.io/posts/cloud_architect_gcp/</link>
     <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
     <author>celine</author>
@@ -104,33 +128,6 @@ umount - 卸載
 1 2 3 4 5 6 7 8 lsblk /dev/sdb cryptsetup luksFormat /dev/sdb cryptsetup luksOpen /dev/sdb secDisk mkfs.xfs /dev/mapper/secDisk mount /dev/mapper/secDisk /mnt touch /mnt/myfile umount /mnt cryptsetup close secDisk Dump/Status more cmds 使用插槽 刪除插槽 memcached的使用
 Luks資料加密架構與資料救援方法
 Linux檔案加密_GPG_GnuPG]]></description>
-</item>
-<item>
-    <title>Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP</title>
-    <link>http://wysiwyz.github.io/posts/lesson_02_linux/</link>
-    <pubDate>Fri, 17 Mar 2023 16:44:11 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_02_linux/</guid>
-    <description><![CDATA[請假六小時，來補課arrrhh
-何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
-UGO User Group Other
-由三組位元所組成（八進制）
-l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
-❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
-允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
-SUID &amp; SGID &amp; SBIT
-檔案系統 特殊權限 1. SetUID nosuid 在根目錄建立一個secure folder，設定成777，查看/secure/目錄的權限，]]></description>
-</item>
-<item>
-    <title>Cloud native - the next gen</title>
-    <link>http://wysiwyz.github.io/posts/native_cloud/</link>
-    <pubDate>Fri, 17 Mar 2023 14:02:55 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/native_cloud/</guid>
-    <description><![CDATA[現在沒有雲原生可是不行的，了解一下下
-Cloud native 公有雲、私有雲、混合雲 動態環境 - Node上下, stateless vs stateful 可擴展 - auto scaling (HPA) 聲明式 - ansible, terraform, K8S yaml 容器、微服務、無服務器 - K8S, OCP, Cloud Run, Cloud Function 最小化用戶的操作負擔 - auto healing (liveness, readiness) 所有的服務最好都是stateless
-Stateless vs Stateful Stateless 無狀態，每次請求都是獨立 example JWT .map() Vue/React/Angular service Deployment (K8S) Stateful 有狀態，每次請求與過去相關 example Session .reduce() MySQL Volume/StatefulSet(K8S) 聲明式 - Ansible 聲明式 - Terraform CKA Kubernetes 認證使用命令式 kubectl run nginx -image=nginx
-實務上用聲明式]]></description>
 </item>
 </channel>
 </rss>

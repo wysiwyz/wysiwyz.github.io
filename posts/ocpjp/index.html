@@ -11,7 +11,6 @@
 <meta property="og:url" content="http://wysiwyz.github.io/posts/ocpjp/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-11-08T15:00:44+08:00" />
 <meta property="article:modified_time" content="2022-11-08T15:00:44+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Oracle Certified Professional Java PG"/>
 <meta name="twitter:description" content="OCPJP pro to be or else &hellip; no else
@@ -213,7 +212,7 @@
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">timeTravel</span> <span class="o">=</span> <span class="n">time</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="kd">class</span> <span class="nc">Car</span> <span class="o">{</span> <span class="c1">// line n1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">speed</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">                <span class="n">value</span> <span class="o">=</span> <span class="n">distance</span> <span class="o">/</span> <span class="n">timeTravel</span><span class="o">;</span> <span class="c1">// line n2
@@ -232,8 +231,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Vehicle</span> <span class="n">vehicle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vehicle</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">vehicle</span><span class="o">.</span><span class="na">increSpeed</span><span class="o">(</span><span class="n">60</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Vehicle</span> <span class="n">vehicle</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Vehicle</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">vehicle</span><span class="o">.</span><span class="na">increSpeed</span><span class="o">(</span><span class="mi">60</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>What is the result?</p>
@@ -297,8 +296,8 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Book</span> <span class="n">javaPg1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Book</span><span class="o">(</span><span class="n">101</span><span class="o">,</span> <span class="s">&#34;Java PG&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Book</span> <span class="n">javaPg2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Book</span><span class="o">(</span><span class="n">102</span><span class="o">,</span> <span class="s">&#34;Java PG&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Book</span> <span class="n">javaPg1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Book</span><span class="o">(</span><span class="mi">101</span><span class="o">,</span> <span class="s">&#34;Java PG&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Book</span> <span class="n">javaPg2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Book</span><span class="o">(</span><span class="mi">102</span><span class="o">,</span> <span class="s">&#34;Java PG&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">javaPg1</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">javaPg2</span><span class="o">));</span> <span class="c1">// line n2
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
 </span></span></code></pre></td></tr></table>
@@ -358,9 +357,9 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">doRegister</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UserException</span><span class="o">,</span> <span class="n">AgeOutOfLimitException</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">6</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">name</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">UserException</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="n">60</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">60</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="k">throw</span> <span class="k">new</span> <span class="n">AgeOutOfLimitException</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;User is registered.&#34;</span><span class="o">);</span>
@@ -369,7 +368,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">UserException</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">App</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">App</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="na">doRegister</span><span class="o">(</span><span class="s">&#34;Matthew&#34;</span><span class="o">,</span> <span class="n">60</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="na">doRegister</span><span class="o">(</span><span class="s">&#34;Matthew&#34;</span><span class="o">,</span> <span class="mi">60</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
@@ -580,9 +579,9 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">valentinesDay</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2022</span><span class="o">,</span> <span class="n">Month</span><span class="o">.</span><span class="na">FEBRUARY</span><span class="o">,</span> <span class="n">14</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">nextYear</span> <span class="o">=</span> <span class="n">valentinesDay</span><span class="o">.</span><span class="na">plusYears</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">nextYear</span><span class="o">.</span><span class="na">plusDays</span><span class="o">(</span><span class="n">15</span><span class="o">);</span>  <span class="c1">// line n1
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">valentinesDay</span> <span class="o">=</span> <span class="n">LocalDate</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2022</span><span class="o">,</span> <span class="n">Month</span><span class="o">.</span><span class="na">FEBRUARY</span><span class="o">,</span> <span class="mi">14</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">LocalDate</span> <span class="n">nextYear</span> <span class="o">=</span> <span class="n">valentinesDay</span><span class="o">.</span><span class="na">plusYears</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">nextYear</span><span class="o">.</span><span class="na">plusDays</span><span class="o">(</span><span class="mi">15</span><span class="o">);</span>  <span class="c1">// line n1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">nextYear</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -611,8 +610,8 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">depart</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2015</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">15</span><span class="o">,</span> <span class="n">3</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;UTC-7&#34;</span><span class="o">));</span>
-</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">arrive</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">2015</span><span class="o">,</span> <span class="n">1</span><span class="o">,</span> <span class="n">15</span><span class="o">,</span> <span class="n">9</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;UTC-5&#34;</span><span class="o">));</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">depart</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2015</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">15</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;UTC-7&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">ZonedDateTime</span> <span class="n">arrive</span> <span class="o">=</span> <span class="n">ZonedDateTime</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">2015</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">15</span><span class="o">,</span> <span class="mi">9</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">ZoneId</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">&#34;UTC-5&#34;</span><span class="o">));</span>
 </span></span><span class="line"><span class="cl"><span class="kt">long</span> <span class="n">hrs</span> <span class="o">=</span> <span class="n">ChronoUnit</span><span class="o">.</span><span class="na">HOURS</span><span class="o">.</span><span class="na">between</span><span class="o">(</span><span class="n">depart</span><span class="o">,</span> <span class="n">arrive</span><span class="o">);</span>    <span class="c1">//line n1
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Travel time is &#34;</span> <span class="o">+</span> <span class="n">hrs</span> <span class="o">+</span> <span class="s">&#34; hours&#34;</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
@@ -724,7 +723,7 @@
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">Path</span> <span class="n">p1</span> <span class="o">=</span> <span class="n">Paths</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;/Pics/MyPic.jpeg&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">p1</span><span class="o">.</span><span class="na">getNameCount</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">        <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">p1</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="n">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">p1</span><span class="o">.</span><span class="na">getName</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">        <span class="o">+</span> <span class="s">&#34;:&#34;</span> <span class="o">+</span> <span class="n">p1</span><span class="o">.</span><span class="na">getFileName</span><span class="o">());</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
@@ -778,8 +777,8 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">100</span><span class="o">,</span> <span class="n">Robin</span><span class="o">,</span> <span class="n">HR</span>
-</span></span><span class="line"><span class="cl"><span class="n">101</span><span class="o">,</span> <span class="n">Peter</span><span class="o">,</span> <span class="n">HR</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="mi">100</span><span class="o">,</span> <span class="n">Robin</span><span class="o">,</span> <span class="n">HR</span>
+</span></span><span class="line"><span class="cl"><span class="mi">101</span><span class="o">,</span> <span class="n">Peter</span><span class="o">,</span> <span class="n">HR</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>B. A compilation error occurs at line n1.</p>
@@ -791,9 +790,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">100</span><span class="o">,</span> <span class="n">Robin</span><span class="o">,</span> <span class="n">HR</span>
-</span></span><span class="line"><span class="cl"><span class="n">101</span><span class="o">,</span> <span class="n">Peter</span><span class="o">,</span> <span class="n">HR</span>
-</span></span><span class="line"><span class="cl"><span class="n">200</span><span class="o">,</span> <span class="n">Mary</span><span class="o">,</span> <span class="n">AdminServices</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="mi">100</span><span class="o">,</span> <span class="n">Robin</span><span class="o">,</span> <span class="n">HR</span>
+</span></span><span class="line"><span class="cl"><span class="mi">101</span><span class="o">,</span> <span class="n">Peter</span><span class="o">,</span> <span class="n">HR</span>
+</span></span><span class="line"><span class="cl"><span class="mi">200</span><span class="o">,</span> <span class="n">Mary</span><span class="o">,</span> <span class="n">AdminServices</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>D.</p>
@@ -804,9 +803,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">100</span><span class="o">,</span> <span class="n">Robin</span><span class="o">,</span> <span class="n">HR</span>
-</span></span><span class="line"><span class="cl"><span class="n">200</span><span class="o">,</span> <span class="n">Mary</span><span class="o">,</span> <span class="n">AdminServices</span>
-</span></span><span class="line"><span class="cl"><span class="n">101</span><span class="o">,</span> <span class="n">Peter</span><span class="o">,</span> <span class="n">HR</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="mi">100</span><span class="o">,</span> <span class="n">Robin</span><span class="o">,</span> <span class="n">HR</span>
+</span></span><span class="line"><span class="cl"><span class="mi">200</span><span class="o">,</span> <span class="n">Mary</span><span class="o">,</span> <span class="n">AdminServices</span>
+</span></span><span class="line"><span class="cl"><span class="mi">101</span><span class="o">,</span> <span class="n">Peter</span><span class="o">,</span> <span class="n">HR</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></blockquote>
@@ -837,14 +836,14 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RateOfInterest</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">rateOfInterest</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">rateOfInterest</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">accountType</span> <span class="o">=</span> <span class="s">&#34;LOAN&#34;</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">switch</span> <span class="o">(</span><span class="n">accountType</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="s">&#34;RD&#34;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">                <span class="n">rateOfInterest</span> <span class="o">=</span> <span class="n">5</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">rateOfInterest</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">case</span> <span class="s">&#34;FD&#34;</span><span class="o">:</span>
-</span></span><span class="line"><span class="cl">                <span class="n">rateOfInterest</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">rateOfInterest</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">default</span><span class="o">:</span>
 </span></span><span class="line"><span class="cl">                <span class="k">assert</span> <span class="kc">false</span><span class="o">:</span> <span class="s">&#34;No interest for this account&#34;</span><span class="o">;</span> <span class="c1">// line n1
@@ -923,9 +922,9 @@
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Counter</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="n">1</span><span class="o">)</span> <span class="o">:</span> <span class="s">&#34;Invalid Denominator&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">assert</span> <span class="o">(</span><span class="n">b</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="o">)</span> <span class="o">:</span> <span class="s">&#34;Invalid Denominator&#34;</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
@@ -976,8 +975,8 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Moveable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">animal</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Running&#34;</span> <span class="o">+</span> <span class="n">n</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">animal</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">animal</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="n">20</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">animal</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">animal</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>B. Moveable can be used as below:</p>
@@ -988,9 +987,9 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Moveable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">animal</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="n">10</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl"><span class="n">animal</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>  <span class="c1">// run 方法不能有回傳值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">animal</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="n">20</span><span class="o">);</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Moveable</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">animal</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">10</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">animal</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>  <span class="c1">// run 方法不能有回傳值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">animal</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>C. Moveable can be used as below:</p>
@@ -1002,8 +1001,8 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Moveable</span> <span class="n">animal</span> <span class="o">=</span> <span class="o">(</span><span class="n">Integer</span> <span class="n">n</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">animal</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">100</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">Moveable</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="n">20</span><span class="o">);</span>  <span class="c1">// walk 方法不能用這樣的方式呼叫
+</span></span><span class="line"><span class="cl"><span class="n">animal</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="mi">100</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Moveable</span><span class="o">.</span><span class="na">walk</span><span class="o">(</span><span class="mi">20</span><span class="o">);</span>  <span class="c1">// walk 方法不能用這樣的方式呼叫
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>D. Movable cannot be used in a lambda expression.</p>
@@ -1055,7 +1054,7 @@ Moveable 介面的預設方法，只能在實體化出 Moveable 介面的物件�
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="kd">static</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getCount</span><span class="o">()</span> <span class="o">{</span>
@@ -1160,8 +1159,8 @@ count 變數在建構子被呼叫時會加 1，App 類別 main 方法中一共�
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">TextBook</span><span class="o">&gt;</span> <span class="n">textBooks</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">TextBook</span><span class="o">(</span><span class="s">&#34;Beginning with Java&#34;</span><span class="o">,</span> <span class="n">2</span><span class="o">),</span> 
-</span></span><span class="line"><span class="cl">                                         <span class="k">new</span> <span class="n">TextBook</span><span class="o">(</span><span class="s">&#34;A Guide to Java Journey&#34;</span><span class="o">,</span> <span class="n">3</span><span class="o">));</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">TextBook</span><span class="o">&gt;</span> <span class="n">textBooks</span> <span class="o">=</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="k">new</span> <span class="n">TextBook</span><span class="o">(</span><span class="s">&#34;Beginning with Java&#34;</span><span class="o">,</span> <span class="mi">2</span><span class="o">),</span> 
+</span></span><span class="line"><span class="cl">                                         <span class="k">new</span> <span class="n">TextBook</span><span class="o">(</span><span class="s">&#34;A Guide to Java Journey&#34;</span><span class="o">,</span> <span class="mi">3</span><span class="o">));</span>
 </span></span><span class="line"><span class="cl"><span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">textBooks</span><span class="o">,</span> <span class="k">new</span> <span class="n">TextBook</span><span class="o">());</span>
 </span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">textBooks</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
@@ -1347,7 +1346,7 @@ count 變數在建構子被呼叫時會加 1，App 類別 main 方法中一共�
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">11</span><span class="o">-</span><span class="n">Nov</span><span class="o">-</span><span class="n">2022</span> <span class="o">-</span> <span class="n">Executed</span> <span class="n">successfully</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="mi">11</span><span class="o">-</span><span class="n">Nov</span><span class="o">-</span><span class="mi">2022</span> <span class="o">-</span> <span class="n">Executed</span> <span class="n">successfully</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>What is the result?</p>
@@ -1417,10 +1416,10 @@ count 變數在建構子被呼叫時會加 1，App 類別 main 方法中一共�
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">books</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeMap</span><span class="o">&lt;&gt;();</span>
-</span></span><span class="line"><span class="cl"><span class="n">books</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">1007</span><span class="o">,</span> <span class="s">&#34;A&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">books</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">1002</span><span class="o">,</span> <span class="s">&#34;C&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">books</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">1001</span><span class="o">,</span> <span class="s">&#34;B&#34;</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">books</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">1003</span><span class="o">,</span> <span class="s">&#34;B&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">books</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1007</span><span class="o">,</span> <span class="s">&#34;A&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">books</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1002</span><span class="o">,</span> <span class="s">&#34;C&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">books</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1001</span><span class="o">,</span> <span class="s">&#34;B&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">books</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="mi">1003</span><span class="o">,</span> <span class="s">&#34;B&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">books</span><span class="o">);</span>
 </span></span></code></pre></td></tr></table>
 </div>

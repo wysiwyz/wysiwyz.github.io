@@ -10,7 +10,6 @@
 <meta property="og:url" content="http://wysiwyz.github.io/posts/encrypt_decrypt/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-02-01T14:01:22+08:00" />
 <meta property="article:modified_time" content="2023-02-01T14:01:22+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Encrypt, Decrypt"/>
 <meta name="twitter:description" content="用途 怕被別人看見 弄成被看到也沒關係 [加密] 想給特定人看 避免對方也看不懂 [解密] 分類 類型 對稱加解密 非對稱加解密 實例 AES、3DES RSA、ECDSA &hellip; 加解密方式寫在同一張紙上[加解密方式] public key 加解密方式寫在不同紙上[加密方式] public key &hellip; client get by calling api[解密方式] private key &hellip; saved at Server side 概論 簡單、速度快、安全性低 複雜速度慢、安全性較高 特色 1. Client 和 Server 用同一把密鑰加解密2. AES/ {ECB/CBC...}/PaddingPattern 應用 1. 對大量明文的加密2. Https 的 SessionKey Appendix AES 加密結構說明 金鑰長度(bit) : AES-128 AES-192 AES-256 區塊間加密方式 : ECB - 可以被密推 CBC - 亂數 initial value 初始值 CFB - 亂數 initial value 初始值 OFB CTR 區塊填充方式: NoPadding - 不建議、會影響加密強度 ZeroBytePadding - 缺兩個填入 0 PKCS5Padding PKCS7Padding Example: AES-256/CBC/PKCS7Padding"/>

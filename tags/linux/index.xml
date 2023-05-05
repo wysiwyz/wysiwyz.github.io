@@ -3,7 +3,31 @@
         <title>linux - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/linux/</link>
         <description>linux - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 08 Apr 2023 09:15:16 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
+    <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
+    <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_06_linux/</guid>
+    <description><![CDATA[Shell Script 與排程
+Linux 安全應用演練及總複習
+shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
+Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10.]]></description>
+</item>
+<item>
+    <title>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</title>
+    <link>http://wysiwyz.github.io/posts/lesson_05_linux/</link>
+    <pubDate>Sat, 15 Apr 2023 09:10:47 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_05_linux/</guid>
+    <description><![CDATA[Log Server 實作
+MariaDB 權限與加密, nmap 檢測工具介紹
+User ID Report
+aureport -u -i --failed | less 1.Write message to syslog BIOS/UEF ➡ grub2 ➡ kernel ➡ systemd ➡ journalctl
+rsyslog : 如果選 minimal installation，err不會由rsyslog接，改由journalctl接error接收 將訊息寫入系統紀錄中 @Server
+1 root# logger hello World 1 root# tail /var/log/messages 1 root# journalctl 1 root# journalctl --since &#34;2023-04-15&#34; 1 root# reboot 將journalctl紀錄持久化 推書時間: 實戰Linux系統數位鑑識 (江湖海) (Practical Linux Forensics: A guide for digital investigators, by Bruce Nikkel)]]></description>
+</item>
+<item>
     <title>Lesson 04: Linux 筆記 - CA憑證、SELinux</title>
     <link>http://wysiwyz.github.io/posts/lesson_04_linux/</link>
     <pubDate>Sat, 08 Apr 2023 09:15:16 &#43;0800</pubDate>
@@ -68,7 +92,7 @@ AAA, Triple A - 認證授權紀錄
 基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC
 &mdash; ntpdate 舊時代的工具，別用
 Chrony_NTP_lab
-Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172.server desktopXX iburst systemctl restart chronydsystemctl enable chronydsystemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
+Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172. server desktopXX iburst systemctl restart chronyd systemctl enable chronyd systemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
 另外一個設定時區方式 podman.io (官方比較少推)
 兩種設定方式 官方主推指令方式 getent group wheet
 設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作]]></description>

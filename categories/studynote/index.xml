@@ -3,7 +3,31 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
+    <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
+    <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_06_linux/</guid>
+    <description><![CDATA[Shell Script 與排程
+Linux 安全應用演練及總複習
+shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
+Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10.]]></description>
+</item>
+<item>
+    <title>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</title>
+    <link>http://wysiwyz.github.io/posts/lesson_05_linux/</link>
+    <pubDate>Sat, 15 Apr 2023 09:10:47 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/lesson_05_linux/</guid>
+    <description><![CDATA[Log Server 實作
+MariaDB 權限與加密, nmap 檢測工具介紹
+User ID Report
+aureport -u -i --failed | less 1.Write message to syslog BIOS/UEF ➡ grub2 ➡ kernel ➡ systemd ➡ journalctl
+rsyslog : 如果選 minimal installation，err不會由rsyslog接，改由journalctl接error接收 將訊息寫入系統紀錄中 @Server
+1 root# logger hello World 1 root# tail /var/log/messages 1 root# journalctl 1 root# journalctl --since &#34;2023-04-15&#34; 1 root# reboot 將journalctl紀錄持久化 推書時間: 實戰Linux系統數位鑑識 (江湖海) (Practical Linux Forensics: A guide for digital investigators, by Bruce Nikkel)]]></description>
+</item>
+<item>
     <title>JavaScript 常見內建方法</title>
     <link>http://wysiwyz.github.io/posts/javascript_functions/</link>
     <pubDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</pubDate>
@@ -62,7 +86,7 @@ B. Dr.]]></description>
 使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.]]></description>
 </item>
 <item>
-    <title>Cloud_architect_GCP 🚧</title>
+    <title>Cloud architect GCP 🚧</title>
     <link>http://wysiwyz.github.io/posts/cloud_architect_gcp/</link>
     <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
     <author>celine</author>
@@ -105,41 +129,6 @@ l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwx
 允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
 SUID &amp; SGID &amp; SBIT
 檔案系統 特殊權限 1. SetUID nosuid 在根目錄建立一個secure folder，設定成777，查看/secure/目錄的權限，]]></description>
-</item>
-<item>
-    <title>Cloud native - the next gen</title>
-    <link>http://wysiwyz.github.io/posts/native_cloud/</link>
-    <pubDate>Fri, 17 Mar 2023 14:02:55 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/native_cloud/</guid>
-    <description><![CDATA[現在沒有雲原生可是不行的，了解一下下
-Cloud native 公有雲、私有雲、混合雲 動態環境 - Node上下, stateless vs stateful 可擴展 - auto scaling (HPA) 聲明式 - ansible, terraform, K8S yaml 容器、微服務、無服務器 - K8S, OCP, Cloud Run, Cloud Function 最小化用戶的操作負擔 - auto healing (liveness, readiness) 所有的服務最好都是stateless
-Stateless vs Stateful Stateless 無狀態，每次請求都是獨立 example JWT .map() Vue/React/Angular service Deployment (K8S) Stateful 有狀態，每次請求與過去相關 example Session .reduce() MySQL Volume/StatefulSet(K8S) 聲明式 - Ansible 聲明式 - Terraform CKA Kubernetes 認證使用命令式 kubectl run nginx -image=nginx
-實務上用聲明式]]></description>
-</item>
-<item>
-    <title>Git Bash - some awesome commands</title>
-    <link>http://wysiwyz.github.io/posts/git_bash_cmds/</link>
-    <pubDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/git_bash_cmds/</guid>
-    <description><![CDATA[紀錄一些 git bash 指令
-git log -oneline 跟sourceTree_History_Description欄位基本一樣
-git log 跟樓上一樣, 但多了些author/date訊息
-Interactive Rebase 可用來修改local端的commit message 刪除local端commit 整理local端commits 合併多個commits為一個 將一個commit拆分為多個commits 注意：會重寫commit history，產生新的hash ID(i.e. new commit)
-所以不能對已經push上remote repository的commits執行interactive rebase
-git rebase -i HEAD~3
-rebase interactive head till the three
-要回去幾個節點之前? base commit是哪個?
-copy hash id 9a23775 Head minus 3 接著會出現一個editor window，可控制head+前兩個commit
-reword
-不直接改commit msg，而是將pick改成reword，存檔關閉
-接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc+:wq)
-squash
-將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
-Voilà! 原本的兩個commits合併成一個惹！
-git commit amend 可修改最近一筆local端本分支的 msg
-Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用]]></description>
 </item>
 </channel>
 </rss>

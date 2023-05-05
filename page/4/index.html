@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.104.3" />
+	<meta name="generator" content="Hugo 0.111.3">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
@@ -9,7 +9,6 @@
 <meta property="og:description" content="An ordinary space for storing and groups pieces of articles." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://wysiwyz.github.io/" /><meta property="og:site_name" content="Ich bin yiwen." />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ich bin yiwen."/>
 <meta name="twitter:description" content="An ordinary space for storing and groups pieces of articles."/>
@@ -54,6 +53,18 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/encrypt_decrypt/">Encrypt, Decrypt</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-01">2023-02-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">用途 怕被別人看見 弄成被看到也沒關係 [加密] 想給特定人看 避免對方也看不懂 [解密] 分類 類型 對稱加解密 非對稱加解密 實例 AES、3DES RSA、ECDSA &hellip; 加解密方式寫在同一張紙上[加解密方式] public key 加解密方式寫在不同紙上[加密方式] public key &hellip; client get by calling api[解密方式] private key &hellip; saved at Server side 概論 簡單、速度快、安全性低 複雜速度慢、安全性較高 特色 1. Client 和 Server 用同一把密鑰加解密2. AES/ {ECB/CBC...}/PaddingPattern 應用 1. 對大量明文的加密2. Https 的 SessionKey Appendix AES 加密結構說明 金鑰長度(bit) : AES-128 AES-192 AES-256 區塊間加密方式 : ECB - 可以被密推 CBC - 亂數 initial value 初始值 CFB - 亂數 initial value 初始值 OFB CTR 區塊填充方式: NoPadding - 不建議、會影響加密強度 ZeroBytePadding - 缺兩個填入 0 PKCS5Padding PKCS7Padding Example: AES-256/CBC/PKCS7Padding</div><div class="post-footer">
+        <a href="/posts/encrypt_decrypt/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ocpjp_11/">1Z0-819 曾師筆記 (1/duology)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-12-13">2022-12-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content"># 03 OOP 程式設計思維 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 01 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
+java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
+程式碼附檔名必須為 .java，否則編譯器將拒絕編譯 class 檔案內可以有多個沒有 public 修飾的 class，檔案名稱不一定要與那些 classes 名稱相同。編譯時，檔案內宣告的每一個 class 都會各自產生附檔名為 .</div><div class="post-footer">
+        <a href="/posts/ocpjp_11/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ocajp/">Oracle Certified Associate Java PG</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-12-04">2022-12-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">OCAJP 紀錄題目的地方&hellip;
 1. Hello Java 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 public class HelloJava { public static void main(String[] args) { StringBuilder message = new StringBuilder(&#34;hello java!&#34;); int pos = 0; try { for (pos = 0; pos &lt; 12; pos++) { switch (message.charAt(pos)) { case &#39;a&#39;: case &#39;e&#39;: case &#39;o&#39;: String uc = Character.toString(message.charAt(pos)).toUpperCase(); message.</div><div class="post-footer">
@@ -95,23 +106,6 @@ Read good C++ textbooks again and again Learn from practice Work in related fiel
 Chapter 2 宣告敘述與變數 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 #include &lt;iostream&gt; // a PREPROCESSOR directive /* a C-style comment */ int main() { // function header { start of function body using namespace std; // make difinitions visible cout &lt;&lt; &#34;Come up and C++ me some time.</div><div class="post-footer">
         <a href="/posts/see_primer_plus/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/secondpost/">Secondpost</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-14">2022-10-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">This is the second post.
-在 double short codes 裡面寫 markdown 語法不管用， 如果要加 markdown 語法的話，要把 {{&lt; &gt;}} 改成 {{% %}}
-**Testing doubly short code.** Testing doubly short code.
-short code</div><div class="post-footer">
-        <a href="/posts/secondpost/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/firstpost/">Firstpost</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-14">2022-10-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Front matter - meta data about this piece of data key-value pairs that gives us information about this file
-can be written in three languages: yaml, toml, json
-default language for front matter is yaml
-What does a toml-style front matter look like?
-1 2 3 4 5 +++ title = &#34;FirstPost&#34; date = YYYY-MM-ddTHH:mm:ss draft = true +++ versus a yaml-style front matter
-1 2 3 4 5 --- title: &#34;firstPost&#34; date: YYYY-MM-ddTHH:mm:ss draft: true --- Create custom front matter such as</div><div class="post-footer">
-        <a href="/posts/firstpost/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/frontmatter/">frontMatter</a>,&nbsp;<a href="/tags/taxonomy/">Taxonomy</a>,&nbsp;<a href="/tags/hugo/">Hugo</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

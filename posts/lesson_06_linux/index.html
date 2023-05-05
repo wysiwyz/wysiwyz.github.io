@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Lesson 06: Linux 筆記 - Shell Script! final - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Lesson 06: Linux 筆記 - Shell Script! final" />
+<meta property="og:description" content="Shell Script 與排程
+Linux 安全應用演練及總複習
+shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
+Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/lesson_06_linux/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-22T09:10:52+08:00" />
+<meta property="article:modified_time" content="2023-04-22T09:10:52+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lesson 06: Linux 筆記 - Shell Script! final"/>
+<meta name="twitter:description" content="Shell Script 與排程
+Linux 安全應用演練及總複習
+shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
+Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10."/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/lesson_06_linux/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_05_linux/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Lesson 06: Linux 筆記 - Shell Script! final",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/lesson_06_linux\/"
+        },"genre": "posts","keywords": "linux, security","wordcount":  1121 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/lesson_06_linux\/","datePublished": "2023-04-22T09:10:52+08:00","dateModified": "2023-04-22T09:10:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Lesson 06: Linux 筆記 - Shell Script! final</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-22">2023-04-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1121 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/posts/lesson_06_linux/" class="leancloud_visitors" data-flag-title="Lesson 06: Linux 筆記 - Shell Script! final">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#shebang-定義">shebang 定義</a></li>
+        <li><a href="#執行script">執行Script</a></li>
+        <li><a href="#variables">VARIABLES</a></li>
+      </ul>
+    </li>
+    <li><a href="#shell-script">Shell Script</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#shell-script-猜數字">Shell Script 猜數字</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#登入告警">登入告警</a></li>
+    <li><a href="#systemd服務"><code>systemd</code>服務</a></li>
+    <li><a href="#heading"><code>$?</code></a></li>
+    <li><a href="#systemd計時器"><code>systemd</code>計時器</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#作業系統效能分析">作業系統效能分析</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>Shell Script 與排程</p>
+<p>Linux 安全應用演練及總複習</p>
+</blockquote>
+<h3 id="shebang-定義">shebang 定義</h3>
+<ul>
+<li>指定由哪一個程式進行解讀此一檔案</li>
+<li>必須放在</li>
+<li>#!/bin/bash</li>
+</ul>
+<h3 id="執行script">執行Script</h3>
+<ul>
+<li>有執行權限，可用 ./{file}執行
+<ul>
+<li><code>./myscript.sh</code></li>
+</ul>
+</li>
+<li>沒有執行權限
+<ul>
+<li><code>sh myscript.sh</code></li>
+</ul>
+</li>
+<li>執行 Script 時顯示除錯變數</li>
+</ul>
+<h3 id="variables">VARIABLES</h3>
+<ul>
+<li>開頭可以是底線或字母</li>
+<li>字串建議都用雙引號框起來，減少失誤
+<ul>
+<li><code>script = &quot;Horizon&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p>🎁</p>
+<hr>
+<h2 id="shell-script">Shell Script</h2>
+<h4 id="1-if--elif--else--fi">1. <code>if ... elif ... else ... fi</code></h4>
+<pre tabindex="0"><code class="language-shell=" data-lang="shell=">#!/bin/bash
+
+LANG=C #強制輸出的語系
+
+x=10
+
+if[ ${x} -gt 10 ]; then
+    echo &#34;x greater than 10.&#34;
+elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then
+    echo &#34; x between 0 and 10.&#34;
+else
+    echo &#34; out of range. &#34;
+fi
+</code></pre><ul>
+<li><code>-gt</code> : greater than</li>
+<li><code>-ge</code> :</li>
+<li><code>-le</code> :</li>
+<li>注意 <code>[</code> 和 <code>]</code> 的左右<strong>必須要有空白</strong>，否則會出錯</li>
+</ul>
+<h4 id="2-for--do--done">2. <code>for ... do ... done</code></h4>
+<pre tabindex="0"><code class="language-shell=" data-lang="shell=">#!/bin/bash
+
+LANG=C
+
+x=&#34;a    b    c    d    e    1    2    3&#34;
+
+for e in ${x}; do
+    if [ &#34;${e} == &#34;e&#34; ]; then
+        break
+    else
+        echo ${e}
+    fi
+done
+</code></pre><ul>
+<li>是 <code>tab</code> 鍵就會把他拆開來變成</li>
+<li><code>chmod +x for.sh</code></li>
+<li>break: 跳出迴圈
+continue: 跳過該輪</li>
+</ul>
+<h4 id="3-while--do--done">3. <code>while ... do ... done</code></h4>
+<pre tabindex="0"><code class="language-shell=" data-lang="shell=">#!/bin/bash
+
+x=10
+n=0
+
+while [${n} -le ${x} ]; do
+    echo ${n}
+    ((n++))
+done
+</code></pre><ul>
+<li>如果要當作數字作加減，必須用兩個小括號包起來</li>
+<li>做一件事情睡一秒</li>
+</ul>
+<pre tabindex="0"><code class="language-shell=" data-lang="shell=">#!/bin/bash
+
+n=o
+while true; do
+    echo ${n}
+    ((n++))
+    sleep 1
+</code></pre><h4 id="4-switch-case">4. switch case</h4>
+<ul>
+<li>switch 一個區段的表示方式 <code>;;</code></li>
+<li>default 以上皆不符合，落入此區段 <code>*)</code></li>
+<li>debug模式的指令下法:<code>sh -x ./case.sh</code></li>
+</ul>
+<pre tabindex="0"><code class="language-shell=" data-lang="shell=">#!/bin/bash
+
+LANG=C
+
+x=e
+
+case &#34;${x}&#34; in
+    a)
+        echo &#34;value of x is a.&#34;
+    ;;
+    b)
+        echo &#34;value of x is b.&#34;
+    ;;
+    c)
+        echo &#34;value of x is c.&#34;
+    ;;
+    d)
+        echo &#34;value of x is d.&#34;
+    ;;
+    *)
+        echo &#34;out of range&#34;
+    ;;
+esac
+</code></pre><h4 id="5-重複兩次以上-做成function">5. 重複兩次以上, 做成function</h4>
+<pre tabindex="0"><code class="language-shell=" data-lang="shell=">#!/bin/bash
+LANG=C
+
+function say() {
+    local w
+    w=&#34;${1}&#34;
+    // w=&#34;${1}&#34;
+    echo &#34;x: ${w}&#34;
+}
+
+x=c
+
+case ${x} in
+    a)
+        say ${x}
+    ;;
+    b)
+        say ${x}
+    ;;
+    c)
+        say ${x}
+    ;;
+    d)
+        say ${x}
+    ;;
+    *)
+        echo &#34;out of range&#34;
+    ;;
+esac
+</code></pre><hr>
+<h2 id="shell-script-猜數字">Shell Script 猜數字</h2>
+<ul>
+<li><code>shuf</code> 產生隨機輸出
+<ul>
+<li>Syntax :
+<ul>
+<li>file shuf: <code>shuf &lt;options&gt; &lt;file&gt;</code> |</li>
+<li>range shuf: <code>shuf -i &lt;LOW&gt;-&lt;HIGH&gt; &lt;options&gt;</code></li>
+<li>list shuf: <code>shuf -e &lt;option&gt;... &lt;arg&gt;</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>read</code> 讀取輸入值
+<ul>
+<li>Syntax : <code>read &lt;options&gt; &lt;arguments&gt;</code>
+** -p &lt;prompt&gt;** : Outputs the prompt string before reading user input</li>
+</ul>
+</li>
+<li><code>export</code> 引入當作檔案一部分,不會產生新的process id</li>
+</ul>
+<h4 id="需求">需求</h4>
+<ul>
+<li>Script 啟動時，提供一變數，最小為 1 最大為 100 做為猜測目標值 n。</li>
+<li>玩家每猜數字 g，若猜中直接顯示 Bingo 後離開。</li>
+<li>玩家沒猜中
+<ul>
+<li>玩家每猜數字 g，猜的數字若 &gt; 1 且 &lt; n 則最小值應設為 g。</li>
+<li>玩家每猜數字 g，猜的數字若 &gt; n 且 &lt; 100 則最大值應設為 g。</li>
+<li>重覆遊戲直到猜中。</li>
+</ul>
+</li>
+</ul>
+<h4 id="solutions">Solutions</h4>
+<!-- raw HTML omitted -->
+<h5 id="1-guessnumsh">1. guessNum.sh</h5>
+<ul>
+<li>vi
+<pre tabindex="0"><code class="language-shell=" data-lang="shell=">#!/bin/bash
+export LANG=C
+
+max=100
+min=1
+n=$(shuf -i ${min}-${max} -n1)
+g_cnt=1
+
+echo &#34;Target: ${n}&#34;
+
+while true; do
+
+    read -p &#34;Enter number: &#34; guess
+
+    if [ ${guess} -eq ${n} ]; then
+        echo &#34;Bingo!&#34;
+        echo &#34;You guess ${g_cnt} time(s).&#34;
+        exit
+    else
+
+
+        if [ ${guess} -gt ${min} ] &amp;&amp; [ ${guess} -lt ${n} ]; then
+            min=${guess}
+        fi
+        if [ ${guess} -gt ${n} ] &amp;&amp; [ ${guess} -lt ${max} ]; then
+            max=${guess}
+        fi
+
+        echo &#34;Between ${min} and ${max}.&#34;
+
+        ((g_cnt++))
+
+    fi
+done
+</code></pre></li>
+<li>cmd bash
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ chmod +x guessNum.sh
+</span></span><span class="line"><span class="cl">student$ ./guessNum.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h5 id="2-改為引用設定檔案-newguessnumsh">2. 改為引用設定檔案 newGuessNum.sh</h5>
+<ul>
+<li><code>-f</code> 辨別檔案存不存在</li>
+<li><code>-d</code> 辨別目錄存不存在</li>
+<li><code>export</code></li>
+<li>bash
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ mkdir guess<span class="p">;</span> <span class="nb">cd</span> guess
+</span></span><span class="line"><span class="cl">student$ cp ../guessNum.sh ./
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>config
+<pre tabindex="0"><code class="language-vi" data-lang="vi">max=10
+min=1
+</code></pre></li>
+<li>newGuessNum.sh
+<pre tabindex="0"><code class="language-shell=" data-lang="shell=">#!/bin/bash
+export LANG=C
+
+if [ -f ./config ]; then
+    source config
+else
+    echo &#34;Can not find config&#34;
+    exit
+fi
+
+n=$(shuf -i ${min}-${max} -n1)
+g_cnt=1
+
+echo &#34;Target: ${n}&#34;
+
+while true; do
+
+    read -p &#34;Enter number: &#34; guess
+
+    if [ ${guess} -eq ${n} ]; then
+        echo &#34;Bingo!&#34;
+        echo &#34;You guess ${g_cnt} time(s).&#34;
+        exit
+    else
+
+        if [ ${guess} -gt ${min} ] &amp;&amp; [ ${guess} -lt ${n} ]; then
+            min=${guess}
+        fi
+        if [ ${guess} -gt ${n} ] &amp;&amp; [ ${guess} -lt ${max} ]; then
+            max=${guess}
+        fi
+
+        echo &#34;Between ${min} and ${max}.&#34;
+
+        ((g_cnt++))
+
+    fi
+done
+</code></pre></li>
+<li>bash
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">student$ ./newGuessNum.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<!-- raw HTML omitted -->
+<hr>
+<h2 id="登入告警">登入告警</h2>
+<ul>
+<li><code>env | grep SSH</code> vs <code>set | grep SSH</code>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/jqBLc8v.png"
+        data-srcset="https://i.imgur.com/jqBLc8v.png, https://i.imgur.com/jqBLc8v.png 1.5x, https://i.imgur.com/jqBLc8v.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/jqBLc8v.png"
+        title="env_整個環境 vs set_使用者自己的" /></li>
+</ul>
+<p>@Server</p>
+<pre tabindex="0"><code>root# vi /etc/profile.d/class-login.sh
+</code></pre><pre tabindex="0"><code class="language-bash=" data-lang="bash=">#!/bin/bash
+login_from=$(echo ${SSH_CLIENT} | awk &#39;{print $1}&#39;)
+logger &#34;You are ${USER}. Login from ${login_from}&#34;
+</code></pre><p>@Server</p>
+<p>Login as student.</p>
+<p>Login as root</p>
+<p>@Desktop</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# ls -lh /var/log/172.16.2.X/*/*
+</span></span><span class="line"><span class="cl">Jan <span class="m">23</span> 15:30:33 desktop0 student<span class="o">[</span>6904<span class="o">]</span>: You are student. Login from 10.6.23.150
+</span></span><span class="line"><span class="cl">Jan <span class="m">23</span> 15:32:06 desktop0 student<span class="o">[</span>6970<span class="o">]</span>: You are root. Login from
+</span></span><span class="line"><span class="cl">Jan <span class="m">23</span> 15:32:46 desktop0 student<span class="o">[</span>7030<span class="o">]</span>: You are root. Login from
+</span></span><span class="line"><span class="cl">Jan <span class="m">23</span> 15:32:51 desktop0 student<span class="o">[</span>7123<span class="o">]</span>: You are student. Login from 10.6.23.150
+</span></span><span class="line"><span class="cl">Jan <span class="m">23</span> 15:36:06 desktop0 student<span class="o">[</span>7204<span class="o">]</span>: You are root. Login from
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/FWUjQNb.png"
+        data-srcset="https://i.imgur.com/FWUjQNb.png, https://i.imgur.com/FWUjQNb.png 1.5x, https://i.imgur.com/FWUjQNb.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/FWUjQNb.png"
+        title="log位於student.log檔案裡面" /></p>
+<hr>
+<h2 id="systemd服務"><code>systemd</code>服務</h2>
+<blockquote>
+<p><code>/etc/rc.d/rc.local</code> 開機後最後一個動作 vs <code>systemctl</code></p>
+</blockquote>
+<p>@Server</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span> /opt/
+</span></span><span class="line"><span class="cl">root# vi lab.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code class="language-vim=" data-lang="vim=">#!/bin/bash 
+date &gt;&gt; /tmp/time-lab.log
+
+exit $?
+</code></pre><blockquote>
+<h2 id="heading"><code>$?</code></h2>
+<p>通常用來判斷上一支程式是否成功執行
+是指上一個程式碼的執行結果，通常為整數 (如果為0，通常status:ok)</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# chmod +x lab.sh 
+</span></span><span class="line"><span class="cl">root# ./lab.sh 
+</span></span><span class="line"><span class="cl">root# <span class="nb">echo</span> <span class="nv">$?</span>
+</span></span><span class="line"><span class="cl">root# cat /tmp/time-lab.log 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span> /usr/lib/systemd/system
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi lab.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>systemetl status sshd
+可以得到
+<code>ls -l /tmp/</code> show total
+cp sshd.service lab.service
+system status lab.service
+system start lab.service</p>
+</blockquote>
+<pre tabindex="0"><code class="language-vim=" data-lang="vim=">[Unit]
+Description=&#34;LinuxClass systemd.timer lab.&#34;
+
+[Service]
+ExecStart=/opt/lab.sh
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# cat /tmp/time-lab.log 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# systemctl status lab.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# systemctl start lab.service
+</span></span><span class="line"><span class="cl">root# systemctl status lab.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">root# ls -l /tmp/
+</span></span><span class="line"><span class="cl">root# less /tmp/time-lab.log 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/59sP3n7.png"
+        data-srcset="https://i.imgur.com/59sP3n7.png, https://i.imgur.com/59sP3n7.png 1.5x, https://i.imgur.com/59sP3n7.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/59sP3n7.png"
+        title="https://i.imgur.com/59sP3n7.png" /></p>
+<hr>
+<h2 id="systemd計時器"><code>systemd</code>計時器</h2>
+<p>@Server</p>
+<h4 id="create-job-script">Create job script.</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# mkdir /opt/lab<span class="p">;</span> <span class="nb">cd</span> /opt/lab
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi echo-time.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code class="language-vim=" data-lang="vim=">#!/bin/bash
+export LANG=C
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+_d=$(date)
+echo ${_d} &gt;&gt; /tmp/timer-lab.log
+
+exit $?
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# chmod +x echo-time.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yLIfPmZ.png"
+        data-srcset="https://i.imgur.com/yLIfPmZ.png, https://i.imgur.com/yLIfPmZ.png 1.5x, https://i.imgur.com/yLIfPmZ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yLIfPmZ.png"
+        title="create_job_script" /></p>
+<h4 id="create-service">Create service</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span> /usr/lib/systemd/system
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi class-timer-lab.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code class="language-vim=" data-lang="vim=">[Unit]
+Description=&#34;LinuxClass systemd.timer lab.&#34;
+
+[Service]
+ExecStart=/opt/lab/echo-time.sh
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# systemctl status class-timer-lab.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# systemctl start class-timer-lab.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/2f4jzaG.png"
+        data-srcset="https://i.imgur.com/2f4jzaG.png, https://i.imgur.com/2f4jzaG.png 1.5x, https://i.imgur.com/2f4jzaG.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/2f4jzaG.png"
+        title="create_service" /></p>
+<h4 id="create-timer">Create timer</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# <span class="nb">cd</span> /usr/lib/systemd/system
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# vi class-timer-lab.timer
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre tabindex="0"><code class="language-vim=" data-lang="vim=">[Unit]
+Description=&#34;Timer config for LinuxClass lab&#34;
+
+[Timer]
+OnCalendar = *-*-* *:*:0
+Unit=class-timer-lab.service
+
+[Install]
+WantedBy=multi-user.target
+</code></pre><blockquote>
+<p>run-level 0~6
+其中一個是multi-user</p>
+</blockquote>
+<blockquote>
+<p>Ref: <a href="https://www.freedesktop.org/software/systemd/man/systemd.time.html" target="_blank" rel="noopener noreffer ">systemd.time — Time and date specifications</a></p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">root# systemctl start class-timer-lab.timer
+</span></span><span class="line"><span class="cl">root# systemctl status class-timer-lab.timer
+</span></span><span class="line"><span class="cl">root# tail /tmp/time-lab.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/mhstiVH.png"
+        data-srcset="https://i.imgur.com/mhstiVH.png, https://i.imgur.com/mhstiVH.png 1.5x, https://i.imgur.com/mhstiVH.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/mhstiVH.png"
+        title="create_timer" /></p>
+<blockquote>
+<p>Podman 因為是 daemonless，可以搭配 systemctl 做管理</p>
+</blockquote>
+<blockquote>
+<h4 id="-推書時間">📚 推書時間:</h4>
+<ol>
+<li>✨<strong>圖解 Linux 核心工作原理</strong> | 透過實作與圖解學習OS與硬體的基礎知識</li>
+<li>資安專家的 nmap 與 NSE 網路診斷與掃描技巧大公開</li>
+<li>實戰 Linux 系統數位鑑識</li>
+</ol>
+</blockquote>
+<blockquote>
+<p><a href="https://makelinux.github.io/kernel/map/" target="_blank" rel="noopener noreffer ">Link to an interactive kernel map</a></p>
+</blockquote>
+<h4 id="使用者排程">使用者排程</h4>
+<p><a href="https://fedoramagazine.org/systemd-timers-for-scheduling-tasks/" target="_blank" rel="noopener noreffer ">https://fedoramagazine.org/systemd-timers-for-scheduling-tasks/</a>
+<a href="https://cfarm.blog.aznc.cc/" target="_blank" rel="noopener noreffer ">https://cfarm.blog.aznc.cc/</a>使用-systemd-timer-代替-crontab/</p>
+<hr>
+<h2 id="作業系統效能分析">作業系統效能分析</h2>
+<h4 id="效能分析">效能分析</h4>
+<p>客戶提供了 sysstat 的記錄檔，經視覺化處理後得到每台主機相對應的圖表。</p>
+<ol>
+<li>I/O TPS</li>
+<li>Swap Used%</li>
+<li>Swap In/Swap Out</li>
+<li>Load Average</li>
+</ol>
+<p>試分析主機運作情況。</p>
+<ol>
+<li>各主機是否正常運作。</li>
+<li>IO 是否需要更新。</li>
+<li>記憶體是否足夠。</li>
+</ol>
+<p>@Server</p>
+<ul>
+<li>two root users</li>
+<li>以下的bash: 用以測試or密碼學中產生&quot;熵&quot;
+<pre tabindex="0"><code class="language-bash=" data-lang="bash=">root# uptime
+root# dd if=/dev/urandom of=/dev/null 
+</code></pre><ul>
+<li><code>dd</code>: data duplicator</li>
+<li><code>if</code>: input file</li>
+<li><code>/dev/urandom</code>: for generating endless stream of pseudo-random bytes</li>
+<li><code>of</code>: output file</li>
+<li><code>/dev/null</code>: file that discards all data written into it
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yoI31b9.png"
+        data-srcset="https://i.imgur.com/yoI31b9.png, https://i.imgur.com/yoI31b9.png 1.5x, https://i.imgur.com/yoI31b9.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yoI31b9.png"
+        title="dd if" /></li>
+</ul>
+</li>
+</ul>
+<h4 id="sysstat-sar---本機監控的工具"><code>sysstat sar</code> - 本機監控的工具</h4>
+<ul>
+<li><code>sar &lt;options&gt; &lt; &lt;interval&gt; &lt;count&gt; &gt;</code>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/eJAYpVv.png"
+        data-srcset="https://i.imgur.com/eJAYpVv.png, https://i.imgur.com/eJAYpVv.png 1.5x, https://i.imgur.com/eJAYpVv.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/eJAYpVv.png"
+        title="top" /></li>
+</ul>
+<hr>
+<h1 id="bash-textbook-note">Bash TextBook Note</h1>
+<h5 id="重導向與管線page-7">重導向與管線(page 7)</h5>
+<h5 id="變數">變數</h5>
+<ul>
+<li>雙引號: 裡面的變數會自己展開</li>
+<li>單引號: 只會被當作字串</li>
+</ul>
+<h5 id="位置參數">位置參數</h5>
+<ul>
+<li>看有幾個參數輸近來，不包含自己
+<pre tabindex="0"><code class="language-bash=" data-lang="bash=">echo $#
+</code></pre></li>
+</ul>
+<h4 id="攻防基本原理">攻防基本原理</h4>
+<ul>
+<li>
+<p>(p34) CIA 保密性、完整性、可用性</p>
+<ul>
+<li>備份: 完整性</li>
+<li>DDClass、NLB(Network_Load_Balance): 可用性</li>
+</ul>
+</li>
+<li>
+<p>網路安全五大原則: CIA + 不可否認性 + 驗證</p>
+</li>
+</ul>
+<h4 id="攻擊的生命週期">攻擊的生命週期</h4>
+<ul>
+<li>page 39</li>
+</ul>
+<h4 id="資料蒐集常用指令">資料蒐集常用指令</h4>
+<ul>
+<li><code>cut</code></li>
+<li><code>file</code></li>
+<li><code>head</code></li>
+<li>建立 log server</li>
+<li>蒐集系統資訊
+<ul>
+<li>commands
+<table>
+<thead>
+<tr>
+<th>Linux cmd</th>
+<th>Win Git Bash</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>uname -a</td>
+<td>uname -a</td>
+<td>作業系統版本資訊</td>
+</tr>
+<tr>
+<td>cat /proc/cpuinfo</td>
+<td>systeminfo</td>
+<td>系統硬體相關資訊</td>
+</tr>
+<tr>
+<td>ifconfig</td>
+<td>ipconfig</td>
+<td>網卡資訊</td>
+</tr>
+<tr>
+<td>route</td>
+<td>route print</td>
+<td>路由表資訊</td>
+</tr>
+<tr>
+<td>arp -a</td>
+<td>arp -a</td>
+<td>顯示位址解析表(ARP Table)</td>
+</tr>
+<tr>
+<td>netstat -a</td>
+<td>netstat -a</td>
+<td>顯示網路連線 *<code>ss</code>\</td>
+</tr>
+<tr>
+<td>mount</td>
+<td>net share</td>
+<td>顯示檔案系統</td>
+</tr>
+<tr>
+<td>ps -e</td>
+<td>tasklist</td>
+<td>顯示執行中程序</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>awk(比<code>cut</code>指令好用) sed
+<blockquote>
+<p>sed &amp; awk 程式設計 (O&rsquo;reilly, 紫色那本)</p>
+</blockquote>
+</li>
+<li>linux處理xml(p.83): 改用 linux xmllint 較優</li>
+<li>linux處理json(p.85): 可改用 <a href="http://bit.ly/2HJ2SzA" target="_blank" rel="noopener noreffer ">linux JQ 工具</a></li>
+</ul>
+<h4 id="資料分析-p-91">資料分析 (p. 91)</h4>
+<ul>
+<li>sort: 排序</li>
+<li>head:</li>
+<li>uniq: 篩選掉相鄰且重複的資料行數
+<blockquote>
+<p>honeypot 蜜罐系統</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="檔案系統監看-p-139">檔案系統監看 (p. 139)</h4>
+<ul>
+<li>偵測檔案是否有被異動</li>
+<li>整章的工作目的都可以被AIDE取代</li>
+</ul>
+<h4 id="virustotal-p-165">VirusTotal (p. 165)</h4>
+<h4 id="指令稿隱蔽-p-191">指令稿隱蔽 (p. 191)</h4>
+<ul>
+<li>使用語焉不詳的命名慣例，同時重複使用相同的名稱命名(局部/全域變數都取同名)，再把全部內容串成一行，然後再把註解都拿掉</li>
+<li>哩金派，金派
+<pre tabindex="0"><code class="language-bash=" data-lang="bash=">str=&#34;reboot&#34;
+eval $str
+</code></pre></li>
+<li><code>exec</code>、<code>exe</code>避免
+<ul>
+<li>php, python</li>
+<li>容易被 inject 攻擊</li>
+</ul>
+</li>
+</ul>
+<h4 id="使用者群組權限-p229">使用者、群組、權限 (p.229)</h4>
+<ul>
+<li>chmod chown &hellip;</li>
+</ul>
+<h4 id="linux檔案權限-p-236">Linux檔案權限 (p. 236)</h4>
+<ul>
+<li>✨✨ 0-7授權</li>
+</ul>
+<h4 id="工具-系統可用性監看-p-245">工具: 系統可用性監看 (p. 245)</h4>
+<ul>
+<li>我ping你，你不回，但是我不能因為這樣就判定對方已經死掉。應該去監控該port是否還活著</li>
+<li>ping 走的是 ICMP 協定</li>
+</ul>
+<h4 id="如何知道server裡面裝了什麼東西-p-251">如何知道Server裡面裝了什麼東西 (p. 251)</h4>
+<ul>
+<li>rbm, dkbg</li>
+</ul>
+<blockquote>
+<h4 id="推書第二單">📚<strong>推書第二單</strong></h4>
+<p>精通Shell程式設計
+LinuxShell程式設計與管理實務(臥龍小三)</p>
+</blockquote>
+<blockquote>
+<p><strong>自主練習方法</strong></p>
+<p>vmware player 裝兩台 vm</p>
+</blockquote>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-04-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/lesson_06_linux/" data-hashtag="linux"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/lesson_06_linux/" data-title="Lesson 06: Linux 筆記 - Shell Script! final"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/lesson_05_linux/" class="prev" rel="prev" title="Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
