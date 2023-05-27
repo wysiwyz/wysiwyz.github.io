@@ -3,7 +3,16 @@
         <title>security - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/security/</link>
         <description>security - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/security/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 21 May 2023 09:10:20 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/security/" rel="self" type="application/rss+xml" /><item>
+    <title>GCP - preparing for your cloud architect journey</title>
+    <link>http://wysiwyz.github.io/posts/coursera_pca/</link>
+    <pubDate>Sun, 21 May 2023 09:10:20 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/coursera_pca/</guid>
+    <description><![CDATA[最近為了 PCA 弄了個coursera帳號，免費用到5/26，想衝刺上完七堂課 👩🏻‍🦯👩🏻‍🦽
+VPC Projects, networks, subnetworks A project Associates objects and servicing with billing Contains networks A network 3 VPC network types Default Every project One subnet per region Default firewall rules Auto Mode Default network One subnet per region Regional IP allocation Fixed /20 subnetwork per region Expandable up to /16 Custom Mode No default subnets created Full control of IP ranges Regional IP allocation Expandable to IP ranges you specify Expand subnets without re-creating instances Cannot overlap with other subnets]]></description>
+</item>
+<item>
     <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
     <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
     <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>

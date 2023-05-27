@@ -1,0 +1,1759 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>GCP - preparing for your cloud architect journey - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="GCP - preparing for your cloud architect journey" />
+<meta property="og:description" content="最近為了 PCA 弄了個coursera帳號，免費用到5/26，想衝刺上完七堂課 👩🏻‍🦯👩🏻‍🦽
+VPC Projects, networks, subnetworks A project Associates objects and servicing with billing Contains networks A network 3 VPC network types Default Every project One subnet per region Default firewall rules Auto Mode Default network One subnet per region Regional IP allocation Fixed /20 subnetwork per region Expandable up to /16 Custom Mode No default subnets created Full control of IP ranges Regional IP allocation Expandable to IP ranges you specify Expand subnets without re-creating instances Cannot overlap with other subnets" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/coursera_pca/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-21T09:10:20+08:00" />
+<meta property="article:modified_time" content="2023-05-21T09:10:20+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GCP - preparing for your cloud architect journey"/>
+<meta name="twitter:description" content="最近為了 PCA 弄了個coursera帳號，免費用到5/26，想衝刺上完七堂課 👩🏻‍🦯👩🏻‍🦽
+VPC Projects, networks, subnetworks A project Associates objects and servicing with billing Contains networks A network 3 VPC network types Default Every project One subnet per region Default firewall rules Auto Mode Default network One subnet per region Regional IP allocation Fixed /20 subnetwork per region Expandable up to /16 Custom Mode No default subnets created Full control of IP ranges Regional IP allocation Expandable to IP ranges you specify Expand subnets without re-creating instances Cannot overlap with other subnets"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/coursera_pca/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_06_linux/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "GCP - preparing for your cloud architect journey",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/coursera_pca\/"
+        },"genre": "posts","keywords": "coursera, security","wordcount":  5719 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/coursera_pca\/","datePublished": "2023-05-21T09:10:20+08:00","dateModified": "2023-05-21T09:10:20+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GCP - preparing for your cloud architect journey</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-21">2023-05-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5719 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;27 minutes&nbsp;<span id="/posts/coursera_pca/" class="leancloud_visitors" data-flag-title="GCP - preparing for your cloud architect journey">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#vpc">VPC</a>
+      <ul>
+        <li></li>
+        <li><a href="#cloud-interconnect-and-peering">Cloud Interconnect and Peering</a></li>
+        <li><a href="#https-load-balancing">HTTP(S) load balancing</a></li>
+        <li><a href="#cloud-cdn">Cloud CDN</a></li>
+      </ul>
+    </li>
+    <li><a href="#design-and-process">Design and Process</a>
+      <ul>
+        <li></li>
+        <li><a href="#network-security-and-encryption">Network Security and Encryption</a></li>
+        <li><a href="#manage-versions-and-cost-planning">Manage Versions and Cost Planning</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>最近為了 PCA 弄了個coursera帳號，免費用到5/26，想衝刺上完七堂課 👩🏻‍🦯👩🏻‍🦽</p>
+</blockquote>
+<h2 id="vpc">VPC</h2>
+<h4 id="projects-networks-subnetworks">Projects, networks, subnetworks</h4>
+<ul>
+<li>A project
+<ul>
+<li>Associates objects and servicing with billing</li>
+<li>Contains networks</li>
+</ul>
+</li>
+<li>A network</li>
+</ul>
+<h4 id="3-vpc-network-types">3 VPC network types</h4>
+<ul>
+<li>Default
+<ul>
+<li>Every project</li>
+<li>One  subnet per region</li>
+<li>Default firewall rules</li>
+</ul>
+</li>
+<li>Auto Mode
+<ul>
+<li>Default network</li>
+<li>One subnet per region</li>
+<li>Regional IP allocation</li>
+<li>Fixed /20 subnetwork per region</li>
+<li>Expandable up to /16</li>
+</ul>
+</li>
+<li>Custom Mode
+<ul>
+<li>No default subnets created</li>
+<li>Full control of IP ranges</li>
+<li>Regional IP allocation</li>
+<li>Expandable to IP ranges you specify</li>
+</ul>
+</li>
+</ul>
+<h4 id="expand-subnets-without-re-creating-instances">Expand subnets without re-creating instances</h4>
+<ul>
+<li>
+<p>Cannot overlap with other subnets</p>
+</li>
+<li>
+<p>IP range must be a unique valid CIDR block</p>
+</li>
+<li>
+<p>New subnet IP ranges have to fall within valid IP ranges</p>
+</li>
+<li>
+<p>Can expand but not shrink</p>
+</li>
+<li>
+<p>Auto mode can be expanded from /20 to /16 ip range</p>
+</li>
+<li>
+<p>Avoid creating large subnets</p>
+<blockquote>
+<p>Do not scale your subnet beyond what you actually need.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="ip-addresses">IP Addresses</h4>
+<ul>
+<li>
+<p>Internal IP</p>
+<ul>
+<li>Allocated from subnet range to VMs by DHCP</li>
+<li>DHCP lease is renewed every 24 hours</li>
+<li>VM name + IP is registered with network-scoped DNS</li>
+</ul>
+</li>
+<li>
+<p>External IP</p>
+<ul>
+<li>Assigned from pool (ephemeral)</li>
+<li>Reserved (static)</li>
+<li>Bring Your Own IP address (BYOIP)</li>
+<li>VM doesn&rsquo;t know external IP; it is mapped to the internal IP</li>
+</ul>
+<hr>
+<h4 id="external-ips-are-mapped-to-internal-ips">External IPs are mapped to internal IPs</h4>
+<h4 id="dns-resolution-for-internal-addresses">DNS resolution for internal addresses</h4>
+<ul>
+<li>
+<p>Each instances has a hostname that can be resolved to an internal IP address:</p>
+<ul>
+<li>
+<p>The hostname is the same as the instance name</p>
+</li>
+<li>
+<p>FQDN is [hostname].[zone].c.[project-id].internal</p>
+<p>Example: <em>my-server.us-central1-a.c.guestbook-151617.internal</em></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Name resolution is handled by internal DNS resolver:</p>
+<ul>
+<li>Provided as part of Compute Engine (169.254.168.254).</li>
+<li>Configured for use on instance via DHCP</li>
+<li>Provides answer for internal and external addresses</li>
+</ul>
+</li>
+</ul>
+<h4 id="dns-resolution-for-external-addresses">DNS resolution for external addresses</h4>
+<ul>
+<li>Instances with external IP address can allow connections from hosts outside the project.
+<ul>
+<li>Users connect directly using external IP address</li>
+<li>Admins can also publish public DNS records pointing to the instance
+<ul>
+<li>Public DNS records are not published automatically</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DNS records for external addresses can be published using existing DNS servers (outside of Google Cloud)</li>
+<li>DNS zones can be hosted using Cloud DNS</li>
+</ul>
+<h4 id="host-dns-zones-using-cloud-dns">Host DNS zones using Cloud DNS</h4>
+<ul>
+<li>Google&rsquo;s DNS service</li>
+<li>Translate domain names into IP address</li>
+<li>Low latency</li>
+<li>High available (100% uptime SLA)</li>
+<li>Create and update millions of DNS records</li>
+<li>UI, command line or API</li>
+</ul>
+<h4 id="assign-a-range-of-ip-addresses-as-aliases-to-a-vms-network-interface-using-alias-ip-ranges">Assign a range of IP addresses as aliases to a VM&rsquo;s network interface using alias IP ranges</h4>
+<hr>
+<h4 id="routes-and-firewall-rules">Routes and firewall rules</h4>
+<h5 id="a-route-is-a-mapping-of-an-ip-range-to-a-destination">A route is a mapping of an IP range to a destination</h5>
+<p>Every network has:</p>
+<ul>
+<li>Routes that let instances in a network send traffic directly to each other</li>
+<li>A default route that directs packets to destinations that are outside the network</li>
+</ul>
+<p>Firewall rules must also allow the packet.</p>
+<hr>
+<h5 id="routes-map-traffic-to-destination-networks">Routes map traffic to destination networks</h5>
+<ul>
+<li>Apply to traffic egressing a VM.</li>
+<li>Forword traffic to most specific route.</li>
+<li>Are created when a subnet is created.</li>
+<li>Enable VMs on same network to communicate.</li>
+<li>Destination is in CIDR notation.</li>
+<li>Traffic is delivered only if it also matches a firewall rule.</li>
+</ul>
+<h5 id="firewall-rules-protect-your-vm-instances-from-unapproved-connections">Firewall rules protect your VM instances from unapproved connections</h5>
+<ul>
+<li>VPC network functions as a distributed firewall</li>
+<li>Firewall rules are applied to the network as a whole.</li>
+<li>Connections are allowed or denied at the instance level.</li>
+<li>Firewall rules are stateful.</li>
+<li>Implied deny all ingress and allow all egress rule</li>
+</ul>
+<h4 id="google-cloud-firewall-use-case-egress">Google Cloud firewall use case: Egress</h4>
+<ul>
+<li>Conditions:
+<ul>
+<li>Destination CIDR ranges</li>
+<li>Protocols</li>
+<li>Ports</li>
+</ul>
+</li>
+<li>Action:
+<ul>
+<li>Allow: permit the matching egress connection</li>
+<li>Deny: block the matching egress connection</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="virtual-machines">Virtual machines</h4>
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>Compute Engine</th>
+<th>GKE</th>
+<th>App Engine std env</th>
+<th>App Engine flexible env</th>
+<th>Cloud Functions</th>
+<th>Cloud Run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Language support</td>
+<td>Any</td>
+<td>Any</td>
+<td>Py, Node.js, Go, Java, Ruby, PHP</td>
+<td>Py, Node.js, Go, Java, PHP, Ruby, .NET, Custom &hellip;</td>
+<td>Py, Node.js, Go, Java</td>
+<td>Any</td>
+</tr>
+<tr>
+<td>Usage model</td>
+<td>IaaS</td>
+<td>IaaS,<!-- raw HTML omitted -->PaaS</td>
+<td>PaaS</td>
+<td>PaaS</td>
+<td>Microservices architecture</td>
+<td>PaaS</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>Server autoscaling</td>
+<td>Cluster</td>
+<td>Autoscaling managed servers</td>
+<td>Autoscaling managed servers</td>
+<td>Serverless</td>
+<td>Serverless</td>
+</tr>
+<tr>
+<td>Primary use case</td>
+<td>General workloads</td>
+<td>Container workloads</td>
+<td>Scalable web applications,<!-- raw HTML omitted -->Mobile backend applications</td>
+<td>Scalable web applications,<!-- raw HTML omitted -->Mobile backend applications</td>
+<td>Lightweight event actions</td>
+<td>Deploy &amp; scale containerized apps</td>
+</tr>
+</tbody>
+</table>
+<h4 id="infrastructure-as-a-service">Infrastructure as a Service</h4>
+<ul>
+<li>Predefined or custom machine types
+<ul>
+<li>vCPUs (cores) and Memory (RAM)</li>
+<li>Storage
+<ul>
+<li>Zonal or regional persistent disk (HDD or SSD)</li>
+<li>Local SSD</li>
+<li>Cloud Storage</li>
+</ul>
+</li>
+<li>Networking</li>
+<li>Linux or Windows</li>
+</ul>
+</li>
+</ul>
+<h4 id="compute-engine-features">Compute Engine features</h4>
+<ol>
+<li>Machine rightsizing
+<ul>
+<li>Recommendation engine for optimum machine size</li>
+<li>Cloud Monitoring statistics</li>
+<li>New recommendation 24 hrs after VM create or resize</li>
+</ul>
+</li>
+<li>(-)
+<ul>
+<li>Instance metadata</li>
+<li>Startup scripts</li>
+</ul>
+</li>
+<li>Availability policies
+<ul>
+<li>Live migrate</li>
+<li>Auto restart</li>
+</ul>
+</li>
+<li>Global load balancing
+<ul>
+<li>Multiple regions for availability</li>
+</ul>
+</li>
+<li>OS patch management
+<ul>
+<li>Create patch approvals</li>
+<li>Set up flexible scheduling</li>
+<li>Apply advanced patch configuration settings</li>
+</ul>
+</li>
+<li>(-)
+<ul>
+<li>Per-second billing</li>
+<li>Sustained use discounts</li>
+<li>Committed use discounts</li>
+</ul>
+</li>
+<li>Preemptible and Spot VMs:
+<ul>
+<li>Up to 91% discount</li>
+<li>No SLA</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="vm-access">VM access</h4>
+<h5 id="linux-ssh">Linux: SSH</h5>
+<ul>
+<li>SSH from the Google Cloud console or Cloud Shell via the Google Cloud SDK</li>
+<li>SSH from computer or third-party client and generate key pair</li>
+<li>Requires firewall rule to allow <code>tcp:22</code></li>
+</ul>
+<h5 id="windows-rdp">Windows: RDP</h5>
+<ul>
+<li>RDP clients</li>
+<li>Powershell terminal</li>
+<li>Requires setting the Windows password</li>
+<li>Requires firewall to allow <code>tcp:3389</code></li>
+</ul>
+<pre tabindex="0"><code>[Machine family] 
+    \            General-Purpose
+      \          Compute-Optimized
+        \        Memory-Optimized
+          \      Accelerator-Optimized
+       [Machine series]
+             \
+          [Machine type]
+</code></pre><h4 id="compute-pricing">Compute pricing</h4>
+<h5 id="pricing">Pricing</h5>
+<ul>
+<li>Per-second billing, with minimum of 1 minute
+<ul>
+<li>vCPUs, GPUs, and GB of memory</li>
+</ul>
+</li>
+<li>Resource-based pricing:
+<ul>
+<li>Each vCPU and each GB of memory is billed separately</li>
+</ul>
+</li>
+<li>Discounts:
+<ul>
+<li>Sustained use</li>
+<li>Committed use</li>
+<li>Preemptible VM instances</li>
+</ul>
+</li>
+<li>Recommendation Engine:
+<ul>
+<li>Notifies you of underutilitzed instances</li>
+</ul>
+</li>
+<li>Free usage limits:</li>
+</ul>
+<h4 id="special-compute-configurations">Special compute configurations</h4>
+<h5 id="preemptible">Preemptible</h5>
+<ul>
+<li>Lower price for interruptible service (up to 91%)</li>
+<li>VM might be terminated at any time
+<ul>
+<li>No charge if terminated in the first minute</li>
+<li>24 hours max</li>
+<li>30-second terminate warning, but not guaranteed
+<ul>
+<li>Time for a shutdown script</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>No live migrate; no auto restart</li>
+<li>You can request that CPU quota for a region be split between regular and preemption
+<ul>
+<li>Default: preemptible VMs count against region CPU quota</li>
+</ul>
+</li>
+</ul>
+<h5 id="spot-vms">Spot VMs</h5>
+<ul>
+<li>the latest version of preemptible VMs</li>
+<li>Spot VM and preemptible VM share the same pricing model</li>
+<li>No minimum or maximum runtime</li>
+<li>Spot VMs are finite Compute Engine Resources, so they might not always be available</li>
+<li>No live migrate; no auto restart</li>
+<li>Best practice use cases help you get the most of using Spot VMs</li>
+</ul>
+<h4 id="common-network-designs">Common network designs</h4>
+<h5 id="increased-availability-with-multiple-zones">Increased availability with multiple zones</h5>
+<ul>
+<li>Get improved availability: Place 2 vm into multiple zone but use a single-sub-network</li>
+</ul>
+<h5 id="globalization-w-multiple-regions">Globalization w/ multiple regions</h5>
+<ul>
+<li>Putting resource in different regions: better failure independence</li>
+</ul>
+<hr>
+<p>Quizzes</p>
+<p>GCP infrastructure core services - IAM #3</p>
+<p>Which of the following is <strong>not</strong> a type of IAM member?</p>
+<p><em>A. Organization Account</em></p>
+<p>B. Service Account</p>
+<p>C. Google Workspace domain</p>
+<p>D. Google Group</p>
+<p>E. Cloud identity domain</p>
+<hr>
+<h5 id="cloud-vpn-securely-connects-your-on-premises-network-to-your-google-cloud-vpc-network">Cloud VPN securely connects your on-premises network to your Google Cloud VPC network</h5>
+<ul>
+<li>Useful for low-volume data connections</li>
+<li>99.9% SLA</li>
+<li>Supports
+<ul>
+<li>Site-to-site VPN</li>
+<li>Static routes</li>
+<li>Dynamic routes (Cloud Router)</li>
+<li>IKEv1 and IKEv2 ciphers</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>In order to create a connection between two VPN gateways, you must establish two VPN tunnels.</p>
+</blockquote>
+<blockquote>
+<p>When using Cloud VPN, the maximum transmission unit (MTU) for your on-premises VPN gateway cannot be greater than 1460 bytes.</p>
+</blockquote>
+<h5 id="ha-vpn">HA VPN</h5>
+<ul>
+<li>
+<p>Provides 99.99% service availability.</p>
+</li>
+<li>
+<p>Google Cloud automatically chooses two external IP addresses</p>
+<ul>
+<li>
+<p>Each of the HA VPNs supports multiple tunnels</p>
+<blockquote>
+<p>You can only configure an HA VPN gateway with only ONE active interface and one external IP address.</p>
+</blockquote>
+</li>
+<li>
+<p>VPN tunnels connected to HA VPN gateways must use dynamic (BGP) routing</p>
+</li>
+</ul>
+</li>
+<li>
+<p>HA VPN supports site-to-site VPN for different topologies/configuration scenarios:</p>
+<ul>
+<li>An HA VPN gateway to peer VPN devices</li>
+<li>An HA VPN gateway to an Amazon Web Services (AWS) virtual private gateway</li>
+<li>Two HA VPN gateways connected to each other</li>
+</ul>
+</li>
+</ul>
+<h5 id="three-typical-span-stylecoloryellowpeer-gatewayspan-configuration-for-ha-vpn">Three typical <!-- raw HTML omitted -->peer gateway<!-- raw HTML omitted --> configuration for HA VPN:</h5>
+<ol>
+<li>An HA VPN gateway to two separate peer VPN devices, each with its own IP address</li>
+<li>An HA VPN gateway to one peer VPN device that uses two separate IP addresses</li>
+<li>An HA VPN gateway to one peer VPN device that uses one IP address.</li>
+</ol>
+<h5 id="use-either-span-stylecoloryellowtransitspan-gateway-or-a-span-stylecoloryellowvirtual-privatespan-gateway-when-configuring-an-ha-vpn-external-vpn-gateway-to-aws">Use either <!-- raw HTML omitted -->transit<!-- raw HTML omitted --> gateway or a <!-- raw HTML omitted -->virtual private<!-- raw HTML omitted --> gateway, when configuring an HA VPN external VPN gateway to AWS</h5>
+<ul>
+<li>
+<p>Only the <!-- raw HTML omitted -->transit<!-- raw HTML omitted --> gateway supports equal-cost multipath (ECMP) routing</p>
+<blockquote>
+<p>ECMP 等價多路徑路由：</p>
+<p>To distribute network traffic evenly across <strong>multiple available paths</strong> with the same cost</p>
+</blockquote>
+</li>
+</ul>
+<p>Cloud VPN supports both static routes and dynamic routes.</p>
+<p>You need to configure <strong>Cloud Routers</strong> in order to use dynamic routes.</p>
+<p>Cloud Router can manage routes for a Cloud VPN tunnel using <strong>Border Gateway Protocol</strong>.</p>
+<p>BGP routing method allows for routes to be updated and exchanged without changing the tunnel configuration.</p>
+<p>To set up BGP, an additional IP address has to be assigned to each end of the VPN tunnel.</p>
+<ul>
+<li><a href="https://cloud.google.com/network-connectivity/docs/vpn/concepts/topologies" target="_blank" rel="noopener noreffer ">HA VPN topologies</a></li>
+<li><a href="https://cloud.google.com/network-connectivity/docs/vpn/how-to/moving-to-ha-vpn" target="_blank" rel="noopener noreffer ">Move from Classic VPN to HA VPN</a></li>
+</ul>
+<blockquote>
+<p>To guarantee <strong>99.99%</strong> availability SLA for HA VPN connections, <em>properly configure two or four tunnels</em> from your HA VPN gateway to your peer VPN gateway or to another HA VPN gateway.</p>
+</blockquote>
+<hr>
+<h3 id="cloud-interconnect-and-peering">Cloud Interconnect and Peering</h3>
+<table>
+<thead>
+<tr>
+<th>*</th>
+<th>Dedicated</th>
+<th>Shared</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layer 3</td>
+<td>Direct Peering           [<!-- raw HTML omitted -->Cloud<!-- raw HTML omitted --></td>
+<td><!-- raw HTML omitted -->VPN]<!-- raw HTML omitted -->     Carrier Peering</td>
+</tr>
+<tr>
+<td>Layer 2</td>
+<td>Dedicated Interconnect</td>
+<td>Partner Interconnect</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dedicated-interconnect-provides-direct-physical-connections">Dedicated Interconnect provides direct physical connections.</h4>
+<ul>
+<li>99.9% or 99.99% up-time SLA</li>
+<li>If your place is no where near any of the colocation facilities locations, consider partner interconnect.</li>
+</ul>
+<h4 id="partner-interconnect-provides-connectivity-through-a-span-stylecoloryellowsupported-service-providerspan">Partner Interconnect provides connectivity through a <!-- raw HTML omitted -->supported service provider<!-- raw HTML omitted --></h4>
+<ul>
+<li>Useful when your data center is not close to colocation facility locations, or if your data needs don&rsquo;t warrant a dedicated interconnect.</li>
+</ul>
+<h5 id="comparison-of-interconnect-options">Comparison of Interconnect options</h5>
+<table>
+<thead>
+<tr>
+<th>Connection</th>
+<th>Provides</th>
+<th>Capacity</th>
+<th>Requirements</th>
+<th>Access Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPsec VPN tunnel</td>
+<td>Encrypted tunnel to VPC networks through the public internet</td>
+<td>1.5-3 Gbps per tunnel</td>
+<td>On-premises VPN gateway</td>
+<td>Internal IP addresses</td>
+</tr>
+<tr>
+<td>Dedicated Interconnect</td>
+<td>Dedicated, direct connection to VPC networks</td>
+<td>10 Gbps or 100 Gbps per link</td>
+<td>Connection in colocation facility</td>
+<td>Internal IP addresses</td>
+</tr>
+<tr>
+<td>Partner Interconnect</td>
+<td>Dedicated bandwidth, connection to VPC network through a service provider</td>
+<td>50 Mbps - 10 Gbps per connection</td>
+<td>Service provider</td>
+<td>Internal IP addresses</td>
+</tr>
+</tbody>
+</table>
+<h5 id="direct-peering-provides-a-direct-connection-between-your-business-network-and-googles">Direct Peering provides a direct connection between your business network and Google&rsquo;s</h5>
+<ul>
+<li>Broad-reaching edge network locations</li>
+<li>Exchange BGP routes</li>
+<li>Reach all of Google&rsquo;s services</li>
+<li>No SLA</li>
+<li>Peering requirements</li>
+</ul>
+<h5 id="edge-points-of-presence-pops">Edge Points of Presence (PoPs)</h5>
+<ul>
+<li>PoPs 邊緣據點 - where Google&rsquo;s network connects to the rest of the Internet via peering</li>
+<li>如果你的 data center 還是離 PoPs 很遠，可以考慮 Carrier Peering</li>
+</ul>
+<h5 id="carrier-peering-provides-connectivity-through-a-supported-partner">Carrier Peering provides connectivity through a supported partner</h5>
+<ul>
+<li>Carrier peering partner</li>
+<li>Reach all of Google&rsquo;s services</li>
+<li>Partner requirements</li>
+<li>No SLA</li>
+</ul>
+<h5 id="comparision-of-peering-options">Comparision of Peering options</h5>
+<table>
+<thead>
+<tr>
+<th>Connection</th>
+<th>Provides</th>
+<th>Capacity</th>
+<th>Requirements</th>
+<th>Access Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct Peering</td>
+<td>Dedicated, direct connection to Google&rsquo;s network</td>
+<td>10 Gbps per link</td>
+<td>Connection in Google Cloud PoPs</td>
+<td>Public IP addresses</td>
+</tr>
+<tr>
+<td>Carrier Peering</td>
+<td>Peering through service provider to Google&rsquo;s public network</td>
+<td>Varies based on partner offering</td>
+<td>Service provider</td>
+<td>Public IP addresses</td>
+</tr>
+</tbody>
+</table>
+<h5 id="choosing-a-network-connection-option">Choosing a network connection option</h5>
+<table>
+<thead>
+<tr>
+<th>interconnect</th>
+<th>peering</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Direct access to RFC1918 IPs in your VPC - with SLA</td>
+<td>Access to Google public IPs only - without SLA</td>
+</tr>
+<tr>
+<td>1. Dedicated Interconnect<!-- raw HTML omitted -->2. Partner Interconnect<!-- raw HTML omitted -->3. Cloud VPN</td>
+<td>1. Direct Peering<!-- raw HTML omitted -->2. Carrier Peering</td>
+</tr>
+</tbody>
+</table>
+<h5 id="managed-instance-groups">Managed instance groups</h5>
+<ul>
+<li>Deploy identical instances based on instance template</li>
+<li>Instance group can be resized</li>
+<li>Manager ensures all instances are RUNNING</li>
+<li>Typically used with autoscaler</li>
+<li>Can be single zone or regional</li>
+</ul>
+<h5 id="managed-instance-groups-offer-autoscaling-capabilities">Managed instance groups offer autoscaling capabilities</h5>
+<h6 id="dynamically-addremove-instances">Dynamically add/remove instances:</h6>
+<ul>
+<li>Increases in load</li>
+<li>Decreases in load</li>
+</ul>
+<h6 id="autoscaling-policy">Autoscaling policy:</h6>
+<ul>
+<li>CPU utilization</li>
+<li>Load balancing capacity</li>
+<li>Monitoring metrics</li>
+<li>Queue-based workload</li>
+</ul>
+<h3 id="https-load-balancing">HTTP(S) load balancing</h3>
+<h4 id="https-load-balancing-1">HTTP(s) load balancing</h4>
+<ul>
+<li>Global load balancing</li>
+<li>Anycast IP address</li>
+<li>HTTP or port 80 or 8080</li>
+<li>HTTPs on port 443</li>
+<li>IPv4 or IPv6</li>
+<li>Autoscaling</li>
+<li>URL maps</li>
+</ul>
+<h4 id="https-load-balancing-2">HTTP(s) load balancing</h4>
+<ul>
+<li>Target HTTP(S) proxy</li>
+<li>One signed SSL certificate installed (minimum)</li>
+<li>Client SSL session terminates at the load balancer</li>
+<li>Support the QUIC transport layer protocol</li>
+</ul>
+<h4 id="network-endpoint-groups-negs">Network endpoint groups (NEGs)</h4>
+<p>A network endpoint group (NEG) is a configuration object that specifies a group of backend endpoints or services.</p>
+<p>There are four types of NEGs:</p>
+<ul>
+<li>Zonal</li>
+<li>Internet</li>
+<li>Hybrid connectivity</li>
+<li>Serverless</li>
+</ul>
+<h3 id="cloud-cdn">Cloud CDN</h3>
+<blockquote>
+<p>content delivery network</p>
+<p>Why? Cloud CDN caches contents. You can enable it whiling setting up backend service load balancer.</p>
+</blockquote>
+<h4 id="cloud-cdn-cache-modes">Cloud CDN cache modes</h4>
+<ul>
+<li>Cache modes control the factor that determine whether or not Cloud CDN caches your content.</li>
+<li>Cloud CDN offers three cache modes:
+<ol>
+<li><!-- raw HTML omitted -->USER_ORIGIN_HEADERS<!-- raw HTML omitted -->
+<ul>
+<li>Requires origin responses to set valid cache directives and valid caching header</li>
+</ul>
+</li>
+<li><!-- raw HTML omitted -->CACHE_ALL_STATIC<!-- raw HTML omitted -->
+<ul>
+<li>Automatically caches static content that doesn&rsquo;t have the no-store, private or no-cache directive</li>
+<li>Origin responses that set valid caching directives are also cached.</li>
+</ul>
+</li>
+<li><!-- raw HTML omitted -->FORCE_CACHE_ALL<!-- raw HTML omitted -->
+<ul>
+<li>Unconditionally caches responses, overriding any cache directives set by the origin.</li>
+<li>Careful not to caches private per-user content if using a share backend with this mode configured.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="ssl-proxy-load-balancing">SSL proxy load balancing</h4>
+<ul>
+<li>Global load balancing for encrypted, non-HTTP traffic</li>
+<li>Terminates SSL session at load balancing layer</li>
+<li>IPv4 or IPv6 clients</li>
+<li>Benefits
+<ul>
+<li>Intelligent routing</li>
+<li>Certificate management</li>
+<li>Security patching</li>
+<li>SSL policies</li>
+</ul>
+</li>
+</ul>
+<h4 id="network-load-balancing">Network load balancing</h4>
+<h5 id="network-load-balancing-1">Network load balancing</h5>
+<ul>
+<li>Regional, non-proxide load balancer</li>
+<li>Forwarding rules (IP protocol data)</li>
+<li>Traffic
+<ul>
+<li>UDP</li>
+<li>TCP/SSL ports</li>
+</ul>
+</li>
+<li>Architecture
+<ul>
+<li>Backend service-based</li>
+<li>Target pool-based</li>
+</ul>
+</li>
+</ul>
+<h5 id="backend-service-based-architecture">Backend service-based architecture</h5>
+<ul>
+<li>Regional backend service</li>
+<li>Defines the behavior of the load balancer and how it distributes traffic to its backend instance groups</li>
+<li>Backend services enable new features not supported with legacy target pools
+<ul>
+<li>Non-legacy health checks</li>
+<li>Auto-scaling with managed instance groups</li>
+<li>Connection draining</li>
+<li>Configurable failover policy</li>
+</ul>
+</li>
+</ul>
+<h5 id="target-pool-based-architecture">Target pool-based architecture</h5>
+<ul>
+<li>Forwarding rules (TCP and UDP)</li>
+<li>Each project can have up to 50 target pools</li>
+<li>Each target pool can only have one health check</li>
+<li>All instances in a target pool must be in the same region
+(same limitation as the load balancer)</li>
+</ul>
+<h4 id="internal-load-balancing">Internal load balancing</h4>
+<h5 id="internal-tcpudp-load-balancing">Internal TCP/UDP load balancing</h5>
+<ul>
+<li>Regional, private load balancing
+<ul>
+<li>VM instances in same region</li>
+<li>RFC 1918 IP address</li>
+</ul>
+</li>
+<li>TCP/UDP traffic</li>
+<li>Reduced latency, simpler configuration</li>
+<li>Software-defined, fully distribute load balancing</li>
+</ul>
+<blockquote>
+<p>Andromeda: directly deliver client traffic to backend instance</p>
+</blockquote>
+<h4 id="internal-https-load-balancing">Internal HTTP(s) load balancing</h4>
+<ul>
+<li>Regional, private loading balancing
+<ul>
+<li>VM instances in same region</li>
+<li>RFC 1918 IP addresses</li>
+</ul>
+</li>
+<li>HTTP, HTTPS, or HTTP/2 protocols</li>
+<li>Based on open source Envoy proxy</li>
+</ul>
+<h4 id="choosing-a-load-balancer">Choosing a load balancer</h4>
+<ul>
+<li>Support for IPv6: only HTTPS, SSL proxy and TCP proxy support IPv6.</li>
+</ul>
+<hr>
+<ol>
+<li>
+<p>Google Cloud console:</p>
+<p>Recommanded when you are new to using a service or if you prefer UI</p>
+</li>
+<li>
+<p>Cloud Shell:</p>
+<p>When you are confortable using a specific service, or</p>
+<p>you want to quickly create resources using the command line</p>
+</li>
+</ol>
+<h4 id="terraform">Terraform</h4>
+<h5 id="infrastructure-as-codeiac-allows-quick-provisioning-and-removing-of-infractures">Infrastructure as code(IaC) allows quick provisioning and removing of infractures</h5>
+<ul>
+<li>Build an infrastructure when needed.</li>
+<li>Destroy the infrastructure when not in use.</li>
+<li>Create identical infrastructures for dev, test, and prod.</li>
+<li>Can be part of a CI/CD pipeline</li>
+<li>Templates are the building blocks for disaster recovery procedures</li>
+<li>Manage resource dependencies and complexity</li>
+<li>Google Cloud supports many IaC tools</li>
+</ul>
+<h5 id="terraform-is-an-infrastructure-automation-tool">Terraform is an infrastructure automation tool</h5>
+<ul>
+<li>Repeatable deployment process</li>
+<li>Declarative language</li>
+<li>Focus on the application</li>
+<li>Parallel deployment</li>
+<li>Template-driven</li>
+</ul>
+<h5 id="terraform-language">Terraform language</h5>
+<ul>
+<li>
+<p>Terraform language is the interface to declare resources</p>
+</li>
+<li>
+<p>Resources are infrastructure objects (containers, compute engine, etc)</p>
+</li>
+<li>
+<p>The configuration file guides the management of the resource</p>
+<ul>
+<li>Blocks: Represent objects</li>
+<li>Argument: to assign values to names</li>
+</ul>
+<pre tabindex="0"><code>resource &#34;google_compute_network&#34; &#34;default&#34; {
+  name = &#34;${var.network_name}&#34;
+  auto_create_subnetworks = false
+}
+
+&lt;BLOCK TYPE&gt; &#34;&lt;BLOCK LABEL&#34; &#34;&lt;BLOCK LABEL&gt;&#34; {
+  # Block body
+  &lt;IDENTIFIER&gt; = &lt;EXPRESSION&gt; # Argument
+}
+</code></pre></li>
+</ul>
+<h5 id="terraform-can-be-used-on-multiple-public-and-private-clouds">Terraform can be used on multiple public and private clouds</h5>
+<ul>
+<li>Considered a first-class tool in Google Cloud</li>
+<li>Already installed in Cloud Shell</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-tf" data-lang="tf"><span class="line"><span class="cl"><span class="kr">provider</span> <span class="s2">&#34;google&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">region</span>       = <span class="s2">&#34;us-central&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">resource</span> <span class="s2">&#34;google_compute_instance&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">name</span>         = <span class="s2">&#34;instance name&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">machine_type</span> = <span class="s2">&#34;n1-standard-1&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">zone</span>         = <span class="s2">&#34;us-central1-f&#34;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nx">disk</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="na">image</span> = <span class="s2">&#34;image to build instance&#34;</span>  
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">
+</span></span></span><span class="line"><span class="cl"><span class="kr">output</span> <span class="s2">&#34;instance_ip&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="na">value</span> = <span class="s2">&#34;</span><span class="si">${</span><span class="nx">google_compute</span><span class="p">.</span><span class="nx">ip_address</span><span class="si">}</span><span class="s2">&#34;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="deploying-infrastructure-with-terraform">Deploying infrastructure with Terraform</h5>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">terraform init
+# to initialize the new Terraform configuratio
+# make sure that the Google provider plug-in is downloaded and installed in a subdirectory of the current working directory along with various other bookkeeping files
+
+terraform plan
+# to perfrom a refresh unless explicitly disabled and then determines what actions are necessary to achieve the desired state specified in the configuration files
+# convenient for checking whether the execution plan for a set of changes matches your expectations, without making any changes to real resources or to the state
+
+terraform apply
+# to create the infrastructure defined in the main.tf file
+# once completed, you will be able to access the defined infrastructure
+</code></pre><h4 id="google-cloud-marketplace">Google Cloud Marketplace</h4>
+<h5 id="google-cloud-marketplace-1">Google Cloud Marketplace</h5>
+<ul>
+<li>Deploy production-grade solutions</li>
+<li>Single bill for Google Cloud and third party services</li>
+<li>Manage solutions using Terraform</li>
+<li>Notifications when a security updated is available</li>
+<li>Direct access to partner support</li>
+</ul>
+<h4 id="managed-services">Managed Services</h4>
+<h5 id="bigquery">BigQuery</h5>
+<h6 id="bigquery-is-google-clouds-serverless-highly-scalable-and-cost-effective-cloud-data--warehouse">BigQuery is Google Cloud&rsquo;s serverless, highly scalable and cost-effective cloud data  warehouse</h6>
+<ul>
+<li>Fully managed</li>
+<li>Petabyte scale</li>
+<li>SQL interface</li>
+<li>Very fast</li>
+</ul>
+<p>You can access BigQuery by using the <!-- raw HTML omitted -->cloud console<!-- raw HTML omitted -->, by using a <!-- raw HTML omitted -->command line tool<!-- raw HTML omitted -->, or by <!-- raw HTML omitted -->making calls to the BigQuery rest API<!-- raw HTML omitted --> using a variety of client libraries such as Java, .net, or Python.</p>
+<h6 id="query-example">Query example</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">WITH</span><span class="w"> </span><span class="n">groceries</span><span class="w"> </span><span class="k">AS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="s2">&#34;milk&#34;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">dairy</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="s2">&#34;egg&#34;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">protein</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="s2">&#34;bread&#34;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">grain</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="k">g</span><span class="p">.</span><span class="o">*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w"> </span><span class="n">groceries</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">g</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+</span><span class="c1">-------+---------+-------+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">|</span><span class="w"> </span><span class="n">dairy</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">protein</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">grain</span><span class="w"> </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+</span><span class="c1">-------+---------+-------+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">|</span><span class="w"> </span><span class="n">milk</span><span class="w">  </span><span class="o">|</span><span class="w"> </span><span class="n">eggs</span><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">bread</span><span class="w"> </span><span class="o">|</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="o">+</span><span class="c1">-------+---------+-------+
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="dataflow">Dataflow</h5>
+<h6 id="use-dataflow-to-execute-span-stylecolorskybluea-wide-variety-of-data-processing-patternsspan">Use Dataflow to execute <!-- raw HTML omitted -->a wide variety of data processing patterns<!-- raw HTML omitted --></h6>
+<ul>
+<li>
+<p>Serverless, fully managed data processing</p>
+</li>
+<li>
+<p>Batch and stream processing with autoscale</p>
+</li>
+<li>
+<p>Open source programming using <code>beam</code></p>
+<blockquote>
+<p>Cloud Dataflow supports fast, simplified pipeline development via expressive SQL, Java and Python APIs in the Apache Beam SDK.</p>
+</blockquote>
+</li>
+<li>
+<p>Intelligently scale to millions of QPS</p>
+</li>
+</ul>
+<h5 id="dataprep">Dataprep</h5>
+<h6 id="use-dataprep-to-visually-explore-clean-and-prepare-data-for-analysis-and-machine-learning">Use Dataprep to visually explore, clean and prepare data for analysis and machine learning</h6>
+<ul>
+<li>Serverless, works at any scale
+<ul>
+<li>no infrastructure to deploy or manage</li>
+</ul>
+</li>
+<li>Suggests ideal data transformation</li>
+<li>Focus on data analysis (skip data-profiling)</li>
+<li>Integrated partner service operated by Trifecta</li>
+</ul>
+<h5 id="dataproc">Dataproc</h5>
+<h6 id="dataproc-is-a-service-for-running-apache-spark-and-apache-hadoop-clusters">Dataproc is a service for running Apache Spark and Apache Hadoop clusters</h6>
+<ul>
+<li>
+<p>Low cost (per-second billing, preemptible)</p>
+</li>
+<li>
+<p>Super fast to start, scale, and shut down</p>
+<ul>
+<li>90 secs vs 5~30 mins</li>
+</ul>
+</li>
+<li>
+<p>Integrated with Google Cloud, e.g.</p>
+<p>(BigQuery, Cloud Storage, Cloud Bigtable, Stackdriver Logging, Stackdriver Monitoring)</p>
+<ul>
+<li>Provides complete data platform rather than just a Spark/Hadoop cluster</li>
+</ul>
+</li>
+<li>
+<p>Managed service</p>
+</li>
+<li>
+<p>Simple and familiar</p>
+</li>
+</ul>
+<h5 id="dataflow-versus-dataproc">Dataflow versus Dataproc</h5>
+<pre tabindex="0"><code>          [   Dependencies on specific   ]
+   +------[ tools/packages in the Apache ]-----+
+   |      [   Hadoop/Spark ecosystem?    ]     |
+ [Yes]                                       [No]  
+   |																						|
+   |                          [     Do you prefer the manual or     ]
+   |                     +--- [ automatic provisioning of clusters? ] ---+
+   |                     |                                               |
+   |                 [Manual]                                       [Automatic]
+   |                     |                                               |
+   ↓                     |                                               ↓ 
+[Dataproc] ← ------------+                                          [Dataflow]
+</code></pre><blockquote>
+<p>Serverless:</p>
+<p>Servers or Compute Engine instances are obfuscated so that you don&rsquo;t have to worry about the infrastructure.</p>
+</blockquote>
+<hr>
+<h2 id="design-and-process">Design and Process</h2>
+<p>Microservices:</p>
+<ul>
+<li>Allow a large application to be decomposed into independent constituent parts with each part having its own area of responsibility</li>
+<li>To serve a single user or API requests, a microservice&rsquo;s base application can call many internal microservices to compose its response</li>
+</ul>
+<h4 id="requirements-analysis-and-design">Requirements, Analysis and Design</h4>
+<h5 id="qualitative-requirements-define-systems-from-the-users-point-of-view">Qualitative requirements define systems from the user&rsquo;s point of view</h5>
+<table>
+<thead>
+<tr>
+<th>Ws</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Who</td>
+<td>Who are the users?<!-- raw HTML omitted -->Who are the developers?<!-- raw HTML omitted -->Who are the stakeholders?</td>
+</tr>
+<tr>
+<td>What</td>
+<td>What does the system do?<!-- raw HTML omitted -->What are the main features?</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>Why is the system needed? ⭐️⭐️⭐️</td>
+</tr>
+<tr>
+<td>When</td>
+<td>When do the users need and/or want the solution?<!-- raw HTML omitted -->When can the developers be done?</td>
+</tr>
+<tr>
+<td>How</td>
+<td>How will the system work?<!-- raw HTML omitted -->How many users will there be?<!-- raw HTML omitted -->How much data will there be?</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="devops-automation">DevOps Automation</h4>
+<h5 id="continuous-intregration-pipelines-automate-building-applications">Continuous intregration pipelines automate building applications</h5>
+<ol>
+<li>
+<p><!-- raw HTML omitted -->Developers check-in code<!-- raw HTML omitted --></p>
+<p>Use a Git repo for each microservice and branches for versions.</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->Run unit tests<!-- raw HTML omitted --></p>
+<p>If the tests don&rsquo;t pass, stop.</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->Build deployment package<!-- raw HTML omitted --></p>
+<p>Create a Docker image.</p>
+</li>
+<li>
+<p><!-- raw HTML omitted -->Deploy<!-- raw HTML omitted --></p>
+<p>Save your new Docker image in a container registry.</p>
+</li>
+</ol>
+<h5 id="google-provides-the-components-required-for-a-continuous-integration-pipeline">Google provides the components required for a continuous integration pipeline</h5>
+<ul>
+<li>
+<p><strong>Continuous Integration</strong></p>
+<ul>
+<li>
+<p><strong>Cloud Source Repositories</strong></p>
+<p>Developers push to a central repository when they want a build to occur</p>
+</li>
+<li>
+<p><strong>Cloud Build</strong></p>
+<p>Build system executes the steps required to make a deployment package or Docker image</p>
+</li>
+<li>
+<p><strong>Build triggers</strong></p>
+<p>Watches for changes in the Git repo and starts the build</p>
+</li>
+<li>
+<p><strong>Container Registry</strong></p>
+<p>Store your Docker images or deployment packages in a central location for deployment</p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="cloud-source-repositories-provides-managed-git-repositories">Cloud Source Repositories provides managed Git repositories</h5>
+<p>Control access to your repos using IAM within your Google Cloud projects.</p>
+<h5 id="cloud-build-lets-you-build-software-quickly-across-all-languages">Cloud Build lets you build software quickly across all languages</h5>
+<ul>
+<li>
+<p>Google-hosted Docker build services</p>
+<ul>
+<li>Alternative to using Docker build command</li>
+</ul>
+</li>
+<li>
+<p>Use the CLI to submit a build</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">gcloud builds submit --tag gcr .io/your-project-id/image-name
+</code></pre></li>
+</ul>
+<h5 id="build-triggers-watch-a-repository-and-build-a-container-whenever-code-is-pushed">Build triggers watch a repository and build a container whenever code is pushed</h5>
+<ul>
+<li>
+<p>Supports Maven, custom builds, and Docker</p>
+<p>[Select source] &ndash;&gt; [Select repository] &ndash;&gt; [Trigger settings]</p>
+</li>
+</ul>
+<h5 id="container-registry-is-a-google-cloud-hosted-docker-repository">Container Registry is a Google Cloud-hosted Docker repository</h5>
+<ul>
+<li>
+<p>Images built using Cloud Build are automatically saved in Container Registry</p>
+<ul>
+<li>Tag images with the prefix <strong>gcr.io/your-project-id</strong>/image-name</li>
+</ul>
+</li>
+<li>
+<p>Can use Docker push and pull commands with Container Registry</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">docker push gcr.io/your-project-id/image-name
+docker pull gcr.io/your-project-id/image-name
+</code></pre></li>
+</ul>
+<h5 id="binary-authorization-allows-you-to-enforce-deploying-only-trusted-containers-into-gke">Binary authorization allows you to enforce deploying only trusted containers into GKE</h5>
+<ul>
+<li>Enable binary authorization on GKE cluster</li>
+<li>Add a policy that requires signed images</li>
+<li>When an image is built by Cloud Build an &ldquo;attestor&rdquo; verifies that it was from a trusted repository (Source Repositories, for example)</li>
+<li>Container Registry includes a vulnerability scanner that scans containers</li>
+</ul>
+<hr>
+<h4 id="transfer-appliance">Transfer Appliance</h4>
+<p>Suitable for data upto 1PB</p>
+<p>AES256 encrypted the moment of capture ; data erased per NSIT 800-88 standard</p>
+<p>shipped in tamper-evident seals</p>
+<p>Steps:</p>
+<ol>
+<li>
+<p>Request Transfer Appliance</p>
+</li>
+<li>
+<p>Encrypt and copy your data</p>
+</li>
+<li>
+<p>Ship it back to Google</p>
+</li>
+<li>
+<p>Google loads the data</p>
+</li>
+<li>
+<p>You decrypt your data</p>
+<p>(You control the encryption key.)</p>
+</li>
+</ol>
+<hr>
+<h5 id="when-designing-for-reliability-consider-these-key-performance-metrics">When designing for reliability, consider these key performance metrics</h5>
+<ul>
+<li>
+<p>Availability</p>
+<p>The percent of time a system is running and able to process requests</p>
+<ul>
+<li>Achieved with fault tolerance</li>
+<li>Create backup systems</li>
+<li>Use health checks</li>
+<li>Use clear box metrics to count real traffic success and failure</li>
+</ul>
+</li>
+<li>
+<p>Durability</p>
+<p>The odds of losing data because of a hardware or system failure</p>
+<ul>
+<li>Achieved by replicating data in multiple zones</li>
+<li>Do regular backups</li>
+<li>Practice restoring from backups</li>
+</ul>
+</li>
+<li>
+<p>Scalability</p>
+<p>The ability of a system to continue to work as user load and data grow</p>
+<ul>
+<li>Monitor usage</li>
+<li>Use capacity auto-scaling to add and remove servers in response to changes in load</li>
+</ul>
+</li>
+</ul>
+<h4 id="designing-for-reliability">Designing for Reliability</h4>
+<h5 id="avoid-single-points-of-failure">Avoid single points of failure</h5>
+<p>A spare spare, N+2</p>
+<ul>
+<li>Define your unit of deployment</li>
+<li>N+2L: Plan to have one unit out for upgrade or testing and survive another failing</li>
+<li>Make sure that each unit can handle the extra load</li>
+<li>Don&rsquo;t make any single unit too large</li>
+<li>Try to make units interchangeable stateless clones</li>
+</ul>
+<h5 id="beware-of-correlated-failures">Beware of correlated failures</h5>
+<p>Correlated failures occur when related items fail at the same time</p>
+<ul>
+<li>If a single machine fails, all requests served by machine fail</li>
+<li>If a top-of-rack switch fails, entire rack fails</li>
+<li>If a zone or region is lost, all the resources in it fail</li>
+<li>Servers on the same software run into the same issue</li>
+<li>If a global configuration system fails, and multiple systems depend on it, they potentially fail too</li>
+</ul>
+<p>The group of related items that could fail together is a <strong>failure domain</strong></p>
+<h5 id="to-avoid-correlated-failures">To avoid correlated failures&hellip;</h5>
+<p>Decouple servers and use microservices distributed among multiple failure domains</p>
+<ul>
+<li>Divide business logic into services based on failure domains</li>
+<li>Deploy to multiple zones and/or regions</li>
+<li>Split responsibility into components and spread over multiple processes</li>
+<li>Design independent, loosely coupled but collaborating services</li>
+</ul>
+<h5 id="beware-of-cascading-failures">Beware of cascading failures</h5>
+<p>Cascading failures occur when one system fails, causing others to be overloaded, such as a message queue becoming overloaded because of a failing backend</p>
+<pre tabindex="0"><code>                       +-[600]-&gt;[Server A, max 1000 qps]
+                       |
+[Cloud Load Balancing]-+-[600]-&gt;[Server B, max 1000 qps]
+
+# Server B fails, causing A to be overloaded [1200-&gt;A]
+</code></pre><h5 id="to-avoid-cascading-failures">To avoid cascading failures</h5>
+<ul>
+<li>Use health checks in Compute Engine or readiness and liveliness probes in Kubernetes to detect and then repair unhealthy instances</li>
+<li>Ensure that new server instances start fast and ideally don&rsquo;t rely on other backends/systems to start up</li>
+</ul>
+<pre tabindex="0"><code>                       +-[300]-&gt;[Server A, max 500 qps]
+                       |
+                       +-[300]-&gt;[Server B, max 500 qps]
+                       |
+[Cloud Load Balancing]-+-[300]-&gt;[Server C, max 500 qps]
+                       |
+                       +-[300]-&gt;[Server D, max 500 qps]
+
+# Server D fails, sending [400] respectively to Server A/B/C
+</code></pre><h5 id="use-the-circuit-breaker-pattern-to-protect-the-service-from-too-many-retries">Use the circuit breaker pattern to protect the service from too many retries</h5>
+<ul>
+<li>Plan for degraded state operations</li>
+<li>If a service is down and all it&rsquo;s clients are retrying, the increasing number of requests can make matters worse
+<ul>
+<li>Protect the service behind a proxy that monitors service health (<em>the circuit breaker</em>)</li>
+<li>If the service is not healthy, don&rsquo;t forward requests to it</li>
+</ul>
+</li>
+<li>If using GKE, leverage istio to automatically implement circuit breakers</li>
+</ul>
+<h5 id="use-lazy-deletion-to-reliably-recover-when-users-delete-data-by-mistake">Use lazy deletion to reliably recover when users delete data by mistake</h5>
+<hr>
+<h4 id="disaster-planning">Disaster Planning</h4>
+<h5 id="high-availability-can-be-achieved-by-deploying-to-multiple-zones-in-a-region">High availability can be achieved by deploying to multiple zones in a region</h5>
+<ul>
+<li>Deploy multiple servers</li>
+<li>Orchestrate servers with a regional managed instance group</li>
+<li>Create a failover database in another zone, or use a distributed database like Firestore or Spanner</li>
+</ul>
+<h5 id="kubernetes-clusters-can-also-be-deployed-to-single-or-multiple-zones">Kubernetes clusters can also be deployed to single or multiple zones</h5>
+<ul>
+<li>Kubernetes cluster consist of a collection of node pools</li>
+<li>Selecting Regional location type replicates node pools in multiple zones in the region specified</li>
+</ul>
+<h5 id="create-a-health-check-when-creating-instance-gorups-to-enable-auto-healing">Create a health check when creating instance gorups to enable auto healing</h5>
+<ul>
+<li>Create a test endpoint in your service</li>
+<li>Test endpoint needs to verify that the service is up, and also that it can communicate with dependent backend database and services</li>
+<li>If health check fails, the instance group will create a new server and delete the broken one</li>
+<li>Load balancers also use health checks to ensure that they send requests only to healthy instances</li>
+</ul>
+<h5 id="if-using-cloud-sql-create-a-failover-replica-for-high-availability">If using Cloud SQL, create a failover replica for high availability</h5>
+<ul>
+<li>Replica will be created in another zone in the same region as the database</li>
+<li>Will automatically switch to the failover if the primary instance is unavailable</li>
+<li>Doubles the cost of the database</li>
+</ul>
+<h5 id="disaster-recovery-cold-standby">Disaster recovery: Cold standby</h5>
+<ul>
+<li>Create snapshots, machine images, and data backups in multi-region storage</li>
+<li>If main region fails, spin up servers in backup region</li>
+<li>Route requests to new region</li>
+<li>Document and test recovery procedure regularly</li>
+</ul>
+<h5 id="disaster-recovery-hot-standby">Disaster recovery: Hot standby</h5>
+<ul>
+<li>Create instance groups in multiple regions</li>
+<li>Use a global load balancer</li>
+<li>Store unstructured data in multi-region buckets</li>
+<li>For structured data, use a multi-region database such as Spanner or Firestone</li>
+</ul>
+<h5 id="when-disaster-planning-brainstorm-scenarios-that-might-cause-data-loss-andor-service-failure">When disaster planning, brainstorm scenarios that might cause data loss and/or service failure</h5>
+<ul>
+<li>What could happen that would cause a failure?</li>
+<li>What is the Recovery Point Objective (amount of data that would be acceptable to lose)?</li>
+<li>What is the Recovery Time Objective (amount of time it can take to be back up and running)?</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Scenario</th>
+<th>Recovery Point Objective</th>
+<th>Recovery Time Objective</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Product Rating Service</td>
+<td>Programmer deleted all ratings accidentally</td>
+<td>24 hours</td>
+<td>1 hour</td>
+<td>Med</td>
+</tr>
+<tr>
+<td>Orders service</td>
+<td>Database server crashed</td>
+<td>0</td>
+<td>1 minutes</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<h5 id="based-on-your-disaster-scenarios-formulate-a-plan-to-recover">Based on your disaster scenarios, formulate a plan to recover</h5>
+<ul>
+<li>Devise a backup strategy based on risk and recovery point and time objectives</li>
+<li>Communicate the procedure for recovering from failures</li>
+<li>Test and validate the procedure for recovering from failures regularly</li>
+<li>Ideally, recovery becomes a streamlined process, part of daily operations</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Backup Strategy</th>
+<th>Backup Location</th>
+<th>Recovery Procedure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ratings MySQL database</td>
+<td>Daily automated backups</td>
+<td>Multi-regional Cloud Storage bucket</td>
+<td>Run Restore Script</td>
+</tr>
+<tr>
+<td>Orders Spanner database</td>
+<td>Multi-region deployment</td>
+<td>us-east1 backup region</td>
+<td>Snapshot and backup at regular intervals, outside of the serving infrastructure; e.g. Cloud Storage</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="network-security-and-encryption">Network Security and Encryption</h3>
+<h4 id="network-security">Network Security</h4>
+<h5 id="remove-external-ips-to-prevent-access-to-machines-outside-their-network">Remove external IPs to prevent access to machines outside their network</h5>
+<ul>
+<li>
+<p>Use a bastion host to provide access to private machines</p>
+</li>
+<li>
+<p>Can also SSH into internal machines using Identity-Aware Proxy from the console and CLI</p>
+</li>
+<li>
+<p>Use Cloud NAT to provide egress to the internet from internal machines</p>
+<blockquote>
+<p><em>All internal traffic should terminate at a load balancer, third-party firewall(proxy or WAF) API Gateway, or IAP. That way, internal services cannot be launched and get public IP addresses.</em></p>
+</blockquote>
+</li>
+</ul>
+<h5 id="private-access-allows-access-to-google-cloud-services-using-an-internal-address">Private access allows access to Google Cloud services using an internal address</h5>
+<ul>
+<li>Enabled when creating subnets</li>
+<li>Allow access to Google Cloud services from VMs that only have internal IPs
+<ul>
+<li>For example, a machine with only an internal IP would be able to reach a Cloud Storage bucket</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">gcloud compute networks subnets 
+update subnet-b \ 
+    --enable-private-ip-google-access
+</code></pre><h5 id="configure-firewall-rules-to-allow-access-to-vms">Configure firewall rules to allow access to VMs</h5>
+<ul>
+<li>By default, ingress on all ports is denied</li>
+<li>Add firewall rules to control which clients have access to which VMs on which ports</li>
+<li>Application level security is the responsibility of the customer</li>
+</ul>
+<h5 id="control-access-to-apis-using-span-stylecolorskybluecloud-endpointsspan">Control access to APIs using <!-- raw HTML omitted -->Cloud Endpoints<!-- raw HTML omitted --></h5>
+<ul>
+<li>Protect and monitor your public APIs</li>
+<li>Control who has access to your API</li>
+<li>Validate every call with JSON Web Tokens and Google API keys</li>
+<li>Integrates with Identity Platform</li>
+</ul>
+<h5 id="restrict-access-to-your-services-to-tls-only">Restrict access to your services to TLS only</h5>
+<ul>
+<li>All Google Cloud service endpoints use HTTPS</li>
+<li>It&rsquo;s up to you to configure your service endpoints</li>
+<li>In the load balancer setup, only create a secure frontend</li>
+</ul>
+<h5 id="leverage-google-cloud-network-services-for-ddos-protection">Leverage Google Cloud network services for DDoS protection</h5>
+<ul>
+<li>Global load balancers detect attacks and drop them</li>
+<li>Enabling the CDN will protect backend resources</li>
+</ul>
+<h5 id="use-span-stylecolor-skybluegoogle-cloud-armorspan-to-create-network-security-policies">Use <!-- raw HTML omitted -->Google Cloud Armor<!-- raw HTML omitted --> to create network security policies</h5>
+<ul>
+<li>Can allow or deny access to your Google Cloud resources using IP addresses or ranges</li>
+<li>Create allow lists to allow known addresses</li>
+<li>Create deny lists to block known attackers</li>
+</ul>
+<h5 id="cloud-armor-supports-layer-7-web-application-firewall-waf-rules">Cloud Armor supports layer 7 web application firewall (WAF) rules</h5>
+<ul>
+<li>
+<p>Predefined rules for preventing common attacks like SQL injection and cross-site scripting</p>
+</li>
+<li>
+<p>Flexible rules language allows you to allow or deny traffic using request headers, geographic location, ip addresses, cookies, etc.</p>
+</li>
+<li>
+<p>Examples:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">inIpRange(origin.ip, &#39;9.9.9.0/24&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="go">request.headers[&#39;cookie&#39;].contains(&#39;80=BLAH&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="go">origin.region_code == &#39;AU&#39;
+</span></span></span><span class="line"><span class="cl"><span class="go">inIpRange(origin.ip, &#39;1.2.3.4/32&#39;) &amp;&amp;
+</span></span></span><span class="line"><span class="cl"><span class="go">request.headers[&#39;user-agent&#39;].contains(&#39;WordPress&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="go">evaluatePreconfiguredExpr(&#39;xss-canary&#39;)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="encryption">Encryption</h4>
+<h5 id="google-cloud-provides-server-side-encryption-of-data-at-rest-by-default">Google Cloud provides server-side encryption of data at rest by default</h5>
+<ul>
+<li>Data Encryption Key (DEK) uses AES-256 symmetric key</li>
+<li>Keys are encrypted by Key Encryption Keys (KEK)</li>
+<li>Google controls root keys in Cloud KMS</li>
+<li>Keys are automatically periodically rotated</li>
+<li>On-the-fly decryption by authorized user access with no visible performance impact</li>
+</ul>
+<h5 id="for-compliance-reasons-you-may-need-to-manage-your-own-keys">For compliance reasons, you may need to manage your own keys</h5>
+<ul>
+<li>Customer-managed encryption keys are created in the cloud using Cloud Key Management Service(KMS)</li>
+<li>You create the keys and specify the rotation frequency</li>
+<li>You can then select your keys when creating storage resources like bucket and disks</li>
+</ul>
+<h5 id="customer-supplied-encryption-keys-are-created-in-your-environment-and-provided-to-google-cloud">Customer-supplied encryption keys are created in your environment and provided to Google Cloud</h5>
+<ul>
+<li>Use your own keys with Google Cloud services</li>
+<li>CSEK are supplied by the calling application per-API call</li>
+<li>Only cached in RAM by Google</li>
+<li>They decrypt a single payload (or column) or block of returned data</li>
+<li>Supported by Compute Engine (persistent disks) and Cloud Storage</li>
+</ul>
+<h5 id="the-data-loss-prevention-api-can-be-used-to-protect-sensitive-data-by-finding-it-and-redacting-it">The Data Loss Prevention API can be used to protect sensitive data by finding it and redacting it</h5>
+<ul>
+<li>Scans data in Cloud Storage, BigQuery, or Firestore</li>
+<li>Can also scan images</li>
+<li>Detects many different types of sensitive data, including:
+<ul>
+<li>Emails</li>
+<li>Credit cards</li>
+<li>Tax IDs</li>
+</ul>
+</li>
+<li>You can add your own information types</li>
+<li>Cloud DLP API can delete, mask, tokenize, or just identify the location of the sensitive data</li>
+</ul>
+<hr>
+<h3 id="manage-versions-and-cost-planning">Manage Versions and Cost Planning</h3>
+<h4 id="managing-versions">Managing Versions</h4>
+<h5 id="in-a-microservice-architecture-be-careful-not-to-break-clients-when-services-are-updated">In a microservice architecture, be careful not to break clients when services are updated</h5>
+<ul>
+<li>Include version in URI
+<ul>
+<li>If you deploy a breaking change, you need to change the version</li>
+</ul>
+</li>
+<li>Need to deploy new versions with zero downtime</li>
+<li>Need to effectively test versions prior to going live</li>
+</ul>
+<h5 id="rolling-updates-allow-you-to-deploy-new-versions-with-no-downtime">Rolling updates allow you to deploy new versions with no downtime</h5>
+<ul>
+<li>Typicall, you have multiple instances of a service behind a load balancer</li>
+<li>Update each instance one at a time</li>
+<li>Rolling updates work when it is ok to have 2 different versions running simultaneously during the update</li>
+<li>Rolling updates are a feature of instance groups; just change the instance template</li>
+<li>Rolling updates are the default in Kubernetes; just change the Docker image</li>
+<li>Completely automated in App Engine</li>
+</ul>
+<h5 id="use-a-bluegreen-deployment-when-you-dont-want-multiple-versions-of-a-service-running-simultaneously">Use a blue/green deployment when you don&rsquo;t want multiple versions of a service running simultaneously</h5>
+<blockquote>
+<p>When you want to test a new software version → deploy it to the GREEN environment</p>
+<p>Once testing complete, the workload is shifted from the current, i.e. BLUE env to the GREEN env.</p>
+</blockquote>
+<ul>
+<li>In Compute Engine, you can use <strong>DNS</strong> to migrate requests from one load balancer to another</li>
+<li>In Kubernetes, configure your service to <strong>route to the new pods using labels</strong>
+<ul>
+<li>Simple configuration change</li>
+</ul>
+</li>
+<li>In App Engine, use the <strong>Traffic Splitting</strong> feature</li>
+</ul>
+<h5 id="canary-releases-can-be-used-prior-to-a-rolling-update-to-reduce-the-risk">Canary releases can be used prior to a rolling update to reduce the risk</h5>
+<ul>
+<li>The current service version continues to run</li>
+<li>Deploy an instance of the new version and give it a portion of requests</li>
+<li>Monitor for errors</li>
+<li>In Compute Engine, you can create a new instance group and add it as an additional backend in your load balancer</li>
+<li>In Kubernetes, create a new pod with the same labels as the existing pods; the service will automatically route a portion of requests to it</li>
+<li>In App Engine, use the Traffic Splitting feature</li>
+</ul>
+<h4 id="cost-planning">Cost Planning</h4>
+<h5 id="capacity-planning-is-a-continuous-iterative-cycle">Capacity planning is a continuous, iterative cycle</h5>
+<p>[Continuous Integration : F -&gt; A -&gt; A -&gt; D -&gt; F &hellip; ]</p>
+<ol>
+<li>
+<p><strong>Forecast</strong></p>
+<p>Estimate capacity needed Monitor Repeat</p>
+</li>
+<li>
+<p><strong>Allocate</strong></p>
+<p>Determine resources required to meet forecasted capacity</p>
+</li>
+<li>
+<p><strong>Approve</strong></p>
+<p>Cost estimation versus risks and rewards</p>
+</li>
+<li>
+<p><strong>Deploy</strong>
+Monitor to see how accurate your forecasts were</p>
+</li>
+</ol>
+<h5 id="optimizing-cost-of-compute">Optimizing cost of compute</h5>
+<ul>
+<li>Start with small VMs, and test to see whether they work</li>
+<li>Consider more small machines with auto scalng turned on</li>
+<li>Consider committed use discounts</li>
+<li>Consider at least some preemptible instances:
+<ul>
+<li>80% discount</li>
+<li>Use auto healing to recreate VMs when they are preempted</li>
+</ul>
+</li>
+<li>Google Cloud rightsizing recommendations will alert you when VMs are underutilized</li>
+</ul>
+<h5 id="optimizing-disk-cost">Optimizing disk cost</h5>
+<ul>
+<li>Don&rsquo;t over-allocate disk space</li>
+<li>Determine what performance characteristics your applications require:
+<ul>
+<li>I/O Pattern: small reads and writes or large reads and writes</li>
+<li>Configure your instances to optimize storage performance</li>
+</ul>
+</li>
+<li>Depending on I/O requirements, consider Standard over SSD disks</li>
+</ul>
+<h5 id="to-optimize-network-costs-keep-machines-close-to-your-data">To optimize network costs, keep machines close to your data</h5>
+<ul>
+<li>Egress in the same zone is free</li>
+<li>Egress to a different Google Cloud service within the same region using an external IP address or an internal IP address is free
+<ul>
+<li>Except for some services such as Memorystore for Redis</li>
+</ul>
+</li>
+<li>Egress between zones in the same region is charged</li>
+<li>All internet egress is charged</li>
+</ul>
+<h5 id="span-stylecolorskybluegke-usage-meteringspan-can-prevent-over-provisioning-kubernetes-clusters"><!-- raw HTML omitted -->GKE usage metering<!-- raw HTML omitted --> can prevent over-provisioning Kubernetes clusters</h5>
+<ul>
+<li>Agent collects consumption metrics in addition to the resource requests by polling PodMetrics objects from the metrics server</li>
+<li>The <!-- raw HTML omitted -->resource request records<!-- raw HTML omitted --> and <!-- raw HTML omitted -->resource consumption records<!-- raw HTML omitted --> are exported to two separate tables in a BigQuery dataset that you specify</li>
+<li>Comparing requested with consumed resources makes it easy to spot waste and take corrective measures</li>
+</ul>
+<h5 id="consider-alternative-services-to-save-cost-rather-than-allocating-more-resources">Consider alternative services to save cost rather than allocating more resources</h5>
+<ul>
+<li>CDN -
+for static content</li>
+<li>Caching -
+Memorystore as a cache</li>
+<li>Messaging / Queuing -
+<ul>
+<li>Instead of using datastore between two apps, use messaging or queuing with Pub/Sub to decouple communicating services and reduce storage needs</li>
+</ul>
+</li>
+<li>etc.</li>
+</ul>
+<h5 id="use-the-google-cloud-pricing-calculator-to-estimate-costs">Use the Google Cloud Pricing Calculator to estimate costs</h5>
+<ul>
+<li>
+<p>Base your cost estimates on your forecasting and capacity planning</p>
+</li>
+<li>
+<p>Compare the costs of different compute and storage services</p>
+<p><a href="https://cloud.google.com/products/calculator" target="_blank" rel="noopener noreffer ">Link to the GCPricingCalculator</a></p>
+</li>
+</ul>
+<h5 id="billing-reports-provide-detailed-cost-breakdowns">Billing reports provide detailed cost breakdowns</h5>
+<h5 id="for-advanced-cost-analysis-export-billing-data-to-bigquery">For advanced cost analysis, export billing data to BigQuery</h5>
+<h5 id="visualize-spend-with-google-data-studio">Visualize spend with Google Data Studio</h5>
+<p>Billing Dashboard:</p>
+<ul>
+<li>Daily View / Monthy View / Overall</li>
+</ul>
+<h5 id="set-budgets-and-alerts-to-keep-your-team-aware-of-how-much-they-are-spending">Set budgets and alerts to keep your team aware of how much they are spending</h5>
+<ul>
+<li>The alerts send emails to Billing Admins after spend exceeds a percent of the budget</li>
+<li>In addition to receiving an email, you can use Pub/Sub notifications to programmatically receive spend updates about this budget.</li>
+<li>You can even create a Cloud Function that listens to the Pub/Sub topic to automate cost management</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-05-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/coursera_pca/" data-hashtag="coursera"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/coursera_pca/" data-title="GCP - preparing for your cloud architect journey"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/coursera/">coursera</a>,&nbsp;<a href="/tags/security/">security</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/lesson_06_linux/" class="prev" rel="prev" title="Lesson 06: Linux 筆記 - Shell Script! final"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Lesson 06: Linux 筆記 - Shell Script! final</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

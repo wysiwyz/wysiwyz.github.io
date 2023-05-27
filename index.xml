@@ -3,9 +3,18 @@
         <title>Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 21 May 2023 09:10:20 &#43;0800</lastBuildDate>
             <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>GCP - preparing for your cloud architect journey</title>
+    <link>http://wysiwyz.github.io/posts/coursera_pca/</link>
+    <pubDate>Sun, 21 May 2023 09:10:20 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/coursera_pca/</guid>
+    <description><![CDATA[最近為了 PCA 弄了個coursera帳號，免費用到5/26，想衝刺上完七堂課 👩🏻‍🦯👩🏻‍🦽
+VPC Projects, networks, subnetworks A project Associates objects and servicing with billing Contains networks A network 3 VPC network types Default Every project One subnet per region Default firewall rules Auto Mode Default network One subnet per region Regional IP allocation Fixed /20 subnetwork per region Expandable up to /16 Custom Mode No default subnets created Full control of IP ranges Regional IP allocation Expandable to IP ranges you specify Expand subnets without re-creating instances Cannot overlap with other subnets]]></description>
+</item>
+<item>
     <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
     <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
     <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
@@ -102,32 +111,17 @@ B. Dr.]]></description>
 </item>
 <item>
     <title>Cloud architect GCP 🚧</title>
-    <link>http://wysiwyz.github.io/posts/cloud_architect_gcp/</link>
+    <link>http://wysiwyz.github.io/posts/gcp_pca_course_notes/</link>
     <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/cloud_architect_gcp/</guid>
+    <guid>http://wysiwyz.github.io/posts/gcp_pca_course_notes/</guid>
     <description><![CDATA[Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually).]]></description>
-</item>
-<item>
-    <title>Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL</title>
-    <link>http://wysiwyz.github.io/posts/lesson_03_linux/</link>
-    <pubDate>Sat, 18 Mar 2023 09:30:38 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_03_linux/</guid>
-    <description><![CDATA[LUKS 加密服務 適用對象 移動式設備資料保護
-notebook, USB磁碟加密
-提供32組插槽使用
-把partition切成小塊加密，裡面放密碼、key_file
-可以使用設定的密碼解密或者用key解密
-注意事項 LUKS並不對檔案本身進行加密(針對整個partition,整個D槽) LUKS對於單一磁碟取走後能夠起保護作用 KUKS對於已經解密之磁碟內容不起保護作用 指令 cryptsetup luksFormat 建立加密磁碟 luksOpen 開啟加密磁碟 close 關閉已經開啟的加密磁碟 luks - 解密
-mount - 掛起來
-umount - 卸載
-​ (順便同步, 如果未正確卸載可能會造成檔案毀損)
-1 2 3 4 5 6 7 8 lsblk /dev/sdb cryptsetup luksFormat /dev/sdb cryptsetup luksOpen /dev/sdb secDisk mkfs.xfs /dev/mapper/secDisk mount /dev/mapper/secDisk /mnt touch /mnt/myfile umount /mnt cryptsetup close secDisk Dump/Status more cmds 使用插槽 刪除插槽 memcached的使用
-Luks資料加密架構與資料救援方法
-Linux檔案加密_GPG_GnuPG]]></description>
+Section 01 Getting Started GCP has 200+ services. This exam expects knowledge of 40+ services
+Exam tests your decision making abilities:
+Which service do you choose in which situation?
+How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?
+Below notes will help with making the tough choices]]></description>
 </item>
 </channel>
 </rss>

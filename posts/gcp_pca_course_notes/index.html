@@ -7,18 +7,26 @@
         <title>Cloud architect GCP 🚧 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cloud architect GCP 🚧" />
 <meta property="og:description" content="Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually)." />
+Section 01 Getting Started GCP has 200&#43; services. This exam expects knowledge of 40&#43; services
+Exam tests your decision making abilities:
+Which service do you choose in which situation?
+How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?
+Below notes will help with making the tough choices" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://wysiwyz.github.io/posts/cloud_architect_gcp/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/gcp_pca_course_notes/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-03-24T13:39:15+08:00" />
 <meta property="article:modified_time" content="2023-03-24T13:39:15+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cloud architect GCP 🚧"/>
 <meta name="twitter:description" content="Active learning - think and take notes
 Review - every once in a while
-Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed instance groups (MIG) V2 Instance Groups How do you create a group of VM instances? Instance Group - Group of VM instances managed as a single entity Manage group of similar VMs having similar lifecycle as ONE UNIT Two Types of Instance Groups: Managed: Identical VMs created using a template: Features: Auto scaling, auto healing and managed releases Unmanaged: Different configuration for VMs in same group: Does NOT offer auto scaling, auto healing and other services NOT Recommended unless you need different kinds of VMs Location can be Zonal or Regional Regional gives you higher availability (RECOMMENDED) Managed Instance Groups (MIG) Managed Instance Group Identical VMs created using an instance template Important Features Maintain certain number of instances If an instance crashes, MIG launches another instance Detect application failures using health checks (Self Healing) Increase and decrease instances based on load (Auto Scaling) Add Load Balancer to distribute load Create instances in multiple zones (regional MIGs) Regional MIGs provide higher availability compared to zonal MIGs Release new application versions without downtime Rolling updates: Release new version step by step (gradually)."/>
+Section 01 Getting Started GCP has 200&#43; services. This exam expects knowledge of 40&#43; services
+Exam tests your decision making abilities:
+Which service do you choose in which situation?
+How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?
+Below notes will help with making the tough choices"/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/cloud_architect_gcp/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_03_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/suzume_no_tojimari/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/gcp_pca_course_notes/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_03_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/suzume_no_tojimari/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -28,9 +36,9 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/wysiwyz.github.io\/posts\/cloud_architect_gcp\/"
-        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  6262 ,
-        "url": "http:\/\/wysiwyz.github.io\/posts\/cloud_architect_gcp\/","datePublished": "2023-03-24T13:39:15+08:00","dateModified": "2023-03-24T13:39:15+08:00","publisher": {
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/gcp_pca_course_notes\/"
+        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  12215 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/gcp_pca_course_notes\/","datePublished": "2023-03-24T13:39:15+08:00","dateModified": "2023-03-24T13:39:15+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -71,8 +79,8 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloud architect GCP 🚧</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6262 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;30 minutes&nbsp;<span id="/posts/cloud_architect_gcp/" class="leancloud_visitors" data-flag-title="Cloud architect GCP 🚧">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;12215 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;58 minutes&nbsp;<span id="/posts/gcp_pca_course_notes/" class="leancloud_visitors" data-flag-title="Cloud architect GCP 🚧">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -81,6 +89,53 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#before-the-cloud">Before the Cloud</a></li>
+        <li><a href="#challenges">Challenges</a></li>
+        <li><a href="#silver-lining-in-the-cloud">Silver Lining in the Cloud</a></li>
+        <li><a href="#cloud-advantages">Cloud advantages</a></li>
+        <li><a href="#google-cloud-platform">Google Cloud Platform</a></li>
+        <li><a href="#best-path-to-learn-gcp">Best path to learn GCP</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#regions-and-zones">Regions and Zones</a></li>
+        <li><a href="#multiple-data-centers">Multiple data centers</a></li>
+        <li><a href="#multiple-regions">Multiple regions</a></li>
+        <li><a href="#regions">Regions</a></li>
+        <li><a href="#zones">Zones</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#google-comput-engine---gce">Google Comput Engine - GCE</a></li>
+        <li><a href="#compute-engine---features">Compute Engine - Features</a></li>
+        <li><a href="#compute-engine-hands-on">Compute Engine Hands-on</a></li>
+        <li><a href="#compute-engine-machine-family">Compute Engine Machine Family</a></li>
+        <li><a href="#compute-engine-machine-types">Compute Engine Machine Types</a></li>
+        <li><a href="#image">Image</a></li>
+        <li><a href="#compute-engine-hands-on--setting-up-a-http-server">Compute Engine Hands-on : Setting up a HTTP server</a></li>
+        <li><a href="#internal-and-external-ip-addresses">Internal and External IP Addresses</a></li>
+        <li><a href="#static-ip-addresses">Static IP Addresses</a></li>
+        <li><a href="#static-ip-addresses---remember">Static IP addresses - Remember</a></li>
+        <li><a href="#simplify-vm-http-server-setup">Simplify VM HTTP server setup</a></li>
+        <li><a href="#bootstrapping-with-startup-script">Bootstrapping with Startup script</a></li>
+        <li><a href="#instance-templates">Instance templates</a></li>
+        <li><a href="#reducing-launch-time-with-custom-image">Reducing Launch Time with Custom Image</a></li>
+      </ul>
+    </li>
+  </ul>
+
   <ul>
     <li>
       <ul>
@@ -191,14 +246,518 @@ Section 01 Section 02 Section 03 Section 04 Step00 Step02 - create managed insta
       </ul>
     </li>
   </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#architect-understand-business-requirements">Architect: Understand Business Requirements</a></li>
+        <li><a href="#total-cost-of-ownership">Total Cost of Ownership</a></li>
+        <li><a href="#defining-technical-requirements">Defining Technical Requirements</a></li>
+        <li><a href="#planning-for-high-availability">Planning for High Availability</a></li>
+        <li><a href="#planning-for-scalability">Planning for Scalability</a></li>
+        <li><a href="#planning-for-scalability---2">Planning for Scalability - 2</a></li>
+        <li><a href="#planning-for-security-p-stylecolor-yellowciap">Planning for Security <!-- raw HTML omitted -->CIA<!-- raw HTML omitted --></a></li>
+        <li><a href="#implementing-ddos-protection-and-mitigation">Implementing DDoS Protection and Mitigation</a></li>
+        <li><a href="#digital-signatures---cloud-kms">Digital Signatures - Cloud KMS</a></li>
+        <li><a href="#cloud-armor">Cloud Armor</a></li>
+        <li><a href="#secret-manager">Secret Manager</a></li>
+        <li><a href="#architect-responsibilities-stakeholder-management">Architect Responsibilities: Stakeholder Management</a></li>
+        <li><a href="#architect-responsibilities-change-management">Architect Responsibilities: Change Management</a></li>
+        <li><a href="#architect-responsibilities-business-continuity-planning">Architect Responsibilities: Business Continuity Planning</a></li>
+        <li><a href="#architect-responsibilities-incident-management">Architect Responsibilities: Incident Management</a></li>
+        <li><a href="#architect-responsibilities-data-management">Architect Responsibilities: Data Management</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#cloud-scheduler">Cloud Scheduler</a></li>
+        <li><a href="#cloud-emulators">Cloud Emulators</a></li>
+        <li><a href="#cloud-dns">Cloud DNS</a></li>
+        <li><a href="#cloud-dns---cli">Cloud DNS - CLI</a></li>
+        <li><a href="#pricing-calculator">Pricing Calculator</a></li>
+        <li><a href="#anthos">Anthos</a></li>
+        <li><a href="#machine-learning-in-google-cloud">Machine Learning in Google Cloud</a></li>
+        <li><a href="#rest-api-challenges">REST API Challenges</a></li>
+        <li><a href="#apigee-api-management">Apigee API Management</a></li>
+        <li><a href="#getting-started-with-identity-platform">Getting Started with Identity Platform</a></li>
+        <li><a href="#cloud-iam-vs-identity-platform---scenarios">Cloud IAM vs Identity Platform - Scenarios</a></li>
+        <li><a href="#getting-started-with-event-driven-architecture">Getting Started with Event Driven Architecture</a></li>
+        <li><a href="#getting-started-with-cloudevents">Getting Started with CloudEvents</a></li>
+        <li><a href="#getting-started-with-observability-and-opentelemetry">Getting Started with Observability and OpenTelemetry</a></li>
+        <li><a href="#using-service-directory">Using Service Directory</a></li>
+        <li><a href="#using-service-directory---features">Using Service Directory - Features</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#google-cloud-architecture-framework">Google Cloud Architecture Framework</a></li>
+        <li><a href="#principle-1-operational-excellence">Principle 1: Operational Excellence</a></li>
+        <li><a href="#operational-excellence---best-practices">Operational Excellence - Best practices</a></li>
+        <li><a href="#operational-excellence---best-practices---2">Operational Excellence - Best practices - 2</a></li>
+        <li><a href="#operational-excellence---best-practices---3">Operational Excellence - Best practices - 3</a></li>
+        <li><a href="#principle-2-security-privacy-and-compliance">Principle 2: Security, Privacy and Compliance</a></li>
+        <li><a href="#security-privacy-and-compliance---best-practices">Security, Privacy and Compliance - Best practices</a></li>
+        <li><a href="#security-privacy-and-compliance---best-practices---2">Security, Privacy and Compliance - Best practices - 2</a></li>
+        <li><a href="#security-privacy-and-compliance---best-practices---3">Security, Privacy and Compliance - Best practices - 3</a></li>
+        <li><a href="#principle-3-reliability">Principle 3: Reliability</a></li>
+        <li><a href="#reliability---best-practices">Reliability - Best practices</a></li>
+        <li><a href="#reliability---best-practice---2">Reliability - Best practice - 2</a></li>
+        <li><a href="#performance-and-cost-optimization---best-practices---2">Performance and Cost Optimization - Best practices - 2</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#case-studies---important">Case Studies - <em>Important</em></a></li>
+        <li><a href="#1-ehr-healthcare">1. EHR Healthcare</a></li>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#2-helicopter-racing">2. Helicopter Racing</a></li>
+        <li><a href="#requirements-1">Requirements</a></li>
+        <li><a href="#discussion">Discussion</a></li>
+        <li><a href="#3-mountkirk-games">3. Mountkirk Games</a></li>
+        <li><a href="#requirements-2">Requirements</a></li>
+        <li><a href="#discussion-1">Discussion</a></li>
+        <li><a href="#requirements-3">Requirements</a></li>
+        <li><a href="#discussion-2">Discussion</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#gca-resources">GCA Resources</a></li>
+        <li><a href="#certification-exam">Certification Exam</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>Active learning - think and take notes</p>
-<p>Review - every once in a while</p>
+<p><em>Active learning</em> - think and take notes</p>
+<p><em>Review</em> - every once in a while</p>
 </blockquote>
 <h1 id="section-01">Section 01</h1>
+<h3 id="getting-started">Getting Started</h3>
+<ul>
+<li>
+<p>GCP has 200+ services. This exam expects knowledge of 40+ services</p>
+</li>
+<li>
+<p>Exam tests your <strong>decision making abilities</strong>:</p>
+<ul>
+<li>
+<p>Which service do you choose in which situation?</p>
+</li>
+<li>
+<p>How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?</p>
+<blockquote>
+<p>Below notes will help with making the tough choices</p>
+<p>And Enable you to architect amazing solutions in GCP</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="before-the-cloud">Before the Cloud</h3>
+<ul>
+<li>
+<p>Example 1: Online shopping app</p>
+<ul>
+<li>Challenge:
+<ul>
+<li>Peak usage during holidays and weekends</li>
+<li>Less load during rest of the time</li>
+</ul>
+</li>
+<li>Solution (before the Cloud)
+<ul>
+<li>PEAK LOAD provisioning : Procure (buy) infrastructure for peak load</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Example 2 - Startup</p>
+<ul>
+<li>Challenge:
+<ul>
+<li>Startup suddenly becomes popular</li>
+<li>How do you handle the sudden increase in load?</li>
+</ul>
+</li>
+<li>Solution (before the cloud)
+<ul>
+<li>Procure infrastructure assuming they would be successful</li>
+</ul>
+</li>
+</ul>
+<h3 id="challenges">Challenges</h3>
+<ul>
+<li>
+<p>High cost of procuring infrastructure</p>
+</li>
+<li>
+<p>Needs ahead of time planning (Can you guess the future?)</p>
+</li>
+<li>
+<p>Low infrastructure utilization (PEAK LOAD provisioning)</p>
+</li>
+<li>
+<p>Dedicated infrastructure maintenance team (Can a startup afford it?)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="silver-lining-in-the-cloud">Silver Lining in the Cloud</h3>
+<ul>
+<li>Rent resources when you want htem, and release them back when they are not needed
+<ul>
+<li>AKA on-demand resource provisioning</li>
+<li>AKA elasticity</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-advantages">Cloud advantages</h3>
+<ul>
+<li>Trade <strong>capital expense</strong> for <strong>variable expense</strong></li>
+<li>Benefit from massive <strong>economies of scale</strong></li>
+<li>Stop <strong>guessing</strong> capacity</li>
+<li>Stop spending money running and maintaining data centers</li>
+<li><strong>Go global</strong> in minutes</li>
+</ul>
+<h3 id="google-cloud-platform">Google Cloud Platform</h3>
+<ul>
+<li>One of the Top 3 cloud service providers</li>
+<li>200+ services provided</li>
+<li>Reliable, secure and highly performant:
+<ul>
+<li>Infrastructure that powers 8 services with over 1 billion users: Gmail, Google Search, YouTube</li>
+</ul>
+</li>
+<li>Cleanest cloud
+<ul>
+<li>Net carbon-neutral cloud (electricity used matched 100% with renewable energy)</li>
+</ul>
+</li>
+</ul>
+<h3 id="best-path-to-learn-gcp">Best path to learn GCP</h3>
+<ul>
+<li>Cloud applications make use of multiple GCP services</li>
+</ul>
 <h1 id="section-02">Section 02</h1>
+<h3 id="regions-and-zones">Regions and Zones</h3>
+<ul>
+<li>Imagine that your application is deployed in a data center in Londonw</li>
+<li>possible challenges?
+<ol>
+<li>slow access from other parts of the word (<strong>high latency</strong>)</li>
+<li>what if the data center crashes? (Low availability)</li>
+</ol>
+</li>
+</ul>
+<h3 id="multiple-data-centers">Multiple data centers</h3>
+<ul>
+<li>Add one more data center in London</li>
+<li>Possible challenges
+<ol>
+<li>Xxx</li>
+<li>Yyy</li>
+<li>Zzz</li>
+</ol>
+</li>
+</ul>
+<h3 id="multiple-regions">Multiple regions</h3>
+<ul>
+<li>
+<p>add a new region: Changhua</p>
+</li>
+<li>
+<p>Possible challenges:</p>
+<ol>
+<li>
+<p>(partly solved) slow access for users from other parts of the world</p>
+<p>-&gt; Cloud provider to the resecue</p>
+</li>
+<li>
+<p>(solved) what if one data center crashed</p>
+</li>
+<li>
+<p>(Solved) what if entire region of London is unavailable?</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="regions">Regions</h3>
+<ul>
+<li>Google provides 20+ regions around the world</li>
+<li>Region: Specific geographical location to hose your resources</li>
+<li>Advantages:
+<ul>
+<li>High availability</li>
+<li>Low Latency</li>
+<li>Global Footprint</li>
+<li>Adhere to government regulations</li>
+</ul>
+</li>
+</ul>
+<h3 id="zones">Zones</h3>
+<ul>
+<li>How to achieve high availability in the same region (or )</li>
+<li>Each Region has three or more zones</li>
+<li>(Advantage) Increased availability and fault tolerance within same region</li>
+</ul>
 <h1 id="section-03">Section 03</h1>
+<h3 id="google-comput-engine---gce">Google Comput Engine - GCE</h3>
+<ul>
+<li>In corporate data centers, applications are deployed to physical server</li>
+<li>In the cloud, you rent virtual servers nad deploy applications</li>
+<li><strong>Virtual Machines</strong> - Virtual servers in GCP</li>
+<li><strong>Google Compute Engine (GCE)</strong> - Provision and Manage Virtual Machines</li>
+</ul>
+<h3 id="compute-engine---features">Compute Engine - Features</h3>
+<ul>
+<li>Create and manage lifecycle of Virtual Machine (VM) instances</li>
+<li><strong>Load balancing</strong> and <strong>auto scaling</strong> for multiple VM instances</li>
+<li><strong>Attach storage</strong> (&amp; network storage) to your VM instances</li>
+<li>Manage <strong>network connectivity and configuration</strong> for your VM instances</li>
+<li>Goal:
+<ul>
+<li>Setup VM instances as HTTP(Web) Server</li>
+<li>Distribute load with Load Balancers</li>
+</ul>
+</li>
+</ul>
+<h3 id="compute-engine-hands-on">Compute Engine Hands-on</h3>
+<ul>
+<li>Let&rsquo;s create a few VM instances and play with them</li>
+<li>Let&rsquo;s check out the lifecycle of VM instances</li>
+<li>Let&rsquo;s use SSH to connect to VM instances</li>
+</ul>
+<h3 id="compute-engine-machine-family">Compute Engine Machine Family</h3>
+<blockquote>
+<p>Machine family, machine type</p>
+</blockquote>
+<ul>
+<li>
+<p>What type of hardware do you want to run your workloads on?</p>
+</li>
+<li>
+<p>Different Machine Families for different workloads:</p>
+<ul>
+<li>
+<p><strong>General purpose (E2, N2, N2D, N1)</strong>:</p>
+<p>Best price-performance ratio</p>
+<ul>
+<li>Web and application servers, Small-medium databases, Dev environments</li>
+</ul>
+</li>
+<li>
+<p><strong>Memory Optimized (M2, M1)</strong>:</p>
+<p>Ultra high memory workloads</p>
+<ul>
+<li>Large in-memory databases and In-memory analytics</li>
+</ul>
+</li>
+<li>
+<p><strong>Compute Optimized (C2)</strong>:</p>
+<p>Compute intensive workloads</p>
+<ul>
+<li>Gaming applications</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="compute-engine-machine-types">Compute Engine Machine Types</h3>
+<table>
+<thead>
+<tr>
+<th>Machine name</th>
+<th>vCPUs *</th>
+<th>Memory(GB) *</th>
+<th>Max number of persistent disks(PDs)</th>
+<th>Max total PD size(TB)</th>
+<th>Local SSD</th>
+<th>Maximum egress bandwidth (Gbps) *</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>e2-standard-2</td>
+<td>2</td>
+<td>8</td>
+<td>128</td>
+<td>257</td>
+<td>No</td>
+<td>4</td>
+</tr>
+<tr>
+<td>e2-standard-4</td>
+<td>4</td>
+<td>16</td>
+<td>128</td>
+<td>257</td>
+<td>No</td>
+<td>8</td>
+</tr>
+<tr>
+<td>e2-standard-8</td>
+<td>6</td>
+<td>32</td>
+<td>128</td>
+<td>257</td>
+<td>No</td>
+<td>16</td>
+</tr>
+<tr>
+<td>e2-standard-16</td>
+<td>16</td>
+<td>64</td>
+<td>128</td>
+<td>257</td>
+<td>No</td>
+<td>16</td>
+</tr>
+<tr>
+<td>e2-standard-32</td>
+<td>32</td>
+<td>128</td>
+<td>128</td>
+<td>257</td>
+<td>No</td>
+<td>16</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>How much CPU, memory or disk do you want?
+<ul>
+<li>Variety of machine types are available for each machine family</li>
+<li>Let&rsquo;s take an example: <strong>e2-standard-2</strong>
+<ul>
+<li><strong>e2</strong> : Machine Type Family</li>
+<li><strong>standard</strong> : Type of workload</li>
+<li><strong>2</strong> : number of CPUs</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>*Memory, disk and networking capabilities increase along with vCPUs</li>
+</ul>
+<h3 id="image">Image</h3>
+<ul>
+<li>What operating system and what software do you want on the instance?</li>
+<li>Type of images:
+<ul>
+<li>Public Images: Provided and maintained by Google or Open source communities or third</li>
+</ul>
+</li>
+</ul>
+<h3 id="compute-engine-hands-on--setting-up-a-http-server">Compute Engine Hands-on : Setting up a HTTP server</h3>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">#! /bin/bash
+sudo su
+apt update
+apt -y install apache2
+sudo service apache2 start
+sudo update-rc.d apache2 enable
+echo &#34;Hello World&#34; &gt; /var/www/html/index.html
+echo &#34;Hello world from $(hostname) $(hostname -i)&#34; &gt; /var/www/html/index.html
+</code></pre><h3 id="internal-and-external-ip-addresses">Internal and External IP Addresses</h3>
+<ul>
+<li>External (Public) IP addresses are Internet addressable</li>
+<li>Internal (Private) IP addresses are internal to a corporate network</li>
+<li>You CANNOT have two resources with the same public (External) IP address
+<ul>
+<li>However, two different corporate networks CAN have resources with the same Internal (private) IP address</li>
+</ul>
+</li>
+<li>All <strong>VM instances</strong> are assigned at least one internal IP address</li>
+<li>Creation of External IP addresses can be enabled for VM instances</li>
+<li>DEMO: VM instances - &hellip;</li>
+</ul>
+<h3 id="static-ip-addresses">Static IP Addresses</h3>
+<ul>
+<li>Scenario : How do you get a constant External IP address for a VM instance?
+<ul>
+<li>Quick and dirty way is to assign an Static IP address to the VM</li>
+</ul>
+</li>
+<li><strong>DEMO</strong> : Using Static IP Address with an VM instance</li>
+</ul>
+<h3 id="static-ip-addresses---remember">Static IP addresses - Remember</h3>
+<ul>
+<li>Static IP <strong>can be switched</strong> to another VM instance in the same project</li>
+<li>Static IP <strong>remains attached</strong> even if you stop the instance. You have to manually detach it</li>
+<li><em>Remember</em> : You are <strong>billed for</strong> an Static IP when you are <strong>NOT using it</strong> as well
+<ul>
+<li>Make sure that you explicitly release an Static IP when you are not using it</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>if you are not using a static IP not, it&rsquo;s best that you immediately release it. Or else the billing would be very high.</p>
+</blockquote>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">#!/bin/bash
+apt update
+apt -y install apache2
+echo &#34;Hello world from $(hostname) $(hostname -i)&#34; &gt; /var/www/html/index.html
+</code></pre><h3 id="simplify-vm-http-server-setup">Simplify VM HTTP server setup</h3>
+<ul>
+<li>How do we <strong>reduce</strong> the <strong>number of steps</strong> in creating an VM instance and setting up a HTTP Server?</li>
+<li>Let&rsquo;s explore a few options:
+<ul>
+<li><strong>Startup script</strong></li>
+<li>Instance Template</li>
+<li>Custom Image</li>
+</ul>
+</li>
+</ul>
+<h3 id="bootstrapping-with-startup-script">Bootstrapping with Startup script</h3>
+<ul>
+<li><strong>Bootstrapping</strong>: install OS patches or software when an VM instance is launched</li>
+<li>In VM, you can configure <strong>Startup script</strong> to bootstrap</li>
+</ul>
+<h3 id="instance-templates">Instance templates</h3>
+<ul>
+<li>Why do you need to specify all the VM instance details (image, instance type etc) every time you launch an instance?
+<ul>
+<li>How about creating a instance template?</li>
+<li>Define <strong>machine type</strong>, <strong>image</strong>, <strong>labels</strong>, <strong>startup script</strong> and other properties</li>
+</ul>
+</li>
+<li>Used to create <strong>VM instances</strong> and <strong>managed instance groups</strong>
+<ul>
+<li>Provides a <strong>convenient way</strong> to create similar instances</li>
+</ul>
+</li>
+<li><strong>CANNOT</strong> be updated
+<ul>
+<li>To make a change, copy an existing template and modify it</li>
+</ul>
+</li>
+<li>(Optional) Image family can be specified (example - debian-9):</li>
+</ul>
+<h3 id="reducing-launch-time-with-custom-image">Reducing Launch Time with Custom Image</h3>
+<ul>
+<li>Installing OS patches and software at launch of VM instances increase boot up time</li>
+<li>How about creating a custom image with OS patches and software <strong>pre-installed</strong>?
+<ul>
+<li>Can be created from an instance, a persistent disk, a snapshot, another image, or a file in Cloud Storage</li>
+<li>Can be shared across projects</li>
+<li>(Recommendation) Deprecate old images (&amp; specify replacement image)</li>
+<li>(Recommendation) Hardening an image - Customize images to your corporate security standards</li>
+</ul>
+</li>
+<li><strong>Prefer</strong> using <strong>Custom Image</strong> to <strong>Startup script</strong></li>
+</ul>
 <h1 id="section-04">Section 04</h1>
 <h4 id="step00">Step00</h4>
 <h4 id="step02---create-managed-instance-groups-mig-v2">Step02 - create managed instance groups (MIG) V2</h4>
@@ -2203,16 +2762,1576 @@ Other locations: 100,000</li>
 <p>278</p>
 <p>Section 32</p>
 <p>281</p>
-<p>Section 33</p>
-<p>284</p>
-<p>Section 34</p>
-<p>298</p>
-<p>Section 35</p>
-<p>310</p>
-<p>Section 36</p>
-<p>315</p>
-<p>Section 37</p>
-<p>325</p>
+<h1 id="section-33">Section 33</h1>
+<h3 id="architect-understand-business-requirements">Architect: Understand Business Requirements</h3>
+<ul>
+<li>Business Requirements: Define what your business needs</li>
+<li>Examples of Business Requirements:
+<ul>
+<li>Reduce costs (Understand Capital Expenditure vs Operational Expenditure)
+<ul>
+<li>Managed Services</li>
+<li>Autoscaling</li>
+<li>Preemptible VMs</li>
+</ul>
+</li>
+<li>Increase pace of innovation
+<ul>
+<li>Evaluate and adopt emerging processes like DevOps (CI/CD) and SRE</li>
+<li>Evaluate and adopt emerging architectures like Microservices</li>
+</ul>
+</li>
+<li>Reduce mean time to recovery</li>
+<li>Improve compliance with regulations</li>
+<li>More visibility into applications and infrastructure (metrics)</li>
+<li>More intelligence from the available data</li>
+</ul>
+</li>
+</ul>
+<h3 id="total-cost-of-ownership">Total Cost of Ownership</h3>
+<ul>
+<li>Total Cost of Ownership (TCO) includes
+<ul>
+<li>Licensing Costs (Software + Hardware)</li>
+<li>Computing costs</li>
+<li>Storage costs</li>
+<li>Networking costs (connection cost + Data ingress + Data egress)</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<h3 id="defining-technical-requirements">Defining Technical Requirements</h3>
+<ul>
+<li>Technical aspects that your system must adhere to
+<ul>
+<li>Functional
+<ul>
+<li>Must use containers</li>
+<li>Must use hardened Linux OS</li>
+<li>Needs container orchestration</li>
+<li>Must be auto scale</li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="planning-for-high-availability">Planning for High Availability</h3>
+<table>
+<thead>
+<tr>
+<th>service/feature</th>
+<th>features/best practices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Geographical Distribution</td>
+<td>Avaiability: Global &gt; Multi-Regional &gt; Regional &gt; Zonal</td>
+</tr>
+<tr>
+<td>Compute Engine</td>
+<td>Live Migration<!-- raw HTML omitted -->Managed Instance Groups with AutoScaling and Health Checks (auto healing)<!-- raw HTML omitted -->Distribute instances across regions/zones and distribute using Global Load Balancing</td>
+</tr>
+<tr>
+<td>GKE</td>
+<td>Multi master, Regional clusters with pod and cluster autoscaling</td>
+</tr>
+<tr>
+<td>Managed Services</td>
+<td>Use Managed Services like App Engine, Cloud Functions, Cloud Storage, Cloud Filestore, Cloud Datastore, BigQuery</td>
+</tr>
+<tr>
+<td>Persistent Disks</td>
+<td>Live resizing improves availability<!-- raw HTML omitted -->Use Regional Persistent Disks</td>
+</tr>
+<tr>
+<td>Cloud Bigtable</td>
+<td>Place clusters in different zones or regions<!-- raw HTML omitted -->(Each cluster belongs to a zone and you can create multiple clusters for high availability in the same instance)</td>
+</tr>
+<tr>
+<td>Cloud Datastore</td>
+<td>Use multi-region locations</td>
+</tr>
+<tr>
+<td>Cloud SQL</td>
+<td>Use <strong>HA configuration</strong> (regional) - Cluster with primary instance and a standby instance is created<!-- raw HTML omitted -->Read replicas will NOT be promoted (so read replicas do NOT increase availability for Cloud SQL)</td>
+</tr>
+<tr>
+<td><strong>Network Tier</strong></td>
+<td><strong>Prefer Premium Network Tier</strong> to Standard Network Tier</td>
+</tr>
+<tr>
+<td><strong>Hybrid Network Connectivity</strong></td>
+<td>Speed and Availability: Dedicated interconnect &gt; Partner interconnect &gt; VPN<!-- raw HTML omitted -->Have a backup connection<!-- raw HTML omitted -->Example: VPN can be a backup for Dedicated interconnect or have multiple Dedicated interconnect connections</td>
+</tr>
+</tbody>
+</table>
+<h3 id="planning-for-scalability">Planning for Scalability</h3>
+<ul>
+<li>
+<p><strong>High Scalable Compute Engine Architecture</strong> : VMs in MIG configured by instance template (and load balanced with Load Balancing)</p>
+<ul>
+<li>(Remember) Unmanaged Instance Groups do not support Auto Scaling</li>
+</ul>
+</li>
+<li>
+<p>Use <strong>Pod and Cluster Autoscaling</strong> for GKE</p>
+<blockquote>
+<ol>
+<li>Pod autoscaling: increase the number of instances of a specific microservice</li>
+<li>Cluster autoscaling: increase the number of nods in a cluster based on the number of pods you&rsquo;d want to run</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>Be cautious with resources that cannot scale fast</p>
+<ul>
+<li>Cloud SQL does NOT scale horizontally (only vertically)</li>
+</ul>
+</li>
+<li>
+<p>Stateful applications are more difficult to scale than Stateless applications</p>
+<ul>
+<li>You can move state to a cache (like Memorystore) or a database</li>
+</ul>
+</li>
+</ul>
+<h3 id="planning-for-scalability---2">Planning for Scalability - 2</h3>
+<ul>
+<li><strong>Persistent Disks</strong>: Can be scaled horizontally and vertically
+<ul>
+<li>You can increase the size of PD while it is attached to a VM</li>
+<li>You can attach new PDs (up to a max of 128) while a VM is running</li>
+</ul>
+</li>
+<li><strong>Compute</strong>:
+<ul>
+<li>Cloud storage, app engine and cloud functions are serverless (Auto Scaling)</li>
+</ul>
+</li>
+<li><strong>Databases</strong>:
+<ul>
+<li>kPub/Sub, BigQuery and Cloud Datastore are serverless (Auto Scaling)</li>
+<li>BigTable, Cloud Spanner, Cloud SQL, Dataproc are <strong>NOT serverless</strong>
+<ul>
+<li>You need to choose the number of nodes in the cluster (and also the type of node for Cloud SQL and Dataproc)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="planning-for-security-p-stylecolor-yellowciap">Planning for Security <!-- raw HTML omitted -->CIA<!-- raw HTML omitted --></h3>
+<ul>
+<li><strong>Confidentiality</strong> - Only right people have the right access
+<ul>
+<li>Follow <strong>IAM best practices</strong></li>
+<li>Encryption at rest and in transit (along with physical controls)
+<ul>
+<li>(DEFAULT) GCP encrypts all data at rest</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Integrity</strong> - Protect data from unauthorized change
+<ul>
+<li>Follow <strong>IAM Best Practices</strong>
+<ul>
+<li>Role Based Access</li>
+<li>Separation of duties</li>
+</ul>
+</li>
+<li>Hash verifications and digital signatures</li>
+</ul>
+</li>
+<li><strong>Availability</strong> - Systems/Data is/are available when users need them
+<ul>
+<li>Solutions: Firewalls, Redundancy, Automatic Failover etc</li>
+<li>Protect from Denial of Service (DoS) attacks</li>
+</ul>
+</li>
+</ul>
+<h3 id="implementing-ddos-protection-and-mitigation">Implementing DDoS Protection and Mitigation</h3>
+<ul>
+<li><strong>(DDoS) attack</strong>: Attempting to bring your apps down with large scale attacks</li>
+<li><strong>Shared responsibility</strong> between GCP and Customer
+<ul>
+<li>GCP provides certain features to protect your app from DDoS attacks
+<ul>
+<li><strong>Anti-spoofing</strong> protection for the private network</li>
+<li><strong>Isolation</strong> between virtual networks</li>
+<li>App Engine (sits behind Google Front End) automatically protects you from Layer 4 and below attacks
+<ul>
+<li>Examples: SYN floods, IP fragment floods, prot exhaustion, etc.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What you can do to protect apps from DDoS attacks?
+<ul>
+<li><strong>Reduce the attack surface</strong>: Make use of subnetworks and networks, firewall rules and IAM</li>
+<li><strong>Isolate</strong> your internal traffic
+<ul>
+<li>Use private IP address (unless you need public IP addresses)</li>
+<li>Use private load balancing for internal traffic</li>
+</ul>
+</li>
+<li><strong>Use Proxy-based Load Balancing</strong>:</li>
+<li>Integrate Load Balancing with <strong>Cloud Armor</strong>
+<ul>
+<li>IP-based and geo-based access control</li>
+<li>Enforce Layer 7 security policies on hybrid and multi-cloud deployments</li>
+<li>Pre-configured WAF rules (OWASP10)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="digital-signatures---cloud-kms">Digital Signatures - Cloud KMS</h3>
+<ul>
+<li>When do we use digital signatures?
+<ul>
+<li>Purpose 1: Verification of the integrity of the signed data</li>
+<li>Purpose 2: Non-repudiation if the signer claims the signature is not authentic
+<ul>
+<li>Sender cannot deny sending the message later</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Workflow:
+<ul>
+<li>Sender performs private key operation over the data to create a digital signature</li>
+<li>Recipient uses the public key to verify the digital signature
+<ul>
+<li>If verification is unsuccessful, then the data has been altered</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cloud KMS can be used to create an asymmetric key pair (public and private key pair) that supports digital signing
+<ul>
+<li>Provides APIs/commands to create digital signatures
+<ul>
+<li><code>gcloud kms asymmetric-sign</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Use cases: Validating code builds</li>
+</ul>
+<h3 id="cloud-armor">Cloud Armor</h3>
+<ul>
+<li><strong>Cloud Armor</strong>: Protect your apps from denial of service and OWASP Top 10 attacks
+<ul>
+<li>Protects you from common web attacks (OWASP Top 10) like XSS (cross-site scripting) and SQL injection</li>
+<li>Protect applications deployed in Google Cloud, in a hybrid deployment, or in a multi-cloud architecture</li>
+<li>Provides <strong>preconfigured security policies</strong> (OWASP Top 10 risks etc)
+<ul>
+<li>Customize rules as per your needs</li>
+</ul>
+</li>
+<li><strong>Use cases</strong>
+<ul>
+<li>Enable access for users at specific IP addresses with allow lists</li>
+<li>Block access for users at specific IP address with deny lists</li>
+<li>Protect applications against OWASP Top 10 risks</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="secret-manager">Secret Manager</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">SecretVersionName</span> <span class="n">secretVersionName</span> <span class="o">=</span> <span class="n">SecretVersionName</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">projectId</span><span class="o">,</span> <span class="n">secretId</span><span class="o">,</span> <span class="n">versionId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">AccessSecretVersionResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">accessSecretVersion</span><span class="o">(</span><span class="n">secretVersionName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">secretValue</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getPayload</span><span class="o">().</span><span class="na">getData</span><span class="o">().</span><span class="na">toStringUtf8</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>How do you manage your database passwords, your API keys securely?</li>
+<li><strong>Secret Manager</strong> - Store API keys, passwords etc
+<ul>
+<li>Multiple versions of secrets</li>
+<li>Automate rotation</li>
+<li>Auditing with Cloud Audit Logs</li>
+<li>Encrypted by default</li>
+</ul>
+</li>
+<li>Best Practice: <strong>Do NOT store credentials/passwords in code</strong>
+<ul>
+<li>Use Secret Manager and access secrets in your application</li>
+</ul>
+</li>
+</ul>
+<h3 id="architect-responsibilities-stakeholder-management">Architect Responsibilities: Stakeholder Management</h3>
+<ul>
+<li><strong>Stakeholder</strong>: &ldquo;a person with an interest or concern in something&rdquo;
+<ul>
+<li>Different stakeholders have different priorities/interests/degrees of influence:
+<ul>
+<li>CEO/CTO</li>
+<li>Business Process Owner</li>
+<li>Product Owner</li>
+<li>Architecture Team</li>
+<li>Scrum Master</li>
+<li>Development Team</li>
+<li>Test Team</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>As an architect, you need to <strong>understand the needs of different stakeholders and design solutions</strong> that meet them
+<ul>
+<li>Key to stakeholder management:<strong>Early clear communication</strong>
+<ul>
+<li>Identify stakeholders, their interests, and build a plan to effectively communicate with them</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="architect-responsibilities-change-management">Architect Responsibilities: Change Management</h3>
+<ul>
+<li>Changes are inevitable
+<ul>
+<li>People, process, and technology (systems, hardware, and software)</li>
+<li>But humans hate change</li>
+</ul>
+</li>
+<li>Change Management: How do you deal with changes and reduce impact?
+<ul>
+<li>Understand the change:
+<ul>
+<li>Reason</li>
+<li>Risks</li>
+<li>Resouces</li>
+<li>Responsibility: Who can make it happen?</li>
+</ul>
+</li>
+<li>Follow the cycle: Plan - Do - Check - Action</li>
+</ul>
+</li>
+</ul>
+<h3 id="architect-responsibilities-business-continuity-planning">Architect Responsibilities: Business Continuity Planning</h3>
+<ul>
+<li>BCP: How to keep business running in face of disasters?</li>
+<li><strong>Disaster Recovery</strong>: Parts of BCP focused IT operations
+<ul>
+<li>Example: use cloud/on-prem as DR environment</li>
+<li>Example: have a backup network connection between cloud and on-prem</li>
+<li>Disaster Recovery Plan: How should an enterprise respond to different types of disasters?
+<ul>
+<li>Includes people, process and technology (systems, hardware, and software)</li>
+<li>Identifies critical services, personnel and plans</li>
+<li>Define recovery time objective (RTO) and Recovery Point Objective (PRO)
+<ul>
+<li>Design and Architect your solutions to meet your RTO and RPO objectives</li>
+</ul>
+</li>
+<li>DR plans should be <strong>continously tested</strong> (Game days)
+<ul>
+<li>Are you able to restore a database from archive?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>BCP = Disaster Recovery Plan</strong> (Restore critical IT applications and systems) + <strong>Business recovery</strong> (Restore critical business processes)</li>
+</ul>
+</li>
+</ul>
+<h3 id="architect-responsibilities-incident-management">Architect Responsibilities: Incident Management</h3>
+<ul>
+<li><strong>Incident</strong>: &ldquo;unplanned event that causes a service disruption&rdquo;</li>
+<li><strong>Goal</strong>: &ldquo;How to avoid incidents?&rdquo; and &ldquo;How to react to incidents quickly?&rdquo;</li>
+<li><strong>How to avoid incidents?</strong>
+<ul>
+<li>Monitoring and Alerting
+<ul>
+<li>Examples: Alerts: free disk space in Storage/Databases, CPU utilization, Size of message queue</li>
+</ul>
+</li>
+<li>Programming best practices
+<ul>
+<li>Retry with exponential backoff</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>How to react to incidents quickly?</strong>
+<ul>
+<li>Monitoring (logging, tracing debugging, metrics, dashboards)</li>
+<li>Being prepared (game days)</li>
+</ul>
+</li>
+<li><strong>Post-mortem</strong>
+<ul>
+<li>Goal: how to prevent a repeat of the incident?
+<ul>
+<li>Goal is NOT &ldquo;Whom to blame&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="architect-responsibilities-data-management">Architect Responsibilities: Data Management</h3>
+<ul>
+<li>Managing data and its flow:
+<ul>
+<li>How does data come in?(stream or batch or transactional application)
+<ul>
+<li>If you have plans to move from batch to stream, prefer Cloud Dataflow</li>
+</ul>
+</li>
+<li>What rate will we receive data?
+<ul>
+<li>Plan for scaling storage (prefer auto scaling storage like Cloud Storage)</li>
+</ul>
+</li>
+<li>What kind of data? (archive or &hellip;)</li>
+<li>How much data? (GB, TB, PB)</li>
+<li>For how long?
+<ul>
+<li>Cloud Storage Lifecycle Policies and Retention Policies</li>
+<li>Table Expiration</li>
+</ul>
+</li>
+<li>Who will have access?</li>
+<li>How will you use the data?
+<ul>
+<li>Ideally keep data and data processing system in the same zone (or atleast the same region)</li>
+<li>If you are not planning to use the data for a long time, use Cloud Storage Archive Storage class</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="section-34">Section 34</h1>
+<h3 id="cloud-scheduler">Cloud Scheduler</h3>
+<ul>
+<li>Fully managed, enterprise-grade scheduler
+<ul>
+<li>Schedule all kinds of jobs</li>
+<li>Uses Unix cron format</li>
+</ul>
+</li>
+<li>Integrates with App Engine, Cloud Pub/Sub, Cloud Logging and any HTTP endpoint</li>
+<li>Manage all your automation tasks from one place</li>
+<li>Provides automated retries</li>
+<li>Use cases: Schedule tasks across a fleet of Compute Engine instances
+<ul>
+<li>Use Cloud Scheduler for scheduling a message on Pub/Sub</li>
+<li>Compute Engine instances can process messages from Pub/Sub</li>
+</ul>
+</li>
+<li>(Remember) Needs an App Engine App in the Project
+<ul>
+<li>Earlier Alternative: App Engine Cron Service</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-emulators">Cloud Emulators</h3>
+<ul>
+<li>How do you develop GCP applications in your local machine without connecting to GCP?
+<ul>
+<li>Setup local development environment with Cloud Emulators</li>
+</ul>
+</li>
+<li>Supports <strong>emulation of</strong>:
++</li>
+<li>You can develop your applications locally using emulators!</li>
+</ul>
+<h3 id="cloud-dns">Cloud DNS</h3>
+<ul>
+<li>What would be the steps in setting up a website with a domain name (for example, wysiwyz.com)?
+<ol>
+<li>Buy the domain name in wysiwyz.com (Domain Registrar)</li>
+<li>Setup your website content (Website Hosting)</li>
+<li>Route requests to wysiwyz.com to my website host server (DNS)</li>
+</ol>
+</li>
+<li>Cloud DNS = Global Domain Name System (step#3)
+<ul>
+<li>Setup your DNS routing for your website (wysiwyz.com)
+<ul>
+<li>Route api.wysiwyz.com to the IP address of api server</li>
+<li>Route static.wysiwyz.com to the IP address of http server</li>
+<li>Route email ( <a href="mailto:oregano@wysiwyz.com" rel="">oregano@wysiwyz.com</a> ) to the mail server (mail.wysiwyz.com)</li>
+</ul>
+</li>
+<li>Public and private managed DNS zones (container for records)</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-dns---cli">Cloud DNS - CLI</h3>
+<ul>
+<li><code>gcloud dns managed-zones create ZONE_NAME</code>
+<ul>
+<li><code>--description</code></li>
+<li><code>--dns-name</code></li>
+<li><code>--visibility</code> (private / public)</li>
+<li><code>--networks</code></li>
+</ul>
+</li>
+<li>Three steps to add records to a managred zone:
+<ul>
+<li>Start Transaction for Zone</li>
+<li>Make Changes
+<ul>
+<li><code>gcloud dns record-sets transaction add --name</code></li>
+</ul>
+</li>
+<li>End Transaction for Zone</li>
+</ul>
+</li>
+</ul>
+<h3 id="pricing-calculator">Pricing Calculator</h3>
+<ul>
+<li>Estimating the cost of a Google Cloud solution is NOT easy</li>
+<li>You would need to take a number of factors into account</li>
+<li>How do you estimate the cost of your GCP solution?</li>
+<li>‘</li>
+</ul>
+<h3 id="anthos">Anthos</h3>
+<ul>
+<li>Run K8S cluster on cloud and on-premises
+<ul>
+<li>Multi-cluster management: Consistent managed K8S</li>
+<li>Consistent development and operations experience</li>
+</ul>
+</li>
+<li>Centralized config management (Git repo)
+<ul>
+<li>Logically group and normalize clusters as environs
+<ul>
+<li>Define policies - Kubernetes API, Access control</li>
+</ul>
+</li>
+<li>Deploy to clusters on new commits
+<ul>
+<li>Use namespaces, labels and annotations to decide which clusters to apply changes on</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Provides <strong>Service Mesh</strong> (based on <strong>Istio</strong>)
+<ul>
+<li><strong>Sidecar</strong> to implement common microservice features
+<ul>
+<li>Authentication and authorization (service accounts)</li>
+<li>Distributed Tracing, Automatic metrics, logs and dashboards</li>
+<li>A/B testing, canary rollouts (even trak SLIs and error budgets)</li>
+<li>Cloud Logging and Cloud monitoring</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="machine-learning-in-google-cloud">Machine Learning in Google Cloud</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Discussion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prebuilt APIs</td>
+<td>Needs no in-house ML expertise. Easy to Use.<!-- raw HTML omitted -->Examples: Vision API, Video API, Natural Language API, Speech-to-Text API, Text-to-Speech API, and Translation API</td>
+</tr>
+<tr>
+<td>Cloud AutoML</td>
+<td>Build custom ML models with developers having limited ML expertise</td>
+</tr>
+<tr>
+<td>AI Platform</td>
+<td>Help data scientists build custom models (based on Tensorflow Enterprise)<!-- raw HTML omitted -->Serverless, scalable training and serving capabilities for custom ML models<!-- raw HTML omitted -->Take ML projects from concept to production quickly<!-- raw HTML omitted -->Explainable AI - interpret models with confidence</td>
+</tr>
+<tr>
+<td>Data management</td>
+<td>Cloud Storage and BigQuery<!-- raw HTML omitted -->BigQuery ML - &hellip;</td>
+</tr>
+<tr>
+<td>Automation and instrumentation</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="rest-api-challenges">REST API Challenges</h3>
+<ul>
+<li>Most applications today are built around REST API:
+<ul>
+<li>Resources (/todos, /todos/{id}, etc.)</li>
+<li>Actions - HTTP methods - GET, PUT, POST, DELETE etc.</li>
+</ul>
+</li>
+<li>Management of REST API is not easy:
+<ul>
+<li>You&rsquo;ve to take care of authentication and authorization</li>
+<li>You&rsquo;ve to be able to set limits (rate limiting, quotas) for your API consumers</li>
+<li>You&rsquo;ve to take care of implementing multiple versions of your API</li>
+<li>You would want to implement monitoring, caching and a lot of other features&hellip;</li>
+</ul>
+</li>
+</ul>
+<h3 id="apigee-api-management">Apigee API Management</h3>
+<ul>
+<li>Design, secure, publish, analyze, monitor, monetize and scale APIs anywhere
+<ul>
+<li>On-premises, Google Cloud, or Hybrid</li>
+</ul>
+</li>
+<li>Manage <strong>Complete API life cycle</strong></li>
+<li>Provides AI-powered API monitoring (Get actionable insights)</li>
+<li>Enable Caching with Cloud CDN</li>
+<li>Create <strong>Developer Portals</strong>:
+<ul>
+<li>Allow developers to easily explore the APIs, get API keys etc.
+<ul>
+<li>e.g. Apigee integrated portal</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Use Case: Abstraction layer on top of legacy services</li>
+<li>Use Case: Expose your assets (ML Models) as APIs</li>
+</ul>
+<h3 id="getting-started-with-identity-platform">Getting Started with Identity Platform</h3>
+<ul>
+<li>Identity Platform: Customer identity and access management</li>
+<li>What&rsquo;s the difference: Cloud IAM vs Identity Platform
+<ul>
+<li>Cloud IAM: Employees and Partners Authorization
+<ul>
+<li>Control access to Google Cloud Resouces</li>
+<li>Member, Roles, Policy, Service Accounts</li>
+</ul>
+</li>
+<li>Identity Platform: Customer identity and access management (CIAM)
+<ul>
+<li>Authentication and Authorization for your applications and services</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Identity Platform: Key Features
+<ul>
+<li>Authentication and authorization for web and mobile apps (iOS, Android, &hellip;)</li>
+<li>Multiple authentication methods
++</li>
+<li>Features: User sign-up and sign-in, MFA etc</li>
+<li>An upgrade from Firebase Authentication Legacy</li>
+<li>Integrates well with Identity-Aware Proxy</li>
+</ul>
+</li>
+</ul>
+<h3 id="cloud-iam-vs-identity-platform---scenarios">Cloud IAM vs Identity Platform - Scenarios</h3>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>An Application on a GCE VM needs access to cloud storage</td>
+<td>Cloud IAM - Service Account</td>
+</tr>
+<tr>
+<td>An enterprise user need access to upload objects to a Cloud Storage bucket</td>
+<td>Cloud IAM</td>
+</tr>
+<tr>
+<td>I want to manage end users for my application</td>
+<td>Identity Platform</td>
+</tr>
+<tr>
+<td>I want to enable &ldquo;Login using Facebook/twitter&rdquo; for my application</td>
+<td>Identity Platform</td>
+</tr>
+<tr>
+<td>I want to create user sign-up and sign-in workflows for my application</td>
+<td>Identity Platform</td>
+</tr>
+</tbody>
+</table>
+<h3 id="getting-started-with-event-driven-architecture">Getting Started with Event Driven Architecture</h3>
+<ul>
+<li>Microservices calling each other =&gt; Tight Coupling</li>
+<li>Event driven architectures: Microservices reacting to changes in state (events)
+<ul>
+<li>Example:
+<ul>
+<li>1: Order Service publishes an OrderReceived event</li>
+<li>2: Billing Service receives it and publishes an OrderBilled event</li>
+<li>3: Warehouse Service receives it and publishes an OrderReadyToShip event</li>
+<li>4: Shipping Service receives it and publishes and OrderShipped event</li>
+<li>5: Email Service receives it and sends an email to the user</li>
+</ul>
+</li>
+<li>Advantages:
+<ul>
+<li>Loose Coupling: Microservices do not know about each other</li>
+<li>Flexible Orchestration: Same event can be processed by multiple services</li>
+<li>Resiliency: Events can be easily retried in case of failures</li>
+<li>Asynchronous: A microservice does not need to wait for the consumer to process the event</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="getting-started-with-cloudevents">Getting Started with CloudEvents</h3>
+<ul>
+<li>CloudEvents: Standard specification to describe events
+<ul>
+<li>Reference:</li>
+<li>Challenge: different publishers use different formats for events</li>
+<li>Goal: Describe event data in a standard way
+<ul>
+<li>A project under CNCF - Cloud Native Computing Foundation</li>
+</ul>
+</li>
+<li>Advantages:
++
++</li>
+</ul>
+</li>
+</ul>
+<h4 id="getting-started-with-eventarc">Getting Started with Eventarc</h4>
+<ul>
+<li>Eventarc: Simplifies event driven architectures in Google Cloud
+<ul>
+<li>Adheres to the CloudEvents (cloudevents.io) specification</li>
+<li>Event provider: Who can trigger events?
+<ul>
+<li>Direct: &hellip;</li>
+<li>In-Direct: From Cloud Audit Logs Entries
+<ul>
+<li>Huge variety of Google Cloud services. Example: GCE, GAE, Artifact Registry &hellip;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Event destination: Who can process events?
+<ul>
+<li>Cloud Functions (2nd gen), Cloud Run and GKE services</li>
+</ul>
+</li>
+<li>(BACKGROUND) Uses Pub/Sub topics</li>
+</ul>
+</li>
+</ul>
+<h3 id="getting-started-with-observability-and-opentelemetry">Getting Started with Observability and OpenTelemetry</h3>
+<ul>
+<li><strong>Observability</strong>: &ldquo;measure the internal state of a system by examining its outputs&rdquo;
+<ul>
+<li><strong>Goal</strong>: Proactively identify problems and fix them</li>
+<li>THREE PILLARS of observability: logs, metrics and traces
+<ul>
+<li>Earlier we ahd different standards for logs, metrics and traces</li>
+<li>We also have very different approaches across languages</li>
+</ul>
+</li>
+<li>How about <strong>ONE STANDARD ACROSS PLATFORMS</strong>?
+<ul>
+<li>OpenTelemetry:  &hellip;
+<ul>
+<li>Open standard</li>
+<li>A CNCF - Cloud Native Computing Foundation - Project (K8S is another CNCF project)</li>
+<li>Almost every cloud platform supports OpenTelemetry</li>
+<li>Steps to use OpenTelemetry</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="using-service-directory">Using Service Directory</h3>
+<ul>
+<li>Service Discovery - Help microservices find one another</li>
+<li>Service Directory - A single place to publish, discover and connect services</li>
+<li>Your worklaods can be running in:
+<ul>
+<li>Google Cloud</li>
+<li>d</li>
+<li>d</li>
+</ul>
+</li>
+</ul>
+<h3 id="using-service-directory---features">Using Service Directory - Features</h3>
+<ul>
+<li>Managed Service (highly available and scalable)</li>
+<li>Register/resolve services using DNS, HTTP, and gRPC</li>
+<li>Service Directory client libraries are available for multiple languages (along with REST/RPC APIs)
+<ul>
+<li>You can use these libraries to register/resolve service location</li>
+</ul>
+</li>
+<li>Audit logging (&ldquo;Who did what, where and when?&rdquo; - Cloud Logging)</li>
+<li>Request/response logs(Cloud Logging)</li>
+</ul>
+<h1 id="section-35">Section 35</h1>
+<h3 id="google-cloud-architecture-framework">Google Cloud Architecture Framework</h3>
+<ul>
+<li>Best praces and implementation recommendations to help you design your Google Cloud deployment</li>
+<li>First Step:</li>
+<li>4</li>
+</ul>
+<h3 id="principle-1-operational-excellence">Principle 1: Operational Excellence</h3>
+<ul>
+<li>&ldquo;Efficiently running, managing and monitoring systems that deliver business value&rdquo;</li>
+<li>Strategies:
++</li>
+</ul>
+<h3 id="operational-excellence---best-practices">Operational Excellence - Best practices</h3>
+<ul>
+<li>Increase software development and release velocity
+<ul>
+<li>Release Engineering
+<ul>
+<li>Frequent small releases</li>
+</ul>
+</li>
+<li>Automation
++</li>
+<li>Services:
++</li>
+</ul>
+</li>
+</ul>
+<h3 id="operational-excellence---best-practices---2">Operational Excellence - Best practices - 2</h3>
+<ul>
+<li>Monitor system health and business health
+<ul>
+<li>Understand four golden signals
+<ul>
+<li>Latency</li>
+<li>Traffic</li>
+<li>Errors</li>
+<li>Saturation</li>
+</ul>
+</li>
+<li>Logging: Use Cloud Logging and export to Cloud Storage, BigQuery and Pub/Sub depending on your needs</li>
+<li>Metrics: Define and capture metrics SLIs, SLOs etc</li>
+<li>Monitoring: Cloud Monitoring can aggregate metrics, logs, and events
+<ul>
+<li>Define alerts and custom metrics to identify problems and resolve them quickly</li>
+<li>You can create visual dashboards as well</li>
+<li>Generate actionable alerts</li>
+</ul>
+</li>
+<li>Key Services: Cloud Monitoring, Cloud Logging, Cloud Debugger, Error Reporting, Cloud Trace and Cloud Profiler</li>
+</ul>
+</li>
+</ul>
+<h3 id="operational-excellence---best-practices---3">Operational Excellence - Best practices - 3</h3>
+<ul>
+<li>Design for disaster recovery
+<ul>
+<li>Create well-defined disaster recovery (DR) plan
+<ul>
+<li>Define Recovery time objective (RTO) and recovery point objective (RPO)</li>
+<li>Consider everything in your DR plan: Applications (comput etc), Data (databases etc), Network infrastructure, Bandwidth, Facilities</li>
+<li>Use features provided by Google Cloud:
+<ul>
+<li>Use Global network to build Redundancy</li>
+<li>Managed services make Scalability easy</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Regularly test your DR plan</li>
+<li>Example features you can make use of:
+<ul>
+<li>Schedule Persistent Disk snapshots for your VMs and copy them across regions</li>
+<li>Enable Live Migration to keep your VMs running even when there is software or hardware maintenance</li>
+<li>Use Cloud DNS to switch from primary to backup</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="principle-2-security-privacy-and-compliance">Principle 2: Security, Privacy and Compliance</h3>
+<ul>
+<li>Plan your security controls, privacy, and meet your compliance needs</li>
+<li>Strategies
+<ul>
+<li>Implement least privilege with identity</li>
+</ul>
+</li>
+</ul>
+<h3 id="security-privacy-and-compliance---best-practices">Security, Privacy and Compliance - Best practices</h3>
+<ul>
+<li>Manage Authentication and Authorization
+<ul>
+<li>Follow Identity and Access Management (IAM) Best Practices
+<ul>
+<li>Grant appropriate roles</li>
+<li>Understand when to use service accounts
+<ul>
+<li>Treat each app component as a separate trust boundary
+<ul>
+<li>Create separate service account for each component/service with the minimum permissions needed</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Use Organization Policy Service (what is allowed in your organization?)</li>
+<li>Use Cloud Asset Inventory (Track your inventory)</li>
+<li>Use Cloud Audit Logs to audit IAM policy changes and service accounts</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Implement Compute Security Controls
+<ul>
+<li>Use Private IPs as much as possible</li>
+<li>Create hardened VM images (OS + minimum software)</li>
+<li>Use Shielded VMs to prevent remote attacks, privilege escalation, and malicious insiders</li>
+<li>Enable node auto-upgrades for GKE clusters</li>
+<li>Use GKE Sandbox</li>
+</ul>
+</li>
+</ul>
+<h3 id="security-privacy-and-compliance---best-practices---2">Security, Privacy and Compliance - Best practices - 2</h3>
+<ul>
+<li>Secure the network
+<ul>
+<li>Use a carefully designed custom VPC (DO NOT use the default VPC)</li>
+<li>Isolates workloads into individual projects by creating one VPC per project</li>
+<li>Control ingress and egress network traffic using firewall rules</li>
+<li>Run advance security and traffic inspection tools</li>
+<li>Use Security Command Center to analyze the security of your infrastrature</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="security-privacy-and-compliance---best-practices---3">Security, Privacy and Compliance - Best practices - 3</h3>
+<ul>
+<li>Implement data security controls
+<ul>
+<li>(Default)</li>
+<li>Use Object Versioning in Cloud Storage for sensitive data</li>
+<li>Implement data security</li>
+</ul>
+</li>
+<li>Audit your infrastructure with audit logs
+<ul>
+<li>Use Cloud Audit Logs</li>
+<li>Enable Access</li>
+</ul>
+</li>
+</ul>
+<h3 id="principle-3-reliability">Principle 3: Reliability</h3>
+<ul>
+<li>Most important feature of any application/service:
+<ul>
+<li>Keys:
+<ul>
+<li>Measurable reliability goals</li>
+<li>Architect for scalability, high availability, and automated change management</li>
+<li>Self-healing and observability are important</li>
+<li>Quick recovery from failures using automations as much as possible</li>
+</ul>
+</li>
+<li>Strategies:
+<ul>
+<li>Define KPIs, SLOs and SLIs</li>
+<li>Create redundancy (Prefer horizontal scalability)</li>
+<li>Make incremental changes
+<ul>
+<li>include rollback capability</li>
+</ul>
+</li>
+<li>Instrument systems for observability</li>
+<li>Automate detection of failure</li>
+<li>Document and automate emergency responses</li>
+<li>Test failure recovery</li>
+<li>Reduce toil (Eliminate manual work)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="reliability---best-practices">Reliability - Best practices</h3>
+<ul>
+<li><strong>Define reliability goals</strong>: Service Level Objectives and Error Budgets
+<ul>
+<li>Clearly define SLls, SLOs, SLAs and Error budgets</li>
+</ul>
+</li>
+<li><strong>Build observability</strong> into your infrastructure and applications
+<ul>
+<li>Monitoring, logging, tracing, profiling, debugging etc.</li>
+</ul>
+</li>
+<li><strong>Design for scale and high availability</strong>
+<ul>
+<li>Design a multi-region architecture with failover</li>
+<li>Eliminate scalability bottlenecks
+<ul>
+<li>Prefer horizontal scalability</li>
+</ul>
+</li>
+<li>Degrade service levels gracefully
+<ul>
+<li>Static web pages when dynamic web site is down</li>
+<li>Temporarily disabling data updates</li>
+</ul>
+</li>
+<li>Implement exponential backoff with jitter
+<ul>
+<li>Exponentially increasing wait time before retry</li>
+</ul>
+</li>
+<li>Predict peak traffic events and plan for them</li>
+</ul>
+</li>
+</ul>
+<h3 id="reliability---best-practice---2">Reliability - Best practice - 2</h3>
+<ul>
+<li>Build flexible and automated deployment capabilities
+<ul>
+<li>Ensure that every change can be rolled back</li>
+<li>Spread out traffic for time promotions and launches</li>
+<li>Implement progressive rollouts with canary testing</li>
+<li>Automate build, test and deploy</li>
+</ul>
+</li>
+<li>Build efficient alerting</li>
+<li>Build a collaborative process for incident management
+<ul>
+<li>Reduce Mean Time to Detect (MTTD): Alert teams at the right time</li>
+<li>Reduce Mean Time to Mitigate (MTTM) and Mean Time to Recovery (MTTR): Properly documented and well-exercised incident management plan</li>
+<li>Increase Mean Time Between Failures (MTBF): Build reliable systems</li>
+<li>Blameless postmortem culture</li>
+</ul>
+</li>
+</ul>
+<h4 id="principle-4-performance-and-cost-optimization">Principle 4: Performance and Cost Optimization</h4>
+<ul>
+<li>Strategies
+<ul>
+<li>Evaluate performance requirements</li>
+<li>Use scalable design patterns</li>
+<li>f</li>
+</ul>
+</li>
+<li>Use autoscaling and data processing
+<ul>
+<li>Autoscale Compute Engine VMs with Managed instance groups (MIGs) - Uses an instance template</li>
+<li>Enable Cluster autoscaler and Pod</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="performance-and-cost-optimization---best-practices---2">Performance and Cost Optimization - Best practices - 2</h3>
+<ul>
+<li>Identify apps to tune
+<ul>
+<li>Use Cloud Trace, Cloud Debugger and Cloud Profiler to gain insights into your apps</li>
+<li>Instrument apps to identify inter-service</li>
+</ul>
+</li>
+<li>Analyze your costs and optimize
++</li>
+</ul>
+<h1 id="section-36">Section 36</h1>
+<h3 id="case-studies---important">Case Studies - <em>Important</em></h3>
+<h3 id="1-ehr-healthcare">1. EHR Healthcare</h3>
+<ul>
+<li>Provides SaaS based electronic health record software for multi-national medical offices, hospitals and insurance providers (Exponential growth):</li>
+<li>Current Architecture
+<ul>
+<li>Multiple colocation facilities with similar but separate environments (lease on one data center is about to expire)
+<ul>
+<li>Web-based customer-facing applications running on Kubernetes clusters
+<ul>
+<li>Requirement: Consistent way to manage apps that are container-based</li>
+<li>Requirement: Maintain and manage multiple container-based environments</li>
+</ul>
+</li>
+<li>Databases: MySQL, MS SQL Server, Redis and MongoDB</li>
+<li>Legacy file- and API-based integrations with insurance providers
+<ul>
+<li>Scheduled for replacement over next few years - Will NOT be moved to Google Cloud</li>
+<li>Requirement: Main legacy interfaces to insurance provides (connectivity to on-premises and cloud)</li>
+</ul>
+</li>
+<li>Users are managed via Microsoft Active Directory</li>
+<li>Monitoring with various open source tools</li>
+<li>Alert by email (generally ignored)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="requirements">Requirements</h3>
+<ul>
+<li>Google Cloud will replace their current colocation facilities</li>
+<li>Scalable, resilient platform spanning multiple environments seamlessly</li>
+<li>Facing outages with mis-configured systems, inadequate capacity to manage spikes and inconsistent monitoring practices</li>
+<li>Other Requirements:
+<ul>
+<li>Dynamically scale and provision environments, adapt DRP, continuous deployment</li>
+<li>Centralized visibility and proactive action on system performance and usage</li>
+<li>On-board new insurance providers quickly</li>
+<li>Insights and predictions</li>
+<li>Secure and high-performance connection between on-premises system</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>service</th>
+<th>discussion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anthos</td>
+<td></td>
+</tr>
+<tr>
+<td>Cloud Logging, Cloud Monitoring</td>
+<td>Alerting Policies for Notifications</td>
+</tr>
+<tr>
+<td>Cloud Logging &gt; (Cloud Storage, BigQuery)</td>
+<td>Log Retention</td>
+</tr>
+<tr>
+<td>BigQuery</td>
+<td>Make predictions and generate</td>
+</tr>
+<tr>
+<td>Cloud Dedicated Interconnect</td>
+<td>Secure and high-performance connection</td>
+</tr>
+<tr>
+<td>Cloud CDN</td>
+<td>Reduced latency</td>
+</tr>
+<tr>
+<td>Active Directory Federation Services (AD FS)</td>
+<td>For single sign-on<!-- raw HTML omitted -->Google Cloud Directory Sync (synchronize user and groups) &hellip;</td>
+</tr>
+<tr>
+<td>Databases</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-helicopter-racing">2. Helicopter Racing</h3>
+<ul>
+<li>Global sports league for competitive helicopter racing</li>
+<li>Current Architecture:
+<ul>
+<li>Existing public cloud provider (public cloud-first company) hosts:
+<ul>
+<li>Core of mission-critical apps</li>
+<li>Existing content is stored in an object storage service</li>
+<li>Race predictions are performed using TensorFlow running on VMs
+<ul>
+<li>Allows predicting race outcomes but lacks the facility to:
+<ul>
+<li>Support real-time predictions during races (REQUIREMENT)</li>
+<li>Capacity to process season-long results (REQUIREMENT)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Video recording and editing is performed at the race tracks:
+<ul>
+<li>Content is encoded and transcoded in the cloud (using VMs created for each job)</li>
+</ul>
+</li>
+<li>Enterprise-grade connectivity and local compute provided by truck-mounted mobile data centers</li>
+</ul>
+</li>
+</ul>
+<h3 id="requirements-1">Requirements</h3>
+<ul>
+<li>Migrate existing service to a new platform
+<ul>
+<li>Expand use of managed AI and ML services to facilitate race predictions:
+<ul>
+<li>Increase predictive capabilities during and before races:
+<ul>
+<li>Race results, Mechanical failures, Crowd sentiment</li>
+<li>Enhanced video streams that include predictions of events within the race (e.g. overtaking)</li>
+<li>Maintain or increase prediction throughout and accuracy</li>
+</ul>
+</li>
+<li>Expose the predictive models to partners</li>
+<li>Create real-time analytics of viewer consumption patterns and engagement
+<ul>
+<li>Increase telmetry and create additional insights</li>
+<li>Measure fan engagement with new predictions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Move the serving of real-time and recorded content closer to their users:
+<ul>
+<li>Reduce latency, enhance global availability and quality of the broadcasts</li>
+<li>Increase the number of concurrent viewers</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Create a data mart</strong> to enable processing of large volumes of race data</li>
+<li>Increase transcoding performance</li>
+<li>Create a merchandising revenue stream</li>
+</ul>
+<h3 id="discussion">Discussion</h3>
+<table>
+<thead>
+<tr>
+<th>service</th>
+<th>discussion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BigQuery + AI Platform</td>
+<td>Migrate existing service to a new platform (Managed AI and ML service using TensorFlow)</td>
+</tr>
+<tr>
+<td>Cloud Storage, Cloud CDN</td>
+<td>Move the serving of real-time and recorded content closer to their users</td>
+</tr>
+<tr>
+<td>Apigee</td>
+<td>Expose the predictive models to partners<!-- raw HTML omitted --></td>
+</tr>
+<tr>
+<td>Cloud Pub/Sub</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Video Intelligence API<!-- raw HTML omitted -->Streaming API</td>
+<td>Real-time streaming analysis for live media<!-- raw HTML omitted -->AIStreamer ingestion library allows you to connect to API<!-- raw HTML omitted -->Supports File Streaming, HTTP Live Streaming (HLS), Real Time Streaming Protocol (RTSP), Real Time Messaging Protocol (RTMP)</td>
+</tr>
+<tr>
+<td>References</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-mountkirk-games">3. Mountkirk Games</h3>
+<ul>
+<li>Online, session-based, multi-player games for mobile platforms
+<ul>
+<li>Longterm Requirement: Support multiple games platforms (expand beyond mobile)</li>
+</ul>
+</li>
+<li>Current Architecture:
++</li>
+<li></li>
+</ul>
+<h3 id="requirements-2">Requirements</h3>
+<ul>
+<li>Working on <strong>retro-style first-person shooter (FPS)</strong> game
+<ul>
+<li>Hundreds of simultaneous players joining a geo-specific digital arena from multiple platforms and locations</li>
+<li><strong>Proposed</strong>: Run game backend on Google Kubernetes Engine (Rapid Scaling)
+<ul>
+<li>Google&rsquo;s global load balancer to route to closest regional game arenas</li>
+<li>Support eventual migration of legacy games to this new platform</li>
+<li>Requirement: Real-time global leaderboard of top players across every active arena
+<ul>
+<li>Proposed: Use multi-region Spanner cluster for near real-time global leader board</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Other Requirements</strong>:
+<ul>
+<li>Store game activity logs in structured files for future analysis</li>
+<li>Use GPU processing to render graphics server-side for multi-platform support</li>
+<li>Enable advanced analytics capabilities</li>
+<li>Use cloud-native design principles
+<ul>
+<li>Multiple regions, Rapid interation, Minimize latency and costs, Auto scaling</li>
+<li>Managed services and Pooled resources</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="discussion-1">Discussion</h3>
+<table>
+<thead>
+<tr>
+<th>service</th>
+<th>discussion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Game Servers (Agones + Kubernetes)</td>
+<td>Deliver seamless multiplayer gaming experiences</td>
+</tr>
+<tr>
+<td>MIGs + VMs + Global Load Balancing + GPUs</td>
+<td>If you need a lot of customization</td>
+</tr>
+<tr>
+<td>Cloud Storage</td>
+<td>Store game activity logs in structured files for future analysis</td>
+</tr>
+<tr>
+<td>Cloud Spanner</td>
+<td>Proposed real-time global leader board<!-- raw HTML omitted -->*prefer Memorystore - Redis</td>
+</tr>
+<tr>
+<td>Batch - Cloud Storage &gt; Dataflow &gt; BigQuery Streaming - Pub/Sub &gt; Dataflow &gt; BigQuery</td>
+<td>Enable advanced analytics capabilities<!-- raw HTML omitted -->Explore Looker for advanced insights</td>
+</tr>
+<tr>
+<td>Cloud Build, Spinnaker and/or Jenkins</td>
+<td></td>
+</tr>
+<tr>
+<td>Cloud Spanner + Memorystore</td>
+<td></td>
+</tr>
+<tr>
+<td>Cloud Bigtable</td>
+<td></td>
+</tr>
+<tr>
+<td>Cloud Firestore</td>
+<td>Player database</td>
+</tr>
+<tr>
+<td>Cloud BigQuery, AI Platform</td>
+<td></td>
+</tr>
+<tr>
+<td>Refereences</td>
+<td><a href="https://www.youtube.com/watch?v=dAKAWprvbso" target="_blank" rel="noopener noreffer ">https://www.youtube.com/watch?v=dAKAWprvbso</a><!-- raw HTML omitted --><a href="https://www.youtube.com/watch?v=OF8EtzQ4e6c" target="_blank" rel="noopener noreffer ">https://www.youtube.com/watch?v=OF8EtzQ4e6c</a><!-- raw HTML omitted --></td>
+</tr>
+</tbody>
+</table>
+<h4 id="4-terramearth">4. TerramEarth</h4>
+<ul>
+<li><strong>Manufactures heavy equipment</strong> for the mining and agricultural industries
+<ul>
+<li>Mission: Build products that make their customers more productive</li>
+<li>500 dealers and service centers in 100 countries (Global audience)</li>
+<li>2 million TerramEarth vehicles with 20% growth year on year
+<ul>
+<li>Sensors capture telemetry data</li>
+<li>Subset of critical data transmitted in real time
+<ul>
+<li>Rest of data collected, compressed, and uploaded daily when the vehicles return to home base</li>
+<li>200 to 500 MB of data per vehicle per day</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Current Architecture</strong>
+<ul>
+<li>Google Cloud
+<ul>
+<li>Data aggregation and analysis infrastructure</li>
+<li>Web frontend for dealers and customers (stock management and analytics)</li>
+</ul>
+</li>
+<li>Private data centers
+<ul>
+<li>Legacy inventory and logistics management systems</li>
+<li>Two main manufacturing plants send sensor data to private data centers</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="requirements-3">Requirements</h3>
+<ul>
+<li>Requirements:
+<ul>
+<li>Current:
+<ul>
+<li>Provide best-in-class online fleet management services to customers
+<ul>
+<li>Improve operations of dealerships</li>
+<li>Minimize vehicle downtimes (Detect failures and rapidly ship parts to dealerships for just-in-time repair)</li>
+</ul>
+</li>
+<li>Autoscaling, DevOps and SRE Elements
+<ul>
+<li>Improve and standardize tools for app and network monitoring, troubleshooting</li>
+<li>Modernize CI/CD pipelines for container-based workloads</li>
+<li>Allow remote developers to be productive</li>
+</ul>
+</li>
+<li>Flexible and scalable platform for develoopers to create custom APIs for dealers and partners
+<ul>
+<li>Create a new abstraction layer for HTTP API access to legacy systems (Enable gradual move to cloud)</li>
+<li>Self-service portal for internal and partner developers to create new projects, request resources for data analytic jobs and centrally manage access to the API endpoints</li>
+</ul>
+</li>
+<li>Use cloud-native solutions for keys and secrets management</li>
+</ul>
+</li>
+<li>5-year strategic plan
+<ul>
+<li>Create a partner ecosystem of new products by enabling access to our data</li>
+<li>Increase autonomous operation capabilities of vehicles</li>
+<li>Path to move legacy systems to the cloud</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="discussion-2">Discussion</h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Discussion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IOT Core &gt; Pub Sub &gt; Dataflow &gt; BigQuery &gt; (AI platform, AutoML, BigQuery ML)</td>
+<td></td>
+</tr>
+<tr>
+<td>Cloud Storage &gt; Dataflow &gt; BigQuery</td>
+<td>Batch Process</td>
+</tr>
+<tr>
+<td>Apigee</td>
+<td>Flexible and scalable platform for developers to creat custom APIs <!-- raw HTML omitted -->Create a new abstraction layer for HTTP API access to legacy systems (Enable gradual move to cloud)<!-- raw HTML omitted -->Self-service protal for internal</td>
+</tr>
+<tr>
+<td>Cloud Build, Spinnaker, Jenkins</td>
+<td></td>
+</tr>
+<tr>
+<td>Google Workspace, Virtual destops through partners<!-- raw HTML omitted --></td>
+<td></td>
+</tr>
+<tr>
+<td>Secret Manager</td>
+<td></td>
+</tr>
+<tr>
+<td>VPC Flowlogs, Cloud Monitoring, Cloud Logging etc&hellip;</td>
+<td></td>
+</tr>
+<tr>
+<td>Kubernetes - GKE</td>
+<td>Container based workloads - scalable</td>
+</tr>
+<tr>
+<td>Dedicated Interconnect</td>
+<td>Networking</td>
+</tr>
+</tbody>
+</table>
+<h1 id="section-37">Section 37</h1>
+<h3 id="gca-resources">GCA Resources</h3>
+<table>
+<thead>
+<tr>
+<th>Title</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Architecture Center</td>
+<td><a href="https://cloud.google.com/architecture/" target="_blank" rel="noopener noreffer ">https://cloud.google.com/architecture/</a></td>
+</tr>
+<tr>
+<td>Google Cloud Solutions</td>
+<td><a href="https://cloud.google.com/solutions/" target="_blank" rel="noopener noreffer ">https://cloud.google.com/solutions/</a></td>
+</tr>
+<tr>
+<td>Best Practices for Enterprise Applications</td>
+<td><a href="https://cloud.google.com/architecture/framework" target="_blank" rel="noopener noreffer ">https://cloud.google.com/architecture/framework</a></td>
+</tr>
+<tr>
+<td>Building Scalable and Resilient Web Applications on Google</td>
+<td><a href="https://cloud.google.com/architecture/scalable-and-resilient-apps" target="_blank" rel="noopener noreffer ">https://cloud.google.com/architecture/scalable-and-resilient-apps</a></td>
+</tr>
+<tr>
+<td>Disaster recovery planning guide</td>
+<td><a href="https://cloud.google.com/architecture/dr-scenarios-planning-guide" target="_blank" rel="noopener noreffer ">https://cloud.google.com/architecture/dr-scenarios-planning-guide</a></td>
+</tr>
+<tr>
+<td>Home</td>
+<td><a href="https://cloud.google.com/learn/certification/cloud-architect" target="_blank" rel="noopener noreffer ">https://cloud.google.com/learn/certification/cloud-architect</a></td>
+</tr>
+<tr>
+<td>Exam Guide<!-- raw HTML omitted -->Case Studies</td>
+<td><a href="https://cloud.google.com/learn/certification/guides/professional-cloud-architect" target="_blank" rel="noopener noreffer ">https://cloud.google.com/learn/certification/guides/professional-cloud-architect</a></td>
+</tr>
+<tr>
+<td>Sample Questions</td>
+<td><a href="https://docs.google.com/forms/d/e/1FAIpQLSf54f7FbtSJcXUY6-DUHfBG31jZ3pujgb8-a5io_9biJsNpqg/viewform" target="_blank" rel="noopener noreffer ">https://docs.google.com/forms/d/e/1FAIpQLSf54f7FbtSJcXUY6-DUHfBG31jZ3pujgb8-a5io_9biJsNpqg/viewform</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="certification-exam">Certification Exam</h3>
+<ul>
+<li>50 questions, two hours</li>
+<li>Questions:
+<ol>
+<li>multiple choice: 4 options, 1 right answer</li>
+<li>multiple select: 5 options, 2 right ansers</li>
+</ol>
+</li>
+<li>Result immediately shown after exam completion
+<ul>
+<li>email (2~5 work days)</li>
+</ul>
+</li>
+<li>Tips &amp; suggestions:
+<ol>
+<li>Read the entire question
+<ul>
+<li>identify and write down the key parts of the question</li>
+<li>Focus on the constraint in the question
+<ul>
+<li>e.g. Most cost-effective way - Prefer region to multi-regional if it satisfies all requirements</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Answer by Elimination</strong>!</li>
+<li>Flag question for future consideration (Review before final submission)</li>
+</ol>
+</li>
+</ul>
+<h1 id="section-37-1">Section 37</h1>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -2222,7 +4341,7 @@ Other locations: 100,000</li>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-hashtag="google_cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/cloud_architect_gcp/" data-title="Cloud architect GCP 🚧"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/gcp_pca_course_notes/" data-hashtag="google_cloud"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/gcp_pca_course_notes/" data-title="Cloud architect GCP 🚧"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
