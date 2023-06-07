@@ -27,7 +27,7 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/coursera_pca\/"
-        },"genre": "posts","keywords": "coursera, security","wordcount":  5719 ,
+        },"genre": "posts","keywords": "coursera, security","wordcount":  13194 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/coursera_pca\/","datePublished": "2023-05-21T09:10:20+08:00","dateModified": "2023-05-21T09:10:20+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -69,8 +69,8 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GCP - preparing for your cloud architect journey</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-21">2023-05-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5719 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;27 minutes&nbsp;<span id="/posts/coursera_pca/" class="leancloud_visitors" data-flag-title="GCP - preparing for your cloud architect journey">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-21">2023-05-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;13194 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;62 minutes&nbsp;<span id="/posts/coursera_pca/" class="leancloud_visitors" data-flag-title="GCP - preparing for your cloud architect journey">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -93,6 +93,30 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
         <li></li>
         <li><a href="#network-security-and-encryption">Network Security and Encryption</a></li>
         <li><a href="#manage-versions-and-cost-planning">Manage Versions and Cost Planning</a></li>
+        <li><a href="#monitoring-dashboards">Monitoring Dashboards</a></li>
+      </ul>
+    </li>
+    <li><a href="#k8s">k8s</a>
+      <ul>
+        <li></li>
+        <li><a href="#resource-management">Resource Management</a></li>
+        <li><a href="#interacting-with-google-cloud">Interacting with Google Cloud</a></li>
+        <li><a href="#computing-options">Computing Options</a></li>
+        <li><a href="#containers-and-container-images">Containers and Container Images</a></li>
+        <li><a href="#intro-to-kubernetes">Intro to Kubernetes</a></li>
+        <li><a href="#intro-to-google-k8s-engine">Intro to Google K8s Engine</a></li>
+        <li><a href="#computing-options-detail">Computing Options Detail</a></li>
+        <li><a href="#k8s-concepts">K8s Concepts</a></li>
+        <li><a href="#the-k8s-control-plane">The K8s Control Plane</a></li>
+        <li><a href="#gke-concepts">GKE Concepts</a></li>
+        <li><a href="#k8s-object-management">K8s Object Management</a></li>
+        <li><a href="#migrate-for-anthos">Migrate for Anthos</a></li>
+        <li><a href="#app-engine">App Engine</a></li>
+        <li><a href="#virtual-private-cloud">Virtual Private Cloud</a></li>
+        <li><a href="#common-network-designs-1">Common network designs</a></li>
+        <li><a href="#slos-slis-and-slas">SLOs, SLIs, and SLAs</a></li>
+        <li><a href="#microservices">Microservices</a></li>
+        <li><a href="#rest-and-apis">REST and APIs</a></li>
       </ul>
     </li>
   </ul>
@@ -394,6 +418,9 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
 </ul>
 <h4 id="vm-access">VM access</h4>
 <h5 id="linux-ssh">Linux: SSH</h5>
+<blockquote>
+<p>The creator has SSH capability and can use the Cloud Console to generate a unsername and password.</p>
+</blockquote>
 <ul>
 <li>SSH from the Google Cloud console or Cloud Shell via the Google Cloud SDK</li>
 <li>SSH from computer or third-party client and generate key pair</li>
@@ -414,7 +441,321 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
        [Machine series]
              \
           [Machine type]
-</code></pre><h4 id="compute-pricing">Compute pricing</h4>
+</code></pre><h5 id="availability-policy--automatic-changes">Availability policy : Automatic changes</h5>
+<p>Called &ldquo;scheduling options&rdquo; in SDK/API</p>
+<p>Automatic restart</p>
+<ul>
+<li>Automatic VM restart due to crash or maintenance event
+<ul>
+<li>Not preemption or a user-initiated terminate</li>
+</ul>
+</li>
+</ul>
+<p>On host maintenance</p>
+<ul>
+<li>Determines whether host is live-migrated or terminated due to a maintenance event.
+Live migration is the default</li>
+</ul>
+<p>Live migration</p>
+<ul>
+<li>During maintenance event, VM is migrated to different hardware without interruption</li>
+<li>Metadata indicates occurrence of live migration</li>
+</ul>
+<h5 id="patching-management-is-an-essential-part-of-managing-an-infrastructure">Patching management is an essential part of managing an infrastructure</h5>
+<p>Manage OSes easily through Google Cloud</p>
+<ul>
+<li>Keep infrastructures up-to-date</li>
+<li>Redue the risk of security vulnerabilities</li>
+</ul>
+<p>Two main components of <!-- raw HTML omitted -->OS patch management service<!-- raw HTML omitted -->:</p>
+<ol>
+<li>Patch compliance reporting
+<ul>
+<li>reports insights on the patch status of your VM instances across Windows and Linux distributions</li>
+</ul>
+</li>
+<li>Patch deployment
+<ul>
+<li>automates the Operating System and software patch update process</li>
+</ul>
+</li>
+</ol>
+<h5 id="there-are-several-tasks-that-can-be-performed-with-patch-management">There are several tasks that can be performed with patch management</h5>
+<p>You can &hellip;
+Create patch approval
+Set up flexible scheduling
+Apply advance patch configuration (e.g. pre/post patch scripts)
+Manage these patch jobs or updates from a centralized location</p>
+<h5 id="charges-for-stopped-terminated-vm">Charges for stopped (terminated) VM</h5>
+<table>
+<thead>
+<tr>
+<th>No charges</th>
+<th>Charges ($$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memory</td>
+<td>Attached disks</td>
+</tr>
+<tr>
+<td>CPU resources</td>
+<td>Reserved IP addresses</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Virtual Machines
+Note: Notice that you cannot change the machine type, the CPU platform, or the zone.</p>
+<p>You can add network tags and allow specific network traffic from the internet through firewalls. Some properties of a VM are integral to the VM, are established when the VM is created, and cannot be changed. Other properties can be edited.</p>
+<p>You can add additional disks and you can also determine whether the boot disk is deleted when the instance is deleted.</p>
+<p>Normally the boot disk defaults to being deleted automatically when the instance is deleted. But sometimes you will want to override this behavior. This feature is very important because you cannot create an image from a boot disk when it is attached to a running instance.</p>
+<p>So you would need to disable <em>Delete boot disk when instance is deleted</em> to enable creating a system image from the boot disk.</p>
+</blockquote>
+<h5 id="availability-policies">Availability policies</h5>
+<blockquote>
+<p><strong>Note:</strong> You cannot convert a non-preemptible instance into a preemptible one. This choice must be made at VM creation. A preemptible instance can be interrupted at any time and is available at a lower cost.</p>
+<p>If a VM is stopped for any reason, (for example an outage or a hardware failure) the automatic restart feature will start it back up. Is this the behavior you want? Are your applications idempotent (written to handle a second startup properly)?</p>
+<p>During host maintenance, the VM is set for live migration. However, you can have the VM terminated instead of migrated.</p>
+<p>If you make changes, they can sometimes take several minutes to be implemented, especially if they involve networking changes like adding firewalls or changing the external IP.</p>
+</blockquote>
+<h4 id="compute-options">Compute options</h4>
+<h5 id="four-compute-engine-machine-families">Four Compute Engine machine families</h5>
+<ol>
+<li>
+<p>General purpose</p>
+<ul>
+<li>the best price performance; the most flexible vCPU to memory ratios
+<table>
+<thead>
+<tr>
+<th>series</th>
+<th>workload</th>
+<th>applications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E2</td>
+<td>(Cost-optimized) Day-to-day computing at a lower cost</td>
+<td>Web/App serving; Back office apps; Small-medium DBs; Microservices; Virtual desktops; Dev environments</td>
+</tr>
+<tr>
+<td>N2, N2D, N1</td>
+<td>(Balanced) Balanced price/performance across a wide range of VM shapes</td>
+<td>Web/App serving; Back office apps; Medium-large DBs; Cache; Media/streaming</td>
+</tr>
+<tr>
+<td>Tau T2D</td>
+<td>(Scale-out optimized) Best performance/ cost for scale-out workloads</td>
+<td>Scale-out workloads; Web serving; Containerized microservices; Media transcoding; Large-scale Java apps</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</li>
+<li>
+<p>Compute-optimized</p>
+<table>
+<thead>
+<tr>
+<th>Series</th>
+<th>Workload</th>
+<th>Applications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C2</td>
+<td>Ultra high performance for compute-intensive workloads</td>
+<td>Compute-bond workloads; High-performance web serving; Gaming (AAA game servers); Ad serving; High-performance computing (HPC); Media transcoding; AI/ML</td>
+</tr>
+<tr>
+<td>C2D</td>
+<td>Ultra high performance for compute-intensive workloads</td>
+<td>Memory-bound workloads; Gaming (AAA game servers); High-performance computing (HPC); High-performance DBs; Electronic Design Automation (EDA); Media transcoding</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Memory-optimized machine family</p>
+<table>
+<thead>
+<tr>
+<th>Series</th>
+<th>Workload</th>
+<th>Applications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M1</td>
+<td>Ultra high-memory workloads</td>
+<td>Medium in-memory DBs such as SAP HANA; Tasks that require intensive use of memory with hight memory-to-vCPU ratios than the general-purpose high-memory machine types; In-memory DBs and in-memory analytics, business warehousing (BW) workloads, genomics analysis, SQL analysis services; MS SQL Server and similar DBs</td>
+</tr>
+<tr>
+<td>M2</td>
+<td>Ultra high-memory workloads</td>
+<td>Large in-memory DBs such as SAP HANA; In-memory DBs and in-memory analytics, business warehousing (BW) workloads, genomics analysis, SQL analysis services</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Accelerator-optimized</p>
+<table>
+<thead>
+<tr>
+<th>Series</th>
+<th>Workload</th>
+<th>Applications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A2</td>
+<td>Optimized for high-performance computing workloads</td>
+<td>CUDA-enabled ML training and interface; HPC; Massive parallelized computation</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<h5 id="create-custom-machine-types">Create custom machine types</h5>
+<p>When:</p>
+<ul>
+<li>Requirements fit between the predefined types</li>
+<li>Need more memory or more CPU</li>
+</ul>
+<p>Customize the amount of memory and vCPU for your machine:</p>
+<ul>
+<li>Either 1vCPU or even number of vCPU</li>
+<li>0.9 GB per vCPU, up to 6.5 GB per vCPU (default)</li>
+<li>Total memory must be multiple of 256 MB</li>
+</ul>
+<h4 id="disk-options">Disk options</h4>
+<h5 id="boot-disk">Boot disk</h5>
+<ul>
+<li>VM comes with a single root persistent disk</li>
+<li>Image is loaded onto root disk during first boot:
+<ul>
+<li>Bootable: you can attach to a VM and boot from it</li>
+<li>Durable: can survive VM terminate</li>
+</ul>
+</li>
+<li>Some OS images are customized for Compute Engine</li>
+<li>Can survive VM deletion if &ldquo;Delete boot disk when instance is deleted&rdquo; is disabled</li>
+</ul>
+<h5 id="1-persistent-disks">[1] Persistent disks</h5>
+<p>Network storage appearing as a block device</p>
+<ul>
+<li>Attached to a VM through the network interface</li>
+<li>Durable storage: can survive VM terminate</li>
+<li>Bootable: you can attach to a VM and boot from it</li>
+<li>Snapshots: incremental backups</li>
+<li>Performance: Scales with size</li>
+<li>HDD (magnetic) or SSD (faster solid-state) options</li>
+<li>Disk resizing: even running and attached!</li>
+<li>Can be attached in read-only mode to multiple VMs</li>
+<li>Zonal or Regional
+<ul>
+<li>Zonal - offer efficient, reliable block storage</li>
+<li>Regional - provide active-active disk replication across two zones in the same region</li>
+<li><code>pd-standard</code></li>
+<li><code>pd-ssd</code></li>
+<li><code>pd-balanced</code></li>
+<li><code>pd-extreme</code>(zonal only)</li>
+</ul>
+</li>
+<li>Encryption keys
+<ul>
+<li>Google-managed</li>
+<li>Customer-managed : Cloud KMS</li>
+<li>Customer-supplied</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-local-ssd-disks">[2] Local SSD disks</h5>
+<p>Physically attached to the VM</p>
+<ul>
+<li>More IOPS, lower latency, higher throughput than persistent disk</li>
+<li>375 GB in size; can attach up to 24 SSD partitions, total of 9TB per instance</li>
+<li>Data survives a reset, but not a VM stop or terminate</li>
+<li>VM-specific : CANNOT be reattached to a different VM</li>
+</ul>
+<h5 id="3-ram-disk">[3] RAM disk</h5>
+<ul>
+<li><code>tmpfs</code></li>
+<li>Fastest type of performance available if you need small data structures</li>
+<li>Faster than local disk, slower than memory
+<ul>
+<li>Use when your application expects a file system structure and cannot directly store its data in memory</li>
+<li>Fast scratch disk, or fast cache</li>
+</ul>
+</li>
+<li>Very volatile; erase on stop or restart</li>
+<li>May need a larger machine type if RAM was sized for the application</li>
+<li>Consider using a persistent disk to back up RAM disk data</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>Persistent disk <strong>HDD</strong></th>
+<th>Persistent disk <strong>SSD</strong></th>
+<th>Local SSD disk</th>
+<th>RAM disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data redundancy</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Encryption at rest</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Snapshotting</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Bootable</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>No</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Use case</td>
+<td>General, bulk file storage</td>
+<td>Very random IOPS</td>
+<td>High IOPS and low latency</td>
+<td>Low latency and risk of data loss</td>
+</tr>
+<tr>
+<td></td>
+<td>just need capacity</td>
+<td>high performance need</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="compute-pricing">Compute pricing</h4>
 <h5 id="pricing">Pricing</h5>
 <ul>
 <li>Per-second billing, with minimum of 1 minute
@@ -481,6 +822,31 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
 <ul>
 <li>Putting resource in different regions: better failure independence</li>
 </ul>
+<h4 id="common-comput-engine-actions">Common Comput Engine actions</h4>
+<h5 id="metadata-and-scripts">Metadata and scripts</h5>
+<pre tabindex="0"><code># Boot -&gt; Run -&gt; Maintenance -&gt; Shutdown
+startup-script-url=URL
+shutdown-script-url=URL
+</code></pre><h5 id="move-an-instance-to-a-new-zone">Move an instance to a new zone</h5>
+<pre tabindex="0"><code>gcloud compute instance move
+</code></pre><ul>
+<li><strong>Automated process</strong> (moving within region)
+<ul>
+<li><code>gcloud compute instances move</code></li>
+<li>Update references to VM; not automatic</li>
+</ul>
+</li>
+<li><strong>Manual process</strong> (moving between regions):
+<ol>
+<li>Snapshot all persistent disks on the source VM</li>
+<li>Create new persistent disks in destination zone restored from snapshots</li>
+<li>Create new VM in the destination zone and attach new persistent disks</li>
+<li>Assign static IP to new VM</li>
+<li>Update references to VM</li>
+<li>Delete the snapshots, original disks, and original VM</li>
+</ol>
+</li>
+</ul>
 <hr>
 <p>Quizzes</p>
 <p>GCP infrastructure core services - IAM #3</p>
@@ -493,12 +859,13 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
 <hr>
 <h5 id="cloud-vpn-securely-connects-your-on-premises-network-to-your-google-cloud-vpc-network">Cloud VPN securely connects your on-premises network to your Google Cloud VPC network</h5>
 <ul>
-<li>Useful for low-volume data connections</li>
-<li>99.9% SLA</li>
+<li>Useful for <!-- raw HTML omitted -->low-volume data connections<!-- raw HTML omitted --></li>
+<li>Classic: 99.9% SLA</li>
+<li>HA VPN: 99.99% SLA</li>
 <li>Supports
 <ul>
 <li>Site-to-site VPN</li>
-<li>Static routes</li>
+<li>Static routes (Classic VPN only)</li>
 <li>Dynamic routes (Cloud Router)</li>
 <li>IKEv1 and IKEv2 ciphers</li>
 </ul>
@@ -510,7 +877,7 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
 <blockquote>
 <p>When using Cloud VPN, the maximum transmission unit (MTU) for your on-premises VPN gateway cannot be greater than 1460 bytes.</p>
 </blockquote>
-<h5 id="ha-vpn">HA VPN</h5>
+<h5 id="ha-vpn-overview">HA VPN overview</h5>
 <ul>
 <li>
 <p>Provides 99.99% service availability.</p>
@@ -566,6 +933,21 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
 <blockquote>
 <p>To guarantee <strong>99.99%</strong> availability SLA for HA VPN connections, <em>properly configure two or four tunnels</em> from your HA VPN gateway to your peer VPN gateway or to another HA VPN gateway.</p>
 </blockquote>
+<h5 id="use-cloud-interconnect-when-a-dedicated-high-speed-connection-is-required-between-networks">Use Cloud Interconnect when a dedicated high-speed connection is required between networks</h5>
+<ul>
+<li>Dedicated Interconnect provides a direct connection to a colocation facility.
+<ul>
+<li>From 10 to 200 Gbps</li>
+</ul>
+</li>
+<li>Partner Interconnect provides a connection through a service provider
+<ul>
+<li>Can purchase less bandwidth from 50 Mbps</li>
+</ul>
+</li>
+<li>Allows access to VPC resources using internal IP address space</li>
+<li>Private Google Access allows on-premises hosts to access Google services using private IPs</li>
+</ul>
 <hr>
 <h3 id="cloud-interconnect-and-peering">Cloud Interconnect and Peering</h3>
 <table>
@@ -874,6 +1256,7 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
 <p>you want to quickly create resources using the command line</p>
 </li>
 </ol>
+<hr>
 <h4 id="terraform">Terraform</h4>
 <h5 id="infrastructure-as-codeiac-allows-quick-provisioning-and-removing-of-infractures">Infrastructure as code(IaC) allows quick provisioning and removing of infractures</h5>
 <ul>
@@ -883,15 +1266,32 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
 <li>Can be part of a CI/CD pipeline</li>
 <li>Templates are the building blocks for disaster recovery procedures</li>
 <li>Manage resource dependencies and complexity</li>
-<li>Google Cloud supports many IaC tools</li>
+<li>Google Cloud supports many IaC tools
+<ul>
+<li>Terraform, Ansible, Chef, Packer, puppet</li>
+</ul>
+</li>
 </ul>
 <h5 id="terraform-is-an-infrastructure-automation-tool">Terraform is an infrastructure automation tool</h5>
 <ul>
-<li>Repeatable deployment process</li>
-<li>Declarative language</li>
-<li>Focus on the application</li>
-<li>Parallel deployment</li>
-<li>Template-driven</li>
+<li>
+<p>Repeatable deployment process</p>
+</li>
+<li>
+<p><em>Declarative language</em></p>
+<ul>
+<li>HashCorp Language (HCL)</li>
+</ul>
+</li>
+<li>
+<p>Focus on the application</p>
+</li>
+<li>
+<p>Parallel deployment</p>
+</li>
+<li>
+<p>Template-driven</p>
+</li>
 </ul>
 <h5 id="terraform-language">Terraform language</h5>
 <ul>
@@ -1136,6 +1536,46 @@ terraform apply
 </tr>
 </tbody>
 </table>
+<h5 id="roles-represent-the-goal-of-a-user-at-some-point">Roles represent the goal of a user at some point</h5>
+<table>
+<thead>
+<tr>
+<th>Roles are not people or job titles</th>
+<th>Roles should describe a users objective</th>
+<th>Examples of Roles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. People can play multiple roles<!-- raw HTML omitted -->2. A single role can be played by multiple people</td>
+<td>1. What does the user want to do?<!-- raw HTML omitted -->2. &ldquo;User&rdquo; is not a good role (everyone is a user)</td>
+<td>1. Shopper<!-- raw HTML omitted -->2. Account holder<!-- raw HTML omitted -->3. Customer<!-- raw HTML omitted -->4. Adminstrator<!-- raw HTML omitted -->5. Manager</td>
+</tr>
+</tbody>
+</table>
+<p>Using persona can provide further insights.</p>
+<h5 id="evaluate-user-stories-with-the-invest-criteria">Evaluate user stories with the INVEST criteria</h5>
+<ol>
+<li><strong>I</strong>ndepedent</li>
+<li><strong>N</strong>egotiable</li>
+<li><strong>V</strong>aluable</li>
+<li><strong>E</strong>stimatable</li>
+<li><strong>S</strong>mall</li>
+<li><strong>T</strong>estable</li>
+</ol>
+<h5 id="quantitative-requirements-are-things-that-are-measurable">Quantitative requirements are things that are measurable</h5>
+<p>Given the contraints:</p>
+<ul>
+<li>Time</li>
+<li>Finance</li>
+<li>People</li>
+</ul>
+<p>What can be achieved:</p>
+<ul>
+<li>How many users are there</li>
+<li>How much data is there</li>
+<li>What are the rewards and risk</li>
+</ul>
 <hr>
 <h4 id="devops-automation">DevOps Automation</h4>
 <h5 id="continuous-intregration-pipelines-automate-building-applications">Continuous intregration pipelines automate building applications</h5>
@@ -1224,11 +1664,354 @@ docker pull gcr.io/your-project-id/image-name
 <li>When an image is built by Cloud Build an &ldquo;attestor&rdquo; verifies that it was from a trusted repository (Source Repositories, for example)</li>
 <li>Container Registry includes a vulnerability scanner that scans containers</li>
 </ul>
+<h4 id="infrastructure-as-code">Infrastructure as Code</h4>
+<h5 id="moving-to-the-cloud-requires-a-mindset-change">Moving to the cloud requires a mindset change</h5>
+<h6 id="on-premises">On-Premises</h6>
+<ul>
+<li>Buy machines</li>
+<li>Keep machines running for years</li>
+<li>Prefer fewer big machines</li>
+<li>Machines are capital expenditures</li>
+</ul>
+<h6 id="cloud">Cloud</h6>
+<ul>
+<li>Rent machines</li>
+<li>Turn machines off as soon as possible</li>
+<li>Prefer lots of small machines</li>
+<li>Machines are monthly expenses</li>
+</ul>
+<h5 id="in-the-cloud-all-infrastructure-needs-to-be-disposable">In the cloud, all infrastructure needs to be disposable</h5>
+<ul>
+<li>Don&rsquo;t fix broken machines</li>
+<li>Don&rsquo;t install patches</li>
+<li>Don&rsquo;t upgrade machines</li>
+<li>If you need to fix a machine, delete it and re-create a new one</li>
+<li>To make infrastructure disposable, automate everything with code:
+<ul>
+<li>Can automate using scripts</li>
+<li>Can use declarative tools to define infrastructure</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>//TODO: Move section Terraform here</p>
+</blockquote>
+<h4 id="key-storage-characteristics">Key Storage Characteristics</h4>
+<h5 id="google-cloud-storage-and-database-portfolio">Google Cloud storage and database portfolio</h5>
+<table>
+<thead>
+<tr>
+<th>Relational</th>
+<th>Relational</th>
+<th>NoSQL</th>
+<th>NoSQL</th>
+<th>Object</th>
+<th>Warehouse</th>
+<th>In memory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud SQL</td>
+<td>Cloud Spanner</td>
+<td>Fi<strong>r</strong>estore</td>
+<td>Cloud Bigtable</td>
+<td>Cloud Storage</td>
+<td>BigQuery</td>
+<td>Memorystore</td>
+</tr>
+<tr>
+<td>Good for:<!-- raw HTML omitted -->Web frameworks</td>
+<td>Good for:<!-- raw HTML omitted -->RDBMS+scale, HA, HTAP</td>
+<td>Good for:<!-- raw HTML omitted -->Hierarchical, mobile, web</td>
+<td>Good for:<!-- raw HTML omitted -->Heavy read + write, events</td>
+<td>Good for: <!-- raw HTML omitted -->Binary object data</td>
+<td>Good for:<!-- raw HTML omitted -->Enterprise data warehouse</td>
+<td>Good for:<!-- raw HTML omitted -->Caching for Web/Mobile apps</td>
+</tr>
+<tr>
+<td>Such as:<!-- raw HTML omitted -->CMS, eCommerce</td>
+<td>Such as:<!-- raw HTML omitted -->User metadata, Ad/Fin/MarTech</td>
+<td>Such as:<!-- raw HTML omitted -->User profiles, Game State</td>
+<td>Such as:<!-- raw HTML omitted -->AdTech, financial, IoT</td>
+<td>Such as:<!-- raw HTML omitted -->Images, media serving,  backups</td>
+<td>Such as:<!-- raw HTML omitted -->Analytics, dashboards</td>
+<td>Such as:<!-- raw HTML omitted -->Game state, user sessions</td>
+</tr>
+<tr>
+<td>Scales to 30 TB.  <!-- raw HTML omitted -->MySQL, PostgreSQL, SQL Server</td>
+<td>Scales infinitely Regional or multi-regional</td>
+<td>Completely managed Document database</td>
+<td>Scales infinitely Wide-column NoSQL</td>
+<td>Completely managed Infinitely scalable</td>
+<td>Completely Managed SQL analysis</td>
+<td>Managed Redis DB</td>
+</tr>
+<tr>
+<td>Fixed schema</td>
+<td>Fixed schema</td>
+<td>Schemaless</td>
+<td>Schemaless</td>
+<td>Schemaless</td>
+<td>Fixed schema</td>
+<td>Schemaless</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">isStructured</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">isAnalyticWorkload</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">requiresUpdateOrLowLatency</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">CLOUD_BIGTABLE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Updates not in need
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="n">BIG_QUERY</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// Non-analytic workload
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">isRelational</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">isHorizontalScalabilityNeeded</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">CLOUD_SPANNER</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">CLOUD_SQL</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// Note: don&#39;t confuse this with Filestore!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span> <span class="n">FIRESTORE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Non-structured data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">isSharedFileSystemNeeded</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">FILESTORE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">CLOUD_STORAGE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="different-data-storage-services-have-different-availability-slas">Different data storage services have different availability SLAs</h5>
+<table>
+<thead>
+<tr>
+<th>Storage Choice</th>
+<th>Availability SLA %</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Storage (multi-region bucket)</td>
+<td>&gt;= 99.95</td>
+</tr>
+<tr>
+<td>Cloud Storage (regional bucket)</td>
+<td>99.9</td>
+</tr>
+<tr>
+<td>Cloud Storage (coldline)</td>
+<td>99.0</td>
+</tr>
+<tr>
+<td>Spanner (multi-region)</td>
+<td>99.999</td>
+</tr>
+<tr>
+<td>Spanner (single region)</td>
+<td>99.99</td>
+</tr>
+<tr>
+<td>Firestore (multi-region)</td>
+<td>99.999</td>
+</tr>
+<tr>
+<td>Firestore (single region)</td>
+<td>99.99</td>
+</tr>
+</tbody>
+</table>
+<h5 id="durability-represents-the-odds-of-losing-data">Durability represents the odds of losing data</h5>
+<p>Preventing data loss is a shared responsibility</p>
+<table>
+<thead>
+<tr>
+<th>Storage Choice</th>
+<th>Google Cloud Provides</th>
+<th>What you should do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cloud Storage</td>
+<td>11 9&rsquo;s durability Versioning (optional)</td>
+<td>Turn versioning on</td>
+</tr>
+<tr>
+<td>Disks</td>
+<td>Snapshots</td>
+<td>Schedule snapshot jobs</td>
+</tr>
+<tr>
+<td>Cloud SQL</td>
+<td>Automated machine backups<!-- raw HTML omitted -->Point-in-time recovery<!-- raw HTML omitted -->Failover server (optional)</td>
+<td>Run SQL database backups</td>
+</tr>
+<tr>
+<td>Spanner</td>
+<td>Automatic replication</td>
+<td>Run export jobs</td>
+</tr>
+<tr>
+<td>Firestore</td>
+<td>Automatic replication</td>
+<td>Run export jobs</td>
+</tr>
+</tbody>
+</table>
+<h5 id="the-amount-of-data-and-number-of-read-and-writes-is-important-when-selecting-a-data-storage-servic">The amount of data and number of read and writes is important when selecting a data storage servic</h5>
+<ol>
+<li>Scale horizontally by adding nodes
+<ul>
+<li>Bigtable</li>
+<li>Spanner</li>
+</ul>
+</li>
+<li>Scale vertically by making machine larger
+<ul>
+<li>Cloud SQL</li>
+<li>Memorystore</li>
+</ul>
+</li>
+<li>Scale automatically with NO limits
+<ul>
+<li>Cloud Storage</li>
+<li>BigQuery</li>
+<li>Firestore</li>
+</ul>
+</li>
+</ol>
+<h5 id="do-you-need-strong-consistency">Do you need strong consistency?</h5>
+<p>Strongly consistent databases update all copies of data within a transaction.</p>
+<p>Ensures everyone gets the latest copy of the data on reads:</p>
+<ul>
+<li>Storage</li>
+<li>Cloud SQL</li>
+<li>Spanner</li>
+<li>Firestore</li>
+</ul>
+<p>Eventually consistent databases update one copy of the data and the rest asynchronously.</p>
+<p>Can handle a large volume of writes:</p>
+<ul>
+<li>Bigtable</li>
+<li>Memorystore replicas</li>
+</ul>
+<h5 id="calculate-the-total-cost-per-gb-when-choosing-a-storage-service">Calculate the total cost per GB when choosing a storage service</h5>
+<ul>
+<li>
+<p>Bigtable and Spanner would be too expensive for storing smaller amounts of data</p>
+</li>
+<li>
+<p>Firestore is less expensive per GB, but you also pay for reads and writes</p>
+</li>
+<li>
+<p>Cloud Storage is relatively cheap, but you can&rsquo;t run a database in storage</p>
+</li>
+<li>
+<p>BigQuery storage is relatively cheap, but doesn&rsquo;t provide fast access to records and you have to pay for running queries</p>
+<blockquote>
+<p>You need to choose the right storage solutions for each of your microservices based on their requirements</p>
+</blockquote>
+</li>
+</ul>
 <hr>
-<h4 id="transfer-appliance">Transfer Appliance</h4>
-<p>Suitable for data upto 1PB</p>
+<h4 id="choosing-google-cloud-storage-and-data-solutions">Choosing Google Cloud Storage and Data Solutions</h4>
+<h5 id="storage-transfer-service">Storage Transfer Service</h5>
+<h6 id="import-online-data-to-cloud-storage">Import online data to Cloud Storage</h6>
+<ul>
+<li>Amazon S3</li>
+<li>HTTP/HTTPS Location</li>
+<li>Transfer data between Cloud Storage buckets</li>
+</ul>
+<h6 id="scheduled-jobs">Scheduled jobs</h6>
+<ul>
+<li>One time or recurring, import at a scheduled time of day</li>
+<li>Options for delete objects not in source or after transfer</li>
+<li>Filter on file name, creation date</li>
+</ul>
+<h5 id="use-the-storage-transfer-service-for-on-premises-data-for-large-scale-uploads-from-your-data-center">Use the Storage Transfer Service for on-premises data for large-scale uploads from your data center</h5>
+<ul>
+<li>
+<p>Install on-premises agent on your servers</p>
+</li>
+<li>
+<p>Agent runs in a Docker container</p>
+</li>
+<li>
+<p>Set up a connection to Google  Cloud</p>
+</li>
+<li>
+<p>Requires a minimum of <!-- raw HTML omitted -->300 Mbps<!-- raw HTML omitted --> bandwidth</p>
+<blockquote>
+<p>To use the STS for on-premises:</p>
+<ol>
+<li>A Posix-compliance source</li>
+<li>At least 300 megabits per second network connection</li>
+<li>A Docker supported Linux server, ports 80 and 443 open for outbound connections</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>Scales to billions of files and 100s of TBs</p>
+</li>
+<li>
+<p>Secure</p>
+</li>
+<li>
+<p>Automatic retires</p>
+</li>
+<li>
+<p>Logged</p>
+</li>
+<li>
+<p>Easy to monitor via the Cloud Console</p>
+</li>
+</ul>
+<h5 id="transfer-appliance">Transfer Appliance</h5>
+<p>Suitable for data upto 1PB; rackable device up to 1PB shipped to Google</p>
+<p>Use Transfer Appliance if uploading your data would take too long</p>
 <p>AES256 encrypted the moment of capture ; data erased per NSIT 800-88 standard</p>
-<p>shipped in tamper-evident seals</p>
+<p>Shipped in tamper-evident seals</p>
 <p>Steps:</p>
 <ol>
 <li>
@@ -1249,10 +2032,98 @@ docker pull gcr.io/your-project-id/image-name
 </li>
 </ol>
 <hr>
+<h4 id="designing-google-cloud-networks">Designing Google Cloud Networks</h4>
+<h5 id="in-google-cloud-vpc-networks-are-global">In Google Cloud, VPC networks are global</h5>
+<ul>
+<li>When creating networks, create subnets for the regions you want to operate in</li>
+<li>Resources across regions can reach each other without any added interconnect</li>
+<li>If you are a global company, choose regions around the world</li>
+<li>If your users are close together, choose the region closest to them plus a backup region</li>
+<li>A project can have multiple networks</li>
+</ul>
+<h5 id="when-creating-custom-subnets-specify-the-region-and-the-internal-ip-address-range">When creating custom subnets, specify the region and the internal IP address range</h5>
+<ul>
+<li>IP address ranges <strong>cannot overlap</strong></li>
+<li>Machines in the same VPC can communicate via their internal IP address regardless of the subnet region</li>
+<li>Subnets don&rsquo;t need to be derived from a single CIDR block</li>
+<li>Subnets are expandable without down time</li>
+<li>IP Aliasing or Secondary range can be set on the subnet</li>
+</ul>
+<h5 id="a-single-vm-can-have-multiple-network-interfaces-connecting-to-different-networks">A single VM can have multiple network interfaces connecting to different networks</h5>
+<ul>
+<li>Each network must have a subnet in the region the VM is created in</li>
+<li>Each interface must be attached to a different VPC</li>
+<li>Maximum of 8 interfaces per VM</li>
+</ul>
+<h5 id="a-shared-vpc-is-created-in-one-project-but-can-be-shared-and-used-by-other-projects">A Shared VPC is created in one project, but can be shared and used by other projects</h5>
+<p>Requires an organization</p>
+<ul>
+<li>Create the VPC in the host project</li>
+<li>Share VPC adin shares the VPC with other service projects</li>
+</ul>
+<p>Allows centralized control over network configuration</p>
+<ul>
+<li>Network admins configure subnets, firewall rules, routes, etc.</li>
+<li>Remove network admin rights from developers</li>
+<li>Developers focus on machine creation and configuration in the shared network</li>
+<li>Disable the creation of the default network using an organizational policy</li>
+</ul>
+<h4 id="designing-google-cloud-load-balancers">Designing Google Cloud Load Balancers</h4>
+<h5 id="use-a-global-load-balancer-to-provide-access-to-services-deployed-in-multiple-regions">Use a global load balancer to provide access to services deployed in multiple regions</h5>
+<ul>
+<li>Global load balancing supported by HTTP load balancer and TCP and SSL proxies</li>
+<li>HTTP load balancer routes requests to the region closest to the user
+<ul>
+<li>Uses a global, anycast IP address</li>
+</ul>
+</li>
+</ul>
+<h5 id="use-a-regional-load-balancer-to-provide-access-to-services-deployed-in-a-single-region">Use a regional load balancer to provide access to services deployed in a single region</h5>
+<ul>
+<li>Supported by HTTP, TCP and UDP load balancers</li>
+<li>Can have a public or private IP address</li>
+<li>Can use any TCP or UDP port</li>
+</ul>
+<h5 id="if-your-load-balancers-have-public-ips-secure-them-using-ssl">If your load balancers have public IPs, secure them using SSL</h5>
+<ul>
+<li>Supported by HTTP and TCP load balancers</li>
+<li>Self-managed and Google-managed SSL certificates</li>
+</ul>
+<h5 id="for-lower-latency-and-decreased-egress-cost-leverage-cloud-cdn">For lower-latency and decreased egress cost leverage Cloud CDN</h5>
+<ul>
+<li>Can be enable when configuring the HTTP global load balancer</li>
+<li>Caches static content worldwide using Google Cloud edge-caching locations</li>
+<li>Cache static data from web servers in Compute Engine instances, GKE pods, or Cloud Storage Buckets</li>
+</ul>
+<hr>
+<h4 id="connecting-networks">Connecting Networks</h4>
+<ol>
+<li>Peering</li>
+<li>Cloud VPN</li>
+<li>Cloud Interconnect</li>
+</ol>
+<h5 id="use-vpc-peering-to-connect-networks-when-they-are-both-in-google-cloud">Use VPC peering to connect networks when they are both in Google Cloud</h5>
+<ul>
+<li>Can be the same or different organizations</li>
+<li>Subnet ranges cannot overlap</li>
+<li>Network admins for each VPC must approve the peering requests</li>
+</ul>
+<pre tabindex="0"><code>+-Organization---------+         	  	+-Organization---------+
+| Google Cloud Project |              | Google Cloud Project |
+| +-----------------+  |              | +-----------------+  |  
+| | VPC             |  |              | | VPC             |  |  
+| | +-------------+ |  | VPC Peering  | | +-------------+ |  |
+| | | Subnet      |-----------------------| Subnet      | |  |
+| | | 10.1.1.0/24 | |  |              | | | 10.1.2.0/24 | |  | 
+| | +-------------+ |  |              | | +-------------+ |  | 
+| +-----------------+  |              | +-----------------+  | 
++----------------------+              +----------------------+ 
+</code></pre><h5 id="cloud-vpn-securely-connects-your-on-premises-network-to-your-google">Cloud VPN securely connects your on-premises network to your Google</h5>
+<hr>
 <h5 id="when-designing-for-reliability-consider-these-key-performance-metrics">When designing for reliability, consider these key performance metrics</h5>
 <ul>
 <li>
-<p>Availability</p>
+<p>Availability (可用性 - 系統可接收請求的時間%)</p>
 <p>The percent of time a system is running and able to process requests</p>
 <ul>
 <li>Achieved with fault tolerance</li>
@@ -1262,7 +2133,7 @@ docker pull gcr.io/your-project-id/image-name
 </ul>
 </li>
 <li>
-<p>Durability</p>
+<p>Durability (因為硬體系統錯誤而遺失資料的可能性)</p>
 <p>The odds of losing data because of a hardware or system failure</p>
 <ul>
 <li>Achieved by replicating data in multiple zones</li>
@@ -1271,7 +2142,7 @@ docker pull gcr.io/your-project-id/image-name
 </ul>
 </li>
 <li>
-<p>Scalability</p>
+<p>Scalability (可擴張性)</p>
 <p>The ability of a system to continue to work as user load and data grow</p>
 <ul>
 <li>Monitor usage</li>
@@ -1328,7 +2199,39 @@ docker pull gcr.io/your-project-id/image-name
                        +-[300]-&gt;[Server D, max 500 qps]
 
 # Server D fails, sending [400] respectively to Server A/B/C
-</code></pre><h5 id="use-the-circuit-breaker-pattern-to-protect-the-service-from-too-many-retries">Use the circuit breaker pattern to protect the service from too many retries</h5>
+</code></pre><h5 id="plan-against-query-of-death-overload">Plan against Query of death overload</h5>
+<ul>
+<li>Where a request made to a service causes a failure in the service</li>
+<li>Reason: The error manifests itself as overconsumption of resource, but in reality is due to an error in business logic itself (overloads of service)</li>
+<li>Solution: To monitor query performance. Ensure that notification of these issues gets back to the developers</li>
+</ul>
+<h5 id="plan-against-positive-feedback-cycle-overload-failure">Plan against Positive feedback cycle overload failure</h5>
+<ul>
+<li>Where a problem is caused by trying to prevent problems</li>
+<li>Problem: You try to make the system more reliable by adding retries, and instead you create the potential for an overload</li>
+<li>Solution: Prevent overload by carefully considering overload conditions whenever you are trying to improve reliability with feedback mechanisms to invoke retries (<em>use intelligent retries</em> - two strategies)</li>
+</ul>
+<h5 id="use-span-stylecoloryellow1-truncated-exponential-backoff-patternspan-to-avoid-positive-feedback-overload-at-the-client">Use <!-- raw HTML omitted -->(1) truncated exponential backoff pattern<!-- raw HTML omitted --> to avoid positive feedback overload at the client</h5>
+<ul>
+<li>If service invocation fails, try again:
+<ul>
+<li>Continue to retry, but wait a while between attempts</li>
+<li>Wait a little longer each time the request fails</li>
+<li>Set a maximum length of time and a maximum number of requests</li>
+<li>Eventually, give up</li>
+</ul>
+</li>
+<li>Example:
+<ul>
+<li>Request fails: wait 1 sec + <em>random_number_milliseconds</em>  and retry</li>
+<li>Req fails: wait 2 sec + <em>random_number_milliseconds</em>  and retry</li>
+<li>Req fails: wait 4 sec + <em>random_number_milliseconds</em>  and retry</li>
+<li>And so on, up to a <em>maximum_backoff</em>  time</li>
+<li>Continue waiting and retrying up to some maximum number of retries</li>
+</ul>
+</li>
+</ul>
+<h5 id="use-the-span-stylecoloryellow2-circuit-breaker-patternspan-to-protect-the-service-from-too-many-retries">Use the <!-- raw HTML omitted --> (2) circuit breaker pattern<!-- raw HTML omitted --> to protect the service from too many retries</h5>
 <ul>
 <li>Plan for degraded state operations</li>
 <li>If a service is down and all it&rsquo;s clients are retrying, the increasing number of requests can make matters worse
@@ -1714,6 +2617,1250 @@ Memorystore as a cache</li>
 <li>In addition to receiving an email, you can use Pub/Sub notifications to programmatically receive spend updates about this budget.</li>
 <li>You can even create a Cloud Function that listens to the Pub/Sub topic to automate cost management</li>
 </ul>
+<hr>
+<h3 id="monitoring-dashboards">Monitoring Dashboards</h3>
+<h4 id="monitoring-dashboard">Monitoring Dashboard</h4>
+<h5 id="google-cloud-unifies-the-tools-you-need-to-monitor-your-service-slos-and-slas">Google Cloud unifies the tools you need to monitor your service SLOs and SLAs</h5>
+<p>Monitoring, Logging, Trace, Debugger, Error Reporting, Profiler</p>
+<h5 id="monitoring-dashboards-monitor-your-services">Monitoring dashboards monitor your services</h5>
+<ul>
+<li>Monitor the things you pay for:
+<ul>
+<li>CPU use</li>
+<li>Storage capacity</li>
+<li>Reads and writes</li>
+<li>Network egress</li>
+<li>etc.</li>
+</ul>
+</li>
+<li>Monitor your SLIs to determine whether you are meeting your SLOs</li>
+</ul>
+<hr>
+<h2 id="k8s">k8s</h2>
+<h4 id="cloud-computing-and-google-cloud">Cloud Computing and Google Cloud</h4>
+<h5 id="cloud-computing---5-fundamental-attributes">Cloud computing - 5 fundamental attributes</h5>
+<ol>
+<li>
+<p>On-demand self-service</p>
+<p>No human intervention needed to get resources</p>
+</li>
+<li>
+<p>Broad network access
+Access from anywhere</p>
+</li>
+<li>
+<p>Resource pooling
+Provider shares resources to customers</p>
+</li>
+<li>
+<p>Rapid elasticity
+Get more resources quickly as needed</p>
+</li>
+<li>
+<p>Measured service
+Pay only for what you consume</p>
+</li>
+</ol>
+<h5 id="google-cloud-offers-a-range-of-services">Google Cloud offers a range of services</h5>
+<ol>
+<li>Compute Engine
+<ul>
+<li>run VM on demand</li>
+<li>maximum flexibility</li>
+</ul>
+</li>
+<li>GKE
+<ul>
+<li>run containerization application</li>
+<li>package code, highly portable</li>
+</ul>
+</li>
+<li>App Engine
+<ul>
+<li>platform as service</li>
+<li>resources managed by Google Cloud</li>
+</ul>
+</li>
+<li>Cloud Function
+<ul>
+<li>only pay for the service while your code runs</li>
+</ul>
+</li>
+</ol>
+<h5 id="managed-service">Managed service</h5>
+<h6 id="storage">Storage</h6>
+<ol>
+<li>Cloud Bigtable</li>
+<li>Cloud Storage</li>
+<li>Cloud SQL</li>
+<li>Cloud Spanner</li>
+<li>Datastore</li>
+</ol>
+<h6 id="big-data">Big Data</h6>
+<ol>
+<li>BigQuery</li>
+<li>Pub/Sub</li>
+<li>Dataflow</li>
+<li>Dataproc</li>
+<li>Notebooks</li>
+</ol>
+<h6 id="machine-learning">Machine Learning</h6>
+<ol>
+<li>Vision API</li>
+<li>Vertex AI</li>
+<li>Speech-to-Text API</li>
+<li>Cloud Translation API</li>
+<li>Cloud Natural Language API</li>
+</ol>
+<hr>
+<h3 id="resource-management">Resource Management</h3>
+<h5 id="multi-region">Multi-Region</h5>
+<ol>
+<li>
+<p>the Americas</p>
+</li>
+<li>
+<p>Asia-Pacific</p>
+</li>
+<li>
+<p>Europe</p>
+<ul>
+<li>
+<p><strong>Region</strong> : e.g. <code>europe-west2</code></p>
+<ul>
+<li>
+<p><strong>Zone</strong> : e.g.</p>
+<p><code>europe-west2-a</code></p>
+<p><code>europe-west2-b</code></p>
+<p><code>europe-west2-c</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="pops-and-network">PoPs and network</h5>
+<ul>
+<li>designed to provide the highest possible throughput, lowest possible latencies</li>
+</ul>
+<h4 id="quotas">Quotas</h4>
+<h5 id="all-resources-are-subject-to-project-quotas-or-limits">All resources are subject to project quotas or limits</h5>
+<ul>
+<li>How many resources you can create per project
+<ul>
+<li>15 VPC networks/project</li>
+</ul>
+</li>
+<li>How quickly you can make API requests in a project: rate limits</li>
+<li>5 admin actions/sec (Cloud Spanner)</li>
+<li>How many resources you can create per region
+<ul>
+<li>24 CPUs region/project</li>
+</ul>
+</li>
+</ul>
+<h5 id="why-use-project-quotas">Why use project quotas?</h5>
+<ul>
+<li>Prevent runaway consumption in case of an error or malicious attack</li>
+<li>Prevent billing spikes or surprises</li>
+<li>Forces sizing consideration and periodic review</li>
+</ul>
+<h4 id="labels">Labels</h4>
+<h5 id="labels-are-a-utility-for-organizing-google-cloud-resources">Labels are a utility for organizing Google Cloud resources</h5>
+<ul>
+<li>Attached to resources : VM, disk, snapshot, image
+<ul>
+<li>Google Cloud console, <code>gcloud</code>, or API</li>
+</ul>
+</li>
+<li>Example uses of labels:
+<ul>
+<li>Inventory</li>
+<li>Filter resources</li>
+<li>In scripts
+<ul>
+<li>Help analyze costs</li>
+<li>Run bulk operations</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="use-labels-for">Use labels for</h5>
+<ul>
+<li>
+<p>Team or Cost Center</p>
+<pre tabindex="0"><code>team:marketing
+team:research
+</code></pre></li>
+<li>
+<p>Components</p>
+<pre tabindex="0"><code>component:redis
+component:frontend
+</code></pre></li>
+<li>
+<p>Environment or stage</p>
+<pre tabindex="0"><code>environment:prod
+environment:test
+</code></pre></li>
+<li>
+<p>Owner or contact</p>
+<pre tabindex="0"><code>owner:steve
+contact:hon
+</code></pre></li>
+<li>
+<p>State</p>
+<pre tabindex="0"><code>state:inuse
+state:readyfordeletion
+</code></pre></li>
+</ul>
+<h4 id="billing">Billing</h4>
+<h3 id="interacting-with-google-cloud">Interacting with Google Cloud</h3>
+<h3 id="computing-options">Computing Options</h3>
+<h3 id="containers-and-container-images">Containers and Container Images</h3>
+<h3 id="intro-to-kubernetes">Intro to Kubernetes</h3>
+<h3 id="intro-to-google-k8s-engine">Intro to Google K8s Engine</h3>
+<h3 id="computing-options-detail">Computing Options Detail</h3>
+<h3 id="k8s-concepts">K8s Concepts</h3>
+<h3 id="the-k8s-control-plane">The K8s Control Plane</h3>
+<h3 id="gke-concepts">GKE Concepts</h3>
+<h3 id="k8s-object-management">K8s Object Management</h3>
+<h3 id="migrate-for-anthos">Migrate for Anthos</h3>
+<hr>
+<h3 id="app-engine">App Engine</h3>
+<p>With App Engine, you can choose from popular coding languages, libraries, and frameworks to develop apps with tools you&rsquo;re familiar with.</p>
+<p>Then automatically provision servers in scale app instances based on demand.</p>
+<p>This means you can upload your code and Google will manage your apps availability.</p>
+<p>Coding options include Eclipse, IntelliJ, Maven, Git, Jenkins, and PyCharm.</p>
+<p>With App Engine, there are no servers to provision or maintain.</p>
+<p>App Engine provides built-in services and APIs like NoSQL data stores, memcache, load balancing, health checks, application logging and a user authentication API that&rsquo;s common to most applications.</p>
+<p>App Engine also offer software development kits or SDKs to help you develop, deploy, and manage your apps on your local machine.</p>
+<p>Each SDK includes all of the APIs and libraries available to App Engine, the simulated secure sandbox environment that emulates all of the App Engine services on your local computer and deployment tools to upload your application to the Cloud and manage different versions.</p>
+<p>The SDK manages your application locally, and the Google Cloud Console manages your application in production.</p>
+<p>You can use the Cloud Console web-based interface to create new applications, configure domain names, change which version of your application is live, examine access and error logs and much more.</p>
+<p>From a security perspective, the Security Command Center, Google Cloud security and risk management platform, keeps web applications safe.</p>
+<p>Through the Cloud Console, you can use the Security Command Center to automatically scan and detect common web application vulnerabilities.</p>
+<h4 id="app-engine-environment">App Engine environment</h4>
+<h5 id="flexible-environment">Flexible environment</h5>
+<ul>
+<li>Instances are health-checked, healed, and co-located</li>
+<li>Critical, backward-compatible updates are automatically applied to the underlying operating system</li>
+<li>VM instances are automatically located by geographical region according to the settings in your project</li>
+<li>VM instances are restarted on a weekly basis</li>
+</ul>
+<h5 id="the-flexible-environment-supports-">The flexible environment supports &hellip;</h5>
+<ol>
+<li>Microservices</li>
+<li>Authorization</li>
+<li>SQL &amp; NoSQL databases</li>
+<li>Traffic splitting</li>
+<li>Logging</li>
+<li>Search</li>
+<li>Versioning</li>
+<li>Security scanning</li>
+<li>Memcache</li>
+<li>CDN</li>
+</ol>
+<h5 id="app-engine-span-stylecolor-skyblueflexiblespan-allows-users-to-">App Engine <!-- raw HTML omitted -->flexible<!-- raw HTML omitted --> allows users to &hellip;</h5>
+<ol>
+<li>Benefit from custom configurations and libraries, while focusing on writing code</li>
+<li>Customize the runtime and the operating system of your virtual machine.
+Standard runtimes include Python, Java, Go, Node.js, PHP, .NET, and Ruby</li>
+<li>Customize or provide runtimes by supplying a custom Docker image or Dockerfile</li>
+</ol>
+<h5 id="standard-vs-flexible">Standard vs Flexible</h5>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>Standard environment</th>
+<th>Flexible environment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instance startup</td>
+<td>Seconds <!-- raw HTML omitted -->fast<!-- raw HTML omitted --></td>
+<td>Minutes</td>
+</tr>
+<tr>
+<td>SSH access</td>
+<td>No</td>
+<td>Yes (although not by default)</td>
+</tr>
+<tr>
+<td>Write to local disk</td>
+<td>No (some runtimes have read and write access to the <code>/tmp</code> directory)</td>
+<td>Yes, ephemeral (disk initialized on each VM startup)</td>
+</tr>
+<tr>
+<td>Support for 3rd party binaries</td>
+<td>For certain languages</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Network access</td>
+<td>Via App Engine services</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Pricing model</td>
+<td>After free tier usage, pay per instance class, with automatic shutdown</td>
+<td>Pay for resource allocation per hour; no automatic shutdown</td>
+</tr>
+</tbody>
+</table>
+<h5 id="app-engine-vs-gke-">App Engine vs GKE &hellip;</h5>
+<ul>
+<li><strong>App Engine standard environment</strong> is for people who want the service to <!-- raw HTML omitted -->take maximum control of their web and mobile applications deployment and scaling<!-- raw HTML omitted --></li>
+<li><strong>Google Kubernetes Engine</strong> - gives the application owner the full flexibility of Kubernetes</li>
+<li><strong>App Engine flexible environment</strong> - somewhere between the two</li>
+</ul>
+<h4 id="google-cloud-api-management-tools">Google Cloud API management tools</h4>
+<ul>
+<li>Cloud Endpoints
+<ol>
+<li>Distributed API management system</li>
+<li>Provides an API console, hosting, logging, monitoring and other features</li>
+<li>Use with any APIs that support the OpenAPI Specification</li>
+<li>Supports applications running in App Engine, Google Kubernetes Engine and Compute Engine</li>
+<li>Clients include Android, iOS and Javascript</li>
+</ol>
+</li>
+<li>API Gateway
+<ol>
+<li>Backend implementation can vary for a single service provider</li>
+<li>Provide secure access to your backend services through a well-defined REST API</li>
+<li>Client consume your REST APIS to implement standalone apps</li>
+</ol>
+</li>
+<li>Apigee API management</li>
+</ul>
+<hr>
+<h4 id="cloud-run">Cloud Run</h4>
+<ul>
+<li>A managed compute platform that can run stateless containers</li>
+<li>Serverless, removing the need for infrastracture management</li>
+<li>Built on Knative, an open API and runtime environment built on Kubernetes</li>
+<li>Can automatically scale up and down from zero almost instantaneously, charging only for the resources used</li>
+</ul>
+<h5 id="three-step">Three step:</h5>
+<ol>
+<li>Write your code</li>
+<li>Build and package</li>
+<li>Deploy to Cloud Run</li>
+</ol>
+<blockquote>
+<p>Cloud Run then starts your container on demand to handle requests, and ensures that all incoming requests are handled by <!-- raw HTML omitted -->dynamically adding and removing<!-- raw HTML omitted --> containers</p>
+</blockquote>
+<h4 id="development-in-the-cloud">Development in the cloud</h4>
+<h5 id="cloud-source-repositories">Cloud Source Repositories</h5>
+<ul>
+<li>provide full-featured git repositories hosted on Google Cloud that support the collaborative development of any application or service, including those that run on App Engine and Compute Engine</li>
+<li>capable of having any number of private git repositories</li>
+<li><strong>Diagnostic Tools</strong> : debugger, error reporting</li>
+<li>Can be migrated from github or gitlab</li>
+</ul>
+<h5 id="cloud-function">Cloud Function</h5>
+<ul>
+<li>Lightweight, event-based, asynchronous compute solution</li>
+<li>Allows you to create small, single-purpose functions that respond to cloud events without the need to manage a server or a runtime environment</li>
+<li>Use these functions to construct applications from bite-sized business logic and connect and extend cloud services</li>
+<li>Billed to the nearest 100 milliseconds, and only while your code is running</li>
+<li>Supports writing source code in a number of programming languages, including Node.js, Python, Go, Java, .Net Core, Ruby, and PHP</li>
+<li>Events from Cloud Storage and Pub/Sub can trigger Cloud Functions asynchronously, or use HTTP invocation  for synchronous execution</li>
+</ul>
+<h4 id="deployment--infrastructure-as-code">Deployment : Infrastructure as Code</h4>
+<p>Creating an environment in Google Cloud can mean lots of work like setting up a compute network and storage resources and then keeping track of their configurations.</p>
+<p>This process can be done manually by writing the commands you need to set up your environment the way you want.</p>
+<p>However, this is labor-intensive and requires updating commands if you want to change the environment or manually writing new commands if you want to clone an environment.</p>
+<p>It&rsquo;s more efficient to use a template.</p>
+<p>Using a template allows you to write the specification to your application environment in the same way you&rsquo;d write a configuration file.</p>
+<p>A Go template can then be deployed in a scout environment to quickly create as many identical</p>
+<p>application environments as needed.</p>
+<h5 id="terraform-1">Terraform:</h5>
+<ol>
+<li>Create a template file using <strong>HashiCorp Configuration Language (HCL)</strong> that describes what the components of the environment should look like</li>
+<li>Terraform uses that template to determine the actions needed to create the environment your template describes</li>
+<li>Use Terraform to update the environment to match the change</li>
+<li>Store and version-control Terraform templates in Cloud Source Repositories</li>
+</ol>
+<hr>
+<h3 id="virtual-private-cloud">Virtual Private Cloud</h3>
+<h4 id="vpc-1">VPC</h4>
+<p>You can provision your GCP resources, connect them to each other, and isolate them from each other in a virtual private cloud.</p>
+<p>You can also define fine-grained network and policies within GCP and between GCP and on-premises or other public Clouds.</p>
+<h5 id="vpc-objects">VPC objects</h5>
+<ul>
+<li>Projects</li>
+<li>Networks
+<ul>
+<li>default, auto mode, custom mode</li>
+</ul>
+</li>
+<li>Subnetworks - divide or segregate your environment</li>
+<li>Regions</li>
+<li>Zones</li>
+<li>IP addresses
+<ul>
+<li>Internal, external, ranges</li>
+</ul>
+</li>
+<li>Virtual machines</li>
+<li>Routes</li>
+<li>Fire rules</li>
+</ul>
+<h4 id="projects-networks-subnetworks-1">Projects, networks, subnetworks</h4>
+<h6 id="a-project">A project:</h6>
+<ul>
+<li>Associates objects and services with billing</li>
+<li>Contains networks (up to 15) that can be shared/peered</li>
+</ul>
+<h6 id="a-network">A network:</h6>
+<ul>
+<li>Has no IP address range</li>
+<li>Is global and spans all available regions (spreads across multi-regions)</li>
+<li>Contains subnetworks (regional)</li>
+<li>Is available as default, auto, or custom</li>
+</ul>
+<h5 id="3-vpc-network-types-1">3 VPC network types</h5>
+<h6 id="default">Default</h6>
+<ul>
+<li>Every project</li>
+<li>One subnet per region</li>
+<li>Default firewall rules</li>
+</ul>
+<h6 id="auto-mode">Auto Mode</h6>
+<ul>
+<li>Default network</li>
+<li>One subnet per region</li>
+<li>Regional IP allocation</li>
+<li>Fixed /20 mask subnetwork per region</li>
+<li>Expandable up to /16 mask
+<ul>
+<li>all of these subnets fit within the <code>10.128.0.0/9</code> CIDR block</li>
+</ul>
+</li>
+</ul>
+<h6 id="custom-mode">Custom Mode</h6>
+<ul>
+<li>No default subnets created</li>
+<li>Full control of IP ranges</li>
+<li>Regional IP allocation</li>
+<li>Expandable to IP ranges you specify
+<ul>
+<li>These IP ranges cannot overlap between subnets of the same network</li>
+<li>Custom mode network cannot be changed to auto mode network (one-way)</li>
+</ul>
+</li>
+</ul>
+<h5 id="subnetworks-cross-zones">Subnetworks cross zones</h5>
+<ul>
+<li>VMs can be on the same subnet but in different zones</li>
+<li>A single firewall rule can apply to both VMs even though they are in different zones</li>
+</ul>
+<blockquote>
+<ol>
+<li>Every subnet has four reserved IP addresses in its primary IP range</li>
+<li>Because a region contains several zones, subnetworks can cross zones</li>
+</ol>
+</blockquote>
+<h5 id="expand-subnets-without-re-creating-instances-1">Expand subnets without re-creating instances</h5>
+<ul>
+<li>The new subnet must NOT overlap with other subnets in the same VPC network in any region</li>
+<li>IP range must be a unique valid CIDR block</li>
+<li>New subnet IP ranges have to fall within valid IP ranges</li>
+<li>Can expand but not shrink</li>
+<li>Auto mode can be expanded from /20 to /16</li>
+<li>Avoid creating overly large subnets
+<ul>
+<li>Do not scale your subnet beyond what you actually need</li>
+</ul>
+</li>
+</ul>
+<h4 id="ip-addresses-1">IP addresses</h4>
+<h5 id="vms-can-have-internal-and-external-ip-addresses">VMs can have internal and external IP addresses</h5>
+<h6 id="internal-ip">Internal IP</h6>
+<ul>
+<li>Allocated from subnet range to VMs by DHCP (dynamic host configuration protocol)</li>
+<li>DHCP lease is renewed every 24 hours</li>
+<li>VM name + IP is registered with netowork-scoped DNS</li>
+</ul>
+<h6 id="external-ip">External IP</h6>
+<ul>
+<li>Assigned from pool (ephemeral)</li>
+<li>Reserved (static)</li>
+<li>Bring Your Own IP address (BYOIP)</li>
+<li>VM doesn&rsquo;t know external IP; it is mapped to the internal IP</li>
+</ul>
+<h4 id="mapping-ip-addresses">Mapping IP addresses</h4>
+<h5 id="external-ips-are-mapped-to-internal-ips-1">External IPs are mapped to internal IPs</h5>
+<p>&hellip;</p>
+<h5 id="dns-resolution-for-internal-addresses-1">DNS resolution for internal addresses</h5>
+<p>Each instance has a hostname that can be resolved to an internal IP address:</p>
+<ul>
+<li>The hostname is the same as the instance name</li>
+<li>FQDN is [hostname].[zone].c.[project-id].internal
+<ul>
+<li>Example: <code>my-server.us-central1-a.c.guestbook-151617.internal</code></li>
+</ul>
+</li>
+</ul>
+<p>Name resolution is handled by internal DNS resolver:</p>
+<ul>
+<li>Provided as part of Compute Engine (169.254.169.254)</li>
+<li>Configured for use on instance via DHCP</li>
+<li>Provides answer for internal and external addresses</li>
+</ul>
+<h5 id="dns-resolution-for-external-addresses-1">DNS resolution for external addresses</h5>
+<ul>
+<li>
+<p>Instances with external IP addresses can allow connections from hosts outside the project</p>
+<ul>
+<li>
+<p>Users connect directly using external IP address</p>
+</li>
+<li>
+<p>Admins can also publish public DNS records pointing to the instance</p>
+<ul>
+<li>
+<p>Public DNS records are not published automatically,</p>
+<p>but admins can publish these using existing DNS servers.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DNS records for external addresses can be published using existing DNS servers (outside of Google Cloud)</p>
+</li>
+<li>
+<p>DNS zones can be hosted using Cloud DNS</p>
+</li>
+</ul>
+<h5 id="host-dns-zones-using-cloud-dns-1">Host DNS zones using Cloud DNS</h5>
+<p>Cloud DNS is a scalable, reliable and managed authoritive Domain Name System</p>
+<ul>
+<li>
+<p>Google&rsquo;s DNS service</p>
+</li>
+<li>
+<p>Cloud DNS translate domain names into IP address</p>
+<p>Example: <code>www.google.com</code> → <code>74.125.29.101</code></p>
+</li>
+<li>
+<p>Low latency</p>
+</li>
+<li>
+<p>High availability (100% uptime SLA)</p>
+</li>
+<li>
+<p>Create and update millions of DNS records</p>
+</li>
+<li>
+<p>UI, command line, or API</p>
+</li>
+</ul>
+<h5 id="alias-ip-ranges">Alias IP ranges</h5>
+<blockquote>
+<p>Assign a range of IP addresses as aliases to a VM&rsquo;s network interface using alias IP ranges</p>
+</blockquote>
+<h4 id="routes--firewall-rules">Routes &amp; firewall rules</h4>
+<h5 id="a-route-is-a-mapping-of-an-ip-range-to-a-destination-1">A route is a mapping of an IP range to a destination</h5>
+<p>Every network has:</p>
+<ul>
+<li>Routes that let instances in a network send traffic directly to each other</li>
+<li>A default route that directs packets to destinations that are outside the network</li>
+</ul>
+<p><strong>Firewall rules must also allow the packet.</strong></p>
+<h5 id="routes-map-traffic-to-destination-networks-1">Routes map traffic to destination networks</h5>
+<p><!-- raw HTML omitted -->A route is created when a network is created<!-- raw HTML omitted -->, enabling traffic delivery from &ldquo;anywhere&rdquo;.</p>
+<p>Also <!-- raw HTML omitted -->a route is created when a subnet is created<!-- raw HTML omitted -->, this is what enables VMs on the same network to communicate.</p>
+<ul>
+<li>Apply to traffic egressing a VM</li>
+<li>Forward traffic to most specific route</li>
+<li>Are created when a subnet is created</li>
+<li>Enable VMs on same network to communicate</li>
+<li>Destination is in CIDR notation</li>
+<li>Traffic is delivered only if it also matches a firewall rule</li>
+</ul>
+<h5 id="firewall-rules-protect-your-vm-instances-from-unapproved-connections-1">Firewall rules protect your VM instances from unapproved connections</h5>
+<ul>
+<li>VPC network functions as a distributed firewall</li>
+<li>Firewall rules are applied to the network as a whole</li>
+<li>Connections are allowed or denied at the instance level</li>
+<li>Firewall rules are stateful
+<ul>
+<li>If a connection is allowed between a source and a target or a target at a destination, all subsequent traffic in either direction will be allowed</li>
+<li>In other words, firewall rules allow bidirectional communication once a session is established</li>
+</ul>
+</li>
+<li>Implied deny all incress and allow all egress (if all firewall rules in a network are deleted)</li>
+</ul>
+<h5 id="a-firewall-rule-is-composed-of">A firewall rule is composed of&hellip;</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>direction</code></td>
+<td>Inbound connections are matched against <strong>ingress</strong> rules only.  Outbound connections are matched against <strong>egress</strong> rules only.</td>
+</tr>
+<tr>
+<td><code>source or destination</code></td>
+<td>For the <code>ingress</code> direction, <code>sources</code> can be specified as part of the rule with IP addresses, source tags or a source service account.  For the <code>egress</code> direction, <code>destinations</code> can be specified as part of the rule with one or more ranges of IP addresses.</td>
+</tr>
+<tr>
+<td><code>protocol</code> and <code>port</code></td>
+<td>Any rule can be restricted to apply to specific protocols only or specific combinations of protocols and ports only.</td>
+</tr>
+<tr>
+<td><code>acion</code></td>
+<td>To allow or deny packets that match the direction, protocol, port and source or destination of the rule</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>Governs the order in which rules are evaluated; the first matching rule is applied</td>
+</tr>
+<tr>
+<td><code>Rule assignment</code></td>
+<td>All rules are assigned to all instances, but you can assign certain rules to certain instances only</td>
+</tr>
+</tbody>
+</table>
+<h5 id="google-cloud-firewall-use-case--span-stylecolorskyblueegressspan">Google Cloud firewall use case : <!-- raw HTML omitted -->Egress<!-- raw HTML omitted --></h5>
+<p>Conditions:</p>
+<ul>
+<li>Destination CIDR ranges</li>
+<li>Protocols</li>
+<li>Ports</li>
+</ul>
+<p>Action:</p>
+<ul>
+<li>Allow: permit the matching egress connection</li>
+<li>Deny: block the matching egress connection</li>
+</ul>
+<h5 id="google-cloud-firewall-use-case--span-stylecolorskyblueingressspan">Google Cloud firewall use case : <!-- raw HTML omitted -->Ingress<!-- raw HTML omitted --></h5>
+<p>Conditions:</p>
+<ul>
+<li>Source CIDR ranges</li>
+<li>Protocols</li>
+<li>Ports</li>
+</ul>
+<p>Action:</p>
+<ul>
+<li>Allow: permit the matching ingress connection</li>
+<li>Deny: block the matching ingress connection</li>
+</ul>
+<h4 id="pricing-1">Pricing</h4>
+<h5 id="network-pricing-subject-to-change">Network pricing (subject to change)</h5>
+<table>
+<thead>
+<tr>
+<th>Traffic type</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ingress</td>
+<td>No charge</td>
+</tr>
+<tr>
+<td>egress to the same zone (internal IP address)</td>
+<td>No charge</td>
+</tr>
+<tr>
+<td>egress to Google products (YouTube, Maps, Drive)</td>
+<td>No charge</td>
+</tr>
+<tr>
+<td>egress to a different Google Cloud service (within same region; exceptions)</td>
+<td>No charge</td>
+</tr>
+<tr>
+<td>egress between zones in the same region (per GB)</td>
+<td>$0.01</td>
+</tr>
+<tr>
+<td>egress to the same zone (external IP address, per GB)</td>
+<td>$0.01</td>
+</tr>
+<tr>
+<td>egress between regions within the US and Canada (per GB)</td>
+<td>$0.01</td>
+</tr>
+<tr>
+<td>Egress between regions, not including traffic between US regions</td>
+<td>Varies by region</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="common-network-designs-1">Common network designs</h3>
+<h4 id="common-network-designs-2">Common network designs</h4>
+<h5 id="cloud-nat">Cloud NAT</h5>
+<ul>
+<li>Google&rsquo;s manged network address translation service</li>
+<li>let you provision your application instances without public IP address, while also allowing them to access the internet in a controlled and efficient manner</li>
+<li>Outbound NAT:
+<ul>
+<li>Enable two private isntances to access an update server on the Internet</li>
+</ul>
+</li>
+<li>Cloud NAT does NOT implement inbound NAT
+<ul>
+<li>Hosts outside your VPC network cannot directly access any of the private instances behind the cloud NAT gateway</li>
+<li>This helps you keep your VPC network isolated and secure</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="slos-slis-and-slas">SLOs, SLIs, and SLAs</h3>
+<h4 id="kpis-and-slis">KPIs and SLIs</h4>
+<h5 id="key-performance-indicators-kpis-are-metrics-that-can-be-used-to-measure-success">Key performance indicators (KPIs) are metrics that can be used to measure success</h5>
+<h6 id="in-business-common-kpis-include">In business, common KPIs include:</h6>
+<ul>
+<li>Return on investment (ROI)</li>
+<li>Earnings before interest and taxes (EBIT)</li>
+<li>Employee turnover</li>
+<li>Customer churn</li>
+</ul>
+<h6 id="in-software-common-kpis-include">In software, common KPIs include:</h6>
+<ul>
+<li>Page views</li>
+<li>User registrations</li>
+<li>Clickthroughs</li>
+<li>Checkouts</li>
+</ul>
+<h5 id="for-kpis-to-be-effective-they-must-be-smart">For KPIs to be effective, they must be SMART</h5>
+<ul>
+<li>Specific
+&ldquo;User Friendly&rdquo; is not as specific as &ldquo;Section 508 Accessible&rdquo;</li>
+<li>Measurable
+You have to find an obejctive way to test whether you&rsquo;re meeting your KPIs</li>
+<li>Achievable:
+&ldquo;100% Availability&rdquo; might sound good, but it&rsquo;s not really possible</li>
+<li>Relevant:
+Does it really matter to the user? Will it help achieve application goals?</li>
+<li>Time-bound:
+99% available: Per year? Per month? Per day? If we don&rsquo;t know, how can we measure?</li>
+</ul>
+<h4 id="slos-and-slas">SLOs and SLAs</h4>
+<ol>
+<li>SLI (indicators)
+<ul>
+<li>An SLI is a measurable attribute of a service. A KPI</li>
+<li>Example: Availability</li>
+</ul>
+</li>
+<li>SLO (objectives)
+<ul>
+<li>The SLO is the number or the goal you want to achieve for a given SLI for a given duration.</li>
+<li>Do you want 95%, 99%, or 99.99% availability?</li>
+</ul>
+</li>
+<li>Agreements (agreements)
+<ul>
+<li>An SLA is a binding contract providing the customer compensation if the service doesn&rsquo;t meet specific expectations</li>
+<li>The SLA is a more restrictive version of the SLO.</li>
+</ul>
+</li>
+</ol>
+<h5 id="slis-must-be-time-bound-and-measurable">SLIs must be time-bound and measurable</h5>
+<p>❌ Fast response time</p>
+<p>✅ HTTP GET requests respond within 400 ms aggregated per minutes</p>
+<p>❌ Highly available</p>
+<p>✅ Percentage of successful requests over all requests aggregated per minute</p>
+<h5 id="slos-must-be-achievable-and-relevant">SLOs must be achievable and relevant</h5>
+<table>
+<thead>
+<tr>
+<th>SLO</th>
+<th>SLO (%)</th>
+<th>SLO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP POST photo uploads complete within 100ms aggregated per minute</td>
+<td>99%</td>
+<td>❌ If our users are using mobile phones, maybe this is overkill</td>
+</tr>
+<tr>
+<td>🔝</td>
+<td>80%</td>
+<td>✅ This might be good enough</td>
+</tr>
+<tr>
+<td>Available as measured with an uptime check every 10 seconds aggregated per minute</td>
+<td>100%</td>
+<td>❌ Sounds good, but not practical</td>
+</tr>
+<tr>
+<td>🔝</td>
+<td>99.999%</td>
+<td>❌ Possible, but maybe too expensive</td>
+</tr>
+<tr>
+<td>🔝</td>
+<td>99%</td>
+<td>✅ Maybe good enough and easier and more cost-effective</td>
+</tr>
+</tbody>
+</table>
+<h5 id="tips-for-determining-slos">Tips for determining SLOs</h5>
+<ul>
+<li>The goal isn&rsquo;t to make SLOs as high as possible; the goal is to make them as low as you can get away with, while still making users happy. That&rsquo;s why it&rsquo;s important to understand your users</li>
+<li>The higher you set the SLO, the higher the cost in compute resources (redundancy) and operations effort (people time)</li>
+<li>Applications should not significantly outperform their SLOs, because users come to expect the level of reliability you usually give them</li>
+</ul>
+<h5 id="an-sla-is-a-business-contract-between-the-provider-and-the-customer">An SLA is a business contract between the provider and the customer</h5>
+<p>The SLA stipulates that:</p>
+<ul>
+<li>A penalty will apply to the provider if the service doesn&rsquo;t maintain certain availability and/or performance thresholds</li>
+<li>If the SLA is broken, the customer will receive compensation from the provider</li>
+</ul>
+<p>Not all services have an SLA, but all services should have an <strong>SLO</strong></p>
+<p>Your SLO thresholds should be stricter than your SLA</p>
+<h5 id="example">Example:</h5>
+<ul>
+<li>SLI : The latency of successful HTTP responses (HTTP-200)</li>
+<li>SLO : The latency of 99% of the responses must be ≤ 200 ms (較嚴格)</li>
+<li>SLA : The user is compensated if 99th percentile latency exceeds 300 ms (較寬鬆)</li>
+</ul>
+<h5 id="examples">Examples</h5>
+<table>
+<thead>
+<tr>
+<th>User Story</th>
+<th>SLO</th>
+<th>SLI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Search Hotel and Flight</td>
+<td>Available 99.95%</td>
+<td>Fraction of 200 vs 500 HTTP responses from API endpint measured per month</td>
+</tr>
+<tr>
+<td>Search Hotel and Flight</td>
+<td>95% of requests will complete in under 200 ms</td>
+<td>Time to last byte GET requests measured every 15 seconds aggregated per 5 minutes</td>
+</tr>
+<tr>
+<td>Supply Hotel Inventory</td>
+<td>Error rate of &lt; 0.00001%</td>
+<td>Upload errors measured as a percentage of bulk uploads per day by custom metric</td>
+</tr>
+<tr>
+<td>Supply Hotel Inventory</td>
+<td>Available 99.9%</td>
+<td>Fraction of 200 vs 500 HTTP responses from API endpoint measured per month</td>
+</tr>
+<tr>
+<td>Analyze sales performance</td>
+<td>95% of queries will complete in under 10s</td>
+<td>Time to last byte GET requests measured every 60 seconds aggregated per 10 minutes</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="microservices">Microservices</h3>
+<h4 id="microservices-1">Microservices</h4>
+<h5 id="microservices-divide-a-large-program-into-multiple-smaller-independent-services">Microservices divide a large program into multiple smaller, independent services</h5>
+<ul>
+<li>Monolithic applications implement all features in a single code base with a database for all data</li>
+<li>Microservices have multiple code bases, and each service manages its own data
+<ul>
+<li>Each services have their own databases</li>
+</ul>
+</li>
+</ul>
+<h5 id="pros-and-cons-of-microservice-architectures">Pros and cons of microservice architectures</h5>
+<h6 id="pros">[Pros]</h6>
+<ol>
+<li>Easier to develop and maintain</li>
+<li>Reduced risk when deploying new versions</li>
+<li>Service scale independently to optimize use of infrastructure</li>
+<li>Faster to innovate and add new features</li>
+<li>Can use different languages and frameworks for different services</li>
+<li>Choose the runtime appropriate to each service</li>
+</ol>
+<h6 id="cons">[Cons]</h6>
+<ol>
+<li>Increased complexity when communicating between services</li>
+<li>Increased latency across service boundaries</li>
+<li>Concerns about securing inter-service traffic</li>
+<li>Multiple deployments</li>
+<li>Need to ensure that you don&rsquo;t break clients as versions change</li>
+<li>Must maintian backward compatibility with clients as the microservice evolves</li>
+</ol>
+<h5 id="the-key-to-architecting-microservice-applications-is-recognizing-service-boundaries">The key to architecting microservice applications is recognizing service boundaries</h5>
+<table>
+<thead>
+<tr>
+<th><!-- raw HTML omitted -->I. Decompose app by feature to minimize dependencies<!-- raw HTML omitted --></th>
+<th><!-- raw HTML omitted -->II. Organize services by architectural layer<!-- raw HTML omitted --></th>
+<th><!-- raw HTML omitted -->III. Isolate services that provide shared functionality<!-- raw HTML omitted --></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Reviews service<!-- raw HTML omitted -->2. Orders service<!-- raw HTML omitted -->3. Products service<!-- raw HTML omitted -->4. Etc.</td>
+<td>1. Web, Android, and iOS user interfaces<!-- raw HTML omitted -->2. Data access services</td>
+<td>1. Authentication service<!-- raw HTML omitted -->2. Reporting service<!-- raw HTML omitted -->3. Etc.</td>
+</tr>
+</tbody>
+</table>
+<h5 id="stateful-services-have-different-challenges-than-stateless-ones">Stateful services have different challenges than stateless ones</h5>
+<p>Stateful services manage stored data over time</p>
+<ul>
+<li>Harder to scale</li>
+<li>Harder to upgrade</li>
+<li>Need to back up</li>
+</ul>
+<p>Stateless services get their data from the environment or other stateful services</p>
+<ul>
+<li>Easy to scale by adding instances</li>
+<li>Easy to migrate to new versions</li>
+<li>Easy to administer</li>
+</ul>
+<h5 id="avoid-storing-shared-state-in-memory-on-your-servers">Avoid storing shared state in-memory on your servers</h5>
+<ul>
+<li>Requires sticky sessions(session affinity) to be set up in the load balancer</li>
+<li>Hinders elastic autoscaling</li>
+</ul>
+<h5 id="store-state-using-backend-storage-services-shared-by-the-frontend-server">Store state using backend storage services shared by the frontend server</h5>
+<ul>
+<li>Cache state data for faster access</li>
+<li>Take advantage of Google Cloud-managed data services
+<ul>
+<li>Firestore, Cloud SQL, etc. for state</li>
+<li>Memorystore for Redis for caching</li>
+</ul>
+</li>
+</ul>
+<h4 id="microservices-best-practices">Microservices Best Practices</h4>
+<h5 id="the-twelve-factor-app-is-a-set-of-best-practices-for-building-web-or-software-as-a-service-applications">The Twelve-Factor App is a set of best practices for building web or software-as a-service applications</h5>
+<blockquote>
+<p>Helps to decouple components of the application</p>
+</blockquote>
+<ul>
+<li>Maximize portability</li>
+<li>Deploy to the cloud</li>
+<li>Enable continuous deployment</li>
+<li>Scale easily</li>
+</ul>
+<h5 id="the-12-factors">The 12 factors</h5>
+<ol>
+<li>
+<p><strong>Codebase</strong></p>
+<p>One codebase tracked in revision control, many deploys</p>
+<ul>
+<li>
+<p>Use a version control system like Git</p>
+</li>
+<li>
+<p>Each app has one code repo and vice versa</p>
+<blockquote>
+<p>Cloud source repository</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Dependencies</strong>
+Explicitly declare and isolate dependencies</p>
+<ul>
+<li>Use a package manager like Maven, Pip, NPM to install dependencies</li>
+<li>Declare dependencies in your code base</li>
+</ul>
+<blockquote>
+<p>Container Registry (for storing image)</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Config</strong></p>
+<p>Store config in the environment</p>
+<ul>
+<li>Don&rsquo;t put secrets, connection strings, endpoints, etc., in source code</li>
+<li>Store those as environment variables</li>
+</ul>
+</li>
+<li>
+<p><strong>Backing Services</strong></p>
+<p>Treat backing services as attached resources</p>
+<ul>
+<li>Databases, caches, queues, and other services are accessed via URLs</li>
+<li>Should be easy to swap one implementation for another</li>
+</ul>
+</li>
+<li>
+<p><strong>Build, release, run</strong>
+Strictly separate build and run stages</p>
+<ol>
+<li>Build creates a deployment package from the source code</li>
+<li>Release combines the deployment with configuration in the runtime environment</li>
+<li>Run executes the application</li>
+</ol>
+</li>
+<li>
+<p><strong>Processes</strong>
+Execute the app as one or more stateless processes</p>
+<ul>
+<li>Apps run in one or more processes</li>
+<li>Each instance of the app gets its data from a separate database service</li>
+</ul>
+</li>
+<li>
+<p><strong>Port binding</strong></p>
+<p>Export services via port binding</p>
+<ul>
+<li>Apps are self-contained and expose a port and protocol internally</li>
+<li>Apps are not injected into a separate server like Apache</li>
+</ul>
+<blockquote>
+<p>Such apps can be deployed on platform services such as Compute Engine, GKE, App Engine, or Cloud Run</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Concurrency</strong></p>
+<p>Scale out via the process model</p>
+<ul>
+<li>Because apps are self-contained and run in separate process, they scale easily by adding instances</li>
+</ul>
+</li>
+<li>
+<p><strong>Disposability</strong></p>
+<p>Maximize robustness with fast startup and graceful shutdown</p>
+<ul>
+<li>App instances should scale quickly when needed</li>
+<li>If an instance is not needed, you should be able to turn it off with no side effects</li>
+</ul>
+</li>
+<li>
+<p><strong>Dev/prod parity</strong></p>
+<p>Keep development, staging, and production as similar as possible</p>
+<ul>
+<li>Container systems like Docker makes this easier</li>
+<li>Leverage infrastructure as code to make environments easy to create</li>
+</ul>
+<blockquote>
+<p>To build workflow &amp; keep the environments consistent:
+Cloud Source Repositories
+Cloud Storage
+Container Registry
+Terraform</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Logs</strong></p>
+<p>Treat logs as event streams</p>
+<ul>
+<li>Write log messages to standard output and aggregate all logs to a single source</li>
+</ul>
+<blockquote>
+<p>To help with collection, processing, and structured analysis of log:
+Stackdriver Logging
+Cloud Logging
+Cloud Logging Log-based Metrics</p>
+<p>​    Cloud Pub/Sub
+​    BigQuery
+​    Cloud Dataflow</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Admin processes</strong></p>
+<p>Run admin/management tasks as one-off processes</p>
+<ul>
+<li>Admin tasks should be repeatable processes, not one-off manual tasks</li>
+<li>Admin tasks shouldn&rsquo;t be a part of the application</li>
+</ul>
+<blockquote>
+<p>Many options depending on your deployment on Google Cloud:</p>
+<p>​    Cron jobs in GKE</p>
+<p>​    Cloud tasks on App Engine</p>
+<p>​    Cloud Scheduler</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="rest-and-apis">REST and APIs</h3>
+<h4 id="rest">REST</h4>
+<h5 id="a-good-microservice-design-is-span-stylecoloryellowloosely-coupledspan">A good microservice design is <!-- raw HTML omitted -->loosely coupled<!-- raw HTML omitted --></h5>
+<ul>
+<li>
+<p>Clients shouldn&rsquo;t need to know too many details of services they use</p>
+</li>
+<li>
+<p>Services communicate via HTTPS using text-based payloads</p>
+<ul>
+<li>Client makes GET, POST, PUT or DELETE request</li>
+<li>Body of the request is formatted as JSON or XML</li>
+<li>Results returned as JSON, XML, or HTML</li>
+</ul>
+</li>
+<li>
+<p>Services should add functionality without breaking existing clients</p>
+<ul>
+<li>Add, but don&rsquo;t remove, items from responses</li>
+</ul>
+<blockquote>
+<p><em>If microservices aren&rsquo;t loosely coupled, you&rsquo;ll end up with a really complicated monolith</em></p>
+</blockquote>
+</li>
+</ul>
+<h5 id="rest-architecture-supports-loose-coupling">REST architecture supports loose coupling</h5>
+<ul>
+<li>REST stands for Representational State Transfer</li>
+<li>Protocol independent
+<ul>
+<li>HTTP is most common</li>
+<li>Others possible like gRPC</li>
+</ul>
+</li>
+<li>Service endpoints supporting REST are called RESTful</li>
+<li>Client and Server communicate with Request - Response processing</li>
+</ul>
+<h5 id="restful-services-communicate-over-the-web-using-https">RESTful services communicate over the web using HTTP(S)</h5>
+<ul>
+<li>URIs (or endpoints) identify resources
+<ul>
+<li>Responses return an immutable reprentation of the resource information</li>
+</ul>
+</li>
+<li>REST applications provide consistent, uniform interfaces
+<ul>
+<li>Representation can have links to additional resources</li>
+</ul>
+</li>
+<li>Caching of immutable representations is appropriate</li>
+</ul>
+<h5 id="resources-and-representations">Resources and representations</h5>
+<ul>
+<li>Resource is an abstract notion of information</li>
+<li>Representation is a copy of the resource information
+<ul>
+<li>Representations can be single items or a collection of items</li>
+</ul>
+</li>
+</ul>
+<h5 id="passing-representations-between-services-is-done-using-standard-text-based-formats">Passing representations between services is done using standard text-based formats</h5>
+<ul>
+<li>JSON, HTML, XML, CSV</li>
+</ul>
+<h4 id="http">HTTP</h4>
+<h5 id="clients-access-services-using-http-requests">Clients access services using HTTP requests</h5>
+<ul>
+<li>VERB: GET, PUT, POST, DELETE</li>
+<li>URI: Uniform Resource Identifier (endpoint)</li>
+<li>Request Header: metadata about the message
+<ul>
+<li>Preferred representation formats (e.g. JSON, XML)</li>
+</ul>
+</li>
+<li>Request Body: (Optional) Request state
+<ul>
+<li>Representation (JSON, XML) of resource</li>
+</ul>
+</li>
+</ul>
+<h5 id="http-requests-are-simple-and-text-based">HTTP requests are simple and text-based</h5>
+<pre tabindex="0"><code>GET / HTTP/1.1
+Host: jingle.ysatshei.com
+</code></pre><pre tabindex="0"><code>POST /add HTTP/1.1
+Host: jingle.ysatshei.com
+Content-Type: json
+Content-Length: 35
+
+{&#34;name&#34;:&#34;Noir&#34;,&#34;breed&#34;:&#34;Schnoodle&#34;}
+</code></pre><h5 id="the-http-verb-tells-the-server-what-to-do">The HTTP verb tells the server what to do</h5>
+<ul>
+<li>
+<p><code>GET</code> is used to retrieve data</p>
+</li>
+<li>
+<p><code>POST</code> is used to create data</p>
+<ul>
+<li>Generates entity ID and returns it to the client</li>
+</ul>
+</li>
+<li>
+<p><code>PUT</code> is used to create data or alter existing data</p>
+<ul>
+<li>Entity ID must be known</li>
+<li><code>PUT</code> should be idempotent, which means that whether the request is made once or multiple times, the effects on the data are exactly the same</li>
+</ul>
+</li>
+<li>
+<p><code>DELETE</code> is used to remove data</p>
+</li>
+</ul>
+<h5 id="services-return-http-responses">Services return HTTP responses</h5>
+<ul>
+<li>Response Code: 3-digit HTTP status code
+<ul>
+<li>200 - success</li>
+<li>400 codes - client errors</li>
+<li>500 codes - server errors</li>
+</ul>
+</li>
+<li>Response Body: contains resource representation
+<ul>
+<li>JSON, XML, HTML, etc.</li>
+</ul>
+</li>
+</ul>
+<h5 id="all-services-need-uris-uniform-resource-identifiers">All services need URIs (Uniform Resource Identifiers)</h5>
+<ul>
+<li>Plural nouns for sets (collections)</li>
+<li>Singular nouns for individual resources</li>
+<li>Strive for consistent naming</li>
+<li>URI is case-insensitive</li>
+<li>Don&rsquo;t use verbs to identify a resource</li>
+<li>Include version information</li>
+</ul>
+<h4 id="apis">APIs</h4>
+<h5 id="openapi-is-an-industry-standard-for-exposing-apis-to-clients">OpenAPI is an industry standard for exposing APIs to clients</h5>
+<ul>
+<li>Standard interface description format for REST APIs
+<ul>
+<li>Language independent</li>
+<li>Open-source (based on Swagger)</li>
+</ul>
+</li>
+<li>Allows tools and humans to understand how to use a service without needing its source code</li>
+</ul>
+<h5 id="grpc-is-a-lightweight-protocol-for-fast-binary-communication-between-services-or-devices">gRPC is a lightweight protocol for fast, binary communication between services or devices</h5>
+<ul>
+<li>Developed at Google
+<ul>
+<li>Supports many languages</li>
+<li>Easy to implement</li>
+</ul>
+</li>
+<li>gRPC is supported by Google services
+<ul>
+<li>Global load balancer (HTTP/2)</li>
+<li>Cloud Endpoints</li>
+<li>Can expose gRPC services using an Envoy Proxy in GKE</li>
+</ul>
+</li>
+</ul>
+<h5 id="google-cloud-provides-two-tools-for-managing-apis--cloud-endpoints-and-apigee">Google Cloud provides two tools for managing APIs : Cloud Endpoints and Apigee</h5>
+<p>Both provide tools for:</p>
+<ul>
+<li>User authentication</li>
+<li>Monitoring</li>
+<li>Securing APIs</li>
+<li>etc.</li>
+</ul>
+<p>Both support OpenAPI and gRPC</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
