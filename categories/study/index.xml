@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>study - Category - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/categories/study/</link>
+        <description>study - Category - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Jul 2023 17:00:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/study/" rel="self" type="application/rss+xml" /><item>
+    <title>Elasticsearch 8 Java client 應用</title>
+    <link>http://wysiwyz.github.io/posts/elasticsearch/</link>
+    <pubDate>Tue, 11 Jul 2023 17:00:05 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/posts/elasticsearch/</guid>
+    <description><![CDATA[Lucene做的搜尋引擎，Java, .NET, Python, GO&hellip;等等都可以用的
+Java Client Operation Process
+創建 Index template RDBMS Elasticsearch Table Index Row Document Column Field Schema Mapping SQL DSL 常用分詞器 Analyze
+Jieba分詞器 (better) IK分詞器 如何跟 Elasticsearch 溝通:
+Postman Kibnan 1 RestClient restClient = 幾個重要的methods get() search() index() update() indices().putIndexTemplate() ]]></description>
+</item>
+</channel>
+</rss>

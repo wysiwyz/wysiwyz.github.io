@@ -4,29 +4,51 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Encrypt, Decrypt - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Encrypt, Decrypt" />
-<meta property="og:description" content="用途 怕被別人看見 弄成被看到也沒關係 [加密] 想給特定人看 避免對方也看不懂 [解密] 分類 類型 對稱加解密 非對稱加解密 實例 AES、3DES RSA、ECDSA &hellip; 加解密方式寫在同一張紙上[加解密方式] public key 加解密方式寫在不同紙上[加密方式] public key &hellip; client get by calling api[解密方式] private key &hellip; saved at Server side 概論 簡單、速度快、安全性低 複雜速度慢、安全性較高 特色 1. Client 和 Server 用同一把密鑰加解密2. AES/ {ECB/CBC...}/PaddingPattern 應用 1. 對大量明文的加密2. Https 的 SessionKey Appendix AES 加密結構說明 金鑰長度(bit) : AES-128 AES-192 AES-256 區塊間加密方式 : ECB - 可以被密推 CBC - 亂數 initial value 初始值 CFB - 亂數 initial value 初始值 OFB CTR 區塊填充方式: NoPadding - 不建議、會影響加密強度 ZeroBytePadding - 缺兩個填入 0 PKCS5Padding PKCS7Padding Example: AES-256/CBC/PKCS7Padding" />
+        <title>coffee and software - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="coffee and software" />
+<meta property="og:description" content="Youtube @coffeesoftware
+Spring 6 &amp; Spring Boot 3.X
+Humor Learn gradle, lose weight
+morally superior in every way
+be the change you wanna see in the world&hellip;
+it&rsquo;s better than Disneyland
+more than two times as good as java 8
+it&rsquo;s oracle, sometimes it&rsquo;s never simple&hellip;(robot tone)
+Friends do not let friends write Dockerfile.
+Make .jar, not .war!
+for legitimately slacking off &ldquo;MY CODE&rsquo;S COMPILING&rdquo;
+Use Graphql, don&rsquo;t use Swagger!" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://wysiwyz.github.io/posts/encrypt_decrypt/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-02-01T14:01:22+08:00" />
-<meta property="article:modified_time" content="2023-02-01T14:01:22+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/joshw/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-16T19:06:21+08:00" />
+<meta property="article:modified_time" content="2023-06-16T19:06:21+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Encrypt, Decrypt"/>
-<meta name="twitter:description" content="用途 怕被別人看見 弄成被看到也沒關係 [加密] 想給特定人看 避免對方也看不懂 [解密] 分類 類型 對稱加解密 非對稱加解密 實例 AES、3DES RSA、ECDSA &hellip; 加解密方式寫在同一張紙上[加解密方式] public key 加解密方式寫在不同紙上[加密方式] public key &hellip; client get by calling api[解密方式] private key &hellip; saved at Server side 概論 簡單、速度快、安全性低 複雜速度慢、安全性較高 特色 1. Client 和 Server 用同一把密鑰加解密2. AES/ {ECB/CBC...}/PaddingPattern 應用 1. 對大量明文的加密2. Https 的 SessionKey Appendix AES 加密結構說明 金鑰長度(bit) : AES-128 AES-192 AES-256 區塊間加密方式 : ECB - 可以被密推 CBC - 亂數 initial value 初始值 CFB - 亂數 initial value 初始值 OFB CTR 區塊填充方式: NoPadding - 不建議、會影響加密強度 ZeroBytePadding - 缺兩個填入 0 PKCS5Padding PKCS7Padding Example: AES-256/CBC/PKCS7Padding"/>
+<meta name="twitter:title" content="coffee and software"/>
+<meta name="twitter:description" content="Youtube @coffeesoftware
+Spring 6 &amp; Spring Boot 3.X
+Humor Learn gradle, lose weight
+morally superior in every way
+be the change you wanna see in the world&hellip;
+it&rsquo;s better than Disneyland
+more than two times as good as java 8
+it&rsquo;s oracle, sometimes it&rsquo;s never simple&hellip;(robot tone)
+Friends do not let friends write Dockerfile.
+Make .jar, not .war!
+for legitimately slacking off &ldquo;MY CODE&rsquo;S COMPILING&rdquo;
+Use Graphql, don&rsquo;t use Swagger!"/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/encrypt_decrypt/" /><link rel="prev" href="http://wysiwyz.github.io/posts/inu_oh/" /><link rel="next" href="http://wysiwyz.github.io/posts/lesson_00_linux/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/joshw/" /><link rel="prev" href="http://wysiwyz.github.io/posts/coursera_pca/" /><link rel="next" href="http://wysiwyz.github.io/posts/gcp_pca_exam_dump/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Encrypt, Decrypt",
+        "headline": "coffee and software",
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/wysiwyz.github.io\/posts\/encrypt_decrypt\/"
-        },"genre": "posts","keywords": "","wordcount":  121 ,
-        "url": "http:\/\/wysiwyz.github.io\/posts\/encrypt_decrypt\/","datePublished": "2023-02-01T14:01:22+08:00","dateModified": "2023-02-01T14:01:22+08:00","publisher": {
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/joshw\/"
+        },"genre": "posts","keywords": "","wordcount":  287 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/joshw\/","datePublished": "2023-06-16T19:06:21+08:00","dateModified": "2023-06-16T19:06:21+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -65,10 +87,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Encrypt, Decrypt</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-01">2023-02-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;121 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/encrypt_decrypt/" class="leancloud_visitors" data-flag-title="Encrypt, Decrypt">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">coffee and software</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Categories</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-16">2023-06-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;287 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/posts/joshw/" class="leancloud_visitors" data-flag-title="coffee and software">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -78,157 +100,178 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#用途">用途</a></li>
-    <li><a href="#分類">分類</a></li>
-    <li><a href="#appendix">Appendix</a>
+    <li>
       <ul>
-        <li><a href="#aes-加密結構說明">AES 加密結構說明</a></li>
-        <li><a href="#其他">其他</a></li>
+        <li></li>
       </ul>
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="用途">用途</h2>
+            </div><div class="content" id="content"><p>Youtube @coffeesoftware</p>
+<p>Spring 6 &amp; Spring Boot 3.X</p>
+<hr>
+<h5 id="humor">Humor</h5>
+<p>Learn gradle, lose weight</p>
+<p>morally superior in every way</p>
+<p>be the change you wanna see in the world&hellip;</p>
+<p>it&rsquo;s better than Disneyland</p>
+<p>more than two times as good as java 8</p>
+<p>it&rsquo;s oracle, sometimes it&rsquo;s never simple&hellip;(robot tone)</p>
+<p>Friends do not let friends write Dockerfile.</p>
+<p>Make <code>.jar</code>, not <code>.war</code>!</p>
+<p>for legitimately slacking off &ldquo;MY CODE&rsquo;S COMPILING&rdquo;</p>
+<p>Use Graphql,  don&rsquo;t use Swagger!</p>
+<p>You get it photoshopped at the end of the day!</p>
+<hr>
 <ol>
-<li>怕被別人看見
+<li>
+<p>TestContainers - dependencies - (good for building database automatically)</p>
+</li>
+<li>
+<p><code>@ServiceConnection</code></p>
+</li>
+<li>
+<p><code>spring-boot-devtools</code></p>
 <ul>
-<li>弄成被看到也沒關係 [加密]</li>
+<li>Changing the scope of Gradle dependencies</li>
+<li></li>
 </ul>
 </li>
-<li>想給特定人看
+<li>
+<p>Recompile - vs build</p>
+</li>
+<li>
+<p><code>@ControllerAdvice</code></p>
+<pre tabindex="0"><code>@ControllerAdvice
+class
+    @ExceptionHandler
+    ProblemDetail handle (ise, rq) {
+        // sth
+    }
+</code></pre></li>
+<li>
+<p>Jakarta ee 9 === Jakarta ee8</p>
+</li>
+<li>
+<p>spring-boot-starter-actuator</p>
 <ul>
-<li>避免對方也看不懂 [解密]</li>
+<li>
+<p>show details of the endpoint health</p>
+</li>
+<li>
+<p>URL : <code>localhost:8080/actuator</code></p>
+</li>
+<li>
+<p>URL : <code>localhost:8080/actuator/metrics</code></p>
+<pre tabindex="0"><code>### old: book 2.x
+spring cloud sleuth (tracing)
+spring cloud
+spring boot
+spring framework
+micrometer.io (metrics: mean, median, average)
+// Micrometer.io : similar to log4j
+// @Timed -- track how long this method takes
+// ObservationRegistry 
+</code></pre></li>
 </ul>
 </li>
+<li>
+<p>Terminal</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">./gradlew 
+./mvnw spring-boot:build-image
+</code></pre></li>
+<li>
+<p>GraalVM</p>
+<ul>
+<li>Ahead-of-time compiler</li>
+<li>But configuration files needed (usually in json files)</li>
+<li><code>Goldeneye 007</code> Elevator music</li>
+<li><code>ps -o rss &lt;PID&gt;</code> : retrieve the resident set size</li>
+</ul>
+</li>
+<li>
+<p><code>@GetExchange</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@GetExchange</span>  
+</span></span><span class="line"><span class="cl"><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Customer</span><span class="o">&gt;</span> <span class="n">customers</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><code>var wc = builder.baseURL(&quot;xxx&quot;).build();</code></p>
+</li>
+<li>
+<p>resources &gt; graphql</p>
+<ul>
+<li>3 operations:
+<ol>
+<li>Query (<code>qwee-ree</code>)</li>
+<li>Subscription</li>
+<li>Mutation (all changes inc. delete, update, etc)</li>
 </ol>
-<h2 id="分類">分類</h2>
-<table>
-<thead>
-<tr>
-<th>類型</th>
-<th>對稱加解密</th>
-<th>非對稱加解密</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>實例</td>
-<td>AES、3DES</td>
-<td>RSA、ECDSA</td>
-</tr>
-<tr>
-<td>&hellip;</td>
-<td>加解密方式寫在同一張紙上<!-- raw HTML omitted -->[加解密方式] public key</td>
-<td>加解密方式寫在不同紙上<!-- raw HTML omitted -->[加密方式] public key &hellip; client get by calling api<!-- raw HTML omitted -->[解密方式] private key &hellip; saved at Server side</td>
-</tr>
-<tr>
-<td>概論</td>
-<td>簡單、速度快、安全性低</td>
-<td>複雜速度慢、安全性較高</td>
-</tr>
-<tr>
-<td>特色</td>
-<td>1. Client 和 Server 用同一把密鑰加解密<!-- raw HTML omitted -->2. <code>AES/ {ECB/CBC...}/PaddingPattern</code></td>
-<td></td>
-</tr>
-<tr>
-<td>應用</td>
-<td>1. 對大量明文的加密<!-- raw HTML omitted -->2. Https 的 SessionKey</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="appendix">Appendix</h2>
-<h3 id="aes-加密結構說明">AES 加密結構說明</h3>
-<ul>
-<li>金鑰長度(bit) :
-<ul>
-<li>AES-128</li>
-<li>AES-192</li>
-<li>AES-256</li>
+</li>
+<li></li>
 </ul>
 </li>
-<li>區塊間加密方式 :
-<ul>
-<li>ECB - 可以被密推</li>
-<li>CBC - 亂數 initial value 初始值</li>
-<li>CFB - 亂數 initial value 初始值</li>
-<li>OFB</li>
-<li>CTR</li>
-</ul>
+<li>
+<p><code>@SchemaMapping</code></p>
+<pre tabindex="0"><code>@SchemaMapping(typeName=&#34;Query&#34;)  //alias @QueryMapping
+Flux&lt;Customer&gt; customers() {
+		return http...
+}
+</code></pre></li>
+<li>
+<p>Pull the apis in a whole</p>
 </li>
-<li>區塊填充方式:
-<ul>
-<li>NoPadding - 不建議、會影響加密強度</li>
-<li>ZeroBytePadding - 缺兩個填入 0</li>
-<li>PKCS5Padding</li>
-<li>PKCS7Padding</li>
-</ul>
+<li>
+<p>自訂 typeName (e.g. Customer)</p>
+<p>Customer setting at <code>schema.graphql</code> file</p>
+<pre tabindex="0"><code>@SchemaMapping(typeName = &#34;Customer&#34;) 
+Profile profiles (Customer cust) {
+    // sth
+}
+</code></pre></li>
+<li>
+<p>Reactive programming &mdash; <code>Mono&lt;Profile&gt;</code></p>
 </li>
+<li>
+<p><code>@BatchMapping</code></p>
+<pre tabindex="0"><code></code></pre></li>
+<li>
+<p><code>@Argument</code></p>
+<pre tabindex="0"><code>@QueryMapping
+Flux&lt;Customer&gt; customersByName(@Argument String name) {
+    return this.http.customersByName(name);
+}
+</code></pre></li>
+<li>
+<p><code>AbstractRoutingDatasource</code> &mdash;</p>
+<ul>
+<li>To have a map for datasources</li>
+<li>Refer to <a href="https://www.baeldung.com/spring-abstract-routing-data-source" target="_blank" rel="noopener noreffer ">Baeldung</a></li>
 </ul>
 <blockquote>
-<p>Example: AES-256/CBC/PKCS7Padding</p>
-<table>
-<thead>
-<tr>
-<th>密鑰長度 (bit)</th>
-<th>分組長度 (bit)</th>
-<th>建議輪數</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AES-128</td>
-<td>128</td>
-<td>10</td>
-</tr>
-<tr>
-<td>AES-192</td>
-<td>128</td>
-<td>12</td>
-</tr>
-<tr>
-<td>AES-256</td>
-<td>128</td>
-<td>14</td>
-</tr>
-</tbody>
-</table>
+<p><a href="https://tanzu.vmware.com/content/white-papers/spring-boot-3" target="_blank" rel="noopener noreffer ">https://tanzu.vmware.com/content/white-papers/spring-boot-3</a></p>
+<p><a href="https://www.youtube.com/watch?v=TOfYlLjXufw" target="_blank" rel="noopener noreffer ">https://www.youtube.com/watch?v=TOfYlLjXufw</a></p>
+<p><a href="https://techdozo.dev/spring-for-graphql-schemamapping-and-querymapping/" target="_blank" rel="noopener noreffer ">https://techdozo.dev/spring-for-graphql-schemamapping-and-querymapping/</a></p>
 </blockquote>
-<h3 id="其他">其他</h3>
-<table>
-<thead>
-<tr>
-<th>對</th>
-<th>非對稱</th>
-<th>混合</th>
-<th>橢圓</th>
-<th>雜湊算法</th>
-<th>編碼</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AES、3DES</td>
-<td>RSA、ECDSA</td>
-<td>RSA x AES</td>
-<td></td>
-<td>SHA3-256</td>
-<td>Base64、URLEncoder</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://notes.andywu.tw/2019/%E5%AF%86%E7%A2%BC%E7%9A%84%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%BC%8Fecb-cbc-cfb-ofb-ctr/" target="_blank" rel="noopener noreffer ">延伸閱讀 - 區塊間加密方式</a></p>
+</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-02-01</span>
+                <span>Updated on 2023-06-16</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/encrypt_decrypt/" data-hashtag=""><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/encrypt_decrypt/" data-title="Encrypt, Decrypt"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/joshw/" data-hashtag=""><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/joshw/" data-title="coffee and software"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -240,8 +283,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/inu_oh/" class="prev" rel="prev" title="犬王 [還沒觀賞的話別點,皆劇透]"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>犬王 [還沒觀賞的話別點,皆劇透]</a>
-            <a href="/posts/lesson_00_linux/" class="next" rel="next" title="Lesson 00: Linux 筆記 - 資安原則、OpenSCAP">Lesson 00: Linux 筆記 - 資安原則、OpenSCAP<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/coursera_pca/" class="prev" rel="prev" title="GCP - preparing for your cloud architect journey"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>GCP - preparing for your cloud architect journey</a>
+            <a href="/posts/gcp_pca_exam_dump/" class="next" rel="next" title="GCP PCA --- practice exam">GCP PCA --- practice exam<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

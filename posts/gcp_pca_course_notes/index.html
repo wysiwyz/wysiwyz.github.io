@@ -37,7 +37,7 @@ Below notes will help with making the tough choices"/>
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/gcp_pca_course_notes\/"
-        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  12215 ,
+        },"genre": "posts","keywords": "google_cloud, CA","wordcount":  12379 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/gcp_pca_course_notes\/","datePublished": "2023-03-24T13:39:15+08:00","dateModified": "2023-03-24T13:39:15+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -79,8 +79,8 @@ Below notes will help with making the tough choices"/>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Cloud architect GCP 🚧</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;12215 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;58 minutes&nbsp;<span id="/posts/gcp_pca_course_notes/" class="leancloud_visitors" data-flag-title="Cloud architect GCP 🚧">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-03-24">2023-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;12379 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;59 minutes&nbsp;<span id="/posts/gcp_pca_course_notes/" class="leancloud_visitors" data-flag-title="Cloud architect GCP 🚧">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -336,6 +336,7 @@ Below notes will help with making the tough choices"/>
       <ul>
         <li><a href="#gca-resources">GCA Resources</a></li>
         <li><a href="#certification-exam">Certification Exam</a></li>
+        <li><a href="#google-cloud-api">Google Cloud API</a></li>
       </ul>
     </li>
   </ul>
@@ -3298,7 +3299,6 @@ Other locations: 100,000</li>
 <li>Estimating the cost of a Google Cloud solution is NOT easy</li>
 <li>You would need to take a number of factors into account</li>
 <li>How do you estimate the cost of your GCP solution?</li>
-<li>‘</li>
 </ul>
 <h3 id="anthos">Anthos</h3>
 <ul>
@@ -4044,9 +4044,7 @@ Other locations: 100,000</li>
 <li>Longterm Requirement: Support multiple games platforms (expand beyond mobile)</li>
 </ul>
 </li>
-<li>Current Architecture:
-+</li>
-<li></li>
+<li>Current Architecture:</li>
 </ul>
 <h3 id="requirements-2">Requirements</h3>
 <ul>
@@ -4331,7 +4329,45 @@ Other locations: 100,000</li>
 </ol>
 </li>
 </ul>
-<h1 id="section-37-1">Section 37</h1>
+<hr>
+<h3 id="google-cloud-api">Google Cloud API</h3>
+<h4 id="api-management-tools">API management tools</h4>
+<ol>
+<li>Cloud Endpoints
+<ul>
+<li>Distributed API management system</li>
+<li>Provides an API console, hosting, logging, monitoring, and other features</li>
+<li>Use with any APIs that support the OpenAPI Specification</li>
+<li>Supports applications running in App Engine, Google Kubernetes Engine, and Compute Engine</li>
+<li>Clients include Android, iOS, and Javascript</li>
+</ul>
+</li>
+<li>API Gateway
+<ul>
+<li>Backend implementations can vary for a single service provider</li>
+<li>Provide secure access to your backend servics through a well-defined REST API</li>
+<li>Clients consume your REST APIS to implement standalone apps</li>
+</ul>
+</li>
+<li>Apigee API Management
+<ul>
+<li>Specific focus on business problems, like rate limiting, quotas, and analytics</li>
+<li>Many Apigee API Management users provide a software service to other companies</li>
+<li>Backend services for Apigee API Management don&rsquo;t need to be in Google Cloud</li>
+</ul>
+</li>
+</ol>
+<h4 id="cloud-run">Cloud Run</h4>
+<ol start="4">
+<li>Cloud Run
+<ul>
+<li>A managed compute platform that can run stateless containers</li>
+<li>Serverless, removing the need for infrastructure management</li>
+<li>Built on Knative, an open API and runtime environment built on Kubernetes</li>
+<li>Can automatically scale up and down from zero almost instantaneously, charging only for the resources used</li>
+</ul>
+</li>
+</ol>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

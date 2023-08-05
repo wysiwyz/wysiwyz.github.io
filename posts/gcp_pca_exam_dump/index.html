@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>GCP PCA --- practice exam - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="GCP PCA --- practice exam" />
+<meta property="og:description" content="2023-08-04 Google Cloud Platform - Professional Cloud Architect GET!
+VPC firewall rules
+Security policy overview
+Control communication between Pods and Services using network policies
+Identity-Aware Proxy overview
+Optimize application latency with load balancing
+Kubernetes Services
+Ingress for internal Application Load Balancers
+Connecting to Google Cloud: your networking options explained
+Carrier Peering &mdash; Considerations
+Partner Interconnect overview
+Dedicated Interconnect overview
+Overview of VPC Service Controls
+Access control lists
+Overview of IAP for on-premises apps" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/gcp_pca_exam_dump/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-06-25T15:26:29+08:00" />
+<meta property="article:modified_time" content="2023-06-25T15:26:29+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GCP PCA --- practice exam"/>
+<meta name="twitter:description" content="2023-08-04 Google Cloud Platform - Professional Cloud Architect GET!
+VPC firewall rules
+Security policy overview
+Control communication between Pods and Services using network policies
+Identity-Aware Proxy overview
+Optimize application latency with load balancing
+Kubernetes Services
+Ingress for internal Application Load Balancers
+Connecting to Google Cloud: your networking options explained
+Carrier Peering &mdash; Considerations
+Partner Interconnect overview
+Dedicated Interconnect overview
+Overview of VPC Service Controls
+Access control lists
+Overview of IAP for on-premises apps"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/gcp_pca_exam_dump/" /><link rel="prev" href="http://wysiwyz.github.io/posts/joshw/" /><link rel="next" href="http://wysiwyz.github.io/posts/elasticsearch/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "GCP PCA --- practice exam",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/gcp_pca_exam_dump\/"
+        },"genre": "posts","keywords": "GoogleCloudPlatform, ProfessionalCloudArchitect","wordcount":  15794 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/gcp_pca_exam_dump\/","datePublished": "2023-06-25T15:26:29+08:00","dateModified": "2023-06-25T15:26:29+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GCP PCA --- practice exam</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-25">2023-06-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;15794 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;75 minutes&nbsp;<span id="/posts/gcp_pca_exam_dump/" class="leancloud_visitors" data-flag-title="GCP PCA --- practice exam">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#ehr-healthcare">EHR Healthcare</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#mountkirk-game-old">Mountkirk Game (Old)</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#mountkirk-game-old_ver2">Mountkirk Game (old_ver.2)</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#mountkirk-game-new">Mountkirk Game (New)</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#-terramearth-old">🧩 TerramEarth (old)</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#terramearth-old_ver2-two-apps">TerramEarth (old_ver.2, two apps)</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#terramearth">TerramEarth</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#helicopter-racing-league">Helicopter Racing League</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>2023-08-04 Google Cloud Platform - Professional Cloud Architect <strong>GET</strong>!</p>
+</blockquote>
+<p><a href="https://cloud.google.com/firewall/docs/firewalls" target="_blank" rel="noopener noreffer ">VPC firewall rules</a></p>
+<p><a href="https://cloud.google.com/armor/docs/security-policy-overview" target="_blank" rel="noopener noreffer ">Security policy overview</a></p>
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy" target="_blank" rel="noopener noreffer ">Control communication between Pods and Services using network policies</a></p>
+<p><a href="https://cloud.google.com/iap/docs/concepts-overview#when_to_use_iap" target="_blank" rel="noopener noreffer ">Identity-Aware Proxy overview</a></p>
+<p><a href="https://cloud.google.com/load-balancing/docs/tutorials/optimize-app-latency" target="_blank" rel="noopener noreffer ">Optimize application latency with load balancing</a></p>
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/service" target="_blank" rel="noopener noreffer ">Kubernetes Services</a></p>
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/ingress-ilb" target="_blank" rel="noopener noreffer ">Ingress for internal Application Load Balancers</a></p>
+<p><a href="https://cloud.google.com/blog/products/networking/google-cloud-network-connectivity-options-explained" target="_blank" rel="noopener noreffer ">Connecting to Google Cloud: your networking options explained</a></p>
+<p><a href="https://cloud.google.com/network-connectivity/docs/carrier-peering#considerations" target="_blank" rel="noopener noreffer ">Carrier Peering &mdash; Considerations</a></p>
+<p><a href="https://cloud.google.com/network-connectivity/docs/interconnect/concepts/partner-overview" target="_blank" rel="noopener noreffer ">Partner Interconnect overview</a></p>
+<p><a href="https://cloud.google.com/network-connectivity/docs/interconnect/concepts/dedicated-overview#before_you_use" target="_blank" rel="noopener noreffer ">Dedicated Interconnect overview</a></p>
+<p><a href="https://cloud.google.com/vpc-service-controls/docs/overview" target="_blank" rel="noopener noreffer ">Overview of VPC Service Controls</a></p>
+<p><a href="https://cloud.google.com/storage/docs/access-control/lists" target="_blank" rel="noopener noreffer ">Access control lists</a></p>
+<p><a href="https://cloud.google.com/iap/docs/cloud-iap-for-on-prem-apps-overview" target="_blank" rel="noopener noreffer ">Overview of IAP for on-premises apps</a></p>
+<p><a href="https://cloud.google.com/security/compliance/soc-2" target="_blank" rel="noopener noreffer ">SOC 2</a></p>
+<p><a href="https://cloud.google.com/bigquery/docs/cached-results" target="_blank" rel="noopener noreffer ">Using cached query results</a></p>
+<p><a href="https://cloud.google.com/logging/docs/audit" target="_blank" rel="noopener noreffer ">Cloud Audit Logs overview</a></p>
+<p><a href="https://cloud.google.com/logging/docs/overview" target="_blank" rel="noopener noreffer ">Cloud Logging overview</a></p>
+<p><a href="https://cloud.google.com/architecture/best-practices-for-operating-containers" target="_blank" rel="noopener noreffer ">Best practices for operating containers</a></p>
+<p><a href="https://cloud.google.com/vpc-service-controls" target="_blank" rel="noopener noreffer ">VPC Service Controls</a></p>
+<p><a href="https://cloud.google.com/vpc-service-controls/docs/supported-products#shell" target="_blank" rel="noopener noreffer ">VPC Service Controls doesn&rsquo;t support Cloud Shell</a></p>
+<p><a href="https://cloud.google.com/storage/docs/locations#considerations" target="_blank" rel="noopener noreffer ">Bucket locations</a></p>
+<p><a href="https://cloud.google.com/cdn/docs/caching#maximum-size" target="_blank" rel="noopener noreffer ">Caching overview &mdash; maximum size</a></p>
+<p><a href="https://cloud.google.com/cdn/docs/external-backends-internet-neg-overview#hybrid_and_multi-cloud_architectures" target="_blank" rel="noopener noreffer ">Cloud CDN &mdash; Hybrid and multi-cloud architectures</a></p>
+<p><a href="https://docs.apigee.com/api-platform/antipatterns/caching-large" target="_blank" rel="noopener noreffer ">Antipattern: Store data greater than 512KB size in cache</a></p>
+<p><a href="https://cloud.google.com/service-mesh/docs/unified-install/gke-install-multi-cluster" target="_blank" rel="noopener noreffer ">Set up a multi-cluster mesh on GKE</a></p>
+<p><a href="https://cloud.google.com/automl" target="_blank" rel="noopener noreffer ">AutoML</a></p>
+<p><a href="https://cloud.google.com/automl" target="_blank" rel="noopener noreffer ">De-identifying sensitive data</a></p>
+<p><a href="https://cloud.google.com/vpc/docs/vpc#ip-ranges" target="_blank" rel="noopener noreffer ">VPC networks &mdash; IP ranges</a></p>
+<p><a href="https://cloud.google.com/sql/" target="_blank" rel="noopener noreffer ">Cloud SQL</a></p>
+<p><a href="https://cloud.google.com/pubsub/" target="_blank" rel="noopener noreffer ">Cloud Pub/Sub</a></p>
+<p><a href="https://cloud.google.com/storage/docs/storage-classes" target="_blank" rel="noopener noreffer ">Cloud Storage &mdash; Storage classes</a></p>
+<p><a href="https://cloud.google.com/products/operations?hl=en" target="_blank" rel="noopener noreffer ">Operations Suite, formerly Stackdriver</a></p>
+<p><a href="https://cloud.google.com/bigquery/" target="_blank" rel="noopener noreffer ">BigQuery</a></p>
+<p><a href="https://cloud.google.com/bigtable/" target="_blank" rel="noopener noreffer ">Cloud Bigtable</a></p>
+<p><a href="https://cloud.google.com/load-balancing/docs/health-check-concepts" target="_blank" rel="noopener noreffer ">Health checks overview</a></p>
+<p><a href="https://cloud.google.com/load-balancing/docs/https/" target="_blank" rel="noopener noreffer ">External Application Load Balancer overview</a></p>
+<p><a href="https://cloud.google.com/vpc/docs/create-modify-vpc-networks" target="_blank" rel="noopener noreffer ">VPC &mdash; Create and manage VPC networks</a></p>
+<p><a href="https://cloud.google.com/vpc/docs/routes" target="_blank" rel="noopener noreffer ">VPC &mdash; Routes</a></p>
+<p><a href="https://cloud.google.com/vpc/docs/add-remove-network-tags" target="_blank" rel="noopener noreffer ">VPC &mdash; Add network tags</a></p>
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/tutorials/workload-identity-secrets" target="_blank" rel="noopener noreffer ">GKE &mdash; Access secrets stored outside GKE clusters using Workload Identity</a></p>
+<p><a href="https://cloud.google.com/secret-manager" target="_blank" rel="noopener noreffer ">Secret Manager</a></p>
+<h2 id="ehr-healthcare">EHR Healthcare</h2>
+<h4 id="company-overview">Company overview</h4>
+<p>EHR Healthcare is a leading provider of electronic health record software to the medical industry. EHR Healthcare provides their software as a service to multi-national medical office, hospitals, and insurance providers.</p>
+<h4 id="solution-concept">Solution concept</h4>
+<p>Due to rapid changes in the healthcare and insurance industry, EHR Healthcare&rsquo;s business has been growing exponentially year over year. They need to be able to scale their environment, adapt their disaster recovery plan, and roll out new continuous deployment capabilities to update their software at a fast pace. Google Cloud has been chosen to replace their current colocation facilities.</p>
+<h4 id="existing-technical-environment">Existing technical environment</h4>
+<p>EHR&rsquo;s software is currently hosted in multiple colocation facilities. The lease on one of the data centers is about to expire.</p>
+<p>Customer-facing applications are web-based, and many have recently been containerized to run on a group of Kubernetes clusters. Data is stored in a mixture of relational and NoSQL databases (MySQL, MS SQL Server, Redis, and MongoDB).</p>
+<p>EHR is hosting several legacy file- and API-based integrations with insurance providers on-premises. These systems are scheduled to be replaced over the next several years. There is no plan to upgrade or move these systems at the current time.</p>
+<p>Users are managed via Microsoft Active Directory. Monitoring is currently being done via various open source tools. Alerts are sent via email and are often ignored.</p>
+<h4 id="business-requirements">Business requirements</h4>
+<ul>
+<li>On-board new insurance providers as quickly as possible</li>
+<li>Provide a minimum 99.9% availability for all customer-facing systems</li>
+<li>Provide centralized visibility and proactive action on system performance and usage</li>
+<li>Increase ability to provide insights into healthcare trends</li>
+<li>Reduce latency to all customers</li>
+<li>Maintain regulatory compliance</li>
+<li>Decrease infrastructure administration costs</li>
+<li>Make predictions and generate reports on industry trends based on provider data</li>
+</ul>
+<h4 id="technical-requirements">Technical requirements</h4>
+<ul>
+<li>Maintain legacy interfaces to insurance providers with connectivity to both on-premises systems and cloud providers</li>
+<li>Provide a consistent way to manage customer-facing applications that are container-based</li>
+<li>Provide a secure and high-performance connection between on-premises systems and Google Cloud</li>
+<li>Provide consistent logging, log retention, monitoring, and alerting capabilities</li>
+<li>Maintain and manage multiple container-based environments</li>
+<li>Dynamically scale and provision new environments</li>
+<li>Create interfaces to ingest and process data from new providers</li>
+</ul>
+<h4 id="executive-statement">Executive statement</h4>
+<p>Our on-premises strategy has worked for years but has required a major investment of time and money in training our team on distinctly different systems, managing similar but separate environments, and responding to outages. Many of these outages have been a result of misconfigured systems, inadequate capacity to manage spikes in traffic, and inconsistent monitoring practices. We want to use Google Cloud to leverage a scalable, resilient platform that can span multiple environments seamlessly and provide a consistent and stable user experience that positions for future growth.</p>
+<h4 id="01">01</h4>
+<p>Anonymous users from all over the world access a public health information website hosted in an on-premises EHR data center. The servers that host this website are older, and users are complaining about sluggish response times. There has also been a recent increase of distributed denial-of-service attacks toward the website. The attacks always come from the same IP address ranges. EHR management has identified the public health information website as an easy, low risk application to migrate to Google Cloud. You need to improve access latency and provide a security solution that will prevent the denial-of-service traffic from entering your Virtual Private Cloud (VPC) network. What should you do?</p>
+<blockquote>
+<p>☀︎ Deploy an external <strong>HTTP(S) load balancer</strong>, configure <strong>Google Cloud Armor</strong>, and move the application onto Compute Engine virtual machines ☀︎</p>
+<p>External HTTP(S) load balancer &mdash; 可以改善存取延遲</p>
+<p>Cloud Armor &mdash; 可以封鎖 DDoS 攻擊(Distributed Denial-of-Service)</p>
+<p>Firewall rules &mdash; 無法封鎖惡意流量(malicious traffic)進 VPC，只在 VM level 封鎖</p>
+<p>GKE service &mdash; does not expose a set of pods outside of a cluster</p>
+<p>GKE network policy &mdash; only filters traffic between pods and services</p>
+<p>GKE internal load balancer &mdash; will not load balance external traffic</p>
+<p>IAP (identity-aware proxy) &mdash; not a fit, as anonymous users need access to the website</p>
+</blockquote>
+<h4 id="02">02</h4>
+<p>EHR wants to connect one of their data centers to Google Cloud. The data center is in a remote location over 100 kilometers from a Google-owned point of presence. They can&rsquo;t afford new hardware, but their existing firewall can accommodate future throughput growth. They also shared these data points:</p>
+<ul>
+<li>Servers in their on-premises data center need to talk to Google Kubernetes Engine (GKE) resources in the clould</li>
+<li>Both on-premises servers and cloud resources are configured with private RFC 1918 addresses</li>
+<li>The service provider has informed the customer that basic Internet connectivity is a best-effort service with no SLA</li>
+</ul>
+<p>You need to recommend a connectivity option. What should you recommend?</p>
+<blockquote>
+<p>☀︎ Provision a <strong>Partner Interconnect connection</strong> ☀︎</p>
+<p>Partner interconnect connection &mdash; allows the customer to lower latency by connecting directly to a partner network that is directly connected to Google. This option will also allow the customer to use the lower bandwidth interfaces that they have on their current firewall.</p>
+<p>Carrier peering &mdash; does not give private IP addressing across the connection</p>
+<p>A new Internet connection &mdash; is not correct, because an additional Internet connection won&rsquo;t provide RFC1918 communications by itself</p>
+<p>Dedicated Interconnect connection &mdash; would require the customer to buy new hardware to get a 10 gig interface for their firewall</p>
+</blockquote>
+<h4 id="03">03</h4>
+<p>One of EHR&rsquo;s healthcare customers is an internationally renowned research and hospital facility. Many of their patients are well-known public personalities. Sources both inside and outside have tried many times to obtain health information on these patients for malicious purposes.  The hospital requires that patient information stored in Cloud Storage buckets not leave the geographic areas in which the buckets are hosted. You need to ensure that information stored in Cloud Storage buckets in the &ldquo;Europe-west2&rdquo; region does not leave that area. What should you do?</p>
+<blockquote>
+<p>☀︎ <strong>Enable Virtual Private Cloud Service Controls</strong>, and create a <strong>service perimeter</strong> around the Cloud Storage resources ☀︎</p>
+<p>VPC Service Controls &mdash; improves your ability to mitigate (減輕, 使緩和) the risk of data exfiltration (資料外洩) from Google Cloud services.</p>
+<p>Encrypt the data in the application on-premises before the data is stored in the <code>europe-west2</code> region &mdash; Not correct, as encryptng the data does not stop data exfiltration
+只是加密資料並不能阻止資料外洩</p>
+<p>Assign the identity and access management (IAM) &ldquo;storage.objectViewer&rdquo; role only to users and service accounts that need to use the data &mdash; Not correct, as IAM roles deal with identity-based access control, not context-aware perimeter security.
+IAM role 用來處理 <strong>基於身分別的</strong> 存取權控制，而非 <strong>情境感知</strong> 周圍資安</p>
+<p>Create an access control list (ACL) that limits access to the bucket to authorized users only, and apply it to the buckets in the &ldquo;europe-west2&rdquo; region &mdash; Not correct, as Cloud Storage ACLs are a mechanism you can use to define who has access to your buckets and objects, as well as their level of access. ACLs do not stop data exfiltration.
+ACL用來定義哪些人可存取你的buckets＆objects、以及他們的存取等級，並不能拿來阻止資料外洩</p>
+</blockquote>
+<h4 id="04">04</h4>
+<p>The EHR sales employees are a remote-based workforce that travels to different locations to do their jobs. Regardless of their location, the sales employees need to access web-based sales tools located in the EHR data center. EHR is retiring their current Virtual Private Network (VPN) infrastructure, and you need to move the web-based sales tools to a BeyondCorp access model. Each sales employee has a Google Workspace account and uses that account for single sign-on (SSO). What should you do?</p>
+<blockquote>
+<p>☀︎ Create an <strong>Identity-Aware Proxy</strong> (IAP) connector that points to the sales tool application ☀︎</p>
+<p>Identity-Aware Proxy &mdash; allows you to manage access to HTTP-based apps outside of Google Cloud
+身份感知代理 可用來管理GoogleCloud以外，HTTP-based應用程式的存取權限</p>
+<p>Create a Google group for the sales tool application, and upgrade that group to a security group &mdash; Not correct, as Google groups by themselves do not grant access to an application nor do they move an application to a beyond corp model.
+Google Group 不授予某一應用程式的存取權，也不負責移動應用程式</p>
+<p>Deploy an external HTTP(S) load balancer and create a custom Cloud Armor policy for the sales tool application &mdash; Not correct, as Cloud Armor does not authenticate or authorize application access.
+Cloud Armor 不會驗證也不授權應用程式的可存取性</p>
+<blockquote>
+<p>Authenticate (驗證): 確認是否真的為所宣稱的那個人)</p>
+<p>Authorize (授權): 根據使用者角色授予應有權限</p>
+</blockquote>
+<p>For every sales employee who needs access to the sales tool application, give their Google Workspace user account the predefined AppEngine Viewer role &mdash; Not correct, as the application is installed in the datacenter, not in the AppEngine environment.
+應用程式安裝在資料中心，不是App Engine環境</p>
+</blockquote>
+<h4 id="05">05</h4>
+<p>You are responsible for ensuring that EHR&rsquo;s use of Google Cloud will pass an upcoming privacy compliance audit. What should you do? (Choose two.)</p>
+<blockquote>
+<p>✅ Verify EHR&rsquo;s product usage against the list of compliant products on the <em>Google Cloud compliance page</em></p>
+<blockquote>
+<p><a href="https://cloud.google.com/security/compliance/offerings?skip_cache=true#/regions=USA&amp;industries=Healthcare_and_life_sciences&amp;focusArea=Privacy" target="_blank" rel="noopener noreffer ">Google Cloud compliance page</a> will give list of products which are HIPAA compliant</p>
+</blockquote>
+<p>✅ Advise EHR to execute a Business Associate Agreement (BAA) with Google Cloud</p>
+<blockquote>
+<p>BAA means HIPAA Business Associate amendment or Business Associate Agreement entered into between Google and Customer.
+With EHR being a leading provider of health record, software, this agreement is required.</p>
+</blockquote>
+<p>❌ Use Firebase Authentication for EHR&rsquo;s user facing applications</p>
+<p>❌ Implement Prometheus to detect and prevent security breaches on EHR&rsquo;s web-based applications</p>
+<p>❌ Use GKE private clusters for all Kubernetes workloads</p>
+</blockquote>
+<h4 id="06">06</h4>
+<p>You need to define the technical architecture for securely deploying workloads to Google Cloud. You also need to ensure that only verified containers are deployed using Google Cloud services. What should you do? (Choose two)</p>
+<blockquote>
+<p>✅ Enable Binary Authorization on GKE, and sign containers as part of a CI/CD pipeline</p>
+<blockquote>
+<p><a href="https://cloud.google.com/binary-authorization/docs/overview" target="_blank" rel="noopener noreffer ">Binary Authorization</a> : To ensure only verified containers are deployed</p>
+</blockquote>
+<p>✅ Configure Container Registry to use vulnerability scanning to confirm that there are no vulnerabilities before deploying the workload</p>
+<blockquote>
+<p>Automatically scan images for vulnerabilities with container analysis : To ensure deployment are secure and consistent</p>
+</blockquote>
+<p>❌ Configure Jenkins to utilize Kritis to cryptographically sign a container as part of a CI/CD pipeline</p>
+<p>❌ Configure Container Registry to only allow trusted service accounts to create and deploy containers from the registry</p>
+</blockquote>
+<h4 id="07">07</h4>
+<p>You need to upgrade the EHR connection to comply with their requirements. The new connection design must support business-critical needs and meet the same network and security requirements. What should you do?</p>
+<blockquote>
+<p>✅ Add a new Dedicated Interconnect connection</p>
+<blockquote>
+<p>You cannot change the link type on an Interconnect connection circuit from 10 Gbps to 100 Gbps.
+如果要遷移到 100Gbps 的話，需要先提供一條新的 100-Gbps Interconnect connection，再從 10-Gbps connection 遷移到 100-Gbps connection</p>
+</blockquote>
+<p>❌ Upgrade the bandwidth on the Dedicated Interconnect connection to 100 G</p>
+<p>❌ Add three new Cloud VPN connections</p>
+<p>❌ Add a new Carrier Peering connection</p>
+</blockquote>
+<h4 id="08">08</h4>
+<p>You need to define the technical architecture for hybrid connectivity between EHR&rsquo;s on-premises systems and Google Cloud. You want to follow Google&rsquo;s recommended practices for production-level application. Considering the EHR Healthcare business and technical requirements, what should you do?</p>
+<blockquote>
+<p>✅ Configure two <em>Dedicated Interconnect</em> connections in one metro (City) and two connections in another metro, and make sure the Interconnect connections are placed in different metro zones.</p>
+<blockquote>
+<p>Requirements:</p>
+<ul>
+<li>Provide a min 99.9% availability for all customer-facing systems</li>
+<li>Provide a secure and high-performance connection between on-premises systems and Google Cloud</li>
+</ul>
+<p>Above option builds us a 99.99% SLA dedicated interconnect, covering all business requirements</p>
+</blockquote>
+<p>❌ Configure two <em>Partner Interconnect</em> connections in one metro (City), and make sure the Interconnect connections are placed in different metro zones</p>
+<blockquote>
+<p>Above option (partner interconnect) builds us a 99.9% SLA partner interconnect, covering all business requirement.
+But as the question stated &ldquo;You want to follow Google&rsquo;s recommended practices for production-level applications&rdquo;, the <strong>99.99%</strong> SLA interconnect(dedicated or partner) is recommended for production-level application. (<a href="https://cloud.google.com/network-connectivity/docs/interconnect/tutorials/production-level-overview" target="_blank" rel="noopener noreffer ">Reference here</a>)</p>
+</blockquote>
+<p>❌ Configure two <em>VPN connections</em> from on-premises to Google Cloud, and make sure the VPN devices on-premises are in separate racks</p>
+<blockquote>
+<p>VPN is not suitable for the business requirements</p>
+</blockquote>
+<p>❌ Configure <em>Direct Peering</em> between EHR Healthcare and Google Cloud, and make sure you are peering at least two Google locations</p>
+<blockquote>
+<p>Direct peering is used for workspace, instead of DMZ, again - not suitable</p>
+</blockquote>
+</blockquote>
+<h4 id="09">09</h4>
+<p>You are a developer on the EHR customer portal team. Your team recently migrated the customer portal application to Google Cloud. The load has increased on the application servers, and now the application is logging many timeout errors. You recently incorporated Pub/Sub into the application architecture, and the application is not logging any Pub/Sub publishing errors. You want to improve publishing latency.</p>
+<p>What should you do?</p>
+<blockquote>
+<p>✅ Turn off Pub/Sub message batching</p>
+<blockquote>
+<p>Cost of <a href="https://cloud.google.com/pubsub/docs/publisher?hl=en#batching" target="_blank" rel="noopener noreffer ">Batching</a> is latency for individual messages. To minimize latency, batching should be turned off.</p>
+</blockquote>
+<p>❌ Increase the Pub/Sub Total Timeout retry value</p>
+<p>❌ Move from a Pub/Sub subscriber pull model to a push model</p>
+<p>❌ Create a backup Pub/Sub message queue</p>
+</blockquote>
+<h4 id="10">10</h4>
+<p>In the past, configuration errors put public IP addresses on backend servers that should not have been accessible from the Internet. You need to ensure that no one can put external IP addresses on backend Compute Engine instances and that external IP addresses can only be configured on frontend Compute Engine instances. What should you do?</p>
+<blockquote>
+<p>✅ Create an <strong>Organizational Policy</strong> with a constraint to allow external IP addresses only on the frontend Compute Engine instances</p>
+<blockquote>
+<p>Using an Organization Policy, you can restrict external IP addresses to specific VMs with constraints to control use of external IP addresses for your VM instances within an organization or a project</p>
+<p><a href="https://cloud.google.com/blog/topics/developers-practitioners/limiting-public-ips-google-cloud" target="_blank" rel="noopener noreffer ">Limiting Public IPs on Google Cloud</a></p>
+</blockquote>
+<p>❌ Revoke the comput.networkAdmin role from all users in the project with front end instances</p>
+<p>❌ Create an Identity and Access Management (IAM) policy that maps the IT staff to the compute.networkAdmin role for the organization</p>
+<p>❌ Create a custom Identity and Access Management (IAM) role named GCE_FRONTEND with the compute.addresses.create permission</p>
+</blockquote>
+<h4 id="11">11</h4>
+<p>You are responsible for designing the Google Cloud network architecture for Google Kubernetes Engine. You want to follow Google best practices. Considering the EHR Healthcare business and technical requirements, what should you do to reduce the attack surface?</p>
+<blockquote>
+<p>✅ Use a <a href="https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept#overview" target="_blank" rel="noopener noreffer ">private cluster</a> with a private endpoint with master authorized networks configured</p>
+<p>❌ Use a public cluster with firewall rules and Virtual Private Cloud (VPC) routes</p>
+<p>❌ Use a private cluster with a public endpoint with master authorized networks configured</p>
+<p>❌ Use a public cluster with master authorized networks enabled and firewall rules</p>
+</blockquote>
+<p>✅ ❌</p>
+<hr>
+<h2 id="mountkirk-game-old">Mountkirk Game (Old)</h2>
+<h4 id="company-overview-1">Company Overview</h4>
+<p>Mountkirk Games makes online, session-based, multiplayer games for the most popular mobile platforms. They build all of their games using some server-side integration. Historically, they have used cloud providers to lease physical servers.</p>
+<p>Due to the unexpected popularity of some of their games, they have had problems scaling their global audience, application servers MySQL databases, and analytics tools.</p>
+<p>Their current model is to write game statics to files and send them through an ETL tool that loads them into a centralized MySQL database for reporting.</p>
+<h4 id="solution-concept-1">Solution Concept</h4>
+<p>Mountkirk Games is building a new game, which they expect to be very popular. They plan to deploy the game&rsquo;s backend on Google Compute Engine so they can capture streaming metrics run intensive analytics, and take advantage of its autoscaling server environment and integrate with a managed NoSQL database.</p>
+<h4 id="business-requirements-1">Business Requirements</h4>
+<ul>
+<li>Increase to a global footprint</li>
+<li>Improve uptime `&ldquo;downtime is loss of players</li>
+<li>Increase efficiency of the cloud resources we use</li>
+<li>Reduce latency to all customers</li>
+</ul>
+<h4 id="technical-requirements-1">Technical Requirements</h4>
+<ul>
+<li>Requirements for Game Backend Platform
+<ol>
+<li>Dynamically scale up or down based on game activity</li>
+<li>Connect to a managed NoSQL database service</li>
+<li>Run customize Linux distro</li>
+</ol>
+</li>
+<li>Requirements for Game Analytics Platform
+<ol>
+<li>Dynamically scale up or down based on game activity 根據遊戲活動，動態規模化</li>
+<li>Process incoming data on the fly directly from the game servers</li>
+<li>Process data that arrives late because of slow mobile networks</li>
+<li>Allow SQL queries to access at least 10 TB of historical data 可存取至少10TB歷史資料的SQL查詢</li>
+<li>Process files that are reqularly uploaded by users&rsquo; mobile devices 處理使用者裝置定期上傳的檔案</li>
+<li>Use only fully managed services</li>
+</ol>
+</li>
+</ul>
+<h4 id="ceo-statement">CEO Statement</h4>
+<p>Our last successful game did not scale well with our previous cloud provider, resulting in lower user adoption and affecting the game&rsquo;s reputation. Our investors want more key performance indicators (KPIs) to evaluate the speed and stability of the game, as well as other metrics that provide deeper insight into usage patterns so we can adapt the game to target users.</p>
+<h4 id="cto-statement">CTO Statement</h4>
+<p>Our current technology stack cannot provide the scale we need, so we want to replace MySQL and move to an environment that provides autoscaling, low latency load balancing, and frees us up from managing physical servers.</p>
+<h4 id="cfo-statement">CFO Statement</h4>
+<p>We are not capturing enough user demographic data, usage metrics, and other KPIs. As a result, we do not engage the right users, we are not confident that our marketing is targeting the right users, and we are not selling enough premium Blast-Ups inside the games, which dramatically inpacts our revenue.</p>
+<h4 id="01-1">01</h4>
+<p>Mountkirk Games wants you to design their new testing strategy. How should the test coverage differ from their existing backends on the other platforms?</p>
+<blockquote>
+<p>✅ Tests should scale well beyond the prior approaches</p>
+<blockquote>
+<p>Scaling is high priority SLI which CEO and CTO both explicitly mention:</p>
+<ul>
+<li>CEO: &lsquo;Our last successful game did not scale well with our previous cloud provider&rsquo;</li>
+<li>CTO: &lsquo;Our current technology stack cannot provide the scale we need&rsquo;</li>
+</ul>
+</blockquote>
+<p>❌ Test should include directly testing the Google Cloud Platform (GCP) infrastructure</p>
+<p>❌ Unit tests are no longer required, only end-to-end tests</p>
+<p>❌ Tests should be applied after the release is in the production environment</p>
+</blockquote>
+<h4 id="02-1">02</h4>
+<p>Mountkirk Games has deployed their new backend on Google Cloud Platform (GCP). You want to create a through process for new versions of the backend before they are released to the public. You want the testing environment to scale in an economical way. How should you design the process?</p>
+<blockquote>
+<p>✅ Create a scalable environment in GCP for simulating production load</p>
+<blockquote>
+<p>From scenario: Requirements for Game Backend Platform</p>
+<ol>
+<li>Dynamically scale up or down based on game activity</li>
+<li>Connect to a managed NoSQL database service</li>
+<li>Run customize Linux distro</li>
+</ol>
+<p><strong>Simulating production load in GCP can scale in an economical way.</strong></p>
+</blockquote>
+<p>❌ Use the existing infrastructure to test the GCP-based backend at scale
+One of the pain points about the existing infrastructure was precisely that the environment did not scale well.</p>
+<p>❌ Build stress tests into each component of your application using resources internal to GCP to simulate load
+It is a best practice to have a clear separation between test and production environments, and generating test load should not be done from a production environment.</p>
+<p>❌ Create a set of static environments in GCP to test different levels of load, for example high/medium/low</p>
+<p>​     Mountkirk Games wants the testing environment to scale as needed. Defining several static environments for specific levels of load goes against this requirement.</p>
+</blockquote>
+<h4 id="03-1">03</h4>
+<p>Mountkirk Games wants to set up a continuous delivery pipeline. Their architecture includes many small services that they want to be able to update and roll back quickly. Mountkirk Games has the following requirements:</p>
+<p>✑ Services are deployed redundantly across multiple regions in the US and Europe</p>
+<p>✑ Only frontend services are exposed on the public internet</p>
+<p>✑ They can provide a single frontend IP for their fleet of services</p>
+<p>✑ Deployment artifacts are immutable</p>
+<p>Which set of products should they use?</p>
+<blockquote>
+<p>✅ Google Kubernetes Registry, Google Container Engine, Google HTTP(S) Load Balancer</p>
+<blockquote>
+<p>Should be Google Kubernetes Engine, Google Container Registry, Google HTTP(S) Load Balancer</p>
+<ul>
+<li>GKE:
+Ideal for deploying small services that can be updated and rolled back quickly.
+It&rsquo;s a best practice to manage services using immutable containers.</li>
+<li>Container Registry:
+A single place for a team to manage Docker images for the services</li>
+<li>Cloud Load Balancing:
+Support globally distributed services across multiple regions.
+It provides a single global IP address that can be used in DNS records.
+Using URL Maps, the requests can be routed to only the services that Mountkirk wants to expose.</li>
+</ul>
+</blockquote>
+<p>❌ Google Cloud Storage, Google Cloud Dataflow, Google Compute Engine</p>
+<blockquote>
+<p>It&rsquo;s NOT a continuous data processing pipeline that Mountkirk Games want to set up, but a delivery pipeline. Cloud Dataflow is a fully managed service for creating data processing pipeline</p>
+</blockquote>
+<p>❌ Google Cloud Storage, Google App Engine, Google Network Load Balancer</p>
+<blockquote>
+<p>Cloud Load Balancer distributes traffic to Compute Engine instances. App Engine and Cloud Load Balancer are parts of different solutions.</p>
+</blockquote>
+<p>❌ Google Cloud Functions, Google Cloud Pub/Sub, Google Cloud Deployment Manager</p>
+<blockquote>
+<p>You cannot reserve a single frontend IP for Cloud Functions. When deployed, an HTTP-triggered cloud function creates an endpoint with an automatically assigned IP.</p>
+</blockquote>
+</blockquote>
+<h4 id="04-1">04</h4>
+<p>Mountkirk Games&rsquo; gaming servers are not automatically scaling properly. Last month, they rolled out a new feature, which suddenly became very popular. A record number of users are trying to use the service, but many of them are getting 503 errors and very slow response times. What should they investigate first?</p>
+<blockquote>
+<p>✅ Verify that the project quota hasn&rsquo;t been exceeded</p>
+<blockquote>
+<p>503 is service unavailable error. If the database was online everyone would get the 503 error (server is down).</p>
+</blockquote>
+<p>❌ Verify that the database is online</p>
+<p>❌ Verify that the new feature code did not introduce any performance bugs</p>
+<p>❌ Verify that the load-testing team is not running their tool against production</p>
+</blockquote>
+<h4 id="05-1">05</h4>
+<p>Mountkirk Games needs to create a repeatable and configurable mechanism for deploying isolated application. Developers and tester can access each other&rsquo;s environments and resources, but they cannot access staging or production resources. The staging environment needs access to some services from production.</p>
+<p>What should you do to isolate development environments from staging and production?</p>
+<blockquote>
+<p>✅ Create one project for development, a second for staging and a third for production</p>
+<p>❌ Create a project for development and test and another for staging and production</p>
+<p>❌ Create a network for development and test and another for staging and production</p>
+<p>❌ Create one subnetwork for development and another for staging and production</p>
+</blockquote>
+<h4 id="06-1">06</h4>
+<p>Mountkirk Games wants to set up a real-time analytics platform for their new game. The new platform must meet their technical requirements. Which combination of Google technologies will meet all of their requirements?</p>
+<blockquote>
+<p>✅ Cloud Dataflow, Cloud Storage, Cloud Pub/Sub, and BigQuery</p>
+<blockquote>
+<p>Ingest millions of <em>streaming events</em> per second from anywhere in the world with <em>Cloud Pub/Sub</em>, powered by Google&rsquo;s unique, high-speed private network.</p>
+<p><em>Process the streams with Cloud Dataflow</em> to ensure reliable, exactly-once, low-latency data transformation.</p>
+<p>Stream the transformed data into <em>BigQuery</em>, the cloud-native data warehousing service, for <em>immediate analysis via SQL or popular visualization tools.</em></p>
+<p>From scenario: They plan to deploy the game&rsquo;s backend on Google Compute Engine so they can capture streaming metrics, run intensive analytics</p>
+<p>Requirements for Game Analytics Platform:</p>
+<ol>
+<li>Dynamically scale up or down based on game activity</li>
+<li>Process incoming data on the fly directly from the game servers</li>
+<li>Process data that arrives late because of slow mobile networks</li>
+<li>Allow SQL queries to access at least 10 TB of historical data</li>
+<li>Process files that are regularly uploaded by user&rsquo;s mobile devices</li>
+<li>Use only fully managed services</li>
+</ol>
+</blockquote>
+<p>❌ Kubernetes Engine, Cloud Pub/Sub, and Cloud SQL</p>
+<p>❌ Cloud SQL, Cloud Storage, Cloud Pub/Sub, and Cloud Dataflow</p>
+<p>❌ Cloud Dataproc, Cloud Pub/Sub, Cloud SQL, and Cloud Dataflow</p>
+<p>❌ Cloud Pub/Sub, Compute Engine, Cloud Storage, and Cloud Dataproc</p>
+</blockquote>
+<hr>
+<h2 id="mountkirk-game-old_ver2">Mountkirk Game (old_ver.2)</h2>
+<h4 id="company-overview-2">Company Overview</h4>
+<p>Mountkirk Games makes online, session-based, multiplayer games for mobile platforms. They build all of their games using some server-side integration.</p>
+<p>Historically, they have used cloud providers to lease physical servers.</p>
+<p>Due to the unexpected popularity of some of their games, they have had problems scaling their global audience, application servers, MySQL databases, and analytics tools.</p>
+<p>Their current model is to write game statistics to files and send them through an ETL tool that loads them into a centralized MySQL database for reporting.</p>
+<h4 id="solution-concept--">Solution Concept -</h4>
+<p>Mountkirk Games is building a new game, which they expect to be very popular. They plan to deploy the games&rsquo; backend on Google Compute Engine so they can capture streaming metrics, run intensive analytics, and take advantage of its autoscaling server environment and integrate with a managed NoSQL database.</p>
+<h4 id="business-reuirements--">Business Reuirements -</h4>
+<p>Increase to a global footprint</p>
+<p>Improve uptime `&ldquo;downtime is loss of players</p>
+<p>Increase efficiency of the cloud resources we use</p>
+<p>Reduce latency to all customers</p>
+<h4 id="technical-requirements--">Technical Requirements -</h4>
+<ul>
+<li>Requirements for Game Backend Platform
+<ul>
+<li>Dynamically scale up or down based on game activity</li>
+<li>⛄️Connect to a transactional database service to manage user profiles and game state</li>
+<li>⛄️ Store game activity in a timeseries database service for future analysis</li>
+<li>⛄️ As the system scales, ensure that data is not lost due to processing backlogs</li>
+<li>Run hardened Linux distro</li>
+</ul>
+</li>
+<li>Requirements for Game Analytics Platform
+<ul>
+<li>Dynamically scale up or down based on game activity</li>
+<li>Process incoming data on the fly directly from the game servers 迅速處理數據</li>
+<li>Process data that arrives late because of slow mobile servers</li>
+<li>Allow queries to access at least 10 TB of historical data</li>
+<li>Process files that are regularly uploaded by users&rsquo; mobile devices</li>
+</ul>
+</li>
+</ul>
+<h4 id="executive-statement--">Executive Statement -</h4>
+<p>Our last successful game did not scale well with out previous cloud provider, resulting in lower user adoption and affecting the game&rsquo;s reputation. Our investors want more key performance indicators (KPIs) to evaluate the speed and stability of the game, as well as other metrics that provide deeper insight into usage patterns so we can adapt the game to target users. Additionally, our current technology stack cannot provide the scale we need, so we want to replace MySQL and move to an environment that provides autoscaling, low latency load balancing, and frees us up from managing physical servers.</p>
+<h4 id="01-2">01</h4>
+<p>Mountkirk Games wants to migrate from their current analytics and statics reporting model to one that meets their technical requirements on Google Cloud Platform.</p>
+<p>Which two steps should be part of their migration plan? (Choose two)</p>
+<blockquote>
+<p>✅ Evaluate the impact of migrating their current batch ETL code to Cloud Dataflow</p>
+<blockquote>
+<p>Must have &mdash; ETL is definitely what Cloud Dataflow does.
+Cloud Dataflow &mdash; Stream mobile devices data (Fully managed service)</p>
+</blockquote>
+<p>✅ Write a schema migration plan to denormalize data for better performance in BigQuery</p>
+<blockquote>
+<p>BigQUery &mdash; Intensive Analytics + historic data (Fully managed service)</p>
+</blockquote>
+<p>❌ Draw an architecture diagram that shows how to move from a single MySQL database to a MySQL cluster</p>
+<blockquote>
+<p>Cloud SQL is NOT the best for hug volumes of data, plus not real time data</p>
+</blockquote>
+<p>❌ Load 10 TB of analytics data from a previous game into a Cloud SQL instance, and run test queries against the full dataset to confirm that they complete successfully</p>
+<p>❌ Integrate Cloud Armor to defend against possible SQL injection attacks in analytics files uploaded to Cloud Storage</p>
+</blockquote>
+<h4 id="02-2">02</h4>
+<p>You need to analyze and define the technical architecture for the compute workloads for your company, Mountkirk Games. Considering the Mountkirk Games business and technical requirements, what should you do?</p>
+<blockquote>
+<p>✅ Create a global load balancer with managed instance groups and autoscaling policies. Use non-preemptible Compute Engine instances</p>
+<blockquote>
+<p>Termination of preemptive VM might affect gaming experience, hence not a good choice.</p>
+</blockquote>
+<p>❌ Create network load balancers. Use preemptible Compute Engine instances</p>
+<p>❌ Create network load balancers. Use non-preemptible Compute Engine instances</p>
+<p>❌ Create a global load balancer with managed instances groups and autoscaling policies. Use preemptible Compute Engine instances</p>
+</blockquote>
+<h4 id="03-2">03</h4>
+<p>Mountkirk Games wants to design their solution for the future in order to take advantage of cloud and technology improvements as they become available. Which two steps should they take? (Choose two)</p>
+<blockquote>
+<p>✅ Store as much analytics and game activity data as financially feasible today so it can be used to train machine learning models to predict user behavior in the future</p>
+<p>✅ Begin packaging their game backend artifacts in container images and running them on Google Kubernetes Engine to improve the ability to scale up or down based on game activity</p>
+<p>❌ Set up a CI/CD pipeline using Jenkins and Spinnaker to automate canary deployment and improve development velocity</p>
+<blockquote>
+<p>Cloud Build is the Google Solution for CI/CD and requires Dockerfile, hence CI/CD pipe line code for Jenkins will not be useful in the future.</p>
+<p>Spinnaker - 開源持續交付軟體平台，由Netflix開發，可在K8S, GCP, AWS, Azure, Oracle Cloud實作</p>
+<p>Canary deployment - 只有一套系統，逐漸替換這套系統。跟礦坑的金絲雀一樣，此模式可以提早預警可能出現的錯誤。</p>
+<p>Development velocity - 開發速度</p>
+</blockquote>
+<p>❌ Adopt a schema versioning tool to reduce downtime when adding new game features that require storing additional player data in the database</p>
+<blockquote>
+<p>Schema versioning tool is not related for future google services.</p>
+</blockquote>
+<p>❌ Implement a weekly rolling maintenance process for the Linux virtual machines so they can apply critical kernel patches and package updates and redue the risk of 0-day vulnerabilities</p>
+<blockquote>
+<p>Google does the patching on all VMs, so it&rsquo;s not relevant.</p>
+</blockquote>
+</blockquote>
+<h4 id="04-2">04</h4>
+<p>Mountkirk Games wants you to design a way to test the analytics platform&rsquo;s resilience to changes in mobile network latency. What should you do?</p>
+<blockquote>
+<p>✅ Deploy failure injection software to the game analytics platform that can inject additional latency to mobile client analytics traffic</p>
+<blockquote>
+<p>Add latency to mobile network &mdash; to test the analytics platform&rsquo;s resilience to changes in mobile network latency.</p>
+</blockquote>
+<p>❌ Build a test client that can be run from a mobile phone emulator on a Compute Engine virtual machine, and run multiple copies in Google Cloud Platform regions all over the world to generate realistic traffic</p>
+<p>❌ Add the ability to introduce a random amount of delay before beginning to process analytics files uploaded from mobile devices</p>
+<blockquote>
+<p>Adds delay at beginning of file processing, does not add delay/latency in mobile network</p>
+</blockquote>
+<p>❌ Create an opt-in beta of the game that runs on players&rsquo; mobile devices and collects response times from analytics endpoints running in Google Cloud Platform regions all over the world</p>
+</blockquote>
+<h4 id="05-2">05</h4>
+<p>You need to analyze and define the technical architecture for the database workloads for your company, Mountkirk Games. Considering the business and technical requirements, what should you do?</p>
+<blockquote>
+<p>✅ Use Cloud Bigtable for <!-- raw HTML omitted -->time series data<!-- raw HTML omitted -->, use Cloud Spanner for <!-- raw HTML omitted -->transactional data<!-- raw HTML omitted -->, and user BigQuery for <!-- raw HTML omitted -->historical data queries<!-- raw HTML omitted --></p>
+<blockquote>
+<p>Storing time-series data in Cloud Bigtable is a natural fit.</p>
+<p>Cloud Spanner scales horizontally and serves data with low latency, while maintaining transactional consistency and industry-leading 99.999% (five 9s) availability - 10x less downtime than four nines (&lt;5 minutes per year).
+Cloud Spanner helps future-proof your database backend. After you load your data into BigQuery, you can query the data in your tables.</p>
+<p>BigQuery supports two types of queries: Interactive queries, Batch queries</p>
+</blockquote>
+<p>❌ Use Cloud SQL for time series data, and use Cloud Bigtable for historical data queries</p>
+<p>❌ Use Cloud SQL to replace MySQL, and use Cloud Spanner for historical data queries</p>
+<p>❌ Use Cloud Bigtable to replace MySQL, and use BigQuery for historical data queries</p>
+</blockquote>
+<h4 id="06-2">06</h4>
+<p>Which managed storage option meets Mountkirk&rsquo;s technical requirement for storing game activity in a time series database service?</p>
+<blockquote>
+<p>✅ Cloud Bigtable</p>
+<blockquote>
+<p>Google says we can store time series vehicle data in Bigtable which can later be used for analytical processing using BigQuery</p>
+</blockquote>
+<p>❌ Cloud Spanner</p>
+<p>❌ BigQuery</p>
+<blockquote>
+<p>BigQuery can be used to analyse the data, but not a suitable target for time series.</p>
+</blockquote>
+<p>❌ Cloud Datastore</p>
+</blockquote>
+<h4 id="07-1">07</h4>
+<p>You are in charge of the new Game Backend Platform architecture. The game communicates with the backend over a REST API. You want to follow Google-recommended practices. How should you design the backend?</p>
+<blockquote>
+<p>✅ Create an instance template for the backend. For every region, deploy it on a multi-zone managed instance group. Use an L7 load balancer</p>
+<blockquote>
+<p>L4 LB: Offers traffic management of transactons at the network protocol layer (TCP/UDP)</p>
+<p>L7 LB: Works at the highest level of the OSI model and bases its routing decisions on various characteristics of the HTTP/HTTPS header. (Mountrik requirement is global, so L7)</p>
+</blockquote>
+<p>❌ Create an instance template for the backend. For every region, deploy it on a multi-zone managed instance group. Use an L4 load balancer</p>
+<p>❌ Create an instance template for the backend. For every region, deploy it on a single-zone managed instance group. Use an L4 load balancer</p>
+<p>❌ Create an instance template for the backend. For every region, deploy it on a single-zone managed instance group. Use an L7 load balancer</p>
+</blockquote>
+<hr>
+<h2 id="mountkirk-game-new">Mountkirk Game (New)</h2>
+<h4 id="company-overview-3">Company overview</h4>
+<p>Mountkirk Games makes online, session-based, multiplayer games for mobile platforms. They have recently started expanding to other platforms after successfully migrating their on-premises environments to Google Cloud.</p>
+<p>Their most recent endeavor is to create a retro-style first-person shooter (FPS) game that allows hundreds of simultaneous players to join a geo-specific digital arena from multiple platforms and locations. A real-time digital banner will display a global leaderboard of all the top players across every active arena.</p>
+<h4 id="solution-concept-2">Solution concept</h4>
+<p>Mountkirk Games is building a new multiplayer game that they expect to be very popular. They plan to deploy the game&rsquo;s backend on Google Kubernetes Engine so they can scale rapidly and use Google&rsquo;s global load balancer to route players to the closest regional game arenas. In order to keep the global leader board in sync, they plan to use a multi-region Spanner cluster.</p>
+<h4 id="existing-technical-environment-1">Existing technical environment</h4>
+<p>The existing environment was recently migrated to Google Cloud, and five games came across using lift-and-shift virtual machine migrations, with a few minor exceptions.</p>
+<p>Each new game exists in an isolated Google Cloud project nested below a folder that maintains most of the permissions and network policies. Legacy games with low traffic have been consolidated into a single project. There are also separate environments for development and testing.</p>
+<h4 id="business-requirements-2">Business requirements</h4>
+<ul>
+<li>Support multiple gaming platforms 支援多遊戲平台</li>
+<li>Support multiple regions 支援多區域</li>
+<li>Support rapid iteration of game features 支援遊戲功能快速迭代</li>
+<li>Minimize latency 最小化延遲</li>
+<li>Optimize for dynamic scaling 動態可擴充性優化</li>
+<li>Use managed services and pooled resources 管理化服務 ＆資源池(?)</li>
+<li>Minimize costs 最小化成本</li>
+</ul>
+<h4 id="technical-requirements-2">Technical requirements</h4>
+<ul>
+<li>Dynamically scale based on game activity</li>
+<li>Publish scoring data on a near real-time global leaderboard</li>
+<li>Store game activity logs in structured files for future analysis</li>
+<li>Use GPU processing to render graphics server-side for multi-platform support</li>
+<li>Supports eventual migration of legacy games to this new platform</li>
+</ul>
+<h4 id="executive-statement-1">Executive statement</h4>
+<p>Our last game was the first time we used Google Cloud, and it was a tremendous success. We were able to analyze player behavior and game telemetry in ways that we never could before. This success allowed us to bet on a full migration to the cloud and to start building all-new games using cloud-native design principles. Our new game is our most ambitious to date and will open up doors for us to support more gaming platforms beyond mobile. Latency is our top priority, although cost management is the next most important challenge. As with our first cloud-based game, we have grown to expect the cloud to enable advanced analytics capabilities so we can rapidly iterate on our deployments of bug fixes and new functionality.</p>
+<h4 id="01-3">01</h4>
+<p>You are the data compliance officer for Mountkirk Games and must protect customers&rsquo; personally identifiable information (PII). Mountkirk Games wants to make sure they can generate anonymized usage reports about their new game and delete PII data after a specific period of time. The solution should have minimal cost. You need to ensure compliance while meeting business and technical requirements. What should you do?</p>
+<blockquote>
+<p>✅ Archive audit logs in BigQuery, and generate reports using Google Data Studio</p>
+<p>BigQuery &mdash; allows easy querying for report generation, with low storage costs
+BigQuery查詢/生成報表容易，儲存成本低</p>
+<p>❌ Archive audit logs in Cloud Storage, and manually generate reports &mdash; Not correct, as Cloud Storage is an object store with no query language access for report generation.
+Cloud Storage不支持SQL查詢，生成不了報表</p>
+<p>❌ Write a Cloud Logging filter to export specific date ranges to Pub/Sub &mdash; Not correct, as it does not address log storage for data retention
+沒有提到 log 資料留存的空間</p>
+<p>❌ Archive user logs on a locally attached persistent disk, and cat them to a text file for auditing &mdash; Not correct, as long term storage in persistent disk is expensive
+把資料長期存在<em>持久性區塊儲存空間</em>很貴</p>
+</blockquote>
+<h4 id="02-3">02</h4>
+<p>Ｍountkirk Games wants you to make sure their new gaming platform is being operated according to Google best practices. You want to verify that Google recommended security best practices are being met while also providing the operations teams with the metrics they need. What should you do? (Choose two)</p>
+<blockquote>
+<p>✅ Ensure that you aren&rsquo;t running privileged containers</p>
+<ul>
+<li>Correct, as this is High Priority according to Google best practices</li>
+</ul>
+<p>✅ Ensure that you are using the native logging mechanisms</p>
+<ul>
+<li>Correct, as this is High Priority according to Google best practices</li>
+</ul>
+<p>❌ Ensure that you are using obfuscated Tags (混淆的tag) on workloads</p>
+<ul>
+<li>Not correct, as tags should be readable and useful to the operations teams when they are working on the clusters</li>
+</ul>
+<p>❌ Ensure that workloads are not using securityContext to run as a group</p>
+<ul>
+<li>Not correct, as this may be required for some workloads</li>
+</ul>
+<p>❌ Ensure that each cluster is running GKE metering so each team can be charged for their usage</p>
+<ul>
+<li>Not correct, bcuz although from a business process this may be useful, it won&rsquo;t impact the operations or security of the cluster 不會影響叢集的安全性/操作性</li>
+</ul>
+</blockquote>
+<h4 id="03-3">03</h4>
+<p>You need to implement Virtual Private Cloud (VPC) Service Controls for Mountkirk Games. Mountkirk Games wants to allow Cloud Shell usage by its developers. Developers should not have full access to managed services. You need to balance these conflicting goals with Mountkirk Games&rsquo; business requirements. What should you do?</p>
+<blockquote>
+<p>✅ Create a <strong>service perimeter around only the projects that handle sensitive data</strong>, and do not grant your developers access to it</p>
+<p>VPC Service Controls &mdash; protects data
+Cloud Shell &mdash; facilitates rapid iteration of Google Cloud architecture changes</p>
+<p>VPC Service Controls  &mdash; do not directly affect scaling of Google Cloud architecture.</p>
+<p>A security perimeter &mdash; is not a business requirement, but rapid iteration is.</p>
+<p>❌ Include all developers in an access level associated with the service perimeter, and allow them to use Cloud Shell &mdash; Not correct, as it works but does not scale, and we do not want to give users this much access</p>
+</blockquote>
+<h4 id="04-3">04</h4>
+<p>Your new game running on Google Cloud is in public beta, and you want to design meaningful service level objectives (SLOs) before the game becomes generally available. What should you do?</p>
+<blockquote>
+<p>✅ Define one SLO as 99% HTTP requests return the 2xx status code. Define the other SLO as 99% requests return within 100ms.</p>
+<blockquote>
+<p>Correct, as it clearly defines <strong>the service level indicators and how to measure them</strong></p>
+</blockquote>
+<p>❌ Define one SLO as 99.9% game server availability. Define the other SLO as less than 100-ms latency &mdash; Incorrect, as it doesn&rsquo;t clearly define how to measure both the availability and latency</p>
+<p>❌ Define one SLO as service availability that is the same as Google Cloud&rsquo;s availability. Define the other SLO as 100-ms latency &mdash; Incorrect, as Google Cloud availability has an impact on customer availability, but it is only one factor. Also, for different Google Cloud products, the availability could be different.</p>
+<p>❌ Define one SLO as total uptime of the game server within a week. Define the other SLO as the mean response time of all HTTP requests that are less than 100 ms &mdash; Incorrect, as there is not objective for the server uptime.</p>
+</blockquote>
+<h4 id="05-3">05</h4>
+<p>HRL wants you to help them bring existing recorded video content to new fans in emerging regions. Considering the HRL business and technical requirements, what should you do?</p>
+<blockquote>
+<p>✅ Use Cloud CDN to cache the video content from HRL&rsquo;s existing public cloud provider.</p>
+<blockquote>
+<p>Cloud CDN &mdash; can be used to cache data hosted on other cloud providers and supports large objects such as video
+可用來快取存放在其它雲服務商的資料，且支援像是影片的大型物件</p>
+</blockquote>
+<p>❌ Serve the video content directly from a multi-region Cloud Storage bucket &mdash; Incorrect, as a multi-region bucket does not serve all global areas with similar latency.</p>
+<p>❌ Use Apigee Edge to cache the video content from HRL&rsquo;s existing public cloud provider &mdash; Incorrect, as Apigee Edge is not designed to cache data larger than 512 KB.</p>
+<p>❌ Replicate the video content in Google Kubernetes Engine clusters in regions close to the fans &mdash; Incorrect, as replicating the video content introduces unnecessary complexity.</p>
+</blockquote>
+<h4 id="06-3">06</h4>
+<p>You need to optimize batch file transfers into Cloud Storage for Mountkirk Games&rsquo; new Google Cloud solution. The batch files contain game statistics that need to be staged in Cloud Storage and be processed by an extract transform load (ETL) tool. What should you do?</p>
+<blockquote>
+<p>✅ Use gsutil to batch copy the files in parallel</p>
+<blockquote>
+<p>If you have a large number of files to transfer, you can perform a parallel multi-threaded/multi-processing copy using the top-level <code>gsutil -m</code> option</p>
+<p><code>gsutil -m cp -r dir gs://my-bucket</code></p>
+<p><a href="https://cloud.google.com/storage/docs/gsutil/commands/cp" target="_blank" rel="noopener noreffer ">Copy Files and Objects</a></p>
+<p><a href="https://cloud.google.com/blog/products/gcp/optimizing-your-cloud-storage-performance-google-cloud-performance-atlas" target="_blank" rel="noopener noreffer ">Optimizing your Cloud Storage performance_Google Cloud Performance Atlas</a></p>
+</blockquote>
+<p>❌ Use gsutil to batch move files in sequence</p>
+<p>❌ Use gsutil to extract the files as the first part of ETL</p>
+<p>❌ Use gsutil to load the files as the last part of ETL</p>
+</blockquote>
+<h4 id="07-2">07</h4>
+<p>You are implementing Firestore for Mountkirk Games. Mountkirk Games wants to give a new game programmatic access to a legacy game&rsquo;s Firestore database. Access should be as restricted as possible. What should you do?</p>
+<blockquote>
+<p>✅ Create a service account (SA) in the legacy game&rsquo;s Google Cloud project, add this SA in the new game&rsquo;s IAM page, and then give it the Firebase Admin role in both projects</p>
+<blockquote>
+<p>Firebase Admin role &mdash; key point</p>
+<p>Cross-Projects Resource sharing via service account</p>
+</blockquote>
+<p>❌ Create a service account (SA) in the legacy game&rsquo;s Google Cloud project, add a second SA in the new game&rsquo;s IAM page, and then give the Organization Admin role to both SAs</p>
+<p>❌ Create a service account (SA) in the legacy game&rsquo;s Google Cloud project, give the SA the Organization Admin role, and then give it the Firebase Admin role in both projects</p>
+<p>❌ Create a service account (SA) in the legacy game&rsquo;s Google Cloud project, give it the Firebase Admin role, and then migrate the new game to the legacy game&rsquo;s project</p>
+<blockquote>
+<p>We should have separate projects for every environment for each application. We should NOT add new application to an existing project.</p>
+</blockquote>
+</blockquote>
+<h4 id="08-1">08</h4>
+<p>Mountkirk Games wants to limit the physical location of resources to their operating Google Cloud regions. What should you do?</p>
+<blockquote>
+<p>✅ Configure an organizational policy which constrains where resources can be deployed</p>
+<blockquote>
+<p>You can limit the physical location of a new resource with the <!-- raw HTML omitted -->Organization Policy Service resource locations constraint<!-- raw HTML omitted -->. You can use the location property of a resource to identify where it is deployed and maintained by the service.</p>
+<p>For data-containing resources of some Google Cloud services, this property also reflects the location where data is stored. This constraint allows you to define the allowed Google Cloud locations where the resources for supported services in your hierarchy can be created.</p>
+<p>After you define resource locations, this limitation will apply only to newly-created resources. Resources you created before setting the resource locations constraint will continue to exist and perform their function.</p>
+<p><a href="https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations" target="_blank" rel="noopener noreffer ">Restricting Resource Locations</a></p>
+</blockquote>
+<p>❌ Configure IAM conditions to limit what resources can be configured</p>
+<p>❌ Configure the quotas for resources in the regions not being used to 0</p>
+<p>❌ Configure a custom alert in Cloud Monitoring so you can disable resources as they are created in other regions</p>
+</blockquote>
+<h4 id="09-1">09</h4>
+<p>You need to implement a network ingress for a new game that meets the defined business and technical requirements. Mountkirk Games wants each regional game instance to be located in multiple Google Cloud regions. What should you do?</p>
+<blockquote>
+<p>✅ Configure Ingress for Anthos with a global load balancer and Google Kubernetes Engine</p>
+<blockquote>
+<p>Since it&rsquo;s a multiple regions game, need  multi-GKE or multi-MIG.</p>
+<p>To configure the ingress between multi-GKE, use kubemci or Anthos.</p>
+<p>kubemci &mdash; was deprecated in favor of Anthos.</p>
+<p>Ingress for Anthos is the recommended way to deploy <strong>multi-cluster ingress</strong></p>
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/concepts/multi-cluster-ingress" target="_blank" rel="noopener noreffer ">Concepts of Multi Cluster Ingress</a></p>
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/multi-cluster-ingress" target="_blank" rel="noopener noreffer ">How to: Multi Cluster Ingress</a></p>
+</blockquote>
+<p>❌ Configure a global load balancer connected to a managed instance group running Compute Engine instances</p>
+<p>❌ Configure kubemci with a global load balancer and Google Kubernetes Engine</p>
+<p>❌ Configure a global load balancer with Google Kubernetes Engine</p>
+</blockquote>
+<h4 id="10-1">10</h4>
+<p>You development teams release new versions of games running on Google Kubernetes Engine (GKE) daily. You want to create service level indicators (SLIs) to evaluate the quality of the new versions from the user&rsquo;s perspective. What should you do?</p>
+<blockquote>
+<p>✅ Create Request Latency and Error Rate as service level indicators</p>
+<blockquote>
+<p><strong>SLI</strong> is the metrics for the level of service provided to end users. Real numbers of the performance. Example: Request latency to be less than 500ms in the last 15 minutes with a 95% percentile.</p>
+<p><strong>SLO</strong> - Target level for the reliability of your service</p>
+<p><strong>SLA</strong> - The agreement that you make with the end users</p>
+</blockquote>
+<p>❌ Create CPU Utilization and Request Latency as service level indicators</p>
+<p>❌ Create GKE CPU Utilization and Memory Utilization as service level indicators</p>
+<p>❌ Create Server Uptime and Error Rate as service level indicators</p>
+</blockquote>
+<h4 id="11-1">11</h4>
+<p>Mountkirk Games wants you to secure the connectivity from the new gaming application platform to Google Cloud. You want to streamline the process and follow Google-recommended practices. What should you do?</p>
+<blockquote>
+<p>✅ Configure Workload Identity and service accounts to be used by the application platform</p>
+<blockquote>
+<p>Workload Identity is the recommended way to access Google Cloud services from applications running within GKE due to its improved security properties and manageability.</p>
+<p><a href="https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity" target="_blank" rel="noopener noreffer ">Workload Identity</a></p>
+</blockquote>
+<p>❌ Use Kubernetes Secrets, which are obfuscated by default. Configure these Secrets to be used by the application platform</p>
+<p>❌ Configure Kubernetes Secrets to store the secret, enable Application-Layer Secrets Encryption, and use Cloud Key Management Service (Cloud KMS) to manage the encryption keys. Configure these Secrets to be used by the application platform</p>
+<p>❌ Configure HashiCorp Vault on Compute Engine, and use customer managed encryption keys and Cloud Key Management Service (Cloud KMS) to manage the encryption keys. Configure these Secrets to be used by the application platform</p>
+</blockquote>
+<h4 id="12">12</h4>
+<p>Your development team has created a mobile game app. You want to test the new mobile app on Android and iOS devices with a variety of configurations. You need to ensure that testing is efficient and cost-effective. What should you do?</p>
+<blockquote>
+<p>✅ Upload your mobile app to the Firebase Test Lab, and test the mobile app on Android and iOS devices.</p>
+<blockquote>
+<ul>
+<li>Firebase Test Lab is a cloud-based app testing infrastructure that lets you test your app on a range of devices and configurations, so you can get a better idea of how it&rsquo;ll perform in the hands of live users.</li>
+<li>Firebase Test Lab Run tests on a wide range of Android and iOS devices hosted by Test Lab.</li>
+</ul>
+<p><a href="https://firebase.google.com/docs/test-lab" target="_blank" rel="noopener noreffer ">Firebase Test Lab</a></p>
+</blockquote>
+<p>❌ Create Android and iOS VMs on Google Cloud, install the mobile app on the VMs, and test the mobile app</p>
+<p>❌ Cread Android and iOS containers on GKE, install the mobile app on the containers, and test the mobile app</p>
+<p>❌ Upload your mobile app with different configurations to Firebase Hosting and test each configuration</p>
+</blockquote>
+<hr>
+<h2 id="-terramearth-old">🧩 TerramEarth (old)</h2>
+<h4 id="company-overview--">Company Overview -</h4>
+<p>TerramEarth manufactures heavy equipment for the mining and agricultural industries: about 80% of their business is from mining and 20% from agriculture. They currently have over 500 dealers and service centers in 100 countries. Their mission is to build products that make their customers more productive.</p>
+<h4 id="company-background--">Company background -</h4>
+<p>TerramEarth was formed in 1946, when several small, family owned combined to retool after World War II. The company cares about their employees and customers and considers them to be extended members of their family.</p>
+<p>TerramEarth is proud of their ability to innovate on their core products and find new markets as their customers&rsquo; needs change. For the past 20 years, trends in the industry have been largely toward increasing productivity by using larger vehicles with a human operator.</p>
+<h4 id="solution-concept---1">Solution Concept -</h4>
+<p>There are 20 million TerramEarth vehicles in operation that collect 120 fields of data per second. Data is stored locally on the vehicle and can be accessed for analysis when a vehicle is serviced. The data is downloaded via a maintenance port. This same port can be used to adjust operational parameters, allowing the vehicles to be upgraded in the field with new computing modules.</p>
+<p>Approximately 200,000 vehicles are connected to a cellular network, allowing TerramEarth to collect data directly. At a rate of 120 fields of data per second with 22 hours of operation per day, Terram Earth collects a total of about 9TB/day from these connectd vehicles.</p>
+<h4 id="existing-technical-environment--">Existing Technical Environment -</h4>
+<pre tabindex="0"><code>[Bulldozer_M1]-\
+                 \
+[Bulldozer_M2] --- [FTP Servers] --&gt;[ETL] --&gt; [Data warehouse]
+                 /
+[Truck] --------/
+</code></pre><p>TerramEarth&rsquo;s existing architecture is composed of Linux-based systems that reside in a data center. These systems gzip CSV files from the field and upload via FTP, transform and aggregate(聚集) them, and place the data in their data warehouse. Because this process takes time, aggregated reports are based on data that is 3 weeks old.</p>
+<p>With this data, TerramEarth has been able to preemptively stock replacement parts and reduce unplanned downtime of their vehicles by 60%. However, because the data is stale, some customers are without their vehicles for up to 4 weeks while they wait for replacement parts.</p>
+<h4 id="business-requirements--">Business Requirements -</h4>
+<p>Decrease unplanned vehicle downtime to less than 1 week, without increasing the cost of carrying surplus inventory</p>
+<p>Support the dealer network with more data on how their customers use their equipment to better position new products and services</p>
+<p>Have the ability to partner with different companies &ldquo;especially with seed and fertilizer suppliers in the fast-growing agricultural business&rdquo; to create compelling joint offerings for their customers.</p>
+<h4 id="ceo-statement--">CEO Statement -</h4>
+<p>We have been successful in capitalizing on the trend toward larger vehicles to increase the productivity of our customers. Technological change is occurring rapidly, and TerramEarth has taken advantage of connected devices technology to provide our customers with better services, such as our intelligent farming equipment. With this technology, we have been able to increase farmers&rsquo; yields by 25%, by using past trends to adjust how our vehicles operate. These advances have led to rapid growth of our agricultural product line, which we expect will generate 50% of our revenues by 2020.</p>
+<h4 id="cto-statement--">CTO Statement -</h4>
+<p>Our competitive advantage has always been in the manufacturing process, with our abilty to build better vehicles for lower cost than our competitors. However, new products with different approaches are constantly being developed, and I&rsquo;m concerned that we lack the skills to undergo the next wave of transformations in our industry. Unfortunately, our CEO doesn&rsquo;t take technology obsolescence(科技廢退) seriously and he considers the many new companies in our industry to be riche player. My goals are to build our skills while addressing immediate market needs through incremental innovations.</p>
+<h4 id="01-4">01</h4>
+<p>TerramEarth&rsquo;s CTO wants to use the raw data from connected vehicles to help identify approximately when a vehicle in the field will have a catastrophic failure.</p>
+<p>You want to allow analysts to centrally query the vehicle data. Which architecture should you recommend?</p>
+<blockquote>
+<p>✅</p>
+<pre tabindex="0"><code> [IoT]         [IoT]          [IoT]
+  \FTP          |FTP         /FTP
+   [Google Cloud Load Balancing]
+                |           FTP
+     [Google Container Engine]
+                |
+         [Cloud Pub/Sub]
+                |
+        [Cloud Dataflow]
+                |
+           [BigQuery]
+           /    |   \
+           [Analysts]
+</code></pre><blockquote>
+<p>The push endpoint can be a load balancer; a container cluster can be used; use Cloud Pub/Sub for Stream Analytics.</p>
+<ul>
+<li>Cloud Dataflow is essential to transform, enrich and store telemetry data by using distributed data pipelines</li>
+<li>Cloud Pub/Sub is essential to handle the streams of vehicle data while at the same time decoupling the specifics of the backend processing implementation</li>
+</ul>
+<p>Now choose between:</p>
+<ol>
+<li>Cloud SQL vs BigQuery for analytics
+<ul>
+<li>BigQuery is no doubt the preferred choice for analytics</li>
+<li>Cloud SQL does not scale to this sort of data volume
+(9TB/day + data coming through when vehicles are serviced)</li>
+</ul>
+</li>
+<li>GKE (with or without Anthos) + Cloud Load balancing vs App Engine
+<ul>
+<li>GKE with Cloud Load Balancing is better than App Engine
+<ul>
+<li>You can have multiple GKE clusters in different regions.</li>
+<li>Cloud LB can send requests to the cluster in the region that is closest to the vehicle.</li>
+<li>Pros: minimize latency; make the feedback loop more real-time</li>
+</ul>
+</li>
+<li>App Engine is a <strong>regional service</strong>.</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<p>❌ [IoT] *3 ⎼(FTP)→[App Engine Flexible Environment]→
+[Cloud Pub/Sub]→[Cloud Dataflow]→
+[BigQuery]→[Analysts] *3</p>
+<p>❌ [IoT] *3 ⎼(FTP)→[Google Cloud Load Balancing]⎼(FTP)→
+[Google Container Engine]→[Cloud Pub/Sub]→
+[Cloud Dataflow]→[Cloud SQL]→[Analysts] *3</p>
+<p>❌ [IoT] *3 ⎼(FTP)→[App Engine Flexible Environment]→
+[Cloud Pub/Sub]→[Cloud Dataflow]→
+[Cloud SQL]→[Analysts] *3</p>
+</blockquote>
+<h4 id="02-4">02</h4>
+<p>The TerramEarth development team wants to create an API to meet the company&rsquo;s business requirements. You want the development team to focus their development effort on business value versus creating a custom framework.</p>
+<p>Which method should they use?</p>
+<blockquote>
+<p>✅ Use Google App Engine with Google Cloud Endpoints. Focus on an API for dealers and partners</p>
+<blockquote>
+<p>Develop, deploy, protect and monitor your APIs with Google Cloud Endpoints. Using an Open API Specification or one of our API frameworks, Cloud Endpoints gives you the tools you need for every phose of API development</p>
+<p>使用 Endpoints Framework，就不用再部署一個第三方web伺服器（例如：Apache Tomcat、Gunicorn）</p>
+</blockquote>
+<p>❌ Use Google App Engine with a JAX-RS Jersey Java-based framework. Focus on an API for the public</p>
+<p>❌ Use Google App Engine with the Swagger (Open API Specification) framework. Focus on an API for the public</p>
+<p>❌ Use Google Container Engine with a Django Python container. Focus on an API for the public</p>
+<p>❌ Use Google Container Engine with a Tomcat container with the Swagger (Open API Specification) framework. Focus on an API for dealers and partners</p>
+</blockquote>
+<h4 id="03-4">03</h4>
+<p>Your development team has created a structured API to retrieve vehicle data. They want to allow third parties to develop tools for dealerships that use this vehicle event data. You want to support delegated authorization against this data. What should you do?</p>
+<blockquote>
+<p>✅ Build or leverage an OAuth-compatible access control system</p>
+<blockquote>
+<p>Cloud Platform APIs support OAuth 2.0, and scopes provide granular authorization over the methods that are supported. Cloud Platform supports both service- account and user-account OAuth, also called three-legged OAuth.</p>
+<p><a href="https://cloud.google.com/architecture/framework#delegate_application_authorization_with_oauth2" target="_blank" rel="noopener noreffer ">Delegate App Authorization with OAuth2</a></p>
+<p><a href="https://cloud.google.com/blog/products/identity-security/identity-and-authentication-the-google-cloud-way" target="_blank" rel="noopener noreffer ">Identity and Authentication</a></p>
+</blockquote>
+<p>❌ Build SAML 2.0 SSO compatibility into your authentication system</p>
+<blockquote>
+<p>SAML is an authentication system 驗證; while OAuth is an authorization system 授權.</p>
+<p>兩者都支援單一登入 (SSO, single sign-on). SAML 給使用者用; OAuth 給應用程式app用</p>
+</blockquote>
+<p>❌ Restrict data access based on the source IP address of the partner systems</p>
+<p>❌ Create secondary credentials for each dealer that can be given to the trusted third party</p>
+</blockquote>
+<h4 id="04-4">04</h4>
+<p>TerramEarth plans to connect all 20 million vehicles in the field to the cloud. THis increases the volume to 20 million 600 byte records a second for 40 TB an hour. How should you design the data ingestion?</p>
+<blockquote>
+<p>✅ Vehicles write data directly to Google Cloud Pub/Sub</p>
+<blockquote>
+<p>Pub/Sub can handle more streaming data than BigQuery</p>
+<ul>
+<li>Pub/Sub: 120,000,000 kB/minute, 2 GB/per second in large regions</li>
+<li>BigQuery: 1Gb/per second</li>
+</ul>
+</blockquote>
+<p>❌ Vehicles write data directly to GCS</p>
+<p>❌ Vehicles stream data directly to Google BigQuery</p>
+<p>❌ Vehicles continue to write data using the existing system (FTP)</p>
+</blockquote>
+<h4 id="05-4">05</h4>
+<p>You analyzed TerramEarth&rsquo;s business requirement to reduce downtime, and found that they can achieve a majority of time saving by reducing customer&rsquo;s wait time for parts. You decided to focus on reduction of the 3 weeks aggregate reporting time.</p>
+<p>Which modifications to the company&rsquo;s processes should you recommend?</p>
+<blockquote>
+<p>✅ Increase fleet cellular connectivity to 80%, migrate from FTP to streaming transport, and develop machine learning analysis of metrics</p>
+<blockquote>
+<p>The Avro binary format is the preferred format for loading compressed data. Avro data is faster to load because the data can be read in parallel, even when the data blocks are compressed.</p>
+<p>Cloud Storage supports streaming transfers with the gsutil tool or boto library, based on HTTP chunked transfer encoding. Streaming data lets you stream data to and from your Cloud Storage account as soon as it becomes available without requiring that the data be first saved to a separate file. Streaming transfers are useful if you have a process that generates data and you do not want to buffer it locally before uploading it, or if you want to send the result from a computational pipeline directly into Cloud Storage.</p>
+<p><a href="https://cloud.google.com/storage/docs/streaming" target="_blank" rel="noopener noreffer ">Uploads and downloads</a></p>
+<p><a href="https://cloud.google.com/bigquery/docs/loading-data" target="_blank" rel="noopener noreffer ">Introduction to loading data</a></p>
+<ul>
+<li>Cellular connectivity: greatly improve the freshness of data</li>
+</ul>
+</blockquote>
+<p>❌ Migrate from CSV to binary format, migrate from FTP to SFTP transport, and development machine learning analysis of metrics</p>
+<blockquote>
+<p>Machine learning - a good means toward the end of reducing downtime</p>
+<p>Shuffling formats and transport doesn&rsquo;t directly help at all</p>
+</blockquote>
+<p>❌ Migrate from FTP to streaming transport, migrate from CSV to binary format, and develop machine learning analysis of metrics</p>
+<blockquote>
+<p>Moving to streaming can improve the freshness of the information</p>
+<p>Changing the format doesn&rsquo;t directly help at all</p>
+</blockquote>
+<p>❌ Migrate from FTP to SFTP transport, develop machine learning analysis of metrics, and increase dealer local inventory by a fixed factor</p>
+<blockquote>
+<p>Nothing helps except for machine learning analysis</p>
+</blockquote>
+</blockquote>
+<p>06</p>
+<p>Which of TerramEarth&rsquo;s legacy enterprise processes will experience significant change as a result of increased Google Cloud Platform adoption?</p>
+<blockquote>
+<p>✅ Capacity planning, TCO calculations, opex/capex allocation</p>
+<blockquote>
+<p>Management concerns:</p>
+<ul>
+<li>Rapid provision of resources (infrastructure) for growing</li>
+<li>Cost management such as &ndash;
+Cost optimization in Infrastructure,
+trade up from capital expenditures(Capex) for ongoing operating expenditures (Opex)</li>
+<li>Total cost of ownership (TCO)</li>
+</ul>
+<hr>
+<p>Capacity planning &mdash; for cloud is different from those for on-premises data centers</p>
+<p>TCO calculations &mdash; adjusted, as TerramEarth is using services, not leasing/buying servers</p>
+<p>OpEx/CapEx allocation &mdash; adjusted, as services are consumed vs. using capital expenditures</p>
+</blockquote>
+<p>❌ Open/capex allocation, LAN changes, capacity planning</p>
+<blockquote>
+<p>LAN change managament process don&rsquo;t need to change significantly</p>
+</blockquote>
+<p>❌ Capacity planning, utilization measurement, data center expansion</p>
+<blockquote>
+<p>Measuing utilization can be done in the same way.</p>
+<p>Data center expansion is not a concern for cloud customer, but taken  care of by the cloud provider.</p>
+</blockquote>
+<p>❌ Data Center expansion, TCO calculations, utilization measurement</p>
+</blockquote>
+<h4 id="07-3">07</h4>
+<p>To speed up data retrieval, more vehicles will be upgraded to cellular connections and be able to transmit data to the ETL process. The current FTP process is error-prone and restarts the data transfer from the start of the file when connections fail, which happens often. You want to improve the reliability of the solution and minimize data transfer time on the cellular connections. What should you do?</p>
+<blockquote>
+<p>✅ Directly transfer the files to a different Google Cloud Regional Storage bucket location in US, EU and Asia using Google APIs over HTTP(S). Run the ETL process to retrieve the data from each Regional bucket</p>
+<blockquote>
+<p>Use a region to help optimize latency and network bandwidth for data consumers, such as analytics pipelines, that are run in the same region.</p>
+<p><a href="https://cloud.google.com/storage/docs/locations" target="_blank" rel="noopener noreffer ">Bucket Location</a></p>
+</blockquote>
+<p>❌ Use one Google Container Engine cluster of FTP servers. Save the data to a Multi-Regional bucket. Run the ETL process using data in the bucket</p>
+<p>❌ Use multiple Google Container Engine clusters running FTP servers located in different regions. Save the data to Multi-Regional buckets in</p>
+<p>❌ Directly transfer the files to different Google Cloud Multi-Regional Storage bucket locations in US, EU, and Asia using Google APIs over HTTP(S). Run the ETL process using the data in the bucket</p>
+<blockquote>
+<p>Regional Storage is faster.</p>
+</blockquote>
+</blockquote>
+<h4 id="08-2">08</h4>
+<p>TerramEarth&rsquo;s 20 million vehicles are scattered around the world. Based on the vehicle&rsquo;s location, its telemetry data is stored in a Google Cloud Storage (GCS) regional bucket (US, Europe, or Asia). The CTO has asked you to run a report on the raw telemetry data to determine why vehicles are breaking down after 100 K miles. You want to run this job on all the data. What is the most cost-effective way to run this job?</p>
+<blockquote>
+<p>✅ Launch a cluster in each region to preprocess and compress the raw data, then move the data into a <!-- raw HTML omitted -->region<!-- raw HTML omitted --> bucket and use a Cloud Dataproc cluster to finish the job</p>
+<blockquote>
+<ul>
+<li>Compress the data before copying to another region/continent makes sense</li>
+<li>Preprocessing also makes sense bcuz we probably want to process smaller  chunks of data first (remember 100K milage)</li>
+<li>Multi-region is good for high-availability and low latency with a little more cost , but it&rsquo;s not required features per the question</li>
+</ul>
+</blockquote>
+<p>❌ Move all the data into 1 zone, then launch a Cloud Dataproc cluster to run the job</p>
+<blockquote>
+<p>No point of transferring data of the vehicles</p>
+</blockquote>
+<p>❌ Move all the data into 1 region, then launch a Google Cloud Dataproc cluster to run the job</p>
+<blockquote>
+<p>No point of transferring data of the vehicles</p>
+</blockquote>
+<p>❌ Launch a cluster in each region to preprocess and compress the raw data, then move the data into a <!-- raw HTML omitted -->multi-region<!-- raw HTML omitted --> bucket and use a Dataproc cluster to finish the job</p>
+</blockquote>
+<h4 id="09-2">09</h4>
+<p>TerramEarth has equipped all connected trucks with servers and sensors to collect telemetry data. Next year they want to use the data to train machine learning models. They want to store this data in the cloud while reducing costs. What should they do?</p>
+<blockquote>
+<p>✅ Have the vehicle&rsquo;s computer compress the data in hourly snapshots, and store it in a GCS Coldline bucket</p>
+<blockquote>
+<p>Storage is the best choice for data that you plan to access at most once a year, due to its slightly lower availability, 90-day minimum storage duration, costs for data access, and higher per-operation costs.</p>
+<ul>
+<li>Cold Data Storage -
+<ul>
+<li>Infrequently accessed data, such as data stored for legal or regulatory reasons, can be stored at low cost as Coldline Storage, and be available when you need it</li>
+</ul>
+</li>
+<li>Disaster recovery -
+<ul>
+<li>In the event of a disaster recovery event, recovery time is key. Cloud Storage provides low latency access to data stored as Coldline Storage</li>
+</ul>
+</li>
+</ul>
+<p><a href="https://cloud.google.com/storage/docs/storage-classes" target="_blank" rel="noopener noreffer ">Storage Classes</a></p>
+</blockquote>
+<p>❌ Have the vehicle&rsquo;s computer compress the data in hourly snapshots, and store it in a Google Cloud Storage (GCS) Nearline bucket</p>
+<blockquote>
+<p>Nearline is more expensive than Coldline.</p>
+</blockquote>
+<p>❌ Push the telemetry data in real-time to a streaming dataflow job that compresses the data, and store it in Google BigQuery</p>
+<blockquote>
+<p>Storing compressed data in relational DB, which may not be possible.
+BigQuery is more expensive than Cloud Storage Coldline.</p>
+</blockquote>
+<p>❌ Push the telemetry data in real-time to a streaming dataflow job that compresses the data, and store it in Cloud Bigtable</p>
+<blockquote>
+<p>Bigtable is the most expensive option, and also it&rsquo;s not integrated with Cloud machine learning. (Dataflow, BigQuery and Cloud Storage are integrated with ML)</p>
+</blockquote>
+</blockquote>
+<h4 id="10-2">10</h4>
+<p>Your agricultural division is experimenting with fully autonomous vehicles. You want your architecture to promote strong security during vehicle operation. Which two architectures should you consider? (Choose two)</p>
+<blockquote>
+<p>✅ Treat every micro service call between modules on the vehicle as untrusted</p>
+<p>✅ Use a trusted platform module (TPM) and verify firmware and binaries on boot</p>
+<blockquote>
+<p>最小權限原則 + 信賴平台模組</p>
+</blockquote>
+<p>❌ Require IPv6 for connectivity to ensure a secure address space</p>
+<blockquote>
+<p>IPv6 doesn&rsquo;t have any impact on the security during vehicle operation, although it improves system scalability. IPv6 只提高系統可擴展性，不影響車輛營運的資安</p>
+</blockquote>
+<p>❌ Use a functional programming language to isolate code execution cycles</p>
+<blockquote>
+<p>Merely using a functional programming language doesn&rsquo;t guarantee a more secure level of execution isolation. Any impact on security from this decision would be incidental at best. 用PF寫法不保證資安等級較高的執行隔離</p>
+</blockquote>
+<p>❌ Use multiple connectivity subsystems for redundancy</p>
+<blockquote>
+<p>This improves system durability, but it doesn&rsquo;t have any impact on the security during vehicle operation. 可提高系統持久性，但不影響車輛營運的資安</p>
+</blockquote>
+<p>❌ Enclose the vehicle&rsquo;s drive electronics in a Faraday cage to isolate chips</p>
+<blockquote>
+<p>It doesn&rsquo;t have any impact on the security during vehicle operation, although it improves system durability. 不影響車輛營運的資安，但可以提高系統持久性</p>
+</blockquote>
+</blockquote>
+<h4 id="11-2">11</h4>
+<p>Operational parameter such as oil pressure are adjustable on each of TerramEarth&rsquo;s vehicles to increase their efficiency, depending on their environmental conditions. Your primary goal is to increase the operating efficiency of all 20 million cellular and unconnected vehicles in the field. How can you accomplish this goal?</p>
+<blockquote>
+<p>✅ Capture all operating data, train machine learning models that identify ideal operations, and run locally to make operational adjustments automatically</p>
+<blockquote>
+<p>cf. option &ldquo;host in Google Cloud machine learning platform to make operational adjustments&rdquo;</p>
+<p>If we host in GCP-Machine Learning, how are we going to instruct vehicles on field to adjust their oil pressure if they have no internet connection?</p>
+<p>There is no way to use GCP-ML model generated parameters to command the &ldquo;not connected&rdquo; field vehicles to make operational adjustments automatically.</p>
+</blockquote>
+<p>❌ Have you engineers inspect the data for patterns, and then create an algorithm with rules that make operational adjustments automatically</p>
+<p>❌ Implement a Google Cloud Dataflow streaming job with a sliding window, and use Google Cloud Messaging (GCM) to make operational adjustments automatically</p>
+<p>❌ Capture all operating data, train machine learning models that identify ideal operations, and host in Google Cloud Machine Learning (ML) Platform to make operational adjustments automatically</p>
+</blockquote>
+<hr>
+<h2 id="terramearth-old_ver2-two-apps">TerramEarth (old_ver.2, two apps)</h2>
+<h4 id="company-overview---1">Company Overview -</h4>
+<p>TerramEarth manufactures heavy equipment for the mining and agricultural industries. About 80% of their business is from mining and 20% from agriculture. They currently have over 500 dealers and service centers in 100 countries. Their mission is to build products that make their customers more productive.</p>
+<h4 id="solution-concept---2">Solution Concept -</h4>
+<p>There are 20 million TerramEarth vehicles in operation that collect 120 fields of data per second. Data is stored locally on the vehicle and can be accessed for analysis when a vehicle is serviced. The data is downloaded via a maintenance port. This same port can be used to adjust operational parameters, allowing the vehicles to be upgraded in the field with new computing modules.</p>
+<p>Approximately 200,000 vehicles are connected to a cellular network, allowing TerramEarth to collect data directly. At a rate of 120 fields of data per second, with 22 hours of operation per day, TerramEarth collects a total of about 9 TB/day from these connected vehicles.</p>
+<h4 id="existing-technical-environment---1">Existing Technical Environment -</h4>
+<p>TerramEarth&rsquo;s existing architecture is composed of Linux and Windows-based systems that reside in a single U.S, west coast based data center. These systems gzip CSV files from the field and upload via FTP, and place the data in their data warehouse. Because this process takes time, aggregated reports are based on data that is 3 weeks old.</p>
+<p>With this data, TerramEarth has been able to preemptively stock replacement parts and reduce unplanned downtime of their vehicles by 60%. However, because the data is stale, some customers are without their vehicles for up to 4 weeks while they wait for replacement parts.</p>
+<h4 id="business-requirements---1">Business Requirements -</h4>
+<ul>
+<li>
+<p>Decrease unplanned vehicle downtime to less than 1 week</p>
+</li>
+<li>
+<p>Support the dealer network with more data on how their customers use their equipment to better position new products and services</p>
+</li>
+<li>
+<p>Have the ability to partner with different companies &ldquo;especially with seed and fertilizer suppliers in the fast-growing agricultural business&rdquo; to create compelling joint offerings for their customers</p>
+</li>
+</ul>
+<h4 id="technical-requirements---1">Technical Requirements -</h4>
+<ul>
+<li>Expand beyond a single datacenter to decrease latency to the American midwest and east coast</li>
+<li>Create a backup strategy</li>
+<li>Increase security of data transfer from equipment to the datacenter</li>
+<li>Improve data in the data warehouse</li>
+<li>Use customer and equipment data to anticipate customer needs</li>
+</ul>
+<h4 id="application-1-data-ingest--">Application 1: Data ingest -</h4>
+<p>A custom Python application reads uploaded datafile from a single server, writes to the data warehouse.</p>
+<p><!-- raw HTML omitted -->Compute<!-- raw HTML omitted -->:
+Windows Server 2008 R2</p>
+<ul>
+<li>16 CPUs</li>
+<li>128 GB of RAM</li>
+<li>10 TB local HDD storage</li>
+</ul>
+<h4 id="application-2-reporting--">Application 2: Reporting -</h4>
+<p>An off the shelf application that business analysts use to run a daily report to see what equipment needs repair. Only two analysts of a team of 10 (5 west coast, 5 east cost) can connect to the reporting application at a time.</p>
+<p><!-- raw HTML omitted -->Compute:<!-- raw HTML omitted -->
+Off the shelf application. License tied to number of physical CPUs</p>
+<ul>
+<li>Windows Server 2008 R2</li>
+<li>16 CPUs</li>
+<li>32 GB of RAM</li>
+<li>500 GB HDD</li>
+</ul>
+<p><!-- raw HTML omitted -->Data warehouse:<!-- raw HTML omitted -->
+A single PostgreSQL server</p>
+<ul>
+<li>RedHat Linux</li>
+<li>64 CPUs</li>
+<li>128 GB of RAM</li>
+<li>4x 6TB HDD in RAID 0</li>
+</ul>
+<h4 id="executive-statement---1">Executive Statement -</h4>
+<p>Our competitive advantage has always been in our manufacturing process, with our ability to build better vehicles for lower cost than our competitors. However, new products with different approaches are constantly being developed, and I am concerned that we lack the skills to undergo the next wave of transformations in our industry. My goals are to build our skills while addressing immediate market needs through incremental innovations.</p>
+<h4 id="01-5">01</h4>
+<p>To be compliant with European GDPR regulation, TerramEarth is required to delete data generated from its European customers after a period of 36 months when it contains personal data. In the new architecture, this data will be stored in both Cloud Storage and BigQuery. What should you do?</p>
+<blockquote>
+<p>✅ Create a BigQuery <strong>time-partitioned</strong> table for the European data, and set the partition expiration period to 36 months. For Cloud Storage, use gsutil to enable lifecycle management using a DELETE action with an Age condition of 36 months</p>
+<blockquote>
+<p>When you create a table partitioned by ingestion time, BigQuery automatically loads data into daily, date-based partitions that reflect the data&rsquo;s ingestion or arrival time.
+<a href="https://cloud.google.com/bigquery/docs/partitioned-tables#ingestion_time" target="_blank" rel="noopener noreffer ">BigQuery: partitioned tables: ingestion_time</a></p>
+<p>Google recommends you configure the default table expiration for your datasets, configure the expiration time for your tables, and configure the partition expiration for partitioned tables.
+<a href="https://cloud.google.com/bigquery/docs/best-practices-storage#use_the_expiration_settings_to_remove_unneeded_tables_and_partitions" target="_blank" rel="noopener noreffer ">BigQuery: Use the expiration settings to remove unneeded tables and partitions</a></p>
+<p>If the partitioned table has a table expiration configured, all the partitions in it are deleted according to the table expiration settings. For our specific requirement, we could se the partition expiration to 36 months so that partitions older than 36 months (and the data within) are automatically deleted.
+<a href="https://cloud.google.com/bigquery/docs/managing-partitioned-tables#partition-expiration" target="_blank" rel="noopener noreffer ">BigQuery: set the partition expiration</a></p>
+</blockquote>
+<p>❌ Create a BigQuery table for the European data, and set the table retention period to 36 months. For Cloud Storage, use gsutil to enable lifecycle management using a DELETE action with an Age condition of 36 months</p>
+<p>❌ Create a BigQuery table for the European data, and set the table retention period to 36 months. For Cloud Storage, use gsutil to create a SetStorageClass to NONE action when with an Age condition of 36 months</p>
+<p>❌ Create BigQuery time-partitioned table for the European data, and set the partition expiration period to 36 months. For Cloud Storage, use gsutil to create a SetStorageClass to NONE actions with an Age condition of 36 months</p>
+</blockquote>
+<h4 id="02-5">02</h4>
+<p>TerramEarth has decided to store data files in Cloud Storage. You need to configure Cloud Storage lifecycle rule to store 1 year of data and minimize file storage cost. Which two actions should you take?</p>
+<blockquote>
+<p>✅ (1) Create a Cloud Storage lifecycle rule with &ndash;
+Age:[30],
+Storage Class: [Standard]
+Action: [Set to Coldline]
+(2) Create a second GCS life-cycle rule with &ndash;
+Age:[365],
+Storage Class: [Coldline]
+Action: [Delete]</p>
+<blockquote>
+<p>Two options talk about deleting the file after one year, but incorrect &ldquo;Nearline&rdquo;</p>
+</blockquote>
+<p>❌ (1) Create a Cloud Storage lifecycle rule with &ndash;
+Age:[30],
+Storage Class: [Coldline]
+Action: [Set to Nearline]
+(2) Create a second GCS life-cycle rule with &ndash;
+Age:[91],
+Storage Class: [Coldline]
+Action: [Set to Nearline]</p>
+<p>❌ (1) Create a Cloud Storage lifecycle rule with &ndash;
+Age:[90],
+Storage Class: [Standard]
+Action: [Set to Nearline]
+(2) Create a second GCS life-cycle rule with &ndash;
+Age:[91],
+Storage Class: [Nearline]
+Action: [Set to Coldline]</p>
+<p>❌ (1) Create a Cloud Storage lifecycle rule with &ndash;
+Age:[30],
+Storage Class: [Standard]
+Action: [Set to Coldline] *
+(2) Create a second GCS life-cycle rule with &ndash;
+Age:[365],
+Storage Class: [Nearline] *
+Action: [Delete]</p>
+</blockquote>
+<h4 id="03-5">03</h4>
+<p>You need to implement reliable, scalable GCP solution for the data warehouse for your company, TerramEarth. Considering the TerramEarth business and technical requirements, what should you do?</p>
+<blockquote>
+<p>✅ Replace the existing data warehouse with BigQuery. Use table partitioning.</p>
+<blockquote>
+<p>The reliable way of improving the data warehouse is to have a table partitioned and well managed</p>
+<p>BigQuery supports partitioning tables by date. You enable partitioning during table-creation process.
+BigQuery creates new date-based partitions automatically, with no need for additional maintenance.
+Also, you can specify an expiration time for data in the partitions.</p>
+</blockquote>
+<p>❌ Replace the existing data warehouse with a Compute Engine instance with 96 CPUs</p>
+<p>❌ Replace the existing data warehouse with BigQuery. Use federated data sources</p>
+<blockquote>
+<p>Federated is an option but not a reliable option.</p>
+<p>You can run queries on data that exists outside of BigQuery by using <em>federated data sources</em>, but this approach has performance implications. Use federated data sources only if the data must be maintained externally. You can also use query federation to perform ETL from an external source to BigQuery. This approach allows you to define ETL using familiar SQL syntax.</p>
+</blockquote>
+<p>❌ Replace the existing data warehouse with a Compute Engine instance with 96 CPUs. Add an additional Compute Engine preemptible instance with 32 CPUs</p>
+</blockquote>
+<h4 id="04-5">04</h4>
+<p>A new architecture that writes all incoming data to BigQuery has been introduced. You notice that the data is dirty, and want to ensure data quality on an automated daily basis while managing cost. What should you do?</p>
+<blockquote>
+<p>✅ Use Cloud Dataprep and configure the BigQuery tables as the source. Schedule a daily job to clean the data</p>
+<blockquote>
+<p><strong>Dataprep</strong> has the capabilities to clean dirty data. <a href="https://cloud.google.com/dataprep" target="_blank" rel="noopener noreffer ">Dataprep</a></p>
+<ul>
+<li>Good for fast exploration and anomaly detection</li>
+<li>Support scheduling.
+When the scheduled job successfully executes, you can collect the wrangled output in the specified location</li>
+<li>Integrates naturally with BigQuery (and Cloud Storage, for directly uploading file) and it uses Dataflow under the hood</li>
+</ul>
+</blockquote>
+<p>❌ Set up a streaming Cloud Dataflow job, receiving data by the ingestion process. Clean the data in a Cloud Dataflow pipeline</p>
+<p>❌ Create a Cloud Function that reads data from BigQuery and cleans it. Trigger the Cloud Function from a Compute Engine instance.</p>
+<blockquote>
+<p>Cloud Dataflow and Cloud Function are about real-time processing, which is not needed (per requests &lsquo;on daily basis&rsquo;).</p>
+<p>Alos to check if data is dirty, you may analyze several adjacent rows, so real-time processing may not physically solve a problem.</p>
+</blockquote>
+<p>❌ Create a SQL statement on the data in BigQuery, and save it as a view. Run the view daily, and save the result to a new table.</p>
+</blockquote>
+<h4 id="05-5">05</h4>
+<p>Considering the technical requirements, how should you reduce the unplanned vehicle downtime in GCP?</p>
+<blockquote>
+<p>✅ Use BigQuery as the data warehouse. Connect all vehicles to the network and stream data into BigQuery using Cloud Pub/Sub and Cloud Dataflow. Use Google Data Studio for analysis and reporting</p>
+<blockquote>
+<p>Stream data with managed services approach</p>
+<p><a href="https://cloud.google.com/architecture/connected-devices#data_ingestion" target="_blank" rel="noopener noreffer ">Connected device architectures on Google Cloud</a></p>
+</blockquote>
+<p>❌ Use BigQuery as the data warehouse. Connect all vehicles to the network and upload gzip files to a Multi-Regional Cloud Storage bucket using cloud. Use Google Data Studio for analysis and reporting</p>
+<p>❌ Use Cloud Dataproc Hive as the data warehouse. Upload gzip files to a Multi-Regional Cloud Storage bucket. Upload this data into BigQuery using cloud. Use Google Data Studio for analysis and reporting</p>
+<p>❌ Use Cloud Dataproc Hive as the data warehouse. Directly stream data into partitioned Hive tables. Use Pig scripts to analyze data.</p>
+</blockquote>
+<h4 id="06-4">06</h4>
+<p>You are asked to design a new architecture for the ingestion of the data of the 200,000 vehicles that are connected to a cellular network. You want to follow Google-recommended practices. Considering the technical requirements, which components should you use for the ingestion of the data?</p>
+<blockquote>
+<p>✅ Cloud <strong>IoT Core</strong> with public/private key pairs</p>
+<blockquote>
+<p>IoT Core:</p>
+<ul>
+<li>is developed for connecting existing devices spread around the world to GCP.</li>
+<li>supports end-to-end security using asymmetric key authentication over TLS 1.2</li>
+</ul>
+</blockquote>
+<p>❌ Google Kubernetes Engine with an SSL Ingress</p>
+<p>❌ Compute Engine with project-wide SSH keys</p>
+<p>❌ Compute Engine with specific SSH keys</p>
+</blockquote>
+<hr>
+<h2 id="terramearth">TerramEarth</h2>
+<h4 id="company-overview-4">Company overview</h4>
+<p>TerramEarth manufactures heavy equipment for the mining and agricultural industries. They currently have over 500 dealers and service centers in 100 countries. Their missions is to build products that make their customers more productive. &mdash; 農業/礦業工具機製造商，全世界在100個國家有服務據點與500個經銷商.</p>
+<h4 id="solution-concept-3">Solution concept</h4>
+<p>There are 2 million TerramEarth vehicles in operation currently, and we see 20% yearly growth. Vehicles collect telemetry data from many sensors during operations. A small subset of critical data is transmitted from the vehicles in real time to facilitate fleet management. The rest of the sensor data is collected, compressed, and updated daily when the vehicles return to home base. Each vehicle usually generates 200 to 500 megabytes of data per day.</p>
+<h4 id="existing-technical-environment-2">Existing technical environment</h4>
+<p>TerramEarth&rsquo;s vehicle data aggregation and analysis infrastructure resides in Google Cloud and serves clients from all around the world. 資料整合與分析的基礎建設在GoogleCloud，客戶遍佈全世界. A growing amount of sensor data is captured from their two main manufacturing plants and sent to private data centers that contain their legacy inventory and logistics management systems. The private data centers have multiple network interconnects configured to Google Cloud.</p>
+<p>The web frontend for dealers and customers is running in Google Cloud and allows access to stock management and analytics.</p>
+<h4 id="business-requirements-3">Business requirements</h4>
+<ul>
+<li>Predict and detect vehicle malfunction and rapidly ship parts to dealerships for just-in-time repair where possible. 預測/偵測車輛故障，迅速運送到經銷商做即時維修</li>
+<li>Decrease cloud operational costs and adapt to seasonality 減少雲操作成本 適應淡旺季(嗎？)</li>
+<li>Increase speed and reliability of development workflow</li>
+<li>Allow remote developers to be productive without compromising code or data security</li>
+<li>Create a flexible and scalable platform for developers to create custom API services for dealers and partners</li>
+</ul>
+<h4 id="technical-requirements-3">Technical requirements</h4>
+<ul>
+<li>Create a new abstraction layer for HTTP API access to their legacy systems to enable a gradual move into the cloud without disrupting operations. 建立HTTP API抽象層存取既有系統, 上雲不會干擾實際作業</li>
+<li>Modernize all CI/CD pipelines to allow developers to deploy container-based workloads in highly scalable environments. 優化CICD，讓開發人員能在高擴張性環境下，部署容器化的工作負載</li>
+<li>Allow developers to run experiments without compromising security and governance requirements</li>
+<li>Create a self-service portal for internal and partner developers to create new projects, request resources for data analytics jobs, and centrally manage access to the API endpoints</li>
+<li>Use cloud-native solutions for keys and secrets management and optimize for identity-based access</li>
+<li>Improve and standardize tools necessary for application and network monitoring and troubleshooting</li>
+</ul>
+<h4 id="executive-statement-2">Executive statement</h4>
+<p>Our competitive advantage has always been our focus on the customer, with our ability to provide excellent customer service and minimize vehicle downtimes.</p>
+<p>After moving multiple system into Google Cloud, we are seeking new ways to provide best-in-class online fleet management (車隊管理) services to our customers and improve operations of our dealerships (代理權/經銷權). Our 5-year strategic plan is to create a partner ecosystem of new products by enabling access to our data, increasing autonomous operation capabilities of our vehicles, and creating a path to move the remaining legacy systems to the cloud.</p>
+<h4 id="01-6">01</h4>
+<p>You are the data compliance officer for TerramEarth and must protect customers&rsquo; personally identifiable information (PII), like credit card information. TerramEarth wants to personalize product recommendations for its large industrial customers. You need to respect data privacy and deliver a solution. What should you do?</p>
+<blockquote>
+<p>✅ Use the Cloud Data Loss Prevention (DLP) API to provide data to the recommendation service.</p>
+<blockquote>
+<p>Cloud DLP &mdash; was specifically designed for this use case</p>
+</blockquote>
+<p>❌ Use AutoML to provide data to the recommendation service</p>
+<blockquote>
+<p>Incorrect, as AutoML does not inherently provide data de-identification</p>
+</blockquote>
+<p>❌ Process PII data on-premises to keep the private information more secure</p>
+<blockquote>
+<p>Incorrect, as TerramEarth&rsquo;s requirements are to go into the cloud, not stay on-premises</p>
+</blockquote>
+<p>❌ Manually build, train, and test machine learning models to provide product recommendations anonymously</p>
+<blockquote>
+<p>Incorrect, as developing machine learning models is an excessive way to de-identify data.</p>
+</blockquote>
+</blockquote>
+<h4 id="02-6">02</h4>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<p>03</p>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<p>04</p>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<p>05</p>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<p>06</p>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<p>07</p>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<hr>
+<p>Dress4Win Questions* 11</p>
+<hr>
+<p>Dress4Win Questions* 6</p>
+<hr>
+<p>JencoMart Question* 6</p>
+<hr>
+<h2 id="helicopter-racing-league">Helicopter Racing League</h2>
+<h4 id="company-overview-5">Company overview</h4>
+<p>Helicopter Racing League (HRL) is a global sports league for competitive helicopter racing. Each year HRL holds the world championship and several regional league competitions where teams compete to earn a spot in the world championship. HRL offers a paid service to stream the races all over the world with live telemetry and predictions throughout each race.</p>
+<h4 id="solution-concept-4">Solution concept</h4>
+<p>HRL wants to migrate their existing service to a new platform to expand their use of managed AI and ML services to facilitate race predictions (make predicting easier). Additionally, as new fans engage with the sport, particularly in emerging regions, they want to move the serving of their content, both real-time and recorded, closer to their users.</p>
+<ol>
+<li>利用AI＆機器學習讓賽事預測變簡單</li>
+<li>將即時/預錄賽事資料移到離新興收看區域比較近的地方</li>
+</ol>
+<h4 id="existing-technical-environment-3">Existing technical environment</h4>
+<p>HRL is a public cloud-first company; the core of their mission-critical applications runs on their current public cloud provider. Video recording and editing is performed at the race tracks, and the content is encoded and transcoded, where needed, in the cloud. 在賽道上錄影/剪輯影片、雲端上視訊編碼/轉碼</p>
+<p>Enterprise-grade connectivity and local compute is provided by truck-mounted mobile data centers. Their race prediction services are hosted exclusively on their existing public cloud provider. Their existing technical environment is as follows:</p>
+<ul>
+<li>Existing content is stored in an object storage service on their existing public cloud provider.</li>
+<li>Video encoding and transcoding is performed on VMs created for each job.</li>
+<li>Race predictions are performed using TensorFlows running on VMs in the current public cloud provider</li>
+</ul>
+<h4 id="business-requirements-4">Business requirements</h4>
+<p>HRL&rsquo;s owners want to expand their predictive capabilities and reduce latency for their viewers in emerging markets. Their requirements are:</p>
+<ul>
+<li>Support ability to expose the predictive models to partners</li>
+<li>Increase predictive capabilities during and before races:
+<ul>
+<li>Race results</li>
+<li>Mechanical failures</li>
+<li>Crowd sentiment</li>
+</ul>
+</li>
+<li>Increase telemetry(遙測技術) and create additional insights</li>
+<li>Measure fan engagement with new predictions</li>
+<li>Enhance global availability and quality of the broadcasts</li>
+<li>Increase the number of concurrent viewers 提高線上收看人數</li>
+<li>Minimize operational complexity</li>
+<li>Ensure compliance with regulations</li>
+<li>Create a merchandising revenue stream 建立商品成交金流</li>
+</ul>
+<h4 id="technical-requirements-4">Technical requirements</h4>
+<ul>
+<li>Maintain or increase prediction throughput and accuracy
+維持或提高預測吞吐量以及準確性</li>
+<li>Reduce viewer latency
+降低觀看延遲</li>
+<li>Increase transcoding performance
+提高轉碼 (視訊-音訊) 效能</li>
+<li>Create real-time analytics of viewer consumption patterns and engagement
+建立觀眾消費行為與互動的即時分析</li>
+<li>Create a data mart to enable processing of large volumes of race data
+建立可處理大量賽事資料的資料市集
+資料市集&mdash;專注於特定主題或營業單位、為簡單形式的資料倉儲 (<a href="https://aws.amazon.com/compare/the-difference-between-a-data-warehouse-data-lake-and-data-mart/?nc1=h_ls" target="_blank" rel="noopener noreffer ">參考文章</a>)</li>
+</ul>
+<h4 id="executive-statement-3">Executive statement</h4>
+<p>Our CEO, S. Hawke, wants to bring high-adrenaline racing to fans all around the world. We listen to our fans, and they want enhanced video streams that include <!-- raw HTML omitted -->predictions of events within the race<!-- raw HTML omitted --> (e.g. overtaking). Our current platform allows us to predict race outcomes but laks the facility to support real-time predictions during races and the capacity to process season-long results.</p>
+<blockquote>
+<p>需求：在賽事進行中的即時預測＆處理整季度比賽結果的能力</p>
+</blockquote>
+<h4 id="01-7">01</h4>
+<p>Your team is in charge of creating a payment card data vault for card numbers used to bill tens of thousands of viewers, merchandise consumers, and season ticket holders. You need to implement a custom card tokenization service that meets the following requirements:</p>
+<ul>
+<li>It must provide low latency at minimal cost</li>
+<li>It must be able to identify duplicate credit cards and must not store plaintext card numbers</li>
+<li>It should support annual key rotation</li>
+</ul>
+<p>Which storage approach should you adopt for your tokenization service?</p>
+<blockquote>
+<p>✅ Encrypt the card data with a deterministic algorithm (and) stored in Firestore using Datastore mode</p>
+<blockquote>
+<p>Deterministic output: A given set of inputs (card number, expiration, userID) will always generate the same token. This is useful if you want to rely on the token value to de-duplicate your token stores. You can simply match a newly generated token to your existing catalog of tokens to determine whether the card has been previously stored.</p>
+<p>Depending on your application, this can be a very useful feature, but this could also be accomplished using a salted hash of the input values.</p>
+<p><a href="https://cloud.google.com/community/tutorials/pci-tokenizer" target="_blank" rel="noopener noreffer ">Credit Card Tokenization: PCI tokenizer</a></p>
+<p>Firestore is the next major version of Datastore. Firestore can run in Datastore mode, which uses the same API as Datastore and scales to millions of writes per second.</p>
+<p><a href="https://cloud.google.com/architecture/tokenizing-sensitive-cardholder-data-for-pci-dss" target="_blank" rel="noopener noreffer ">Tokenizing sensitive cardholder data for PCI DSS</a></p>
+</blockquote>
+<p>❌ Store the card data in Secret Manager after running a query to identify duplicates</p>
+<p>❌ Encrypt the card data with a deterministic algorithm and shard it across multiple Memorystore instances</p>
+<p>❌ Use column-level encryption to store the data in Cloud SQL</p>
+</blockquote>
+<h4 id="02-7">02</h4>
+<p>Recently HRL started a new regional racing league in Cape Town, South Africa. In an effort to give customers in Cape Town a better user experience, HRL has partnered with the Content Delivery Network provider, Fastly. HRL needs to allow traffic coming from all of the Fastly IP address ranges into their Virtual Private Cloud network (VPC network). You are a member of the HRL security team and you need to configure the update that will allow only the Fastly IP address ranges through the External HTTP(S) load balancer. Which command should you use?</p>
+<blockquote>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">✅
+gcloud compute security-policies rules update 1000
+    --security-policy hlr-policy
+    --expression &#34;evaluatePreconfiguredExpr(&#39;sourceiplist-fastly&#39;)&#34;
+    --action &#34;allow&#34;
+</code></pre><blockquote>
+<ol>
+<li>They want to apply a firewall rule at HTTPS load balancing level. This can be done only with cloud armor. Cloud armor doesn&rsquo;t work with classic firewall; it works with security policies.</li>
+<li>Above option is the only answer that points to a list of IPs to whitelist, via <!-- raw HTML omitted -->preconfigured expression<!-- raw HTML omitted -->. The others will open to too broad IPs.</li>
+</ol>
+<p><a href="https://cloud.google.com/armor/docs/configure-security-policies#gcloud_11" target="_blank" rel="noopener noreffer ">Configure a secure policy</a></p>
+</blockquote>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❌
+gcloud compute security-policies rules update 1000
+    --security-policy from-fastly
+    --src-ip-ranges *
+    --action &#34;allow&#34;
+</code></pre><pre tabindex="0"><code class="language-terminal" data-lang="terminal">❌
+gcloud compute firewall rules update sourceiplist-fastly
+    --priority 1000
+    --allow tcp:443  
+</code></pre><pre tabindex="0"><code class="language-terminal" data-lang="terminal">❌
+gcloud compute firewall rules update hlr-policy
+    --priority 1000
+    --target-tags=sourceiplist-fastly
+    --allow tcp:443
+</code></pre></blockquote>
+<h4 id="03-6">03</h4>
+<p>The HRL development team releases a new version of their predictive capability application every Tuesday evening at 3 a.m. UTC to a repository. The security team at HRL has development an in-house penetration test Cloud Function called Airwolf. The security team wants to run Airwolf against the predictive capability application as soon as it is released every Tuesday. You need to set up Airwolf to run at the recurring weekly cadence. What should you do?</p>
+<blockquote>
+<p>✅ Configure the deployment job to notify a Pub/Sub queue that triggers a Cloud Function</p>
+<blockquote>
+<p>Trigger pub/sub &mdash; to invoke Cloud Functions
+Cloud Storage &mdash; no sense</p>
+</blockquote>
+<p>❌ Set up Cloud Tasks and a Cloud Storage bucket that triggers a Cloud Function</p>
+<p>❌ Set up a Cloud Logging sink and a Cloud Storage bucket that triggers a Cloud Function</p>
+<p>❌ Set up Identity and Access Management (IAM) and Confidential Computing to trigger a Cloud Function</p>
+</blockquote>
+<p>04</p>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<p>05</p>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<p>06</p>
+<blockquote>
+<p>✅</p>
+<p>❌</p>
+<p>❌</p>
+<p>❌</p>
+</blockquote>
+<hr>
+<h1 id="non-case-study">Non-case-study</h1>
+<h4 id="01-8">01</h4>
+<p>You are designing a future-proof hybrid environment that will require network connectivity between Google Cloud and your on-premises environment. You want you ensure that the Google Cloud environment you are designing is compatible with your on-premises networking environment. What should you do?</p>
+<blockquote>
+<p>☀︎ Create a network plan for your VPC in Google Cloud that uses non-overlapping CIDR ranges with your on-premises environment. Use a Cloud Interconnect connection between your on-premises environment and Google Cloud. ☀︎
+&mdash; Correct, as this ensures your on premises network is compatible with your Google Cloud VPC.</p>
+<p>Use the default VPC in your Google Cloud project. Use a Cloud VPN connection between your on-premises environment and Google Cloud &mdash; Incorrect, as the default VPC is a VPC with Auto Mode IP ranges, which has the same problem as answer C</p>
+<p>Create a custom VPC in Google Cloud auto mode. Use a Cloud VPN connection between your on-premises environment and Google Cloud &mdash; Incorrect, because with Auto Mode IP ranges there is no guarantee that the IP ranges will not overlap with your on premises environment, either now or in the future.</p>
+<p>Create a network plan for your VPC in Google Cloud that uses CIDR ranges that overlap with your on-premises environment. Use a Cloud Interconnect connection between your on-premises environment and Google Cloud &mdash; Incorrect, because to ensure correct routing, ranges cannot overlap between environments.</p>
+</blockquote>
+<h4 id="02-8">02</h4>
+<p>Your company wants to track whether someone is present in a meeting room reserved for a scheduled meeting. There are 1000 meeting rooms across 5 offices on 3 continents. Each room is equipped with a motion sensor that reports its status every second. You want to support the data ingestion needs of this sensor network. The receiving infrastructure needs to account for the possibility that the devices may have inconsistent connectivity. Which solution should you design?</p>
+<blockquote>
+<p>☀︎ Have devices poll for connectivity to Pub/Sub and publish the latest messages on a regular interval to a shared topic for all devices ☀︎</p>
+<p>Pub/Sub &mdash; Correct, as it can handle the frequency of this data, and consumers of the data can pull from the shared topic for further processing.</p>
+<p>Have each device create a persistent connection to a Compute Engine instance and write messages to a custom application &mdash; Incorrect, as having a persistent connection does not handle the case where the device is disconnected.</p>
+<p>Have devices poll for connectivity to Cloud SQL and insert the latest messages on a regular interval to a device specific table &mdash; Incorrect, as Cloud SQL is a regional, relational database and not the best fit for sensor data. Additionally, the frequency of the writes has the potential to exceed the supported number of concurrent</p>
+<p>Have devices create a persistent connection to an App Engine application fronted by Cloud Endpoints, which ingest messages and write them to Datastore &mdash; Incorrect, as having a persistent connection does NOT handle the case where the device is disconnected.</p>
+</blockquote>
+<h4 id="03-7">03</h4>
+<p>Your company wants to try out the cloud with low risk. They want to archive approximately 100TB of their log data to the cloud and test the serverless analytics features available to them there, while also retaining that data as a long-term disaster recovery backup. Which two steps should they take? (Choose two)</p>
+<blockquote>
+<p>✅ Load logs into BigQuery
+Correct, as BigQuery is a serverless cloud data warehouse for analytics and supports the volume and analytics requirement (無伺服器/支援量/支援分析)</p>
+<p>✅ Upload log files into Cloud Storage
+Correct, as Cloud Storage provides the Coldline and Archive storage classes to support long-term storage with infrequent access, which would support the long-term disaster recovery backup requirement (備份用, coldline / archive - 90天/一年存取一次)</p>
+<p>❌ Log logs into Cloud SQL
+Incorrect, as it does not support the expected 100 TB. Additionally, Cloud SQL is a relational database and not the best fit for time-series log data formats (Cloud SQL 不支援到 100 terabytes 且關聯式資料庫不是時間序列數據格式的最佳選擇)</p>
+<p>❌ Import logs into Cloud Logging
+Incorrect, as Cloud Logging is optimized for monitoring, error reporting, and debugging instead of analytics queries (Cloud Logging適用：監測、回報錯誤、除錯, 不用在分析查詢)</p>
+<p>❌ Insert logs into Cloud Bigtable
+Incorrect, as Cloud BigTable is optimized for read-write latency and analytics throughput, not analytics querying and reporting (BigTable優勢：讀寫延遲性 以及 分析高吞吐量, 不適合查詢分析/產製報表)</p>
+</blockquote>
+<h4 id="04-6">04</h4>
+<p>You set up an autoscaling managed instance group to serve web traffic for an upcoming launch. After configuring the instance group as a backend service to an HTTP(S) load balancer, you notice that virtual machine (VM) instances are being terminated and re-launched every minute. The instances do not have a public IP address. You have verified that the appropriate web response is coming from each instance using the curl command. You want to ensure that the backend is configured correctly. What should you do?</p>
+<blockquote>
+<p>✅ Ensure that a firewall rule exists to allow load balancer health checks to reach the instances in the instance group
+Correct, as health check failures lead to a VM being marked unhealthy and can result in termination if the health check continues to fail. Because you have already verified that the instances are functioning properly, the next step would be to determine why the health check is continuously failing.</p>
+<p>❌ Ensure that a firewall rule exists to allow source traffic on HTTP/HTTPS to reach the load balancer
+Incorrect, as the issue to resolve is the VMs being terminated, not access to the load balancer.</p>
+<p>❌ Assign a public IP to each instance, and configure a firewall rule to allow the load balancer to reach the instance public IP
+Incorrect, as this introduce a security vulnerability without addressing the primary concern of the VM termination.</p>
+<p>❌ Create a tag on each instance with the name of the load balancer. Configure a firewall rule with the name of the load balancer as the source and the instance tag as the destination
+Incorrect, as the source of the firewall rule that allows load balancer and health check access to instances is defined IP ranges, and not a named load balancer. Tagging the instances for the purpose of firewall rules is appropriate but would probably be a descriptor of the application, and not the load balancer.</p>
+</blockquote>
+<h4 id="05-6">05</h4>
+<p>Your organization has a 3-tier web application deployed in the same Google Cloud Virtual Private Cloud (VPC). Each tier (web, API, and database) scales independently of the others. Network traffic should flow through the web to the API tier, and then on to the database tier. Traffic should not flow between the web and the database tier. How should you configure the network with minimal steps?</p>
+<blockquote>
+<p>✅ Add tags to each tier and set up firewall rules to allow the desired traffic flow
+Correct, because as instances scale, they will all have the same tag to identify the tier. These tags can then be leveraged in firewall rules to allow and restrict traffic as required, because tags can be used for both the target and source.</p>
+<p>❌ Add each tier to a different subnetwork
+Incorrect, as the subnetwork alone will not allow and restrict traffic as required without firewall rules.</p>
+<p>❌ Set up software-based firewalls on individual VMs</p>
+<p>​    Incorrect, as this adds complexity to the architecture and the instance configuration.</p>
+<p>❌ Add tags to each tier and set up routes to allow the desired traffic flow
+Incorrect, as routes still require firewall rules to allow traffic as requests. Additionally, the tags are used for defining the instances the route applies to, and not for identifying the next hop. The next hop is either an IP range or instance name, but in the proposed solution the tiers are only identified by tags.</p>
+</blockquote>
+<h4 id="06-5">06</h4>
+<p>You are designing a large distributed application with 30 microservices. Each of your distributed microservices needs to connect to a database backend. You want to store the credentials securely. Where should you store the credentials?</p>
+<blockquote>
+<p>✅ In a secret management system
+Correct, as a secret management system such as Secret Manager is a secure and convenient storage system for API keys, passwords, certificates, and other sensitive data. Secret Manager provides a central place and single source of truth to manage, access and audit secrets across Google Cloud.</p>
+<p>❌ In the source code
+Incorredt, as storing credentials in source code and source control is discoverable, in plain text, by anyone with access to the source code. This also introduces the requirement to update code and do a deployment each time the credentials are rotated.</p>
+<p>❌ In an environment variable
+Incorrect, as consistently populating environment variables would require the credentials to be available, in plain text, when the session is started.</p>
+<p>❌ In a config file that has restricted access through ACLs
+Incorrect, bcuz instead of managing access to the config file and updating manually as keys are rotated, it would be better to leverage a key management system. Additionally, there is increased risk if the config file contains the credentials in plain text.</p>
+</blockquote>
+<h4 id="07-4">07</h4>
+<p>Your customer is moving their corporate applications to Google Cloud. The security team wants detailed visibility of all resources in the organization. You use Resource Manager to set yourself up as the Organization Administrator. Which Identity and Access Management (IAM) roles should you give to the security team while following Google recommended practices?</p>
+<p>08</p>
+<p>09</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-06-25</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/gcp_pca_exam_dump/" data-hashtag="GoogleCloudPlatform"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/gcp_pca_exam_dump/" data-title="GCP PCA --- practice exam"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/googlecloudplatform/">GoogleCloudPlatform</a>,&nbsp;<a href="/tags/professionalcloudarchitect/">ProfessionalCloudArchitect</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/joshw/" class="prev" rel="prev" title="coffee and software"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>coffee and software</a>
+            <a href="/posts/elasticsearch/" class="next" rel="next" title="Elasticsearch 8 Java client 應用">Elasticsearch 8 Java client 應用<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
