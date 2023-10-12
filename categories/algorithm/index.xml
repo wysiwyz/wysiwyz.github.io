@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>algorithm - Category - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/categories/algorithm/</link>
+        <description>algorithm - Category - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 05 Oct 1993 19:25:55 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/algorithm/" rel="self" type="application/rss+xml" /><item>
+    <title>Algorithm</title>
+    <link>http://wysiwyz.github.io/posts/algorithm/</link>
+    <pubDate>Tue, 05 Oct 1993 19:25:55 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/algorithm/</guid>
+    <description><![CDATA[Ch. 1 Analyzing Algorithm 時間複雜度的分析 $T(n)$
+n : input size 隨著n的數越來越大，所花的時間一定也越來越大 $T(n) = O(n\log_{}{n})$
+$T(n) = O(n^2)$
+1.1 Asymptotic notation 定義 Define:
+假設 $f,g$ (兩個時間函數) 其定義域為正整數，對應到正的實數 $\mathbb{Z}^+ → \reals^+\cup{0}$
+為]]></description>
+</item>
+</channel>
+</rss>

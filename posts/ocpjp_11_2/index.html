@@ -29,7 +29,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/"
-        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  25697 ,
+        },"genre": "posts","keywords": "Java, 1Z0-819","wordcount":  25741 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ocpjp_11_2\/","datePublished": "2023-08-05T12:11:34+08:00","dateModified": "2023-08-05T12:11:34+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -71,7 +71,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">1Z0-819 曾師筆記 (2/duology)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-05">2023-08-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;25697 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-08-05">2023-08-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;25741 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;121 minutes&nbsp;<span id="/posts/ocpjp_11_2/" class="leancloud_visitors" data-flag-title="1Z0-819 曾師筆記 (2/duology)">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -5806,7 +5806,7 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 <p>要使用宣告 <code>synchronized</code> 的方法，就必須取得「<strong>this</strong>」的 object monitor</p>
 </li>
 <li>
-<p>要使用宣告 <code>static</code> 的方法，同理也必須取得類別的「<strong>class monitor</strong>」</p>
+<p>要使用宣告 <code>static</code> 的 <code>synchronized</code>方法，同理也必須取得類別的「<strong>class monitor</strong>」</p>
 </li>
 <li>
 <p>要使用宣告 <code>synchronized</code> 區塊，必須指定要使用哪一個物件的 monitor</p>
@@ -6068,7 +6068,7 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 <p>物件裡所有 synchronized 方法在執行前，都必須取得 object monitor</p>
 </li>
 <li>
-<p>因此如果越多方法使用 synchronized，或是被 synchronized 的方法內容越長，都會造成執「行等待」</p>
+<p>因此如果越多方法使用 synchronized，或是被 synchronized 的方法內容越長，都會造成「執行等待」</p>
 </li>
 <li>
 <p>盡可能使用 synchronized 程式區塊，而非直接 synchronized 整個方法</p>
@@ -6184,6 +6184,7 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 <h2 id="其它執行緒方法介紹">其它執行緒方法介紹</h2>
 <h3 id="使用-interrupt-方法">使用 <code>interrupt()</code> 方法</h3>
 <p>除了利用 <code>volatile</code> 宣告的變數來停止執行中的執行緒，也可以用 <code>interrupt()</code> 方法</p>
+<p>執行中的執行緒可以藉由 Thread.interrupted() 方法不斷確認是否收到中斷指令，若是，就中斷目前執行工作</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -6239,7 +6240,7 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="使用-sleep-方法">使用 <code>sleep()</code> 方法</h3>
-<p>若要使執行緒暫停，可以呼叫 class Thread 的靜態 <code>sleep()</code> 方法</p>
+<p>若要使執行緒暫停一段時間，可以呼叫 class Thread 的靜態 <code>sleep()</code> 方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -6288,6 +6289,19 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 </ul>
 <h3 id="使用其它方法">使用其它方法</h3>
 <p>Class Thread 的其它常用方法：</p>
+<ol>
+<li><code>setName(String)</code>, <code>getName()</code>, <code>getId()</code>: 和執行緒的識別有關</li>
+<li><code>isAlive()</code>: 判斷執行緒是否已經結束</li>
+<li><code>isDaemon()</code> &amp; <code>setDaemon(boolean)</code>:
+<ul>
+<li>可以將執行緒設為 daemon 和判斷是否為 daemon</li>
+<li>執行緒預設是 <strong>non-daemon</strong>，JVM會等待執行中的 non-daemon 執行緒都結束，才會結束；</li>
+<li>此時若還有其他 daemon 的執行緒正在執行，一樣會結束 JVM</li>
+</ul>
+</li>
+<li><code>join()</code>: 插隊到目前執行緒的前面，執行完後才輪到目前執行緒</li>
+<li><code>Thread.currentThread()</code>: 取得執行中的執行緒</li>
+</ol>
 <p>以下 3 個方法繼承自 Object class：</p>
 <ol>
 <li>
@@ -6297,7 +6311,15 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 <p><code>notify()</code> 和 <code>notifyAll()</code> : 通知 <code>wait()</code> 中的執行緒</p>
 <blockquote>
 <p>🍪☕ <strong>Little Tips</strong></p>
-<p><code>daemon</code> : 在多執行緒的情形下，無法影響 JVM 的結束</p>
+<p><code>daemon</code></p>
+<ul>
+<li>
+<p>在多執行緒的情形下，無法影響 JVM 的結束</p>
+</li>
+<li>
+<p>是一種抽象、虛無的表徵，很難證明其實質影響力</p>
+</li>
+</ul>
 </blockquote>
 </li>
 </ol>
@@ -6356,6 +6378,12 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 </span><span class="lnt">50
 </span><span class="lnt">51
 </span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-Java" data-lang="Java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">ThreadTest</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
@@ -6382,33 +6410,39 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Thread main is ending...&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * #1 thread main 和 thread t 啟動後各走各的，互不影響 
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * 兩者都結束後，程式結束，JVM關閉
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testNormal</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadTest</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</span></span><span class="line"><span class="cl">        <span class="c1">// #1 thread main 和 thread t 啟動後各走各的，互不影響
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * #2 thread main 啟動 thread t，在執行 t.join() 時，
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * thread t 會插隊到 main 前面，只有 thread t 結束後才會執行 thread main
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testJoin</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadTest</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">t</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">t</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>  
 </span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>
-</span></span><span class="line"><span class="cl"><span class="cm">/* #2 thread main 啟動 thread t，在執行 t.join() 時，
-</span></span></span><span class="line"><span class="cl"><span class="cm">      thread t 會插隊到 main 前面，只有 thread t 結束後才會執行 thread main */</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="cm">/** 
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * 將執行緒 t 設為 daemon 後，一旦 non-daemon 的 thread main 結束，JVM 就關閉
+</span></span></span><span class="line"><span class="cl"><span class="cm">    * thread main 結束後，即便 thread t 尚未結束，JVM 也會關閉，和先前2種測試明顯不同 
+</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span> 
 </span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">testDaemon</span><span class="o">()</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadTest</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="na">setDaemon</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">        <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// t.setDaemon(true);  // java.lang.IllegalThreadStateException
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        
-</span></span><span class="line"><span class="cl"><span class="cm">/* 將執行緒 t 設為 daemon 後，一旦 non-daemon 的 thread main 結束，JVM 就關閉
-</span></span></span><span class="line"><span class="cl"><span class="cm">   thread main 結束後，即便 thread t 尚未結束，JVM 也會關閉，和先前2種測試明顯不同 */</span> 
-</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -6562,7 +6596,7 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 <p>有別於<code>synchronization</code>與<code>monitor</code>機制，<code>ReentrantReadWriteLock</code>提供另一種鎖定（locking）</p>
 </li>
 <li>
-<p>可根據不同情況（conditions）調整執行緒等待的（wait）架構</p>
+<p>可根據不同情況（conditions）調整執行緒等待（wait）的架構</p>
 <ol>
 <li>
 <p>過去的 monitor 未分類，一個執行緒取得 monitor 之後，其它執行緒必須等待鎖定該 monitor</p>
@@ -7075,7 +7109,7 @@ symbolic link created for file.sl &lt;&lt;===&gt;&gt; file.txt
 </span></span><span class="line"><span class="cl">    <span class="n">es</span><span class="o">.</span><span class="na">awaitTermination</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">    <span class="cm">/* 若已執行 shutdown() 指令，但執行緒工作結束後還是無法關閉，
 </span></span></span><span class="line"><span class="cl"><span class="cm">       可以使用 awaitTermination(5, TimeUnit.SECONDS) 方法傳入等待時間，時間到後會強制關閉*/</span>
-</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="k">catch</span> <span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Stopped waiting early&#34;</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>    
 </span></span></code></pre></td></tr></table>

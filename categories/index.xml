@@ -3,12 +3,20 @@
         <title>Categories - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/</link>
         <description>Categories - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 09 Oct 2023 14:24:47 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/" rel="self" type="application/rss+xml" /><item>
     <title>StudyNote</title>
     <link>http://wysiwyz.github.io/categories/studynote/</link>
-    <pubDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</pubDate>
+    <pubDate>Mon, 09 Oct 2023 14:24:47 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/categories/studynote/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>docker</title>
+    <link>http://wysiwyz.github.io/categories/docker/</link>
+    <pubDate>Sat, 07 Oct 2023 14:59:55 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/categories/docker/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -41,6 +49,14 @@
     <pubDate>Sat, 26 Oct 2019 23:30:34 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/categories/bookreadinglog/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>algorithm</title>
+    <link>http://wysiwyz.github.io/categories/algorithm/</link>
+    <pubDate>Tue, 05 Oct 1993 19:25:55 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/categories/algorithm/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

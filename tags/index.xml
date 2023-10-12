@@ -3,7 +3,31 @@
         <title>Tags - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/</link>
         <description>Tags - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 16 Aug 2023 20:39:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>IZ0-819</title>
+    <link>http://wysiwyz.github.io/tags/iz0-819/</link>
+    <pubDate>Wed, 16 Aug 2023 20:39:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/iz0-819/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Java SE 11</title>
+    <link>http://wysiwyz.github.io/tags/java-se-11/</link>
+    <pubDate>Wed, 16 Aug 2023 20:39:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/java-se-11/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>OCPJP</title>
+    <link>http://wysiwyz.github.io/tags/ocpjp/</link>
+    <pubDate>Wed, 16 Aug 2023 20:39:15 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/ocpjp/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>1Z0-819</title>
     <link>http://wysiwyz.github.io/tags/1z0-819/</link>
     <pubDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</pubDate>
@@ -57,30 +81,6 @@
     <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/linux/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Jㄇ</title>
-    <link>http://wysiwyz.github.io/tags/j%E3%84%87/</link>
-    <pubDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/j%E3%84%87/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>css</title>
-    <link>http://wysiwyz.github.io/tags/css/</link>
-    <pubDate>Mon, 10 Apr 2023 09:53:01 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/css/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Animation</title>
-    <link>http://wysiwyz.github.io/tags/animation/</link>
-    <pubDate>Mon, 27 Mar 2023 17:18:19 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/animation/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

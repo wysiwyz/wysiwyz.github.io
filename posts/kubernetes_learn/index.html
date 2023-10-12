@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>跟著黑哥學 Kubernetes - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="跟著黑哥學 Kubernetes" />
+<meta property="og:description" content="0-1 應用部署方式演變
+0-2 kubernetes 介紹
+本質是一組服務器集群，每個服務器都稱為一個節點，可以在每個節點中的容器安裝程序
+0-3 kubernetes 組件 一個 k8s 集群分為控制節點master_node，工作節點worker_node構成，每個節點上都安裝不同的組件
+Master: 集群的控制平面，負責集群的決策（管理） API Server：資源操作的唯一入口，接收用戶輸入的命令，提供認證、授權、API註冊和發現等機制 K8S 的整個訪問入口 Scheduler：負責集群資源調度，按照預訂的調度策略將Pod調度到相應的node節點上 根據算法決定安裝nginx的請球要分配給哪一個node節點（負責算） ControllerManager：負責維護集群的狀態，比如程序部署安排、故障檢測、自動擴展、滾動更新等 如何將 nginx 安裝請求交給 node1節點（負責安排幹活） Etcd：負責存儲集群中各種資源對象的信息 用來紀錄請求信息儲存在資料庫中（也可以改用mysql） Node: 集群的數據平面，負責為容器提供運行環境 [worker_node] Kubelet：負責維護容器的生命週期，即通過控制docker，來創建、更新、銷毀容器 接收控制節點發來的訊息，並傳送命令給 worker node 裡面其他的組件_docker
+KubeProxy：負責提供集群內部的服務發現和負載均衡
+訪問程序的入口
+Docker：負責節點上容器的各種操作
+以部署一個 nginx 服務來說明 kubernetes 系統各個組件調用關係 首先要明確，一旦 kubernetes 環境啟動之後，master 和 node 都會將自身的信息存儲到 etcd 數據庫中 一個 nginx 服務的安裝請求會首先被發送到 master 節點的 apiServer 組件 apiServer 組件會調用 scheduler 組件來決定到底應該把這個服務安裝到哪一個 node 節點上 此時，它會從 etcd 中讀取各個 node 節點的信息，然後按照一定的算法進行選擇，並將結果告知 apiServer apiServer 調用 controller_manager 去調度 Node 節點安裝 nginx 服務 Kubelet 接收到指定之後，會通知 docker，然後由 docker 來啟動一個 nginx 的 pod pod 是 kubernetes 的最小操作單元，容器必須跑在 pod 中至此 一個 nginx 服務就運行了，如果需要訪問 nginx，就需要通過 kube-proxy 來對 pod 產生訪問的代理 這樣，外界用戶就可以訪問集群中的 nginx 服務了 0-4 kubernetes 概念 Master：集群控制節點，每個集群需要至少一個 master 節點負責集群的管控 安排工作的" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/kubernetes_learn/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-09T14:24:47+08:00" />
+<meta property="article:modified_time" content="2023-10-09T14:24:47+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="跟著黑哥學 Kubernetes"/>
+<meta name="twitter:description" content="0-1 應用部署方式演變
+0-2 kubernetes 介紹
+本質是一組服務器集群，每個服務器都稱為一個節點，可以在每個節點中的容器安裝程序
+0-3 kubernetes 組件 一個 k8s 集群分為控制節點master_node，工作節點worker_node構成，每個節點上都安裝不同的組件
+Master: 集群的控制平面，負責集群的決策（管理） API Server：資源操作的唯一入口，接收用戶輸入的命令，提供認證、授權、API註冊和發現等機制 K8S 的整個訪問入口 Scheduler：負責集群資源調度，按照預訂的調度策略將Pod調度到相應的node節點上 根據算法決定安裝nginx的請球要分配給哪一個node節點（負責算） ControllerManager：負責維護集群的狀態，比如程序部署安排、故障檢測、自動擴展、滾動更新等 如何將 nginx 安裝請求交給 node1節點（負責安排幹活） Etcd：負責存儲集群中各種資源對象的信息 用來紀錄請求信息儲存在資料庫中（也可以改用mysql） Node: 集群的數據平面，負責為容器提供運行環境 [worker_node] Kubelet：負責維護容器的生命週期，即通過控制docker，來創建、更新、銷毀容器 接收控制節點發來的訊息，並傳送命令給 worker node 裡面其他的組件_docker
+KubeProxy：負責提供集群內部的服務發現和負載均衡
+訪問程序的入口
+Docker：負責節點上容器的各種操作
+以部署一個 nginx 服務來說明 kubernetes 系統各個組件調用關係 首先要明確，一旦 kubernetes 環境啟動之後，master 和 node 都會將自身的信息存儲到 etcd 數據庫中 一個 nginx 服務的安裝請求會首先被發送到 master 節點的 apiServer 組件 apiServer 組件會調用 scheduler 組件來決定到底應該把這個服務安裝到哪一個 node 節點上 此時，它會從 etcd 中讀取各個 node 節點的信息，然後按照一定的算法進行選擇，並將結果告知 apiServer apiServer 調用 controller_manager 去調度 Node 節點安裝 nginx 服務 Kubelet 接收到指定之後，會通知 docker，然後由 docker 來啟動一個 nginx 的 pod pod 是 kubernetes 的最小操作單元，容器必須跑在 pod 中至此 一個 nginx 服務就運行了，如果需要訪問 nginx，就需要通過 kube-proxy 來對 pod 產生訪問的代理 這樣，外界用戶就可以訪問集群中的 nginx 服務了 0-4 kubernetes 概念 Master：集群控制節點，每個集群需要至少一個 master 節點負責集群的管控 安排工作的"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/kubernetes_learn/" /><link rel="prev" href="http://wysiwyz.github.io/posts/docker_learn/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "跟著黑哥學 Kubernetes",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/kubernetes_learn\/"
+        },"genre": "posts","keywords": "","wordcount":  1149 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/kubernetes_learn\/","datePublished": "2023-10-09T14:24:47+08:00","dateModified": "2023-10-09T14:24:47+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">跟著黑哥學 Kubernetes</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-09">2023-10-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1149 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/posts/kubernetes_learn/" class="leancloud_visitors" data-flag-title="跟著黑哥學 Kubernetes">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#0-3-kubernetes-組件">0-3 kubernetes 組件</a></li>
+        <li><a href="#0-4-kubernetes-概念">0-4 kubernetes 概念</a></li>
+        <li><a href="#0-5-環境搭建_環境規劃">0-5 環境搭建_環境規劃</a></li>
+        <li><a href="#0-14-資源管理方式_介紹">0-14 資源管理方式_介紹</a></li>
+        <li><a href="#0-15-資源管理方式_1">0-15 資源管理方式_1</a></li>
+        <li><a href="#0-16-資源管理方式_2">0-16 資源管理方式_2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>0-1 應用部署方式演變</p>
+<p>0-2 kubernetes 介紹</p>
+<p>本質是一組服務器集群，每個服務器都稱為一個節點，可以在每個節點中的容器安裝程序</p>
+<h3 id="0-3-kubernetes-組件">0-3 kubernetes 組件</h3>
+<p>一個 k8s 集群分為控制節點master_node，工作節點worker_node構成，每個節點上都安裝不同的組件</p>
+<h5 id="master-集群的控制平面負責集群的決策管理">Master: 集群的控制平面，負責集群的決策（管理）</h5>
+<ol>
+<li><strong>API Server</strong>：資源操作的唯一入口，接收用戶輸入的命令，提供認證、授權、API註冊和發現等機制
+K8S 的整個訪問入口</li>
+<li><strong>Schedule</strong>r：負責集群資源調度，按照預訂的調度策略將Pod調度到相應的node節點上
+根據算法決定安裝nginx的請球要分配給哪一個node節點（負責算）</li>
+<li><strong>ControllerManager</strong>：負責維護集群的狀態，比如程序部署安排、故障檢測、自動擴展、滾動更新等
+如何將 nginx 安裝請求交給 node1節點（負責安排幹活）</li>
+<li><strong>Etcd</strong>：負責存儲集群中各種資源對象的信息
+用來紀錄請求信息儲存在資料庫中（也可以改用mysql）</li>
+</ol>
+<h5 id="node-集群的數據平面負責為容器提供運行環境-worker_node">Node: 集群的數據平面，負責為容器提供運行環境 [worker_node]</h5>
+<ol>
+<li>
+<p><strong>Kubelet</strong>：負責維護容器的生命週期，即通過控制docker，來創建、更新、銷毀容器
+接收控制節點發來的訊息，並傳送命令給 worker node 裡面其他的組件_docker</p>
+</li>
+<li>
+<p><strong>KubeProxy</strong>：負責提供集群內部的服務發現和負載均衡</p>
+<p>訪問程序的入口</p>
+</li>
+<li>
+<p><strong>Docker</strong>：負責節點上容器的各種操作</p>
+</li>
+</ol>
+<h5 id="以部署一個-nginx-服務來說明-kubernetes-系統各個組件調用關係">以部署一個 nginx 服務來說明 kubernetes 系統各個組件調用關係</h5>
+<ol>
+<li>首先要明確，一旦 kubernetes 環境啟動之後，master 和 node 都會將自身的信息存儲到 etcd 數據庫中</li>
+<li>一個 nginx 服務的安裝請求會首先被發送到 master 節點的 apiServer 組件</li>
+<li>apiServer 組件會調用 scheduler 組件來決定到底應該把這個服務安裝到哪一個 node 節點上
+此時，它會從 etcd 中讀取各個 node 節點的信息，然後按照一定的算法進行選擇，並將結果告知 apiServer</li>
+<li>apiServer 調用 controller_manager 去調度 Node 節點安裝 nginx 服務</li>
+<li>Kubelet 接收到指定之後，會通知 docker，然後由 docker 來啟動一個 nginx 的 pod
+pod 是 kubernetes 的最小操作單元，容器必須跑在 pod 中至此</li>
+<li>一個 nginx 服務就運行了，如果需要訪問 nginx，就需要通過 kube-proxy 來對 pod 產生訪問的代理
+這樣，外界用戶就可以訪問集群中的 nginx 服務了</li>
+</ol>
+<hr>
+<h3 id="0-4-kubernetes-概念">0-4 kubernetes 概念</h3>
+<p><strong>Master</strong>：集群控制節點，每個集群需要至少一個 master 節點負責集群的管控
+安排工作的</p>
+<p><strong>Node</strong>：工作負載節點，由 master 分配容器到這些 node 工作節點上，然後 node 節點上的 docker 負責容器的運行
+幹活的</p>
+<p><strong>Pod</strong>：kubernetes 的最小控制單元，容易都是運行在 pod 中的，一個 pod 中可以有 1個或著多個容器
+程序跑在容器裡面，容器運行在 pod 裡面；一個 pod 裡面可以有多個容器</p>
+<p><strong>Controller</strong>：控制器，通過它來實現對 pod 的管理，比如啟動 pod、停止 pod、伸縮 pod 的數量等等
+管理 pod 的工具。不僅僅是一種控制器，每種控制器都有適合的應用場景</p>
+<p><strong>Service</strong>：pod 對外服務的統一入口，下面可以維護者同一類的多的 pod</p>
+<p>​    配置 ipvs 功能 &mdash; 在 kubernetes 中，service 有兩種代理類型，一種是基於 <code>iptables</code> 的，一種是基於 <code>ipvs</code> 的，兩者比較的話，ipvs 的性能明顯要高一些，但是如果要使用它，需要手動載入 ipvs 模塊</p>
+<p><strong>Label</strong>：標籤，用於對 pod 進行分類，同一類 pod 的運行環境
+e.g. <code>app:tomcat</code> -可以用來當選擇器的條件</p>
+<blockquote>
+<p>標籤與選擇器的機制：標籤定義一批屬性，選擇器透過這些屬性把這些東西化成一類</p>
+</blockquote>
+<p><strong>NameSpace</strong>：命名空間，用來隔離 pod 的運行環境
+在一個 k8s環境中，所有 pod 是可以相互訪問的，要限制可訪問性可以透過 nameSpace區分來達成</p>
+<hr>
+<h3 id="0-5-環境搭建_環境規劃">0-5 環境搭建_環境規劃</h3>
+<p>如何搭建 k8s 的集群環境</p>
+<h4 id="0-5-1-環境規劃">0-5-1 環境規劃</h4>
+<h5 id="0-5-1-1-集群類型">0-5-1-1 集群類型</h5>
+<p>Kubernetes 集群大體上分為兩類：一主多從和多主多從</p>
+<ul>
+<li>
+<p>一主多從：一台Master節點和多台Node節點，搭建簡單，但是有單機故障風險，適合用於測試環境</p>
+<pre tabindex="0"><code class="language-mermaid" data-lang="mermaid">graph LR;
+    Master1 --- Node1;
+    Master1 --- Node2;
+    Master1 --- Node3;
+</code></pre></li>
+<li>
+<p>多主多從：多台Master節點和多台Node節點，搭建麻煩，安全性高，適合用於生產環境</p>
+<pre tabindex="0"><code>[Master1]---┬---[Node1]
+            |
+[Master2]---┼---[Node2]
+            |
+[Master3]---┴---[Node3]
+</code></pre></li>
+</ul>
+<h5 id="0-5-1-2-安裝方式">0-5-1-2 安裝方式</h5>
+<p>kubernetes 有多種部署方式，目前主流有 kubeadm、minikube、二進制包</p>
+<ul>
+<li>minikube：一個用於快速搭建單節點kubenetes的工具</li>
+<li>kubeadm：一個用於快速搭建kubenetes集群的工具</li>
+<li>二進制包：從官網下載每個組件的二進制包，依次去安裝，此方式對於理解kubenetes組件更加有效</li>
+</ul>
+<h5 id="0-5-1-3-主機規劃">0-5-1-3 主機規劃</h5>
+<table>
+<thead>
+<tr>
+<th>作用</th>
+<th>IP地址</th>
+<th>操作系統</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Master</td>
+<td>192.168.109.100</td>
+<td>Centos7.5 基礎設施服務器</td>
+<td>2顆CPU  2G內存  50G硬盤</td>
+</tr>
+<tr>
+<td>Node1</td>
+<td>192.168.109.101</td>
+<td>Centos7.5 基礎設施服務器</td>
+<td>2顆CPU  2G內存  50G硬盤</td>
+</tr>
+<tr>
+<td>Node2</td>
+<td>192.168.109.102</td>
+<td>Centos7.5 基礎設施服務器</td>
+<td>2顆CPU  2G內存  50G硬盤</td>
+</tr>
+</tbody>
+</table>
+<h4 id="0-6-環境搭建_主機安裝">0-6 環境搭建_主機安裝</h4>
+<p>需要安裝三台 Centos 服務器（一主二從），然後在每台服務器中分別安裝 docker (18.06.3)，kubeadm (1.17.4), kubelet (1.17.4), kubectl (1.17.4) 程序</p>
+<h5 id="0-6-1-主機安裝">0-6-1 主機安裝</h5>
+<p>pass practice</p>
+<blockquote>
+<p>0-7 環境搭建_環境初始化</p>
+<p>Vmware 起三個 VM, master *1, worker *2</p>
+<p>0-8 環境搭建_集群所需組建安裝</p>
+<p>0-9 環境搭建_集群安裝</p>
+<p>0-10 環境搭建_網路插件安裝</p>
+<p>0-11 環境搭建_環境測試</p>
+<p>0-12 資源管理介紹</p>
+</blockquote>
+<h4 id="0-13-yaml-語言介紹">0-13 yaml 語言介紹</h4>
+<p>YAML是一個類似XML、JSON的標記性語言，他強調以<strong>數據</strong>為中心，並不是以標記語言為重點，因而YAML本身的定義比較簡單，號稱一種人性化的數據格式語言</p>
+<p>Xml太麻煩了，要以對象的嵌套表示</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;hei</span><span class="err">ßenburg</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;age&gt;</span>23<span class="nt">&lt;/age&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;address&gt;</span>Tainan<span class="nt">&lt;/address&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="err">&lt;</span>/heißenburg&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">heißenburg</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">age</span><span class="p">:</span><span class="w"> </span><span class="m">15</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l">Tainan</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="note">Note</h6>
+<ol>
+<li>
+<p>書寫yaml切記<code>: </code> 後面要加一個空格</p>
+</li>
+<li>
+<p>如果需要將多段yaml配置放在一個文件中，中間要使用 <code>---</code> 分隔</p>
+</li>
+<li>
+<p>下面是一個 yaml 轉 json 的網站，可以通過它驗證 yaml 是否書寫正確</p>
+<p><a href="https://www.json2yaml.com/convert-yaml-to-json" target="_blank" rel="noopener noreffer ">https://www.json2yaml.com/convert-yaml-to-json</a></p>
+</li>
+</ol>
+<p>YAML 的語法比較簡單，主要有下面幾個：</p>
+<ul>
+<li>大小寫敏感</li>
+<li>使用縮進 (縮排, indentation) 表示層級關係</li>
+<li>縮排 (indentation) 不允許使用 tab，只允許空格
+只對低版本的 yaml 有限制，高版本也可以用 tab 鍵</li>
+<li>縮排的空格數不重要，只要相同層級的元素左對齊即可</li>
+<li><code>#</code>表示註解</li>
+</ul>
+<p>YAML 支持以下幾種數據類型：</p>
+<ul>
+<li>
+<p>純量：單個的、不可再分的值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># 純量：一個簡單的值、字符串、布林值、整數、浮點數、null、時間、日期</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 1 布林類型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c1</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c11</span><span class="p">:</span><span class="w"> </span><span class="kc">True</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 2 整數型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c2</span><span class="p">:</span><span class="w"> </span><span class="m">234</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 3 浮點數型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c3</span><span class="p">:</span><span class="w"> </span><span class="m">3.14</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 4 null類型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c4</span><span class="p">:</span><span class="w"> </span><span class="l">~   </span><span class="w"> </span><span class="c"># 使用~表示null</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 5 日期類型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c5</span><span class="p">:</span><span class="w"> </span><span class="ld">2017-02-16</span><span class="w">    </span><span class="c"># 日期使用ISO 8601格式，即yyyy-MM-dd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 6 時間類型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c6</span><span class="p">:</span><span class="w"> </span><span class="ld">2017-02-16T19:02:23</span><span class="m">+03</span><span class="p">:</span><span class="m">00</span><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># 時間使用ISO 8601格式，時間和日期之間使用T連接，最後使用+代表時區</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 7 字符串類型</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c7</span><span class="p">:</span><span class="w"> </span><span class="l">heißenburg </span><span class="w"> </span><span class="c"># 簡單寫法，直接寫值，如果字符串中間有特殊字符，必須使用雙引號或者單引號包裹</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c71</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;heißenburg honey&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">c8</span><span class="p">:</span><span class="w"> </span><span class="l">hima</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">laya</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">yosemite   </span><span class="w"> </span><span class="c"># 字符串過多的情況可以拆成多行，</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>對象：鍵值對的組合，又稱為映射 (mapping) / 哈希 (hash) /  字典 (dictionary)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;jingle&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;age&#34;</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;account&#34;</span><span class="p">:</span> <span class="s2">&#34;yoroshiku&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># 對象</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 形式一 (推薦)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jingle</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">age</span><span class="p">:</span><span class="w"> </span><span class="m">23</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">account</span><span class="p">:</span><span class="w"> </span><span class="l">yoroshiku</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 形式二 (了解)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">ingrid</span><span class="p">:</span><span class="w"> </span>{<span class="nt">age: 26,account</span><span class="p">:</span><span class="w"> </span><span class="l">sesamestreet}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>數組：一組按次序排列的值，又稱為序列 (sequence) / 列表 (list)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;morality&#34;</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;禮義&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;廉恥&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># 數組</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 形式一（推薦）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">morality</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">禮義</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">廉恥</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 形式二（了解）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">morality</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">禮義,廉恥]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<hr>
+<h3 id="0-14-資源管理方式_介紹">0-14 資源管理方式_介紹</h3>
+<ul>
+<li>
+<p>命令式對象管理：直接使用命令去操作 kubernetes 資源
+單純查詢，不做修改的時候，通常會使用命令式對象管理</p>
+<p><code>kubectl run nginx-pod --image=nginx:1.17.1 --port=80</code></p>
+</li>
+<li>
+<p>命令式對象配置：通過命令配置和配置文件去操作 kubernetes 資源</p>
+<p><code>kubectl create/patch -f nginx-pod.yaml</code></p>
+</li>
+<li>
+<p>聲明式對象配置：通過 apply 命令和配置文件去操作 kubernetes 資源
+可以把10個yaml檔案存在一個目錄，再對目錄執行更新操作</p>
+<p><code>kubectl apply -f nginx-pod.yaml</code>
+<code>apply</code> - 用於創建和更新資源（有就更新，沒有就創建）</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>操作對象</th>
+<th>適用環境</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命令式對象管理</td>
+<td>對象</td>
+<td>測試</td>
+<td>簡單</td>
+<td>只能操作活動對象，<!-- raw HTML omitted -->無法審計、跟蹤</td>
+</tr>
+<tr>
+<td>命令式對象配置</td>
+<td>文件</td>
+<td>開發</td>
+<td>可以審計、跟蹤</td>
+<td>項目大時，配置文件多，<!-- raw HTML omitted -->操作麻煩</td>
+</tr>
+<tr>
+<td>聲明式對象配置</td>
+<td>目錄</td>
+<td>開發</td>
+<td>支持目錄操作</td>
+<td>意外情況下難以調試</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="0-15-資源管理方式_1">0-15 資源管理方式_1</h3>
+<h6 id="kubectl-命令"><code>kubectl</code> 命令</h6>
+<p>​    <code>kubectl</code>是Kubenetes集群的命令行工具，通過它能夠對集群本身進行管理，並能夠在集群上進行容器化應用的安裝部署，<code>kubectl</code>命令的語法如下：</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl [command] [type] [name] [flags]
+</code></pre><ul>
+<li><code>command</code> 指定要對資源執行的操作，例如 create、get、delete  <!-- raw HTML omitted -->[必填]<!-- raw HTML omitted --></li>
+<li><code>type</code> 指定資源類型，比如 deployment、pod、service  <!-- raw HTML omitted -->[必填]<!-- raw HTML omitted --></li>
+<li><code>name</code> 指定資源的名稱，名稱大小寫敏感 <!-- raw HTML omitted -->[可選]<!-- raw HTML omitted --></li>
+<li><code>flags</code> 指定額外的可選擇參數    <!-- raw HTML omitted -->[可選]<!-- raw HTML omitted --></li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal"># 查看所有 pod
+kubectl get pod
+
+# 查看某個 pod
+kubectl get pod pod_name
+
+# 查看某個 pod，以 yaml 格式展示結果
+kubectl get pod pod_name -o yaml
+kubectl get pod nginx-pod-697786dc74-bsdbr -o json  # 以json格式展示成果
+</code></pre><h6 id="常用的-command-們">常用的 command 們</h6>
+<table>
+<thead>
+<tr>
+<th>命令分類</th>
+<th>命令</th>
+<th>命令作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基本命令</td>
+<td>create</td>
+<td><em>創建</em> 一個資源</td>
+</tr>
+<tr>
+<td>－</td>
+<td>edit</td>
+<td><em>編輯</em> 一個資源 [修改]</td>
+</tr>
+<tr>
+<td>－</td>
+<td>get</td>
+<td><em>獲取</em> 一個資源</td>
+</tr>
+<tr>
+<td>－</td>
+<td>patch</td>
+<td><em>更新</em> 一個資源 [打補丁更新]</td>
+</tr>
+<tr>
+<td>－</td>
+<td>delete</td>
+<td><em>刪除</em> 一個資源</td>
+</tr>
+<tr>
+<td>－</td>
+<td>explain</td>
+<td><em>解釋</em> .  展示資源文檔</td>
+</tr>
+<tr>
+<td>運行和調試</td>
+<td>run</td>
+<td><em>運行</em> .  在集群中運行一個指定的鏡像</td>
+</tr>
+<tr>
+<td>－</td>
+<td>expose</td>
+<td><em>暴露</em> 資源為 Service</td>
+</tr>
+<tr>
+<td>－</td>
+<td>describe</td>
+<td><em>描述</em> .  顯示資源內部信息<!-- raw HTML omitted -->例如IP為何、容器的鏡像、ID、啟動中經過的歷程</td>
+</tr>
+<tr>
+<td>－</td>
+<td>logs</td>
+<td>輸出容器在 pod 中的日誌</td>
+</tr>
+<tr>
+<td>－</td>
+<td>attach</td>
+<td>進入運行中的容器</td>
+</tr>
+<tr>
+<td>－</td>
+<td>exec</td>
+<td><em>執行</em> .  執行容器中的一個指令</td>
+</tr>
+<tr>
+<td>－</td>
+<td>cp</td>
+<td><em>複製</em> .  在Pod內外複製文件</td>
+</tr>
+<tr>
+<td>－</td>
+<td>rollout</td>
+<td><em>首次展示</em> .  管理資源的發布</td>
+</tr>
+<tr>
+<td>－</td>
+<td>scale</td>
+<td><em>規模化</em> .  擴 (縮) 容Pod的數量</td>
+</tr>
+<tr>
+<td>－</td>
+<td>autoscale</td>
+<td><em>自動調整</em> Pod的數量</td>
+</tr>
+<tr>
+<td>高級命令</td>
+<td>apply</td>
+<td>通過文件對資源進行配置</td>
+</tr>
+<tr>
+<td>－</td>
+<td>label</td>
+<td><em>標籤</em> .  更新資源上的標籤</td>
+</tr>
+<tr>
+<td>其他命令</td>
+<td>cluster-info</td>
+<td><em>集群信息</em> .  顯示集群信息</td>
+</tr>
+<tr>
+<td>－</td>
+<td>version</td>
+<td><em>版本</em> .  顯示當前 Service 和 Client 的版本</td>
+</tr>
+</tbody>
+</table>
+<h6 id="常用的資源類型">常用的資源類型</h6>
+<p>Kubenetes 中所有的內容都抽象為資源，可以通過命令進行查看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="n">kubectl</span> <span class="nb">api-resources</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th>資源分類</th>
+<th>資源名稱</th>
+<th>縮寫</th>
+<th>資源作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>集群級別資源</td>
+<td>nodes</td>
+<td>no</td>
+<td>集群組成部分</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>namespaces</td>
+<td>ns</td>
+<td>隔離pod</td>
+</tr>
+<tr>
+<td>pod 資源</td>
+<td>pods</td>
+<td>po</td>
+<td>裝載容器</td>
+</tr>
+<tr>
+<td>Pod 資源控制器</td>
+<td>replicationcontrollers</td>
+<td>rc</td>
+<td>控制pod資源</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>replicasets</td>
+<td>rs</td>
+<td>控制pod資源</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>deployments</td>
+<td>deploy</td>
+<td>控制pod資源</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>daemonsets</td>
+<td>ds</td>
+<td>控制pod資源</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>jobs</td>
+<td></td>
+<td>控制pod資源</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>cronjobs</td>
+<td>cj</td>
+<td>控制pod資源</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>horizontalpodautoscalers</td>
+<td>hpa</td>
+<td>控制pod資源</td>
+</tr>
+<tr>
+<td>服務器發現資源</td>
+<td>services</td>
+<td>svc</td>
+<td>統一pod對外接口</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>ingress</td>
+<td>ing</td>
+<td>統一pod對外接口</td>
+</tr>
+<tr>
+<td>存儲資源</td>
+<td>volumeattachments</td>
+<td></td>
+<td>存儲</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>persistentvolumes</td>
+<td>pv</td>
+<td>存儲</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>persistentvolumeclaims</td>
+<td>pvc</td>
+<td>存儲</td>
+</tr>
+<tr>
+<td>配置資源</td>
+<td>configmaps</td>
+<td>cm</td>
+<td>配置</td>
+</tr>
+<tr>
+<td>&mdash;</td>
+<td>secrets</td>
+<td></td>
+<td>配置</td>
+</tr>
+</tbody>
+</table>
+<h5 id="命令式對象管理-操作案例-demo">命令式對象管理 操作案例 (Demo)</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># 創建一個namespace</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="nv">@master</span> <span class="p">~]</span> <span class="n">kubectl</span> <span class="n">create</span> <span class="n">namespace</span> <span class="n">dev</span>
+</span></span><span class="line"><span class="cl"><span class="n">namespace</span><span class="p">/</span><span class="n">dev</span> <span class="n">created</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 獲取namespace</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="nv">@master</span> <span class="p">~]</span> <span class="n">kubectl</span> <span class="n">get</span> <span class="n">ns</span>
+</span></span><span class="line"><span class="cl"><span class="n">NAME</span>							<span class="n">STATUS</span>	<span class="n">AGE</span>
+</span></span><span class="line"><span class="cl"><span class="k">default</span>						<span class="n">Active</span>	<span class="n">21h</span>
+</span></span><span class="line"><span class="cl"><span class="n">dev</span>								<span class="n">Active</span>	<span class="n">21s</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kube-node</span><span class="n">-lease</span>		<span class="n">Active</span>	<span class="n">21h</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kube-public</span>				<span class="n">Active</span>	<span class="n">21h</span>
+</span></span><span class="line"><span class="cl"><span class="nb">kube-system</span>				<span class="n">Active</span>	<span class="n">21h</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 在此namespace下創建並運行一個nginx的pod</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="nv">@master</span> <span class="p">~]</span> <span class="n">kubectl</span> <span class="n">run</span> <span class="n">pod</span> <span class="p">-</span><span class="n">-image</span><span class="p">=</span><span class="n">nginx</span> <span class="n">-n</span> <span class="n">dev</span>
+</span></span><span class="line"><span class="cl"><span class="n">kubectl</span> <span class="n">run</span> <span class="p">-</span><span class="n">-generator</span><span class="p">=</span><span class="n">deployment</span><span class="p">/</span><span class="n">apps</span><span class="p">.</span><span class="py">v1</span> <span class="n">is</span> <span class="n">DEPRECATED</span> <span class="n">and</span> <span class="n">will</span> <span class="n">be</span> <span class="n">removed</span> <span class="k">in</span> <span class="n">a</span> <span class="n">future</span> <span class="n">version</span><span class="p">.</span> <span class="n">Use</span> <span class="n">kubectl</span> <span class="n">run</span> <span class="p">-</span><span class="n">-generator</span><span class="p">=</span><span class="nb">run-pod</span><span class="p">/</span><span class="n">v1</span> <span class="n">or</span> <span class="n">kubectl</span> <span class="n">create</span> <span class="n">instead</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">deployment</span><span class="p">.</span><span class="n">apps</span><span class="p">/</span><span class="n">pod</span> <span class="n">created</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 查看新創建的pod</span>
+</span></span><span class="line"><span class="cl"> <span class="p">[</span><span class="n">root</span><span class="nv">@master</span> <span class="p">~]</span> <span class="n">kubectl</span> <span class="n">get</span> <span class="n">pod</span> <span class="n">-n</span> <span class="n">dev</span>
+</span></span><span class="line"><span class="cl"><span class="n">delete</span> <span class="n">pod</span> <span class="n">pod_name</span> <span class="n">-n</span> <span class="n">dev</span> 
+</span></span><span class="line"><span class="cl"><span class="c"># 刪了之後 k8s 會自動 deploy 新的 pod, 要刪整個 namespace dev 才行（...略）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h3 id="0-16-資源管理方式_2">0-16 資源管理方式_2</h3>
+<h5 id="命令式對象配置">命令式對象配置</h5>
+<ol>
+<li>
+<p>建立一個 nginxpod.yaml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Namespace</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginxpod</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx-containers</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx:1.17.1</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>執行 create command，創建資源</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="p">[</span><span class="n">root</span><span class="nv">@master</span> <span class="p">~]</span> <span class="n">kubectl</span> <span class="n">create</span> <span class="o">-f</span> <span class="n">nginxpod</span><span class="p">.</span><span class="py">yaml</span>
+</span></span><span class="line"><span class="cl"><span class="n">namespace</span><span class="p">/</span><span class="n">dev</span> <span class="n">created</span>
+</span></span><span class="line"><span class="cl"><span class="n">pod</span><span class="p">/</span><span class="n">nginxpod</span> <span class="n">created</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li></li>
+</ol>
+<hr>
+<p>0-17 資源管理方式_3</p>
+<p>0-18 資源管理方式_結語</p>
+<p>1-1 實戰入門_Namespace</p>
+<p>1-2 實戰入門_Pod</p>
+<p>1-3 實戰入門_Label</p>
+<p>1-4 實戰入門_Deployment</p>
+<p>1-5 實戰入門_Service</p>
+<p>1-6 Pod解析_結構和定義</p>
+<p>1-7 Pod解析_基本配置</p>
+<p>1-8 Pod解析_鏡像拉取策略</p>
+<p>1-9 Pod解析_啟動命令</p>
+<p>1-10 Pod解析_環境變量</p>
+<p>1-11 Pod解析_端口設置</p>
+<p>1-12 Pod解析_資源配額</p>
+<p>2-1 Pod解析_生命週期 _概述</p>
+<p>2-2 Pod解析_生命週期 _創建和終止</p>
+<p>2-3 Pod解析_生命週期 _初始化容器</p>
+<p>2-4 Pod解析_生命週期 _鉤子函數</p>
+<p>2-5 Pod解析_生命週期 _容器探測</p>
+<p>2-6 Pod解析_生命週期 _容器探測補充</p>
+<p>2-7 Pod解析_生命週期 _重啟策略</p>
+<p>2-8 Pod解析_調度 _概述</p>
+<p>2-9 Pod解析_定向調度</p>
+<p>2-10 Pod解析_親和性調度 _概述</p>
+<p>2-11 Pod解析_親和性調度 _nodeAffinity</p>
+<p>2-12 Pod解析_親和性調度 _podAffinity</p>
+<p>2-13 Pod解析_親和性調度 _podAntiAffinity</p>
+<p>2-14 Pod解析_調度 _污點</p>
+<p>2-15 Pod解析_調度 _容忍</p>
+<p>3-1 Pod 控制器_概述</p>
+<p>3-2 Pod 控制器_ReplicaSet</p>
+<p>3-3 Pod 控制器_Deployment _基礎</p>
+<p>3-4 Pod 控制器_Deployment _擴容器</p>
+<p>3-5 Pod 控制器_Deployment _升級策略</p>
+<p>3-6  Pod 控制器_Deployment _版本回退</p>
+<p>3-7 Pod 控制器_Deployment _金絲雀發布</p>
+<p>3-8 Pod 控制器_HPA (上)</p>
+<p>3-9 Pod 控制器_HPA (下)</p>
+<p>3-10 Pod 控制器_DaemonSet</p>
+<p>3-11 Pod 控制器_Job</p>
+<p>3-12 Pod 控制器_CronJob</p>
+<p>3-13 Service_概述</p>
+<p>3-14 Service_資源清單文件介紹</p>
+<p>3-15 Service_實驗 _環境準備</p>
+<p>3-16 Service_實驗 _ClusterIP 類型</p>
+<p>3-17 Service_實驗 _HeadLines 類型</p>
+<p>3-18 Service_實驗 _NodePort 類型</p>
+<p>3-19 Service_實驗 LoadBalancer 類型</p>
+<p>3-20 Service_實驗 ExternalName 類型</p>
+<p>4-1 Ingress 介紹</p>
+<p>4-2 Ingress案例_環境準備</p>
+<p>4-3 Ingress案例_http代理</p>
+<p>4-4 Ingress案例_http代理</p>
+<p>4-5 數據存儲介紹</p>
+<p>4-6 基本存儲_EmptyDir</p>
+<p>4-7 基本存儲_HostPath</p>
+<p>4-8 基本存儲_NFS</p>
+<p>4-9 高級存儲_pv和pvc的介紹</p>
+<p>4-10 高級存儲_pv</p>
+<p>4-11 高級存儲_pvc</p>
+<p>4-12 高級存儲_pv和pvc的生命週期</p>
+<p>4-13 配置存儲_configmap</p>
+<p>4-14 配置存儲_secret</p>
+<p>4-15 安全認證_概述</p>
+<p>4-16 安全認證_認證方式</p>
+<p>4-17 安全認證_授權管理</p>
+<p>4-18 安全認證_進入控制</p>
+<p>4-19 DashBoard_部署</p>
+<p>4-20 DashBoard_使用演示</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-10-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/kubernetes_learn/" data-hashtag=""><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/kubernetes_learn/" data-title="跟著黑哥學 Kubernetes"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/docker_learn/" class="prev" rel="prev" title="Docker 跟著 Nana 一起學"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Docker 跟著 Nana 一起學</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

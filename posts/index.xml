@@ -3,7 +3,54 @@
         <title>All Posts - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/posts/</link>
         <description>All Posts | Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 09 Oct 2023 14:24:47 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>跟著黑哥學 Kubernetes</title>
+    <link>http://wysiwyz.github.io/posts/kubernetes_learn/</link>
+    <pubDate>Mon, 09 Oct 2023 14:24:47 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/kubernetes_learn/</guid>
+    <description><![CDATA[0-1 應用部署方式演變
+0-2 kubernetes 介紹
+本質是一組服務器集群，每個服務器都稱為一個節點，可以在每個節點中的容器安裝程序
+0-3 kubernetes 組件 一個 k8s 集群分為控制節點master_node，工作節點worker_node構成，每個節點上都安裝不同的組件
+Master: 集群的控制平面，負責集群的決策（管理） API Server：資源操作的唯一入口，接收用戶輸入的命令，提供認證、授權、API註冊和發現等機制 K8S 的整個訪問入口 Scheduler：負責集群資源調度，按照預訂的調度策略將Pod調度到相應的node節點上 根據算法決定安裝nginx的請球要分配給哪一個node節點（負責算） ControllerManager：負責維護集群的狀態，比如程序部署安排、故障檢測、自動擴展、滾動更新等 如何將 nginx 安裝請求交給 node1節點（負責安排幹活） Etcd：負責存儲集群中各種資源對象的信息 用來紀錄請求信息儲存在資料庫中（也可以改用mysql） Node: 集群的數據平面，負責為容器提供運行環境 [worker_node] Kubelet：負責維護容器的生命週期，即通過控制docker，來創建、更新、銷毀容器 接收控制節點發來的訊息，並傳送命令給 worker node 裡面其他的組件_docker
+KubeProxy：負責提供集群內部的服務發現和負載均衡
+訪問程序的入口
+Docker：負責節點上容器的各種操作
+以部署一個 nginx 服務來說明 kubernetes 系統各個組件調用關係 首先要明確，一旦 kubernetes 環境啟動之後，master 和 node 都會將自身的信息存儲到 etcd 數據庫中 一個 nginx 服務的安裝請求會首先被發送到 master 節點的 apiServer 組件 apiServer 組件會調用 scheduler 組件來決定到底應該把這個服務安裝到哪一個 node 節點上 此時，它會從 etcd 中讀取各個 node 節點的信息，然後按照一定的算法進行選擇，並將結果告知 apiServer apiServer 調用 controller_manager 去調度 Node 節點安裝 nginx 服務 Kubelet 接收到指定之後，會通知 docker，然後由 docker 來啟動一個 nginx 的 pod pod 是 kubernetes 的最小操作單元，容器必須跑在 pod 中至此 一個 nginx 服務就運行了，如果需要訪問 nginx，就需要通過 kube-proxy 來對 pod 產生訪問的代理 這樣，外界用戶就可以訪問集群中的 nginx 服務了 0-4 kubernetes 概念 Master：集群控制節點，每個集群需要至少一個 master 節點負責集群的管控 安排工作的]]></description>
+</item>
+<item>
+    <title>Docker 跟著 Nana 一起學</title>
+    <link>http://wysiwyz.github.io/posts/docker_learn/</link>
+    <pubDate>Sat, 07 Oct 2023 14:59:55 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/docker_learn/</guid>
+    <description><![CDATA[Docker Note docker ps
+​ list running containers
+docker stop &lt;container_id&gt;
+​ stops the container
+docker start &lt;container_id&gt;
+​ starts stopped container
+docker ps -a
+​ lists running and stopped container
+docker run &lt;image_name&gt;:
+​ pulls image and starts container
+​ (docker pull + docker start in one command)
+[CONTAINER Port vs HOST Port]
++ Multiple containers can run on your host machine
++ Your laptop has only certain ports available]]></description>
+</item>
+<item>
+    <title>Ocpjp_11_examDump</title>
+    <link>http://wysiwyz.github.io/posts/ocpjp_11_examdump/</link>
+    <pubDate>Wed, 16 Aug 2023 20:39:15 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ocpjp_11_examdump/</guid>
+    <description><![CDATA[ Sep8早上7:30考試，90分鐘50道題目
+1 Given
+1 2 3 public class Tester { } ]]></description>
+</item>
+<item>
     <title>1Z0-819 題目KO</title>
     <link>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</link>
     <pubDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</pubDate>
@@ -98,40 +145,6 @@ Use Graphql, don&rsquo;t use Swagger!]]></description>
 Yeah, 考過了！
 接下來要準備 OCPJP SE 11
 VPC Projects, networks, subnetworks A project Associates objects and servicing with billing Contains networks A network 3 VPC network types Default Every project One subnet per region Default firewall rules Auto Mode Default network One subnet per region Regional IP allocation Fixed /20 subnetwork per region Expandable up to /16 Custom Mode No default subnets created Full control of IP ranges Regional IP allocation Expandable to IP ranges you specify Expand subnets without re-creating instances Cannot overlap with other subnets]]></description>
-</item>
-<item>
-    <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
-    <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
-    <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_06_linux/</guid>
-    <description><![CDATA[Shell Script 與排程
-Linux 安全應用演練及總複習
-shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
-Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10.]]></description>
-</item>
-<item>
-    <title>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</title>
-    <link>http://wysiwyz.github.io/posts/lesson_05_linux/</link>
-    <pubDate>Sat, 15 Apr 2023 09:10:47 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_05_linux/</guid>
-    <description><![CDATA[Log Server 實作
-MariaDB 權限與加密, nmap 檢測工具介紹
-User ID Report
-aureport -u -i --failed | less 1.Write message to syslog BIOS/UEF ➡ grub2 ➡ kernel ➡ systemd ➡ journalctl
-rsyslog : 如果選 minimal installation，err不會由rsyslog接，改由journalctl接error接收 將訊息寫入系統紀錄中 @Server
-1 root# logger hello World 1 root# tail /var/log/messages 1 root# journalctl 1 root# journalctl --since &#34;2023-04-15&#34; 1 root# reboot 將journalctl紀錄持久化 推書時間: 實戰Linux系統數位鑑識 (江湖海) (Practical Linux Forensics: A guide for digital investigators, by Bruce Nikkel)]]></description>
-</item>
-<item>
-    <title>JavaScript 常見內建方法</title>
-    <link>http://wysiwyz.github.io/posts/javascript_functions/</link>
-    <pubDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/javascript_functions/</guid>
-    <description><![CDATA[這裡紀錄上班看遇到的常用 JavaScript 內建方法 ╚(•⌂•)╝
-Object.prototype.hasOwnProperty(param) 回傳 boolean 值
-true: 如果該param是該物件的直接屬性(direct property)，即便值為 null 或者 undefined false: 如果屬性是繼承來的，或從沒被宣告 1 2 3 4 5 6 7 8 9 10 11 12 13 _self._getCurrencyFlagPath = (function () { var imageList = Object.freeze({ AUD: &#39;images/lilyRose/flag_AUD.svg&#39;, CAD: &#39;images/lilyRose/flag_CAD.svg&#39;, EUR: &#39;images/lilyRose/flag_EUR.svg&#39;, JPY: &#39;images/lilyRose/flag_JPY.svg&#39;, TWD: &#39;images/lilyRose/flag_TWD.svg&#39;, NTD: &#39;images/lilyRose/flag_TWD.svg&#39; }); return function (currency) { return imageList.hasOwnProperty(currency) ? imageList[currency] : &#39;&#39;; } })(); Object.freeze() 淺凍結 Freezing an object prevents extensions and makes existing properties non-writable and non-configurable.]]></description>
 </item>
 </channel>
 </rss>

@@ -53,6 +53,37 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_01_linux/">Lesson 01: Linux 筆記 - Repository, 系統稽核/查詢</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-04">2023-03-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">憑證具有 CIA 三要素
+Confidentiality 機密性
+Integrity
+Availability
+Others
+Authenticity
+Accountability
+Non-repudiation
+AAA, Triple A - 認證授權紀錄
+基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC
+&mdash; ntpdate 舊時代的工具，別用
+Chrony_NTP_lab
+Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172. server desktopXX iburst systemctl restart chronyd systemctl enable chronyd systemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
+另外一個設定時區方式 podman.io (官方比較少推)
+兩種設定方式 官方主推指令方式 getent group wheet
+設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作</div><div class="post-footer">
+        <a href="/posts/lesson_01_linux/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_00_linux/">Lesson 00: Linux 筆記 - 資安原則、OpenSCAP</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-11">2023-02-11</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">資安是一個循環 這次會過不代表下次會過，每年都要複驗 ISO27001 改版（LA - lead auditor） Log server Windows 的 GPO policy 是什麼 .twcertcc : https://www.twcert.org.tw/tw/mp-1.html 營利目標 依公司法，企業營運是為了向股東負責 企業營運 以永續經營與營利為目標 發展產品或服務解決客戶之問題，或者滿足其需求 有利企業發展的事才考慮執行 機密性 產生營利的過程中，衍生出只有甲乙雙方才能知道的事件 營運過程中，衍生無法完全透明的內部資訊 營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資) 營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力 目標 保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標 常用手法 人員階級、職等、業務範圍管理 實物管理（區域進出換證、資產盤點） 數位資訊管理 CentOS 8 安全措施 作業系統安全 作業系統安裝 系統紀錄 檔案稽核 檔案系統權限配置 系統防火牆 應用服務安全 Web SSL MariaDB (MySQL &hellip; audit 要付費) Samba(smb)/NFS [AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)
+NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?</div><div class="post-footer">
+        <a href="/posts/lesson_00_linux/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/encrypt_decrypt/">Encrypt, Decrypt</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-01">2023-02-01</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">用途 怕被別人看見 弄成被看到也沒關係 [加密] 想給特定人看 避免對方也看不懂 [解密] 分類 類型 對稱加解密 非對稱加解密 實例 AES、3DES RSA、ECDSA &hellip; 加解密方式寫在同一張紙上[加解密方式] public key 加解密方式寫在不同紙上[加密方式] public key &hellip; client get by calling api[解密方式] private key &hellip; saved at Server side 概論 簡單、速度快、安全性低 複雜速度慢、安全性較高 特色 1. Client 和 Server 用同一把密鑰加解密2. AES/ {ECB/CBC...}/PaddingPattern 應用 1. 對大量明文的加密2. Https 的 SessionKey Appendix AES 加密結構說明 金鑰長度(bit) : AES-128 AES-192 AES-256 區塊間加密方式 : ECB - 可以被密推 CBC - 亂數 initial value 初始值 CFB - 亂數 initial value 初始值 OFB CTR 區塊填充方式: NoPadding - 不建議、會影響加密強度 ZeroBytePadding - 缺兩個填入 0 PKCS5Padding PKCS7Padding Example: AES-256/CBC/PKCS7Padding</div><div class="post-footer">
+        <a href="/posts/encrypt_decrypt/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/inu_oh/">犬王 [還沒觀賞的話別點,皆劇透]</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-23">2022-10-23</time></span>&nbsp;<span class="post-category">included in <a href="/categories/moviereviews/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>movieReviews</a></span></div><div class="content">犬王改編自日本古典文學平家物語，在日本南北尚未統一的室町時代背景下，常說得到三件神器就能達成平定天下的志業。
 ¶
@@ -89,32 +120,6 @@ Chapter 2 宣告敘述與變數 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
 **Testing doubly short code.** Testing doubly short code.
 short code</div><div class="post-footer">
         <a href="/posts/secondpost/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/firstpost/">Firstpost</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-10-14">2022-10-14</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Front matter - meta data about this piece of data key-value pairs that gives us information about this file
-can be written in three languages: yaml, toml, json
-default language for front matter is yaml
-What does a toml-style front matter look like?
-1 2 3 4 5 +++ title = &#34;FirstPost&#34; date = YYYY-MM-ddTHH:mm:ss draft = true +++ versus a yaml-style front matter
-1 2 3 4 5 --- title: &#34;firstPost&#34; date: YYYY-MM-ddTHH:mm:ss draft: true --- Create custom front matter such as</div><div class="post-footer">
-        <a href="/posts/firstpost/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/frontmatter/">frontMatter</a>,&nbsp;<a href="/tags/taxonomy/">Taxonomy</a>,&nbsp;<a href="/tags/hugo/">Hugo</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ataleforthetimebeing/">時光的彼岸 A tale for the time being</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2019-11-18">2019-11-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/novelreadinglog/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>novelReadingLog</a></span></div><div class="content">這本書很妙，兩名主角其一是手握《À la recherche du temps perdu》手工藝筆記本的歸日僑生安古奈緒、另一名是太平洋另一端的加拿大作家露絲，兩人從始至終不曾見面，但透過紫色墨水的手寫記敘又彷彿是共度時光已久的親密好友。
-廢柴老爸並不廢，只是當公司政策已違背正直初衷，總要破釜沈舟。世人定義的廢柴是什麼？沒有公司頭銜、薪資福利微薄、無緣高樓房產？在我看來露絲的丈夫守護韋爾敦島（Whaletown）雪松原始林反而是個愛己所擇的勇士。
-十五歲的奈緒自小在加州桑尼威爾（Sunnyvale）長大，歸國日本後在當地高中面臨嚴重霸凌、家父又因失業而鬱鬱寡歡，某個暑假夏天她到曾祖母尼姑家學禪，鍛鍊超冷力。與曾祖母同住，她觀察曾祖母對周遭事物皆心存感恩、對底層人物以禮相待。難以想像一名高齡104歲，身形瘦削的曾祖母竟能有使周遭人安心的能力，還讓人不知不覺對她敞開心扉。
-奈緒更在盂蘭盆節認識舅公「安古春樹一號」。這名舅公來頭不小，他是二次世界大戰當年「神風特攻隊」的軍機駕駛，受徵召前於東京的大學主修哲學與法文，奈緒從曾祖母手中得到一份軍官方審過的家書與遺囑，手邊也有一份取得來源不明，但字字真實的法文日記。
-協助露絲翻譯冷凍塑膠袋裡法文手稿的人只說了這本日記有如「惡之華」，春樹一號在其中提到無法置信的軍旅經歷，從中日東北戰事調派來的殘暴長官、無從適應的哲學系學長，還有信終毅然決定從指派飛行軌道偏航墜海的自殺決定。
-閱讀的過程中一度懷疑是否要繼續下去，這本書太真實，集結了人生各層次的悲傷─中年失業、環境議題、仕途瓶頸、同儕霸凌、雛妓援交、自縊未遂。但對難關視而不見實在太差勁，還好仁慈的作者給了大家越漸明朗的尾聲，更留待讀者各自揣摩『生』之意涵。</div><div class="post-footer">
-        <a href="/posts/ataleforthetimebeing/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/thestoriedlifeofajfikry/">AJ的書店人生 The storied life of A.J. Fikry</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2019-10-29">2019-10-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/novelreadinglog/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>novelReadingLog</a></span></div><div class="content">顧名思義「AJ的書店人生」描寫島嶼書店經營者的一生，篇幅不長但透過書店老闆艾傑幫養女瑪雅開的十幾部書單作為章節開頭，十七八年的時間線濃縮成一本三百頁出頭的小說，故事情節完全不拖泥帶水。
-由於男女主配角有的是書商、有的是出版業務、有的是英文公演老師、還有帥過頭中年作家，情節當然少不了許多享譽盛名的英美小說家/詩人作品，讓人很想擇日拜讀，好比追憶似水年華（多虧咕狗才知道原來這系列有七冊！），還有infinite jest（網路上還有人特別以此書拍閱讀習慣的影片，可見其美名昭彰）。
-另外艾傑在退休生活費來源遭竊後，透過舉辦讀書會或作家見面會活絡鄰里感情並重振買市，以及用心針對不同客戶族群量身推薦書目，這些富人情味的設定讓人好羨慕艾利思島上的居民距離書店這麼近。然而，書中後半段的轉折並沒有特別賺人熱淚，不知是讀的人太冷血，或者是鋪陳來得有點突然。
-故事終章，不僅出版社換上了新業務代表（人物設定非常特別），書店經營者也改由原本的大配角上場，讓人不免期待，或許有朝一日能見到續集上市？屆時務必會找來翻閱，看作家如何祭出新一波書目，以及讓人淚腺如泉湧的寶藏情節。</div><div class="post-footer">
-        <a href="/posts/thestoriedlifeofajfikry/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
