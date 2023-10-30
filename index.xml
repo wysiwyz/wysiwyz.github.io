@@ -3,9 +3,20 @@
         <title>Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 09 Oct 2023 14:24:47 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 25 Oct 2023 21:50:51 &#43;0800</lastBuildDate>
             <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Think in REACT</title>
+    <link>http://wysiwyz.github.io/posts/react_scrimba/</link>
+    <pubDate>Wed, 25 Oct 2023 21:50:51 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/react_scrimba/</guid>
+    <description><![CDATA[0. 建立 React 靜態頁面的入門方法 \index.html 在 head 加入 react 以及 react-dom 的 script 連結 referred doc
+在 head 加入 babel.min.js 的 script 連結 referred doc
+✏️ script 除了加上 index.js 的檔案來源，也要記得加上 type 屬性 text/babel，不然無法順利 ReactDOM.render() 喔！
+1 2 3 4 5 6 7 8 9 10 11 12 &lt;html&gt; &lt;head&gt; &lt;link rel=&#34;stylesheet&#34; href=&#34;index.css&#34;&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react@18/umd/react.development.js&#34;&gt;&lt;/script&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react-dom@18/umd/react-dom.development.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://unpkg.com/babel-standalone@6/babel.min.js&#34;&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;root&#34;&gt;&lt;/div&gt; &lt;script src=&#34;index.js&#34; type=&#34;text/babel&#34;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; \index.js ReactDOM.]]></description>
+</item>
+<item>
     <title>跟著黑哥學 Kubernetes</title>
     <link>http://wysiwyz.github.io/posts/kubernetes_learn/</link>
     <pubDate>Mon, 09 Oct 2023 14:24:47 &#43;0800</pubDate>
@@ -41,16 +52,6 @@ docker run &lt;image_name&gt;:
 [CONTAINER Port vs HOST Port]
 + Multiple containers can run on your host machine
 + Your laptop has only certain ports available]]></description>
-</item>
-<item>
-    <title>Ocpjp_11_examDump</title>
-    <link>http://wysiwyz.github.io/posts/ocpjp_11_examdump/</link>
-    <pubDate>Wed, 16 Aug 2023 20:39:15 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ocpjp_11_examdump/</guid>
-    <description><![CDATA[ Sep8早上7:30考試，90分鐘50道題目
-1 Given
-1 2 3 public class Tester { } ]]></description>
 </item>
 <item>
     <title>1Z0-819 題目KO</title>

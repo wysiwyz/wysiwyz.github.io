@@ -30,7 +30,7 @@ KubeProxy：負責提供集群內部的服務發現和負載均衡
 Docker：負責節點上容器的各種操作
 以部署一個 nginx 服務來說明 kubernetes 系統各個組件調用關係 首先要明確，一旦 kubernetes 環境啟動之後，master 和 node 都會將自身的信息存儲到 etcd 數據庫中 一個 nginx 服務的安裝請求會首先被發送到 master 節點的 apiServer 組件 apiServer 組件會調用 scheduler 組件來決定到底應該把這個服務安裝到哪一個 node 節點上 此時，它會從 etcd 中讀取各個 node 節點的信息，然後按照一定的算法進行選擇，並將結果告知 apiServer apiServer 調用 controller_manager 去調度 Node 節點安裝 nginx 服務 Kubelet 接收到指定之後，會通知 docker，然後由 docker 來啟動一個 nginx 的 pod pod 是 kubernetes 的最小操作單元，容器必須跑在 pod 中至此 一個 nginx 服務就運行了，如果需要訪問 nginx，就需要通過 kube-proxy 來對 pod 產生訪問的代理 這樣，外界用戶就可以訪問集群中的 nginx 服務了 0-4 kubernetes 概念 Master：集群控制節點，每個集群需要至少一個 master 節點負責集群的管控 安排工作的"/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/kubernetes_learn/" /><link rel="prev" href="http://wysiwyz.github.io/posts/docker_learn/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/kubernetes_learn/" /><link rel="prev" href="http://wysiwyz.github.io/posts/docker_learn/" /><link rel="next" href="http://wysiwyz.github.io/posts/react_scrimba/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -41,7 +41,7 @@ Docker：負責節點上容器的各種操作
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/kubernetes_learn\/"
-        },"genre": "posts","keywords": "","wordcount":  1149 ,
+        },"genre": "posts","keywords": "","wordcount":  1147 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/kubernetes_learn\/","datePublished": "2023-10-09T14:24:47+08:00","dateModified": "2023-10-09T14:24:47+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -83,7 +83,7 @@ Docker：負責節點上容器的各種操作
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">跟著黑哥學 Kubernetes</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-09">2023-10-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1149 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-09">2023-10-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1147 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;6 minutes&nbsp;<span id="/posts/kubernetes_learn/" class="leancloud_visitors" data-flag-title="跟著黑哥學 Kubernetes">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -244,21 +244,14 @@ e.g. <code>app:tomcat</code> -可以用來當選擇器的條件</p>
 <h4 id="0-13-yaml-語言介紹">0-13 yaml 語言介紹</h4>
 <p>YAML是一個類似XML、JSON的標記性語言，他強調以<strong>數據</strong>為中心，並不是以標記語言為重點，因而YAML本身的定義比較簡單，號稱一種人性化的數據格式語言</p>
 <p>Xml太麻煩了，要以對象的嵌套表示</p>
+<pre><code>````xml
+&lt;heißenburg&gt;
+    &lt;age&gt;23&lt;/age&gt;
+    &lt;address&gt;Tainan&lt;/address&gt;
+&lt;/heißenburg&gt;
+````
+</code></pre>
 <div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;hei</span><span class="err">ßenburg</span><span class="nt">&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&lt;age&gt;</span>23<span class="nt">&lt;/age&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&lt;address&gt;</span>Tainan<span class="nt">&lt;/address&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="err">&lt;</span>/heißenburg&gt;
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -941,7 +934,8 @@ kubectl get pod nginx-pod-697786dc74-bsdbr -o json  # 以json格式展示成果
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/docker_learn/" class="prev" rel="prev" title="Docker 跟著 Nana 一起學"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Docker 跟著 Nana 一起學</a></div>
+    <div class="post-nav"><a href="/posts/docker_learn/" class="prev" rel="prev" title="Docker 跟著 Nana 一起學"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Docker 跟著 Nana 一起學</a>
+            <a href="/posts/react_scrimba/" class="next" rel="next" title="Think in REACT">Think in REACT<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
