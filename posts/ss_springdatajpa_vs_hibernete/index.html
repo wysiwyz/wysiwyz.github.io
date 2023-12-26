@@ -44,7 +44,7 @@ Hibernate 可以自動生成SQL 語句，自動執行
 性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響 靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL 舉例：
 1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -"/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ss_redis_notes/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ss_redis_notes/" /><link rel="next" href="http://wysiwyz.github.io/posts/s_gradle/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -260,7 +260,8 @@ Spring Data JPA 提供自動生成查詢方法的功能，減少手動編寫SQL�
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/ss_redis_notes/" class="prev" rel="prev" title="Redis 筆記"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Redis 筆記</a></div>
+    <div class="post-nav"><a href="/posts/ss_redis_notes/" class="prev" rel="prev" title="Redis 筆記"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Redis 筆記</a>
+            <a href="/posts/s_gradle/" class="next" rel="next" title="Gradle初探">Gradle初探<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

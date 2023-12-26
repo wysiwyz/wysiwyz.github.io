@@ -3,9 +3,27 @@
         <title>Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Dec 2023 14:13:59 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Dec 2023 14:14:31 &#43;0800</lastBuildDate>
             <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Gradle初探</title>
+    <link>http://wysiwyz.github.io/posts/s_gradle/</link>
+    <pubDate>Tue, 26 Dec 2023 14:14:31 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/s_gradle/</guid>
+    <description><![CDATA[概觀 Gradle是一個基於Groovy的建構管理系統，它特別設計用來建構基於Java的專案
+Gradle運行在所有主流作業系統，只需要Java JDK 8 或者以上的版本即可安裝
+(1) Unix的作業系統，可以用 SDKMAN package manager 安裝，指令sdk install gradle 8.5
+​ macOS的作業系統，可以用Homebrew package manager安裝，指令 brew install gradle
+(2) 設置環境
+Linux or MacOS: 在所選的目錄下解壓縮
+$ mkdir /opt/gradle $ unzip -d /opt/gradle gradle-8.5-bin.zip $ ls /opt/gradle/gradle-8.5 LICENSE NOTICE bin getting-started.html init.d lib media Microsoft Windows
+用 File Explorer 創建新的目錄 C:\Gradle，再把下載後解壓縮的 gradle-8.5 資料夾拉進去這個目錄
+(3) 配置環境變數
+Linux or MacOS: 配置 PATH 環境變數，注意要包括解壓縮後擋彈的 bin 目錄
+$ export PATH=$PATH:/opt/gradle/gradle-8.6/bin Microsoft Windows: [This PC/Computer] 右鍵 → Properties → Advanced System Settings → Environment Variable 在System Variables，選擇Path→ Edit，加上 C:\Gadle\gradle-8.]]></description>
+</item>
+<item>
     <title>Spring JPA 與 Hibernete</title>
     <link>http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/</link>
     <pubDate>Tue, 26 Dec 2023 14:13:59 &#43;0800</pubDate>
@@ -146,25 +164,6 @@ Dedicated Interconnect overview
 Overview of VPC Service Controls
 Access control lists
 Overview of IAP for on-premises apps]]></description>
-</item>
-<item>
-    <title>coffee and software</title>
-    <link>http://wysiwyz.github.io/posts/joshw/</link>
-    <pubDate>Fri, 16 Jun 2023 19:06:21 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/joshw/</guid>
-    <description><![CDATA[Youtube @coffeesoftware
-Spring 6 &amp; Spring Boot 3.X
-Humor Learn gradle, lose weight
-morally superior in every way
-be the change you wanna see in the world&hellip;
-it&rsquo;s better than Disneyland
-more than two times as good as java 8
-it&rsquo;s oracle, sometimes it&rsquo;s never simple&hellip;(robot tone)
-Friends do not let friends write Dockerfile.
-Make .jar, not .war!
-for legitimately slacking off &ldquo;MY CODE&rsquo;S COMPILING&rdquo;
-Use Graphql, don&rsquo;t use Swagger!]]></description>
 </item>
 </channel>
 </rss>

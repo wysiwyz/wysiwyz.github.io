@@ -53,6 +53,21 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/s_gradle/">Gradle初探</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">概觀 Gradle是一個基於Groovy的建構管理系統，它特別設計用來建構基於Java的專案
+Gradle運行在所有主流作業系統，只需要Java JDK 8 或者以上的版本即可安裝
+(1) Unix的作業系統，可以用 SDKMAN package manager 安裝，指令sdk install gradle 8.5
+​ macOS的作業系統，可以用Homebrew package manager安裝，指令 brew install gradle
+(2) 設置環境
+Linux or MacOS: 在所選的目錄下解壓縮
+$ mkdir /opt/gradle $ unzip -d /opt/gradle gradle-8.5-bin.zip $ ls /opt/gradle/gradle-8.5 LICENSE NOTICE bin getting-started.html init.d lib media Microsoft Windows
+用 File Explorer 創建新的目錄 C:\Gradle，再把下載後解壓縮的 gradle-8.5 資料夾拉進去這個目錄
+(3) 配置環境變數
+Linux or MacOS: 配置 PATH 環境變數，注意要包括解壓縮後擋彈的 bin 目錄
+$ export PATH=$PATH:/opt/gradle/gradle-8.6/bin Microsoft Windows: [This PC/Computer] 右鍵 → Properties → Advanced System Settings → Environment Variable 在System Variables，選擇Path→ Edit，加上 C:\Gadle\gradle-8.</div><div class="post-footer">
+        <a href="/posts/s_gradle/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ss_springdatajpa_vs_hibernete/">Spring JPA 與 Hibernete</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">ORM 物件關係的映射 Object-Relational Mapping的概念是可以將資料表內容做提取，並映射為物件的形式。
 缺點：對於複雜的操作（e.g. 多表格的join或查詢），相較於直接下SQL語句，更為綁手綁腳
@@ -124,13 +139,6 @@ Docker：負責節點上容器的各種操作
 A. Dr. Who
 B. Dr.</div><div class="post-footer">
         <a href="/posts/ocpjp_11_mockexam/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ocpjp_11_2/">1Z0-819 曾師筆記 (2/duology)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-08-05">2023-08-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content"># 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
-集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
-使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.</div><div class="post-footer">
-        <a href="/posts/ocpjp_11_2/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
