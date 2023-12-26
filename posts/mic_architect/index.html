@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Interview Ready, set, go - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Interview Ready, set, go" />
+<meta property="og:description" content="SpringMVC的執行流程
+封裝了 Servlet，提供更有好的開發模型
+用戶發起請求 - &gt; DispatcherServlet 收到請求，轉發給 Handler Mapping -&gt; Handler Mapping 解析請求，根據請求信息和配置信息找到匹配的 Controller 類別 OR
+如果有配置攔截器的話，會按照攔截器裡的順序執行 preHandle 方法 -&gt;
+找到匹配的 Controller 後，會把請求參數傳遞給 Controller 裡面的方法 -&gt;
+Controller 裡面的方法完成後，會返回一個 ModelAndView (包含視圖名稱和需要傳遞給視途的模型數據) -&gt;
+視圖解析器 View Resolver 會根據名字找到視圖
+MySQL binlog 和 redolog 有什麼區別？
+這兩個都是用來記錄數據庫數據變更操作的日誌
+binlog(binary log)：
+數據備份、數據恢復、數據同步 redolog：
+主要是在MySQL數據庫事務的ACID特性裡面，用來保證數據的持久化特性 也可以在數據庫崩潰時，通過 RedoLog 來恢復未完成的數據，保證數據的完整性 Conclusion:
+# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/mic_architect/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-04-30T09:10:52+08:00" />
+<meta property="article:modified_time" content="2023-04-30T09:10:52+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Interview Ready, set, go"/>
+<meta name="twitter:description" content="SpringMVC的執行流程
+封裝了 Servlet，提供更有好的開發模型
+用戶發起請求 - &gt; DispatcherServlet 收到請求，轉發給 Handler Mapping -&gt; Handler Mapping 解析請求，根據請求信息和配置信息找到匹配的 Controller 類別 OR
+如果有配置攔截器的話，會按照攔截器裡的順序執行 preHandle 方法 -&gt;
+找到匹配的 Controller 後，會把請求參數傳遞給 Controller 裡面的方法 -&gt;
+Controller 裡面的方法完成後，會返回一個 ModelAndView (包含視圖名稱和需要傳遞給視途的模型數據) -&gt;
+視圖解析器 View Resolver 會根據名字找到視圖
+MySQL binlog 和 redolog 有什麼區別？
+這兩個都是用來記錄數據庫數據變更操作的日誌
+binlog(binary log)：
+數據備份、數據恢復、數據同步 redolog：
+主要是在MySQL數據庫事務的ACID特性裡面，用來保證數據的持久化特性 也可以在數據庫崩潰時，通過 RedoLog 來恢復未完成的數據，保證數據的完整性 Conclusion:
+# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/mic_architect/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_06_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/coursera_pca/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Interview Ready, set, go",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/mic_architect\/"
+        },"genre": "posts","keywords": "java","wordcount":  184 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/mic_architect\/","datePublished": "2023-04-30T09:10:52+08:00","dateModified": "2023-04-30T09:10:52+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Interview Ready, set, go</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-04-30">2023-04-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;184 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/mic_architect/" class="leancloud_visitors" data-flag-title="Interview Ready, set, go">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><ol>
+<li>
+<p>SpringMVC的執行流程</p>
+<p>封裝了 Servlet，提供更有好的開發模型</p>
+<p>用戶發起請求 - &gt;
+DispatcherServlet 收到請求，轉發給 Handler Mapping -&gt;
+Handler Mapping 解析請求，根據請求信息和配置信息找到匹配的 Controller 類別 OR</p>
+<p>如果有配置攔截器的話，會按照攔截器裡的順序執行 preHandle 方法 -&gt;</p>
+<p>找到匹配的 Controller 後，會把請求參數傳遞給 Controller 裡面的方法 -&gt;</p>
+<p>Controller 裡面的方法完成後，會返回一個 ModelAndView (包含視圖名稱和需要傳遞給視途的模型數據)  -&gt;</p>
+<p>視圖解析器 View Resolver 會根據名字找到視圖</p>
+</li>
+<li>
+<p>MySQL <code>binlog</code> 和 <code>redolog</code> 有什麼區別？</p>
+<p>這兩個都是用來記錄數據庫數據變更操作的日誌</p>
+<p><code>binlog</code>(binary log)：</p>
+<ul>
+<li>數據備份、數據恢復、數據同步</li>
+</ul>
+<p><code>redolog</code>：</p>
+<ul>
+<li>主要是在MySQL數據庫事務的ACID特性裡面，用來保證數據的持久化特性</li>
+<li>也可以在數據庫崩潰時，通過 RedoLog 來恢復未完成的數據，保證數據的完整性</li>
+</ul>
+<p>Conclusion:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>binlog</th>
+<th>redolog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>使用場景不同</td>
+<td>數據備份、數據恢復、主從集群的數據同步</td>
+<td>實現Mysql數據庫的事務恢復、<!-- raw HTML omitted -->保證事務的ACID特性<!-- raw HTML omitted -->當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化</td>
+</tr>
+<tr>
+<td>記錄信息不同</td>
+<td>紀錄數據庫的邏輯變化<!-- raw HTML omitted -->提供三種日誌格式：statement, row, mixed</td>
+<td>紀錄數據的物理變化<!-- raw HTML omitted -->i.e. 數據頁的變化結果</td>
+</tr>
+<tr>
+<td>紀錄時機不同</td>
+<td>執行SQL語句時，在主線程生成邏輯變化，寫入disk<!-- raw HTML omitted -->『語句級別』的紀錄方式</td>
+<td>是在 Ｍysql 後台線程中去生成，並寫入到disk<!-- raw HTML omitted -->『事務級別』的紀錄方式</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p><code>limit 1000000, 10</code>加載很慢，如何解決？</p>
+</li>
+</ol>
+<p>查詢一百萬頁，每頁展示十個數據，看要不要改回傳分析過的資料</p>
+<ol start="4">
+<li>
+<p>有一張200W數據量的會員表，每個會員有長短不一的到期時件，現在想在快到期之前發送郵件通知提醒續費，如何實現？</p>
+<ol>
+<li>
+<p>系統不主動輪詢，而是等用戶登錄到系統以後，觸發一次檢查</p>
+<p>如果發現『會員過期時間』&lt; 『設定的閾值』，就觸發一次彈窗和郵件提醒</p>
+<p>Pros: 規避了輪詢問題，不會對數據庫和後端應用程序造成任何壓力</p>
+<p>Cons: 如果用戶一直不登錄，就一直無法實現會員過期，並且也無法提前去根據運營策略發送郵件或續期的提醒消息。</p>
+</li>
+<li>
+<p>可以直接使用搜尋引擎，例如 Solr 或者 ElasticSearch
+把會員表裡面的會員id和會員到期時間存儲一份到搜尋引擎裡面</p>
+<p>Pros:
+搜尋引擎優點在於大數據量的快速檢索，
+並且具有高可擴展性和高可靠性，非常適合大規模數據的處理</p>
+</li>
+<li>
+<p>可以直接使用 Redis 來實現：</p>
+<p>用戶開通會員以後，在Redis裡面存儲這個會員的ID，並設置這個id的過期時間</p>
+<p>接著，可以使用 Redis 裡面的過期提醒功能</p>
+<pre tabindex="0"><code>notify-keyspace-events
+notify-keyspace-events &#34;Ex&#34;
+</code></pre><p>當 Redis 裡面的 key過期以後，會觸發一個key過期事件，</p>
+<p>可以在應用程序裡監聽這個事件來進行處理</p>
+</li>
+<li>
+<p>可以直接使用MQ提供的延遲隊列</p>
+<p>當用戶開通以後，直接計算這個會員的過期時間，然後發送一個延遲消息到MQ裡面</p>
+<p>一旦消息達到過期時間， 消費者就可以消費這樣ㄧ個消息，來觸發會員過期的一個提醒</p>
+</li>
+</ol>
+</li>
+<li>
+<p>數據庫索引的原理，為什麼要用B+樹？</p>
+<p>可以減少跟磁盤的交互次數</p>
+<p>B樹：每一個節點上都會存索引和數據</p>
+<p>B+樹：只有葉子節點才會存數據，非葉子節點存儲的是索引</p>
+</li>
+<li>
+<p>詢問 offer, select 和 epoll的區別</p>
+<p>select 和 epoll 都是多路複用的機制，可以讓一個線程去監聽多個文件描述符的IO事件，或者連接事件</p>
+<p>區別</p>
+<ol>
+<li>
+<p><code>select</code> 基於輪詢的機制，需要遍歷整個監聽集合，直到找到就緒的文件描述符</p>
+<p><code>epoll</code> 基於事件通知機制，它只需要遍歷當前就緒的文件描述符集合，大大減少了遍歷的次數和開銷</p>
+</li>
+<li>
+<p><code>select</code> 的監聽集合大小受到操作系統限制，
+而<code>epoll</code> 沒有這個限制，可以監聽大量的文件描述符</p>
+</li>
+<li>
+<p>在處理大量文件描述符時，<code>select</code>的性能隨著監聽集合的增大而逐漸下降，
+而<code>epoll</code>的性能則能夠保持穩定</p>
+</li>
+<li>
+<p>在多線程環境下，<code>select</code> 需要將監聽集合傳遞給每個線程，</p>
+<p>而<code>epoll</code>可以在一個線程中處理多個文件描述符，避免了線程問題的切換和數據複製等開銷</p>
+</li>
+</ol>
+</li>
+<li>
+<p>如何處理消息隊列中的消息積壓問題？</p>
+<p>原因：生產者的生產速度 &gt; 消費者的消費速度</p>
+<p>需要先排查原因，如果不是因為系統bug導致的消息積壓，那可以優化消費端的邏輯，例如：</p>
+<ul>
+<li>通過異步的方式來處理消息</li>
+<li>通過批量處理的方式來消費</li>
+</ul>
+<p>如果以上兩種方法還不行緩解，可以考慮對消費端進行水平擴容</p>
+</li>
+<li>
+<p><code>volatile</code> 為什麼不能保證原子性？</p>
+<p>不可分割&hellip; 以下三個步驟如果沒有額外加鎖，則是非原子的</p>
+<ul>
+<li>讀取數據</li>
+<li>進行運算 &mdash; 多個 CPU 同時執行，可能造成髒讀</li>
+<li>寫入內存</li>
+</ul>
+<p>volatile 只能保證可見性和有序性</p>
+</li>
+<li>
+<p>多線程中存在的 CPU 緩存一致性問題，要如何解決？</p>
+<p>每個CPU之間有獨佔的緩存空間L1, L2</p>
+<p>Solution: 多個 CPU 核心裡面，都存在相同的數據的時候</p>
+<p>CPU1改了數據的時候，CPU2 不知道，CPU2改了數據時，CPU1不知道</p>
+<p>可以在 CPU 的總線上加鎖</p>
+<p>鎖分為兩類：(1) 總線鎖    (2) 緩存鎖</p>
+</li>
+<li></li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-04-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/mic_architect/" data-hashtag="java"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/mic_architect/" data-title="Interview Ready, set, go"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">java</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/lesson_06_linux/" class="prev" rel="prev" title="Lesson 06: Linux 筆記 - Shell Script! final"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Lesson 06: Linux 筆記 - Shell Script! final</a>
+            <a href="/posts/coursera_pca/" class="next" rel="next" title="GCP - preparing for your cloud architect journey">GCP - preparing for your cloud architect journey<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

@@ -53,6 +53,33 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/gcp_pca_course_notes/">Cloud architect GCP 🚧</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-24">2023-03-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Active learning - think and take notes
+Review - every once in a while
+Section 01 Getting Started GCP has 200+ services. This exam expects knowledge of 40+ services
+Exam tests your decision making abilities:
+Which service do you choose in which situation?
+How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?
+Below notes will help with making the tough choices</div><div class="post-footer">
+        <a href="/posts/gcp_pca_course_notes/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/google_cloud/">google_cloud</a>,&nbsp;<a href="/tags/ca/">CA</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_03_linux/">Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-18">2023-03-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">LUKS 加密服務 適用對象 移動式設備資料保護
+notebook, USB磁碟加密
+提供32組插槽使用
+把partition切成小塊加密，裡面放密碼、key_file
+可以使用設定的密碼解密或者用key解密
+注意事項 LUKS並不對檔案本身進行加密(針對整個partition,整個D槽) LUKS對於單一磁碟取走後能夠起保護作用 KUKS對於已經解密之磁碟內容不起保護作用 指令 cryptsetup luksFormat 建立加密磁碟 luksOpen 開啟加密磁碟 close 關閉已經開啟的加密磁碟 luks - 解密
+mount - 掛起來
+umount - 卸載
+​ (順便同步, 如果未正確卸載可能會造成檔案毀損)
+1 2 3 4 5 6 7 8 lsblk /dev/sdb cryptsetup luksFormat /dev/sdb cryptsetup luksOpen /dev/sdb secDisk mkfs.xfs /dev/mapper/secDisk mount /dev/mapper/secDisk /mnt touch /mnt/myfile umount /mnt cryptsetup close secDisk Dump/Status more cmds 使用插槽 刪除插槽 memcached的使用
+Luks資料加密架構與資料救援方法
+Linux檔案加密_GPG_GnuPG</div><div class="post-footer">
+        <a href="/posts/lesson_03_linux/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/lesson_02_linux/">Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-17">2023-03-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">請假六小時，來補課arrrhh
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
@@ -111,22 +138,6 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
 基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別</div><div class="post-footer">
         <a href="/posts/javascript_2018/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/javascript/">JavaScript</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mypuppy/">My Heart Puppy 超完美狗保母 멍뭉이</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-13">2023-03-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/moviereviews/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>movieReviews</a></span></div><div class="content">應朋友邀約在超完美狗保母上檔隔天的早晨看電影，這部影片是由柳演錫和車太鉉所主演的韓國寵物劇情片。據朋友說劇組在拍攝期間花了很多時間與電影中出現的狗勾們朝夕相處，想必這樣拍攝起來會減輕不少適應困難吧。
-主角民秀是一位出版社社員，在與美麗的空服員女友求婚當晚，發現她的家族都對狗勾的口水過敏，每次去對方家裡之前都需要吃抗過敏藥。與表哥真國商量下，決定透過社群媒體影響力的方式，幫黃金獵犬魯尼尋找下一位家人，他們拜訪了怕吵的新生兒家庭、有嚴重潔癖的暴發戶創業家、尚未走出喪犬之痛的小男孩的家、家裡環境優渥的遠親的家，發現都不太適合，決定驅車前往濟州島拜訪當地的動物之家。
-前往港口的路途中，他們在高速公路下救援了五隻米克斯幼犬，在附近中途之家收留了一隻巴哥犬，更在airB&amp;B主人庭院贖回了遭到虐待的毛小孩，一行人沿著濟州島達米安麵包店的線索找到患有帕金森氏症的富商女兒家，在一切條件近乎完美的情況下，卻因為女孩關於家人不會拋棄彼此的話而收回了請求。
-回到首爾的民秀決定回到母親故居，正視傷痛並重新建立一個適合未婚妻與毛小孩共生的環境，而表哥真國則暫時住在親戚家幫忙照顧狗狗們，同時準備未來重開狗狗寵物咖啡廳的夢想。
-這部電影有很多溫暖人心的寵物畫面、濟州島觀光美景、賺人熱淚的母子情誼、荒謬幽默的喜劇情節，可惜自己覺得在高速公路到橋下，接著前往動物中途之家，甚至救回即將被安樂死的狗狗這段情節意外的有點讓人出戲。另外他們千里迢迢來到濟洲島，卻未留下任何一名途中收留的毛小孩也有點讓人意外。只能說有些事情是要透過時間洗禮才能找到答案吧。
-推薦這部電影給任何對狗狗、韓國旅遊、車太鉉(?)、金裕珍(??) 有興趣的人。
-但如果你是極務實主義者可能就不太適合🤣</div><div class="post-footer">
-        <a href="/posts/mypuppy/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/spring/">Spring</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-13">2023-03-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Spring Architecture Core Container Core - 提供框架最基本的部分 Bean - 提供Bean工廠 Context - 存取任何定義且被配置的物件 SpEL - Spring express language Data Access JDBC - 提供JDBC抽象層 ORM - 提供Object-Relational Mapping API物件關係映射的整合層 OXM - 提供抽象層 JMS - 包含產出與使用訊息的功能 Transaction - 支援programmatic與declarative交易管理 Web WebSocket - 支援two-way溝通(client-server) Servlet - 包含Spring MVC給予web應用的實作 Web - 提供web導向整合的基本功能 Portlet - 提供MVC實作，且鏡像web-servlet模組的功能 Misc. AOP Aspects - 提供AspectJ的整合 Instrumentation - 支援class instrumentation(在已編譯的.class檔案加入字節碼byte-code) 以及class loader implementation(在執行時將java類別動態載入JVM) Messaging - 支援STOMP作為WebSocket的sub-protocol STOMP: 流文本定向消息協議 Test - 支援Spring組件(component)的測試 原本的物件建構長這樣</div><div class="post-footer">
-        <a href="/posts/spring/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -152,8 +163,10 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
                         <a href="/page/6/">6</a>
                     </span>
                 </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/7/">7</a>
+                        <a href="/page/8/">8</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

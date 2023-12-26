@@ -53,6 +53,49 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ss_springdatajpa_vs_hibernete/">Spring JPA 與 Hibernete</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">ORM 物件關係的映射 Object-Relational Mapping的概念是可以將資料表內容做提取，並映射為物件的形式。
+缺點：對於複雜的操作（e.g. 多表格的join或查詢），相較於直接下SQL語句，更為綁手綁腳
+優點：不用操作繁瑣的SQL，也可以避免惡意注入攻擊
+JPA (Java Persistence API) 持久化：資料「儲存」與「讀取」的過程，意即將資料從瞬時狀態改為持久狀態的過程（將資料存進資料庫的過程）
+JPA：透過Java將資料儲存到資料庫的API
+使用JPA優點：
+可以隨時切換想要使用的 ORM 框架
+可以使用JPQL (Java Persistence Query Language) 向資料庫下命令：
+JPQL v.s. SQL:
+SQL在不同資料庫，有不同SQL命令語句 JPQL操作對象不著重於資料庫，而是JPA的Entity Object下類似SQL的命令 （切換不同資料庫，不用特別修改SQL語句） 常見的 ORM 框架： Hibernate -
+一般使用 Spring Data JPA 就會使用 Hibernate
+Hibernate 可以自動生成SQL 語句，自動執行
+優勢：
+簡化開發_簡化了數據訪問層的開發流程 自動化查詢_只要方法命名好，就能生成相應的查詢語句 強大的ORM功能_便於物件和關係數據庫之間的轉換 數據庫管理_Spring Data JPA 透過Spring框架的數據源管理功能，可方便切換和配置不同數據源 劣勢：
+性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響 靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL 舉例：
+1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -</div><div class="post-footer">
+        <a href="/posts/ss_springdatajpa_vs_hibernete/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ss_redis_notes/">Redis 筆記</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">資料分群 三種依照服務類型儲存資料的方法：
+namespace：在key的前面加上如user:的prefix，所有資料放在一個Redis內
+建議用:區分。 可以用 redis-audit，它會用自動分群，也可以加入部分規則，減少自動分群花的時間。
+使用 database：用指令 select 切換用不同的 &ldquo;database&rdquo;
+Redis Cluster只能用database 0，因此長遠 scalability 考量，database並不適用。
+用不同的 Redis servers
+管理成本較高。設成LRU mode存cache資料，作為第一個Redis Cluster：存persistent data，作為第二個Redis Cluster。如此，可以個別設定適合的 shards、replicas 以及 各別設定適合的shards、replicas 以及 OOM 時的處理方式。
+使用Expiration &ndash; 標上有效期限 避免無限量的丟東西到記憶體裡面，以降低太多資料的管理成本
+須注意，Redis只有支援在第一層keys加上expiration。如果需要用到hash，可是hash部分內容需要加expiration的話，比較善用expiration的方法是「將一個大hash攤成多個小hash或者string，才能善用expiration。另外，使用多個小hash會比一個大hash更省時間，因為Redis有針對小hash的最佳化儲存方式。
+分析占空間的keys 除了分析工具 (redis-audit等其他記憶體分析工具)，也可以用redis-cli查找問題
+找出常見的keys，看數量分佈是否合理：redis-cli scan 0 count 100
+取樣找出各個資料類型最大的keys：redis-cli --bigkeys
+查看 KEY serialized 後的大小：DEBUG OBJECT key
+看某個 KEY 多久沒有被存取：OBJECT IDLETIME key
+[注意] default setting下，不會回傳正確的值
+Latency 常用指令：
+了解自己機器合理的 operation per second：benchmark
+找出 ≥ 10ms的操作：slowlog
+因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作</div><div class="post-footer">
+        <a href="/posts/ss_redis_notes/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/react_scrimba/">Think in REACT</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-10-25">2023-10-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">0. 建立 React 靜態頁面的入門方法 \index.html 在 head 加入 react 以及 react-dom 的 script 連結 referred doc
 在 head 加入 babel.min.js 的 script 連結 referred doc
@@ -74,24 +117,6 @@ Docker：負責節點上容器的各種操作
         <a href="/posts/kubernetes_learn/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/docker_learn/">Docker 跟著 Nana 一起學</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-10-07">2023-10-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a>&nbsp;<a href="/categories/docker/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>docker</a></span></div><div class="content">Docker Note docker ps
-​ list running containers
-docker stop &lt;container_id&gt;
-​ stops the container
-docker start &lt;container_id&gt;
-​ starts stopped container
-docker ps -a
-​ lists running and stopped container
-docker run &lt;image_name&gt;:
-​ pulls image and starts container
-​ (docker pull + docker start in one command)
-[CONTAINER Port vs HOST Port]
-+ Multiple containers can run on your host machine
-+ Your laptop has only certain ports available</div><div class="post-footer">
-        <a href="/posts/docker_learn/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ocpjp_11_mockexam/">1Z0-819 題目KO</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-08-05">2023-08-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這裡放比較tricky的題目們
 #62 1 2 3 4 5 6 7 8 9 10 class Employee { private String name; public void setName(String name) { String title = &#34;Dr. &#34;; name = title + name; } public String toString() { return name; } } And
@@ -99,21 +124,14 @@ docker run &lt;image_name&gt;:
 A. Dr. Who
 B. Dr.</div><div class="post-footer">
         <a href="/posts/ocpjp_11_mockexam/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ocpjp_11_2/">1Z0-819 曾師筆記 (2/duology)</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-08-05">2023-08-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content"># 01 泛型和集合物件 泛型 Java 5 之後加入泛型，使型別使用多了另一種彈性。
 集合物件（用來裝填物件）＋泛型，可以限制裝填物件的型別。
 使用泛型的效益 提供更彈性的「型別安全 type safety」檢查機制，原本在執行時才能發現的型別錯誤，現在在編譯時期就可以預發現 在集合物件 Collections 裡大量使用，限制內涵物件之型別 減少轉型 casting 需要，使程式碼更簡潔 使用泛型設計類別 可以將程式碼裡的符號 T換成 String( 即 UseString())，或換成 Shirt (即 UseShirt()) 常見的符號及表示方式如下： T -「型別（type）」 E -「成員（element）」 K -「鍵 - 值對裡的鍵（key）」 V -「鍵 - 值對裡的值（value）」 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 class UseAny&lt;T&gt; { private T t; public void add(T t) { this.</div><div class="post-footer">
         <a href="/posts/ocpjp_11_2/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ocpjp_11_1/">1Z0-819 曾師筆記 (1/duology)</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-08-05">2023-08-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content"># 03 OOP 程式設計思維 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 01 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
-java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
-程式碼附檔名必須為 .java，否則編譯器將拒絕編譯 class 檔案內可以有多個沒有 public 修飾的 class，檔案名稱不一定要與那些 classes 名稱相同。編譯時，檔案內宣告的每一個 class 都會各自產生附檔名為 .</div><div class="post-footer">
-        <a href="/posts/ocpjp_11_1/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">java</a>,&nbsp;<a href="/tags/1z0-819/">1Z0-819</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -130,7 +148,7 @@ java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/7/">7</a>
+                        <a href="/page/8/">8</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Java - Tag - Ich bin yiwen.</title>
+        <title>java - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/java/</link>
-        <description>Java - Tag - Ich bin yiwen.</description>
+        <description>java - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/java/" rel="self" type="application/rss+xml" /><item>
     <title>1Z0-819 題目KO</title>
     <link>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</link>
@@ -34,6 +34,26 @@ B. Dr.]]></description>
     <description><![CDATA[# 03 OOP 程式設計思維 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 01 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
 java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 程式碼附檔名必須為 .java，否則編譯器將拒絕編譯 class 檔案內可以有多個沒有 public 修飾的 class，檔案名稱不一定要與那些 classes 名稱相同。編譯時，檔案內宣告的每一個 class 都會各自產生附檔名為 .]]></description>
+</item>
+<item>
+    <title>Interview Ready, set, go</title>
+    <link>http://wysiwyz.github.io/posts/mic_architect/</link>
+    <pubDate>Sun, 30 Apr 2023 09:10:52 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/mic_architect/</guid>
+    <description><![CDATA[SpringMVC的執行流程
+封裝了 Servlet，提供更有好的開發模型
+用戶發起請求 - &gt; DispatcherServlet 收到請求，轉發給 Handler Mapping -&gt; Handler Mapping 解析請求，根據請求信息和配置信息找到匹配的 Controller 類別 OR
+如果有配置攔截器的話，會按照攔截器裡的順序執行 preHandle 方法 -&gt;
+找到匹配的 Controller 後，會把請求參數傳遞給 Controller 裡面的方法 -&gt;
+Controller 裡面的方法完成後，會返回一個 ModelAndView (包含視圖名稱和需要傳遞給視途的模型數據) -&gt;
+視圖解析器 View Resolver 會根據名字找到視圖
+MySQL binlog 和 redolog 有什麼區別？
+這兩個都是用來記錄數據庫數據變更操作的日誌
+binlog(binary log)：
+數據備份、數據恢復、數據同步 redolog：
+主要是在MySQL數據庫事務的ACID特性裡面，用來保證數據的持久化特性 也可以在數據庫崩潰時，通過 RedoLog 來恢復未完成的數據，保證數據的完整性 Conclusion:
+# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？]]></description>
 </item>
 </channel>
 </rss>

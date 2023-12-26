@@ -3,7 +3,56 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 25 Oct 2023 21:50:51 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Dec 2023 14:13:59 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>Spring JPA 與 Hibernete</title>
+    <link>http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/</link>
+    <pubDate>Tue, 26 Dec 2023 14:13:59 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/</guid>
+    <description><![CDATA[ORM 物件關係的映射 Object-Relational Mapping的概念是可以將資料表內容做提取，並映射為物件的形式。
+缺點：對於複雜的操作（e.g. 多表格的join或查詢），相較於直接下SQL語句，更為綁手綁腳
+優點：不用操作繁瑣的SQL，也可以避免惡意注入攻擊
+JPA (Java Persistence API) 持久化：資料「儲存」與「讀取」的過程，意即將資料從瞬時狀態改為持久狀態的過程（將資料存進資料庫的過程）
+JPA：透過Java將資料儲存到資料庫的API
+使用JPA優點：
+可以隨時切換想要使用的 ORM 框架
+可以使用JPQL (Java Persistence Query Language) 向資料庫下命令：
+JPQL v.s. SQL:
+SQL在不同資料庫，有不同SQL命令語句 JPQL操作對象不著重於資料庫，而是JPA的Entity Object下類似SQL的命令 （切換不同資料庫，不用特別修改SQL語句） 常見的 ORM 框架： Hibernate -
+一般使用 Spring Data JPA 就會使用 Hibernate
+Hibernate 可以自動生成SQL 語句，自動執行
+優勢：
+簡化開發_簡化了數據訪問層的開發流程 自動化查詢_只要方法命名好，就能生成相應的查詢語句 強大的ORM功能_便於物件和關係數據庫之間的轉換 數據庫管理_Spring Data JPA 透過Spring框架的數據源管理功能，可方便切換和配置不同數據源 劣勢：
+性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響 靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL 舉例：
+1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -]]></description>
+</item>
+<item>
+    <title>Redis 筆記</title>
+    <link>http://wysiwyz.github.io/posts/ss_redis_notes/</link>
+    <pubDate>Tue, 26 Dec 2023 14:12:12 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ss_redis_notes/</guid>
+    <description><![CDATA[資料分群 三種依照服務類型儲存資料的方法：
+namespace：在key的前面加上如user:的prefix，所有資料放在一個Redis內
+建議用:區分。 可以用 redis-audit，它會用自動分群，也可以加入部分規則，減少自動分群花的時間。
+使用 database：用指令 select 切換用不同的 &ldquo;database&rdquo;
+Redis Cluster只能用database 0，因此長遠 scalability 考量，database並不適用。
+用不同的 Redis servers
+管理成本較高。設成LRU mode存cache資料，作為第一個Redis Cluster：存persistent data，作為第二個Redis Cluster。如此，可以個別設定適合的 shards、replicas 以及 各別設定適合的shards、replicas 以及 OOM 時的處理方式。
+使用Expiration &ndash; 標上有效期限 避免無限量的丟東西到記憶體裡面，以降低太多資料的管理成本
+須注意，Redis只有支援在第一層keys加上expiration。如果需要用到hash，可是hash部分內容需要加expiration的話，比較善用expiration的方法是「將一個大hash攤成多個小hash或者string，才能善用expiration。另外，使用多個小hash會比一個大hash更省時間，因為Redis有針對小hash的最佳化儲存方式。
+分析占空間的keys 除了分析工具 (redis-audit等其他記憶體分析工具)，也可以用redis-cli查找問題
+找出常見的keys，看數量分佈是否合理：redis-cli scan 0 count 100
+取樣找出各個資料類型最大的keys：redis-cli --bigkeys
+查看 KEY serialized 後的大小：DEBUG OBJECT key
+看某個 KEY 多久沒有被存取：OBJECT IDLETIME key
+[注意] default setting下，不會回傳正確的值
+Latency 常用指令：
+了解自己機器合理的 operation per second：benchmark
+找出 ≥ 10ms的操作：slowlog
+因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作]]></description>
+</item>
+<item>
     <title>Think in REACT</title>
     <link>http://wysiwyz.github.io/posts/react_scrimba/</link>
     <pubDate>Wed, 25 Oct 2023 21:50:51 &#43;0800</pubDate>
@@ -29,27 +78,6 @@ KubeProxy：負責提供集群內部的服務發現和負載均衡
 訪問程序的入口
 Docker：負責節點上容器的各種操作
 以部署一個 nginx 服務來說明 kubernetes 系統各個組件調用關係 首先要明確，一旦 kubernetes 環境啟動之後，master 和 node 都會將自身的信息存儲到 etcd 數據庫中 一個 nginx 服務的安裝請求會首先被發送到 master 節點的 apiServer 組件 apiServer 組件會調用 scheduler 組件來決定到底應該把這個服務安裝到哪一個 node 節點上 此時，它會從 etcd 中讀取各個 node 節點的信息，然後按照一定的算法進行選擇，並將結果告知 apiServer apiServer 調用 controller_manager 去調度 Node 節點安裝 nginx 服務 Kubelet 接收到指定之後，會通知 docker，然後由 docker 來啟動一個 nginx 的 pod pod 是 kubernetes 的最小操作單元，容器必須跑在 pod 中至此 一個 nginx 服務就運行了，如果需要訪問 nginx，就需要通過 kube-proxy 來對 pod 產生訪問的代理 這樣，外界用戶就可以訪問集群中的 nginx 服務了 0-4 kubernetes 概念 Master：集群控制節點，每個集群需要至少一個 master 節點負責集群的管控 安排工作的]]></description>
-</item>
-<item>
-    <title>Docker 跟著 Nana 一起學</title>
-    <link>http://wysiwyz.github.io/posts/docker_learn/</link>
-    <pubDate>Sat, 07 Oct 2023 14:59:55 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/docker_learn/</guid>
-    <description><![CDATA[Docker Note docker ps
-​ list running containers
-docker stop &lt;container_id&gt;
-​ stops the container
-docker start &lt;container_id&gt;
-​ starts stopped container
-docker ps -a
-​ lists running and stopped container
-docker run &lt;image_name&gt;:
-​ pulls image and starts container
-​ (docker pull + docker start in one command)
-[CONTAINER Port vs HOST Port]
-+ Multiple containers can run on your host machine
-+ Your laptop has only certain ports available]]></description>
 </item>
 <item>
     <title>1Z0-819 題目KO</title>
@@ -117,28 +145,24 @@ Yeah, 考過了！
 VPC Projects, networks, subnetworks A project Associates objects and servicing with billing Contains networks A network 3 VPC network types Default Every project One subnet per region Default firewall rules Auto Mode Default network One subnet per region Regional IP allocation Fixed /20 subnetwork per region Expandable up to /16 Custom Mode No default subnets created Full control of IP ranges Regional IP allocation Expandable to IP ranges you specify Expand subnets without re-creating instances Cannot overlap with other subnets]]></description>
 </item>
 <item>
-    <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
-    <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
-    <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
+    <title>Interview Ready, set, go</title>
+    <link>http://wysiwyz.github.io/posts/mic_architect/</link>
+    <pubDate>Sun, 30 Apr 2023 09:10:52 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_06_linux/</guid>
-    <description><![CDATA[Shell Script 與排程
-Linux 安全應用演練及總複習
-shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
-Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10.]]></description>
-</item>
-<item>
-    <title>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</title>
-    <link>http://wysiwyz.github.io/posts/lesson_05_linux/</link>
-    <pubDate>Sat, 15 Apr 2023 09:10:47 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_05_linux/</guid>
-    <description><![CDATA[Log Server 實作
-MariaDB 權限與加密, nmap 檢測工具介紹
-User ID Report
-aureport -u -i --failed | less 1.Write message to syslog BIOS/UEF ➡ grub2 ➡ kernel ➡ systemd ➡ journalctl
-rsyslog : 如果選 minimal installation，err不會由rsyslog接，改由journalctl接error接收 將訊息寫入系統紀錄中 @Server
-1 root# logger hello World 1 root# tail /var/log/messages 1 root# journalctl 1 root# journalctl --since &#34;2023-04-15&#34; 1 root# reboot 將journalctl紀錄持久化 推書時間: 實戰Linux系統數位鑑識 (江湖海) (Practical Linux Forensics: A guide for digital investigators, by Bruce Nikkel)]]></description>
+    <guid>http://wysiwyz.github.io/posts/mic_architect/</guid>
+    <description><![CDATA[SpringMVC的執行流程
+封裝了 Servlet，提供更有好的開發模型
+用戶發起請求 - &gt; DispatcherServlet 收到請求，轉發給 Handler Mapping -&gt; Handler Mapping 解析請求，根據請求信息和配置信息找到匹配的 Controller 類別 OR
+如果有配置攔截器的話，會按照攔截器裡的順序執行 preHandle 方法 -&gt;
+找到匹配的 Controller 後，會把請求參數傳遞給 Controller 裡面的方法 -&gt;
+Controller 裡面的方法完成後，會返回一個 ModelAndView (包含視圖名稱和需要傳遞給視途的模型數據) -&gt;
+視圖解析器 View Resolver 會根據名字找到視圖
+MySQL binlog 和 redolog 有什麼區別？
+這兩個都是用來記錄數據庫數據變更操作的日誌
+binlog(binary log)：
+數據備份、數據恢復、數據同步 redolog：
+主要是在MySQL數據庫事務的ACID特性裡面，用來保證數據的持久化特性 也可以在數據庫崩潰時，通過 RedoLog 來恢復未完成的數據，保證數據的完整性 Conclusion:
+# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？]]></description>
 </item>
 </channel>
 </rss>

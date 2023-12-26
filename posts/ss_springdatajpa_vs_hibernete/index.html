@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Spring JPA 與 Hibernete - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Spring JPA 與 Hibernete" />
+<meta property="og:description" content="ORM 物件關係的映射 Object-Relational Mapping的概念是可以將資料表內容做提取，並映射為物件的形式。
+缺點：對於複雜的操作（e.g. 多表格的join或查詢），相較於直接下SQL語句，更為綁手綁腳
+優點：不用操作繁瑣的SQL，也可以避免惡意注入攻擊
+JPA (Java Persistence API) 持久化：資料「儲存」與「讀取」的過程，意即將資料從瞬時狀態改為持久狀態的過程（將資料存進資料庫的過程）
+JPA：透過Java將資料儲存到資料庫的API
+使用JPA優點：
+可以隨時切換想要使用的 ORM 框架
+可以使用JPQL (Java Persistence Query Language) 向資料庫下命令：
+JPQL v.s. SQL:
+SQL在不同資料庫，有不同SQL命令語句 JPQL操作對象不著重於資料庫，而是JPA的Entity Object下類似SQL的命令 （切換不同資料庫，不用特別修改SQL語句） 常見的 ORM 框架： Hibernate -
+一般使用 Spring Data JPA 就會使用 Hibernate
+Hibernate 可以自動生成SQL 語句，自動執行
+優勢：
+簡化開發_簡化了數據訪問層的開發流程 自動化查詢_只要方法命名好，就能生成相應的查詢語句 強大的ORM功能_便於物件和關係數據庫之間的轉換 數據庫管理_Spring Data JPA 透過Spring框架的數據源管理功能，可方便切換和配置不同數據源 劣勢：
+性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響 靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL 舉例：
+1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-26T14:13:59+08:00" />
+<meta property="article:modified_time" content="2023-12-26T14:13:59+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring JPA 與 Hibernete"/>
+<meta name="twitter:description" content="ORM 物件關係的映射 Object-Relational Mapping的概念是可以將資料表內容做提取，並映射為物件的形式。
+缺點：對於複雜的操作（e.g. 多表格的join或查詢），相較於直接下SQL語句，更為綁手綁腳
+優點：不用操作繁瑣的SQL，也可以避免惡意注入攻擊
+JPA (Java Persistence API) 持久化：資料「儲存」與「讀取」的過程，意即將資料從瞬時狀態改為持久狀態的過程（將資料存進資料庫的過程）
+JPA：透過Java將資料儲存到資料庫的API
+使用JPA優點：
+可以隨時切換想要使用的 ORM 框架
+可以使用JPQL (Java Persistence Query Language) 向資料庫下命令：
+JPQL v.s. SQL:
+SQL在不同資料庫，有不同SQL命令語句 JPQL操作對象不著重於資料庫，而是JPA的Entity Object下類似SQL的命令 （切換不同資料庫，不用特別修改SQL語句） 常見的 ORM 框架： Hibernate -
+一般使用 Spring Data JPA 就會使用 Hibernate
+Hibernate 可以自動生成SQL 語句，自動執行
+優勢：
+簡化開發_簡化了數據訪問層的開發流程 自動化查詢_只要方法命名好，就能生成相應的查詢語句 強大的ORM功能_便於物件和關係數據庫之間的轉換 數據庫管理_Spring Data JPA 透過Spring框架的數據源管理功能，可方便切換和配置不同數據源 劣勢：
+性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響 靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL 舉例：
+1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ss_redis_notes/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Spring JPA 與 Hibernete",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/ss_springdatajpa_vs_hibernete\/"
+        },"genre": "posts","keywords": "","wordcount":  155 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/ss_springdatajpa_vs_hibernete\/","datePublished": "2023-12-26T14:13:59+08:00","dateModified": "2023-12-26T14:13:59+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Spring JPA 與 Hibernete</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;155 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/ss_springdatajpa_vs_hibernete/" class="leancloud_visitors" data-flag-title="Spring JPA 與 Hibernete">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h5 id="orm-物件關係的映射">ORM 物件關係的映射</h5>
+<p>Object-Relational Mapping的概念是可以將資料表內容做提取，並映射為物件的形式。</p>
+<p>缺點：對於複雜的操作（e.g. 多表格的join或查詢），相較於直接下SQL語句，更為綁手綁腳</p>
+<p>優點：不用操作繁瑣的SQL，也可以避免惡意注入攻擊</p>
+<h5 id="jpa-java-persistence-api">JPA (Java Persistence API)</h5>
+<p>持久化：資料「儲存」與「讀取」的過程，意即將資料從<!-- raw HTML omitted --><strong>瞬時狀態</strong><!-- raw HTML omitted -->改為<!-- raw HTML omitted --><strong>持久狀態</strong><!-- raw HTML omitted -->的過程（將資料存進資料庫的過程）</p>
+<p>JPA：透過Java將資料儲存到資料庫的API</p>
+<p>使用JPA優點：</p>
+<ol>
+<li>
+<p>可以隨時切換想要使用的 ORM 框架</p>
+</li>
+<li>
+<p>可以使用JPQL (Java Persistence Query Language) 向資料庫下命令：</p>
+<p>JPQL v.s. SQL:</p>
+<ul>
+<li>SQL在不同資料庫，有不同SQL命令語句</li>
+<li>JPQL操作對象不著重於資料庫，而是JPA的Entity Object下類似SQL的命令
+（切換不同資料庫，不用特別修改SQL語句）</li>
+</ul>
+</li>
+</ol>
+<h5 id="常見的-orm-框架">常見的 ORM 框架：</h5>
+<ol>
+<li>
+<p>Hibernate -</p>
+<p>一般使用 Spring Data JPA 就會使用 Hibernate</p>
+<p>Hibernate 可以自動生成SQL 語句，自動執行</p>
+<p>優勢：</p>
+<ol>
+<li>簡化開發_簡化了數據訪問層的開發流程</li>
+<li>自動化查詢_只要方法命名好，就能生成相應的查詢語句</li>
+<li>強大的ORM功能_便於物件和關係數據庫之間的轉換</li>
+<li>數據庫管理_Spring Data JPA 透過Spring框架的數據源管理功能，可方便切換和配置不同數據源</li>
+</ol>
+<p>劣勢：</p>
+<ol>
+<li>性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響</li>
+<li>靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL</li>
+</ol>
+<p>舉例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findByLastName</span><span class="o">(</span><span class="n">String</span> <span class="n">lastName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><a href="https://blog.mybatis.org/" target="_blank" rel="noopener noreffer ">MyBatis</a> -</p>
+<p>支援客製化SQL、存儲過程、以及 Advanced Mapping</p>
+<p>可以使用簡單的 xml 或者註解，配置</p>
+<p>優勢：</p>
+<ol>
+<li>靈活性高</li>
+<li>性能優化</li>
+<li>易於集成</li>
+</ol>
+<p>劣勢：</p>
+<ol>
+<li>需要手動編寫SQL語句，開發者必須具備一定的SQL語法以及數據庫知識</li>
+<li>缺發對象關係映射，MyBatis需要開發者手動處理對象和關係數據庫的轉換</li>
+</ol>
+<p>舉例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserMapper</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@Select</span><span class="o">(</span><span class="s">&#34;SELECT * FROM users WHERE last_name = #{lastName}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">findByLastName</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">&#34;lastName&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">lastName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<blockquote>
+<p>Spring Data JPA 更方便，自動化更強，適合用於：</p>
+<ol>
+<li>
+<p><strong>簡單的CRUD操作</strong>
+Spring Data JPA 提供自動生成查詢方法的功能，減少手動編寫SQL的工作量</p>
+</li>
+<li>
+<p><strong>需要快速集成Spring框架</strong></p>
+<p>如果框架已經是 Spring，用 Spring Data JPA 比較便於與其它Spring組件協作
+（e.g. 集成數據訪問層、事務管理、數據來源配置）</p>
+</li>
+<li>
+<p><strong>對象關係映射需求較高</strong>
+業務邏輯涉及複雜的對象關係映射（e.g. 繼承、關聯關係）時，Spring Data JPA可以更好的處理其複雜性</p>
+</li>
+</ol>
+<p>MyBatis 撰寫 sql 語句上更加靈活自由，適用於：</p>
+<ol>
+<li>
+<p><strong>複雜的查詢需求</strong></p>
+<p>像是多表格關聯查詢、動態查詢條件的需求，MyBatis提供更好的靈活性</p>
+</li>
+<li>
+<p><strong>性能優化要求比較高</strong></p>
+<p>處理大量數據或者高併發訪問時，MyBatis提供更多的性能優化機會（例如：手動編寫SQL、優化SQL語句、使用緩存等技術手段）</p>
+</li>
+<li>
+<p><strong>對SQL語法和數據庫的掌握較好</strong></p>
+<p>可以更加靈活地控制SQL語句的執行過程，更好的發揮數據庫的特性</p>
+</li>
+</ol>
+</blockquote>
+<p>參考資料：</p>
+<p><a href="https://ithelp.ithome.com.tw/articles/10194906" target="_blank" rel="noopener noreffer ">什麼是Spring Data JPA</a></p>
+<p><a href="https://docs.spring.io/spring-data/jpa/reference/#repositories" target="_blank" rel="noopener noreffer ">Spring Data JPA_spring.io</a></p>
+<p><a href="https://ithelp.ithome.com.tw/articles/10217348" target="_blank" rel="noopener noreffer ">認識Spring Data JPA, JPA, Hibernate</a></p>
+<p><a href="https://www.interviewbit.com/blog/jpa-vs-hibernate/" target="_blank" rel="noopener noreffer ">JPA v.s. Hibernate</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-26</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/" data-hashtag=""><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/" data-title="Spring JPA 與 Hibernete"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/ss_redis_notes/" class="prev" rel="prev" title="Redis 筆記"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Redis 筆記</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
