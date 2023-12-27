@@ -35,7 +35,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/"
-        },"genre": "posts","keywords": "","wordcount":  454 ,
+        },"genre": "posts","keywords": "","wordcount":  729 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/","datePublished": "2023-12-26T14:14:47+08:00","dateModified": "2023-12-26T14:14:47+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,8 +77,8 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 JUnit & Mockito 測試 Java 程式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;454 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;729 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -169,16 +169,16 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 <p>避免修改完程式後，忘記測試某一個特性</p>
 </li>
 <li>
-<p>確保這程式方法目前且為來都能運作良好，
+<p>確保這程式方法目前以及將來都能運作良好，
 免得未來接手的人更改此方法時不小心弄壞現有功能</p>
 </li>
 <li>
-<p>確保你做的修改不會應想到其它程式碼，確保沒有回歸，所有功能仍然按照預期工作</p>
+<p>確保你做的修改不會影響到其它程式碼，確保沒有回歸，所有功能仍然按照預期工作</p>
 </li>
 </ol>
 <h5 id="first-原則">F.I.R.S.T. 原則</h5>
 <ul>
-<li>Fast - 單元測試不通過網路通信，也不執行數據操作，</li>
+<li>Fast - 單元測試不通過網路通信，也不執行數據庫操作，</li>
 <li>Independent - 一個單元測試不應該依賴於另一個單元測試的測試結果，也不受到依賴項影響</li>
 <li>Repeatable - 單元測試應該是可重複的，在不同環境/作業系統下，有相同結果</li>
 <li>Self-validating - 自我驗證 - 測試完成後，結果應該一目了然，不用手動檢查</li>
@@ -204,13 +204,13 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 <li>如上圖（下半部），這些依賴關係(Mock or Stub)停止注入，改用 predefined behavior</li>
 </ul>
 <h5 id="testing-pyramid">Testing Pyramid</h5>
-<p>​           3 (金字塔頂)。End-to-End Testing / UI Testing
-​                ↳ Testing software functionality from beginning to end</p>
-<p>​     2 (金字塔中層)。 I<!-- raw HTML omitted -->ntegration Tests<!-- raw HTML omitted -->
-​          ↳ Application code is tested without mocking DB or HTTP connections</p>
-<p>1 (金字塔底部)。<!-- raw HTML omitted -->Unit Tests<!-- raw HTML omitted -->           <br>
-↳ Testing isolated small pieces of code with Fake or Mock dependencies</p>
-<p>單元測試是這三種測試中最快的，它不用連接資料庫，也不用透過網路發送gdp請求</p>
+<pre tabindex="0"><code>          3 (金字塔頂)。End-to-End Testing / UI Testing
+             ↳ Testing software functionality from beginning to end
+     2 (金字塔中層)。 I&lt;u&gt;ntegration Tests&lt;/u&gt;
+        ↳ Application code is tested without mocking DB or HTTP connections
+1 (金字塔底部)。&lt;u&gt;Unit Tests&lt;/u&gt;              
+  ↳ Testing isolated small pieces of code with Fake or Mock dependencies
+</code></pre><p>單元測試是這三種測試中最快的，它不用連接資料庫，也不用透過網路發送gdp請求</p>
 <p>End-to-end / 自動化UI測試是速度最慢的</p>
 <h4 id="junit-5">JUnit 5</h4>
 <p>JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage</p>
@@ -257,7 +257,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 <p>打開 <code>pom.xml</code>，在 <code>&lt;dependencies&gt;...&lt;/dependencies&gt;</code>區塊之後，加入<code>&lt;build&gt;</code></p>
 </li>
 <li>
-<p>在Mvn網頁搜尋 Maven Surefire plugin，Maven頁籤下，複製&lt;dependency&gt;裡面內容</p>
+<p>在maven.repository.com網頁搜尋 Maven Surefire plugin，Maven頁籤下，複製&lt;dependency&gt;裡面內容</p>
 </li>
 <li>
 <p>貼上到 &lt;build&gt;&lt;plugins&gt;&lt;plugin&gt;裡面</p>
@@ -318,11 +318,170 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 </div>
 </div></li>
 </ol>
-<h5 id="creating-a-new-project">Creating a new project</h5>
+<h5 id="creating-a-new-project_gradle">Creating a new project_Gradle</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">testImplementation</span> <span class="s1">&#39;org.junit.jupiter:junit-jupiter:5.8.2&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//testImplementation &#39;org.junit.jupiter:junit-jupiter-api:5.8.2&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//testImplementation &#39;org.junit.jupiter:junit-jupiter-params:5.8.2&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//testRuntimeOnly &#39;org.junit.jupiter:junit-jupiter-engine:5.8.2&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">test</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">useJUnitPlatform</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">  <span class="n">testLogging</span><span class="o">.</span><span class="na">showStandardStreams</span><span class="o">=</span><span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>搜尋 JUnit Jupiter Params，選Gradle(short)的頁籤</p>
+</li>
+<li>
+<p>其實有另外一個 mvnRepository 已經集成了以上三個依賴：JUnit Jupiter (Aggregator)</p>
+</li>
+<li>
+<p>在 test block 加入 testLogging.showStandardStreams</p>
+</li>
+<li>
+<p>接著reload: 要再 load gradle changes (點擊 Gradle logo icon)</p>
+</li>
+</ul>
+<h5 id="check-if-junit-works">Check if JUnit works</h5>
+<ol>
+<li>
+<p>src/test/java 目錄下建立一個 testDemo 方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testDemo</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Demo test&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>打開terminal，<code>ls</code>確認當前與<code>gradlew</code>在同一階層目錄下</p>
+</li>
+<li>
+<p>輸入指令 <code>./gradlew clean test</code> 清理專案，移除上一次的 build，並執行名為 test 的 task</p>
+</li>
+<li>
+<p>打開 console 驗證結果</p>
+</li>
+</ol>
+<h5 id="create-a-new-project_java">Create a new project_Java</h5>
+<p>如何不靠 Maven 或 Gradle，自己建單元測試架構</p>
+<ol>
+<li>
+<p>先在 專案名字/src 目錄下建立一個類別，並寫一些要被測試的方法 (UserService.java)</p>
+</li>
+<li>
+<p>Test folder: 右鍵專案名字 → New Directory → 命名為 test</p>
+</li>
+<li>
+<p>接著右鍵這個新建立的資料夾，Mark Directory as &ldquo;Test Sources Root&rdquo;</p>
+</li>
+<li>
+<p>在要被測試的方法點右鍵 → Generate Test&hellip;</p>
+</li>
+<li>
+<p>Create Test / Testing library 選 JUnit5</p>
+<p>/ Class name 通常是命名成（要被測試的類別)+Test (例如. UserServiceTest.java)</p>
+<p>/ Destination package 會與要被測試類別的package目錄一樣 (例如 com.appsdeveloper)</p>
+<p>/Generate 有兩個可選擇功能，後續會提 <code>setUp/Before</code>, <code>tearDown/@After</code></p>
+<p>打勾要被測試的方法</p>
+</li>
+<li>
+<p>存檔後就可以看到他出現在 test/${ DestinationPackage} 路徑底下了</p>
+</li>
+<li>
+<p><code>fail(&quot;error message&quot;);</code> assertion</p>
+</li>
+</ol>
+<p>Create a new Java project_Eclipse IDE</p>
+<ol>
+<li>
+<p>像平常一樣 create a java project，在 src 目錄下 new Java class</p>
+<p>​    / Package 輸入套件 (e.g. <code>com.apachedeveloper.blog</code>)</p>
+</li>
+<li>
+<p>建立新類別完成，寫一個要被測試的方法</p>
+</li>
+<li>
+<p>接著右鍵專案名字 → new Source Folder  → 命名為 test</p>
+</li>
+<li>
+<p>右鍵剛剛建好的新類別 → new JUnit Test Case</p>
+</li>
+<li>
+<p>在 New JUnit test case 視窗內三個選項中，勾選 &ldquo;New JUnit Jupiter test&rdquo;</p>
+<p>[   ]New JUnit 3 test    [   ]New JUnit 4 test     [V]New JUnit Jupiter test</p>
+<p>/ Source folder 原本是 <code>**/src</code>，改成 <code>**/test</code></p>
+<p>/ Class under test 應該就是Step4時右鍵類別的路徑</p>
+</li>
+<li>
+<p>點擊Finish後會出現彈窗問你 JUnit 5 目前不在 build path 上，是否要加入？</p>
+<p>維持<code>Perform the following action-Add JUnit5 library to the build path</code> 即可</p>
+</li>
+<li>
+<p>測試類別建立好之後，要運行單元測試則要右鍵這個測試類  → Run As <!-- raw HTML omitted -->JUnit Test<!-- raw HTML omitted --></p>
+<p>系統可能會提醒你還沒存檔</p>
+</li>
+<li>
+<p>接著就會出現 JUnit 的頁籤，可供查看測試結果</p>
+</li>
+</ol>
+<h5 id="write-unit-test">Write Unit Test</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CalculatorTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">integerDivision</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Calculator</span> <span class="n">calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="na">integerDivision</span><span class="o">(</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assertEquals</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="n">result</span><span class="o">,</span> <span class="s">&#34;should be 2&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>assertEquals, fail, assertTrue, assertFalse, assertNull, assertNotNull, assertThrows, assertDoesNotThrow &hellip; 等這些方法是來自jupiter.api.Assertions 裡面的靜態方法</p>
+<h5 id="lazy-assert-messages">Lazy Assert Messages</h5>
+<p>(p22/96)</p>
 <h4 id="mockito">Mockito</h4>
 <h4 id="test-driven-development-tdd">Test Driven Development (TDD)</h4>
-<h4 id="configure-junit-in-a-regular-java-project-maven">Configure JUnit in a regular Java project (Maven)</h4>
-<h4 id="configure-junit-in-a-regular-java-project-gradle">Configure JUnit in a regular Java project (Gradle)</h4>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
