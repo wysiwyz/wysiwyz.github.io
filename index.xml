@@ -3,14 +3,27 @@
         <title>Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Dec 2023 14:14:31 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Dec 2023 14:14:47 &#43;0800</lastBuildDate>
             <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>使用 JUnit &amp; Mockito 測試 Java 程式</title>
+    <link>http://wysiwyz.github.io/posts/s_junit/</link>
+    <pubDate>Tue, 26 Dec 2023 14:14:47 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/s_junit/</guid>
+    <description><![CDATA[使用 JUnit &amp; Mockito 測試 Java 程式 Mockito &mdash; 本來以為這跟薄荷飲料mochito同音，實際要唸成 /mɑkiːtoʊ/ 或者 /mˈɒkiːtoʊ/ ，音譯就是『莫kito』或者『碼kito』，總之 k 要發音，因為他是模擬方法 (&ldquo;mock all methods&rdquo;)
+Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式碼一部分區塊 的一個小型方法
+1 2 3 public String isEmailValid(String email) { //Code that needs to be tested } 如何寫單元測試以確保一個類別中的某方法正常運作呢？
+這是一段除法程式：
+1 2 3 4 5 public class Calculator { public int integerDivision(int dividend, int divisor) { return dividend / divisor; } } 我們可以寫以下的單元測試，以驗證上方程式裡，開發者沒有敲錯鍵，把除號打成乘號.
+1 2 3 4 5 6 7 8 9 @Test void testIntegerDivision_whenValidValuesProvided_shouldReturnExpectedResult() { //Arrange Calculator calculatore = new Calculator(); //Act int result = calculator.]]></description>
+</item>
+<item>
     <title>Gradle初探</title>
-    <link>http://wysiwyz.github.io/posts/s_gradle/</link>
+    <link>http://wysiwyz.github.io/posts/ss_gradle/</link>
     <pubDate>Tue, 26 Dec 2023 14:14:31 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/s_gradle/</guid>
+    <guid>http://wysiwyz.github.io/posts/ss_gradle/</guid>
     <description><![CDATA[概觀 Gradle是一個基於Groovy的建構管理系統，它特別設計用來建構基於Java的專案
 Gradle運行在所有主流作業系統，只需要Java JDK 8 或者以上的版本即可安裝
 (1) Unix的作業系統，可以用 SDKMAN package manager 安裝，指令sdk install gradle 8.5
@@ -142,28 +155,6 @@ Java Client Operation Process
 創建 Index template RDBMS Elasticsearch Table Index Row Document Column Field Schema Mapping SQL DSL 常用分詞器 Analyze
 Jieba分詞器 (better) IK分詞器 如何跟 Elasticsearch 溝通:
 Postman Kibnan 1 RestClient restClient = 幾個重要的methods get() search() index() update() indices().putIndexTemplate() ]]></description>
-</item>
-<item>
-    <title>GCP PCA --- practice exam</title>
-    <link>http://wysiwyz.github.io/posts/gcp_pca_exam_dump/</link>
-    <pubDate>Sun, 25 Jun 2023 15:26:29 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/gcp_pca_exam_dump/</guid>
-    <description><![CDATA[2023-08-04 Google Cloud Platform - Professional Cloud Architect GET!
-VPC firewall rules
-Security policy overview
-Control communication between Pods and Services using network policies
-Identity-Aware Proxy overview
-Optimize application latency with load balancing
-Kubernetes Services
-Ingress for internal Application Load Balancers
-Connecting to Google Cloud: your networking options explained
-Carrier Peering &mdash; Considerations
-Partner Interconnect overview
-Dedicated Interconnect overview
-Overview of VPC Service Controls
-Access control lists
-Overview of IAP for on-premises apps]]></description>
 </item>
 </channel>
 </rss>
