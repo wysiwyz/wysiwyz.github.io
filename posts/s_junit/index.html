@@ -35,7 +35,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/"
-        },"genre": "posts","keywords": "","wordcount":  729 ,
+        },"genre": "posts","keywords": "","wordcount":  1414 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/","datePublished": "2023-12-26T14:14:47+08:00","dateModified": "2023-12-26T14:14:47+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,8 +77,8 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 JUnit & Mockito 測試 Java 程式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;729 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1414 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -206,9 +206,9 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 <h5 id="testing-pyramid">Testing Pyramid</h5>
 <pre tabindex="0"><code>          3 (金字塔頂)。End-to-End Testing / UI Testing
              ↳ Testing software functionality from beginning to end
-     2 (金字塔中層)。 I&lt;u&gt;ntegration Tests&lt;/u&gt;
+     2 (金字塔中層)。 Integration Tests
         ↳ Application code is tested without mocking DB or HTTP connections
-1 (金字塔底部)。&lt;u&gt;Unit Tests&lt;/u&gt;              
+1 (金字塔底部)。Unit Tests              
   ↳ Testing isolated small pieces of code with Fake or Mock dependencies
 </code></pre><p>單元測試是這三種測試中最快的，它不用連接資料庫，也不用透過網路發送gdp請求</p>
 <p>End-to-end / 自動化UI測試是速度最慢的</p>
@@ -479,7 +479,429 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 </div>
 </div><p>assertEquals, fail, assertTrue, assertFalse, assertNull, assertNotNull, assertThrows, assertDoesNotThrow &hellip; 等這些方法是來自jupiter.api.Assertions 裡面的靜態方法</p>
 <h5 id="lazy-assert-messages">Lazy Assert Messages</h5>
-<p>(p22/96)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">expectedResult</span> <span class="o">=</span> <span class="mi">32</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">actualResult</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="na">integerSubtraction</span><span class="o">(</span><span class="mi">33</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedResult</span><span class="o">,</span> <span class="n">actualResult</span><span class="o">,</span> <span class="n">actualResult</span> <span class="o">+</span> <span class="s">&#34; is wrong. Correct answer should be &#34;</span><span class="o">+</span> <span class="n">expectedResult</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>第三個param，也就是如果不符合expectedResult會用到的錯誤訊息，這個參數非必填</li>
+<li>可以用字串串接，但並不是每次斷言都會用到這個message，因此比較建議改寫成 lambda</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedResult</span><span class="o">,</span> <span class="n">actualResult</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">actualResult</span> <span class="o">+</span> <span class="s">&#34; is wrong. Correct answer should be &#34;</span><span class="o">+</span> <span class="n">expectedResult</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>這樣只有測試fail的時候，這段lambda才會執行</li>
+</ul>
+<h5 id="naming-unit-tests">Naming Unit Tests</h5>
+<p>測試方法的命名最好可以一目瞭然，通常是這樣命名的：</p>
+<p><code>test{System under test}_{condition or state change}_{Expected Result}</code></p>
+<p>例如：testIntegerDivision_WhenFourIsDividedByTwo_ShouldReturnTwo() {&hellip;}</p>
+<p>testIntegerDivision_WhenDividendIsDividedByZero_ShouldThrowArithmeticException() {&hellip;}</p>
+<h5 id="displayname-annotation">@DisplayName annotation</h5>
+<p>在測試類別上方掛<code>@DisplayName(&quot;Name to be displayed on test result&quot;)</code></p>
+<p>在方法名稱上面也可以掛這個標註，可以避免方法名稱長度太長，以至於報表不易讀取。</p>
+<h5 id="tripple-a---arrange-act-assert">Tripple A - arrange, act, assert</h5>
+<p>Arrange: 準備變數並初始化需要用的的物件，又名為 Given</p>
+<p>Act: 調用要被測試的方法，又名為 When</p>
+<p>Assert: 用來驗證被測試的方法之回傳值，又名為 Then</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Test 4/2 = 2&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testIntegerDivision_Whe4IsDividedBy2_ShouldReturn2</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Calculator</span> <span class="n">calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">dividend</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">divisor</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">expectedResult</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">actualResult</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="na">integerDivision</span><span class="o">(</span><span class="n">dividend</span><span class="o">,</span> <span class="n">divisor</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedResult</span><span class="o">,</span> <span class="n">actualResult</span><span class="o">,</span> <span class="s">&#34;4/2 did not produce 2&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="lifecycle-methods">Lifecycle Methods</h5>
+<p>當我們在一個測試類別建立三個測試方法並且掛上<code>@Test</code>時，JUnit 預設會替這個測試類別建立個數與測試方法一致的 Class Instance。這些方法以隨機的順序執行。</p>
+<p>但 Lifecycle 測試方法掛的是不同的標註</p>
+<ul>
+<li>其中一個是<code>@BeforeAll</code>，通常作為setup()方法，像是準備測試需要用的資源，例如建立資料庫</li>
+<li>另外一個是<code>@AfterAll</code>，通常作為cleanup()方法， 在所有測試方法都結束後才執行，例如刪除測試一開始建立的資料庫</li>
+<li>還有一個是 <code>@BeforeEach</code>，會在每一個單元測試開始之前執行，以減少重複的程式碼</li>
+<li>最後一個是<code>@AfterEach</code>，在每一個單元測試結束後執行，例如關閉資料庫連線</li>
+</ul>
+<p>BeforeAll 以及 AfterAll 都是只會執行一次 (one-time only) 的靜態 (static) 方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@BeforeAll</span>
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Executing @BeforeAll method.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AfterAll</span>
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="kt">void</span> <span class="nf">clean</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Executing @AfterAll method.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@BeforeEach</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">beforeEachTestMethod</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 每一個單元測試都要實例化的物件可以移到這裡
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Calculator</span> <span class="n">calculator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Calculator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AfterEach</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">afterEachTestMethod</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 可以放每個單元測試結束前的商業邏輯，例如關閉資料庫連線
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Executing @AfterEach method.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接著就可以 Run CalculatorTest 查看這個類別所有有效單元測試的結果</p>
+<p>停用某一單元測試可以選擇下兩種方式其中一種</p>
+<ol>
+<li>
+<p>註解掉<code>@Test</code> 或者</p>
+</li>
+<li>
+<p>不動 <code>@Test</code>，但是加上一個標註<code>@Disabled()</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Disabled</span><span class="o">(</span><span class="s">&#34;TODO: Still need to work on&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Division by zero&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span> 
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testIntegerDivision_WhenDividedBy0_ShouldThrowArithmeticException</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">fail</span><span class="o">(</span><span class="s">&#34;Not implemented yet.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><code>@Disabled</code></p>
+<ul>
+<li>測試結果還是看的到這個測試項目，但會顯示 <code>ignore 1 of 3 tests</code> 以及Disabled標註的參數(&ldquo;TODO: &hellip;&rdquo;)</li>
+</ul>
+<h5 id="assert-an-exception">Assert an Exception</h5>
+<p>要怎麼寫一個反向測試，並且預期他會拋出某個特定錯誤呢？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">assertThrows</span><span class="o">(</span><span class="n">ArithmeticException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">calculator</span><span class="o">.</span><span class="na">integerDivision</span><span class="o">(</span><span class="n">divident</span><span class="o">,</span> <span class="n">divisor</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">},</span> <span class="s">&#34;Division by 0 should have thrown an Arithmetic exception&#34;</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="parameterizedtest-以及-methodsource">ParameterizedTest 以及 MethodSource</h5>
+<p>移除原本的<code>@Test</code>，改標註<code>@ParameterizedTest</code>，這樣一來，此測試方法就可以接收傳入參數</p>
+<p>再加上另一個標註<code>@MethodSource()</code>可以指定傳入參數來自於哪個方法</p>
+<p>從以下範例來看，<code>integerSubtractionInputParameters</code>就是MethodSource方法名稱，有幾個要點：</p>
+<ol>
+<li>必須是靜態方法</li>
+<li>須回傳Strings of arguments</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Test integer subtraction [minuend, subtrahend, expectedResult]&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ParameterizedTest</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@MethodSource</span><span class="o">(</span><span class="s">&#34;integerSubtractionInputParameters&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">integerSubtraction</span><span class="o">(</span><span class="kt">int</span> <span class="n">minuend</span><span class="o">,</span> <span class="kt">int</span> <span class="n">subtrahend</span><span class="o">,</span> <span class="kt">int</span> <span class="n">expectedResult</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">actualResult</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="na">integerSubtraction</span><span class="o">(</span><span class="n">minuend</span><span class="o">,</span> <span class="n">subtrahand</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedResult</span><span class="o">,</span> <span class="n">actualResult</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">              <span class="o">()</span> <span class="o">-&gt;</span> <span class="n">minuend</span> <span class="o">+</span> <span class="s">&#34;-&#34;</span> <span class="o">+</span> <span class="n">subtrahend</span> <span class="o">+</span> <span class="s">&#34; did not produce &#34;</span> <span class="o">+</span> <span class="n">expectedResult</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span><span class="o">&lt;</span><span class="n">Arguments</span><span class="o">&gt;</span> <span class="nf">integerSubtractionInputParameters</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">Stream</span><span class="o">.</span><span class="na">of</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Arguments</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">33</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">32</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Arguments</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">54</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">53</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">      <span class="n">Arguments</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="mi">24</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">23</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="parameterizedtest-以及-csvsource">ParameterizedTest 以及 CsvSource</h5>
+<p>標註<code>@ParameterizedTest</code>除了可以和上述的 MethodSource 標註一起使用之外，也可以和另外一個標註型別<code>@CsvSource</code>一起使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Test integer subtraction&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ParameterizedTest</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@CsvSource</span><span class="o">(</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;33, 1, 32&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;24, 1, 23&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;54, 1, 53&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">integerSubtraction</span><span class="o">(</span><span class="kt">int</span> <span class="n">minuend</span><span class="o">,</span> <span class="kt">int</span> <span class="n">subtrahend</span><span class="o">,</span> <span class="kt">int</span> <span class="n">expectedResult</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// some codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>@CsvSource</code> 如果傳入的是字串們，就會長得像下面這樣</p>
+<p>注意:  to supply <strong>empty String</strong> value, we use single quote twice
+to supply <strong>null</strong>, simple do nothing, not even an empty space or single quotes</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ParameterizedTest</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@CsvSource</span><span class="o">({</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;apple, orange&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;apple, &#39;&#39;&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;apple,&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testStrings</span><span class="o">(</span><span class="n">String</span> <span class="n">strOne</span><span class="o">,</span> <span class="n">String</span> <span class="n">strTwo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="parameterizedtest-以及-csvfile">ParameterizedTest 以及 CSVfile</h5>
+<p>先別不耐煩，這是倒數第二個組合😅</p>
+<p>如果你要測試的參數清單一長串的話，那麽使用<code>@CsvFileSource</code> 搭配 <code>@ParameterizedTest</code> 會是很方便的解決辦法</p>
+<p>至於這個檔案要放在哪裡呢？</p>
+<ol>
+<li>
+<p>右鍵 <code>test</code>測試的根目錄 → new Package → 命名為 resources</p>
+</li>
+<li>
+<p>右鍵這包專案 → Open Module Settings</p>
+</li>
+<li>
+<p>在 Project Structure 視窗中，選左邊的 Project Settings &gt; Modules  → 選 Calculator module</p>
+</li>
+<li>
+<p>在 Sources 頁籤底下，展開 test 目錄，選擇剛建立好的 resources package</p>
+</li>
+<li>
+<p>選好之後，找到 <code>Mark as: Test Resources</code>(mark directory as a test resources root)</p>
+</li>
+<li>
+<p>看到套件resources的左側圖示變更後，即可儲存關閉視窗</p>
+</li>
+<li>
+<p>在這個目錄 new File <code>integerSubtraction.csv</code> 並輸入以下參數存檔案</p>
+<pre tabindex="0"><code>33,1,32
+24,1,23
+54,1,53
+</code></pre><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ParameterizedTest</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@CsvFileSource</span><span class="o">(</span><span class="n">resources</span> <span class="o">=</span> <span class="s">&#34;/integerSubtraction.csv&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testIntegerSubtraction</span><span class="o">(</span><span class="kt">int</span> <span class="n">minuend</span><span class="o">,</span> <span class="kt">int</span> <span class="n">subtrahend</span><span class="o">,</span> <span class="kt">int</span> <span class="n">expectedResult</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Some codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h5 id="parameterizedtest-以及-valuesource">ParameterizedTest 以及 ValueSource</h5>
+<p><code>@ParameterizedTest</code>還可以跟<code>@ValueSource</code> 一起使用，但只能接收一個傳入參數</p>
+<p>以下方程式而言，這個單元測試會跑三次，1st測John，2nd測Kate，3rd測Alice</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ParameterizedTest</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ValueSource</span><span class="o">(</span><span class="n">string</span><span class="o">={</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;Kate&#34;</span><span class="o">,</span> <span class="s">&#34;Alice&#34;</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">valueSourceDemostraion</span><span class="o">(</span><span class="n">String</span> <span class="n">firstName</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">firstName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">assertNotNull</span><span class="o">(</span><span class="n">firstName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="repeatedtests">RepeatedTests</h5>
+<ol>
+<li>
+<p>在 test 目錄下的套件建立 <code>DemoRepeatedTest.java</code>，貼上 <code>CalculatorTest.java</code>裡面的其中一個測試方法、以<code>@BeforeAll</code>標註的 setup() 方法、還有以<code>@BeforeEach</code>標註的 beforeEachTestMethod()，</p>
+</li>
+<li>
+<p>接著 define Calculator property</p>
+</li>
+<li>
+<p>要讓此測試重複執行，須移除<code>@Test</code>標註，並使用重複的測試標註<code>@RepeatedTest(x)</code></p>
+</li>
+<li>
+<p>括號內的數值 x 用來表示run一回合，會執行這個測試方法 x 次，預期這x次都能通過</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoRepeatedTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//define calculator property
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Calculator</span> <span class="n">calculator</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// BeforeAll
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nd">@BeforeAll</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// BeforeEach
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nd">@BeforeEach</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">beforeEachTestMethod</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// ATestMethod
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Division by zero&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@RepeatedTest</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testIntegerDivision_WhenDividedBy0_ShouldThrowAriEx</span><span class="o">(){...}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>除此之外，還可以把重複信息物件注入到此測試方法，查看目前在第幾輪測試/此測試總共要運行幾輪測試</p>
+</li>
+<li>
+<p>也可以把測試信息物件注入到此測試方法，可讀取當前運行的測試方法名稱</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoRepeatedTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Division by zero&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@RepeatedTest</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testIntegerDivision_WhenDividedBy0_ShouldThrowAriEx</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">RepetitionInfo</span> <span class="n">repetitionInfo</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">TestInfo</span> <span class="n">testInfo</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//測試方法名稱
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Running &#34;</span> <span class="o">+</span> <span class="n">testInfo</span><span class="o">.</span><span class="na">getTestMethod</span><span class="o">().</span><span class="na">get</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//測試跑到第幾輪了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Repetition #&#34;</span> <span class="o">+</span> <span class="n">repetitionInfo</span><span class="o">.</span><span class="na">getCurrentRepetition</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34; of &#34;</span> <span class="o">+</span> <span class="n">repetitionInfo</span><span class="o">.</span><span class="na">getTotalRepetitions</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//Some code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li></li>
+</ol>
 <h4 id="mockito">Mockito</h4>
 <h4 id="test-driven-development-tdd">Test Driven Development (TDD)</h4>
 </div><div class="post-footer" id="post-footer">
