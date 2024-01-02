@@ -58,6 +58,15 @@ Hibernate 可以自動生成SQL 語句，自動執行
 1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -]]></description>
 </item>
 <item>
+    <title>1hr37mins30secs de SpringBoot</title>
+    <link>http://wysiwyz.github.io/posts/ss_springboot/</link>
+    <pubDate>Tue, 26 Dec 2023 14:13:34 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/ss_springboot/</guid>
+    <description><![CDATA[SpringBoot 2023 SpringBoot initializr Dependencies:
+SpringBoot DevTools Spring Web Spring Data JPA and Hibernate PostgreSQL Driver Starting the server src - main - java - com.example.demo.DemoApplication - resources - static - templates - application.properties - test - java - resources Create a simple API 1 2 3 4 5 6 7 @RestController //To Make the class to serve restful endpoint public class DemoController {} @GetMapping //To set Restful endpoint on method public List&lt;String&gt; hello() { return List.]]></description>
+</item>
+<item>
     <title>Redis 筆記</title>
     <link>http://wysiwyz.github.io/posts/ss_redis_notes/</link>
     <pubDate>Tue, 26 Dec 2023 14:12:12 &#43;0800</pubDate>
@@ -141,18 +150,6 @@ B. Dr.]]></description>
     <description><![CDATA[# 03 OOP 程式設計思維 統一塑模語言 Unified Modeling Language 類別圖 class diagram Has-A 關聯 關聯 Dependency : 兩者關係一般，有功能上的連結 聚合 Aggregation : 兩者關係較強， ClassD 可能是 ClassC 的一部分 像沙子集中一處，但也可以另外集結 組合 Composition : 類似聚合，但關係更強。一旦 ClassE 消失，ClassF 也消失，兩者生命週期一致 關係比較密實 Is-A 關聯 繼承 Inheritance : 箭頭方向指向父類別，使用實線 具現 Realization : 箭頭方向指向介面，使用虛線 01 使用 java 指令執行程式 該檔案位於 Java 安裝目錄的 bin 資料夾內，要執行的類別必須有 main 方法作為程式進入點
 java JacketTest // java 程式編譯檔(不能加 class 的副檔名) 注意：
 程式碼附檔名必須為 .java，否則編譯器將拒絕編譯 class 檔案內可以有多個沒有 public 修飾的 class，檔案名稱不一定要與那些 classes 名稱相同。編譯時，檔案內宣告的每一個 class 都會各自產生附檔名為 .]]></description>
-</item>
-<item>
-    <title>Elasticsearch 8 Java client 應用</title>
-    <link>http://wysiwyz.github.io/posts/elasticsearch/</link>
-    <pubDate>Tue, 11 Jul 2023 17:00:05 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/elasticsearch/</guid>
-    <description><![CDATA[Lucene做的搜尋引擎，Java, .NET, Python, GO&hellip;等等都可以用的
-Java Client Operation Process
-創建 Index template RDBMS Elasticsearch Table Index Row Document Column Field Schema Mapping SQL DSL 常用分詞器 Analyze
-Jieba分詞器 (better) IK分詞器 如何跟 Elasticsearch 溝通:
-Postman Kibnan 1 RestClient restClient = 幾個重要的methods get() search() index() update() indices().putIndexTemplate() ]]></description>
 </item>
 </channel>
 </rss>

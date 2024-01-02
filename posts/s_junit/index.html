@@ -35,7 +35,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/"
-        },"genre": "posts","keywords": "","wordcount":  1414 ,
+        },"genre": "posts","keywords": "","wordcount":  1545 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/","datePublished": "2023-12-26T14:14:47+08:00","dateModified": "2023-12-26T14:14:47+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,8 +77,8 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 JUnit & Mockito 測試 Java 程式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1414 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1545 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -867,6 +867,9 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
 </li>
 <li>
 <p>也可以把測試信息物件注入到此測試方法，可讀取當前運行的測試方法名稱</p>
+</li>
+<li>
+<p>此外也可以變更每一輪測試結果的顯示名稱 (value, name)</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -882,11 +885,13 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoRepeatedTest</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Division by zero&#34;</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl">  <span class="nd">@RepeatedTest</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//@RepeatedTest(3)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nd">@RepeatedTest</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="o">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#34;{displayName}, Repetition {currentRepetition} of &#34;</span><span class="o">+</span><span class="s">&#34;{totalRepetitions}&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testIntegerDivision_WhenDividedBy0_ShouldThrowAriEx</span><span class="o">(</span>
 </span></span><span class="line"><span class="cl">      <span class="n">RepetitionInfo</span> <span class="n">repetitionInfo</span><span class="o">,</span>
 </span></span><span class="line"><span class="cl">      <span class="n">TestInfo</span> <span class="n">testInfo</span><span class="o">)</span> <span class="o">{</span>
@@ -900,10 +905,100 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
+</ol>
+<h5 id="methods-order---by-name">Methods Order - by name</h5>
+<p>在測試類別上添加標註<code>@TestMethodOrder()</code>，此標註型別允許我們用方法順序接口</p>
+<p>括號中傳入 MethodOrderer，有五個選項</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 依據方法名稱排序(testA, testB, testC, testD)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nd">@TestMethodOrder</span><span class="o">(</span><span class="n">MethodOrdered</span><span class="o">.</span><span class="na">MethodName</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> 
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MethodOrderedByMethodNameTest</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@TestMethodOrder</span><span class="o">(</span><span class="n">MethodOrdered</span><span class="o">.</span><span class="na">OrderAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MethodOrderedByOrderAnnotationTest</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@TestMethodOrder</span><span class="o">(</span><span class="n">MethodOrdered</span><span class="o">.</span><span class="na">DisplayName</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MethodOrderedByDisplayNameTest</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@TestMethodOrder</span><span class="o">(</span><span class="n">MethodOrdered</span><span class="o">.</span><span class="na">Alphanumeric</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MethodOrderedAlphanumericallyTest</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@TestMethodOrder</span><span class="o">(</span><span class="n">MethodOrdered</span><span class="o">.</span><span class="na">Random</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MethodOrderedRandomlyTest</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果要自行指定單元測試執行的順序，就在類別掛上<code>@TestMethodOrder(MethodOrdered.OrderAnnotation.class)</code>，並在每個方法上標註<code>@Order(x)</code>，如下示例程式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Order</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testD</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Order</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testA</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Order</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testC</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Order</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testB</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="order-of-unit-test-classes">Order of Unit test classes</h5>
+<p>當一包 test 目錄下的 package 有多個測試類別，要如何制定哪個類別先執行，哪個後執行呢？</p>
+<p>為什麼要控制單元測試類別的順序？為了確保這些測試類別之間沒有預料外的依賴關係，或者想要讓測試報告看起來比較有組織。</p>
+<p>一樣也在類別上標註<code>@Order(x)</code></p>
+<h5 id="test-instance-lifecycle">Test Instance Lifecycle</h5>
+<ul>
+<li>By dedault it&rsquo;s &ldquo;per-method&rdquo; test instance lifecycle</li>
+<li>The execution order is deterministic but intentionally non-obvious</li>
+</ul>
+<p>如果想要讓JUnit在同一個instance實例上執行所有測試方法，可以在這個類別加上標註<code>@TestInstance(TestInstance.Lifecycle.PER_CLASS)</code></p>
+<h5 id="testinstance">TestInstance</h5>
+<ul>
+<li>這個標註用在測試類別上，預設為<code>@TestInstance(TestInstance.Lifecycle.PER_METHOD)</code></li>
+<li>現在有一個 UserServiceImplTest 的測試類別，其中有四個測試方法：
+<ol>
+<li>當接收到的資料有效時，建立一筆用戶並回傳UserId</li>
+<li>當接收到的資料有效，更新該用戶信息，並回傳用戶信息</li>
+<li>當提供的UserId有效，取得並回傳該Id對應的用戶信息</li>
 <li></li>
 </ol>
-<h4 id="mockito">Mockito</h4>
-<h4 id="test-driven-development-tdd">Test Driven Development (TDD)</h4>
+</li>
+</ul>
+<p>🚧🚧🚧🚧🚧🚧🚧</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -933,7 +1028,7 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
         </div>
     </footer></div>
 

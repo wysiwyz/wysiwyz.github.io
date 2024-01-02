@@ -53,6 +53,19 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/kubernetes_learn/">跟著黑哥學 Kubernetes</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-10-09">2023-10-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">0-1 應用部署方式演變
+0-2 kubernetes 介紹
+本質是一組服務器集群，每個服務器都稱為一個節點，可以在每個節點中的容器安裝程序
+0-3 kubernetes 組件 一個 k8s 集群分為控制節點master_node，工作節點worker_node構成，每個節點上都安裝不同的組件
+Master: 集群的控制平面，負責集群的決策（管理） API Server：資源操作的唯一入口，接收用戶輸入的命令，提供認證、授權、API註冊和發現等機制 K8S 的整個訪問入口 Scheduler：負責集群資源調度，按照預訂的調度策略將Pod調度到相應的node節點上 根據算法決定安裝nginx的請球要分配給哪一個node節點（負責算） ControllerManager：負責維護集群的狀態，比如程序部署安排、故障檢測、自動擴展、滾動更新等 如何將 nginx 安裝請求交給 node1節點（負責安排幹活） Etcd：負責存儲集群中各種資源對象的信息 用來紀錄請求信息儲存在資料庫中（也可以改用mysql） Node: 集群的數據平面，負責為容器提供運行環境 [worker_node] Kubelet：負責維護容器的生命週期，即通過控制docker，來創建、更新、銷毀容器 接收控制節點發來的訊息，並傳送命令給 worker node 裡面其他的組件_docker
+KubeProxy：負責提供集群內部的服務發現和負載均衡
+訪問程序的入口
+Docker：負責節點上容器的各種操作
+以部署一個 nginx 服務來說明 kubernetes 系統各個組件調用關係 首先要明確，一旦 kubernetes 環境啟動之後，master 和 node 都會將自身的信息存儲到 etcd 數據庫中 一個 nginx 服務的安裝請求會首先被發送到 master 節點的 apiServer 組件 apiServer 組件會調用 scheduler 組件來決定到底應該把這個服務安裝到哪一個 node 節點上 此時，它會從 etcd 中讀取各個 node 節點的信息，然後按照一定的算法進行選擇，並將結果告知 apiServer apiServer 調用 controller_manager 去調度 Node 節點安裝 nginx 服務 Kubelet 接收到指定之後，會通知 docker，然後由 docker 來啟動一個 nginx 的 pod pod 是 kubernetes 的最小操作單元，容器必須跑在 pod 中至此 一個 nginx 服務就運行了，如果需要訪問 nginx，就需要通過 kube-proxy 來對 pod 產生訪問的代理 這樣，外界用戶就可以訪問集群中的 nginx 服務了 0-4 kubernetes 概念 Master：集群控制節點，每個集群需要至少一個 master 節點負責集群的管控 安排工作的</div><div class="post-footer">
+        <a href="/posts/kubernetes_learn/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ocpjp_11_mockexam/">1Z0-819 題目KO</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-08-05">2023-08-05</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這裡放比較tricky的題目們
 #62 1 2 3 4 5 6 7 8 9 10 class Employee { private String name; public void setName(String name) { String title = &#34;Dr. &#34;; name = title + name; } public String toString() { return name; } } And
@@ -102,22 +115,6 @@ Access control lists
 Overview of IAP for on-premises apps</div><div class="post-footer">
         <a href="/posts/gcp_pca_exam_dump/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/googlecloudplatform/">GoogleCloudPlatform</a>,&nbsp;<a href="/tags/professionalcloudarchitect/">ProfessionalCloudArchitect</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/joshw/">coffee and software</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-06-16">2023-06-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Categories</a></span></div><div class="content">Youtube @coffeesoftware
-Spring 6 &amp; Spring Boot 3.X
-Humor Learn gradle, lose weight
-morally superior in every way
-be the change you wanna see in the world&hellip;
-it&rsquo;s better than Disneyland
-more than two times as good as java 8
-it&rsquo;s oracle, sometimes it&rsquo;s never simple&hellip;(robot tone)
-Friends do not let friends write Dockerfile.
-Make .jar, not .war!
-for legitimately slacking off &ldquo;MY CODE&rsquo;S COMPILING&rdquo;
-Use Graphql, don&rsquo;t use Swagger!</div><div class="post-footer">
-        <a href="/posts/joshw/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -142,7 +139,7 @@ Use Graphql, don&rsquo;t use Swagger!</div><div class="post-footer">
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
         </div>
     </footer></div>
 
