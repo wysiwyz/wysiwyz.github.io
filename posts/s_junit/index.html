@@ -24,7 +24,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 1 2 3 4 5 public class Calculator { public int integerDivision(int dividend, int divisor) { return dividend / divisor; } } 我們可以寫以下的單元測試，以驗證上方程式裡，開發者沒有敲錯鍵，把除號打成乘號.
 1 2 3 4 5 6 7 8 9 @Test void testIntegerDivision_whenValidValuesProvided_shouldReturnExpectedResult() { //Arrange Calculator calculatore = new Calculator(); //Act int result = calculator."/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/s_junit/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ss_gradle/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/s_junit/" /><link rel="prev" href="http://wysiwyz.github.io/posts/ss_gradle/" /><link rel="next" href="http://wysiwyz.github.io/posts/s_docker_learn/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -35,7 +35,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/"
-        },"genre": "posts","keywords": "","wordcount":  1545 ,
+        },"genre": "posts","keywords": "","wordcount":  2693 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/","datePublished": "2023-12-26T14:14:47+08:00","dateModified": "2023-12-26T14:14:47+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,8 +77,8 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 JUnit & Mockito 測試 Java 程式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1545 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2693 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -994,11 +994,678 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
 <li>當接收到的資料有效時，建立一筆用戶並回傳UserId</li>
 <li>當接收到的資料有效，更新該用戶信息，並回傳用戶信息</li>
 <li>當提供的UserId有效，取得並回傳該Id對應的用戶信息</li>
-<li></li>
+<li>當透過提供的UserId刪除資料後，以id查詢確認無資料可回傳</li>
 </ol>
 </li>
 </ul>
-<p>🚧🚧🚧🚧🚧🚧🚧</p>
+<h5 id="lifecycle-demo">Lifecycle Demo</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@TestMethodOrder</span><span class="o">(</span><span class="n">MethodOrderer</span><span class="o">.</span><span class="na">OrderAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@TestInstance</span><span class="o">(</span><span class="n">TestInstance</span><span class="o">.</span><span class="na">Lifecycle</span><span class="o">.</span><span class="na">PER_CLASS</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServicImplTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">UsersDatabase</span> <span class="n">usersDatabase</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">UserService</span> <span class="n">userService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">createdUserId</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@BeforeAll</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Create and initialize database
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">usersDatabase</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UsersDatabaseMapImpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">usersDatabase</span><span class="o">.</span><span class="na">init</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceImpl</span><span class="o">(</span><span class="n">usersDatabase</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@AfterAll</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">cleanup</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Close connection
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Delete database
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">usersDatabase</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Order</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Create User works&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testCreateUser_whenProvidedWithValidDetails_returnsUserId</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;firstName&#34;</span><span class="o">,</span> <span class="s">&#34;Jingle&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;lastName&#34;</span><span class="o">,</span> <span class="s">&#34;Halleju&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">createdUserId</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">createUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">assertNotNull</span><span class="o">(</span><span class="n">createdUserId</span><span class="o">,</span> <span class="s">&#34;User id should not be null&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Order</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Update user works&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testUpdateUser_whenProvidedWithValidDetails_returnsUpdatedUserDetails</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">newUserDetails</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">newUserDetails</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;firstName&#34;</span><span class="o">,</span> <span class="s">&#34;Mr. Bean&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">newUserDetails</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;lastName&#34;</span><span class="o">,</span> <span class="s">&#34;Ms. Karmela&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Map</span> <span class="n">updatedUserDetails</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">updateUser</span><span class="o">(</span><span class="n">createdUserId</span><span class="o">,</span> <span class="n">newUserDetails</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">newUserDetails</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;firstName&#34;</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">updatedUserDetails</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;firstName&#34;</span><span class="o">),</span> 
+</span></span><span class="line"><span class="cl">                 <span class="s">&#34;Returned value of user&#39;s first name is incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">assertEquals</span><span class="o">(</span><span class="n">newUserDetails</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;lastName&#34;</span><span class="o">),</span> 
+</span></span><span class="line"><span class="cl">                 <span class="n">updatedUserDetails</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;lastName&#34;</span><span class="o">),</span> 
+</span></span><span class="line"><span class="cl">                 <span class="s">&#34;The returned value of user&#39;s last name is incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Order</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Find user works&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testGetUserDetails_whenProvidedWithValidUserId_returnsUserDetails</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Map</span> <span class="n">userDetails</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUserDetails</span><span class="o">(</span><span class="n">createdUserId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">assertNotNull</span><span class="o">(</span><span class="n">userDetails</span><span class="o">,</span> <span class="s">&#34;User details should not be null&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Order</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Delete user works&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testDeleteUser_whenProvidedWithValidUserId_returnsUserDetails</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">userService</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">(</span><span class="n">createdUserId</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">assertNull</span><span class="o">(</span><span class="n">userService</span><span class="o">.</span><span class="na">getUserDetails</span><span class="o">(</span><span class="n">createdUserId</span><span class="o">),</span> 
+</span></span><span class="line"><span class="cl">               <span class="s">&#34;User should not been found&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="test-driven-development-tdd-----introduction">Test-Driven Development (TDD) &mdash; Introduction</h4>
+<p>The test-driven development life cycle :  RED ➡️ GREEN ➡️ REFACTOR ➡️ REPEAT</p>
+<ol>
+<li><strong>Red</strong> - Write unit test that fails.</li>
+<li><strong>Green</strong> - Write application code to make unit test pass.</li>
+<li><strong>Refactor</strong> - Clean up. Improve unit test and application code.</li>
+<li><strong>Repeat</strong> - Repeat above steps until all your functionality is implemented.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">User</span> <span class="nf">createUser</span><span class="o">(</span><span class="n">String</span> <span class="n">firstName</span><span class="o">,</span> <span class="n">String</span> <span class="n">lastName</span><span class="o">,</span> <span class="n">String</span> <span class="n">email</span><span class="o">,</span> <span class="n">String</span> <span class="n">passwd</span><span class="o">,</span> <span class="n">String</span> <span class="n">repeatPasswd</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.example.service</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImpl</span> <span class="kd">implements</span> <span class="n">UserService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">User</span> <span class="nf">createUser</span><span class="o">(</span><span class="n">String</span> <span class="n">firstName</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                         <span class="n">String</span> <span class="n">lastName</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                         <span class="n">String</span> <span class="n">email</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                         <span class="n">String</span> <span class="n">passwd</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                         <span class="n">String</span> <span class="n">repeatPasswd</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// some code implemenation
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.example.model</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="test-create-user-method">Test Create User method</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.junit.jupiter.api.Test</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testCreateUser_whenUserDetailsProvided_returnsUserObject</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">UserService</span> <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceImpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">firstName</span> <span class="o">=</span> <span class="s">&#34;Chelsea&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">lastName</span> <span class="o">=</span> <span class="s">&#34;Leon&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">email</span> <span class="o">=</span> <span class="s">&#34;lc@test.com&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">passwd</span> <span class="o">=</span> <span class="s">&#34;12345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">repeatPasswd</span> <span class="o">=</span> <span class="s">&#34;12345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">createUser</span><span class="o">(</span><span class="n">firstName</span><span class="o">,</span> <span class="n">lastName</span><span class="o">,</span> <span class="n">email</span><span class="o">,</span> <span class="n">passwd</span><span class="o">,</span> <span class="n">repeatPasswd</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">assertNotNull</span><span class="o">(</span><span class="n">user</span><span class="o">,</span> <span class="s">&#34;the createUser() should not have returned null.&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="test-user-object-contains-first-name">Test User object contains first name</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">UserService</span> <span class="n">userService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">firstName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">lastName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">passwd</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">repeatPasswd</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@BeforeEach</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserServiceimpl</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">firstName</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lastName</span> <span class="o">=</span> <span class="s">&#34;Minjinnie&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">email</span> <span class="o">=</span> <span class="s">&#34;minji@test.com&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">passwd</span> <span class="o">=</span> <span class="s">&#34;12345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repeatPasswd</span> <span class="o">=</span> <span class="s">&#34;12345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testCreateUser_whenUserCreated_returnedUserObjectContainsSameFirstName</span><span class="o">()</span>   <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Arrange - as per BeforeEach
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">createUser</span><span class="o">(</span><span class="n">firstName</span><span class="o">,</span> <span class="n">lastName</span><span class="o">,</span> <span class="n">email</span><span class="o">,</span> <span class="n">passwd</span><span class="o">,</span> <span class="n">repeatPasswd</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">firstName</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">(),</span> <span class="s">&#34;User&#39;s first name is incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Empty first name causes correct exception&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testCreateUser_whenFirstNameIsEmpty_throwsIllegalArgumentException</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Arrange  - as per BeforeEach
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">String</span> <span class="n">firstName</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">expectedExceptionMessage</span> <span class="o">=</span> <span class="s">&#34;User&#39;s first name is empty&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Act &amp; Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">IllegalArgumentException</span> <span class="n">thrown</span> <span class="o">=</span> <span class="n">Assertions</span><span class="o">.</span><span class="na">assertThrows</span><span class="o">(</span><span class="n">IllegalArgumentException</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userService</span><span class="o">.</span><span class="na">createUser</span><span class="o">(</span><span class="n">firstName</span><span class="o">,</span> <span class="n">lastName</span><span class="o">,</span> <span class="n">email</span><span class="o">,</span> <span class="n">passwd</span><span class="o">,</span> <span class="n">repeatPasswd</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">},</span> <span class="s">&#34;Empty first name should have caused an Illegal Argument Exception&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedExceptionMessage</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                 <span class="n">thrown</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">                 <span class="s">&#34;Exception error message is not correct&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="introduction-----mockito">Introduction &mdash; Mockito</h4>
+<p>Mockito 是什麼？</p>
+<ul>
+<li>為Java創造的開源測試框架，Mockito允許我們在單元測試中建立 <code>test doubles</code> 物件。</li>
+</ul>
+<p>Test Double 又是什麼？</p>
+<ul>
+<li>
+<p>test double 是一個可以在測試中代替真實對象的物件，有點像是電影中的特技替身代表演員。</p>
+</li>
+<li>
+<p>稱之為 Mock object, fake object, spied object, or a stub，這些不同類型的物件都被稱為 test doubles。</p>
+</li>
+<li>
+<p>開發人員將其用來暫時替代一個真實 real 的物件。</p>
+</li>
+<li>
+<p>為什麼要替代掉？以下面的方法為例，我們是要測試建立 user，而不是要測 save 方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">User</span> <span class="nf">createUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">,</span> <span class="n">DAO</span> <span class="n">mySqlDAO</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">String</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">mysqlDAO</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// More code
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>因此會使用 Mockito 來替 mySqlDAO 建立一個模擬對象，並測試 save 方法回傳</p>
+<p>​    (1) 有效用戶ID 或者  (2) null</p>
+</li>
+<li>
+<p>因為可以模擬此 save 方法的行為，可以用來測試 create 方法</p>
+</li>
+</ul>
+<h4 id="adding-mocking-to-a-project">Adding Mocking to a project</h4>
+<ol>
+<li>
+<p>打開 mvnrepository.com 搜尋 Mockito JUnit Jupiter，依專案性質複製 maven 或者 gradle</p>
+</li>
+<li>
+<p>貼到 pom.xml 或者 build.gradle，再 reload 專案</p>
+</li>
+<li>
+<p>userRepository</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.example.data</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">com.example.model.User</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UsersRepository</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">save</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>userRepositoryImpl</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRepositoryImpl</span> <span class="kd">implements</span> <span class="n">UsersRepository</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">save</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">boolean</span> <span class="n">returnValue</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">users</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">()))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">user</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">      <span class="n">returnValue</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">returnValue</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h5 id="inject-usersrepository-as-dependency">Inject UsersRepository as Dependency</h5>
+<p>通常 service 呼叫 repository 會直接在create方法裡面 new 一個 repository 物件，再調用其方法</p>
+<p>但如果這個create方法在對應的測試類別被呼叫的時候，new UserRepository() 就會出問題</p>
+<p>這樣就不單元測試，而變成整合測試了</p>
+<p>因此要改用 constructor based dependency injection，如下例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImpl</span> <span class="kd">implements</span> <span class="n">UserService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">UsersRepository</span> <span class="n">usersRepository</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="nf">UserServiceImpl</span><span class="o">(</span><span class="n">UsersRepository</span> <span class="n">usersRepository</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">usersRepository</span> <span class="o">=</span> <span class="n">usersRepository</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">User</span> <span class="nf">createUser</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// some codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">boolean</span> <span class="n">isUserCreated</span> <span class="o">=</span> <span class="n">usersRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// some else codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(!</span><span class="n">isUserCreated</span><span class="o">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">UserServiceException</span><span class="o">(</span><span class="s">&#34;could not create user&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">user</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceException</span> <span class="kd">extends</span> <span class="n">RuntimeException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 自定義例外，繼承RuntimeException
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">public</span> <span class="nf">UserServiceException</span><span class="o">(</span><span class="n">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">super</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="create-a-mock-object">Create a Mock Object</h5>
+<ol>
+<li>首先，在測試類別上增加標註 <code>@ExtendWith(MockitoExtension.class)</code></li>
+<li>建立一個 Mock Object，並在欄位上加標註 <code>@Mock</code></li>
+<li>由於 <code>@BeforeEach</code> 方法會初始化 UserServiceImpl ，我們想要這個物件引用 Repository，就會加上<code>@InjectMocks</code></li>
+<li>Mockito 會給 UserServiceImpl 類別建立一個instance，並將usersRepository的Mock Object 注入到此 instance</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ExtendWith</span><span class="o">(</span><span class="n">MockitoExtension</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@InjectMocks</span>
+</span></span><span class="line"><span class="cl">  <span class="n">UserServiceImpl</span> <span class="n">userService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Mock</span>
+</span></span><span class="line"><span class="cl">  <span class="n">UsersRepository</span> <span class="n">usersRepository</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">firstName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">lastName</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">email</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">passwd</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">String</span> <span class="n">repeatPasswd</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@BeforeEach</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">firstName</span> <span class="o">=</span> <span class="s">&#34;Sandie&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lastName</span> <span class="o">=</span> <span class="s">&#34;Karlie&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">email</span> <span class="o">=</span> <span class="s">&#34;sk@test.com&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">passwd</span> <span class="o">=</span> <span class="s">&#34;12345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">repeatPasswd</span> <span class="o">=</span> <span class="s">&#34;12345678&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="stub-using-built-in-any-argument-matcher">Stub using built-in any() argument matcher</h5>
+<p>因為 UsersRepository 現在已經是一個 mock object 了，我們需要告訴 Mockito 他應有的行為</p>
+<p>使用 <code>Mockito.when(...).thenReturn(...)</code>可以達成</p>
+<p>when() 裡面放 mock object 要呼叫的方法；而 thenReturn() 有其他類似形態：</p>
+<ul>
+<li><code>thenReturn(boolean)</code> // boolean</li>
+<li><code>thenThrow(Class&lt;? extends Throwable&gt;)</code></li>
+<li><code>then(Answer&lt;?&gt;)</code></li>
+</ul>
+<p>而以下的 save 方法需要吃一個 User 物件參數，因為不是調用真正的 real object，mock object 並不會管你是不是真的放進了一個 User 物件或是一朵花，所以可以用 Mockito 內建的 argument matcher 達成，例如<code>Mockito.any(User.class)</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;User object created&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testCreateUser_whenUserDetailProvided_returnsUserObject</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Mockito</span><span class="o">.</span><span class="na">when</span><span class="o">(</span><span class="n">usersRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">class</span><span class="o">)))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">thenReturn</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// some Act codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="verify-method-call">Verify method call</h5>
+<p>假設你要測試 createUser 方法，確實有呼叫一次 save 方法，而不是都沒呼叫或者call了兩次，這樣的情況可以使用 <code>Mockito.verify()</code>，它要吃兩個參數 <code>userRepository</code>以及其verification mode，接著呼叫被驗證的方法</p>
+<p>如果要驗證 repository 的 save 方法只有被這個測試方法呼叫一次，assert可以這樣寫</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">assertNotNull</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getId</span><span class="o">(),</span> <span class="s">&#34;User id is missing&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mockito</span><span class="o">.</span><span class="na">verify</span><span class="o">(</span><span class="n">usersRepository</span><span class="o">,</span> <span class="n">Mockito</span><span class="o">.</span><span class="na">times</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">  <span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">Mockito</span><span class="o">.</span><span class="na">any</span><span class="o">(</span><span class="n">User</span><span class="o">.</span><span class="na">class</span><span class="o">));</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另外還可以確認方法被呼叫至少或至多幾次，或者根本沒被呼叫到</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Mockito</span><span class="o">.</span><span class="na">atLeast</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span> <span class="c1">// int minNumberOfInvocations
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Mockito</span><span class="o">.</span><span class="na">atMost</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>  <span class="c1">// int maxNumberOfInvocations
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">Ｍ</span><span class="n">ockito</span><span class="o">.</span><span class="na">atLeastOnce</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="err">Ｍ</span><span class="n">ockito</span><span class="o">.</span><span class="na">atMostOnce</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">Mockito</span><span class="o">.</span><span class="na">never</span><span class="o">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果有太多 Mockito 的靜態方法，可以直接 <code>import static org.mockito.Mockito.*;</code></p>
+<p>Exception stubbing</p>
+<p>Creating EmailNotificationService Class</p>
+<p>Stub void method with Exception</p>
+<p>Do nothing when method is called</p>
+<p>Call real method</p>
+<h5 id="heading"></h5>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -1020,7 +1687,8 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/ss_gradle/" class="prev" rel="prev" title="Gradle初探"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Gradle初探</a></div>
+    <div class="post-nav"><a href="/posts/ss_gradle/" class="prev" rel="prev" title="Gradle初探"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Gradle初探</a>
+            <a href="/posts/s_docker_learn/" class="next" rel="next" title="Docker">Docker<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

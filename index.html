@@ -53,6 +53,34 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ss_white-box/">[筆記] 黑白箱弱點掃描淺淺談</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-04">2024-01-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">黑白箱弱點掃描 白箱： 又名為輔助邏輯驅動測試 (auxiliary and logic driven testing)、clear-box testing、open-box testing 在光譜上是黑箱測試的另一面，滲透測試者對source code以及相關架構設計文件有全部的存取權限 在大量可用的data中淘選過濾，目地在於找到潛在弱點，因此它是滲透測試中最耗時的一種 白箱滲透測試人員可以對static code進行分析 白箱測試可以手動執行，或借助於自動化工具掃出像是 SQL注入攻擊(SQL injection)、跨站腳本攻擊 (cross-site scripting)、緩衝區溢位 (buffer overflow) 等弱點。 以下是白箱測試中很重要的工具：source code analyzer, debuggers 另外 dynamic analysis tool 也很重要，可以找出static analysis可能會漏掉的弱點，像是目標系統錯誤配置造成的弱點 (misconfiguration of target systems) 白箱滲透測試提供了綜合的評估，包含程式的內部弱點與外部弱點 黑箱： 又稱為 DAST test (動態分析資安測試 dynamic analysis security testing) 黑箱測試對於找出這樣的弱點很有幫助：input/output驗證問題, 伺服器配置相關的錯誤等。 黑箱測試的目標是要模擬真實世界的情境，並找出系統在不同情境下的行爲，例如網路攻擊、惡意輸入、阻斷服務攻擊DoS。 黑箱測試可以手動操作執行，或透過像是port scanners、fuzzers、web scanners 等自動化工具探測系統弱點。 深透測試目的是為了識別並補強可能會被攻擊者利用的弱點，因此黑箱測試是比較理想的滲透測試方法，因為大多數攻擊者並不知道目標網路的內部行為。
+跟黑箱測試相反的則是白箱測試，測試人員有目標系統的完整資訊。
+而灰箱測試則是提供測試人員有關目標系統『有限的』資訊，灰箱測試所模擬的資訊瞭解程度是「駭客透過調查與系統偵查足跡(footprinting)的方式，長期使用目標系統所能得到資訊」。
+參考資料 黑箱、灰箱、白箱滲透測試是什麼
+以黑箱測試改進應用程式的安全性
+白箱資安測試與黑箱測試的異同</div><div class="post-footer">
+        <a href="/posts/ss_white-box/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/s_docker_learn/">Docker</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a>&nbsp;<a href="/categories/docker/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Docker</a></span></div><div class="content">Docker Note docker ps
+​ list running containers
+docker stop &lt;container_id&gt;
+​ stops the container
+docker start &lt;container_id&gt;
+​ starts stopped container
+docker ps -a
+​ lists running and stopped container
+docker run &lt;image_name&gt;:
+​ pulls image and starts container
+​ (docker pull + docker start in one command)
+[CONTAINER Port vs HOST Port]
++ Multiple containers can run on your host machine
++ Your laptop has only certain ports available</div><div class="post-footer">
+        <a href="/posts/s_docker_learn/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/s_junit/">使用 JUnit & Mockito 測試 Java 程式</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">使用 JUnit &amp; Mockito 測試 Java 程式 Mockito &mdash; 本來以為這跟薄荷飲料mochito同音，實際要唸成 /mɑkiːtoʊ/ 或者 /mˈɒkiːtoʊ/ ，音譯就是『莫kito』或者『碼kito』，總之 k 要發音，因為他是模擬方法 (&ldquo;mock all methods&rdquo;)
 Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式碼一部分區塊 的一個小型方法
@@ -103,37 +131,6 @@ Hibernate 可以自動生成SQL 語句，自動執行
 SpringBoot DevTools Spring Web Spring Data JPA and Hibernate PostgreSQL Driver Starting the server src - main - java - com.example.demo.DemoApplication - resources - static - templates - application.properties - test - java - resources Create a simple API 1 2 3 4 5 6 7 @RestController //To Make the class to serve restful endpoint public class DemoController {} @GetMapping //To set Restful endpoint on method public List&lt;String&gt; hello() { return List.</div><div class="post-footer">
         <a href="/posts/ss_springboot/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_redis_notes/">Redis 筆記</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">資料分群 三種依照服務類型儲存資料的方法：
-namespace：在key的前面加上如user:的prefix，所有資料放在一個Redis內
-建議用:區分。 可以用 redis-audit，它會用自動分群，也可以加入部分規則，減少自動分群花的時間。
-使用 database：用指令 select 切換用不同的 &ldquo;database&rdquo;
-Redis Cluster只能用database 0，因此長遠 scalability 考量，database並不適用。
-用不同的 Redis servers
-管理成本較高。設成LRU mode存cache資料，作為第一個Redis Cluster：存persistent data，作為第二個Redis Cluster。如此，可以個別設定適合的 shards、replicas 以及 各別設定適合的shards、replicas 以及 OOM 時的處理方式。
-使用Expiration &ndash; 標上有效期限 避免無限量的丟東西到記憶體裡面，以降低太多資料的管理成本
-須注意，Redis只有支援在第一層keys加上expiration。如果需要用到hash，可是hash部分內容需要加expiration的話，比較善用expiration的方法是「將一個大hash攤成多個小hash或者string，才能善用expiration。另外，使用多個小hash會比一個大hash更省時間，因為Redis有針對小hash的最佳化儲存方式。
-分析占空間的keys 除了分析工具 (redis-audit等其他記憶體分析工具)，也可以用redis-cli查找問題
-找出常見的keys，看數量分佈是否合理：redis-cli scan 0 count 100
-取樣找出各個資料類型最大的keys：redis-cli --bigkeys
-查看 KEY serialized 後的大小：DEBUG OBJECT key
-看某個 KEY 多久沒有被存取：OBJECT IDLETIME key
-[注意] default setting下，不會回傳正確的值
-Latency 常用指令：
-了解自己機器合理的 operation per second：benchmark
-找出 ≥ 10ms的操作：slowlog
-因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作</div><div class="post-footer">
-        <a href="/posts/ss_redis_notes/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/react_scrimba/">Think in REACT</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-10-25">2023-10-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">0. 建立 React 靜態頁面的入門方法 \index.html 在 head 加入 react 以及 react-dom 的 script 連結 referred doc
-在 head 加入 babel.min.js 的 script 連結 referred doc
-✏️ script 除了加上 index.js 的檔案來源，也要記得加上 type 屬性 text/babel，不然無法順利 ReactDOM.render() 喔！
-1 2 3 4 5 6 7 8 9 10 11 12 &lt;html&gt; &lt;head&gt; &lt;link rel=&#34;stylesheet&#34; href=&#34;index.css&#34;&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react@18/umd/react.development.js&#34;&gt;&lt;/script&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react-dom@18/umd/react-dom.development.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://unpkg.com/babel-standalone@6/babel.min.js&#34;&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;root&#34;&gt;&lt;/div&gt; &lt;script src=&#34;index.js&#34; type=&#34;text/babel&#34;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; \index.js ReactDOM.</div><div class="post-footer">
-        <a href="/posts/react_scrimba/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
