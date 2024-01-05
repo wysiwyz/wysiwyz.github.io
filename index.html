@@ -63,6 +63,15 @@
         <a href="/posts/ss_white-box/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/s_kafka/">初學 Kafka</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-03">2024-01-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions &mdash; producer and consumer. 消費者與生產者的抽象概念
+Topic: 資料邏輯分層 logical partitioning of data
+Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
+消費者在從 Users Topic 拉訊息 (pull information) 下來，
+當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。</div><div class="post-footer">
+        <a href="/posts/s_kafka/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/s_docker_learn/">Docker</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a>&nbsp;<a href="/categories/docker/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Docker</a></span></div><div class="content">Docker Note docker ps
 ​ list running containers
@@ -125,12 +134,6 @@ Hibernate 可以自動生成SQL 語句，自動執行
 1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -</div><div class="post-footer">
         <a href="/posts/ss_springdatajpa_vs_hibernete/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_springboot/">1hr37mins30secs de SpringBoot</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">SpringBoot 2023 SpringBoot initializr Dependencies:
-SpringBoot DevTools Spring Web Spring Data JPA and Hibernate PostgreSQL Driver Starting the server src - main - java - com.example.demo.DemoApplication - resources - static - templates - application.properties - test - java - resources Create a simple API 1 2 3 4 5 6 7 @RestController //To Make the class to serve restful endpoint public class DemoController {} @GetMapping //To set Restful endpoint on method public List&lt;String&gt; hello() { return List.</div><div class="post-footer">
-        <a href="/posts/ss_springboot/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -147,7 +150,7 @@ SpringBoot DevTools Spring Web Spring Data JPA and Hibernate PostgreSQL Driver S
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/8/">8</a>
+                        <a href="/page/9/">9</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

@@ -17,6 +17,18 @@
 白箱資安測試與黑箱測試的異同]]></description>
 </item>
 <item>
+    <title>初學 Kafka</title>
+    <link>http://wysiwyz.github.io/posts/s_kafka/</link>
+    <pubDate>Wed, 03 Jan 2024 15:52:54 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/s_kafka/</guid>
+    <description><![CDATA[Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions &mdash; producer and consumer. 消費者與生產者的抽象概念
+Topic: 資料邏輯分層 logical partitioning of data
+Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
+消費者在從 Users Topic 拉訊息 (pull information) 下來，
+當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。]]></description>
+</item>
+<item>
     <title>Docker</title>
     <link>http://wysiwyz.github.io/posts/s_docker_learn/</link>
     <pubDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</pubDate>
@@ -152,18 +164,6 @@ KubeProxy：負責提供集群內部的服務發現和負載均衡
 訪問程序的入口
 Docker：負責節點上容器的各種操作
 以部署一個 nginx 服務來說明 kubernetes 系統各個組件調用關係 首先要明確，一旦 kubernetes 環境啟動之後，master 和 node 都會將自身的信息存儲到 etcd 數據庫中 一個 nginx 服務的安裝請求會首先被發送到 master 節點的 apiServer 組件 apiServer 組件會調用 scheduler 組件來決定到底應該把這個服務安裝到哪一個 node 節點上 此時，它會從 etcd 中讀取各個 node 節點的信息，然後按照一定的算法進行選擇，並將結果告知 apiServer apiServer 調用 controller_manager 去調度 Node 節點安裝 nginx 服務 Kubelet 接收到指定之後，會通知 docker，然後由 docker 來啟動一個 nginx 的 pod pod 是 kubernetes 的最小操作單元，容器必須跑在 pod 中至此 一個 nginx 服務就運行了，如果需要訪問 nginx，就需要通過 kube-proxy 來對 pod 產生訪問的代理 這樣，外界用戶就可以訪問集群中的 nginx 服務了 0-4 kubernetes 概念 Master：集群控制節點，每個集群需要至少一個 master 節點負責集群的管控 安排工作的]]></description>
-</item>
-<item>
-    <title>1Z0-819 題目KO</title>
-    <link>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</link>
-    <pubDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</guid>
-    <description><![CDATA[這裡放比較tricky的題目們
-#62 1 2 3 4 5 6 7 8 9 10 class Employee { private String name; public void setName(String name) { String title = &#34;Dr. &#34;; name = title + name; } public String toString() { return name; } } And
-1 2 3 4 5 public static void main(String[] args) { Employee p = new Employee(); p.setName(&#34;Who&#34;); System.out.println(p); } What&rsquo;s the resuld?
-A. Dr. Who
-B. Dr.]]></description>
 </item>
 </channel>
 </rss>
