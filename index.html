@@ -53,6 +53,12 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/s_spring_security/">Spring Security zero to master</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-08">2024-01-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">想學很久的 Spring Security 終於在看完 udemy 的 JUnit + Mockito 課程之後，決定認真來瞭解一下了！！
+先附上 連結</div><div class="post-footer">
+        <a href="/posts/s_spring_security/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/springsecurity/">SpringSecurity</a>,&nbsp;<a href="/tags/security/">security</a>,&nbsp;<a href="/tags/spring/">spring</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ss_white-box/">[筆記] 黑白箱弱點掃描淺淺談</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-04">2024-01-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">黑白箱弱點掃描 白箱： 又名為輔助邏輯驅動測試 (auxiliary and logic driven testing)、clear-box testing、open-box testing 在光譜上是黑箱測試的另一面，滲透測試者對source code以及相關架構設計文件有全部的存取權限 在大量可用的data中淘選過濾，目地在於找到潛在弱點，因此它是滲透測試中最耗時的一種 白箱滲透測試人員可以對static code進行分析 白箱測試可以手動執行，或借助於自動化工具掃出像是 SQL注入攻擊(SQL injection)、跨站腳本攻擊 (cross-site scripting)、緩衝區溢位 (buffer overflow) 等弱點。 以下是白箱測試中很重要的工具：source code analyzer, debuggers 另外 dynamic analysis tool 也很重要，可以找出static analysis可能會漏掉的弱點，像是目標系統錯誤配置造成的弱點 (misconfiguration of target systems) 白箱滲透測試提供了綜合的評估，包含程式的內部弱點與外部弱點 黑箱： 又稱為 DAST test (動態分析資安測試 dynamic analysis security testing) 黑箱測試對於找出這樣的弱點很有幫助：input/output驗證問題, 伺服器配置相關的錯誤等。 黑箱測試的目標是要模擬真實世界的情境，並找出系統在不同情境下的行爲，例如網路攻擊、惡意輸入、阻斷服務攻擊DoS。 黑箱測試可以手動操作執行，或透過像是port scanners、fuzzers、web scanners 等自動化工具探測系統弱點。 深透測試目的是為了識別並補強可能會被攻擊者利用的弱點，因此黑箱測試是比較理想的滲透測試方法，因為大多數攻擊者並不知道目標網路的內部行為。
 跟黑箱測試相反的則是白箱測試，測試人員有目標系統的完整資訊。
@@ -63,13 +69,13 @@
         <a href="/posts/ss_white-box/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/s_kafka/">初學 Kafka</a>
+        <a href="/posts/ss_kafka/">初學 Kafka</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-03">2024-01-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions &mdash; producer and consumer. 消費者與生產者的抽象概念
 Topic: 資料邏輯分層 logical partitioning of data
 Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
 消費者在從 Users Topic 拉訊息 (pull information) 下來，
 當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。</div><div class="post-footer">
-        <a href="/posts/s_kafka/">Read More</a><div class="post-tags">
+        <a href="/posts/ss_kafka/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/s_docker_learn/">Docker</a>
@@ -90,14 +96,14 @@ docker run &lt;image_name&gt;:
         <a href="/posts/s_docker_learn/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/s_junit/">使用 JUnit & Mockito 測試 Java 程式</a>
+        <a href="/posts/ss_junit/">使用 JUnit & Mockito 測試 Java 程式</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">使用 JUnit &amp; Mockito 測試 Java 程式 Mockito &mdash; 本來以為這跟薄荷飲料mochito同音，實際要唸成 /mɑkiːtoʊ/ 或者 /mˈɒkiːtoʊ/ ，音譯就是『莫kito』或者『碼kito』，總之 k 要發音，因為他是模擬方法 (&ldquo;mock all methods&rdquo;)
 Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式碼一部分區塊 的一個小型方法
 1 2 3 public String isEmailValid(String email) { //Code that needs to be tested } 如何寫單元測試以確保一個類別中的某方法正常運作呢？
 這是一段除法程式：
 1 2 3 4 5 public class Calculator { public int integerDivision(int dividend, int divisor) { return dividend / divisor; } } 我們可以寫以下的單元測試，以驗證上方程式裡，開發者沒有敲錯鍵，把除號打成乘號.
 1 2 3 4 5 6 7 8 9 @Test void testIntegerDivision_whenValidValuesProvided_shouldReturnExpectedResult() { //Arrange Calculator calculatore = new Calculator(); //Act int result = calculator.</div><div class="post-footer">
-        <a href="/posts/s_junit/">Read More</a><div class="post-tags">
+        <a href="/posts/ss_junit/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ss_gradle/">Gradle初探</a>
@@ -113,26 +119,6 @@ $ mkdir /opt/gradle $ unzip -d /opt/gradle gradle-8.5-bin.zip $ ls /opt/gradle/g
 Linux or MacOS: 配置 PATH 環境變數，注意要包括解壓縮後擋彈的 bin 目錄
 $ export PATH=$PATH:/opt/gradle/gradle-8.6/bin Microsoft Windows: [This PC/Computer] 右鍵 → Properties → Advanced System Settings → Environment Variable 在System Variables，選擇Path→ Edit，加上 C:\Gradle\gradle-8.</div><div class="post-footer">
         <a href="/posts/ss_gradle/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_springdatajpa_vs_hibernete/">Spring JPA 與 Hibernete</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">ORM 物件關係的映射 Object-Relational Mapping的概念是可以將資料表內容做提取，並映射為物件的形式。
-缺點：對於複雜的操作（e.g. 多表格的join或查詢），相較於直接下SQL語句，更為綁手綁腳
-優點：不用操作繁瑣的SQL，也可以避免惡意注入攻擊
-JPA (Java Persistence API) 持久化：資料「儲存」與「讀取」的過程，意即將資料從瞬時狀態改為持久狀態的過程（將資料存進資料庫的過程）
-JPA：透過Java將資料儲存到資料庫的API
-使用JPA優點：
-可以隨時切換想要使用的 ORM 框架
-可以使用JPQL (Java Persistence Query Language) 向資料庫下命令：
-JPQL v.s. SQL:
-SQL在不同資料庫，有不同SQL命令語句 JPQL操作對象不著重於資料庫，而是JPA的Entity Object下類似SQL的命令 （切換不同資料庫，不用特別修改SQL語句） 常見的 ORM 框架： Hibernate -
-一般使用 Spring Data JPA 就會使用 Hibernate
-Hibernate 可以自動生成SQL 語句，自動執行
-優勢：
-簡化開發_簡化了數據訪問層的開發流程 自動化查詢_只要方法命名好，就能生成相應的查詢語句 強大的ORM功能_便於物件和關係數據庫之間的轉換 數據庫管理_Spring Data JPA 透過Spring框架的數據源管理功能，可方便切換和配置不同數據源 劣勢：
-性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響 靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL 舉例：
-1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -</div><div class="post-footer">
-        <a href="/posts/ss_springdatajpa_vs_hibernete/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">

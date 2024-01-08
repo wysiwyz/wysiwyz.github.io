@@ -53,6 +53,23 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/mic_architect/">Interview Ready, set, go</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-30">2023-04-30</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">SpringMVC的執行流程
+封裝了 Servlet，提供更有好的開發模型
+用戶發起請求 - &gt; DispatcherServlet 收到請求，轉發給 Handler Mapping -&gt; Handler Mapping 解析請求，根據請求信息和配置信息找到匹配的 Controller 類別 OR
+如果有配置攔截器的話，會按照攔截器裡的順序執行 preHandle 方法 -&gt;
+找到匹配的 Controller 後，會把請求參數傳遞給 Controller 裡面的方法 -&gt;
+Controller 裡面的方法完成後，會返回一個 ModelAndView (包含視圖名稱和需要傳遞給視途的模型數據) -&gt;
+視圖解析器 View Resolver 會根據名字找到視圖
+MySQL binlog 和 redolog 有什麼區別？
+這兩個都是用來記錄數據庫數據變更操作的日誌
+binlog(binary log)：
+數據備份、數據恢復、數據同步 redolog：
+主要是在MySQL數據庫事務的ACID特性裡面，用來保證數據的持久化特性 也可以在數據庫崩潰時，通過 RedoLog 來恢復未完成的數據，保證數據的完整性 Conclusion:
+# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？</div><div class="post-footer">
+        <a href="/posts/mic_architect/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">java</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/lesson_06_linux/">Lesson 06: Linux 筆記 - Shell Script! final</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-22">2023-04-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Shell Script 與排程
 Linux 安全應用演練及總複習
@@ -97,16 +114,6 @@ list-style-type 設定清單的項目編碼符號
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 #!</div><div class="post-footer">
         <a href="/posts/lesson_04_linux/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/suzume_no_tojimari/">すずめの戸締(toji)まり- 我出門了，我回來了 </a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-27">2023-03-27</time></span>&nbsp;<span class="post-category">included in <a href="/categories/moviereviews/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>movieReviews</a></span></div><div class="content">
-鈴芽是一位平凡的高二少女，某天騎著自行車上學的下坡路上遇見東京地理系大學生（教師考生/斜槓家業關門師）草太，留著及肩捲髮，皮膚白皙的他右下眼角有一顆淚痣，穿著白色T恤、天藍色（azure; hex: #f0ffff）長大衣、脖子上掛著一把鑰匙的他獨自一人背對波光粼粼的海面，徒步走向宮崎當地的山區廢墟。
-一句請問這附近有門、有廢墟嗎，在鈴芽心中發芽，開啟了這部作品的序幕。毅然決定翹課的鈴芽騎著單車來到廢棄小鎮，尋無他的身影，倒是來到了一個看似廢棄圓頂溫室花園前。積窪上奇妙的立者一扇木門，鈴芽看見門後那個叫做常世的地方，滿天繁星草原卻在一踏進門時轉瞬消失。
-中午回到學校，正和朋友聊天配飯的鈴芽驚見天有異象，不安於室地回到廢墟，再次遇見草太哥，他們跟著大臣白貓貓，意外踏上關門之旅，愛媛 神戶 東京 仙台 岩手縣&hellip;.（這裡決定要好好守護這個故事就不爆雷了）
-先把有觸及到我的閃光點條列下來&ndash;
-劇情 鼓勵自己 常世裡的燦爛星空 渴望得到鈴芽關愛的大臣白貓🥰🤍 戲份不多但是很帥很成熟的大黑貓 撫養外甥女鈴芽12年的姨 念咒語之前，要想著這片土地上孕育的人與情 2011/3/11的地震到現在十二年了ಥ_ಥ 勇敢無畏的高中女生 特效 蚯蚓的各種型態 從地面向上蒸發的金色光束 鑰匙旁飄散的藍色雲絲光 </div><div class="post-footer">
-        <a href="/posts/suzume_no_tojimari/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/suzume/">suzume</a>,&nbsp;<a href="/tags/animation/">Animation</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
