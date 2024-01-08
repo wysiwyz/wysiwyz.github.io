@@ -35,7 +35,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/"
-        },"genre": "posts","keywords": "","wordcount":  3460 ,
+        },"genre": "posts","keywords": "","wordcount":  5490 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/s_junit\/","datePublished": "2023-12-26T14:14:47+08:00","dateModified": "2023-12-26T14:14:47+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,8 +77,8 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 JUnit & Mockito 測試 Java 程式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3460 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;17 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5490 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;26 minutes&nbsp;<span id="/posts/s_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -95,6 +95,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
         <li><a href="#test-driven-development-tdd-----introduction">Test-Driven Development (TDD) &mdash; Introduction</a></li>
         <li><a href="#introduction-----mockito">Introduction &mdash; Mockito</a></li>
         <li><a href="#code-coverage-----introduction">Code Coverage &mdash; Introduction</a></li>
+        <li><a href="#introduction-----integration-test">Introduction &mdash; Integration Test</a></li>
       </ul>
     </li>
   </ul>
@@ -162,7 +163,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 </div><p>觀察上面的測試程式，發現  (1) 方法名稱特別長  (2) 上面掛 <code>@Test</code></p>
 <p>程式的第三段『assertEquals』驗證方法回傳結果是否正確，傳入第一個參數是期望得到的結果，第二個參數是程式實際回傳的結果，第三個參數(非必填) 則是測試失敗時，會印在console的錯誤提示訊息。</p>
 <p>單元測試跑的很快，因為方法內會用到的依賴都可以被替換掉 &mdash; fake, mocked, spied version</p>
-<p>假設方法實際上會呼叫 HGDP 客戶端 並發出http請求，相較於被測試的方法，單元測試不會發出實際的 http 請求，因為這個單元測試不是在測HGDP client side 有沒有正常工作，單元測試只是在測方法內部的 Java 程式碼。</p>
+<p>假設方法實際上會呼叫 http 客戶端 並發出http請求，相較於被測試的方法，單元測試不會發出實際的 http 請求，因為這個單元測試不是在測http client side 有沒有正常工作，單元測試只是在測方法內部的 Java 程式碼。</p>
 <h4 id="為何要寫單元測試">為何要寫單元測試</h4>
 <ol>
 <li>
@@ -178,6 +179,9 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 </li>
 <li>
 <p>確保你做的修改不會影響到其它程式碼，確保沒有回歸，所有功能仍然按照預期工作</p>
+</li>
+<li>
+<p>幫助後續重構、優化效能</p>
 </li>
 </ol>
 <h5 id="first-原則">F.I.R.S.T. 原則</h5>
@@ -537,6 +541,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 </span><span class="lnt">11
 </span><span class="lnt">12
 </span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;Test 4/2 = 2&#34;</span><span class="o">)</span>
@@ -551,6 +556,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">int</span> <span class="n">actualResult</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="na">integerDivision</span><span class="o">(</span><span class="n">dividend</span><span class="o">,</span> <span class="n">divisor</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">  <span class="c1">// Assert
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">assertEquals</span><span class="o">(</span><span class="n">expectedResult</span><span class="o">,</span> <span class="n">actualResult</span><span class="o">,</span> <span class="s">&#34;4/2 did not produce 2&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;4/2 沒有得出2&#34;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -2054,6 +2060,148 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
 </li>
 <li>
 <p>複製 maven 頁籤，貼到 pom.xml 的 plugins 區塊裡</p>
+</li>
+<li>
+<p>要加入 execution <code>prepare-agent</code>，如下</p>
+</li>
+<li>
+<p>再加入另外一個 execution <code>report</code>，以及報告要在哪個階段執行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;plugin&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;groupId&gt;</span>org.jacoco<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;artifactId&gt;</span>jacoco-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;version&gt;</span>0.8.8<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;executions&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--#3--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;execution&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;id&gt;</span>prepare-agent<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;goals&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;goal&gt;</span>prepare-agent<span class="nt">&lt;/goal&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/goals&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/execution&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--#4--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;execution&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;id&gt;</span>report<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;phase&gt;</span>test<span class="nt">&lt;/phase&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;goals&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;goal&gt;</span>report<span class="nt">&lt;/goal&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/goals&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/execution&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/executions&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plugin&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>接著 run <code>mvn clean test</code> 就可以產出報告</p>
+<p>red diamond: the code is not covered in the unit test</p>
+<p>yellow diamond: some conditions were not tested</p>
+<p>green: fully tested</p>
+<h4 id="introduction-to-unit-testing-spring-boot-application">Introduction to Unit Testing Spring Boot Application</h4>
+<pre tabindex="0"><code>[Web/Presentation layer]    [Service layer]   [Data layer]
+@RestController              @Service          @Repository
+@GetMapping              ➡️                ➡️  
+</code></pre><p>None of these annotatons will really be used, including service annotation in the device layer. Because I&rsquo;m not going to start the web server, and because spring application context will not be created, and business logic and other layers will not even be involved. I will test the method of controller in isolation from all other layers.</p>
+<h4 id="introduction-to-integration-testing-of-web-layer">Introduction to Integration Testing of Web Layer</h4>
+<p><code>@SpringBootTest</code> will created an application context that is very similar to the one we use in production application, although by default it will not start a web server.</p>
+<h4 id="adding-testing-support-to-spring-boot-application">Adding Testing Support to Spring Boot Application</h4>
+<p>開啟 spring initializr io 的網站，找到 <code>spring web</code> 的依賴，這個依賴可以讓我們建立 spring web application 也可以建立 spring boot restful microservices。</p>
+<p>在 mvnrepository.com 搜尋 spring boot starter test 也可以找到對應的依賴，往下看 compile dependencies 可以看到它也結合了 junit jupiter, mockito-core 以及 mockito-junit-jupiter</p>
+<p>另外如果專案有使用 spring security 的話，也會有對應的 spring-security-test 依賴</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-security<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-web<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-boot-starter-test<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;groupId&gt;</span>org.springframework.security<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;artifactId&gt;</span>spring-security-test<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependencies&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>@WebMvcTest and @AutoConfigureMockMvc</p>
+<ol>
+<li>
+<p>Inside of the test folder, create a new package the same name where you have the Controller.</p>
+</li>
+<li>
+<p>Add class <code>UsersControllerWebLayerTest</code></p>
+</li>
+<li>
+<p>加上標註 <code>@WebMvcTest</code>告訴 Spring 只需要掃描有限數量的類別</p>
+<p>只會掃描並建立 controllerBean，但不會建立資料存取層</p>
+<p>這樣一來，執行單元測試也比整合測試還要快</p>
+</li>
+<li>
+<p>如果要要限縮成只有一個控制器類：I can limit this annotation to work with one controller class that I need.</p>
+<p>To add property <code>controllers = name of the controller class</code></p>
+</li>
+<li>
+<p>如果被測試的此專案有使用 spring security，但測試時不想經過這些安全過濾器，可以加上標註<code>@AutoConfigureMockMvc(addFilters=false)</code> 來 exclude</p>
+</li>
+<li>
+<p><code>@AutoConfigureMockMvc</code>實際上在 <code>＠WebMVCTest</code> 標註自己就有加了</p>
+<p>參考 <a href="https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/test/autoconfigure/web/servlet/WebMvcTest.html" target="_blank" rel="noopener noreffer ">WebMvcTest reference</a></p>
+</li>
+</ol>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -2064,47 +2212,1016 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;plugin&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&lt;groupId&gt;</span>org.jacoco<span class="nt">&lt;/groupId&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&lt;artifactId&gt;</span>jacoco-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&lt;version&gt;</span>0.8.8<span class="nt">&lt;/version&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&lt;executions&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&lt;execution&gt;</span>
-</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/execution&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/executions&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="nt">&lt;/plugin&gt;</span>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.example.tutorials.junit.controller</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">org.springframework.boot.test.autoconfigure.web.serflet.WebMvcTest</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@WebMvcTest</span><span class="o">(</span><span class="n">controllers</span> <span class="o">=</span> <span class="n">UsersController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AutoConfigureMockMvc</span><span class="o">(</span><span class="n">addFilters</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerWebLayerTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="requestbuilder">RequestBuilder</h4>
+<p>請見下方程式碼 MockMvcRequestBuilders 的部分 &ndash;</p>
+<p>可以調用他的 post 方法，傳入參數 uri，由於建構者模式可以再加入 contentType 與 accept 方法</p>
+<p>接著注入 MockMvc 來 perform 剛做好的 requestBuilder 物件，並取得 MvcResult</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nn">com.example.tutorials.junit.controller</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@WebMvcTest</span><span class="o">(</span><span class="n">controllers</span> <span class="o">=</span> <span class="n">UsersController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@AutoConfigureMockMvc</span><span class="o">(</span><span class="n">addFilters</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerWebLayerTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;User can be created&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testCreateUser_whenValidUserDetailProvided_returnsCreatedUserDetails</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JsonProcessingException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">UserDetailsRequestModel</span> <span class="n">userDetailsRequestModel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDetailsRequestModel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">&#34;Alley&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">&#34;Valeigh&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">&#34;valli@gmail.com&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setPasswd</span><span class="o">(</span><span class="s">&#34;12345678&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setRepeatPasswd</span><span class="o">(</span><span class="s">&#34;12345678&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">RequestBuilder</span> <span class="n">requestBuilder</span> <span class="o">=</span> <span class="n">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">&#34;/users&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">().</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MvcResult</span> <span class="n">mvcResult</span> <span class="o">=</span> <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">requestBuilder</span><span class="o">).</span><span class="na">andReturn</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">responseBodyAsString</span> <span class="o">=</span> <span class="n">mvcResult</span><span class="o">.</span><span class="na">getResponse</span><span class="o">().</span><span class="na">getContentAsString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UserRest</span> <span class="n">createdUser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">responseBodyAsString</span><span class="o">,</span> <span class="n">UserRest</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">(),</span> <span class="n">createdUser</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">(),</span> <span class="s">&#34;The returned user first name is most likely incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">getLastName</span><span class="o">(),</span> <span class="n">createdUser</span><span class="o">.</span><span class="na">getLastName</span><span class="o">(),</span> <span class="s">&#34;The returned user first name is most likely incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">getEmail</span><span class="o">(),</span> <span class="n">createdUser</span><span class="o">.</span><span class="na">getEmail</span><span class="o">(),</span> <span class="s">&#34;The returned user email is incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertFalse</span><span class="o">(</span><span class="n">createdUser</span><span class="o">.</span><span class="na">getUserId</span><span class="o">().</span><span class="na">isEmpty</span><span class="o">(),</span> <span class="s">&#34;userId should not be empty&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="mockbean-----mocking-service-layer"><code>@MockBean</code> &mdash; Mocking service layer</h4>
+<ol>
+<li>在 test 類別加入一個依賴注入 <code>@MockBean UserService userService</code></li>
+<li>另外一種方法是直接在類別上加此標註 <code>@MockBean({UserServiceImpl.class, FundServiceImpl.class})</code> + <code>@Autowired</code></li>
+<li>在 arrange 區域建立 userDto</li>
+<li>如果 UserDetailsRequestModel 有設定 <code>@Email</code>欄位驗證，那是因為 pom.xml 有加上 spring-boot-starter-validation 的依賴</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@WebMvcTest</span><span class="o">(</span><span class="n">controllers</span> <span class="o">=</span> <span class="n">UsersController</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">excludeAutoConfiguration</span> <span class="o">=</span> <span class="o">{</span><span class="n">SecurityAutoConfiguration</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//@MockBean({UserServiceImpl.class})
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerWebLayerTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@MockBean</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//@Autowired
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">UsersService</span> <span class="n">usersService</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;user can be created&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testCreateUser_whenValidUserDetailsProvided_returnsCreatedUserDetails</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">UserDetailsRequestModel</span> <span class="n">userDetailsRequestModel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDetailsRequestModel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">&#34;Alley&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">&#34;Valeigh&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">&#34;valli@gmail.com&#34;</span><span class="o">);</span> <span class="c1">// #4 &#34;email&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setPasswd</span><span class="o">(</span><span class="s">&#34;12345678&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setRepeatPasswd</span><span class="o">(</span><span class="s">&#34;12345678&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="c1">//    UserDto userDto = new UserDto();
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    userDto.setFirstName(&#34;Alley&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    userDto.setLastName(&#34;Valeigh&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    userDto.setEmail(&#34;valli@gmail.com&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    userDto.setUserId(UUID.randomUUID().toString());
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">UserDto</span> <span class="n">userDto</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ModelMapper</span><span class="o">().</span><span class="na">map</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">,</span> <span class="n">UserDto</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDto</span><span class="o">.</span><span class="na">setUserId</span><span class="o">(</span><span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// 🆙🆕
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">when</span><span class="o">(</span><span class="n">usersService</span><span class="o">.</span><span class="na">createUser</span><span class="o">(</span><span class="n">any</span><span class="o">(</span><span class="n">UserDto</span><span class="o">.</span><span class="na">class</span><span class="o">)))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">thenReturn</span><span class="o">(</span><span class="n">userDto</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">RequestBuilder</span> <span class="n">requestBuilder</span> <span class="o">=</span> <span class="n">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">&#34;/users&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">().</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MvcResult</span> <span class="n">mvcResult</span> <span class="o">=</span> <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">requestBuilder</span><span class="o">).</span><span class="na">andReturn</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">responseBodyAsString</span> <span class="o">=</span> <span class="n">mvcResult</span><span class="o">.</span><span class="na">getResponse</span><span class="o">().</span><span class="na">getContentAsString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UserRest</span> <span class="n">createdUser</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">readValue</span><span class="o">(</span><span class="n">responseBodyAsString</span><span class="o">,</span> <span class="n">UserRest</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">//Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">(),</span> <span class="n">createdUser</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">(),</span> <span class="s">&#34;The returned user first name is most likely incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">getLastName</span><span class="o">(),</span> <span class="n">createdUser</span><span class="o">.</span><span class="na">getLastName</span><span class="o">(),</span> <span class="s">&#34;The returned user first name is most likely incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">getEmail</span><span class="o">(),</span> <span class="n">createdUser</span><span class="o">.</span><span class="na">getEmail</span><span class="o">(),</span> <span class="s">&#34;The returned user email is incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertFalse</span><span class="o">(</span><span class="n">createdUser</span><span class="o">.</span><span class="na">getUserId</span><span class="o">().</span><span class="na">isEmpty</span><span class="o">(),</span> <span class="s">&#34;userId should not be empty&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Assert for BAD_REQUEST</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;First name is not empty&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testCreateUser_whenFirstNameIsNotProvided_returns400StatusCode</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">UserDetailsRequestModel</span> <span class="n">userDetailsRequestModel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDetailsRequestModel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">&#34;&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">&#34;Valeigh&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">&#34;valli@gmail.com&#34;</span><span class="o">);</span> <span class="c1">// #4 &#34;email&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setPasswd</span><span class="o">(</span><span class="s">&#34;12345678&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setRepeatPasswd</span><span class="o">(</span><span class="s">&#34;12345678&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">RequestBuilder</span> <span class="n">requestBuilder</span> <span class="o">=</span> <span class="n">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">&#34;/users&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">().</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">MvcResult</span> <span class="n">mvcResult</span> <span class="o">=</span> <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">requestBuilder</span><span class="o">).</span><span class="na">andReturn</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">.</span><span class="na">value</span><span class="o">(),</span> 
+</span></span><span class="line"><span class="cl">                          <span class="n">mvcResult</span><span class="o">.</span><span class="na">getResponse</span><span class="o">().</span><span class="na">getStatus</span><span class="o">(),</span> 
+</span></span><span class="line"><span class="cl">                          <span class="s">&#34;Incorrect HTTP Status Code Returned&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="practice-exercise-solution">Practice exercise solution</h4>
+<p>這邊要來驗證英文名字輸入小於兩個字的情況，其中 userDetailsRequestModel 在 <code>@BeforeEach</code> 階段已經先建立好了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@BeforeEach</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UserDetailsRequestModel</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">&#34;Alley&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setLastName</span><span class="o">(</span><span class="s">&#34;Haleigh&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setEmail</span><span class="o">(</span><span class="s">&#34;ha@gmail.com&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setPasswd</span><span class="o">(</span><span class="s">&#34;12345677&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;First name cannot be shorter than 2 characters&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testCreateUser_whenFirstNameIsOnlyOneCharacter_returns400StatusCode</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">userDetailsRequestModel</span><span class="o">.</span><span class="na">setFirstName</span><span class="o">(</span><span class="s">&#34;a&#34;</span><span class="o">);</span>  
+</span></span><span class="line"><span class="cl">  <span class="c1">//@Size(min=2, message=&#34;FirstName must not be less then 2 characters&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">RequestBuilder</span> <span class="n">requestBuilder</span> <span class="o">=</span> <span class="n">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">&#34;/users&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">().</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">userDetailsRequestModel</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">MvcResult</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">requestBuilder</span><span class="o">).</span><span class="na">andReturn</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">.</span><span class="na">value</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">result</span><span class="o">.</span><span class="na">getResponse</span><span class="o">().</span><span class="na">getStatus</span><span class="o">(),</span> 
+</span></span><span class="line"><span class="cl">                           <span class="s">&#34;HTTP Status code is not set to 400&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="introduction-----integration-test">Introduction &mdash; Integration Test</h3>
+<p>接下來要寫會整合 RestController (web layer)、Service (service layer)、Repository (data layer) 的測試&hellip;</p>
+<h4 id="springboottest-annotation"><code>@SpringBootTest</code> annotation</h4>
+<ol>
+<li>建立一個UsersControllerIntegrationTest.java</li>
+<li>要使Spring能運行整合三個layers的測試，須在類別上添加註解 <code>@SpringBootTest</code></li>
+<li>這個標註會要求springboot 在主要程式裡找到 main 方法，即是有被標註 <code>@SpringBootApplication</code> 的那個類別裡面的 main() ，並且建立三個layers對應的beans</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="springboottest-webenvironment-mock"><code>@SpringBootTest</code> WebEnvironment Mock</h4>
+<p>可以指定 WebEnvironment.<strong>DEFINED_PORT</strong> | <strong>MOCK</strong> | <strong>NONE</strong> | <strong>RANDOM_PORT</strong></p>
+<p>如果沒有指定的話，預設是用 MOCK 環境，這樣 spring 會建立 mock server environment, this means it will not have the entire spring application context loaded, only beans related to web layer will be created.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">MOCK</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="defined-port-number">Defined Port Number</h4>
+<ol>
+<li>
+<p><code>WebEnvironment.DEFINED_PORT</code> 自定義埠號有幾種方法</p>
+<ol>
+<li>
+<p>在 application.properties 裡面設定</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-properties" data-lang="properties"><span class="line"><span class="cl"><span class="na">server.port</span><span class="o">=</span><span class="s">7777</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>再寫個簡單的測試方法驗證它是不在 port 8888 啟動，可以在 console 看到 <code>Tomcat started on port(s): 7777 (htttp) with context path ''...</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">DEFINED_PORT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">contextLoads</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></li>
+<li>
+<p>另一種方法是直接把server埠號寫在括號內的屬性裡，如下圖，它會覆蓋掉寫在 application.properties 設定檔的內容，具有比較高的優先層級</p>
+<p>如果你要寫多個屬性，就用大括號括起來，每個屬性用雙引號括起來，再以逗號相隔</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">DEFINED_PORT</span><span class="o">,</span> <span class="n">properties</span> <span class="o">=</span> <span class="o">{</span><span class="s">&#34;server.port=7070&#34;</span><span class="o">,</span> <span class="s">&#34;hostname=192.168.0.2&#34;</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// some methods annotated with @Test
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+</li>
+</ol>
+<h4 id="testpropertysource-加載替代配置檔"><code>@TestPropertySource</code> 加載替代配置檔</h4>
+<p>有時候測試專案需要用到 alternative configuration，例如app可能需要在不同的埠號上運行，或者以其他的用戶身份連接到資料庫，甚至是連接到不同的資料庫，這些情況可以透過<code>@TestPropertySource</code> 標註來達成</p>
+<p>要先從 <code>@SpringBootTest</code> 刪除 properties 屬性，加上 <code>@TestPropertySource</code></p>
+<p>@TestPropertySource 可以：</p>
+<ol>
+<li>手動覆蓋某些配置屬性</li>
+<li>加入另外一個配置檔案路徑，使用 locations</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">DEFINED_PORT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@TestPropertySource</span><span class="o">(</span><span class="n">locations</span> <span class="o">=</span> <span class="s">&#34;/application-test.properties&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">properties</span> <span class="o">=</span> <span class="s">&#34;server.port=7170&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// some methods annotated with @Test
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>建立 application-test.properties，如下內容</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-properties" data-lang="properties"><span class="line"><span class="cl"><span class="na">server.port</span><span class="o">=</span><span class="s">2332</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果要能夠存取配置檔的值，可以將之inject在測試類別裡</p>
+<p>@Value(&quot;${<code>_name_of_the_property_</code>}&quot;)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">DEFINED_PORT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@TestPropertySource</span><span class="o">(</span><span class="n">locations</span> <span class="o">=</span> <span class="s">&#34;/application-test.properties&#34;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">properties</span> <span class="o">=</span> <span class="s">&#34;server.port=7170&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${server.port}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kt">int</span> <span class="n">serverPort</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">contextLoads</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;server.port=&#34;</span> <span class="o">+</span> <span class="n">serverPort</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>測試結果會印出 port 號 7170 而非 2337，因此 properties 屬性值具有 higher precedence than 設定檔</p>
+<h4 id="random-port-number">Random port number</h4>
+<p>什麼樣的情境下會使用 SpringBootTest.WebEnvironment.RANDOM_PORT 呢？</p>
+<ul>
+<li>to make the embedded server always start on a random port number
+嵌入式伺服器一直在隨機埠號啟動</li>
+<li>to allow different integration to run on parallel
+不同整合測試可以平行運行</li>
+</ul>
+<p>使用 random_port 的時候，不用再配置檔案定義特定的埠號 (<del>server.port</del>)</p>
+<p>將隨機的端口號 (埠號) 注入到測試類別 &mdash; 使用標註 <code>@LocalServerPort</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">RANDOM_PORT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Value</span><span class="o">(</span><span class="s">&#34;${server.port}&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kt">int</span> <span class="n">serverPort</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@LocalServerPort</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="kt">int</span> <span class="n">localServerPort</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">contextLoads</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;server.port=&#34;</span> <span class="o">+</span> <span class="n">serverPort</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;local server port=&#34;</span> <span class="o">+</span> <span class="n">localServerPort</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>結果：(1) 可以在 console 看到測試在哪個 port 號啟動</p>
+<p>​              (2) 查看 contextLoads ，可看到 server.port 被 Spring 歸 0，local server port 同 console</p>
+<h4 id="test-create-user-----user-details-json">Test create user &mdash; user details JSON</h4>
+<p>以下程式不用 json string，而是建一個 JSONObject 物件再加入屬性</p>
+<p>JSONObject 的 put() 方法可能會拋出 JSONException 例外</p>
+<h5 id="prepare-and-perform-http-post-request">prepare and perform HTTP post request</h5>
+<p>建立一個 HttpHeaders 物件，定義 contentType 以及 accept (list of headers)</p>
+<p>接者將 http client side (RestTemplate 物件) 注入到測試類別</p>
+<p>TestRestTemplate v.s. RestTemplate 比較：</p>
+<ol>
+<li>TestRestTemplate 並沒有繼承 RestTemplate，無法使用正規 RestTemplate 的一些方法</li>
+<li>但測試時使用 TestRestTemplate 較方便，尤其是當涉及用戶身份驗證時，需要包括用戶名和密碼</li>
+<li>TestRestTemplate 的 postForEntity 要傳入三個參數
+<ol>
+<li>連結 uri</li>
+<li>建立的 requestObject <code>HttpEntity&lt;String&gt;</code></li>
+<li>The datatype of object that I want to get back as response
+如果放的是 String.class，那麼回傳的就會是 JSON string
+通常會回傳 JSON string，再包成 HttpResponse 給你
+可以改成讓他回傳與被測試的方法回傳一致的物件 (e.g. UserRest.class)</li>
+</ol>
+</li>
+<li>ResponseEntity&lt;<code>_return_type_</code>&gt; + postForEntity 傳入的第三個參數也改成<code>_return_type_</code></li>
 <li></li>
 </ol>
-<p>Jacoco &mdash; Export Code Coverage Report in HTML format</p>
-<p>Introduction to Unit Testing Spring Boot Application</p>
-<p>Introduction to Integration Testing of Web Layer</p>
-<p>Adding Testing Support to Spring Boot Application</p>
-<p>Existing Project overview</p>
-<p>@WebMvcTest and @AutoConfigureMockMvc</p>
-<p>RequestBuilder</p>
-<p><code>@MockBean</code> &mdash; Mocking service layer</p>
-<p><code>@MockBean</code> annotation &mdash; trying how it works</p>
-<p>Assert for BAD_REQUEST</p>
-<p>Practice exercise solution</p>
-<p>84 Introduction (?)</p>
-<p><code>@SpringBootTest</code> annotation</p>
-<p><code>@SpringBootTest</code> WebEnvironment Mock</p>
-<p>Defined Port Number</p>
-<p><code>@TestPropertySource</code> Load alternative configuration</p>
-<p>Random port number</p>
-<p>Test create user &mdash; user details JSON</p>
-<p>Test RestTemplate &mdash; prepare and perform HTTP post request</p>
-<p>Trying how it works</p>
-<p>Test JWT is required</p>
-<p>Test User Login works</p>
-<p>Order Test Methods</p>
-<p>GET users. Include JWT token in the request</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">RANDOM_PORT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Autowired</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">TestRestTemplate</span> <span class="n">testRestTemplate</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;User can be created&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testCreateUser_whenValidDetailsProvided_returnsUserDetails</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JSONException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//String createUserJson = &#34;{\n&#34;+
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//  &#34;    \&#34;firstName\&#34;:\&#34;Hallie\&#34;,\n&#34; +
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//  &#34;    \&#34;lastName\&#34;:\&#34;Chamber\&#34;,\n&#34; +
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//  &#34;    \&#34;email\&#34;:\&#34;chahaleigh@test.coco\&#34;,\n&#34; +
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//  &#34;    \&#34;passwd\&#34;:\&#34;12335677\&#34;,\n&#34; +
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//  &#34;    \&#34;repeatPasswd\&#34;:\&#34;12335677\&#34;\n&#34; +
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//  &#34;}&#34;;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">JSONObject</span> <span class="n">userDetailsRequestJson</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;firstName&#34;</span><span class="o">,</span> <span class="s">&#34;LingJin&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;lasttName&#34;</span><span class="o">,</span> <span class="s">&#34;Lindsey&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;email&#34;</span><span class="o">,</span> <span class="s">&#34;ll@test.coco&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;passwd&#34;</span><span class="o">,</span> <span class="s">&#34;12335677&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">userDetailsRequestJson</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;repeatPasswd&#34;</span><span class="o">,</span> <span class="s">&#34;12335677&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">HttpHeaders</span> <span class="n">headers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpHeaders</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span><span class="o">.</span><span class="na">setContentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">heades</span><span class="o">.</span><span class="na">setAccept</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">HttpEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpEntity</span><span class="o">&lt;&gt;(</span><span class="n">userDetailsRequestJson</span><span class="o">.</span><span class="na">toString</span><span class="o">(),</span> <span class="n">headers</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">UserRest</span><span class="o">&gt;</span> <span class="n">createdUserDetailsEntity</span> <span class="o">=</span> <span class="n">testRestTemplate</span><span class="o">.</span><span class="na">postForEntity</span><span class="o">(</span><span class="s">&#34;/users&#34;</span><span class="o">,</span> <span class="n">request</span><span class="o">,</span> <span class="n">UserRest</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UserRest</span> <span class="n">createdUserDetails</span> <span class="o">=</span> <span class="n">createdUserDetailsEntity</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">,</span> <span class="n">createdUserDetailsEntity</span><span class="o">.</span><span class="na">getStatusCode</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Assertions</span><span class="o">.</span><span class="na">asserEquals</span><span class="o">(</span><span class="n">userDetailsRequestJson</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">&#34;firstName&#34;</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">createdUserDetails</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">                        <span class="s">&#34;Returned user&#39;s first name seems to be incorrect&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="test-jwt-is-required">Test JWT is required</h4>
+<p>發送一個 http get request，使用 <code>/users</code> 並預期回傳一個users列表，通常這個 http request 是受保護的</p>
+<p>意思是指，要與這個 API 溝通的話，http request 須要包含一個 valid authorization access token，如果不具備此 token則會得到狀態 403 Forbidden (即 server understands the request but it refuses to authorize it.)</p>
+<p>如何取得 valid access token?</p>
+<p>首先可以寫測試驗證 API 端點是不是需要 access token</p>
+<p>TestRestTemplate 的 exchange 接收四個參數：</p>
+<ol>
+<li>
+<p>uri</p>
+</li>
+<li>
+<p>Get http request</p>
+</li>
+<li>
+<p>requestEntity that was just prepared in arrange section</p>
+</li>
+<li>
+<p>to specify that I want to get back a list of object of specific data type</p>
+<p><code>ParameterizedTypeReference&lt;&gt;</code></p>
+</li>
+<li></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;GET /users requires JWT&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testGetUsers_whenMissingJWT_returns403</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">HttpHeaders</span> <span class="n">headers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpHeaders</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">headers</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="s">&#34;Accept&#34;</span><span class="o">,</span> <span class="s">&#34;application/json&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">HttpEntity</span> <span class="n">requestEntity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpEntity</span><span class="o">(</span><span class="n">headers</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//HttpEntity requestEntity = new HttpEntity(null, headers); //➡️不含requestBody
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">  <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">UserRest</span><span class="o">&gt;&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">TestRestTemplate</span><span class="o">.</span><span class="na">exchange</span><span class="o">(</span><span class="s">&#34;/users&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                            <span class="n">HttpMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                            <span class="n">requestEntity</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                            <span class="k">new</span> <span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">UserRest</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">});</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">FORBIDDEN</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                          <span class="n">response</span><span class="o">.</span><span class="na">getStatusCode</span><span class="o">(),</span> 
+</span></span><span class="line"><span class="cl">                          <span class="s">&#34;Http status code 403 should have been returned&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="test-user-login-works">Test User Login works</h5>
+<p>建立一個 JSONObject 加入屬性，並放進 request 物件</p>
+<p>比較 TestRestTemplate 的 <code>postForEntity()</code> 以及 <code>postForObject()</code> 方法：</p>
+<ol>
+<li>一樣都是 post request</li>
+<li>postForEntity 回傳 ResponseEntity&lt;T&gt;，可以讀取狀態碼(200 or 403)
+postForObject 回傳 T</li>
+</ol>
+<p>postForEntity 收三個參數</p>
+<ol>
+<li>
+<p>URL: 這裏的連結與 WebSecurity.java 裡面配置的 uri 相同</p>
+</li>
+<li>
+<p>HttpEntity for request</p>
+</li>
+<li>
+<p>expected return type</p>
+<p>這裏如果方法成功，會驗證 statusCode 是否為 200，
+且 HttpResponse 包含方法 successfulAuthentication() 加上的兩個 header
+但方法 successfulAuthentication() 回傳 void，所以填 null</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@DisplayName</span><span class="o">(</span><span class="s">&#34;/login works&#34;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">testUserLogin_whenValidCredentialsProvided_returnsJWTinAuthroizationHeader</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">JSONException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">String</span> <span class="n">loginCredentialsJson</span> <span class="o">=</span> <span class="s">&#34;{\n&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;    \&#34;email\&#34;:\&#34;himalaya@test.co\&#34;,\n&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;    \&#34;passwd\&#34;:\&#34;12335677\&#34;,\n&#34;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;}&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">JSONObject</span> <span class="n">loginCredentials</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JSONObject</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">loginCredentials</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;email&#34;</span><span class="o">,</span> <span class="s">&#34;himalaya@test.co&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">loginCredentials</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;passwd&#34;</span><span class="o">,</span> <span class="s">&#34;12335677&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">HttpEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpEntity</span><span class="o">&lt;&gt;(</span><span class="n">loginCredentials</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">// act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">ResponseEntity</span> <span class="n">response</span> <span class="o">=</span> <span class="n">testRestTemplate</span><span class="o">.</span><span class="na">postForEntity</span><span class="o">(</span><span class="s">&#34;/users/login&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                                                           <span class="n">request</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                                                           <span class="kc">null</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                          <span class="n">response</span><span class="o">.</span><span class="na">getStatusCode</span><span class="o">(),</span> 
+</span></span><span class="line"><span class="cl">                          <span class="s">&#34;HTTP status code should be 200&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Assertions</span><span class="o">.</span><span class="na">assertNotNull</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">().</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">getValuesAsList</span><span class="o">(</span><span class="n">SecurityConstants</span><span class="o">.</span><span class="na">HEADER_STRING</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                           <span class="s">&#34;Response should contain Authorization header with JWT&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Assertions</span><span class="o">.</span><span class="na">assertNotNull</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">().</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">getValuesAsList</span><span class="o">(</span><span class="s">&#34;UserID&#34;</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">                           <span class="s">&#34;Response should contain UserID in a response header&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Spring framework 給 FilterProcessesUrl 的預設值是 (&quot;/login&quot;)，這裏專案作者改為 <code>/users/login</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// com.exampleSergey.tutorial.security.WebSecurity.java
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nd">@Bean</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="n">SecurityFilterChain</span> <span class="nf">configure</span><span class="o">(</span><span class="n">HttpSecurity</span> <span class="n">http</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Configure AuthenticationManagerBuilder
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// Get AuthenticationManager
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">http</span><span class="o">.</span><span class="na">headers</span><span class="o">().</span><span class="na">frameOptions</span><span class="o">().</span><span class="na">disable</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">http</span><span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="n">AuthenticationFilter</span> <span class="nf">getAuthenticationFilter</span><span class="o">(</span><span class="n">AuthenticationManager</span> <span class="n">authenticationManager</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">AuthenticationFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AuthenticationFilter</span><span class="o">(</span><span class="n">authenticationManager</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">filter</span><span class="o">.</span><span class="na">setFilterProcesUrl</span><span class="o">(</span><span class="s">&#34;/users/login&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">filter</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以下是主程式生成 http access token 的程式碼</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// com.exampleSergey.tutorial.security.AuthenticationFilter.java
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">successfulAuthentication</span><span class="o">(</span><span class="n">HttpServletRequest</span> <span class="n">req</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">HttpServletResponse</span> <span class="n">res</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">FilterChain</span> <span class="n">chain</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                         <span class="n">Authentication</span> <span class="n">auth</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ServletException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">userName</span> <span class="o">=</span> <span class="o">((</span><span class="n">UserDetails</span><span class="o">)</span> <span class="n">auth</span><span class="o">.</span><span class="na">getPrincipal</span><span class="o">()).</span><span class="na">getUsername</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">String</span> <span class="n">token</span> <span class="o">=</span> <span class="n">Jwts</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">setSubject</span><span class="o">(</span><span class="n">userName</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">setExpiration</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">+</span> <span class="o">(</span><span class="kt">long</span><span class="o">)</span> <span class="mi">864000000</span><span class="o">))</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">signWith</span><span class="o">(</span><span class="n">SignatureAlgorithm</span><span class="o">.</span><span class="na">HS512</span><span class="o">,</span> <span class="n">SecurityConstants</span><span class="o">.</span><span class="na">TOKEN_SECRET</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">.</span><span class="na">compact</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">UsersService</span> <span class="n">userService</span> <span class="o">=</span> <span class="o">(</span><span class="n">UsersService</span><span class="o">)</span> <span class="n">SpringApplicationContext</span><span class="o">.</span><span class="na">getBean</span><span class="o">(</span><span class="s">&#34;usersService&#34;</span><span class="o">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">UserDto</span> <span class="n">userDto</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">getUser</span><span class="o">(</span><span class="n">userName</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">res</span><span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="n">SecurityConstants</span><span class="o">.</span><span class="na">HEADER_STRING</span><span class="o">,</span> <span class="n">SecurityConstants</span><span class="o">.</span><span class="na">TOKEN_PREFIX</span><span class="o">);</span> <span class="c1">//?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">res</span><span class="o">.</span><span class="na">addHeader</span><span class="o">(</span><span class="s">&#34;UserID&#34;</span><span class="o">,</span> <span class="n">userDto</span><span class="o">.</span><span class="na">getUserId</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// com.exampleSergey.tutorial.security.SecurityConstants
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SecurityConstants</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TOKEN_PREFIX</span> <span class="o">=</span> <span class="s">&#34;Bearer &#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">HEADER_STRING</span> <span class="o">=</span> <span class="s">&#34;Authorization&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TOKEN_SECRET</span> <span class="o">=</span> <span class="s">&#34;qaWr3Dwa&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="order-test-methods">Order Test Methods</h4>
+<p>指定一個測試類別中，每個單元測試執行的順序</p>
+<ol>
+<li>user to be created</li>
+<li>peform user login and get access token</li>
+<li>test communication with protected api</li>
+</ol>
+<p>使用 <code>@TestMethodOrder</code>類別標註 + <code>@Order(x)</code>方法標註達成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@SpringBootTest</span><span class="o">(</span><span class="n">webEnvironment</span> <span class="o">=</span> <span class="n">SpringBootTest</span><span class="o">.</span><span class="na">WebEnvironment</span><span class="o">.</span><span class="na">RANDOM_PORT</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@TestMethodOrder</span><span class="o">(</span><span class="n">MethodOrdered</span><span class="o">.</span><span class="na">OrderAnnotation</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@TestInstance</span><span class="o">(</span><span class="n">TestInstance</span><span class="o">.</span><span class="na">Lifecycle</span><span class="o">.</span><span class="na">PER_CLASS</span><span class="o">)</span> <span class="c1">//authorizationToken變數才能test#3,4共用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">UsersControllerIntegrationTest</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">private</span> <span class="n">String</span> <span class="n">authorizationToken</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Order</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testCreateUser_xxx_returnXXX</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Order</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testGetUsers_whenMissingJWT_returns403</span><span class="o">()</span> <span class="o">{...}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Order</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testLogin_whenValidCredentialsProvided_returnsJWTinAuthorizationHeader</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">authorizationToken</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getHeaders</span><span class="o">().</span>
+</span></span><span class="line"><span class="cl">      <span class="n">getValuesAsList</span><span class="o">(</span><span class="n">SecurityConstants</span><span class="o">.</span><span class="na">HEADER_STRING</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ... 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="o">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nd">@Test</span>
+</span></span><span class="line"><span class="cl">  <span class="nd">@Order</span><span class="o">(</span><span class="mi">4</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">void</span> <span class="nf">testGetUsers_whenValidJWTProvided_returnsUsers</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Arrange
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">HttpHeaders</span> <span class="n">headers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpHeaders</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span><span class="o">.</span><span class="na">setAccept</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">asList</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPlICATION_JSON</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span><span class="o">.</span><span class="na">setBearerAuth</span><span class="o">(</span><span class="n">authorizationToken</span><span class="o">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//authorizationToken 這個值在Test#3 取得，所以需要定義 class level variable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="cm">/*❗️另外，Spring預設給每個測試方法一個instance，所以 test#4 開始時，
+</span></span></span><span class="line"><span class="cl"><span class="cm">        這個類別變數又會是null，所以須要更改Test instance lifecycle */</span>
+</span></span><span class="line"><span class="cl">    <span class="n">HttpEntity</span> <span class="n">requestEntity</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HttpEntity</span><span class="o">(</span><span class="n">headers</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Act
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">UserRest</span><span class="o">&gt;&gt;</span> <span class="n">response</span> <span class="o">=</span> <span class="n">testRestTemplate</span><span class="o">.</span><span class="na">exchange</span><span class="o">(</span><span class="s">&#34;/users&#34;</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">HttpMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">requestEntity</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="k">new</span> <span class="n">ParameterizedTypeReference</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">UserRest</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// Assert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                            <span class="n">response</span><span class="o">.</span><span class="na">getStatusCode</span><span class="o">(),</span> 
+</span></span><span class="line"><span class="cl">                            <span class="s">&#34;HTTP status code should be 200&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Assertions</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getBody</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">,</span> 
+</span></span><span class="line"><span class="cl">                          <span class="s">&#34;should be exactly 1 user in the list&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>&mdash; END of course ✅ &mdash;</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
