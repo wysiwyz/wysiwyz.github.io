@@ -53,6 +53,15 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_04_linux/">Lesson 04: Linux 筆記 - CA憑證、SELinux</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-08">2023-04-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Strict Transport Security (HSTS) Apache Nginx HTTPS 加密流程 Client 連到 Server 時，Server 將 Public key 傳給 Client Client 使用 Public key 產生隨機碼，和 Server 建立加密通道。 Client 用 Public key 進行傳輸資料加解密，Server 用 Private key 進行傳輸資料加解密 實際的資料使用對稱式加密方式，透過已經建好的加密通道進行傳輸 https 使用了非對稱式與對稱式加密 Khoor, Olqxa 怎麼在廣大的領域中發現小小的弱點，突破當前使用之演算法的弱點 &ndash; Dr. Mathematics
+凱薩加密演算法
+字母位移預設三個字 @Desktop
+1 2 root# mkdir demo; cd demo/ root# vi caesar-cipher.sh shellscript
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 #!</div><div class="post-footer">
+        <a href="/posts/lesson_04_linux/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/suzume_no_tojimari/">すずめの戸締(toji)まり- 我出門了，我回來了 </a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-27">2023-03-27</time></span>&nbsp;<span class="post-category">included in <a href="/categories/moviereviews/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>movieReviews</a></span></div><div class="content">
 鈴芽是一位平凡的高二少女，某天騎著自行車上學的下坡路上遇見東京地理系大學生（教師考生/斜槓家業關門師）草太，留著及肩捲髮，皮膚白皙的他右下眼角有一顆淚痣，穿著白色T恤、天藍色（azure; hex: #f0ffff）長大衣、脖子上掛著一把鑰匙的他獨自一人背對波光粼粼的海面，徒步走向宮崎當地的山區廢墟。
@@ -110,27 +119,6 @@ Stateless vs Stateful Stateless 無狀態，每次請求都是獨立 example JWT
 實務上用聲明式</div><div class="post-footer">
         <a href="/posts/native_cloud/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/terraform/">Terraform</a>,&nbsp;<a href="/tags/jenv/">JEnv</a>,&nbsp;<a href="/tags/cloud_native/">cloud_native</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/git_bash_cmds/">Git Bash - some awesome commands</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-16">2023-03-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">紀錄一些 git bash 指令
-git log -oneline 跟sourceTree_History_Description欄位基本一樣
-git log 跟樓上一樣, 但多了些author/date訊息
-Interactive Rebase 可用來修改local端的commit message 刪除local端commit 整理local端commits 合併多個commits為一個 將一個commit拆分為多個commits 注意：會重寫commit history，產生新的hash ID(i.e. new commit)
-所以不能對已經push上remote repository的commits執行interactive rebase
-git rebase -i HEAD~3
-rebase interactive head till the three
-要回去幾個節點之前? base commit是哪個?
-copy hash id 9a23775 Head minus 3 接著會出現一個editor window，可控制head+前兩個commit
-reword
-不直接改commit msg，而是將pick改成reword，存檔關閉
-接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc+:wq)
-squash
-將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
-Voilà! 原本的兩個commits合併成一個惹！
-git commit amend 可修改最近一筆local端本分支的 msg
-Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt; ↖ [j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用</div><div class="post-footer">
-        <a href="/posts/git_bash_cmds/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git-bash/">Git Bash</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

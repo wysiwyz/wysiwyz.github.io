@@ -53,6 +53,24 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://www.goodreads.com/user/show/34521788-yiwen-c" title="Goodreads" target="_blank" rel="noopener noreffer me"><i class="fab fa-goodreads fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/gcp_on_board/">GCP on board</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-10">2024-01-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Mod1_GCP 簡介 什麼是雲端運算？
+自助式隨選服務 - 無需人為介入即可取得資源 廣泛的網路存取權 - 隨時隨地都可存取 資源集區 (共享資源的概念) - 提供者可將資源分享給客戶 迅速彈性 - 隨需快速取得更多資源 依使用的服務計費 - 用多少，付多少 雲端技術如何發展而成？未來方向為何？
+實體/主機代管：由使用者設定、管理與維護 [Phase2] 虛擬化：由使用者設定，由供應商代管與維護 [Phase3] 無伺服器：全自動化 GCP 運算架構 [採用代管基礎架構] ↔️ [採用動態基礎架構]
+Compute Engine Kubernetes Engine App Engine Cloud Functions 代管服務 IaaS 混合式 PaaS 無伺服器邏輯 自動 GCP 在全球設立187個網路邊緣位置（POP，網際網路交換中心），並投資鋪設20+條海底電纜
+GCP 依區域和可用區劃分
+區域region、可用區zone
+每個區域裡有多個可用區zone (大部分3個)，一個資料中心就是一個區域region
+Google善盡環保責任
+100%落實碳中和政策(自2007年起)
+Data Center 2030年達成零碳排
+全球數一數二的再生能源採購企業
+資料中心率先通過 ISO 14001 認證
+貼近客戶需求的計價方式
+以秒/毫秒計費：適用於運算、資料處理和其他服務 續用折扣：虛擬機器的使用時間超過當月的25%，就會自動套用此折扣 (upto 30%) 承諾使用折扣：以較低的價格取得長期穩定的工作負載 (around 50%off) 先占使用折扣：以較低價格取得可中斷的工作負載 自訂VM執行個體類型：僅為應用程式所需的資源付費 (pricing calculator) 開放式API和開放原始碼讓客戶能改用其他供應商的服務</div><div class="post-footer">
+        <a href="/posts/gcp_on_board/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/s_spring_security/">Spring Security zero to master</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-08">2024-01-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">想學很久的 Spring Security 終於在看完 udemy 的 JUnit + Mockito 課程之後，決定認真來瞭解一下了！！
 先附上 連結</div><div class="post-footer">
@@ -104,21 +122,6 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 1 2 3 4 5 public class Calculator { public int integerDivision(int dividend, int divisor) { return dividend / divisor; } } 我們可以寫以下的單元測試，以驗證上方程式裡，開發者沒有敲錯鍵，把除號打成乘號.
 1 2 3 4 5 6 7 8 9 @Test void testIntegerDivision_whenValidValuesProvided_shouldReturnExpectedResult() { //Arrange Calculator calculatore = new Calculator(); //Act int result = calculator.</div><div class="post-footer">
         <a href="/posts/ss_junit/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_gradle/">Gradle初探</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">概觀 Gradle是一個基於Groovy的建構管理系統，它特別設計用來建構基於Java的專案
-Gradle運行在所有主流作業系統，只需要Java JDK 8 或者以上的版本即可安裝
-(1) Unix的作業系統，可以用 SDKMAN package manager 安裝，指令sdk install gradle 8.5
-​ macOS的作業系統，可以用Homebrew package manager安裝，指令 brew install gradle
-(2) 設置環境
-Linux or MacOS: 在所選的目錄下解壓縮
-$ mkdir /opt/gradle $ unzip -d /opt/gradle gradle-8.5-bin.zip $ ls /opt/gradle/gradle-8.5 LICENSE NOTICE bin getting-started.html init.d lib media Microsoft Windows
-用 File Explorer 創建新的目錄 C:\Gradle，再把下載後解壓縮的 gradle-8.5 資料夾拉進去這個目錄
-(3) 配置環境變數
-Linux or MacOS: 配置 PATH 環境變數，注意要包括解壓縮後擋彈的 bin 目錄
-$ export PATH=$PATH:/opt/gradle/gradle-8.6/bin Microsoft Windows: [This PC/Computer] 右鍵 → Properties → Advanced System Settings → Environment Variable 在System Variables，選擇Path→ Edit，加上 C:\Gradle\gradle-8.</div><div class="post-footer">
-        <a href="/posts/ss_gradle/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">

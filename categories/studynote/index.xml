@@ -3,7 +3,28 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 08 Jan 2024 13:33:24 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 10 Jan 2024 13:01:59 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>GCP on board</title>
+    <link>http://wysiwyz.github.io/posts/gcp_on_board/</link>
+    <pubDate>Wed, 10 Jan 2024 13:01:59 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/gcp_on_board/</guid>
+    <description><![CDATA[Mod1_GCP 簡介 什麼是雲端運算？
+自助式隨選服務 - 無需人為介入即可取得資源 廣泛的網路存取權 - 隨時隨地都可存取 資源集區 (共享資源的概念) - 提供者可將資源分享給客戶 迅速彈性 - 隨需快速取得更多資源 依使用的服務計費 - 用多少，付多少 雲端技術如何發展而成？未來方向為何？
+實體/主機代管：由使用者設定、管理與維護 [Phase2] 虛擬化：由使用者設定，由供應商代管與維護 [Phase3] 無伺服器：全自動化 GCP 運算架構 [採用代管基礎架構] ↔️ [採用動態基礎架構]
+Compute Engine Kubernetes Engine App Engine Cloud Functions 代管服務 IaaS 混合式 PaaS 無伺服器邏輯 自動 GCP 在全球設立187個網路邊緣位置（POP，網際網路交換中心），並投資鋪設20+條海底電纜
+GCP 依區域和可用區劃分
+區域region、可用區zone
+每個區域裡有多個可用區zone (大部分3個)，一個資料中心就是一個區域region
+Google善盡環保責任
+100%落實碳中和政策(自2007年起)
+Data Center 2030年達成零碳排
+全球數一數二的再生能源採購企業
+資料中心率先通過 ISO 14001 認證
+貼近客戶需求的計價方式
+以秒/毫秒計費：適用於運算、資料處理和其他服務 續用折扣：虛擬機器的使用時間超過當月的25%，就會自動套用此折扣 (upto 30%) 承諾使用折扣：以較低的價格取得長期穩定的工作負載 (around 50%off) 先占使用折扣：以較低價格取得可中斷的工作負載 自訂VM執行個體類型：僅為應用程式所需的資源付費 (pricing calculator) 開放式API和開放原始碼讓客戶能改用其他供應商的服務]]></description>
+</item>
+<item>
     <title>Spring Security zero to master</title>
     <link>http://wysiwyz.github.io/posts/s_spring_security/</link>
     <pubDate>Mon, 08 Jan 2024 13:33:24 &#43;0800</pubDate>
@@ -146,17 +167,6 @@ Latency 常用指令：
 了解自己機器合理的 operation per second：benchmark
 找出 ≥ 10ms的操作：slowlog
 因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作]]></description>
-</item>
-<item>
-    <title>Think in REACT</title>
-    <link>http://wysiwyz.github.io/posts/react_scrimba/</link>
-    <pubDate>Wed, 25 Oct 2023 21:50:51 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/react_scrimba/</guid>
-    <description><![CDATA[0. 建立 React 靜態頁面的入門方法 \index.html 在 head 加入 react 以及 react-dom 的 script 連結 referred doc
-在 head 加入 babel.min.js 的 script 連結 referred doc
-✏️ script 除了加上 index.js 的檔案來源，也要記得加上 type 屬性 text/babel，不然無法順利 ReactDOM.render() 喔！
-1 2 3 4 5 6 7 8 9 10 11 12 &lt;html&gt; &lt;head&gt; &lt;link rel=&#34;stylesheet&#34; href=&#34;index.css&#34;&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react@18/umd/react.development.js&#34;&gt;&lt;/script&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react-dom@18/umd/react-dom.development.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://unpkg.com/babel-standalone@6/babel.min.js&#34;&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;root&#34;&gt;&lt;/div&gt; &lt;script src=&#34;index.js&#34; type=&#34;text/babel&#34;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; \index.js ReactDOM.]]></description>
 </item>
 </channel>
 </rss>

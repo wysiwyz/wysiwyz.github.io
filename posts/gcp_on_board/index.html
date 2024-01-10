@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>GCP on board - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="GCP on board" />
+<meta property="og:description" content="Mod1_GCP 簡介 什麼是雲端運算？
+自助式隨選服務 - 無需人為介入即可取得資源 廣泛的網路存取權 - 隨時隨地都可存取 資源集區 (共享資源的概念) - 提供者可將資源分享給客戶 迅速彈性 - 隨需快速取得更多資源 依使用的服務計費 - 用多少，付多少 雲端技術如何發展而成？未來方向為何？
+實體/主機代管：由使用者設定、管理與維護 [Phase2] 虛擬化：由使用者設定，由供應商代管與維護 [Phase3] 無伺服器：全自動化 GCP 運算架構 [採用代管基礎架構] ↔️ [採用動態基礎架構]
+Compute Engine Kubernetes Engine App Engine Cloud Functions 代管服務 IaaS 混合式 PaaS 無伺服器邏輯 自動 GCP 在全球設立187個網路邊緣位置（POP，網際網路交換中心），並投資鋪設20&#43;條海底電纜
+GCP 依區域和可用區劃分
+區域region、可用區zone
+每個區域裡有多個可用區zone (大部分3個)，一個資料中心就是一個區域region
+Google善盡環保責任
+100%落實碳中和政策(自2007年起)
+Data Center 2030年達成零碳排
+全球數一數二的再生能源採購企業
+資料中心率先通過 ISO 14001 認證
+貼近客戶需求的計價方式
+以秒/毫秒計費：適用於運算、資料處理和其他服務 續用折扣：虛擬機器的使用時間超過當月的25%，就會自動套用此折扣 (upto 30%) 承諾使用折扣：以較低的價格取得長期穩定的工作負載 (around 50%off) 先占使用折扣：以較低價格取得可中斷的工作負載 自訂VM執行個體類型：僅為應用程式所需的資源付費 (pricing calculator) 開放式API和開放原始碼讓客戶能改用其他供應商的服務" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/gcp_on_board/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-10T13:01:59+08:00" />
+<meta property="article:modified_time" content="2024-01-10T13:01:59+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="GCP on board"/>
+<meta name="twitter:description" content="Mod1_GCP 簡介 什麼是雲端運算？
+自助式隨選服務 - 無需人為介入即可取得資源 廣泛的網路存取權 - 隨時隨地都可存取 資源集區 (共享資源的概念) - 提供者可將資源分享給客戶 迅速彈性 - 隨需快速取得更多資源 依使用的服務計費 - 用多少，付多少 雲端技術如何發展而成？未來方向為何？
+實體/主機代管：由使用者設定、管理與維護 [Phase2] 虛擬化：由使用者設定，由供應商代管與維護 [Phase3] 無伺服器：全自動化 GCP 運算架構 [採用代管基礎架構] ↔️ [採用動態基礎架構]
+Compute Engine Kubernetes Engine App Engine Cloud Functions 代管服務 IaaS 混合式 PaaS 無伺服器邏輯 自動 GCP 在全球設立187個網路邊緣位置（POP，網際網路交換中心），並投資鋪設20&#43;條海底電纜
+GCP 依區域和可用區劃分
+區域region、可用區zone
+每個區域裡有多個可用區zone (大部分3個)，一個資料中心就是一個區域region
+Google善盡環保責任
+100%落實碳中和政策(自2007年起)
+Data Center 2030年達成零碳排
+全球數一數二的再生能源採購企業
+資料中心率先通過 ISO 14001 認證
+貼近客戶需求的計價方式
+以秒/毫秒計費：適用於運算、資料處理和其他服務 續用折扣：虛擬機器的使用時間超過當月的25%，就會自動套用此折扣 (upto 30%) 承諾使用折扣：以較低的價格取得長期穩定的工作負載 (around 50%off) 先占使用折扣：以較低價格取得可中斷的工作負載 自訂VM執行個體類型：僅為應用程式所需的資源付費 (pricing calculator) 開放式API和開放原始碼讓客戶能改用其他供應商的服務"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/gcp_on_board/" /><link rel="prev" href="http://wysiwyz.github.io/posts/s_spring_security/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "GCP on board",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/gcp_on_board\/"
+        },"genre": "posts","keywords": "","wordcount":  888 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/gcp_on_board\/","datePublished": "2024-01-10T13:01:59+08:00","dateModified": "2024-01-10T13:01:59+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">GCP on board</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-10">2024-01-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;888 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/posts/gcp_on_board/" class="leancloud_visitors" data-flag-title="GCP on board">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mod1_gcp-簡介">Mod1_GCP 簡介</a>
+      <ul>
+        <li><a href="#1-資源階層結構">1. 資源階層結構</a></li>
+        <li><a href="#2-iam">2. IAM</a></li>
+        <li><a href="#3-與gcp互動">3. 與GCP互動</a></li>
+      </ul>
+    </li>
+    <li><a href="#mod2_vm-與儲存空間">Mod2_VM 與儲存空間</a>
+      <ul>
+        <li><a href="#1-虛擬私人雲端vpc網路">1. 虛擬私人雲端(VPC)網路</a></li>
+        <li><a href="#2-compute-engine">2. Compute Engine</a></li>
+        <li><a href="#3-重要的虛擬私人雲功能">3. 重要的虛擬私人雲功能</a></li>
+        <li><a href="#question">Question</a></li>
+        <li><a href="#儲存空間選項">儲存空間選項</a></li>
+      </ul>
+    </li>
+    <li><a href="#mod3_容器與應用程式開發部署與監控">Mod3_容器與應用程式開發、部署與監控</a>
+      <ul>
+        <li><a href="#1-簡介">1. 簡介</a></li>
+        <li><a href="#2-k8s和gke">2. K8S和GKE</a></li>
+        <li><a href="#questions-2">Questions</a></li>
+        <li><a href="#雲端中的運算環境">雲端中的運算環境</a></li>
+        <li><a href="#在雲端開發部署與監控">在雲端開發部署與監控</a></li>
+      </ul>
+    </li>
+    <li><a href="#mod4_大數據與機器學習">Mod4_大數據與機器學習</a>
+      <ul>
+        <li><a href="#1大數據">1.大數據</a></li>
+        <li><a href="#ai平台">AI平台</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="mod1_gcp-簡介">Mod1_GCP 簡介</h2>
+<ul>
+<li>
+<p>什麼是雲端運算？</p>
+<ol>
+<li><strong>自助式隨選服務</strong> - 無需人為介入即可取得資源</li>
+<li><strong>廣泛的網路存取權</strong> - 隨時隨地都可存取</li>
+<li><strong>資源集區</strong> (共享資源的概念) - 提供者可將資源分享給客戶</li>
+<li><strong>迅速彈性</strong> - 隨需快速取得更多資源</li>
+<li><strong>依使用的服務計費</strong> - 用多少，付多少</li>
+</ol>
+</li>
+<li>
+<p>雲端技術如何發展而成？未來方向為何？</p>
+<ul>
+<li>實體/主機代管：由使用者設定、管理與維護</li>
+<li>[Phase2] 虛擬化：由使用者設定，由供應商代管與維護</li>
+<li>[Phase3] 無伺服器：全自動化</li>
+</ul>
+</li>
+<li>
+<p>GCP 運算架構 [採用代管基礎架構] ↔️ [採用動態基礎架構]</p>
+<table>
+<thead>
+<tr>
+<th>Compute Engine</th>
+<th>Kubernetes Engine</th>
+<th>App Engine</th>
+<th>Cloud Functions</th>
+<th>代管服務</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IaaS</td>
+<td>混合式</td>
+<td>PaaS</td>
+<td>無伺服器邏輯</td>
+<td>自動</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>GCP 在全球設立187個網路邊緣位置（POP，網際網路交換中心），並投資鋪設20+條海底電纜</p>
+</li>
+<li>
+<p>GCP 依區域和可用區劃分</p>
+<ul>
+<li>
+<p>區域region、可用區zone</p>
+</li>
+<li>
+<p>每個區域裡有多個可用區zone (大部分3個)，一個資料中心就是一個區域region</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Z1nifa5.png"
+        data-srcset="https://i.imgur.com/Z1nifa5.png, https://i.imgur.com/Z1nifa5.png 1.5x, https://i.imgur.com/Z1nifa5.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Z1nifa5.png"
+        title="europe-west-zone" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/llzPbGw.png"
+        data-srcset="https://i.imgur.com/llzPbGw.png, https://i.imgur.com/llzPbGw.png 1.5x, https://i.imgur.com/llzPbGw.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/llzPbGw.png"
+        title="image-20240110131544139" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Google善盡環保責任</p>
+<ul>
+<li>
+<p>100%落實碳中和政策(自2007年起)</p>
+<blockquote>
+<p>Data Center 2030年達成零碳排</p>
+</blockquote>
+</li>
+<li>
+<p>全球數一數二的再生能源採購企業</p>
+</li>
+<li>
+<p>資料中心率先通過 ISO 14001 認證</p>
+</li>
+</ul>
+</li>
+<li>
+<p>貼近客戶需求的計價方式</p>
+<ul>
+<li>以秒/毫秒計費：適用於運算、資料處理和其他服務</li>
+<li>續用折扣：虛擬機器的使用時間超過當月的25%，就會自動套用此折扣 (upto 30%)</li>
+<li>承諾使用折扣：以較低的價格取得長期穩定的工作負載 (around 50%off)</li>
+<li>先占使用折扣：以較低價格取得可中斷的工作負載</li>
+<li>自訂VM執行個體類型：僅為應用程式所需的資源付費 (pricing calculator)</li>
+</ul>
+</li>
+<li>
+<p>開放式API和開放原始碼讓客戶能改用其他供應商的服務</p>
+<ul>
+<li>開放式API；與開放原始碼服務相容
+<ul>
+<li>Cloud Bigtable</li>
+<li>Cloud Dataproc（兼容Hadoop）</li>
+</ul>
+</li>
+<li>採用開放原始碼以打造豐富生態系統
+<ul>
+<li>TensorFlow</li>
+<li>Kubernetes</li>
+<li>Forseti Security</li>
+</ul>
+</li>
+<li>適合多供應商環境的技術
+<ul>
+<li>Google Operations Suite</li>
+<li>Kubernetes Engine (支援混合雲)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Google技術基礎架構將安全性納入設計考量 (由下而上⬆️)</p>
+<table>
+<thead>
+<tr>
+<th>分層</th>
+<th>重要安全措施(僅列舉部分)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作業安全性</td>
+<td>入侵偵測系統、降低內部風險的技術、員工使用U2F、軟體開發作法 (e.g.紅隊演練)</td>
+</tr>
+<tr>
+<td>網際網路通訊</td>
+<td>Google Front End；加入阻斷服務功能的設計 (預防ddos attack)</td>
+</tr>
+<tr>
+<td>儲存服務</td>
+<td>靜態資料加密 (金鑰加解密)</td>
+</tr>
+<tr>
+<td>使用者身分</td>
+<td>支援U2F的中央身分識別服務</td>
+</tr>
+<tr>
+<td>服務部署</td>
+<td>服務間通訊加密 (e.g. RPC, 磁碟加密)</td>
+</tr>
+<tr>
+<td>硬體基礎架構</td>
+<td>硬體的設計和來源、安全的啟動堆疊、設施安全</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Google Front End(GFE)：確保 TLS 傳輸層安全</li>
+</ul>
+</li>
+<li>
+<p>選用GCP的優點</p>
+<ul>
+<li>提供高度安全、穩定可靠且彈性十足的基礎架構，幫助開發人員輕鬆部署</li>
+</ul>
+</li>
+<li>
+<p>運算服務</p>
+<ol>
+<li>Compute Engine</li>
+<li>Kubernetes Engine (代管K8S的平台)</li>
+<li>App Engine</li>
+<li>Cloud Functions</li>
+</ol>
+</li>
+<li>
+<p>儲存服務</p>
+<ol>
+<li>Bigtable</li>
+<li>Cloud Storaage</li>
+<li>Cloud SQL</li>
+<li>Cloud Spanner</li>
+<li>Cloud Datastore</li>
+</ol>
+</li>
+<li>
+<p>大數據</p>
+<ol>
+<li>BigQuery</li>
+<li>Pub/Sub</li>
+<li>Dataflow</li>
+<li>Dataproc</li>
+<li>Datalab</li>
+</ol>
+</li>
+<li>
+<p>機器學習</p>
+<ol>
+<li>Natural Language API</li>
+<li>Vision API</li>
+<li>AI Platform</li>
+<li>Speech API</li>
+<li>Translate API</li>
+</ol>
+</li>
+</ul>
+<p>Q1 創新GCP計價方式</p>
+<ol>
+<li>by sec</li>
+<li>?</li>
+<li>?</li>
+</ol>
+<p>Q2 GCP 使用好處</p>
+<ol>
+<li>善盡環保責任</li>
+<li>對開放原始碼技術的承諾</li>
+<li>穩固的基礎架構</li>
+</ol>
+<hr>
+<h3 id="1-資源階層結構">1. 資源階層結構</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/THAfGBG.png"
+        data-srcset="https://i.imgur.com/THAfGBG.png, https://i.imgur.com/THAfGBG.png 1.5x, https://i.imgur.com/THAfGBG.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/THAfGBG.png"
+        title="image-20240110134418510" /></p>
+<h4 id="雲端安全">雲端安全</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/RtgrrVM.png"
+        data-srcset="https://i.imgur.com/RtgrrVM.png, https://i.imgur.com/RtgrrVM.png 1.5x, https://i.imgur.com/RtgrrVM.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/RtgrrVM.png"
+        title="image-20240110134553331" /></p>
+<h4 id="資源階層定義了信任界線">資源階層定義了信任界線</h4>
+<ul>
+<li>依機構架構將資源分組</li>
+<li>階級中的每一層都可作為信任界線，達到資源隔離的效果（往下繼承）</li>
+</ul>
+<h4 id="有三個屬性可用於識別專案">有三個屬性可用於識別專案</h4>
+<table>
+<thead>
+<tr>
+<th>專案ID</th>
+<th>專案名稱</th>
+<th>專案編號</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全域不重複</td>
+<td>可以重複</td>
+<td>全域不重複</td>
+</tr>
+<tr>
+<td>由您選擇</td>
+<td>由您選擇</td>
+<td>由GCP指派</td>
+</tr>
+<tr>
+<td>無法變更</td>
+<td>可變更</td>
+<td>無法變更</td>
+</tr>
+</tbody>
+</table>
+<h4 id="資料夾提供靈活的管理功能">資料夾提供靈活的管理功能</h4>
+<ul>
+<li>資料夾將機構下的專案分門別類</li>
+<li>資料夾可以包含專案和/或其他資料夾</li>
+<li>資料夾可用於指派政策</li>
+</ul>
+<h4 id="機構節點可組織專案">機構節點可組織專案</h4>
+<p>organization node</p>
+<h4 id="iam資源階層示例">IAM資源階層示例</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/xcJBRTH.png"
+        data-srcset="https://i.imgur.com/xcJBRTH.png, https://i.imgur.com/xcJBRTH.png 1.5x, https://i.imgur.com/xcJBRTH.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/xcJBRTH.png"
+        title="image-20240110135301298" /></p>
+<ul>
+<li>如果bookself專案有對Cloud Storage寫入的身份，而組織節點有對Cloud Storage讀取的身份，那麼bookself實際可讀可寫Cloud Storage（UNION)</li>
+</ul>
+<h3 id="2-iam">2. IAM</h3>
+<p>誰可以對什麼資源做什麼事情</p>
+<h4 id="iam政策可以套用至四種主體">IAM政策可以套用至四種主體</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/w7aLQZY.png"
+        data-srcset="https://i.imgur.com/w7aLQZY.png, https://i.imgur.com/w7aLQZY.png 1.5x, https://i.imgur.com/w7aLQZY.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/w7aLQZY.png"
+        title="image-20240110135650081" /></p>
+<h4 id="可以做什麼iam角色是一組相關聯的權限">可以做什麼：IAM角色是一組相關聯的權限</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/uRBSjz6.png"
+        data-srcset="https://i.imgur.com/uRBSjz6.png, https://i.imgur.com/uRBSjz6.png 1.5x, https://i.imgur.com/uRBSjz6.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/uRBSjz6.png"
+        title="image-20240110135736393" /></p>
+<h4 id="可用的資源使用者會取得階層中特定項目的角色">可用的資源：使用者會取得階層中特定項目的角色</h4>
+<p>定在某個節點上，他就會往下繼承，決定在哪一個服務生效</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/eSD5oIv.png"
+        data-srcset="https://i.imgur.com/eSD5oIv.png, https://i.imgur.com/eSD5oIv.png 1.5x, https://i.imgur.com/eSD5oIv.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/eSD5oIv.png"
+        title="image-20240110135851630" /></p>
+<h4 id="iam角色有三種類型">IAM角色有三種類型</h4>
+<ol>
+<li>
+<p>基本角色：會套用到專案中的所有GCP服務</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/duTw9hg.png"
+        data-srcset="https://i.imgur.com/duTw9hg.png, https://i.imgur.com/duTw9hg.png 1.5x, https://i.imgur.com/duTw9hg.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/duTw9hg.png"
+        title="image-20240110140003019" /></p>
+</li>
+<li>
+<p>預先定義角色：會套用至專案中的<!-- raw HTML omitted -->特定GCP服務（e.g. no-sql bigtable<!-- raw HTML omitted -->)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/IdKAs9f.png"
+        data-srcset="https://i.imgur.com/IdKAs9f.png, https://i.imgur.com/IdKAs9f.png 1.5x, https://i.imgur.com/IdKAs9f.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/IdKAs9f.png"
+        title="image-20240110140236684" /></p>
+</li>
+<li>
+<p>自訂角色：可以讓您定義一組精確的權限</p>
+<p>通常建議企業給員工設定原則為最低權限模型</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Z7MWpwN.png"
+        data-srcset="https://i.imgur.com/Z7MWpwN.png, https://i.imgur.com/Z7MWpwN.png 1.5x, https://i.imgur.com/Z7MWpwN.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Z7MWpwN.png"
+        title="image-20240110140358161" /></p>
+</li>
+</ol>
+<h4 id="可以使用哪些工具來管理具備管理權限的gcp-user">可以使用哪些工具來管理具備管理權限的GCP user？</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/zmbhfEw.png"
+        data-srcset="https://i.imgur.com/zmbhfEw.png, https://i.imgur.com/zmbhfEw.png 1.5x, https://i.imgur.com/zmbhfEw.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/zmbhfEw.png"
+        title="image-20240110140707211" /></p>
+<h4 id="如果已經有其他公司目錄怎麼辦">如果已經有其他公司目錄，怎麼辦</h4>
+<ul>
+<li>Google Cloud Directory Sync</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/JGkYKKx.png"
+        data-srcset="https://i.imgur.com/JGkYKKx.png, https://i.imgur.com/JGkYKKx.png 1.5x, https://i.imgur.com/JGkYKKx.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/JGkYKKx.png"
+        title="image-20240110140846315" /></p>
+<h3 id="3-與gcp互動">3. 與GCP互動</h3>
+<h4 id="有四種gcp互動的方式">有四種GCP互動的方式</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/I3rg1aX.png"
+        data-srcset="https://i.imgur.com/I3rg1aX.png, https://i.imgur.com/I3rg1aX.png 1.5x, https://i.imgur.com/I3rg1aX.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/I3rg1aX.png"
+        title="image-20240110141002706" /></p>
+<h5 id="1-google-cloud-platform-console">(1) Google Cloud Platform Console</h5>
+<p>可以滿足大部分需求（但不是全部）</p>
+<p>支援git協定的版本控制系統 &mdash; cloud source repositories</p>
+<ul>
+<li>可集中管理所有專案資料的控制台</li>
+<li>開發人員工具
+<ul>
+<li>Cloud Source Repositories</li>
+<li>Cloud Shell</li>
+<li>Test Lab (行動應用程式測試)</li>
+</ul>
+</li>
+<li>可存取產品API</li>
+<li>管理和建立專案</li>
+</ul>
+<h5 id="2-google-cloud-sdk">(2) Google Cloud SDK</h5>
+<p>命令列工具</p>
+<ul>
+<li>SDK 包括適用於 Cloud Platform 產品和服務的 CLI 工具
+<ul>
+<li><code>gcloud</code>, <code>gsutil</code>(Cloud Storage), <code>bq</code> (BigQuery)</li>
+</ul>
+</li>
+<li>可做為 Docker 映像檔</li>
+<li>可透過 Cloud Shell 使用
+<ul>
+<li>在 Compute Engine 執行個體上執行的 Cloud SDK 容器化版本</li>
+</ul>
+</li>
+</ul>
+<h5 id="3cloud-console行動應用程式">(3)Cloud Console行動應用程式</h5>
+<p>在DevOps 或 SRE 時會用到</p>
+<ul>
+<li>管理虛擬機器和資料庫執行個體</li>
+<li>管理Google App Engine中的應用程式</li>
+<li>管理帳單</li>
+<li>透過可以自訂的資訊主頁，以視覺化方式呈現專案</li>
+</ul>
+<h5 id="4-符合rest樣式的api">(4) 符合REST樣式的API</h5>
+<ul>
+<li>
+<p>以程式輔助的方式存取產品和服務</p>
+<ul>
+<li>通常使用JSON作為交換格式</li>
+<li>使用OAuth 2.0 進行驗證與授權</li>
+</ul>
+</li>
+<li>
+<p>透過Google Cloud Platform Console啟用</p>
+</li>
+<li>
+<p>為了協助控管支出，大多數的服務都包含每日配額和頻率(限制)</p>
+<ul>
+<li>您可以申請調高配額和頻率</li>
+</ul>
+</li>
+<li>
+<p>另外也有支援GRPC(Google Remote procedure call)的 API</p>
+</li>
+</ul>
+<h4 id="questions">Questions</h4>
+<ul>
+<li>Q: 如果Google Cloud IAM政策授予您專案層級的擁有者權限，則您對專案內資源的存取權限，可能會因為資源具有較嚴格的政策而受限，正確或錯誤？
+<ul>
+<li>A: 政策是父政策與資源政策的聯集。如果父政策的限制性較低，則會覆寫限制性較高的資源政策。</li>
+</ul>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/F8qqvCh.png"
+        data-srcset="https://i.imgur.com/F8qqvCh.png, https://i.imgur.com/F8qqvCh.png 1.5x, https://i.imgur.com/F8qqvCh.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/F8qqvCh.png"
+        title="image-20240110141629724" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/BFQE9DU.png"
+        data-srcset="https://i.imgur.com/BFQE9DU.png, https://i.imgur.com/BFQE9DU.png 1.5x, https://i.imgur.com/BFQE9DU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/BFQE9DU.png"
+        title="image-20240110141644371" /></p>
+<hr>
+<h2 id="mod2_vm-與儲存空間">Mod2_VM 與儲存空間</h2>
+<h3 id="1-虛擬私人雲端vpc網路">1. 虛擬私人雲端(VPC)網路</h3>
+<h4 id="virtual-private-cloud">Virtual private cloud</h4>
+<ul>
+<li>
+<p>每個虛擬私人雲端網路都位於GCP專案中 (專案建立都會有預設的VPC)</p>
+</li>
+<li>
+<p>您可以佈建 Cloud Platform 資源，使這些資源彼此連接或隔離</p>
+</li>
+</ul>
+<h4 id="google-cloud虛擬私人雲端網路是全球性資源但子網路是區域性資源">Google Cloud虛擬私人雲端網路是全球性資源，但子網路是區域性資源</h4>
+<ul>
+<li>子網路可以用內部ip相互通訊</li>
+<li>us-east1區域內建立了 us-east1-b 與 us-east1-c ，位於不同的可用區</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/t3RleDC.png"
+        data-srcset="https://i.imgur.com/t3RleDC.png, https://i.imgur.com/t3RleDC.png 1.5x, https://i.imgur.com/t3RleDC.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/t3RleDC.png"
+        title="image-20240110142204242" /></p>
+<h3 id="2-compute-engine">2. Compute Engine</h3>
+<h4 id="compute-engine-提供代管虛擬機器">Compute Engine 提供代管虛擬機器</h4>
+<p>一定要先有網路才能建VM。RFC1918的內部通訊。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/f2fW6vR.png"
+        data-srcset="https://i.imgur.com/f2fW6vR.png, https://i.imgur.com/f2fW6vR.png 1.5x, https://i.imgur.com/f2fW6vR.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/f2fW6vR.png"
+        title="image-20240110142604844" /></p>
+<h4 id="compute-engine-貼近客戶需求的計價方式">Compute Engine 貼近客戶需求的計價方式</h4>
+<ul>
+<li>以秒計費、續用折扣、承諾使用折扣</li>
+<li>先占執行個體</li>
+<li>儲存空間提供高總處理量，且不額外收費</li>
+<li>自訂機器類型：僅支付所需硬體的費用</li>
+</ul>
+<h4 id="使用compute-engine擴充或縮減">使用Compute Engine擴充或縮減</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/qQfdyVR.png"
+        data-srcset="https://i.imgur.com/qQfdyVR.png, https://i.imgur.com/qQfdyVR.png 1.5x, https://i.imgur.com/qQfdyVR.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/qQfdyVR.png"
+        title="image-20240110142958558" /></p>
+<h3 id="3-重要的虛擬私人雲功能">3. 重要的虛擬私人雲功能</h3>
+<h4 id="虛擬私人雲端網路的拓撲topology由您掌控">虛擬私人雲端網路的拓撲(topology)由您掌控</h4>
+<p>路由表：如何把流量從一個VM傳送到網路中的另一個VM，是內建的不用管理</p>
+<p>防火牆：『全球分散式的』防火牆，可以限制某台VM連進連出的流量限制</p>
+<ul>
+<li>使用<strong>路由表</strong>來轉送網路內的流量，甚至轉送跨子網路的流量</li>
+<li>使用<strong>防火牆</strong>來控制允許的網路流量</li>
+<li>透過共用虛擬私人雲端 (Shared VPC) 與其他GCP專案共用整個網路或獨立子網路</li>
+<li>使用虛擬私人雲端對等互連 (VPC Peering)，讓GCP專案中的網路相互連結</li>
+</ul>
+<h4 id="有了全球通用的cloud-load-balancing你的應用程式就能為世界各地的使用者呈現單一前端">有了全球通用的Cloud Load Balancing，你的應用程式就能為世界各地的使用者呈現單一前端</h4>
+<p>解決流量分配的問題</p>
+<p>這裏使用名詞是Load Balancing （負載平衡這件事）而不是Load Balancer（負載平衡裝置），GCP提供的是負載平衡服務（由軟體控制）</p>
+<p>自動失效轉移的功能：當該區域的計算服務失效，負載平衡會自動移轉到健康的後端</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/llzPbGw.png"
+        data-srcset="https://i.imgur.com/llzPbGw.png, https://i.imgur.com/llzPbGw.png 1.5x, https://i.imgur.com/llzPbGw.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/llzPbGw.png"
+        title="image-20240110143805199" /></p>
+<h4 id="google虛擬私人雲端提供一系列的負載平衡選項">Google虛擬私人雲端提供一系列的負載平衡選項</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/1eu1Xie.png"
+        data-srcset="https://i.imgur.com/1eu1Xie.png, https://i.imgur.com/1eu1Xie.png 1.5x, https://i.imgur.com/1eu1Xie.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/1eu1Xie.png"
+        title="image-20240110144308032" /></p>
+<p>區域性的負載平衡：後端只能放在單一區域</p>
+<h4 id="cloud-dns可用性高且可擴充">Cloud DNS可用性高且可擴充</h4>
+<p><code>8.8.8.8</code></p>
+<ul>
+<li>建立代管區域，接著新增、編輯和刪除DNS記錄</li>
+<li>使用符合REST樣式的API或指令列介面，以程式輔助方式管理區域和記錄</li>
+</ul>
+<h4 id="cloud-cdn-內容傳遞聯播網">Cloud CDN (內容傳遞聯播網)</h4>
+<p>content delivery network</p>
+<ul>
+<li>利用 Google 遍及全球的邊緣快取技術，在靠近使用者的位置快取內容
+<ul>
+<li>好處：
+<ol>
+<li>使用者的延遲感受較低</li>
+<li>這個請求不會消耗運算資源</li>
+<li>不會需要輸出到 Internet 上，費用較低</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>如果想使用不同的CDN，也可以使用CDN Interconnect</li>
+</ul>
+<h3 id="question">Question</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/vgVyHST.png"
+        data-srcset="https://i.imgur.com/vgVyHST.png, https://i.imgur.com/vgVyHST.png 1.5x, https://i.imgur.com/vgVyHST.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/vgVyHST.png"
+        title="image-20240110145043269" /></p>
+<p>Cloud Virtual Network, Cloud Interconnect, Cloud DNS, Cloud Load Balancing, CDN</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/FzrfXST.png"
+        data-srcset="https://i.imgur.com/FzrfXST.png, https://i.imgur.com/FzrfXST.png 1.5x, https://i.imgur.com/FzrfXST.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/FzrfXST.png"
+        title="image-20240110145130061" /></p>
+<p>Calculate by second, Customized machine type, spot VM</p>
+<hr>
+<h3 id="儲存空間選項">儲存空間選項</h3>
+<h4 id="1-cloud-storage">1. Cloud Storage</h4>
+<h5 id="cloud-storage-是二進位大型物件儲存空間">Cloud Storage 是二進位大型物件儲存空間</h5>
+<p>用多少付多少，不用預先估容量</p>
+<p>定址到這個物件的 key 是以網址形式呈現</p>
+<p>資料加密不能停用，也不需要特別啟用他，不會另外多收錢</p>
+<p>第三方儲存工具 FUSE：可以幫你把Cloud Storage以檔案系統方式呈現，但Cloud Storage底層還是物件式儲存</p>
+<ul>
+<li>高效能、網際網路規模
+<ul>
+<li>管理簡單</li>
+</ul>
+</li>
+<li>無需管理容量</li>
+<li>靜態資料加密</li>
+<li>預設會加密從Google傳輸到端點的資料</li>
+<li>提供線上和離線匯入服務</li>
+</ul>
+<h5 id="cloud-storage-檔案會歸入不同的u值區bucketu">Cloud Storage 檔案會歸入不同的<!-- raw HTML omitted -->值區(bucket)<!-- raw HTML omitted --></h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/EpFgRxk.png"
+        data-srcset="https://i.imgur.com/EpFgRxk.png, https://i.imgur.com/EpFgRxk.png 1.5x, https://i.imgur.com/EpFgRxk.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/EpFgRxk.png"
+        title="image-20240110145857356" /></p>
+<h5 id="有幾種方法可以將資料移入cloud-storage">有幾種方法可以將資料移入Cloud Storage</h5>
+<ol>
+<li>線上移轉：<code>gsutil</code>或<code>gcloud</code>指令上傳，或者在主控台上傳(拖曳)</li>
+<li>Storage Transfer Service 移轉服務：可以管理、排定批次移轉作業 (TB等級規模)</li>
+<li>Transfer Appliance 移轉裝置：租一個儲存裝置，線下寄過去 (PB等級規模)</li>
+</ol>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/7ksOmji.png"
+        data-srcset="https://i.imgur.com/7ksOmji.png, https://i.imgur.com/7ksOmji.png 1.5x, https://i.imgur.com/7ksOmji.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/7ksOmji.png"
+        title="image-20240110150421159" /></p>
+<h5 id="cloud-storage-可以與其他-gcp-服務搭配使用">Cloud Storage 可以與其他 GCP 服務搭配使用</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/pYrlWwu.png"
+        data-srcset="https://i.imgur.com/pYrlWwu.png, https://i.imgur.com/pYrlWwu.png 1.5x, https://i.imgur.com/pYrlWwu.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/pYrlWwu.png"
+        title="image-20240110150742707" /></p>
+<ul>
+<li>
+<p>使用BigQuery或CloudSQL匯入匯出資料</p>
+</li>
+<li>
+<p>Compute Engine映像檔、開機指令腳本</p>
+</li>
+</ul>
+<h4 id="2-cloud-bigtable">2. Cloud Bigtable</h4>
+<h5 id="cloud-bigtable-是代管-nosql">Cloud Bigtable 是代管 NoSQL</h5>
+<p>Google mail, map, analytics 都會用到</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/24RGJ2b.png"
+        data-srcset="https://i.imgur.com/24RGJ2b.png, https://i.imgur.com/24RGJ2b.png 1.5x, https://i.imgur.com/24RGJ2b.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/24RGJ2b.png"
+        title="image-20240110150949843" /></p>
+<h5 id="選用cloud-bigtable的優點">選用Cloud Bigtable的優點</h5>
+<p>如果資料庫很龐大(&gt;1TB)，為半結構或結構化的資料</p>
+<p>要求低延遲，高處理量</p>
+<p>要求NoSQL，不需要關聯式語意</p>
+<ul>
+<li>複製 (Replicated) 儲存空間</li>
+<li>傳輸中的資料和靜態資料都會加密</li>
+<li>以角色為依據的存取控制清單</li>
+<li>驅動主要應用程式，例如Google Analytics(分析) 和 Gmail</li>
+</ul>
+<h4 id="3-cloud-sql--cloud-spanner">3. Cloud SQL &amp; Cloud Spanner</h4>
+<h5 id="cloud-sql-是代管rdbms">Cloud SQL 是代管RDBMS</h5>
+<p>SQL資料庫修補patch，備份工作交給GoogleCloud，也可以控制哪些IP才能存取資料庫，某種程度上是取代了DBA的工作</p>
+<ul>
+<li>提供MySQL, PostgresSQL, SQL Server資料庫式服務</li>
+<li>自動複製 (Replication)
+<ul>
+<li>可以是GCP外部，或者Compute Engine裡面的RDS</li>
+</ul>
+</li>
+<li>代管備份</li>
+<li>垂直資源調度 (讀取和寫入)</li>
+<li>水平資源調度 (讀取)</li>
+<li>Google 安全性</li>
+</ul>
+<h5 id="cloud-spanner-是可水平擴充的rdbms">Cloud Spanner 是可水平擴充的RDBMS</h5>
+<ul>
+<li>Cloud Spanner支援：
+<ul>
+<li>自動複製</li>
+<li>全球同步一致性</li>
+<li>具有高可用性的代管執行個體</li>
+<li>SQL (ANSI 2011及擴充功能)</li>
+</ul>
+</li>
+</ul>
+<p>要高可用、關聯式、資料量大、每秒鐘IO請求大-&gt; use this</p>
+<h4 id="4-cloud-datastore">4. Cloud Datastore</h4>
+<h5 id="cloud-datastore是可水平擴充的nosql-db">Cloud Datastore是可水平擴充的NoSQL DB</h5>
+<p>查詢作業速度是依照結果集大小而定，不是依資料集大小
+(aka Datastore模式底下的Firestore)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/f09dYkB.png"
+        data-srcset="https://i.imgur.com/f09dYkB.png, https://i.imgur.com/f09dYkB.png 1.5x, https://i.imgur.com/f09dYkB.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/f09dYkB.png"
+        title="image-20240110152037350" /></p>
+<h4 id="5-比較儲存選項">5. 比較儲存選項：</h4>
+<h5 id="技術詳細資料">技術詳細資料</h5>
+<p>OLAP(線上分析處理), OLTP(線上交易處理)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/DNfkwvd.png"
+        data-srcset="https://i.imgur.com/DNfkwvd.png, https://i.imgur.com/DNfkwvd.png 1.5x, https://i.imgur.com/DNfkwvd.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/DNfkwvd.png"
+        title="image-20240110152211966" /></p>
+<h5 id="用途">用途</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/M54H9nQ.png"
+        data-srcset="https://i.imgur.com/M54H9nQ.png, https://i.imgur.com/M54H9nQ.png 1.5x, https://i.imgur.com/M54H9nQ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/M54H9nQ.png"
+        title="image-20240110152654195" /></p>
+<h4 id="questions-1">Questions</h4>
+<ul>
+<li>
+<p>Question：您的應用程式會為大型影片檔案轉碼，應該先考慮使用哪種儲存服務？</p>
+<ul>
+<li>Answer: Google Cloud Storage</li>
+</ul>
+</li>
+<li>
+<p>Question：您要從裝有感測器的裝置中串流大量資料，應該先考慮使用哪種儲存服務？</p>
+<ul>
+<li>Answer: IoT, 大量資料串流 ➡️ Google Cloud Bigtable</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="mod3_容器與應用程式開發部署與監控">Mod3_容器與應用程式開發、部署與監控</h2>
+<h3 id="1-簡介">1. 簡介</h3>
+<h4 id="iaas可以讓你透過虛擬化硬體來共用資源">IaaS可以讓你透過虛擬化硬體來共用資源</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/g9FBIWq.png"
+        data-srcset="https://i.imgur.com/g9FBIWq.png, https://i.imgur.com/g9FBIWq.png 1.5x, https://i.imgur.com/g9FBIWq.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/g9FBIWq.png"
+        title="image-20240110153905606" /></p>
+<p>三台機器有各自系統，可以自己安排執行期、中繼軟體、磁碟空間, etc.</p>
+<h4 id="但靈活性會導致啟動所需的時間分鐘和資源gb增加">但靈活性會導致啟動所需的時間（分鐘）和資源（GB）增加</h4>
+<p>每個副本要去複製一次，導致速度變慢</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/eGhzqYz.png"
+        data-srcset="https://i.imgur.com/eGhzqYz.png, https://i.imgur.com/eGhzqYz.png 1.5x, https://i.imgur.com/eGhzqYz.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/eGhzqYz.png"
+        title="image-20240110154109182" /></p>
+<h4 id="app-engine可讓使用者存取程式設計服務以及客戶端函式庫">App Engine可讓使用者存取程式設計服務以及客戶端函式庫</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/q1M9Iz3.png"
+        data-srcset="https://i.imgur.com/q1M9Iz3.png, https://i.imgur.com/q1M9Iz3.png 1.5x, https://i.imgur.com/q1M9Iz3.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/q1M9Iz3.png"
+        title="image-20240110154213772" /></p>
+<h4 id="隨著對應用程式需求的增加此平台可以依據工作附載和基礎架構以快速且獨立的方式擴充應用程式">隨著對應用程式需求的增加，此平台可以依據工作附載和基礎架構，以快速且獨立的方式擴充應用程式</h4>
+<p>可以擴充但無法微調底層架構</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/SSquScS.png"
+        data-srcset="https://i.imgur.com/SSquScS.png, https://i.imgur.com/SSquScS.png 1.5x, https://i.imgur.com/SSquScS.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/SSquScS.png"
+        title="image-20240110154304917" /></p>
+<h4 id="容器提供iaas靈活性和paas可擴充性">容器提供IaaS靈活性和PaaS可擴充性</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/OYNklVL.png"
+        data-srcset="https://i.imgur.com/OYNklVL.png, https://i.imgur.com/OYNklVL.png 1.5x, https://i.imgur.com/OYNklVL.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/OYNklVL.png"
+        title="image-20240110154404457" /></p>
+<h4 id="容器可以設定彼此獨立且極為輕便可攜">容器可以設定、彼此獨立且極為輕便可攜</h4>
+<p>假設build出了綠色的容器，可以直接把他丟到雲端（容器作為交付元件）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/zG56SU0.png"
+        data-srcset="https://i.imgur.com/zG56SU0.png, https://i.imgur.com/zG56SU0.png 1.5x, https://i.imgur.com/zG56SU0.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/zG56SU0.png"
+        title="image-20240110154551694" /></p>
+<h4 id="透過共用主機設定即可將容器部署在稱為叢集的一組伺服器上">透過共用主機設定，即可將容器部署在稱為叢集的一組伺服器上</h4>
+<p>使用大量的容器建立一個應用程式，讓容器具有模組化功能，可以在多台主機獨立擴充微型服務。容器可以增減，主機也可以增減。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/lBFnsxG.png"
+        data-srcset="https://i.imgur.com/lBFnsxG.png, https://i.imgur.com/lBFnsxG.png 1.5x, https://i.imgur.com/lBFnsxG.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/lBFnsxG.png"
+        title="image-20240110154650136" /></p>
+<h3 id="2-k8s和gke">2. K8S和GKE</h3>
+<h4 id="kubernetes">Kubernetes</h4>
+<h5 id="kubernetes讓你可以在多台主機上輕鬆自動化調度管理多個容器">Kubernetes讓你可以在多台主機上輕鬆自動化調度管理多個容器</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/cpVe7MO.png"
+        data-srcset="https://i.imgur.com/cpVe7MO.png, https://i.imgur.com/cpVe7MO.png 1.5x, https://i.imgur.com/cpVe7MO.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/cpVe7MO.png"
+        title="image-20240110154955173" /></p>
+<h5 id="第一步以容器的形式建構應用程式並加以執行">第一步：以容器的形式建構應用程式並加以執行</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/djfjgqg.png"
+        data-srcset="https://i.imgur.com/djfjgqg.png, https://i.imgur.com/djfjgqg.png 1.5x, https://i.imgur.com/djfjgqg.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/djfjgqg.png"
+        title="image-20240110155107454" /></p>
+<h5 id="如何在kubernetes中執行這個應用程式">如何在Kubernetes中執行這個應用程式？</h5>
+<p><code>requirements.txt</code>: python app 需要哪些相依性套件</p>
+<p><code>Dockerfile</code>: 指定如何將程式碼封裝成映像檔的步驟</p>
+<ul>
+<li>指定環境</li>
+<li>在指定的虛擬環境安裝</li>
+<li>從本機複製到空中的虛擬環境</li>
+<li>在空中環境執行</li>
+<li>指定進入點<code>ENTRYPOINT</code></li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/TzMl0BL.png"
+        data-srcset="https://i.imgur.com/TzMl0BL.png, https://i.imgur.com/TzMl0BL.png 1.5x, https://i.imgur.com/TzMl0BL.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/TzMl0BL.png"
+        title="image-20240110155150620" /></p>
+<h5 id="接著以映像檔的形式建構容器並加以執行">接著以映像檔的形式建構容器並加以執行</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/y9zvCzc.png"
+        data-srcset="https://i.imgur.com/y9zvCzc.png, https://i.imgur.com/y9zvCzc.png 1.5x, https://i.imgur.com/y9zvCzc.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/y9zvCzc.png"
+        title="image-20240110155651045" /></p>
+<h5 id="使用kubernetes-api在稱為叢集的一組節點上部署容器">使用Kubernetes API在稱為叢集的一組節點上部署容器</h5>
+<p>建立叢集的指令如下</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">gcloud container clusters create k1
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/RsxTbZ1.png"
+        data-srcset="https://i.imgur.com/RsxTbZ1.png, https://i.imgur.com/RsxTbZ1.png 1.5x, https://i.imgur.com/RsxTbZ1.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/RsxTbZ1.png"
+        title="image-20240110155839444" /></p>
+<h5 id="以下是啟動kubernetes-engine的方法">以下是啟動Kubernetes Engine的方法</h5>
+<p>在GKE叢集中，你可以指定：</p>
+<ul>
+<li>機器類型</li>
+<li>節點數</li>
+<li>網路設定等等</li>
+</ul>
+<h5 id="在節點上部署容器時使用pod來包裝容器">在節點上部署容器時，使用Pod來包裝容器</h5>
+<p>Pod: 太空艙、綠豆莢(一個豆莢裡很多綠豆)、是包裝容器的抽象化單元，是可以部署的最小單元</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yQnDm7F.png"
+        data-srcset="https://i.imgur.com/yQnDm7F.png, https://i.imgur.com/yQnDm7F.png 1.5x, https://i.imgur.com/yQnDm7F.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yQnDm7F.png"
+        title="image-20240110160342349" /></p>
+<h5 id="可以使用kubectl-run指令執行pod中的容器">可以使用<code>kubectl run</code>指令執行Pod中的容器</h5>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl run nginx --image=nginx:1.15.7
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/7o60Tox.png"
+        data-srcset="https://i.imgur.com/7o60Tox.png, https://i.imgur.com/7o60Tox.png 1.5x, https://i.imgur.com/7o60Tox.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/7o60Tox.png"
+        title="image-20240110160417725" /></p>
+<h5 id="您可以使用deployment管理用於應用程式或工作負載的一組pod副本並確保所需的數量正在執行並且狀態良好">您可以使用Deployment管理用於應用程式或工作負載的一組Pod副本，並確保所需的數量正在執行，並且狀態良好</h5>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl get pods
+</code></pre><p>就會列出蓋叢集所有pod的清單</p>
+<h5 id="預設情況下pod只能在叢集內使用並且會取得臨時ip">預設情況下，Pod只能在叢集內使用，並且會取得臨時IP</h5>
+<p>將deployments暴露在外，建立負載平衡器</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl expose deployments nginx --port=80 --type=LoadBalancer
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/oj0Ezh5.png"
+        data-srcset="https://i.imgur.com/oj0Ezh5.png, https://i.imgur.com/oj0Ezh5.png 1.5x, https://i.imgur.com/oj0Ezh5.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/oj0Ezh5.png"
+        title="image-20240110160751470" /></p>
+<h5 id="符合前述ip的所有用戶端請求都會轉送至service物件後方的pod">符合前述IP的所有用戶端請求都會轉送至Service物件後方的Pod</h5>
+<p>deployment物件：維持pod的可用性</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ooVEfOV.png"
+        data-srcset="https://i.imgur.com/ooVEfOV.png, https://i.imgur.com/ooVEfOV.png 1.5x, https://i.imgur.com/ooVEfOV.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ooVEfOV.png"
+        title="image-20240110160854348" /></p>
+<h5 id="如果要取得service的公開ip請執行kubectl-get-services">如果要取得Service的公開IP，請執行<code>kubectl get services</code></h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/xF1UI3h.png"
+        data-srcset="https://i.imgur.com/xF1UI3h.png, https://i.imgur.com/xF1UI3h.png 1.5x, https://i.imgur.com/xF1UI3h.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/xF1UI3h.png"
+        title="image-20240110160954664" /></p>
+<h5 id="如要調整deployment的資源配置請執行-kubectl-scale">如要調整Deployment的資源配置，請執行 <code>kubectl scale</code></h5>
+<p>擴充（帶參數：三個複製）手動擴充</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/arpb7oc.png"
+        data-srcset="https://i.imgur.com/arpb7oc.png, https://i.imgur.com/arpb7oc.png 1.5x, https://i.imgur.com/arpb7oc.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/arpb7oc.png"
+        title="image-20240110161118826" /></p>
+<h5 id="自動擴充service後面的pod">自動擴充Service後面的Pod</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/xo12DHz.png"
+        data-srcset="https://i.imgur.com/xo12DHz.png, https://i.imgur.com/xo12DHz.png 1.5x, https://i.imgur.com/xo12DHz.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/xo12DHz.png"
+        title="image-20240110161232779" /></p>
+<h5 id="宣告式作業">宣告式作業</h5>
+<p>declarative 真正強的地方，以組態檔設定</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubctl get deployment nginx -o yaml
+</code></pre><p>replicas: 3 -&gt; 這個deployment需要維護三個nginx pods的副本</p>
+<p>selector -&gt; 把符合條件的pods圈選起來，歸類進Deployment物件</p>
+<p>但 pod 也要有對應的 label (<code>app:nginx</code>)才能被選到</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/DFyXTma.png"
+        data-srcset="https://i.imgur.com/DFyXTma.png, https://i.imgur.com/DFyXTma.png 1.5x, https://i.imgur.com/DFyXTma.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/DFyXTma.png"
+        title="image-20240110161321513" /></p>
+<h5 id="宣告式作業---套用變更">宣告式作業&mdash;套用變更</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/WWTVxRp.png"
+        data-srcset="https://i.imgur.com/WWTVxRp.png, https://i.imgur.com/WWTVxRp.png 1.5x, https://i.imgur.com/WWTVxRp.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/WWTVxRp.png"
+        title="image-20240110161708259" /></p>
+<h5 id="執行kubectl-get-pods以查看上線的pod">執行<code>kubectl get pods</code>以查看上線的Pod</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/YzeGlWG.png"
+        data-srcset="https://i.imgur.com/YzeGlWG.png, https://i.imgur.com/YzeGlWG.png 1.5x, https://i.imgur.com/YzeGlWG.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/YzeGlWG.png"
+        title="image-20240110161749724" /></p>
+<h5 id="kubectl-get-deployments或describe-deployments以確保適當數量的副本執行中"><code>kubectl get deployments</code>或<code>describe deployments</code>，以確保適當數量的副本執行中</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/av29yze.png"
+        data-srcset="https://i.imgur.com/av29yze.png, https://i.imgur.com/av29yze.png 1.5x, https://i.imgur.com/av29yze.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/av29yze.png"
+        title="image-20240110161840940" /></p>
+<h5 id="kubectl-get-services再次確認service的公開ip"><code>kubectl get services</code>再次確認service的公開IP</h5>
+<p>達成分散負載、擴充服務的目標</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ZW7cFSr.png"
+        data-srcset="https://i.imgur.com/ZW7cFSr.png, https://i.imgur.com/ZW7cFSr.png 1.5x, https://i.imgur.com/ZW7cFSr.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ZW7cFSr.png"
+        title="image-20240110162005026" /></p>
+<h5 id="滾動式更新策略">滾動式更新策略</h5>
+<p><code>kubectl rollout</code>、<code>kubectl apply</code></p>
+<p>一個一個建立新版本，建立一個新的就砍一個舊的，會有新舊版同時存在的情況</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/HqQA8tW.png"
+        data-srcset="https://i.imgur.com/HqQA8tW.png, https://i.imgur.com/HqQA8tW.png 1.5x, https://i.imgur.com/HqQA8tW.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/HqQA8tW.png"
+        title="image-20240110162101259" /></p>
+<h3 id="questions-2">Questions</h3>
+<ul>
+<li>請列舉兩個使用容器部署應用程式的理由
+<ol>
+<li>跨開發、測試和實際工作環境的可攜性</li>
+<li>遷移工作負載更簡單</li>
+<li>便於建立微型服務（鬆散耦合）</li>
+<li>靈活性</li>
+</ol>
+</li>
+<li>Kubernetes讓您可以在不同雲端供應商叢集裡管理容器，正確或錯誤？
+<ul>
+<li>correct，而且GKE現在已經是跨平台產品了。Kubernetes Engine可以在不同環境中管理K8S。</li>
+</ul>
+</li>
+<li>GCP提供高速容器映像檔案儲存服務，可與Kubernetes Engine搭配使用，正確或錯誤？
+<ul>
+<li>correct. 稱為 Artifiact Registry (原本的 Container Registry 停用了🥲)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="雲端中的運算環境">雲端中的運算環境</h3>
+<h4 id="1-appengine">1. AppEngine</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/xyNF0g6.png"
+        data-srcset="https://i.imgur.com/xyNF0g6.png, https://i.imgur.com/xyNF0g6.png 1.5x, https://i.imgur.com/xyNF0g6.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/xyNF0g6.png"
+        title="image-20240110162811159" /></p>
+<h4 id="2-standard-gae">2. Standard GAE</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/aQk4Gca.png"
+        data-srcset="https://i.imgur.com/aQk4Gca.png, https://i.imgur.com/aQk4Gca.png 1.5x, https://i.imgur.com/aQk4Gca.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/aQk4Gca.png"
+        title="image-20240110162844665" /></p>
+<h5 id="requirements">Requirements</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/zZ5argG.png"
+        data-srcset="https://i.imgur.com/zZ5argG.png, https://i.imgur.com/zZ5argG.png 1.5x, https://i.imgur.com/zZ5argG.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/zZ5argG.png"
+        title="image-20240110162919930" /></p>
+<h4 id="3-flexible-gae">3. Flexible GAE</h4>
+<h5 id="appengine彈性環境">AppEngine彈性環境</h5>
+<p>也可以自訂執行期</p>
+<p>因為是用VM執行映像檔案，如果啟用除錯模式，可以ssh連進去彈性環境給你的VM，除錯完在停用</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/alqcbC5.png"
+        data-srcset="https://i.imgur.com/alqcbC5.png, https://i.imgur.com/alqcbC5.png 1.5x, https://i.imgur.com/alqcbC5.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/alqcbC5.png"
+        title="image-20240110163024237" /></p>
+<h5 id="比較-app-engine">比較 App Engine</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/HHy4sdG.png"
+        data-srcset="https://i.imgur.com/HHy4sdG.png, https://i.imgur.com/HHy4sdG.png 1.5x, https://i.imgur.com/HHy4sdG.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/HHy4sdG.png"
+        title="image-20240110163429125" /></p>
+<h4 id="4-gc-endpoint--apigee-edge">4. GC Endpoint &amp; Apigee Edge</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/I50fP68.png"
+        data-srcset="https://i.imgur.com/I50fP68.png, https://i.imgur.com/I50fP68.png 1.5x, https://i.imgur.com/I50fP68.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/I50fP68.png"
+        title="image-20240110163644650" /></p>
+<h5 id="cloud-endpoints">Cloud Endpoints</h5>
+<ul>
+<li>分散式的API管理系統</li>
+<li>ESP 可延伸式服務代理伺服器，提供低延遲高效能</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/i6lJfMR.png"
+        data-srcset="https://i.imgur.com/i6lJfMR.png, https://i.imgur.com/i6lJfMR.png 1.5x, https://i.imgur.com/i6lJfMR.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/i6lJfMR.png"
+        title="image-20240110163740246" /></p>
+<h5 id="apigee-edge">Apigee Edge</h5>
+<p>依照客戶等級限流</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/f1L2LZq.png"
+        data-srcset="https://i.imgur.com/f1L2LZq.png, https://i.imgur.com/f1L2LZq.png 1.5x, https://i.imgur.com/f1L2LZq.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/f1L2LZq.png"
+        title="image-20240110164015861" /></p>
+<h4 id="5-cloud-function">5. Cloud Function</h4>
+<h5 id="cloud-function">Cloud Function</h5>
+<p>使用微型商業邏輯建立程式，或連到其他雲端服務</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/OLg7Rpr.png"
+        data-srcset="https://i.imgur.com/OLg7Rpr.png, https://i.imgur.com/OLg7Rpr.png 1.5x, https://i.imgur.com/OLg7Rpr.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/OLg7Rpr.png"
+        title="image-20240110164131250" /></p>
+<blockquote>
+<p>Cloud Run: 計費模型跟 cloud function 一樣。cloud run 可以用容器映像檔案部署，cloud function 底層是由 cloud run 幫你完成執行</p>
+</blockquote>
+<h4 id="questions-3">Questions</h4>
+<ul>
+<li>請列舉使用App Engine彈性環境（對比App Engine標準環境）的3項優勢
+<ul>
+<li>彈性環境允許SSH存取及磁碟寫入，並支援第三方二進位檔案（也允許自訂堆疊及背景程序）</li>
+</ul>
+</li>
+<li>Cloud Endpoints 與 Apigee Edge有哪些不同之處？
+<ul>
+<li>Cloud Endpoints可協助您建立和維護API；Apigee Edge可協助您保護API並透過API盈利</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="在雲端開發部署與監控">在雲端開發部署與監控</h3>
+<h4 id="1雲端開發">1.雲端開發</h4>
+<h5 id="cloud-source-repositories">Cloud Source Repositories</h5>
+<p>建立不限數量的 repositories，避免將安全性金鑰退上remote</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/f7rhao0.png"
+        data-srcset="https://i.imgur.com/f7rhao0.png, https://i.imgur.com/f7rhao0.png 1.5x, https://i.imgur.com/f7rhao0.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/f7rhao0.png"
+        title="image-20240110164710448" /></p>
+<h4 id="2部署基礎架構與程式碼iac">2.部署基礎架構與程式碼(IaC)</h4>
+<p>infrastructure as code 其中一種是 Terraform，它是開源的</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/vVMTVMI.png"
+        data-srcset="https://i.imgur.com/vVMTVMI.png, https://i.imgur.com/vVMTVMI.png 1.5x, https://i.imgur.com/vVMTVMI.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/vVMTVMI.png"
+        title="image-20240110164923232" /></p>
+<h4 id="3--監控主動式監測">3.  監控：主動式監測</h4>
+<h5 id="operations">Operations</h5>
+<p>Monitoring, Logging訊息紀錄, Profiler效能分析, Error reporting例外通知, Trace延遲</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/oe8PA05.png"
+        data-srcset="https://i.imgur.com/oe8PA05.png, https://i.imgur.com/oe8PA05.png 1.5x, https://i.imgur.com/oe8PA05.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/oe8PA05.png"
+        title="image-20240110165132379" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/NrQdmgI.png"
+        data-srcset="https://i.imgur.com/NrQdmgI.png, https://i.imgur.com/NrQdmgI.png 1.5x, https://i.imgur.com/NrQdmgI.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/NrQdmgI.png"
+        title="image-20240110165253546" /></p>
+<hr>
+<h2 id="mod4_大數據與機器學習">Mod4_大數據與機器學習</h2>
+<h3 id="1大數據">1.大數據</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/oE5Rd7v.png"
+        data-srcset="https://i.imgur.com/oE5Rd7v.png, https://i.imgur.com/oE5Rd7v.png 1.5x, https://i.imgur.com/oE5Rd7v.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/oE5Rd7v.png"
+        title="image-20240110165640592" /></p>
+<h5 id="cloud-dataproc">Cloud Dataproc</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/CcIr9D1.png"
+        data-srcset="https://i.imgur.com/CcIr9D1.png, https://i.imgur.com/CcIr9D1.png 1.5x, https://i.imgur.com/CcIr9D1.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/CcIr9D1.png"
+        title="image-20240110165703174" /></p>
+<h5 id="cloud-dataflow">Cloud Dataflow</h5>
+<p>比較新一代的是Cloud Dataflow，整合批次處理和串流資料處裡</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/9AXOPa2.png"
+        data-srcset="https://i.imgur.com/9AXOPa2.png, https://i.imgur.com/9AXOPa2.png 1.5x, https://i.imgur.com/9AXOPa2.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/9AXOPa2.png"
+        title="image-20240110165736753" /></p>
+<h5 id="dataflow-管道">Dataflow 管道</h5>
+<p>來源不一定要是GCP上面的 -&gt; 轉換 -&gt; 接收器 sink</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Lch4UGR.png"
+        data-srcset="https://i.imgur.com/Lch4UGR.png, https://i.imgur.com/Lch4UGR.png 1.5x, https://i.imgur.com/Lch4UGR.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Lch4UGR.png"
+        title="image-20240110165833512" /></p>
+<h5 id="bigquery">BigQuery</h5>
+<p>可以做ELT，查詢速度快，資料量龐大(幾十TB)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ey7cLZw.png"
+        data-srcset="https://i.imgur.com/ey7cLZw.png, https://i.imgur.com/ey7cLZw.png 1.5x, https://i.imgur.com/ey7cLZw.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ey7cLZw.png"
+        title="image-20240110165939325" /></p>
+<p>結合分析和儲存服務 (所以費用也分兩種)</p>
+<p>但儲存費用跟 Cloud Storage 差不多，且長期儲存(90天以上) 打折</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/gl4gYcT.png"
+        data-srcset="https://i.imgur.com/gl4gYcT.png, https://i.imgur.com/gl4gYcT.png 1.5x, https://i.imgur.com/gl4gYcT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/gl4gYcT.png"
+        title="image-20240110170024438" /></p>
+<h5 id="cloud-pubsub">Cloud Pub/Sub</h5>
+<p>保證接收者至少收到一筆，或者精準收到一筆</p>
+<p>串流資料緩衝接收第一步</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/k4s5Al1.png"
+        data-srcset="https://i.imgur.com/k4s5Al1.png, https://i.imgur.com/k4s5Al1.png 1.5x, https://i.imgur.com/k4s5Al1.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/k4s5Al1.png"
+        title="image-20240110170141865" /></p>
+<h5 id="vertex-ai-workbench">Vertex AI Workbench</h5>
+<p>提供代管的 Jupyter 環境</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/4sMaeJb.png"
+        data-srcset="https://i.imgur.com/4sMaeJb.png, https://i.imgur.com/4sMaeJb.png 1.5x, https://i.imgur.com/4sMaeJb.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/4sMaeJb.png"
+        title="image-20240110170319731" /></p>
+<h5 id="為何要用vertex">為何要用Vertex</h5>
+<p>跟其他服務整合在一起了，存取資料時，身分驗證會很簡單</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/zSWaxnL.png"
+        data-srcset="https://i.imgur.com/zSWaxnL.png, https://i.imgur.com/zSWaxnL.png 1.5x, https://i.imgur.com/zSWaxnL.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/zSWaxnL.png"
+        title="image-20240110170408401" /></p>
+<hr>
+<h3 id="ai平台">AI平台</h3>
+<h4 id="ai解決方案">AI解決方案</h4>
+<p>訓練深度神經網路：TensorFlow</p>
+<p>加速訓練模型：Vertex AI</p>
+<p>準備資料 ➡️ 評估 ➡️ 部署 ➡️ 模型監控（避免飄移）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/DOpP0Ad.png"
+        data-srcset="https://i.imgur.com/DOpP0Ad.png, https://i.imgur.com/DOpP0Ad.png 1.5x, https://i.imgur.com/DOpP0Ad.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/DOpP0Ad.png"
+        title="image-20240110170517467" /></p>
+<h4 id="cloud-vision-api">Cloud Vision API</h4>
+<p>專門處理圖片辨識：地標、不適當圖片</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/cOIQPjX.png"
+        data-srcset="https://i.imgur.com/cOIQPjX.png, https://i.imgur.com/cOIQPjX.png 1.5x, https://i.imgur.com/cOIQPjX.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/cOIQPjX.png"
+        title="image-20240110171007398" /></p>
+<p>音訊轉為文字檔案</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/zYpUoAi.png"
+        data-srcset="https://i.imgur.com/zYpUoAi.png, https://i.imgur.com/zYpUoAi.png 1.5x, https://i.imgur.com/zYpUoAi.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/zYpUoAi.png"
+        title="image-20240110171149583" /></p>
+<h5 id="cloud-natural-language-api">Cloud Natural Language API</h5>
+<p>了解這段話內容，字詞間的交叉參照關係，辨識位置事件，辨識情緒</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/AEEXXE5.png"
+        data-srcset="https://i.imgur.com/AEEXXE5.png, https://i.imgur.com/AEEXXE5.png 1.5x, https://i.imgur.com/AEEXXE5.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/AEEXXE5.png"
+        title="image-20240110171211700" /></p>
+<h5 id="cloud-translation-api">Cloud Translation API</h5>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/AbyaILN.png"
+        data-srcset="https://i.imgur.com/AbyaILN.png, https://i.imgur.com/AbyaILN.png 1.5x, https://i.imgur.com/AbyaILN.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/AbyaILN.png"
+        title="image-20240110171310719" /></p>
+<h5 id="cloud-video-intelligence-api">Cloud Video Intelligence API</h5>
+<p>Vision API的影片版本</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ZXS675h.png"
+        data-srcset="https://i.imgur.com/ZXS675h.png, https://i.imgur.com/ZXS675h.png 1.5x, https://i.imgur.com/ZXS675h.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ZXS675h.png"
+        title="image-20240110171347948" /></p>
+<h4 id="questions-4">Questions</h4>
+<ul>
+<li>何時會使用 Cloud Dataproc？
+<ul>
+<li>您可以透過這項服務將內部部署Hadoop工作遷移到雲端，還可以用於資料採集和雲端資料分析。</li>
+</ul>
+</li>
+<li>請列舉 Cloud Dataflow 的兩個用途
+<ol>
+<li>ETL</li>
+<li>自動化調度管理</li>
+</ol>
+</li>
+<li>請列舉 Google AI 平台的三個用途
+<ol>
+<li>詐欺偵測</li>
+<li>情緒分析</li>
+<li>內容個人化</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/fLo3nbC.png"
+        data-srcset="https://i.imgur.com/fLo3nbC.png, https://i.imgur.com/fLo3nbC.png 1.5x, https://i.imgur.com/fLo3nbC.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/fLo3nbC.png"
+        title="image-20240110171620399" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/2GHawsl.png"
+        data-srcset="https://i.imgur.com/2GHawsl.png, https://i.imgur.com/2GHawsl.png 1.5x, https://i.imgur.com/2GHawsl.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/2GHawsl.png"
+        title="image-20240110172056832" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Y2EN73s.png"
+        data-srcset="https://i.imgur.com/Y2EN73s.png, https://i.imgur.com/Y2EN73s.png 1.5x, https://i.imgur.com/Y2EN73s.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Y2EN73s.png"
+        title="image-20240110172146826" /></p>
+<h5 id="參考資料">參考資料</h5>
+<p><a href="https://www.youtube.com/watch?v=mMuZyn5BYCQ" target="_blank" rel="noopener noreffer ">Module 1 video</a>
+<a href="https://www.youtube.com/watch?v=WHZPd0Q5wvM-" target="_blank" rel="noopener noreffer ">Module 2 video</a>
+<a href="https://www.youtube.com/watch?v=zFhZPr2URYQ" target="_blank" rel="noopener noreffer ">Module 3 video</a>
+<a href="https://www.youtube.com/watch?v=4ppPqan3IEs" target="_blank" rel="noopener noreffer ">Module 4 video</a>
+<a href="https://www.youtube.com/watch?v=KYali6POmDU" target="_blank" rel="noopener noreffer ">Module 5 video</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-01-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/gcp_on_board/" data-hashtag=""><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/gcp_on_board/" data-title="GCP on board"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/s_spring_security/" class="prev" rel="prev" title="Spring Security zero to master"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Spring Security zero to master</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
