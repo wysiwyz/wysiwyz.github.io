@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>[筆記] OWASP API Security Top 10 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="[筆記] OWASP API Security Top 10" />
+<meta property="og:description" content="What is OWASP Security Top 10 你會學到：API相關弱點的多樣類型、包含的來襲方向（attack vector）、弱點利用可能造成的技術影響
+這些人都該來瞭解一下：API生態系的相關人士, bug bunty hunters, 開發人員, 滲透測試人員, 組織領導, 對API Security有興趣的人
+（而且現在APISec University有一個certifcation bage提供給CASA 測驗通過的人，好像是個酷東西！）
+What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非營利基金會，目標是改善應用程式的資訊安全。 創立於2001年12月1日，以Top10List的開源工具還有其他安全專案而聞名 創立者：Erez Yalon、Inon Sheedy OWASP API Security Top 10 首次於 2019 年 12 月發佈，基於以下幾點原因而啟動 APIs迅速的興起：不用自己造輪子開發地圖、GPS、付款交易、驗證、溝通相關的程式，可以直接使用其他家專精開發且成熟完善的功能 安全重大缺口：以前用來作為企業級弱點管理的工具與技術（例如：程式、掃描工具與傳統網路資安監控工具）不是專為處理API相關資安風險而設計的，因此存在資料外洩(data breaches) 的風險 新的攻擊方向： 通常公開網路API忽略了所有過去幾十年隨著商機一起成長的資安手法。 攻擊者不用再經歷MITRE網路攻擊鏈（bypass firewall, gain entry to the network, pivot around to a system that contains data, find a way to exfiltrate that data 攻擊者可以利用不穩定的API，直接存取資料源 一些上新聞的 API 意外事件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/owasp_/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-15T20:28:58+08:00" />
+<meta property="article:modified_time" content="2024-01-15T20:28:58+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[筆記] OWASP API Security Top 10"/>
+<meta name="twitter:description" content="What is OWASP Security Top 10 你會學到：API相關弱點的多樣類型、包含的來襲方向（attack vector）、弱點利用可能造成的技術影響
+這些人都該來瞭解一下：API生態系的相關人士, bug bunty hunters, 開發人員, 滲透測試人員, 組織領導, 對API Security有興趣的人
+（而且現在APISec University有一個certifcation bage提供給CASA 測驗通過的人，好像是個酷東西！）
+What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非營利基金會，目標是改善應用程式的資訊安全。 創立於2001年12月1日，以Top10List的開源工具還有其他安全專案而聞名 創立者：Erez Yalon、Inon Sheedy OWASP API Security Top 10 首次於 2019 年 12 月發佈，基於以下幾點原因而啟動 APIs迅速的興起：不用自己造輪子開發地圖、GPS、付款交易、驗證、溝通相關的程式，可以直接使用其他家專精開發且成熟完善的功能 安全重大缺口：以前用來作為企業級弱點管理的工具與技術（例如：程式、掃描工具與傳統網路資安監控工具）不是專為處理API相關資安風險而設計的，因此存在資料外洩(data breaches) 的風險 新的攻擊方向： 通常公開網路API忽略了所有過去幾十年隨著商機一起成長的資安手法。 攻擊者不用再經歷MITRE網路攻擊鏈（bypass firewall, gain entry to the network, pivot around to a system that contains data, find a way to exfiltrate that data 攻擊者可以利用不穩定的API，直接存取資料源 一些上新聞的 API 意外事件"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/owasp_/" /><link rel="prev" href="http://wysiwyz.github.io/posts/gcp_on_board/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "[筆記] OWASP API Security Top 10",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/owasp_\/"
+        },"genre": "posts","keywords": "security, OWASP","wordcount":  2461 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/owasp_\/","datePublished": "2024-01-15T20:28:58+08:00","dateModified": "2024-01-15T20:28:58+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[筆記] OWASP API Security Top 10</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-15">2024-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2461 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;<span id="/posts/owasp_/" class="leancloud_visitors" data-flag-title="[筆記] OWASP API Security Top 10">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-owasp-security-top-10">What is OWASP Security Top 10</a>
+      <ul>
+        <li><a href="#what-is-owasp">What is OWASP</a></li>
+        <li><a href="#how-is-the-top-10-compiled">How is the Top 10 compiled?</a></li>
+        <li><a href="#mapped-to-external-sources">Mapped to External Sources</a></li>
+        <li><a href="#updates-to-the-owasp-api-security-top-10">Updates to the OWASP API Security Top 10</a></li>
+      </ul>
+    </li>
+    <li><a href="#the-top-10">The Top 10</a>
+      <ul>
+        <li><a href="#api12023">API1:2023</a></li>
+        <li><a href="#api22023">API2:2023</a></li>
+        <li><a href="#api32023">API3:2023</a></li>
+        <li><a href="#api42023">API4:2023</a></li>
+        <li><a href="#api52023">API5:2023</a></li>
+        <li><a href="#api62023">API6:2023</a></li>
+        <li><a href="#api72023">API7:2023</a></li>
+        <li><a href="#api82023">API8:2023</a></li>
+        <li><a href="#api92023">API9:2023</a></li>
+        <li><a href="#api102023">API10:2023</a></li>
+      </ul>
+    </li>
+    <li><a href="#beyond-the-top-10">Beyond the Top 10</a>
+      <ul>
+        <li><a href="#injections">Injections</a></li>
+        <li><a href="#insufficient-logging--monitoring">Insufficient Logging &amp; Monitoring</a></li>
+        <li><a href="#business-logic-flaws">Business Logic Flaws</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="what-is-owasp-security-top-10">What is OWASP Security Top 10</h2>
+<p>你會學到：API相關弱點的多樣類型、包含的來襲方向（attack vector）、弱點利用可能造成的技術影響</p>
+<p>這些人都該來瞭解一下：API生態系的相關人士, bug bunty hunters, 開發人員, 滲透測試人員, 組織領導, 對API Security有興趣的人</p>
+<p>（而且現在APISec University有一個certifcation bage提供給CASA 測驗通過的人，好像是個酷東西！）</p>
+<h3 id="what-is-owasp">What is OWASP</h3>
+<ul>
+<li>OWASP 是 Open Web Application Security Project 的縮寫，為非營利基金會，目標是改善應用程式的資訊安全。</li>
+<li>創立於2001年12月1日，以Top10List的開源工具還有其他安全專案而聞名</li>
+<li>創立者：Erez Yalon、Inon Sheedy</li>
+<li>OWASP API Security Top 10 首次於 2019 年 12 月發佈，基於以下幾點原因而啟動
+<ol>
+<li>APIs迅速的興起：不用自己造輪子開發地圖、GPS、付款交易、驗證、溝通相關的程式，可以直接使用其他家專精開發且成熟完善的功能</li>
+<li>安全重大缺口：以前用來作為企業級弱點管理的工具與技術（例如：程式、掃描工具與傳統網路資安監控工具）不是專為處理API相關資安風險而設計的，因此存在資料外洩(data breaches) 的風險</li>
+<li>新的攻擊方向： 通常公開網路API忽略了所有過去幾十年隨著商機一起成長的資安手法。
+<ul>
+<li>攻擊者不用再經歷MITRE網路攻擊鏈（bypass firewall, gain entry to the network, pivot around  to a system that contains data, find a way to exfiltrate that data</li>
+<li>攻擊者可以利用不穩定的API，直接存取資料源</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>一些上新聞的 API 意外事件</p>
+<ul>
+<li>2018 USPS data leak</li>
+<li>2019 Venmo public API scraping</li>
+<li>2021 Peloton API Data leak</li>
+<li>2021 Parler API Data leak</li>
+<li>2021 LinkedIn API Data leak</li>
+<li>2022 Coinbase Authorization flaw</li>
+<li>2022 Optus API Data Breach</li>
+<li>2022 Toyota API Exposure</li>
+<li>2023 EatonWorks Toyota Research</li>
+<li>2023 T-mobile API Data Exposure</li>
+</ul>
+</blockquote>
+<h3 id="how-is-the-top-10-compiled">How is the Top 10 compiled?</h3>
+<p>根據OWASP API Security Project領導人 Paulo Silva所述，2023 OWASP API Security Top 10 list 由團隊成員所彙整，基於以下幾點：</p>
+<ul>
+<li>internal research</li>
+<li>publicly available data</li>
+<li>bounty platforms and news</li>
+</ul>
+<h3 id="mapped-to-external-sources">Mapped to External Sources</h3>
+<p>The OWASP API security risks are associated with references to external sources, including CWEs (common weakness enumeration), other OAS projects, and the national institute of Standards and Technology (NIST Guidance).</p>
+<p>大部分的參考來源於CWE (a list of common software and hardware vulnerabilities developed by the community and hosted by MITRE)，每個CWE由唯一識別號所區分 (CWEID)，對應到特定的一件弱點。</p>
+<h3 id="updates-to-the-owasp-api-security-top-10">Updates to the OWASP API Security Top 10</h3>
+<p>從OWASP API Security Top 10 2019年發佈以來，API使用度增加了，API相關的資料洩漏事件持續出現，而且新的API科技也推陳出新 ➡️ 需要更新版本</p>
+<h4 id="api-使用急速成長">API 使用急速成長</h4>
+<ul>
+<li>API 攻擊風險：Akamai 回報每天有 114M 起AP攻擊 (2021年)</li>
+<li>2021 API市值：$2.2B</li>
+<li>2031 API預估市值：$41.5B（10年20倍成長）</li>
+<li>2022: 46M Postman collections, 3M API repos in GitHub</li>
+</ul>
+<blockquote>
+<p>&ldquo;We aspire to follow the security trends that are relevent to APIs and have been developed in recent years.  If you try to hack or protect an API that was developed five years ago, it would make more sense to refer to the 2019 list.&rdquo;  &ndash; Iron Shkedy, OWASP API Security Project leader</p>
+<p>如果要攻擊或保護的API是在五年以前開發的，那看2019年版會比較適合</p>
+</blockquote>
+<h4 id="2019-vs-2023-差異比較">2019 vs 2023 差異比較</h4>
+<ul>
+<li>
+<p><code>API08:2019 Injection</code> 以及 <code>API10:2019 Insufficient Logging &amp; Monitoring</code> 兩個項目被還是很重要，只是被新來的推到前十名之外了</p>
+</li>
+<li>
+<p>三個項目沒變</p>
+<ul>
+<li><code>API01:2023</code> Broken Object Level Authorization (又稱為 <code>BOLA</code>)</li>
+<li><code>API05:2023</code> Broken Function Level Authorization (又稱為<code>BFLA</code>)</li>
+<li><code>API08:2023 (was API07:2019)</code> Security Misconfiguration</li>
+</ul>
+</li>
+<li>
+<p>四個項目被重新命名了</p>
+<ul>
+<li><code>API02:2019</code> Broken User Authentication ➡️ <code>API02:2023</code> Broken Authentication
+<ul>
+<li>to bring additional attention to the API authentication as a whole process</li>
+</ul>
+</li>
+<li><code>API09:2019</code> Improper Assets Management ➡️ <code>API09:2023</code> Improper Inventory Management
+<ul>
+<li>to better align with industry terminology</li>
+<li>to cover a wider range of resources (Asset: tangible items valued by an organization; Inventory: a wider set of resources)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>五個是新來的</p>
+<ul>
+<li>包含2019 OWASP Top 10的部分元素
+<ul>
+<li><code>API03:2023</code> Broken Object Property Level Authorization
+<ul>
+<li>又稱<code>BOPLA</code></li>
+<li>合併<code>3:2019</code>Excessive Data Exposure +<code>6:2019</code>Mass Assignment</li>
+</ul>
+</li>
+<li><code>API04:2023</code> Unrestricted Resource Consumption
+<ul>
+<li>與<code>4:2019</code> Lack of Resources and Rate Limiting 有關</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>API06:2023</code> Unrestricted Access to Sensitive Business Flows</li>
+<li><code>API07:2023</code> Server Side Request Forgery [全新]
+<ul>
+<li>沒有在2019版裡面，但有出現在2021 OWASP top ten list</li>
+<li>不是因為實際事件發生記錄，而是民調結果才使它上榜</li>
+</ul>
+</li>
+<li><code>API10:2023</code> Unsafe Consumption of APIs [全新]</li>
+</ul>
+</li>
+<li>
+<p>Risk Rating：根據OWASP risk rating terminology (OWASP risk rating framework)</p>
+<table>
+<thead>
+<tr>
+<th>Theat Agents</th>
+<th>Exploitability</th>
+<th>Weakness Prevalence</th>
+<th>Weakness Detectability</th>
+<th>Technical Impact</th>
+<th>Business Impacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API Specific</td>
+<td>Easy: 3 | Average: 2 | Difficult: 1</td>
+<td>Widespread:3| Common: 2 | Difficult: 1</td>
+<td>Easy: 3 | Average: 2 | Difficult: 1</td>
+<td>Sever: 3 | Moderate:2| Minor: 1</td>
+<td>Business Specific</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>OWASP API Security Top 10的目的不是要給特定組織做風險分析，而是提供準則給組織考量風險因素</p>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Exploitability</th>
+<th>Prevalence</th>
+<th>Detectability</th>
+<th>Technical</th>
+<th>Overall</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>risk#1 ~ #10</td>
+<td>(1~3分)</td>
+<td></td>
+<td></td>
+<td></td>
+<td>(加總)</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>風險的方程式：<code>risk = likelihood * impact</code></p>
+<ul>
+<li>likelihood : a relative value to be determined by the business</li>
+</ul>
+</li>
+</ul>
+<h2 id="the-top-10">The Top 10</h2>
+<h3 id="api12023">API1:2023</h3>
+<h4 id="broken-object-level-authorization">Broken Object Level Authorization</h4>
+<ol>
+<li>
+<p>BOLA: 最普遍且最嚴重的API弱點</p>
+</li>
+<li>
+<p>當API provider 不具備足夠的控制權來enforce authorization時會發生，</p>
+</li>
+<li>
+<p>API使用者應該只能存取屬於他們自身的機敏資料，如果BOLA發生，攻擊者可以存取其他用戶的機敏資料</p>
+</li>
+<li>
+<p>Attack Vector Descriptions</p>
+<blockquote>
+<p>&ldquo;Attackers can exploit API endpoints that are vulnerable to a broken object level authorization by manipulating the ID of an object that is sent within the request. Object IDs can be anything from sequential integers, UUIDs or generic strings. Regardless of the data type, they&rsquo;re easy to identify in the request target, either through the path or a query string parameter request headers, or even as a part of the request payload.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>&ldquo;This has been the most common and impactful attack on APIs. Authorization and access control mechanisms in modern web applications are complex and widespread. Even if the application implements a proper infrastructure for authorization checks, developers might forget to use these checks before accessing a sensitive object. Access controlled detection is not typically amenable to automated static or dynamic testing.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Impacts Description</p>
+<blockquote>
+<p>&ldquo;Unauthorized access can result in data disclosure to unauthorized parties, data loss, or data manipulation. Unauthorized access to objects can also lead to full account takeover&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>簡單來說，如果id為1717的Himmel可以取得id為1716的Chelsea的個資，就是BOLA</p>
+</li>
+<li>
+<p>就以下範例而言，可以透過替換粗體字部份來測試</p>
+<ul>
+<li>常見、好利用、需要的技術不高</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>API請求的URL</th>
+<th>試圖存取相似的物件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>/api/user/<strong>1</strong></td>
+<td>/api/user/<strong>7</strong></td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/user/account/find?<strong>user_id=22</strong></td>
+<td>/user/account/find?<strong>user_id=23</strong></td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/company/account/<strong>Apple</strong>/balance</td>
+<td>/company/account/<strong>Google</strong>/balance</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/admin/settings/account/<strong>bman</strong></td>
+<td>/admin/settings/account/<strong>hdent</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>OWASP 預防性措施</p>
+<ul>
+<li>
+<p>Implement authorization with user policies and hierarchy 以用戶政策與階層實作授權</p>
+</li>
+<li>
+<p>Verify users have access to the resources they&rsquo;re accessing 驗證用戶要存取資源時，擁有進入權</p>
+</li>
+<li>
+<p>Use random object IDs wherever possible 可以的話，都使用隨機號的物件ID</p>
+<ul>
+<li>GUID for records ID 使用全域唯一識別碼</li>
+</ul>
+</li>
+<li>
+<p>Test APIs to identify any authorization vulnerabilities</p>
+</li>
+</ul>
+<hr>
+<h3 id="api22023">API2:2023</h3>
+<h4 id="broken-authentication">Broken Authentication</h4>
+<ul>
+<li>
+<p>指的是API驗證過程中的任何弱點</p>
+</li>
+<li>
+<p>Authentication是驗證API user身份的流程，可能是person, device 或system（驗證『真為其人』）</p>
+</li>
+<li>
+<p>常用驗證方式：用戶帳號密碼 (username and password combination)、token、多因素驗證 (multifactor authentication)</p>
+<ul>
+<li>發生原因：API 供應者沒有實作強度不夠的驗證機制，或驗證步驟有誤</li>
+</ul>
+</li>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>&ldquo;The authentication mechanism is an easy target for attackers since it&rsquo;s exposed to everyone. Although more advanced technical skills may be required to exploit some authentication issues, exploitation tools are generally available.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>&ldquo;Software and security engineers&rsquo; misconceptions regarding authentication boundaries and inherent implementation complexity make authentication issues prevalent. Methodologies of detecting broken authentication are available and easy to create.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Impacts Description</p>
+<blockquote>
+<p>&ldquo;Attackers can gain complete control of other users&rsquo; accounts in the system, read their personal data, and perform sensitive actions on their behalf. Systems are unlikely to be able to distinguish attackers&rsquo; actions from legitmate user ones.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Weak Password Policy</p>
+<ul>
+<li>允許用戶建立強度較弱的密碼</li>
+<li>允許用暴力攻擊嘗試猜出其他用戶密碼</li>
+<li>在不詢問密碼確認的情況下，允許用戶變更密碼</li>
+<li>在不詢問密碼確認的情況下，允許用戶變更帳戶電子信箱</li>
+<li>在URL連結裡揭露token或者密碼</li>
+<li>GraphQL queries allow for many authentication attempts in a single request（？</li>
+<li>對於機敏的請求，沒有做驗證</li>
+</ul>
+</li>
+<li>
+<p>Credential Stuffing 憑證填充</p>
+<ul>
+<li>Attack using large number of username and password combinations 使用大量的帳號密碼組合攻擊</li>
+<li>Credentials used in these types of attacks are typically collected from data breaches 此類型的身分驗證資訊通常從資料洩漏中收集而來</li>
+<li>Allows users to brute force many username and password combinations 允許用戶用很多帳號密碼的組合做暴力攻擊</li>
+</ul>
+</li>
+<li>
+<p>Predictable Tokens</p>
+<ul>
+<li>Tokens obtained through a weak token generation authentication process
+經由強度薄弱的產生權杖驗證步驟，取得權杖</li>
+<li>Weak tokens can easily be guessed, deduced, or calculated by an attacker
+攻擊可以透過計算、臆測、推論得到強度很弱的權杖</li>
+<li>Using incremental or guessable token IDs
+使用遞增或容易猜測的ID權杖</li>
+</ul>
+</li>
+<li>
+<p>Misconfigured JSON Web Tokens</p>
+<ul>
+<li>JWTs commonly used for API authentication and authorization
+常用於API驗證授權JWT</li>
+<li>Provide flexibility to customize algorithms used for signing the token, the key/secret that is used, and the information used in the payload</li>
+<li>Security misconfigurations:
+<ul>
+<li>API provider accepts unsigned JWT tokens<br>
+API供應者接受未經簽署的JWTs</li>
+<li>API provider does not check JWT expiration
+API供應者未確認JWT逾期日</li>
+<li>API provider discloses sensitive information within encoded JWT payload
+API供應者於 encoded JWT payload 裡揭露機敏資訊</li>
+<li>JWT is signed with a weak key
+使用強度薄弱的key簽署JWT token</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&ldquo;The future of digital systems is complexity and complexity is the worst enemy of security.&rdquo;  &mdash; Bruce Schneider, Internationally Renowned Security Technologist</p>
+</blockquote>
+<ul>
+<li>
+<p>API Authentication</p>
+<ul>
+<li>
+<p>REST requires APIs to be stateless</p>
+</li>
+<li>
+<p>APIs, therefore, require users to register to acquire tokens</p>
+</li>
+<li>
+<p>Token is used for future requests</p>
+<p>從REST APIs的六個限制可以知道，RESTful API 是設計成無狀態的，為了達成無狀態，API供應者應該不用記住上一個請求到下一個請求的消費者。要實行此限制，APIs通常要求users經歷註冊步驟，來取得唯一的權杖，而這個產生出的權杖會用於接下來的幾個請求，作為驗證授權之用途</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Issues with Authentication</p>
+<ul>
+<li>Insufficient token randomness (entropy) 如果不夠隨機亂數，駭客會猜得到</li>
+<li>Vulnerabilities in registration process</li>
+<li>Password reset process 密碼重設步驟</li>
+<li>Multi-factor authentication features 多因素驗證</li>
+</ul>
+</li>
+<li>
+<p>OWASP preventative measures</p>
+<ul>
+<li>
+<p>Know all the possible flows to authenticate to the API
+瞭解所有取得API驗證的可能流程</p>
+</li>
+<li>
+<p>Understand your authentication mechanism and how they are used - <strong>OAuth is not authentication, and neither are API keys</strong></p>
+<p>瞭解驗證的機制，以及如何運用此機制。</p>
+</li>
+<li>
+<p>Use standards for authentication, token generation, or password storage
+不要自己造輪子，用既有標準</p>
+</li>
+<li>
+<p>Treat credential recovery/forgot password endpoints as login endpoints in terms of brute force, rate limiting, and lockout protectionsㄛ</p>
+</li>
+<li>
+<p>Require re-authentication for sensitive operations (e.g. changing the account owner email address/2FA phone number) 對於機敏資料的操作，必須要求重新驗證</p>
+</li>
+<li>
+<p>多利用 OWASP Authentication Cheatsheet</p>
+<ul>
+<li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html" target="_blank" rel="noopener noreffer ">Authentication Cheat Sheet</a></li>
+</ul>
+</li>
+<li>
+<p>可以的話，實作多因素驗證 MFA</p>
+</li>
+<li>
+<p>實作反暴力攻擊的機制以減輕content stuffing, dictionary attacks, brute force attacks</p>
+</li>
+<li>
+<p>實作 account lockout/captcha 機制，以預防針對特定用戶的暴力攻擊</p>
+</li>
+<li>
+<p>實作 weak-password checks</p>
+</li>
+<li>
+<p>API keys應該只能用來作為API clients authentication，不該用來 user authentication</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="api32023">API3:2023</h3>
+<h4 id="broken-oject-property-level-authorization">Broken Oject Property Level Authorization</h4>
+<p>BOPLA 合併了 2019 OWASP API Security Top10 兩點: Excessive Data Exposure, Mass Assignment</p>
+<ul>
+<li>
+<p><code>API:2019</code>Excessive Data Exposure</p>
+<ul>
+<li>
+<p>當API供應者對單一個請求回傳了整個data object</p>
+</li>
+<li>
+<p>Usually APIs filter data to what is being requested
+通常API要負責過濾，只留下所請求的部份</p>
+</li>
+<li>
+<p>Relying on customer/UI to filter creates risk of exposing sensitive information
+如果留給客戶或前端過濾，會有機敏資訊暴露的風險</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>API:2019</code>Mass Assignment</p>
+<ul>
+<li>Mass Assignement allows user input to alter sensitive object properties
+允許user調整機敏物件的配置</li>
+<li>例如：API使用特別的property來建立管理員帳號
+<ul>
+<li>應該只有被授權的user可以提出『alter those administrative properties』的請求</li>
+<li>If no restriction in place, then an attacker would be able to elevate their privileges and perform administrative actions by altering these properties.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>&ldquo;APIs tend to expose endpoints that return all object&rsquo;s properties. This is particularly valid for REST APIs. For other protocols such as GraphQL, it. may require crafted requests to specify which properties should be returned. Identifying these additional properties that can be manipulated requires more effort, but there are a few automated tools available to assist in this task.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>&ldquo;Inspecting API responses is enough to identify sensitive information in returned objects&rsquo; representations. Fuzzing is usually used to identify additional (hidden) properties. Whether they can be changed is a matter of crafting an API request and analysing the response. Side-effect analysis may be required if the target property is not returned in the API response.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Impacts Description</p>
+<blockquote>
+<p>&ldquo;Unauthorized access to private/sensitive object properties may result in data disclosure, data loss, or data corruption. Under certain circumstances, unauthorized access to object properties can lead to privilege escalation or partial/full account takeover.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>BOPLA Vulnerabilities 弱點</p>
+<ul>
+<li>The API endpoint exposes properties of an object that are considered sensitive and should not be read by the user. (previously named: &ldquo;Excessive Data Exposure&rdquo;)</li>
+<li>The API endpoint allows a user to change, and/or delete the value of a sensitive object&rsquo;s property which the user should not be able to access (previously named: &ldquo;Mass Assignment&rdquo;)</li>
+</ul>
+</li>
+<li>
+<p>Excessive Data Exposure</p>
+<ul>
+<li>EDE is when API responds with more information than needed</li>
+<li>Often occurs when the consumer is expected to filter results</li>
+<li>暴露過多資訊</li>
+</ul>
+</li>
+<li>
+<p>Test for Data Exposure</p>
+<ul>
+<li>Excessive Data Exposure is very difficult to detect with automated scanner
+很難透過自動化掃描器偵測出來</li>
+<li>Often bypasses every security control in place to protect sensitive information</li>
+<li>Can deliver sensitive data to an attacker simply because they use the API
+只要攻擊者使用這個API，就能收到機敏資料</li>
+<li>API providers <strong>must test</strong> API endpoints and review information in response
+API供應者務必測試每個endpoint並審核回傳的信息</li>
+</ul>
+</li>
+<li>
+<p>Mass Assignment</p>
+<ul>
+<li>
+<p>API consumer includes more parameters than the app intended
+使用API那一方在發送請求時，傳了多餘的參數</p>
+<ul>
+<li><code>account_privilege_level</code> 變更權限等級</li>
+<li><code>account_balance</code> 變更餘額</li>
+<li><code>isAdmin</code> 設定為管理員角色(true)</li>
+</ul>
+</li>
+<li>
+<p>Application adds these parameters to code variables or internal objects
+app使用這先參數建立變數或內部物件</p>
+</li>
+<li>
+<p>A consumer may be able to edit object properties or escalate privileges</p>
+</li>
+<li>
+<p>例如說有一個 createAccount 的 api，偷加入isAdmin這個parameter</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;User&#34;</span><span class="p">:</span><span class="s2">&#34;hina&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Password&#34;</span><span class="p">:</span> <span class="s2">&#34;GreatPasswd123&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;User&#34;</span><span class="p">:</span><span class="s2">&#34;hedie&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;Password&#34;</span><span class="p">:</span> <span class="s2">&#34;GreatPasswd123&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;isAdmin&#34;</span><span class="p">:</span> <span class="s2">&#34;true&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>OWASP Preventive Measures</p>
+<ul>
+<li>Always make sure users should have access to the object&rsquo;s properties
+確保用戶應該有權存取物件設定檔案</li>
+<li>Avoid using generic methods such as <code>to_json()</code> and <code>to_string()</code></li>
+<li>Avoid functions that automatically bind input into code variables, objects, or properties</li>
+<li>Only allow changes to object&rsquo;s properties that should be updated by the client</li>
+<li>Implement response valiation mechanism as an extra layer of security</li>
+<li>Define and enforce data returned by all API methods</li>
+<li>Minimize returned data structures, according to the business/functional requirements</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="api42023">API4:2023</h3>
+<h4 id="unrestricted-resource-consumption">Unrestricted Resource Consumption</h4>
+<p>It&rsquo;s an API issue where the API provider does not have safeguards in place to prevent excessive use of their API. API供應者沒有預防過於頻繁使用此API的控管措施。</p>
+<p>The API provider could become a victim of a denial of service, attack or experience unnecessary financial costs. 可能使API供應者成為阻斷服務攻擊的受害者，或增加非必要的財務成本。</p>
+<ul>
+<li>
+<p>Formerly &ldquo;Lack of Resources and Rate Limiting&rdquo; (OWASP 2019)</p>
+</li>
+<li>
+<p>Attack Vector Description</p>
+<ul>
+<li>Exploited via simple API requests</li>
+<li>Multiple request from single source, or across clouds
+可以從單一一台電腦或雲端運算設備傳送多筆並發(concurrent) 請求</li>
+<li>Automated tool simulate DoS via high traffic loads</li>
+</ul>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<ul>
+<li>APIs commonly do not limit interactions or resource limits
+未限制互動次數或資源存取次數</li>
+<li>Test for resource consumption weakness via:
+<ul>
+<li>API requests that specify resource quantities</li>
+<li>Analyzing response status/time/length</li>
+</ul>
+</li>
+<li>Also valid for batched operations</li>
+<li>Evaluate cost impact based on service provider pricing</li>
+</ul>
+</li>
+<li>
+<p>Impacts Description</p>
+<ul>
+<li>Exploitation can lead to Denial of Service</li>
+<li>Economic impact due to higher infrastructure demands
+雲端儲存空間須增加、CPU需求增加</li>
+</ul>
+</li>
+<li>
+<p>Source of Vulnerability</p>
+<ul>
+<li>Missing/ inappropriate settings:
+<ul>
+<li>Execution timeouts</li>
+<li>Max allocable memory</li>
+<li>Max number of file descriptors</li>
+<li>Max number of processes</li>
+<li>Max upload of file size</li>
+<li># of operations in single api client request</li>
+<li># of records in single request</li>
+<li>Third party provider&rsquo;s spend limit</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Summary</p>
+<ul>
+<li>Every API request has technical and financial cost</li>
+<li>Lack of rate controls increase risk of:
+<ul>
+<li>Denial of Service</li>
+<li>Unnecessary financial cost</li>
+<li>Degradation of service to users</li>
+</ul>
+</li>
+<li>例如<code>RapidAPI</code>allows some API providers to also have infrastructure that automatically scales with the number of API requests</li>
+</ul>
+</li>
+<li>
+<p>OWASP Preventative Measures</p>
+<ul>
+<li>Docker offers controls for memory, CPU, number of restarts, file descriptors, processes</li>
+<li>Limit number of API calls within timeframe 在一段時間內最多可以call幾次api</li>
+<li>Notify client when limit is exceeded
+超出次數時, 告知client上限為何以及累積次數何時歸零</li>
+<li>Add server-side validation for inputs (query string and request body)</li>
+<li>Define, enforce max size for inputs and payload
+<ul>
+<li>max length for strings, max number of elements in arrays</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="api52023">API5:2023</h3>
+<h4 id="broken-function-level-authorization">Broken Function Level Authorization</h4>
+<p>BFLA - API functions 具有不足的存取權控制。BOLA與存取資料有關，而BFLA就與調整/刪除資料有關。</p>
+<ul>
+<li>
+<p>BOLA vs BFLA</p>
+<ul>
+<li>BOLA: UserA 能夠檢視 UserB&rsquo;s 的帳戶資料</li>
+<li>BFLA: UserA 能夠以 UserB 的帳戶名義執行交易</li>
+</ul>
+</li>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>&ldquo;Exploitation requires the attacker to send legitimate API calls to an API endpoint that they should not have access to as anonymous users or regular, non-privileged users. Exposed endpoints will be easily exploited.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>&ldquo;Authorization checks for a function or resource are usually managed via configuration or code level. Implementing proper checks can be a confusing task since modern applications can contain many types of roles, groups, and complex user hierarchies (e.g. , sub-users, or users with more than one role).  It&rsquo;s easier to discover these flaws in APIs since APIs are more structured, and accessing different functions is more predictable.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Impacts Description</p>
+<blockquote>
+<p>&ldquo;Such flaws allow attackers to access unauthorized functionality. Administrative functions are key targets for this type of attack and may lead to data disclosure, data loss, or data corruption. Ultimately, it may lead to service disruption.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>BFLA Vulnerability</p>
+<ul>
+<li>User of one privilege level can use functionality of another user</li>
+<li>API providers often have different privilege levels
+<ul>
+<li>Public users, merchants, partners, vendors, admins, &hellip;</li>
+</ul>
+</li>
+<li>Can be exploited for:
+<ul>
+<li>Unauthorized use of lateral functions</li>
+<li>Privilege escalation</li>
+</ul>
+</li>
+<li>Targeted API functions - endpoints with:
+<ul>
+<li>Sensitive information</li>
+<li>Resources that belong to another group</li>
+<li>Administrative functionality like user account management</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>BFLA 示例</p>
+<ul>
+<li>Different endpoints for privileged actions
+<ul>
+<li><code>/{userid}/account/balance</code> - user account information</li>
+<li><code>/admin/account/{userid}</code> - administrator endpoint</li>
+</ul>
+</li>
+<li>Admin endpoint can be exploited if API has improper access controls
+<ul>
+<li>An attacker can perform admin actions, account takeover</li>
+</ul>
+</li>
+<li>APIs don&rsquo;t always have admin endpoints
+<ul>
+<li><!-- raw HTML omitted -->HTTP request methods<!-- raw HTML omitted --> can control access to functionality</li>
+<li>例如：GET, POST, PUT, DELETE</li>
+</ul>
+</li>
+<li>Attack can exploit unrestricted methods to exploit API functionality</li>
+</ul>
+</li>
+<li>
+<p>Testing for BFLA</p>
+<ul>
+<li>Identify endpoints an attacker could use to their advantage, e.g.:
+<ul>
+<li>Alter user accounts</li>
+<li>Delete user resources</li>
+<li>Gain access to restricted endpoints</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>OWASP Preventive Measures</p>
+<ul>
+<li>Have constant, easy-to-analyze authorization module for all business functions</li>
+<li>Deny all access by default, require explicit grants to specific roles for access to every function
+預設拒絕所有存取，某些特定角色如果要能存取每一項功能，需要顯性授權(explicit grants)</li>
+<li>Review endpoints against function level authorization flaws
+仔細檢查應用程式個端點，確保它們在功能層次授權上沒有漏洞</li>
+<li>Ensure admin controllers inherit from an administrative abstract controller that implements authorization checks based on the user&rsquo;s group/role
+確保所有管理員相關的 controllers 都有相似的授權機制，藉由繼承抽象controller類別達成</li>
+<li>Ensure admin functions inside a regular controller implement authorization checks based on the user&rsquo;s group/role
+一般的controllers要根據user屬於哪一群組或具有哪一身分，做額外的授權檢查</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<hr>
+<h3 id="api62023">API6:2023</h3>
+<h4 id="unrestricted-access-to-sensitive-business-flows">Unrestricted Access to Sensitive Business Flows</h4>
+<hr>
+<h3 id="api72023">API7:2023</h3>
+<h4 id="server-side-request-forgery">Server Side Request Forgery</h4>
+<hr>
+<h3 id="api82023">API8:2023</h3>
+<h4 id="security-misconfiguration">Security Misconfiguration</h4>
+<hr>
+<h3 id="api92023">API9:2023</h3>
+<h4 id="improper-inventory-management">Improper Inventory Management</h4>
+<hr>
+<h3 id="api102023">API10:2023</h3>
+<h4 id="unsafe-consumptions-of-apis">Unsafe Consumptions of APIs</h4>
+<hr>
+<h2 id="beyond-the-top-10">Beyond the Top 10</h2>
+<h3 id="injections">Injections</h3>
+<h3 id="insufficient-logging--monitoring">Insufficient Logging &amp; Monitoring</h3>
+<h3 id="business-logic-flaws">Business Logic Flaws</h3>
+<h5 id="延伸與參考資料">延伸與參考資料</h5>
+<ul>
+<li>
+<p>API Bug Bounty Research</p>
+<ul>
+<li>
+<p><a href="https://pentester.land/writeups" target="_blank" rel="noopener noreffer ">PentesterLand Writeups Compilation</a></p>
+</li>
+<li>
+<p><a href="https://hackerone.com/hacktivity" target="_blank" rel="noopener noreffer ">HackerOne Hacktivity</a></p>
+</li>
+<li>
+<p><a href="https://github.com/devanshbatham/Awesome-Bugbounty-Writeups" target="_blank" rel="noopener noreffer ">Awesome Bugbounty Writeups Repo</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-01-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/owasp_/" data-hashtag="security"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/owasp_/" data-title="[筆記] OWASP API Security Top 10"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/security/">security</a>,&nbsp;<a href="/tags/owasp/">OWASP</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/gcp_on_board/" class="prev" rel="prev" title="GCP on board"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>GCP on board</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

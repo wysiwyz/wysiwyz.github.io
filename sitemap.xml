@@ -2,16 +2,18 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-01-10T13:01:59&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/owasp_/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/owasp/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/security/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/gcp_on_board/</loc><lastmod>2024-01-10T13:01:59&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-01-10T13:01:59&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-01-10T13:01:59&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-01-10T13:01:59&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/tags/security/</loc><lastmod>2024-01-08T13:33:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/spring/</loc><lastmod>2024-01-08T13:33:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/s_spring_security/</loc><lastmod>2024-01-08T13:33:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/springsecurity/</loc><lastmod>2024-01-08T13:33:24&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2024-01-08T13:33:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ss_white-box/</loc><lastmod>2024-01-04T14:12:33&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ss_kafka/</loc><lastmod>2024-01-03T15:52:54&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/categories/docker/</loc><lastmod>2023-12-26T14:59:55&#43;08:00</lastmod></url><url>

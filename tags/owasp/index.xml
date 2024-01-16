@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OWASP - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/owasp/</link>
+        <description>OWASP - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/owasp/" rel="self" type="application/rss+xml" /><item>
+    <title>[筆記] OWASP API Security Top 10</title>
+    <link>http://wysiwyz.github.io/posts/owasp_/</link>
+    <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/owasp_/</guid>
+    <description><![CDATA[What is OWASP Security Top 10 你會學到：API相關弱點的多樣類型、包含的來襲方向（attack vector）、弱點利用可能造成的技術影響
+這些人都該來瞭解一下：API生態系的相關人士, bug bunty hunters, 開發人員, 滲透測試人員, 組織領導, 對API Security有興趣的人
+（而且現在APISec University有一個certifcation bage提供給CASA 測驗通過的人，好像是個酷東西！）
+What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非營利基金會，目標是改善應用程式的資訊安全。 創立於2001年12月1日，以Top10List的開源工具還有其他安全專案而聞名 創立者：Erez Yalon、Inon Sheedy OWASP API Security Top 10 首次於 2019 年 12 月發佈，基於以下幾點原因而啟動 APIs迅速的興起：不用自己造輪子開發地圖、GPS、付款交易、驗證、溝通相關的程式，可以直接使用其他家專精開發且成熟完善的功能 安全重大缺口：以前用來作為企業級弱點管理的工具與技術（例如：程式、掃描工具與傳統網路資安監控工具）不是專為處理API相關資安風險而設計的，因此存在資料外洩(data breaches) 的風險 新的攻擊方向： 通常公開網路API忽略了所有過去幾十年隨著商機一起成長的資安手法。 攻擊者不用再經歷MITRE網路攻擊鏈（bypass firewall, gain entry to the network, pivot around to a system that contains data, find a way to exfiltrate that data 攻擊者可以利用不穩定的API，直接存取資料源 一些上新聞的 API 意外事件]]></description>
+</item>
+</channel>
+</rss>

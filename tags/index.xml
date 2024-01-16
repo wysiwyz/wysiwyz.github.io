@@ -3,10 +3,18 @@
         <title>Tags - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/</link>
         <description>Tags - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 08 Jan 2024 13:33:24 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>OWASP</title>
+    <link>http://wysiwyz.github.io/tags/owasp/</link>
+    <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/owasp/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>security</title>
     <link>http://wysiwyz.github.io/tags/security/</link>
-    <pubDate>Mon, 08 Jan 2024 13:33:24 &#43;0800</pubDate>
+    <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/security/</guid>
     <description><![CDATA[]]></description>
@@ -73,14 +81,6 @@
     <pubDate>Sun, 21 May 2023 09:10:20 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/coursera/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>linux</title>
-    <link>http://wysiwyz.github.io/tags/linux/</link>
-    <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/linux/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
