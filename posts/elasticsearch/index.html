@@ -35,7 +35,7 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/"
-        },"genre": "posts","wordcount":  502 ,
+        },"genre": "posts","wordcount":  1022 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/","datePublished": "2024-01-22T17:00:05+08:00","dateModified": "2024-01-22T17:00:05+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,8 +77,8 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 從頭開始學習(ELK & Elastic Stack)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/study/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>study</a>&nbsp;<a href="/categories/elasticsearch/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>ElasticSearch</a>&nbsp;<a href="/categories/kibana/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Kibana</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;502 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1022 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -103,6 +103,12 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
       <ul>
         <li><a href="#elastic-cloud">Elastic Cloud</a></li>
         <li><a href="#在macos上安裝elasticsearch">在MacOS上安裝ElasticSearch</a></li>
+      </ul>
+    </li>
+    <li><a href="#beginners-crash-course">Beginner&rsquo;s Crash Course</a>
+      <ul>
+        <li><a href="#part-16-kibana--elasticsearch">Part 1/6 Kibana &amp; ElasticSearch</a></li>
+        <li><a href="#part-26">Part 2/6</a></li>
       </ul>
     </li>
   </ul>
@@ -475,6 +481,225 @@ output {
 </li>
 <li><a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreffer ">下載連結</a></li>
 </ul>
+<hr>
+<h2 id="beginners-crash-course">Beginner&rsquo;s Crash Course</h2>
+<h3 id="part-16-kibana--elasticsearch">Part 1/6 Kibana &amp; ElasticSearch</h3>
+<h5 id="what-is-sharing">What is sharing?</h5>
+<p>Index is just a virtual thing that keeps track of where documents are stored.</p>
+<p>When you create an index, one shard is created by default, and the shard is assigned to a node. Remember, shard is where documents are stored, and number of documents a shark could hold depends on the capacity of the node.</p>
+<p>Let&rsquo;s say you want to index 600_000 documents(60萬) in your produce index, but the node where the shard is assigned to could only hold 200_000 documents, which is not gonna work, but we do have two more nodes which could hold 200_000 documents each.</p>
+<p>因此，一個cluster 裡面有三個node，每個node各有一個produce index的shard，但是produce index裡面的資料還會一直增加，這時候 sharding就派上用場了。</p>
+<h5 id="the-beauty-of-sharding">The beauty of sharding</h5>
+<p>You could add more shards and nodes as the need rises, so you could horizontally scale and adapt to increasing data, but that&rsquo;s not the only superpower that comes with sharding.</p>
+<p>Shard is where you store documents, and it&rsquo;s also where you run search queries. Let&rsquo;s talk about a scenario where the client is sending a search request for gingery read bean tang-yuan. In this scenario, you have one chart in a node that could hold the entire produce index.</p>
+<h5 id="sharding-speedings-up-your-search">Sharding speedings up your search</h5>
+<p>You could run a search on all 10 of these shards at the same time in parallel</p>
+<p>所以如果有一個Produce Index 具有500_000資料，全部都放在<code>P0</code>一個shard裡面，那麽要完成搜尋需要耗費10秒鐘（sequentially）。</p>
+<p>但如果有Produce Index有10個shards，分別佈在10個nodes上面，而一個shard存有50_000筆文件，在這裏要完成搜尋只要花1秒鐘。</p>
+<h5 id="what-are-replica-shards">What are replica shards?</h5>
+<p>Let&rsquo;s say everything is going well with our online grocery shop, but all of a sudden one of our nodes go down and we lose our data. To avoid this, we could make copies of the original shards and store it&rsquo;s copies across different nodes.</p>
+<p>Node 1&amp;2: contain original shards (<code>P0</code>, <code>P1</code>), also known as primary shards.</p>
+<p>Node 3&amp;2: make copies of original shards and store these in different nodes(<code>R0</code>, <code>R1</code>), also known as replica shards.</p>
+<p>除了能夠避免某個節點有問題，還可以增進搜尋效能</p>
+<h5 id="replica-shards-can-improve-the-performance-of-your-search">Replica shards can improve the performance of your search</h5>
+<p>2000 search queries per second ➡️ 8000 search queries per second</p>
+<p>Because the replicas are identical copies of the primary shards, now these replica shards can pick up the slack and your cluster could better handle increased demands on search.</p>
+<p>Note:</p>
+<ul>
+<li>
+<p>如果有ElasticSearch密碼，啟動腳本<code>bin/elasticsearch</code>之後的curl cmd如下</p>
+<p><code>curl -k -u elastic:{password_for_the_elastic_user} https://localhost:9200</code>（<a href="https://discuss.elastic.co/t/curl-x-get-http-localhost-9200-curl-52-empty-reply-from-server/329211" target="_blank" rel="noopener noreffer ">參</a>）</p>
+<ul>
+<li>只有<code>curl http://localhost:9200</code>只會收到Empty reply from Server</li>
+<li>password_for_the_elastic_user: 這是首次啟動 <code>bin/elasticsearch</code> script會產生的密碼，也可以用<code>bin/elasticsearch-reset-password -u elastic</code>重新產生一組密碼</li>
+</ul>
+</li>
+<li>
+<p>在$ES_HOME(即解壓縮後的elastic tar.gz檔案) 路徑開啟終端機，輸入 <code>code .</code> 打開 vsCode</p>
+</li>
+<li>
+<p>當你啟動了一個node，預設會自動形成一個cluster，最好給他們有意義的命名，以利爾後在多個clusters/多個nodes識別不同的任務/負責項目</p>
+<ul>
+<li>修改 elastic search.yml 檔案以下兩行，存檔之後要停止 elasticsearch script &amp; kibana scrip，再重新啟動</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/JJGsyYk.jpg"
+        data-srcset="https://i.imgur.com/JJGsyYk.jpg, https://i.imgur.com/JJGsyYk.jpg 1.5x, https://i.imgur.com/JJGsyYk.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/JJGsyYk.jpg"
+        title="cluster_node" /></p>
+</li>
+<li>
+<p>GET 可以查看cluster健康、nodes狀態</p>
+</li>
+<li>
+<p>PUT 可以建立一筆索引，如果response JSON 的 &ldquo;acknowledged&rdquo; 為 true，就表示建立成功</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/T7e1qpT.jpg"
+        data-srcset="https://i.imgur.com/T7e1qpT.jpg, https://i.imgur.com/T7e1qpT.jpg 1.5x, https://i.imgur.com/T7e1qpT.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/T7e1qpT.jpg"
+        title="PUT_FAVORITE_CURRY" /></p>
+</li>
+<li>
+<p>INDEX as verb 在某筆索引裡面儲放/加入documents，可以用 POST 或 PUT</p>
+<ul>
+<li>
+<p>POST: 請ElasticSearch自動幫你建立一個 document ID</p>
+<pre tabindex="0"><code>POST {索引的名稱}/_doc
+{
+    &#34;field&#34;: &#34;value&#34;
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/KS1VhHj.jpg"
+        data-srcset="https://i.imgur.com/KS1VhHj.jpg, https://i.imgur.com/KS1VhHj.jpg 1.5x, https://i.imgur.com/KS1VhHj.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/KS1VhHj.jpg"
+        title="SyntaxExample" /></p>
+</li>
+<li>
+<p>PUT: 則適用於要給該文件指定一筆ID號碼，通常是使用 natural identifier 給資料編索引時會使用</p>
+<pre tabindex="0"><code>PUT {索引的名稱}/_doc/{這份文件要分配到的指定ID}
+{
+    &#34;field&#34;: &#34;value&#34;
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ehieOWZ.jpg"
+        data-srcset="https://i.imgur.com/ehieOWZ.jpg, https://i.imgur.com/ehieOWZ.jpg 1.5x, https://i.imgur.com/ehieOWZ.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ehieOWZ.jpg"
+        title="PUT_fav_curry" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>READ 讀取document</p>
+<pre tabindex="0"><code>GET {索引名稱}/_doc/{要查找的DocumentID}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/0Y54vkD.jpg"
+        data-srcset="https://i.imgur.com/0Y54vkD.jpg, https://i.imgur.com/0Y54vkD.jpg 1.5x, https://i.imgur.com/0Y54vkD.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/0Y54vkD.jpg"
+        title="Get" /></p>
+</li>
+<li>
+<p>如果用既有的 ID put 一筆文件，會發現原本的Joshua被Jupytor覆寫了</p>
+<p><code>result:updated</code> 以及 <code>_version:2</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/6hQCuSc.jpg"
+        data-srcset="https://i.imgur.com/6hQCuSc.jpg, https://i.imgur.com/6hQCuSc.jpg 1.5x, https://i.imgur.com/6hQCuSc.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/6hQCuSc.jpg"
+        title="Step1" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/WZwvlkT.jpg"
+        data-srcset="https://i.imgur.com/WZwvlkT.jpg, https://i.imgur.com/WZwvlkT.jpg 1.5x, https://i.imgur.com/WZwvlkT.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/WZwvlkT.jpg"
+        title="step2" /></p>
+</li>
+<li>
+<p>如果要避免文件被覆蓋，可以使用 <code>_create_entpoint</code> ，這樣如果指定的是已經存在的ID，就會拋出錯誤，以免不小心覆蓋掉既有的doc</p>
+<pre tabindex="0"><code>PUT {索引名稱}/_create/{指定的DocId}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/b9YfqK2.jpg"
+        data-srcset="https://i.imgur.com/b9YfqK2.jpg, https://i.imgur.com/b9YfqK2.jpg 1.5x, https://i.imgur.com/b9YfqK2.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/b9YfqK2.jpg"
+        title="Error409" /></p>
+</li>
+<li>
+<p>Update 更新文件</p>
+<ul>
+<li>注意這裡的JSON 一定要帶 field <code>doc</code>，欄位不用全部都給</li>
+</ul>
+<pre tabindex="0"><code>POST {索引名稱}/_update/{待更新的Doc的Id}
+{
+    &#34;doc&#34;: {
+        &#34;field1&#34;: &#34;value&#34;,
+        &#34;field2&#34;: &#34;value&#34;
+    }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/PDKgGKG.jpg"
+        data-srcset="https://i.imgur.com/PDKgGKG.jpg, https://i.imgur.com/PDKgGKG.jpg 1.5x, https://i.imgur.com/PDKgGKG.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/PDKgGKG.jpg"
+        title="Update_only partial fields" /></p>
+</li>
+<li>
+<p>Delete 刪除文件</p>
+<pre tabindex="0"><code>DELETE {索引名稱}/_doc/{指定要刪除的DocId}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/wrLIgT5.jpg"
+        data-srcset="https://i.imgur.com/wrLIgT5.jpg, https://i.imgur.com/wrLIgT5.jpg 1.5x, https://i.imgur.com/wrLIgT5.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/wrLIgT5.jpg"
+        title="Delete Demo" /></p>
+</li>
+</ul>
+<h5 id="q-and-a">Q and A</h5>
+<ol>
+<li>RDBMS與ElasticSearch比較
+<ul>
+<li>ElasticSearch不是資料庫，它是搜尋分析引擎</li>
+<li>沒有schema，建構於Lucene，擅於全文搜索</li>
+<li>可以微調搜尋結果的關聯性（precision, ranking, recall)</li>
+</ul>
+</li>
+<li><code>node</code>相當於SQL Server的table，而<code>cluster</code>相當於SQL Server的servers，這種說法對嗎？
+<ul>
+<li>蘋果不能跟橘子相比</li>
+</ul>
+</li>
+<li>Nodes會用cache找被之前 搜尋的數據嗎？
+<ul>
+<li>Yes, node use cache at the level of ElasticSearch and operating system, so that you could retrieve information faster.</li>
+</ul>
+</li>
+<li>如何在一個node裡面做sharding分片化？
+<ul>
+<li>不建議使用，因為如果這個node有問題，那data就永遠消失了，而且把資料sharding在不同的nodes才有助於平行化搜尋資料</li>
+</ul>
+</li>
+<li>使用ElasticSearch的缺點
+<ul>
+<li>不支持joins、transactions</li>
+</ul>
+</li>
+<li>其它問題，<a href="https://discuss.elastic.co/" target="_blank" rel="noopener noreffer ">discuss_elastic_co</a> 應該都找得到解答</li>
+<li><code>:9200</code>(ElasticSearch) 以及 <code>:5601</code>(Kibana)，有支援Authentication/ tokens 嗎？
+<ul>
+<li>有～～～官方有相關guide，請搜尋以下關鍵字
+<ul>
+<li>secure-cluster, encrypting-communications, setting-up-authentication</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="part-26">Part 2/6</h3>
+<p>to be continued&hellip;</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
