@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>study - Category - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/categories/study/</link>
-        <description>study - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/study/" rel="self" type="application/rss+xml" /><item>
+        <title>ElasticSearch - Category - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/categories/elasticsearch/</link>
+        <description>ElasticSearch - Category - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/elasticsearch/" rel="self" type="application/rss+xml" /><item>
     <title>Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)</title>
     <link>http://wysiwyz.github.io/posts/elasticsearch/</link>
     <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>

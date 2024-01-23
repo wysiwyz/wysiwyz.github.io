@@ -51,8 +51,26 @@
             </a></div>
     </div>
 </header><main class="main">
-                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/yi19cel22wen34" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
+                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/s_docker_learn/">Docker</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a>&nbsp;<a href="/categories/docker/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Docker</a></span></div><div class="content">Docker Note docker ps
+​ list running containers
+docker stop &lt;container_id&gt;
+​ stops the container
+docker start &lt;container_id&gt;
+​ starts stopped container
+docker ps -a
+​ lists running and stopped container
+docker run &lt;image_name&gt;:
+​ pulls image and starts container
+​ (docker pull + docker start in one command)
+[CONTAINER Port vs HOST Port]
++ Multiple containers can run on your host machine
++ Your laptop has only certain ports available</div><div class="post-footer">
+        <a href="/posts/s_docker_learn/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ss_junit/">使用 JUnit & Mockito 測試 Java 程式</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">使用 JUnit &amp; Mockito 測試 Java 程式 Mockito &mdash; 本來以為這跟薄荷飲料mochito同音，實際要唸成 /mɑkiːtoʊ/ 或者 /mˈɒkiːtoʊ/ ，音譯就是『莫kito』或者『碼kito』，總之 k 要發音，因為他是模擬方法 (&ldquo;mock all methods&rdquo;)
 Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式碼一部分區塊 的一個小型方法
@@ -126,14 +144,6 @@ Latency 常用指令：
 因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作</div><div class="post-footer">
         <a href="/posts/ss_redis_notes/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/react_scrimba/">Think in REACT</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-10-25">2023-10-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">0. 建立 React 靜態頁面的入門方法 \index.html 在 head 加入 react 以及 react-dom 的 script 連結 referred doc
-在 head 加入 babel.min.js 的 script 連結 referred doc
-✏️ script 除了加上 index.js 的檔案來源，也要記得加上 type 屬性 text/babel，不然無法順利 ReactDOM.render() 喔！
-1 2 3 4 5 6 7 8 9 10 11 12 &lt;html&gt; &lt;head&gt; &lt;link rel=&#34;stylesheet&#34; href=&#34;index.css&#34;&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react@18/umd/react.development.js&#34;&gt;&lt;/script&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react-dom@18/umd/react-dom.development.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://unpkg.com/babel-standalone@6/babel.min.js&#34;&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;root&#34;&gt;&lt;/div&gt; &lt;script src=&#34;index.js&#34; type=&#34;text/babel&#34;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; \index.js ReactDOM.</div><div class="post-footer">
-        <a href="/posts/react_scrimba/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

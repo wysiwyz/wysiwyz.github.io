@@ -2,11 +2,15 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/elasticsearch/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/elasticsearch/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/kibana/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/study/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/owasp_/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/owasp/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/security/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
@@ -31,8 +35,6 @@
             <loc>http://wysiwyz.github.io/tags/java/</loc><lastmod>2023-08-05T12:13:34&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ocpjp_11_2/</loc><lastmod>2023-08-05T12:11:34&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ocpjp_11_1/</loc><lastmod>2023-08-05T12:10:22&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/elasticsearch/</loc><lastmod>2023-07-11T17:00:05&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/study/</loc><lastmod>2023-07-11T17:00:05&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/gcp_pca_exam_dump/</loc><lastmod>2023-06-25T15:26:29&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/googlecloudplatform/</loc><lastmod>2023-06-25T15:26:29&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/professionalcloudarchitect/</loc><lastmod>2023-06-25T15:26:29&#43;08:00</lastmod></url><url>

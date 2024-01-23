@@ -3,9 +3,22 @@
         <title>Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</lastBuildDate>
             <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)</title>
+    <link>http://wysiwyz.github.io/posts/elasticsearch/</link>
+    <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/posts/elasticsearch/</guid>
+    <description><![CDATA[2023-07-11 的筆記太簡略粗糙，重新整理
+Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
+通常用於啟用application的搜索功能，有以下特性
+如果產品有評價等級，而開發想要提高高評價產品的關聯性 開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序 ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台
+可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc. 例子：
+Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage) Application Performance Management (APM) : 應用程式性能管理 Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch ) Excellent at analyzing lots of data: 分析大量數據 使用機器學習根據歷史資料，來預測未來銷售額) Anomality Detection 偵測異常 Data is stored as documents, which is just a unit of information]]></description>
+</item>
+<item>
     <title>[筆記] OWASP API Security Top 10</title>
     <link>http://wysiwyz.github.io/posts/owasp_/</link>
     <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
@@ -44,7 +57,7 @@ Data Center 2030年達成零碳排
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/s_spring_security/</guid>
     <description><![CDATA[想學很久的 Spring Security 終於在看完 udemy 的 JUnit + Mockito 課程之後，決定認真來瞭解一下了！！
-先附上 連結]]></description>
+先附上非常認真琢磨且勤於筆記的 連結]]></description>
 </item>
 <item>
     <title>[筆記] 黑白箱弱點掃描淺淺談</title>
@@ -145,15 +158,6 @@ Hibernate 可以自動生成SQL 語句，自動執行
 簡化開發_簡化了數據訪問層的開發流程 自動化查詢_只要方法命名好，就能生成相應的查詢語句 強大的ORM功能_便於物件和關係數據庫之間的轉換 數據庫管理_Spring Data JPA 透過Spring框架的數據源管理功能，可方便切換和配置不同數據源 劣勢：
 性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響 靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL 舉例：
 1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -]]></description>
-</item>
-<item>
-    <title>1hr37mins30secs de SpringBoot</title>
-    <link>http://wysiwyz.github.io/posts/ss_springboot/</link>
-    <pubDate>Tue, 26 Dec 2023 14:13:34 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ss_springboot/</guid>
-    <description><![CDATA[SpringBoot 2023 SpringBoot initializr Dependencies:
-SpringBoot DevTools Spring Web Spring Data JPA and Hibernate PostgreSQL Driver Starting the server src - main - java - com.example.demo.DemoApplication - resources - static - templates - application.properties - test - java - resources Create a simple API 1 2 3 4 5 6 7 @RestController //To Make the class to serve restful endpoint public class DemoController {} @GetMapping //To set Restful endpoint on method public List&lt;String&gt; hello() { return List.]]></description>
 </item>
 </channel>
 </rss>

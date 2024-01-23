@@ -4,37 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Elasticsearch 8 Java client 應用 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Elasticsearch 8 Java client 應用" />
-<meta property="og:description" content="Lucene做的搜尋引擎，Java, .NET, Python, GO&hellip;等等都可以用的
-Java Client Operation Process
-創建 Index template RDBMS Elasticsearch Table Index Row Document Column Field Schema Mapping SQL DSL 常用分詞器 Analyze
-Jieba分詞器 (better) IK分詞器 如何跟 Elasticsearch 溝通:
-Postman Kibnan 1 RestClient restClient = 幾個重要的methods get() search() index() update() indices().putIndexTemplate() " />
+        <title>Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack) - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)" />
+<meta property="og:description" content="2023-07-11 的筆記太簡略粗糙，重新整理
+Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
+通常用於啟用application的搜索功能，有以下特性
+如果產品有評價等級，而開發想要提高高評價產品的關聯性 開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序 ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台
+可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc. 例子：
+Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage) Application Performance Management (APM) : 應用程式性能管理 Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch ) Excellent at analyzing lots of data: 分析大量數據 使用機器學習根據歷史資料，來預測未來銷售額) Anomality Detection 偵測異常 Data is stored as documents, which is just a unit of information" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://wysiwyz.github.io/posts/elasticsearch/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-07-11T17:00:05+08:00" />
-<meta property="article:modified_time" content="2023-07-11T17:00:05+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta property="article:published_time" content="2024-01-22T17:00:05+08:00" />
+<meta property="article:modified_time" content="2024-01-22T17:00:05+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Elasticsearch 8 Java client 應用"/>
-<meta name="twitter:description" content="Lucene做的搜尋引擎，Java, .NET, Python, GO&hellip;等等都可以用的
-Java Client Operation Process
-創建 Index template RDBMS Elasticsearch Table Index Row Document Column Field Schema Mapping SQL DSL 常用分詞器 Analyze
-Jieba分詞器 (better) IK分詞器 如何跟 Elasticsearch 溝通:
-Postman Kibnan 1 RestClient restClient = 幾個重要的methods get() search() index() update() indices().putIndexTemplate() "/>
+<meta name="twitter:title" content="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)"/>
+<meta name="twitter:description" content="2023-07-11 的筆記太簡略粗糙，重新整理
+Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
+通常用於啟用application的搜索功能，有以下特性
+如果產品有評價等級，而開發想要提高高評價產品的關聯性 開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序 ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台
+可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc. 例子：
+Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage) Application Performance Management (APM) : 應用程式性能管理 Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch ) Excellent at analyzing lots of data: 分析大量數據 使用機器學習根據歷史資料，來預測未來銷售額) Anomality Detection 偵測異常 Data is stored as documents, which is just a unit of information"/>
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/elasticsearch/" /><link rel="prev" href="http://wysiwyz.github.io/posts/gcp_pca_exam_dump/" /><link rel="next" href="http://wysiwyz.github.io/posts/ocpjp_11_1/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/elasticsearch/" /><link rel="prev" href="http://wysiwyz.github.io/posts/owasp_/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Elasticsearch 8 Java client 應用",
+        "headline": "Elasticsearch 從頭開始學習(ELK \u0026 Elastic Stack)",
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/"
-        },"genre": "posts","wordcount":  43 ,
-        "url": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/","datePublished": "2023-07-11T17:00:05+08:00","dateModified": "2023-07-11T17:00:05+08:00","publisher": {
+        },"genre": "posts","wordcount":  502 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/","datePublished": "2024-01-22T17:00:05+08:00","dateModified": "2024-01-22T17:00:05+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -73,10 +75,10 @@ Postman Kibnan 1 RestClient restClient = 幾個重要的methods get() search() i
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 8 Java client 應用</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/study/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>study</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-07-11">2023-07-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;43 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 8 Java client 應用">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 從頭開始學習(ELK & Elastic Stack)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/study/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>study</a>&nbsp;<a href="/categories/elasticsearch/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>ElasticSearch</a>&nbsp;<a href="/categories/kibana/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Kibana</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;502 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -84,92 +86,405 @@ Postman Kibnan 1 RestClient restClient = 幾個重要的methods get() search() i
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>Lucene做的搜尋引擎，Java, .NET, Python, GO&hellip;等等都可以用的</p>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#elastic-search-到底是什麼">Elastic Search 到底是什麼</a></li>
+    <li><a href="#overview-of-the-elastic-stack">Overview of the Elastic Stack</a>
+      <ul>
+        <li><a href="#kibana">Kibana</a></li>
+        <li><a href="#logstash">Logstash</a></li>
+        <li><a href="#x-pack">X-Pack</a></li>
+        <li><a href="#beats">Beats</a></li>
+        <li><a href="#小結">小結</a></li>
+      </ul>
+    </li>
+    <li><a href="#常見架構">常見架構</a></li>
+    <li><a href="#安裝方式">安裝方式</a>
+      <ul>
+        <li><a href="#elastic-cloud">Elastic Cloud</a></li>
+        <li><a href="#在macos上安裝elasticsearch">在MacOS上安裝ElasticSearch</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>2023-07-11 的筆記太簡略粗糙，重新整理</p>
+</blockquote>
+<h2 id="elastic-search-到底是什麼">Elastic Search 到底是什麼</h2>
 <ul>
 <li>
-<p>Java Client Operation Process</p>
+<p>ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)</p>
+</li>
+<li>
+<p>通常用於啟用application的搜索功能，有以下特性</p>
+<ul>
+<li>如果產品有評價等級，而開發想要提高高評價產品的關聯性</li>
+<li>開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序</li>
+</ul>
+</li>
+<li>
+<p>ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台</p>
+<ul>
+<li>可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc.</li>
+</ul>
+</li>
+<li>
+<p>例子：</p>
+<ul>
+<li>Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage)</li>
+<li>Application Performance Management (APM) : 應用程式性能管理</li>
+<li>Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch )</li>
+<li>Excellent at analyzing lots of data: 分析大量數據
+<ul>
+<li>使用機器學習根據歷史資料，來預測未來銷售額)</li>
+<li>Anomality Detection 偵測異常</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Data is stored as documents, which is just a unit of information</p>
+<p><em>FIELD_NAMES</em> : <em>FIELD_VALUES</em></p>
+<pre tabindex="0"><code>{
+    &#34;firstName&#34;: &#34;Angela&#34;,
+    &#34;lastName&#34;: &#34;Joji&#34;,
+    &#34;interests&#34;: [&#34;ElasticSearch&#34;, &#34;Logstash&#34;, &#34;Kibana&#34;, &#34;ElasticStack&#34;]
+}
+</code></pre></li>
+<li>
+<p>數據存成文件(documents)，再透過RESTful API查詢資料</p>
+</li>
+<li>
+<p>發送到ElasticSearch的查詢也是用JSON編寫的</p>
+</li>
+<li>
+<p>ElasticSearch是用Java編寫，並建構於Apache Lucene</p>
+</li>
+<li>
+<p>因為使用起來很方便而且擴充性很告，ElasticSearch的普及率很高</p>
+</li>
+</ul>
+<h2 id="overview-of-the-elastic-stack">Overview of the Elastic Stack</h2>
+<ul>
+<li>由Elasticsearch BV開發維護</li>
+<li>Elastic Stack 以 Elastic Search 為核心，加上 X-Pack、KIBANA、BEATS、LOGSTASH</li>
+</ul>
+<h3 id="kibana">Kibana</h3>
+<ul>
+<li>An analytics and visualization platform 分析和可視化 平台</li>
+<li>可以想成是ElasticSearch的儀表板，可以在其中建立資料視覺化，像是圓餅圖、折線圖</li>
+<li>Data Detection &amp; Prediction的配置也是在Kibana做更改</li>
+<li>Kibana也提供了一個介面來管理ElasticSearch的某些部份，例如AuthZ &amp; AuthN</li>
+<li>Kibana: 存在ElasticSearch裡面資料的web interface</li>
+</ul>
+<h3 id="logstash">Logstash</h3>
+<ul>
+<li>傳統上，logstash用來處理來自app的日誌log，並將它發送到ElasticSearch</li>
+<li>但現在Logstash演變成更通用的工具，作為數據處理管道  data processing pipeline</li>
+<li>Logstash收到的數據會以事件的形式被處理
+<ul>
+<li>log file entries</li>
+<li>e-commerce orders</li>
+<li>customers</li>
+<li>chat messages</li>
+</ul>
+</li>
+<li>以上事件會由Logstash處理，接著送往其它目的地(例如⬇️)
+<ul>
+<li>ElasticSearch</li>
+<li>Kafka queue</li>
+<li>Email message</li>
+<li>HTTP endpoints</li>
+</ul>
+</li>
+<li>Logstash 管道由三個部分/三個階段組成：  inputs, filters, outputs</li>
+<li>每個階段都能使用插件(plug-ins)</li>
+</ul>
+<h4 id="plugins">Plugins</h4>
+<ul>
+<li>
+<p>input plugins</p>
+<ul>
+<li>Logstash接收事件的方式，可以是一個 document</li>
+<li>logstash 會從給定的文件讀取事件</li>
+<li>也可以是透過HTTP發送事件到Logstash，從RDS讀取資料，或者監聽Kafka貯列</li>
+</ul>
+</li>
+<li>
+<p>filter plugins</p>
+<ul>
+<li>Logstash處理事件的方式</li>
+<li>Parse Data: 可以解析CSV、XML或JSON</li>
+<li>Data Enrichment: 例如查詢一個ip位址，並解析其地理位置</li>
+</ul>
+</li>
+<li>
+<p>Output plugins</p>
+<ul>
+<li>將處理過後的事件發送到哪裡，目的地正式名稱為STASHES</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>簡言之，Logstash從一到多個管道接收事件，處理事件並且發送事件到一至多個STASHES</p>
+</blockquote>
+<ul>
+<li>一個Logstash instance中，可以運行多個 pipelines</li>
+<li>Logstash可以水平擴展</li>
+</ul>
+<h4 id="logstash-配置">Logstash 配置</h4>
+<ul>
+<li>
+<p>類似JSON格式的markup format，但又不僅是markup language，因為它還可以添加條件語句，讓管道動態化</p>
+</li>
+<li>
+<p>以下範例配置文本：</p>
+<ul>
+<li>
+<p>解析字串（將非結構化的數據結構化）：使用Grok pattern</p>
+<blockquote>
+<p>Grok Pattern類似正則表達式</p>
+<p>用途：to match pieces of text and store them within fields</p>
+</blockquote>
+</li>
+</ul>
+<pre tabindex="0"><code class="language-Treetop" data-lang="Treetop">input {
+  file {
+    patch =&gt; &#34;/path/to/apache_access.log&#34;
+  }
+}
+
+filter {
+  if [request] in [&#34;/robots.txt&#34;, &#34;/favicon.ico&#34;] {
+    drop {}
+  }
+}
+
+output {
+  file {
+    patch =&gt; &#34;%{type}_%{+yyyy_MM_dd}.log&#34;
+  }
+}
+</code></pre><h3 id="x-pack">X-Pack</h3>
+<p>給ElasticSearch 和 Kibana 添加功能</p>
 <ol>
-<li>創建 Index template
-<table>
-<thead>
-<tr>
-<th>RDBMS</th>
-<th>Elasticsearch</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Table</td>
-<td>Index</td>
-</tr>
-<tr>
-<td>Row</td>
-<td>Document</td>
-</tr>
-<tr>
-<td>Column</td>
-<td>Field</td>
-</tr>
-<tr>
-<td>Schema</td>
-<td>Mapping</td>
-</tr>
-<tr>
-<td>SQL</td>
-<td>DSL</td>
-</tr>
-</tbody>
-</table>
+<li>Security: X-Pack給Kibana和ElasticSearch添加了AuthN 與 AuthZ功能
+<ul>
+<li>Kibana可以整合(集成integrate) 其它AuthN providers，例如LDAP、Active Directory</li>
+<li>另外也可以在配置檔加入users &amp; roles，並配置允許特定角色/用戶訪問的內容</li>
+</ul>
+</li>
+<li>Monitoring
+<ul>
+<li>X-Pack可以協助監控Elastic Stack (ElasticSearch, Logstash, Kibana) 的性能</li>
+<li>例: CPU &amp; memory usage CPU和內存的使用情況, disk space磁碟空間 等有效指標</li>
+</ul>
+</li>
+<li>Alerting警報
+<ul>
+<li>例: 當web server的CPU利用率超過90%，或者application error達到門檻</li>
+<li>透過電子郵件,  或Slack等其它方式告知</li>
+</ul>
+</li>
+<li>Reporting
+<ul>
+<li>將Kibana視覺化的數據導出成PDF文件</li>
+<li>可以接收需求後才輸出報告，也可以定期輸出報告並發送至e-mail</li>
+<li>另外也可以指定觸發輸出報告的條件（類似alerting)</li>
+</ul>
+</li>
+<li>Machine Learning
+<ul>
+<li>功能性(functionality)由X-Pack提供，接口(interface)由Kibana提供</li>
+<li>可以做異常檢測、預測未來數據</li>
+</ul>
+</li>
+<li>Graph
+<ul>
+<li>指的是資料之間的關係</li>
+<li>例: 在商品明細頁面顯示與相關商品們，或者Spotify的下一首推薦歌單</li>
+<li>需要區分popularity與relevance，不然可能產生誤導
+<ul>
+<li>喜歡聽LinkinPark的樂迷可能也偶爾會聽古典樂</li>
+</ul>
+</li>
+<li>提供一個公開API，可以用來將Graph整合進應用程式</li>
+<li>提供一個plugins，可以用來可視化Kibana裡面資料之間的關係</li>
+</ul>
+</li>
+<li>ElasticSearch SQL
+<ul>
+<li>使用SQL查詢SQL</li>
+<li>使用Query DSL撰寫查詢（flexible but verbose at times)</li>
+<li>透過HTTP或JDBC driver發送SQL</li>
+</ul>
 </li>
 </ol>
 </li>
-<li>
-<p>常用分詞器 Analyze</p>
+</ul>
+<h3 id="beats">Beats</h3>
 <ul>
-<li>Jieba分詞器 (better)</li>
-<li>IK分詞器</li>
+<li>
+<p>Collections of data receiver</p>
+</li>
+<li>
+<p>Light-weight agent 輕量級代理, 在Server中，將數據發送到Logstash或者ElasticSearch</p>
+<ul>
+<li>Beats: data shipper, 收集不同類型的數據</li>
 </ul>
 </li>
 <li>
-<p>如何跟 Elasticsearch 溝通:</p>
+<p>常見beats</p>
 <ol>
-<li>Postman</li>
-<li>Kibnan</li>
-<li></li>
+<li>FileBeat
+<ul>
+<li>收集log檔案</li>
+<li>包含常見log種類的模組 (例如: nginx, MySQL)</li>
+</ul>
+</li>
+<li>MetricBeat
+<ul>
+<li>收集系統與服務的度量指標, 例如: memory and CPU usage</li>
+<li>包含常見log種類的模組 (例如: nginx, MySQL)</li>
+</ul>
+</li>
+<li>PacketBeat:
+<ul>
+<li>Collects network data 收集網路數據</li>
+<li>例如: HTTP requests or database transaction HTTP請求或資料庫交易</li>
+</ul>
+</li>
+<li>WinLogBeat: Collects Windows Events Logs</li>
+<li>AuditBit: Collects audit data from Linux 收集Linux審計數據</li>
+<li>HeartBeat: monitor service uptime 監控服務上線時間</li>
 </ol>
 </li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RestClient</span> <span class="n">restClient</span> <span class="o">=</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>幾個重要的methods
+<h3 id="小結">小結</h3>
 <ul>
-<li>get()</li>
-<li>search()</li>
-<li>index()</li>
-<li>update()</li>
-<li>indices().putIndexTemplate()</li>
+<li>X-Pack: Add features to the elastic stack</li>
+<li>Logstash and Beats: In charge of data ingestion</li>
+<li>ElasticSearch: Search, analyze and store data</li>
+<li>Kibana: Visualize your data</li>
+</ul>
+<hr>
+<h2 id="常見架構">常見架構</h2>
+<p>現在有個電商網站，資料存在資料庫，當client請求資料時是從資料庫拿，再透過後端應用程式傳回前端瀏覽器，但現在想要將ElasticSearch整合進現有架構，怎麼做？</p>
+<p>通常建議使用client libraries，同時要保持資料庫與ElasticSearch同步更新，數據在database與ElasticSearch會重複。</p>
+<p>如果資料庫已經有10萬筆商品，要怎麼同步到ElasticSearch？</p>
+<ul>
+<li>如果資料沒有那麼多，可以寫script讓它一口氣完成輸入</li>
+<li>如果資料更多就需要paginating或scroll</li>
+<li>資料輸入後，就需要應用程式負責維護兩邊的資料同步更新</li>
+</ul>
+<p>隨著業務成長，要確保目前的架構足以應付未來增長（處理流量高峰，了解何時應該增加一台web server)  ，可以使用metricbeat監控系統級別指標（system level metrics），例如CPU使用率和內存memory使用率。所以在Web Server啟動MetricBeat，但數據如何結束於ElasticSearch？</p>
+<ul>
+<li>Beats支持向Logstash以及ElasticSearch發送數據，後者相對簡單</li>
+<li>配置Metricbeat，使它能將資料送進 ElasticSearch 的 ingest node</li>
+<li>指示Metricbeat，在Kibana中配置儀表板</li>
+<li>Kibana的配置則存在ElasticSearch裡面</li>
+</ul>
+<p>配置更多的東西：Web Server 的 access logs, error logs。雖然可以利用Google Analytics，但access log更可以提供一些有用訊息，像是</p>
+<ul>
+<li>web server處理每個請求花了多長時間</li>
+<li>監控響應時間 (respone time) 並聚合每個端點的請求</li>
+<li>識別bad deployments（例如：太長的響應時間、或4xx/5xx的HTTP狀態碼）</li>
+<li>上述這些都可以透過Filebeat達成，Filebeat可以
+<ul>
+<li>解析日誌(parse logs)</li>
+<li>處理多行事件(multi-line events)，例如stack trace, etc.</li>
 </ul>
 </li>
-<li></li>
+</ul>
+<p>更高級的事件處理，像是data enrichment數據豐富化，可以在web application中執行這類操作，但可能會導致一些缺點：</p>
+<ol>
+<li>首先業務邏輯程式碼會充滿雜亂無章的事件處理，增加服務器響應時間（除非用異步執行）</li>
+<li>去中心化的事件處理：事件處理會發生在很多地方， 可以透過Logstash實現集中化，將事件處理放在同一個地方完成
+<ul>
+<li>WebServer發送事件，透過HTTP到Logstash，Logstash依照指示的方式處理事件，接著發送到ElasticSearch</li>
+<li>那來自MetricBeat和FileBeat的data要怎麼處理？可以透過Logstash發送到elasticsearch（最理想狀況），或直接送到ElasticSearch</li>
+<li>ElasticSearch only handles query from web-app, not modifying data</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="安裝方式">安裝方式</h2>
+<ol>
+<li>安裝Kibana - 它有Console方便開發，可以輕易的發送查詢到ElasticSearch</li>
+<li>如果使用 <a href="https://www.elastic.co/cloud/cloud-trial-overview" target="_blank" rel="noopener noreffer ">Elastic Cloud</a> 就都不用安裝了😅他是有14天期限的試用版
+<ul>
+<li>試用期是從你建立第一個cluster開始算，而不是建立帳戶開始算</li>
+</ul>
+</li>
+</ol>
+<h3 id="elastic-cloud">Elastic Cloud</h3>
+<ul>
+<li>
+<p>集群(cluster)：elastic cloud 把他稱為 deployment (less technical term for  cluster)</p>
+</li>
+<li>
+<p>創建部署 create deployment</p>
+<ol>
+<li>
+<p>命名, 選擇cloud platform, 選擇template</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/kMGTeno.jpg"
+        data-srcset="https://i.imgur.com/kMGTeno.jpg, https://i.imgur.com/kMGTeno.jpg 1.5x, https://i.imgur.com/kMGTeno.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/kMGTeno.jpg"
+        title="Naming" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/sSQ4Gii.jpg"
+        data-srcset="https://i.imgur.com/sSQ4Gii.jpg, https://i.imgur.com/sSQ4Gii.jpg 1.5x, https://i.imgur.com/sSQ4Gii.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/sSQ4Gii.jpg"
+        title="Choose_Platform" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/nmKK5Hw.png"
+        data-srcset="https://i.imgur.com/nmKK5Hw.png, https://i.imgur.com/nmKK5Hw.png 1.5x, https://i.imgur.com/nmKK5Hw.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/nmKK5Hw.png"
+        title="Save_Credentials" /></p>
+</li>
+<li>
+<p>部署完成後，點擊Actions➡️Manage就可以看到相關的基本信息</p>
+<ul>
+<li>health status</li>
+<li>actions we can perform</li>
+<li>memory and disk usage</li>
+<li>Cloud ID: 當你要從ElasticStack相關產品 (Beats or Logstash) 發送數據到ElasticSearch時，會需要用到這個ID</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="在macos上安裝elasticsearch">在MacOS上安裝ElasticSearch</h3>
+<ul>
+<li>ElasticSearch是一堆jar檔 (java archive)</li>
+<li>ElasticSearch附帶一個版本的OpenJDK
+<ul>
+<li>如果已經有安裝，則會使用JAVA_HOME環境變數指向的JVM</li>
+<li>還沒安裝的話就會使用 bundled JDK，不用額外安裝</li>
+</ul>
+</li>
+<li><a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreffer ">下載連結</a></li>
 </ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-07-11</span>
+                <span>Updated on 2024-01-22</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/elasticsearch/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/elasticsearch/" data-title="Elasticsearch 8 Java client 應用"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/elasticsearch/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/elasticsearch/" data-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -181,8 +496,7 @@ Postman Kibnan 1 RestClient restClient = 幾個重要的methods get() search() i
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/gcp_pca_exam_dump/" class="prev" rel="prev" title="GCP PCA --- practice exam"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>GCP PCA --- practice exam</a>
-            <a href="/posts/ocpjp_11_1/" class="next" rel="next" title="1Z0-819 曾師筆記 (1/duology)">1Z0-819 曾師筆記 (1/duology)<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/owasp_/" class="prev" rel="prev" title="[筆記] OWASP API Security Top 10"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[筆記] OWASP API Security Top 10</a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
