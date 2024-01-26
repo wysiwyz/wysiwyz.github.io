@@ -88,6 +88,25 @@ $T(n) = O(n^2)$
 為</div><div class="post-footer">
         <a href="/posts/algorithm/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/operating_system/">Operating_system</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="1993-01-26">1993-01-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">01. Multiprogramming System (一）定義：系統允許多個 jobs (processes) 同時執行，即是
+主要目的：提高CPU utilization
+作法：透過Job scheduling (or CPU scheduling 工作的排班或者CPU的排班) 技術達成
+e.g. 當執行中的process在waiting for I/O completed，則 OS 可以將 CPU 切換給另外一個 process 執行，避免 CPU idle
+即只要系統內有夠多的 Jobs 存在，則 CPU idle 機會下降
+(二）Multiprogramming Degree
+相當於系統內之 processes 數目
+一般而言，如果 Degree 越高，則 cpu utilization 越高
+Note: Chapter 8 virtual memory Thrashing 例外狀況除外
+(三）多個 processes 同時執行之方式有兩個：
+Concurrent execution 並行
+一顆CPU，大家輪流交錯使用，晚上7-8點給P1，做不下去切給其他的
+Parallel execution 平行
+多顆CPU或者多核 (core) ，每一個工作都在不同的cpu平行執行
+Multiprogramming 跟一顆cpu或者多顆cpu無關，單一 user 也可以 multiprogramming，不限定多個 users。</div><div class="post-footer">
+        <a href="/posts/operating_system/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/operatingsystem/">OperatingSystem</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

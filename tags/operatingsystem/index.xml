@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OperatingSystem - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/operatingsystem/</link>
+        <description>OperatingSystem - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Jan 1993 14:30:01 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/operatingsystem/" rel="self" type="application/rss+xml" /><item>
+    <title>Operating_system</title>
+    <link>http://wysiwyz.github.io/posts/operating_system/</link>
+    <pubDate>Tue, 26 Jan 1993 14:30:01 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/operating_system/</guid>
+    <description><![CDATA[01. Multiprogramming System (一）定義：系統允許多個 jobs (processes) 同時執行，即是
+主要目的：提高CPU utilization
+作法：透過Job scheduling (or CPU scheduling 工作的排班或者CPU的排班) 技術達成
+e.g. 當執行中的process在waiting for I/O completed，則 OS 可以將 CPU 切換給另外一個 process 執行，避免 CPU idle
+即只要系統內有夠多的 Jobs 存在，則 CPU idle 機會下降
+(二）Multiprogramming Degree
+相當於系統內之 processes 數目
+一般而言，如果 Degree 越高，則 cpu utilization 越高
+Note: Chapter 8 virtual memory Thrashing 例外狀況除外
+(三）多個 processes 同時執行之方式有兩個：
+Concurrent execution 並行
+一顆CPU，大家輪流交錯使用，晚上7-8點給P1，做不下去切給其他的
+Parallel execution 平行
+多顆CPU或者多核 (core) ，每一個工作都在不同的cpu平行執行
+Multiprogramming 跟一顆cpu或者多顆cpu無關，單一 user 也可以 multiprogramming，不限定多個 users。]]></description>
+</item>
+</channel>
+</rss>

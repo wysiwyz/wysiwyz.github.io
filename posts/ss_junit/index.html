@@ -35,7 +35,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/ss_junit\/"
-        },"genre": "posts","keywords": "","wordcount":  5490 ,
+        },"genre": "posts","keywords": "","wordcount":  5491 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/ss_junit\/","datePublished": "2023-12-26T14:14:47+08:00","dateModified": "2023-12-26T14:14:47+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,7 +77,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 JUnit & Mockito 測試 Java 程式</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5490 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-26">2023-12-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;5491 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;26 minutes&nbsp;<span id="/posts/ss_junit/" class="leancloud_visitors" data-flag-title="使用 JUnit &amp; Mockito 測試 Java 程式">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -178,7 +178,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
 免得未來接手的人更改此方法時不小心弄壞現有功能</p>
 </li>
 <li>
-<p>確保你做的修改不會影響到其它程式碼，確保沒有回歸，所有功能仍然按照預期工作</p>
+<p>確保你做的修改不會影響到其它程式碼，確保沒有回歸 (Regression)，所有功能仍然按照預期工作</p>
 </li>
 <li>
 <p>幫助後續重構、優化效能</p>
@@ -218,7 +218,7 @@ Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式�
         ↳ Application code is tested without mocking DB or HTTP connections
 1 (金字塔底部)。Unit Tests              
   ↳ Testing isolated small pieces of code with Fake or Mock dependencies
-</code></pre><p>單元測試是這三種測試中最快的，它不用連接資料庫，也不用透過網路發送gdp請求</p>
+</code></pre><p>單元測試是這三種測試中最快的，它不用連接資料庫，也不用透過網路發送http請求</p>
 <p>End-to-end / 自動化UI測試是速度最慢的</p>
 <h3 id="junit-5">JUnit 5</h3>
 <p>JUnit 5 = JUnit Platform + JUnit Jupiter + JUnit Vintage</p>
@@ -817,7 +817,7 @@ to supply <strong>null</strong>, simple do nothing, not even an empty space or s
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@ParameterizedTest</span>
-</span></span><span class="line"><span class="cl"><span class="nd">@ValueSource</span><span class="o">(</span><span class="n">string</span><span class="o">={</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;Kate&#34;</span><span class="o">,</span> <span class="s">&#34;Alice&#34;</span><span class="o">})</span>
+</span></span><span class="line"><span class="cl"><span class="nd">@ValueSource</span><span class="o">(</span><span class="n">strings</span><span class="o">={</span><span class="s">&#34;John&#34;</span><span class="o">,</span> <span class="s">&#34;Kate&#34;</span><span class="o">,</span> <span class="s">&#34;Alice&#34;</span><span class="o">})</span>
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">valueSourceDemostraion</span><span class="o">(</span><span class="n">String</span> <span class="n">firstName</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">firstName</span><span class="o">);</span>
 </span></span><span class="line"><span class="cl">  <span class="n">assertNotNull</span><span class="o">(</span><span class="n">firstName</span><span class="o">);</span>

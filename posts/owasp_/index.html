@@ -31,7 +31,7 @@ What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/owasp_\/"
-        },"genre": "posts","keywords": "security, OWASP","wordcount":  2461 ,
+        },"genre": "posts","keywords": "security, OWASP","wordcount":  4150 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/owasp_\/","datePublished": "2024-01-15T20:28:58+08:00","dateModified": "2024-01-15T20:28:58+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -73,8 +73,8 @@ What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[筆記] OWASP API Security Top 10</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-15">2024-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2461 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;<span id="/posts/owasp_/" class="leancloud_visitors" data-flag-title="[筆記] OWASP API Security Top 10">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-15">2024-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4150 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;20 minutes&nbsp;<span id="/posts/owasp_/" class="leancloud_visitors" data-flag-title="[筆記] OWASP API Security Top 10">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -109,8 +109,6 @@ What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非
     <li><a href="#beyond-the-top-10">Beyond the Top 10</a>
       <ul>
         <li><a href="#injections">Injections</a></li>
-        <li><a href="#insufficient-logging--monitoring">Insufficient Logging &amp; Monitoring</a></li>
-        <li><a href="#business-logic-flaws">Business Logic Flaws</a></li>
       </ul>
     </li>
   </ul>
@@ -874,23 +872,523 @@ app使用這先參數建立變數或內部物件</p>
 <hr>
 <h3 id="api62023">API6:2023</h3>
 <h4 id="unrestricted-access-to-sensitive-business-flows">Unrestricted Access to Sensitive Business Flows</h4>
+<ul>
+<li>
+<p>It represents the risk of an attacker being able to identify and exploit API driven workflows. 代表攻擊者能夠識別並利用API驅動的工作流程的風險</p>
+</li>
+<li>
+<p>If vulnerable, an attacker will be able to leverage an organization&rsquo;s API request structure to obstruct other users. 攻擊者會藉由組織的API請求結構，來妨礙其它users，例如：</p>
+<ul>
+<li>
+<p>spam other users, deplete the stock of highly sought after items, prevent other users from using expected application functionality</p>
+<p>給其他用戶發垃圾郵件、耗用高需求的資源的庫存、不讓其他users使用app預期要能提供的功能</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>&ldquo;Exploitation usually involves understanding the business model backed by the API, finding sensitive business flows, and automating access to these flows, causing harm to the business.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>&ldquo;Lack of a holistic view of the API in order to fully support business requirements tends to contribute to the prevalence of this issue. Attackers manually identify what resources (e.g. endpoints) are involved in the target workflow and how they work together. If mitigation mechanisms are already in place, attackers need to find a way to bypass them.&rdquo;</p>
+</blockquote>
+</li>
+<li>
+<p>Impacts Description</p>
+<blockquote>
+<p>&ldquo;In general technical impact is not expected. Exploitation might hurt the business in different ways, for example: prevent legitimate users from purchasing a product, or lead to inflation in the internal economy of a game.&rdquo;</p>
+</blockquote>
+<p>例如：在購買流程中，如果web-app不控管購買流程，投機者(scalper)可能會自動化發送請求，把產品的庫存一下子清空。This is where mechanisms like a completely automated public Turing test to tell computers and humans apart, or better knowns as CAPTCHA, comes into play. 在流程中加入captcha等證明不是機器人的互動可以減緩流程</p>
+</li>
+<li>
+<p>OWASP Preventative Measures</p>
+<blockquote>
+<p>The mitigation planning should be done in two layers:</p>
+<ul>
+<li>Business - identify the business flows that might harm the business if they are excessively used</li>
+<li>Engineering - choose the right protection mechanisms to mitigate the business risk</li>
+</ul>
+<p>The following methods are used to slow down automated threats:</p>
+<ul>
+<li>Device fingerprinting: deny service to unexpected client devices</li>
+<li>Human detection: use captcha or more advanced biometric solutions</li>
+<li>Non-human patterns: analyze traffic to detect non-human patterns</li>
+<li>Consider blocking IP addresses of Tor exit nodes, well-known proxies</li>
+</ul>
+<p>Secure and limit access to APIs consumed directly by machines</p>
+</blockquote>
+</li>
+</ul>
 <hr>
 <h3 id="api72023">API7:2023</h3>
 <h4 id="server-side-request-forgery">Server Side Request Forgery</h4>
+<p>user能夠控制應用程式取回的遠端資源，攻擊者可以用URL的方式提供他們的input。提供的URL可能暴露私有的資料、掃描內部網路、或者透過遠端程式碼執行危害目標server。</p>
+<p>SSRF也是2021版OWASP的第十名，對api的威脅程度有增加的趨勢。</p>
+<ul>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>Exploitation requires the attacker to find an API endpoint that accesses a URI that&rsquo;s provided by the client. In general, basic SSRF (when the response is returned to the attacker), is easier to exploit than Blind SSRF in which the attacker has no feedback on whether or not the attack was successful.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>Modern concepts in application development encourage developers to access URIs provided by the client. Lack of or improper validation of such URIs are common issues. Regular API requests and response analysis will be required to detect the issue. When the response is not returned (Blind SSRF) detecting the vulnerability requires more effort and creativity.</p>
+</blockquote>
+</li>
+<li>
+<p>Impacts Description</p>
+<blockquote>
+<p>Successful exploitation might lead to internal services enumeration (e.g. port scanning), information disclosure, bypassing firewalls, or other security mechanisms. In some cases, it can lead to DoS or the server being used as a proxy to hide malicious activities.</p>
+</blockquote>
+</li>
+<li>
+<p>SSRF 大概就是</p>
+<ul>
+<li>App沒有做輸入驗證，就接收了遠端的資源</li>
+<li>攻擊者可以控制server請求什麼資源</li>
+<li>允許攻擊者存取機敏資料，危害host</li>
+<li>攻擊者利用target server處理他們的請求</li>
+<li>SSRF bug bunty payouts based on level of impact</li>
+</ul>
+</li>
+<li>
+<p>兩種值得一提的SSRF類型</p>
+<ol>
+<li>In-Band SSRF
+<ul>
+<li>Server responds with resources specified by user</li>
+<li>Attacker發送請求，包含一個URL（更新商店庫存），Server將密碼傳回給攻擊者</li>
+</ul>
+</li>
+<li>Out-of-Band SSRF &ldquo;Blind&rdquo;
+<ul>
+<li>Server does not deliver information from specified URL</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>OWASP 預防性措施</p>
+<ul>
+<li>將資源取得機制隔離在內部網路</li>
+<li>設定允許清單 (1) remote origins, (2) URL schemes, ports, (3) accepted media types</li>
+<li>停用 HTTP redirections</li>
+<li>使用URL解析器</li>
+<li>驗證並清理過所有client端提供的input data</li>
+<li>不要傳回 raw responses 給 client</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h3 id="api82023">API8:2023</h3>
 <h4 id="security-misconfiguration">Security Misconfiguration</h4>
+<p>與 host APIs 的系統相關的諸多弱點都算在這類裡面。當API security配置錯誤，可能會損害機密性、完整性以及API提供者的可取得性(CIA)</p>
+<p>因爲配置錯誤相關的缺點繁多，這項弱點可能產生的影響小則資訊揭露，大到數據外洩。</p>
+<ul>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>Attackers will often attempt to find unpatched flaws, common endpoints, or unprotected files and directories to gain unauthorized access or knowledge of system.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>Security misconfiguration can happen at any level of the API stack, from the network level to the application level. Automated tools are available to detect and exploit misconfigurations such as unecessary services or legacy options.</p>
+</blockquote>
+</li>
+<li>
+<p>Impacts Description</p>
+<blockquote>
+<p>Security misconfigurations can not only expose sensitive user data, but also system details that can lead to full server compromise.</p>
+</blockquote>
+</li>
+<li>
+<p>Misconfiguration Examples</p>
+<ul>
+<li>Misconfigured headers 標頭配置錯誤</li>
+<li>Misconfigured transit encryption 傳輸中加密配置錯誤</li>
+<li>Use of default accounts 使用預設帳戶</li>
+<li>Acceptance of unnecessary HTTP methods</li>
+<li>Lack of input sanitization 缺少輸入消毒</li>
+<li>Verbose error messaging 冗長的錯誤訊息</li>
+</ul>
+</li>
+<li>
+<p>API Header Misconfiguration</p>
+<ul>
+<li>API providers use headers for handling response and security requirements</li>
+<li>Misconfigured headers can result in sensitive information disclosure, downgrade attacks, and cross-site scripting attacks</li>
+<li>Many APIs use additional services to enhance metrics and security</li>
+</ul>
+</li>
+<li>
+<p>X-Powered-By Header</p>
+<ul>
+<li>
+<p>Reveals backend technology 揭示網站所使用的後端技術</p>
+</li>
+<li>
+<p>Often advertise the exact supporting service and its version 廣宣服務版本號碼</p>
+</li>
+<li>
+<p>Useful to find exploits published for that version of software 尋找該版本軟體的漏洞</p>
+</li>
+</ul>
+</li>
+<li>
+<p>X-XSS-Protection Header</p>
+<ul>
+<li>
+<p>Prevents Cross-Site Scripting (XSS) attacks 預防跨站腳本攻擊</p>
+</li>
+<li>
+<p>Common type of injection vulnerability 注入弱點的常見類型</p>
+</li>
+<li>
+<p>Insert scripts to trick end-users to click malicious links 騙end-user點擊惡意網址</p>
+</li>
+<li>
+<p>Value of 0 indicates no protections, 1 indicates protection enabled</p>
+</li>
+<li>
+<p>Header clearly reveals whether a security control is in place 這個標頭清楚揭露了資訊管控是否到位</p>
+</li>
+</ul>
+</li>
+<li>
+<p>X-Response-Time Header</p>
+<ul>
+<li>
+<p>X-Response-Time header is middleware that provides usage metric</p>
+</li>
+<li>
+<p>If API isn&rsquo;t configured properly this header reveal existing resources</p>
+</li>
+<li>
+<p>X-Response-Time may differ for existing vs non-existing records</p>
+<p>有效帳號的回應時間很長，無效帳號的回應時間很短，可以依照此邏輯暴力破解出有效帳號</p>
+</li>
+<li>
+<p>Example:</p>
+<ul>
+<li>
+<p><code>/user/account/thisdefinitelydoesnotexist</code></p>
+<ul>
+<li>response time 25.5 ms</li>
+</ul>
+</li>
+<li>
+<p><code>/user/account/1021</code> (valid account)</p>
+<ul>
+<li>response time 510 ms</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Transport Layer Security</p>
+<ul>
+<li>APIs with sensitive info should used Transport Layer Security</li>
+<li>TLS is fundamental way to protect data communication</li>
+<li>Misconfigured encryption can pass sensitive API info in cleartest</li>
+<li>Attacker could capture the responses and requests MITM attack</li>
+</ul>
+</li>
+<li>
+<p>Default Accounts and Credentials</p>
+<ul>
+<li>
+<p>Attackers will attempt default credentials</p>
+</li>
+<li>
+<p>Could allow:</p>
+<ul>
+<li>Access to sensitive information</li>
+<li>Access to adminitrative functionality</li>
+</ul>
+</li>
+<li>
+<p>Potentially lead to compromise of supporting systems</p>
+</li>
+</ul>
+</li>
+<li>
+<p>HTTP Methods</p>
+<ul>
+<li>Unnecessary HTTP methods can increase risk</li>
+<li>Application may not handle these methods properly</li>
+<li>Potential disclosure of sensitive information</li>
+</ul>
+</li>
+<li>
+<p>Testing for Misconfigurations</p>
+<ul>
+<li>
+<p>Some Security Misconfigurations can be detected by web app scanners</p>
+</li>
+<li>
+<p>Automated scanners will automatically check responses to determine:</p>
+<ul>
+<li>Version information</li>
+<li>Headers</li>
+<li>Cookies</li>
+<li>Transit encryption configuration</li>
+<li>Parameters</li>
+</ul>
+</li>
+<li>
+<p>Security misconfigurations can also be check manually</p>
+</li>
+</ul>
+</li>
+<li>
+<p>OWASP Preventative Measures</p>
+<ul>
+<li>
+<p>Repeatable hardening process for a properly locked down environment</p>
+</li>
+<li>
+<p>Review and update configurations across the entire API stack, including:</p>
+<ul>
+<li>Orchestration files</li>
+<li>API components</li>
+<li>Cloud services (e.g. S3 bucket permissions)</li>
+</ul>
+</li>
+<li>
+<p>Automated, continuous assessment of configuration/setting effectiveness</p>
+</li>
+<li>
+<p>Ensure all API communication between client and API server is encrypted</p>
+</li>
+<li>
+<p>Specify with HTTP verbs each API accepts; disable all others</p>
+</li>
+<li>
+<p>APIs accessible from browser-based client should:</p>
+<ul>
+<li>Implement Cross-Origin Resource Sharing (CORS) policy</li>
+<li>Include applicable Security Headers</li>
+</ul>
+</li>
+<li>
+<p>Restrict incoming content types/data formats to those that meet requirements</p>
+</li>
+<li>
+<p>Ensure all servers in the HTTP chain process incoming requests in uniform manner</p>
+</li>
+<li>
+<p>Define, enforce all API responses to prevent exception traces and other valuable info</p>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h3 id="api92023">API9:2023</h3>
 <h4 id="improper-inventory-management">Improper Inventory Management</h4>
+<p>暴露非生產環境且未支援的API版本，通常是因爲未支援的API version受到的保護安全與生產環境的API不一致。</p>
+<ul>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>Threat agents usually get unauthorized access through old API versions or endpoints left running unpatched and using weaker security requirements. Alternatively, they may get access to sensitive data through a 3rd party with whom there&rsquo;s no reason to shart data with.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>Outdated documentation makes it more difficult to find and/or fix vulnerabilities. Lack of assets inventory and retirement strategies leads to running unpatched systems, resulting in leakage of sensitive data. It&rsquo;s common to find unnecessarily exposed API hosts because of modern concepts like microservices, which make application easy to deploy and independent (e.g. cloud computing, K8S). Simple Google Dorking, DNS enumerations, or using specialized search engines for various types of servers (webcams, routers, servers, etc.) connected to the internet will be enough to discover targets.</p>
+</blockquote>
+</li>
+<li>
+<p>Impacts Description</p>
+<blockquote>
+<p>Attackers can gain access to sensitive data, or even take over the server. Sometimes different API versions/deployments are connected to the same database with real data. Threat agents may exploit deprecated endpoints available in old API versions to get access to administrative functions or exploit known vulnerabilities.</p>
+</blockquote>
+</li>
+<li>
+<p>Summary</p>
+<ul>
+<li>
+<p>Improper Inventory Management exposes unsupported API 暴露不支援的API</p>
+</li>
+<li>
+<p>Old API versions are more likely to contain vulnerabilities</p>
+<p>舊api比較可能會包含弱點(沒有再升級/補強)</p>
+</li>
+<li>
+<p>Can lead to other vulnerabilities:</p>
+<ul>
+<li>
+<p>excessive data exposure, information disclosure, mass assignment, improper rate-limiting, API injection</p>
+<p>表示API08只是駭客要做其它APISecurity risk之前的首個步驟</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Detecting Improper Inventory</p>
+<ul>
+<li>Test with outdated API documentation, changelogs, and version history on repositories</li>
+<li>Version information in endpoints: <code>/v1/</code>, <code>/v2/</code>, <code>/v3/</code></li>
+<li>API in development paths: <code>/alpha/</code>, <code>/beta/</code>, <code>/test/</code>, <code>/uat/</code>, <code>/demo/</code></li>
+<li>Techniques: guessing, fuzzing, or brute force requests</li>
+<li>Testing focuses on unsupported and non-production API versions</li>
+<li>Typical new version paths:
+<ul>
+<li><code>api.target.com/v3</code></li>
+<li><code>/api/v2/accounts</code></li>
+<li><code>/api/v3/accounts</code></li>
+<li><code>/v2/accounts</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Discovering Improper Inventory</p>
+<ul>
+<li>
+<p>API versioning could also be maintained as a header:</p>
+<ul>
+<li>Accept: version=2.0</li>
+<li>Accept api-version=3</li>
+</ul>
+</li>
+<li>
+<p>Versioning can be set within query parameter or request body:</p>
+<ul>
+<li>
+<p>/api/accounts?ver=2</p>
+</li>
+<li>
+<p><strong>POST</strong> /api/accounts</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;ver&#34;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="s2">&#34;happyhimmel&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>Non-production API versions examples:</p>
+<ul>
+<li><code>api.test.target.com</code></li>
+<li><code>api.uat.target.com</code></li>
+<li><code>beta.api.com</code></li>
+<li><code>/api/private</code></li>
+<li><code>/api/partner</code></li>
+<li><code>/api/test</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>OWASP Preventative Measures</p>
+<ul>
+<li>Inventory, document all API hosts and the API versions
+<ul>
+<li>production, staging, test, development</li>
+</ul>
+</li>
+<li>Inventory, document integrated services - role, data flow, sensitivity</li>
+<li>Document API details: authentication, errors, redirects, rate limiting, CORS, endpoints (parameters, requests, and responses)</li>
+<li>Auto-generate documentation, and include in CI/CD</li>
+<li>Make API documentation available authorized consumers</li>
+<li>Use external API protection firewalls for all versions, not just current</li>
+<li>Avoid using production data with non-production API deployments</li>
+<li>Perform risk analysis when publishing newer versions of APIs</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h3 id="api102023">API10:2023</h3>
 <h4 id="unsafe-consumptions-of-apis">Unsafe Consumptions of APIs</h4>
+<p>是表列十項中，唯一一點that focuses less on the risks of being an API provider and more on the risks of being API consumer，當應用程式接收第三方api提供的資料時，應該用與 user input相同的處理方式，即零信任原則(little-to-no-trust)</p>
+<ul>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>Exploiting this issue requires attackers to identify and potentially compromise other APIs/services the target API integrated with.</p>
+<p>Usually, this information is not publicly available or the integrated API/service is not easily exploitable.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>Developers tend to trust and not verify the endpoints that interact with external or third-party APIs, relying on weaker security requirements such as those regarding  transport security, authentication/authorization, and input validation and sanitization. Attackers need to identify services the target API integrates with (data sources) and, eventually, compromise them.</p>
+</blockquote>
+</li>
+<li>
+<p>Summary</p>
+<ul>
+<li>Most of API Top 10 focuses on API provider</li>
+<li>APIs often path of least resistance</li>
+<li>If attacker compromises 3rd API, then other businesses at risk</li>
+<li>If API uses unencrypted connection then data exposed in clear text</li>
+<li>3rd party APIs may have less stringent security standards</li>
+<li>Could also be vulnerable to injection, authorization, other attacks</li>
+</ul>
+</li>
+<li>
+<p>OWASP Preventative Measures</p>
+<ul>
+<li>
+<p>Assess API security of service providers</p>
+</li>
+<li>
+<p>Ensure all API is encrypted</p>
+</li>
+<li>
+<p>Always validate, sanitize data received 3rd party APIs</p>
+</li>
+<li>
+<p>Do not blindly follow redirects</p>
+</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h2 id="beyond-the-top-10">Beyond the Top 10</h2>
 <h3 id="injections">Injections</h3>
-<h3 id="insufficient-logging--monitoring">Insufficient Logging &amp; Monitoring</h3>
-<h3 id="business-logic-flaws">Business Logic Flaws</h3>
+<p>當攻擊者可以發送通常由『支援web-application的系統』所執行的指令</p>
+<p>最常見的注入攻擊是SQL injection, cros site scripting 以及 operating system command injection</p>
+<p>APIs are yet another attack vector for these critical attacks to be communicated from an attacker to the supporting system, supporting databases and systems.</p>
+<ul>
+<li>
+<p>Attack Vector Description</p>
+<blockquote>
+<p>Attackers take advantage of lack of logging and monitoring to abuse systems without being noticed.</p>
+</blockquote>
+</li>
+<li>
+<p>Security Weakness Description</p>
+<blockquote>
+<p>Without logging and monitoring, or with insufficient logging and monitoring, it is almost impossible to track suspicious activities</p>
+</blockquote>
+</li>
+</ul>
+<p>Insufficient Logging &amp; Monitoring</p>
+<p>Business Logic Flaws</p>
 <h5 id="延伸與參考資料">延伸與參考資料</h5>
 <ul>
 <li>
