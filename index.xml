@@ -3,9 +3,19 @@
         <title>Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Jan 2024 17:21:01 &#43;0800</lastBuildDate>
             <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>[錯誤排除] ElasticCloud 上傳type為date的csv檔案</title>
+    <link>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</link>
+    <pubDate>Mon, 29 Jan 2024 17:21:01 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</guid>
+    <description><![CDATA[當dataset其中一個field看起來像是日期可以分成多個buckets，實際上會拋出以下錯誤
+&#34;error&#34; &#34;type&#34;: &#34;illegal_argument_exception&#34;, &#34;reason&#34;: &#34;Field [InvoiceDate] of type [keyword] is not supported for aggregation [date_histogram]&#34; 問題釐清與解決： 上傳檔案時，3/30/2011 16:34 或者 12/1/2010 9:10 這類的欄位內容被辨識為 &quot;type&quot;: &quot;keyword&quot;，須要在上傳檔案時點擊 Override settings，勾選 Contains time field 再加上時間戳記格式以及對應的 time field，這樣就能正常做 bucket aggregations 了
+實際結果 看起來 Elastic 幫你增加了一個@timestamp的欄位，而欄位內容確實是與 InvoiceDate 一致]]></description>
+</item>
+<item>
     <title>Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)</title>
     <link>http://wysiwyz.github.io/posts/elasticsearch/</link>
     <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
@@ -135,29 +145,6 @@ $ mkdir /opt/gradle $ unzip -d /opt/gradle gradle-8.5-bin.zip $ ls /opt/gradle/g
 (3) 配置環境變數
 Linux or MacOS: 配置 PATH 環境變數，注意要包括解壓縮後擋彈的 bin 目錄
 $ export PATH=$PATH:/opt/gradle/gradle-8.6/bin Microsoft Windows: [This PC/Computer] 右鍵 → Properties → Advanced System Settings → Environment Variable 在System Variables，選擇Path→ Edit，加上 C:\Gradle\gradle-8.]]></description>
-</item>
-<item>
-    <title>Spring JPA 與 Hibernete</title>
-    <link>http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/</link>
-    <pubDate>Tue, 26 Dec 2023 14:13:59 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ss_springdatajpa_vs_hibernete/</guid>
-    <description><![CDATA[ORM 物件關係的映射 Object-Relational Mapping的概念是可以將資料表內容做提取，並映射為物件的形式。
-缺點：對於複雜的操作（e.g. 多表格的join或查詢），相較於直接下SQL語句，更為綁手綁腳
-優點：不用操作繁瑣的SQL，也可以避免惡意注入攻擊
-JPA (Java Persistence API) 持久化：資料「儲存」與「讀取」的過程，意即將資料從瞬時狀態改為持久狀態的過程（將資料存進資料庫的過程）
-JPA：透過Java將資料儲存到資料庫的API
-使用JPA優點：
-可以隨時切換想要使用的 ORM 框架
-可以使用JPQL (Java Persistence Query Language) 向資料庫下命令：
-JPQL v.s. SQL:
-SQL在不同資料庫，有不同SQL命令語句 JPQL操作對象不著重於資料庫，而是JPA的Entity Object下類似SQL的命令 （切換不同資料庫，不用特別修改SQL語句） 常見的 ORM 框架： Hibernate -
-一般使用 Spring Data JPA 就會使用 Hibernate
-Hibernate 可以自動生成SQL 語句，自動執行
-優勢：
-簡化開發_簡化了數據訪問層的開發流程 自動化查詢_只要方法命名好，就能生成相應的查詢語句 強大的ORM功能_便於物件和關係數據庫之間的轉換 數據庫管理_Spring Data JPA 透過Spring框架的數據源管理功能，可方便切換和配置不同數據源 劣勢：
-性能問題_因為是以ORM的方式訪問數據，如果在大量數據或複雜查詢的應用情境下，可能會有性能上的影響 靈活性限制_在比較需要高級查詢的場景下有些侷限，需要編寫自定義JPQL 舉例：
-1 2 3 public interface UserRepository extends JpaRepository&lt;User, Long&gt; { List&lt;User&gt; findByLastName(String lastName); } MyBatis -]]></description>
 </item>
 </channel>
 </rss>

@@ -53,6 +53,19 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_02_linux/">Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-17">2023-03-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">請假六小時，來補課arrrhh
+何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
+UGO User Group Other
+由三組位元所組成（八進制）
+l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
+❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
+允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
+SUID &amp; SGID &amp; SBIT
+檔案系統 特殊權限 1. SetUID nosuid 在根目錄建立一個secure folder，設定成777，查看/secure/目錄的權限，</div><div class="post-footer">
+        <a href="/posts/lesson_02_linux/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/native_cloud/">Cloud native - the next gen</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-17">2023-03-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">現在沒有雲原生可是不行的，了解一下下
 Cloud native 公有雲、私有雲、混合雲 動態環境 - Node上下, stateless vs stateful 可擴展 - auto scaling (HPA) 聲明式 - ansible, terraform, K8S yaml 容器、微服務、無服務器 - K8S, OCP, Cloud Run, Cloud Function 最小化用戶的操作負擔 - auto healing (liveness, readiness) 所有的服務最好都是stateless
@@ -128,12 +141,6 @@ Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑�
 兩種設定方式 官方主推指令方式 getent group wheet
 設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作</div><div class="post-footer">
         <a href="/posts/lesson_01_linux/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/lesson_00_linux/">Lesson 00: Linux 筆記 - 資安原則、OpenSCAP</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-02-11">2023-02-11</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">資安是一個循環 這次會過不代表下次會過，每年都要複驗 ISO27001 改版（LA - lead auditor） Log server Windows 的 GPO policy 是什麼 .twcertcc : https://www.twcert.org.tw/tw/mp-1.html 營利目標 依公司法，企業營運是為了向股東負責 企業營運 以永續經營與營利為目標 發展產品或服務解決客戶之問題，或者滿足其需求 有利企業發展的事才考慮執行 機密性 產生營利的過程中，衍生出只有甲乙雙方才能知道的事件 營運過程中，衍生無法完全透明的內部資訊 營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資) 營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力 目標 保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標 常用手法 人員階級、職等、業務範圍管理 實物管理（區域進出換證、資產盤點） 數位資訊管理 CentOS 8 安全措施 作業系統安全 作業系統安裝 系統紀錄 檔案稽核 檔案系統權限配置 系統防火牆 應用服務安全 Web SSL MariaDB (MySQL &hellip; audit 要付費) Samba(smb)/NFS [AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)
-NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?</div><div class="post-footer">
-        <a href="/posts/lesson_00_linux/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">

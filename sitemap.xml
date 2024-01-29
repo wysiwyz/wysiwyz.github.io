@@ -2,14 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/elasticcloud/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/elasticsearch/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/elasticsearch/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/kibana/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/owasp_/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/owasp/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/security/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
