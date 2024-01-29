@@ -53,7 +53,7 @@ Multiprogramming 跟一顆cpu或者多顆cpu無關，單一 user 也可以 multi
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/operating_system\/"
-        },"genre": "posts","keywords": "OperatingSystem","wordcount":  2704 ,
+        },"genre": "posts","keywords": "OperatingSystem","wordcount":  2841 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/operating_system\/","datePublished": "1993-01-26T14:30:01+08:00","dateModified": "1993-01-26T14:30:01+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -95,8 +95,8 @@ Multiprogramming 跟一顆cpu或者多顆cpu無關，單一 user 也可以 multi
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Operating_system</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="1993-01-26">1993-01-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2704 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;<span id="/posts/operating_system/" class="leancloud_visitors" data-flag-title="Operating_system">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="1993-01-26">1993-01-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2841 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;<span id="/posts/operating_system/" class="leancloud_visitors" data-flag-title="Operating_system">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -1943,7 +1943,85 @@ Multiprogramming 跟一顆cpu或者多顆cpu無關，單一 user 也可以 multi
 </tr>
 <tr>
 <td>Exit (terminate/ zombie/ abort)</td>
-<td>Process🚧</td>
+<td>Process完成工作 正常結束 或 異常終止，此時可能其PCB空間尚未回收，因為要等其父親 (Parent Process) collect收集完該子Process之成果後，才會回收PCB這個表格的空間。其它資源(memory, cpu, I/O-Devices)已回收</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Transition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1️⃣</td>
+<td>也叫Admit, 當Memory space足夠時, 可以由long-term scheduler (in batch sys.) 決定將此Job載入到memory中</td>
+</tr>
+<tr>
+<td>2️⃣</td>
+<td>叫 dispatch，由 short-term scheduler (cpu scheduler) 決定讓高優先權 process 取得 cpu</td>
+</tr>
+<tr>
+<td>3️⃣</td>
+<td>叫time-out/interrupted, etc. 執行中的Process因某些事件發生而被迫放棄cpu，回去ready Queue. e.g. time-out, interrupt發生, 高優先process到達, 排到隊伍你位置的前面</td>
+</tr>
+<tr>
+<td>4️⃣</td>
+<td>叫 wait for I/O-Completed or event occurs</td>
+</tr>
+<tr>
+<td>5️⃣</td>
+<td>I/O-Completed 或 Event occurs</td>
+</tr>
+<tr>
+<td>6️⃣</td>
+<td>Process完工或異常處理</td>
+</tr>
+</tbody>
+</table>
+<h4 id="stalling">Stalling</h4>
+<ul>
+<li>
+<p>Medium term scheduling</p>
+</li>
+<li>
+<p>Which of the five status has the property that its process is in memory?</p>
+<p>〔New〕  〔<strong>Ready</strong>〕  〔<strong>Running</strong>〕  〔<strong>Wait</strong>〕  〔Exit〕</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Transition</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blocked/suspend</td>
+<td>Process 被 swap out 到 Disk 中暫存，即 blocked (asleep) in Disk</td>
+</tr>
+<tr>
+<td>Ready/suspend</td>
+<td>event occurs or I/O-Completed.</td>
+</tr>
+<tr>
+<td></td>
+<td>ready in Disk</td>
+</tr>
+<tr>
+<td>Suspend/ (swap out).  1️⃣</td>
+<td>當記憶體memory空間不足，又有其它高優先權process須更多記憶體空間時，會由中期排班器 medium-term scheduler 決定將 blocked process</td>
+</tr>
+<tr>
+<td>Activate/ swap in</td>
+<td>swap-out到 Disk，以空出記憶體空間 memory space (記憶體-&gt;磁碟) 當memory space有空，medium-term scheduler可以將它們 swap in 回memory中，ready for execution</td>
+</tr>
+<tr>
+<td>Suspend/ (swap out). 2️⃣</td>
+<td>支持transition之理由有兩個: <!-- raw HTML omitted -->1️⃣ 所有blocked processes皆swap out後, 記憶體空間仍不足時</td>
 </tr>
 </tbody>
 </table>

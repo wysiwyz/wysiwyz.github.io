@@ -4,43 +4,11 @@
         <link>http://wysiwyz.github.io/categories/</link>
         <description>Categories - Category - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/" rel="self" type="application/rss+xml" /><item>
-    <title>ElasticSearch</title>
-    <link>http://wysiwyz.github.io/categories/elasticsearch/</link>
-    <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/elasticsearch/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Kibana</title>
-    <link>http://wysiwyz.github.io/categories/kibana/</link>
-    <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/kibana/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>study</title>
-    <link>http://wysiwyz.github.io/categories/study/</link>
-    <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/study/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>StudyNote</title>
     <link>http://wysiwyz.github.io/categories/studynote/</link>
-    <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
+    <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/categories/studynote/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Docker</title>
-    <link>http://wysiwyz.github.io/categories/docker/</link>
-    <pubDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/docker/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>

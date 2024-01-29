@@ -35,12 +35,12 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/"
-        },"genre": "posts","wordcount":  1022 ,
+        },"genre": "posts","keywords": "ElasticSearch, Kibana","wordcount":  1693 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/","datePublished": "2024-01-22T17:00:05+08:00","dateModified": "2024-01-22T17:00:05+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
-                "name": "Author"
+                "name": "celine"
             },"description": ""
     }
     </script></head>
@@ -76,9 +76,9 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 從頭開始學習(ELK & Elastic Stack)</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/study/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>study</a>&nbsp;<a href="/categories/elasticsearch/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>ElasticSearch</a>&nbsp;<a href="/categories/kibana/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Kibana</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1022 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1693 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;8 minutes&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -108,7 +108,9 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
     <li><a href="#beginners-crash-course">Beginner&rsquo;s Crash Course</a>
       <ul>
         <li><a href="#part-16-kibana--elasticsearch">Part 1/6 Kibana &amp; ElasticSearch</a></li>
-        <li><a href="#part-26">Part 2/6</a></li>
+        <li><a href="#02-搜尋的關聯性">02. 搜尋的關聯性</a></li>
+        <li><a href="#syntax">Syntax</a></li>
+        <li><a href="#03-全文檢索">03. 全文檢索</a></li>
       </ul>
     </li>
   </ul>
@@ -698,8 +700,430 @@ output {
 </ul>
 </li>
 </ol>
-<h3 id="part-26">Part 2/6</h3>
-<p>to be continued&hellip;</p>
+<h3 id="02-搜尋的關聯性">02. 搜尋的關聯性</h3>
+<ul>
+<li>
+<p>如何量測關聯性？Precision + Recall</p>
+</li>
+<li>
+<p>當你傳送search query至ElasticSearch，它會回傳它認為有關聯性的documents</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/MviYIa2.png"
+        data-srcset="https://i.imgur.com/MviYIa2.png, https://i.imgur.com/MviYIa2.png 1.5x, https://i.imgur.com/MviYIa2.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/MviYIa2.png"
+        title="image-20240128115200212" /></p>
+<ul>
+<li>green dots: true positives
+<ul>
+<li>relevant documents that are returned to the user</li>
+</ul>
+</li>
+<li>red dots: false positives
+<ul>
+<li>irrelevant documents that are returned to the user</li>
+</ul>
+</li>
+<li>gray dots: true negatives
+<ul>
+<li>irrelevant documents that are NOT returned to the user</li>
+</ul>
+</li>
+<li>magenta dots: false negatives
+<ul>
+<li>relevant documents that were not returned to the user</li>
+</ul>
+</li>
+<li>Precision公式</li>
+</ul>
+<p>$$
+Precision = \frac{True:positives}{True:positives + \textcolor{orange}{False:positives}}
+$$</p>
+<ul>
+<li>Recall公式</li>
+</ul>
+<p>$$
+Recall = \frac{True:positives}{True:positives + \textcolor{magenta}{False:negatives}}
+$$</p>
+<ul>
+<li>
+<p>Precision 與 Recall 是負相關的</p>
+<ul>
+<li>Precision: 回傳的值都必須完美匹配於搜尋條件，即使回傳的document數量較少</li>
+<li>Recall: 要取得比較多的回傳值，即使回傳的documents不一定是完美匹配</li>
+</ul>
+</li>
+<li>
+<p>Precision and recall determine which documents are included in the search results.</p>
+</li>
+<li>
+<p>Precision and recall do not determine which of the returned documents are more relevant compared to the others.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>回傳文件集之間的關聯性排序：Ranking</p>
+<ul>
+<li>Ranking refers to ordering of the results (from  most relevant result at the top, to least relevant at the bottom)</li>
+</ul>
+</li>
+<li>
+<p>Score又是什麼</p>
+<ul>
+<li>代表該文件對此查詢條件相關性多高的值</li>
+<li>A score is computed for each document that is a <code>hit</code></li>
+<li><code>hit</code>:傳送至user的搜尋結果</li>
+</ul>
+</li>
+<li>
+<p>計算document score的因子</p>
+<ul>
+<li>Term Frequency (TF)</li>
+<li>Inverse Document Frequency (IDF)</li>
+</ul>
+</li>
+<li>
+<p>Term Frequency (TF) determines how many times each search term appears in a document</p>
+<ul>
+<li>If search terms are found in high frequency in a document, the document is considered more relevant to this search query.</li>
+<li>假設一個Search Query 是 <code>How to train dragons</code>，就會有四個Search Terms。ElasticSearch會查看整份document，計算Search Terms在documents出現的次數</li>
+</ul>
+</li>
+<li>
+<p>Inverse Document Frequency diminishes the weight of terms that occur very frequently in the document set and increases the weight of terms that occur rarely!</p>
+<ul>
+<li>搜尋結果 Hits 可能會得到很多<code>How to train puppy</code>, <code>How to train machine</code>, <code>How to train students</code>, &hellip; etc. 之類的結果，但這些都跟 <code>How to train dragons</code>沒有關係</li>
+</ul>
+</li>
+<li>
+<p>Find datasets to work with:</p>
+<p><a href="https://www.kaggle.com/datasets" target="_blank" rel="noopener noreffer ">https://www.kaggle.com/datasets</a></p>
+</li>
+</ul>
+<h3 id="syntax">Syntax</h3>
+<ol>
+<li>
+<p>Retrieve all document from an index</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index_here}/_search
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET anime_tv_shows/_search
+</code></pre></li>
+<li>
+<p>如果dataset非常大，elasticsearch會限制total value為10,000筆</p>
+</li>
+<li>
+<p>如何知道total value是否為實際值？要看total relation</p>
+<ul>
+<li><code>&quot;relation&quot;: &quot;gte&quot;</code> greater than or equal to 10,000</li>
+<li><code>&quot;relation&quot;: &quot;eq&quot;</code> the value is equal to the total number of hits</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/vax8q8T.png"
+        data-srcset="https://i.imgur.com/vax8q8T.png, https://i.imgur.com/vax8q8T.png 1.5x, https://i.imgur.com/vax8q8T.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/vax8q8T.png"
+        title="image-20240128162436889" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/mJI1JAP.png"
+        data-srcset="https://i.imgur.com/mJI1JAP.png, https://i.imgur.com/mJI1JAP.png 1.5x, https://i.imgur.com/mJI1JAP.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/mJI1JAP.png"
+        title="image-20240128164036840" /></p>
+<ul>
+<li><code>&quot;hits&quot;</code>: [] 預設提供十筆sample search results</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Get total hits</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index_here}/_search
+{
+    &#34;track_total_hits&#34;: true
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/F2HqONx.png"
+        data-srcset="https://i.imgur.com/F2HqONx.png, https://i.imgur.com/F2HqONx.png 1.5x, https://i.imgur.com/F2HqONx.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/F2HqONx.png"
+        title="image-20240128163222326" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/w2TMTzk.png"
+        data-srcset="https://i.imgur.com/w2TMTzk.png, https://i.imgur.com/w2TMTzk.png 1.5x, https://i.imgur.com/w2TMTzk.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/w2TMTzk.png"
+        title="image-20240128164110733" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Search for data within specific time range</p>
+<ul>
+<li>
+<p>ElasticSearch搜尋有兩種主要方式：query &amp; aggregation</p>
+<ul>
+<li>Query: 取得符合criteria的documents</li>
+<li>Aggregation: ?</li>
+</ul>
+</li>
+<li>
+<p>Syntax &hellip; Query</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_intex_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;Specify the type of query here&#34;: {
+      &#34;Enter name of the field here&#34;: {
+        &#34;gte&#34;: &#34;Enter lowest value of the range here&#34;,
+        &#34;lte&#34;: &#34;Enter highest value of the range here&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example &hellip; Query</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/B8mW4TS.png"
+        data-srcset="https://i.imgur.com/B8mW4TS.png, https://i.imgur.com/B8mW4TS.png 1.5x, https://i.imgur.com/B8mW4TS.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/B8mW4TS.png"
+        title="image-20240128165927972" /></p>
+</li>
+<li>
+<p>Syntax &hellip; Aggregations</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index_here}/_search
+{
+  &#34;aggs&#34;: {
+    &#34;name your aggregation here&#34;: {
+      &#34;specify aggregation type here&#34;: {
+        &#34;field&#34;: &#34;name the field you want to aggregate&#34;,
+        &#34;size&#34;: &#34;state how many buckets you want to retrieve&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example &hellip; Aggregations</p>
+<ol>
+<li>
+<p>收合<code>&quot;hits&quot;: [...]</code> 之後就能看到聚合搜尋結果</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;aggs&#34;: {
+    &#34;by_category&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;category&#34;,
+        &#34;size&#34;: 100
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/AIbcw1y.png"
+        data-srcset="https://i.imgur.com/AIbcw1y.png, https://i.imgur.com/AIbcw1y.png 1.5x, https://i.imgur.com/AIbcw1y.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/AIbcw1y.png"
+        title="image-20240128172158732" /></p>
+</li>
+<li>
+<p>找出entertainment類別中，最熱門的topics</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: { &#34;category&#34;: &#34;ENTERTAINMENT&#34; }
+  },
+  &#34;aggregations&#34;: {
+    &#34;popular_in_entertainment&#34;: {
+      &#34;significant_text&#34;: { &#34;field&#34;: &#34;headline&#34; }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/jvYYGQq.png"
+        data-srcset="https://i.imgur.com/jvYYGQq.png, https://i.imgur.com/jvYYGQq.png 1.5x, https://i.imgur.com/jvYYGQq.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/jvYYGQq.png"
+        title="image-20240128172755896" /></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Precision and Recall</p>
+<ul>
+<li>
+<p>Increasing Recall</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;Specify the field you want to search&#34;: {
+        &#34;query&#34;: &#34;Enter search terms&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<ul>
+<li>Note: 以下這四個 search terms 預設是使用<code>OR</code>邏輯，所以如果一份document只包含其中一個 search term，也會被算在hit清單中</li>
+<li>OR logic具有 high recall 特性：關聯性較低的hits增加</li>
+</ul>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;headline&#34;: {
+        &#34;query&#34;: &#34;Khloe Kardashian Kendall Jenner&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/v1wOHI2.png"
+        data-srcset="https://i.imgur.com/v1wOHI2.png, https://i.imgur.com/v1wOHI2.png 1.5x, https://i.imgur.com/v1wOHI2.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/v1wOHI2.png"
+        title="image-20240128181334483" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Increasing Precision</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;Specify the field you want to search&#34;: {
+        &#34;query&#34;: &#34;Enter search terms&#34;,
+        &#34;operator&#34;: &#34;and&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;headline&#34;: {
+        &#34;query&#34;: &#34;Khloe Kardashian Kendall Jenner&#34;,
+        &#34;operator&#34;: &#34;and&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Ra8qKjP.png"
+        data-srcset="https://i.imgur.com/Ra8qKjP.png, https://i.imgur.com/Ra8qKjP.png 1.5x, https://i.imgur.com/Ra8qKjP.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Ra8qKjP.png"
+        title="And_Operator" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>minimum_should_match</p>
+<ul>
+<li>Specifying the minimum number of terms a document should have to be included in the search results</li>
+<li>Giving you more control over fine tuning precision and recall off your search</li>
+</ul>
+<p>Syntax:</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;Specify the field you want to search&#34;: {
+        &#34;query&#34;: &#34;Enter search terms&#34;,
+        &#34;minimum_should_match&#34;: Enter a number here
+      }
+    }
+  }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Combine several different queries to sort the results:</p>
+<ul>
+<li>
+<p>Syntax of <strong>Bool query</strong></p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;must&#34;: [
+      {}
+    ],
+    &#34;must_not&#34;: [
+      {}
+    ],
+    &#34;should&#34;: [
+      {}
+    ],
+    &#34;filter&#34;: [
+      {}
+    ]
+  }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>刪除已經加入的 index dataset</p>
+<ol>
+<li>
+<p>首先要 <code>DELETE {enter_name_of_index_here}</code>，會回傳true</p>
+</li>
+<li>
+<p>接著驗證，輸入<code>GET {enter_name_of_index_here}/_search</code>，如果上個步驟有刪除成功，應該會看到 &ldquo;index_not_found_exception&rdquo;</p>
+</li>
+<li>
+<p>刪除先前存在的 index pattern</p>
+<p><code>≡</code> ➡️ HOME ➡️ Stack Management ➡️ Index Management</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="03-全文檢索">03. 全文檢索</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -709,13 +1133,13 @@ output {
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/elasticsearch/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/elasticsearch/" data-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/elasticsearch/" data-hashtag="ElasticSearch"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/elasticsearch/" data-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">ElasticSearch</a>,&nbsp;<a href="/tags/kibana/">Kibana</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

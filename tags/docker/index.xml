@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Docker - Category - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/categories/docker/</link>
-        <description>Docker - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/docker/" rel="self" type="application/rss+xml" /><item>
+        <title>Docker - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/docker/</link>
+        <description>Docker - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/docker/" rel="self" type="application/rss+xml" /><item>
     <title>Docker</title>
     <link>http://wysiwyz.github.io/posts/s_docker_learn/</link>
     <pubDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</pubDate>

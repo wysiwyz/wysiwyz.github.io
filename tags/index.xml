@@ -3,7 +3,23 @@
         <title>Tags - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/</link>
         <description>Tags - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>ElasticSearch</title>
+    <link>http://wysiwyz.github.io/tags/elasticsearch/</link>
+    <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/elasticsearch/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Kibana</title>
+    <link>http://wysiwyz.github.io/tags/kibana/</link>
+    <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/kibana/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>OWASP</title>
     <link>http://wysiwyz.github.io/tags/owasp/</link>
     <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
@@ -36,6 +52,14 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
+    <title>Docker</title>
+    <link>http://wysiwyz.github.io/tags/docker/</link>
+    <pubDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/docker/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>React</title>
     <link>http://wysiwyz.github.io/tags/react/</link>
     <pubDate>Wed, 25 Oct 2023 21:50:51 &#43;0800</pubDate>
@@ -57,30 +81,6 @@
     <pubDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/java/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>GoogleCloudPlatform</title>
-    <link>http://wysiwyz.github.io/tags/googlecloudplatform/</link>
-    <pubDate>Sun, 25 Jun 2023 15:26:29 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/googlecloudplatform/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>ProfessionalCloudArchitect</title>
-    <link>http://wysiwyz.github.io/tags/professionalcloudarchitect/</link>
-    <pubDate>Sun, 25 Jun 2023 15:26:29 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/professionalcloudarchitect/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>coursera</title>
-    <link>http://wysiwyz.github.io/tags/coursera/</link>
-    <pubDate>Sun, 21 May 2023 09:10:20 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/coursera/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

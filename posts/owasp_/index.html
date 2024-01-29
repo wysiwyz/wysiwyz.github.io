@@ -31,7 +31,7 @@ What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/owasp_\/"
-        },"genre": "posts","keywords": "security, OWASP","wordcount":  4150 ,
+        },"genre": "posts","keywords": "security, OWASP","wordcount":  4263 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/owasp_\/","datePublished": "2024-01-15T20:28:58+08:00","dateModified": "2024-01-15T20:28:58+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -73,8 +73,8 @@ What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">[筆記] OWASP API Security Top 10</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-15">2024-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4150 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;20 minutes&nbsp;<span id="/posts/owasp_/" class="leancloud_visitors" data-flag-title="[筆記] OWASP API Security Top 10">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-15">2024-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4263 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;21 minutes&nbsp;<span id="/posts/owasp_/" class="leancloud_visitors" data-flag-title="[筆記] OWASP API Security Top 10">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -1383,11 +1383,38 @@ app使用這先參數建立變數或內部物件</p>
 <li>
 <p>Security Weakness Description</p>
 <blockquote>
-<p>Without logging and monitoring, or with insufficient logging and monitoring, it is almost impossible to track suspicious activities</p>
+<p>Without logging and monitoring, or with insufficient logging and monitoring, it is almost impossible to track suspicious activities and respond to them in a timely fashion.</p>
 </blockquote>
 </li>
+<li>
+<p>Impacts Description (per OWASP 2019)</p>
+<blockquote>
+<p>Without visibility over ongoing malicious activities, attackers have plenty of time to fully compromise systems.</p>
+</blockquote>
+</li>
+<li>
+<p>Summary</p>
+<ul>
+<li>Logs reveal patterns in API usage, can also identify abuse</li>
+<li>Logs provide audit trail of activities</li>
+<li>Often required for compliance purposes</li>
+<li>Ensure logs cannot be altered by attackers</li>
+<li>Monitoring helps detect suspicious activities, anomalous behavior</li>
 </ul>
-<p>Insufficient Logging &amp; Monitoring</p>
+</li>
+<li>
+<p>OWASP Preventative Measures</p>
+<ul>
+<li>Log failed authentication, denied access, input validation errors</li>
+<li>Write logs for a log management solution, include detail to identify malicious actor</li>
+<li>Logs should be handled as sensitive data</li>
+<li>Continuously monitor infrastructure, network, API functioning</li>
+<li>Use a Security Information and Event Management (SIEM)</li>
+<li>Configure custom alerts to detect suspicious activities earlier</li>
+</ul>
+</li>
+<li></li>
+</ul>
 <p>Business Logic Flaws</p>
 <h5 id="延伸與參考資料">延伸與參考資料</h5>
 <ul>
