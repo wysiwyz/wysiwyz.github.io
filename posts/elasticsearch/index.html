@@ -35,7 +35,7 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/"
-        },"genre": "posts","keywords": "ElasticSearch, Kibana","wordcount":  2651 ,
+        },"genre": "posts","keywords": "ElasticSearch, Kibana","wordcount":  3517 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/","datePublished": "2024-01-22T17:00:05+08:00","dateModified": "2024-01-22T17:00:05+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,8 +77,8 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 從頭開始學習(ELK & Elastic Stack)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2651 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;13 minutes&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3517 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;17 minutes&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -120,6 +120,11 @@ Analyze application logs and system metrics: 存儲來自app的log檔以及各�
     </li>
     <li><a href="#part-36--全文檢索">Part 3/6  全文檢索</a></li>
     <li><a href="#part-46-aggregations">Part 4/6 Aggregations</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#part-56-mapping">Part 5/6 Mapping</a>
       <ul>
         <li></li>
       </ul>
@@ -1798,8 +1803,785 @@ $$</p>
         title="image-20240129180349104" /></p>
 </li>
 </ul>
-<p>Part 5/6 Mapping</p>
-<p>Part 6/6 Troubleshooting errors</p>
+<h5 id="range-aggregation">Range Aggregation</h5>
+<ul>
+<li>
+<p>讓你能夠定義不同intervals of varying sizes (可供客製化)</p>
+</li>
+<li>
+<p>例如將單價分組成 ($50以下)($50~$200區間)($200以上)</p>
+</li>
+<li>
+<p>Syntax</p>
+</li>
+<li>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;name your aggregrations here&#34;: {
+      &#34;range&#34;: {
+        &#34;field&#34;: &#34;name the field u want to aggregate on here&#34;,
+        &#34;ranges&#34;: [
+          {
+            &#34;to&#34;: x
+          }, 
+          {
+            &#34;from&#34;: x, 
+            &#34;to&#34;: y
+          },
+          {
+            &#34;from&#34;: x
+          }
+        ]
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;transactions_per_custom_price_ranges&#34;: {
+      &#34;range&#34;: {
+        &#34;field&#34;: &#34;UnitPrice&#34;,
+        &#34;ranges&#34;: [
+          {
+            &#34;to&#34;: 50
+          }, 
+          {
+            &#34;from&#34;: 50, 
+            &#34;to&#34;: 200
+          },
+          {
+            &#34;from&#34;: 200
+          }
+        ]
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/IDM6fu2.png"
+        data-srcset="https://i.imgur.com/IDM6fu2.png, https://i.imgur.com/IDM6fu2.png 1.5x, https://i.imgur.com/IDM6fu2.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/IDM6fu2.png"
+        title="image-20240130102154666" /></p>
+</li>
+</ul>
+<h5 id="terms-aggregation">Terms Aggregation</h5>
+<ul>
+<li>
+<p>creates a new bucket for every unique term it encounters for the specified field</p>
+</li>
+<li>
+<p>通常用來找document中，搜尋頻率最高的terms</p>
+</li>
+<li>
+<p>例如：要識別交易金額最高的前五筆客戶</p>
+</li>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;aggs&#34;: {
+    &#34;name your aggregrations here&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;name the field u want to aggregate on here&#34;,
+        &#34;size&#34;: State how many top results u want returned
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example &mdash; Descending</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;top_5_countries&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;Country&#34;,
+        &#34;size&#34;: 5
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/CGJstzy.png"
+        data-srcset="https://i.imgur.com/CGJstzy.png, https://i.imgur.com/CGJstzy.png 1.5x, https://i.imgur.com/CGJstzy.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/CGJstzy.png"
+        title="image-20240130103132239" /></p>
+</li>
+<li>
+<p>Example &mdash; Ascending</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;5_countries_w/_lowest ecommerce data&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;Country&#34;,
+        &#34;size&#34;: 5,
+        &#34;order&#34;: {
+          &#34;_count&#34;: &#34;asc&#34;
+        }
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/qHreq6U.png"
+        data-srcset="https://i.imgur.com/qHreq6U.png, https://i.imgur.com/qHreq6U.png 1.5x, https://i.imgur.com/qHreq6U.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/qHreq6U.png"
+        title="image-20240130103434037" /></p>
+</li>
+</ul>
+<h5 id="combined-aggregations">Combined Aggregations</h5>
+<ul>
+<li>
+<p>有些查詢需要合併不同aggregations來完成</p>
+</li>
+<li>
+<p>例如：每日的營業總額是多少？</p>
+<p><code>doc['UnitPrice'].value * doc['Quantity'].value</code></p>
+<ul>
+<li>script: 在ElasticSearch裡動態創建搜尋結果</li>
+<li>for each document in our bucket, multiply <strong>the value of field price</strong> by <strong>the value of the field Quantity</strong></li>
+</ul>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;transactions_per_day&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;@timestamp&#34;,
+        &#34;calendar_interval&#34;: &#34;day&#34;
+      },
+      &#34;aggs&#34;: {
+        &#34;daily_revenue&#34;: {
+          &#34;sum&#34;: {
+            &#34;script&#34;: {
+              &#34;source&#34;: &#34;doc[&#39;UnitPrice&#39;].value * doc[&#39;Quantity&#39;].value&#34;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/UZZkMed.png"
+        data-srcset="https://i.imgur.com/UZZkMed.png, https://i.imgur.com/UZZkMed.png 1.5x, https://i.imgur.com/UZZkMed.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/UZZkMed.png"
+        title="image-20240130105308021" /></p>
+</li>
+<li>
+<p>可以建構任何combinations of aggregations來回答更複雜的問題</p>
+</li>
+<li>
+<p>例如：取得每日營業額以及每日的unique countries數量</p>
+<ul>
+<li>需要在每個bucket中計算多個metric aggregations</li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0, 
+  &#34;aggs&#34;: {
+    &#34;transactions_per_day&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;@timestamp&#34;,
+        &#34;calendar_interval&#34;: &#34;day&#34;
+      },
+      &#34;aggs&#34;: {
+        &#34;daily_revenue&#34;: {
+          &#34;sum&#34;: {
+            &#34;script&#34;: {
+              &#34;source&#34;: &#34;doc[&#39;UnitPrice&#39;].value * doc[&#39;Quantity&#39;].value&#34;
+            }
+          }
+        },
+        &#34;number_of_unique_countries_per_day&#34;: {
+          &#34;cardinality&#34;: {
+            &#34;field&#34;: &#34;Country&#34;
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/h9dr3DR.png"
+        data-srcset="https://i.imgur.com/h9dr3DR.png, https://i.imgur.com/h9dr3DR.png 1.5x, https://i.imgur.com/h9dr3DR.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/h9dr3DR.png"
+        title="image-20240130111250073" /></p>
+<ul>
+<li>Bucket 預設是以日期升冪排序，如果要改用每日營業額排序呢？
+<ul>
+<li>最簡單的方法是改用每日營業額給dataset分成不同buckets</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="sorting-by-metric-value-of-a-sub-aggregation">Sorting by metric value of a sub-aggregation</h5>
+<ul>
+<li>
+<p>不用總是以時間區段、數字區段分組，也可以用 metric value of a sub-aggregation 分組</p>
+</li>
+<li>
+<p>以下範例計算了每日營業額以及每日採購國家數量，如果要查截至今哪天的日營業額最高，只需要加入order參數，再用daily_revenue數值給buckets降冪排序</p>
+<pre tabindex="0"><code>GET ecommerce_data/
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0, 
+  &#34;aggs&#34;: {
+    &#34;transactions_per_day&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;@timestamp&#34;,
+        &#34;calendar_interval&#34;: &#34;day&#34;,
+          &#34;order&#34;: {
+            &#34;daily_revenue&#34;: &#34;desc&#34;
+          }
+      },
+      &#34;aggs&#34;: {
+        &#34;daily_revenue&#34;: {
+          &#34;sum&#34;: {
+            &#34;script&#34;: {
+              &#34;source&#34;: &#34;doc[&#39;UnitPrice&#39;].value * doc[&#39;Quantity&#39;].value&#34;
+            }
+          }
+        },
+        &#34;number_of_unique_countries_per_day&#34;: {
+          &#34;cardinality&#34;: {
+            &#34;field&#34;: &#34;Country&#34;
+          }
+        }
+      }
+    }
+  }
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/lyQcd7Y.png"
+        data-srcset="https://i.imgur.com/lyQcd7Y.png, https://i.imgur.com/lyQcd7Y.png 1.5x, https://i.imgur.com/lyQcd7Y.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/lyQcd7Y.png"
+        title="image-20240130113116910" /></p>
+</li>
+</ul>
+<h2 id="part-56-mapping">Part 5/6 Mapping</h2>
+<p>Mapping 定義了一份document以及其field是如何被索引以及儲存的</p>
+<p>學習定義自己的mapping有以下幫助：</p>
+<ol>
+<li>優化ElasticSearch的效能</li>
+<li>節省空間</li>
+</ol>
+<h4 id="index-a-document">Index a Document</h4>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>POST {enter_name_of_index_here}/_doc
+{
+  &#34;field&#34;: &#34;value&#34;
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/SqFzBv8.png"
+        data-srcset="https://i.imgur.com/SqFzBv8.png, https://i.imgur.com/SqFzBv8.png 1.5x, https://i.imgur.com/SqFzBv8.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/SqFzBv8.png"
+        title="image-20240130120732081" /></p>
+</li>
+</ul>
+<h5 id="mapping-explained">Mapping Explained</h5>
+<ul>
+<li>
+<p>mapping決定了document以及其field如何被索引，且定義了儲存的type類型</p>
+</li>
+<li>
+<p>包含 names list 以及對應的 field type</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/DOKrSQZ.png"
+        data-srcset="https://i.imgur.com/DOKrSQZ.png, https://i.imgur.com/DOKrSQZ.png 1.5x, https://i.imgur.com/DOKrSQZ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/DOKrSQZ.png"
+        title="image-20240130121351970" /></p>
+</li>
+</ul>
+<h5 id="dynamic-mapping">Dynamic Mapping</h5>
+<ul>
+<li>當user沒有事先定義mapping，Elasticsearch 在需要的情況下會預設建立或更新映射(mapping)，稱之為動態映射</li>
+<li>Elasticsearch 查看個別欄位，並且試圖從field內容推論出資料型別，給每個field分配一個型別，建立一個包含field name 與對應型別 (type) 的清單 (mapping)</li>
+<li>檢視mapping <code>GET {name_of_the_index}/_mapping</code></li>
+<li>field包含的<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html" target="_blank" rel="noopener noreffer ">所有型別</a></li>
+</ul>
+<h5 id="indexing-strings">Indexing Strings</h5>
+<ul>
+<li>string 資料型別有兩種：1️⃣ Text    2️⃣ Keyword</li>
+<li>預設的，每個字串被映射兩次，一次是text field，另一次是keyword multi-field</li>
+<li>這兩種資料型別適用於不同類型的需求：
+<ul>
+<li>關鍵字 (keyword) 用於精確匹配和聚合 (exact searches, aggregations, sorting)</li>
+<li>文本 (text) 用於全文檢索 (full-text searches)
+<ul>
+<li>Non-Case sensitive manner 不管大小寫</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="text-field-type">Text Field Type</h5>
+<ol>
+<li>
+<p>Text analysis：文本經過Analyzer分成多個詞 (individual tokens)，不包含標點符號</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yvhE0Vs.png"
+        data-srcset="https://i.imgur.com/yvhE0Vs.png, https://i.imgur.com/yvhE0Vs.png 1.5x, https://i.imgur.com/yvhE0Vs.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yvhE0Vs.png"
+        title="image-20240130145756669" /></p>
+</li>
+<li>
+<p>Inverted index：一旦字串經過分析後，individual tokenu以及相關的doc_ID 會存在一個sorted list，稱為<code>inverted index</code></p>
+</li>
+<li>
+<p>如果再新增一筆內容與前一筆 (doc_1) 一模一樣的 document (doc_2)，那麽只會增加 doc_id 欄</p>
+</li>
+<li>
+<p>假設doc_3內容是 <code>These chestnut are sourced from Turkey.</code>，那 Inverted index 就會長得像下面這樣</p>
+<table>
+<thead>
+<tr>
+<th>term</th>
+<th>doc_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>are</td>
+<td>1,2,<strong>3</strong></td>
+</tr>
+<tr>
+<td>china</td>
+<td>1,2</td>
+</tr>
+<tr>
+<td>from</td>
+<td>1,2,3</td>
+</tr>
+<tr>
+<td>chestnuts</td>
+<td>1,2,<strong>3</strong></td>
+</tr>
+<tr>
+<td>sourced</td>
+<td>1,2,<strong>3</strong></td>
+</tr>
+<tr>
+<td>these</td>
+<td>1,2,3</td>
+</tr>
+<tr>
+<td>turkey</td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<blockquote>
+<p>Text field type is optimal for full-text search，因為只要client發出要查找包含 term <code>sourced</code> OR <code>from</code>的 documents的請求，Elastic Cluster 只要去 inverted index 裡面找出對應的 doc_id 就行。</p>
+</blockquote>
+<h5 id="keyword-field-type">Keyword Field Type</h5>
+<ol>
+<li>
+<p>建立了 keyword field 之後，不會分析內容，也沒有inverted index，而是使用 doc values 的資料結構來儲存資料</p>
+</li>
+<li>
+<p>Doc values 適用於 Aggregations, sorting, exact searches 的檢索情境</p>
+<p>每新增一筆 document，其 doc_id 以及原封不動的 original string(保留大小寫) 會被存進 doc values</p>
+<table>
+<thead>
+<tr>
+<th>doc id</th>
+<th>doc value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>New Florida</td>
+</tr>
+<tr>
+<td>5</td>
+<td>New Mexico</td>
+</tr>
+<tr>
+<td>6</td>
+<td>New Jersey</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>但你的使用場景並不是每次都需要這兩種 field types，這樣的話，預設設定會有點浪費，因為會減緩 indexing 速度，而且佔掉比較多的磁碟空間。自行定義mapping可以讓資料的儲存與檢索更有效率</p>
+<h5 id="練習">練習</h5>
+<p>專案：建構一個可以讓client管理農產品倉儲庫存的app</p>
+<h6 id="需求">需求：</h6>
+<ol>
+<li>查詢產品名稱、產地國家、產品敘述</li>
+<li>辨別出採購紀錄頻率最高的產地來源國</li>
+<li>以類型分類農產品（水果 or 蔬菜）</li>
+<li>取得每月費用總結的資料</li>
+</ol>
+<h6 id="樣本資料">樣本資料：</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;chestnut&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;botanical_name&#34;</span><span class="p">:</span> <span class="s2">&#34;Castanea sativa&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;produce_type&#34;</span><span class="p">:</span> <span class="s2">&#34;Fruit&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;country_of_origin&#34;</span><span class="p">:</span> <span class="s2">&#34;China&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;date_purchased&#34;</span><span class="p">:</span> <span class="s2">&#34;2024-02-05T02:16:24&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;quantity&#34;</span><span class="p">:</span> <span class="mi">325</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;unit_price&#34;</span><span class="p">:</span> <span class="mf">7.17</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;a large, brown nut that covered with burlike skin and grows on a tree, often cooked and eaten hot&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;vendor_details&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;vendor&#34;</span><span class="p">:</span> <span class="s2">&#34;The Lee&#39;s Lander&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;main_contect&#34;</span><span class="p">:</span> <span class="s2">&#34;Chipi Lee&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;vendor_location&#34;</span><span class="p">:</span> <span class="s2">&#34;TienJing, China&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;preferred_vendor&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="行動方案">行動方案：</h6>
+<ol>
+<li>可搜尋產品名稱、產地來源國、產品敘述
+<ul>
+<li>fields: name, country_of_origin, description</li>
+<li>全文檢索</li>
+<li>name 以及 description 不需要聚合/分類/精確搜尋 ➡️ text only</li>
+<li>country_of_origin: To be decided</li>
+</ul>
+</li>
+<li>辨別出採購紀錄頻率最高的產地來源國
+<ul>
+<li>field: country_of_origin</li>
+<li>Terms aggregration</li>
+<li>需要用到全文檢索以及聚合查詢 ➡️ text and keyword</li>
+</ul>
+</li>
+<li>以類型分類農產品（水果 or 蔬菜）
+<ul>
+<li>field: produce_type</li>
+<li>需要分類 Sorting，不用全文檢索 ➡️ keyword only</li>
+</ul>
+</li>
+<li>取得每月費用總結的資料
+<ul>
+<li>fields: date_purchased, quantity, unit_price</li>
+<li>Date histogram aggregration
+<ul>
+<li>建立以月份區分的buckets (date_purchased)</li>
+</ul>
+</li>
+<li>Metric aggregation
+<ul>
+<li>計算每一筆採購的總額 (total = quantity * unit_price)</li>
+<li>將同月份buckets中，所有採購總額加總成 monthly expense</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h6 id="根據所需功能優化的mapping">根據所需功能優化的mapping</h6>
+<table>
+<thead>
+<tr>
+<th>String field(s)</th>
+<th>適合的 field type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>country_of_origin</td>
+<td>Text and Keyword</td>
+</tr>
+<tr>
+<td>description_name</td>
+<td>Text only</td>
+</tr>
+<tr>
+<td>produce_type</td>
+<td>Keyword only</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>vendor_details</code>物件以及<code>botanical_name</code>field不會用到，可以disabled</li>
+</ul>
+<h5 id="自定義-mapping">自定義 mapping</h5>
+<h6 id="rules">Rules</h6>
+<ol>
+<li>如果沒有提前定義mapping，Elasticsearch會動態建立mapping</li>
+<li>如果要自建mapping，可以在創建索引時一起執行</li>
+<li>一個索引只定義一個mapping，一旦這個索引建立之後，只能在mapping增加新的field，無法變更既有field的mapping type</li>
+<li>如果一定要變更既有field的型別，一定要先建立一個新的索引+理想的mapping，再將所有文檔 reindex 進新的索引裡</li>
+</ol>
+<h6 id="步驟一將樣本document索引進一個test-index">步驟一：將樣本document索引進一個test index</h6>
+<p>這個樣本文檔必須包含你想要定義的 fields，這些 fields 也必須包含與你想要定義的field type型別相近的值</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>POST {name_of_test_index}/_doc
+{
+  &#34;field&#34;: &#34;value&#34;
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/9gs99YU.png"
+        data-srcset="https://i.imgur.com/9gs99YU.png, https://i.imgur.com/9gs99YU.png 1.5x, https://i.imgur.com/9gs99YU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/9gs99YU.png"
+        title="image-20240130163918382" /></p>
+</li>
+</ul>
+<h6 id="步驟二檢視動態映射-dynamic-mapping">步驟二：檢視動態映射 (dynamic mapping)</h6>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {name_of_test_index}/_mapping
+</code></pre></li>
+<li>
+<p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/nFrNhiW.png"
+        data-srcset="https://i.imgur.com/nFrNhiW.png, https://i.imgur.com/nFrNhiW.png 1.5x, https://i.imgur.com/nFrNhiW.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/nFrNhiW.png"
+        title="image-20240130164326294" /></p>
+</li>
+<li>
+<p>mapping fields 以英文字母排序，會顯示Elasticseach 動態映射的結果，可以將其作為自訂 mapping 的範本</p>
+</li>
+</ul>
+<h6 id="步驟三編輯自訂mapping">步驟三：編輯自訂mapping</h6>
+<ol>
+<li>
+<p>將上述結果複製貼到左邊輸入框，刪除第二行的 <code>&quot;test_index&quot;: {</code> 以及對應的<code>}</code></p>
+</li>
+<li>
+<p>country_of_origin 要保留 keyword &amp; text，不更改</p>
+</li>
+<li>
+<p>description, name 要刪除 keyword multi field (參下圖 line 31 - 36 以及 line 30的逗號)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/mDrZjuf.png"
+        data-srcset="https://i.imgur.com/mDrZjuf.png, https://i.imgur.com/mDrZjuf.png 1.5x, https://i.imgur.com/mDrZjuf.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/mDrZjuf.png"
+        title="image-20240130165006261" /></p>
+</li>
+<li>
+<p>product_type 要刪除 text type，只有keyword only</p>
+<p>Before:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/e4HSUrL.png"
+        data-srcset="https://i.imgur.com/e4HSUrL.png, https://i.imgur.com/e4HSUrL.png 1.5x, https://i.imgur.com/e4HSUrL.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/e4HSUrL.png"
+        title="image-20240130165223787" /></p>
+<p>After</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/p0bZuPZ.png"
+        data-srcset="https://i.imgur.com/p0bZuPZ.png, https://i.imgur.com/p0bZuPZ.png 1.5x, https://i.imgur.com/p0bZuPZ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/p0bZuPZ.png"
+        title="image-20240130165242919" /></p>
+</li>
+<li>
+<p>botanical_name 以及 vendor_details</p>
+<ul>
+<li>
+<p>因為搜尋用不到，故刪除兩個 types，加入&quot;enabled&quot; 參數並設為false</p>
+</li>
+<li>
+<p>這樣就不會給這兩個欄位建立 inverted index 或者 doc values</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/EHcUsg3.png"
+        data-srcset="https://i.imgur.com/EHcUsg3.png, https://i.imgur.com/EHcUsg3.png 1.5x, https://i.imgur.com/EHcUsg3.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/EHcUsg3.png"
+        title="image-20240130165923069" /></p>
+</li>
+</ul>
+</li>
+</ol>
+<h6 id="步驟四用步驟三的自訂mapping建立新的索引">步驟四：用步驟三的自訂mapping，建立新的索引</h6>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>PUT {name_of_ur_final_index}
+{
+  copy and paste edited mapping from step#3
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<ul>
+<li>
+<p>&ldquo;enable<strong>d</strong>&rdquo; 要打對，不然Elasticsearch會以為你沒有定義field</p>
+</li>
+<li>
+<p>另外這個 console 有提供 auto ident 工具幫你自動縮排</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yCT81eF.png"
+        data-srcset="https://i.imgur.com/yCT81eF.png, https://i.imgur.com/yCT81eF.png 1.5x, https://i.imgur.com/yCT81eF.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yCT81eF.png"
+        title="image-20240130171331680" /></p>
+</li>
+</ul>
+<h6 id="步驟五確認-final-index-其中所有-field-對應的-type-都正確">步驟五：確認 final index 其中所有 field 對應的 type 都正確</h6>
+<p><code>GET produce_index/_mapping</code></p>
+<p>✅ country_of_origin 用到 Text and Keyword</p>
+<p>✅ description_name 只用 Text</p>
+<p>✅ produce_type 只用 Keyword</p>
+<p>❎ 計算每個產品的總費用，並存在新的 field <code>total_expense</code>（使用runtime fields)</p>
+<p>✅ botanical_name &amp; vendor_details 停用，避免建立不必要的inverted index或doc values</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/bGlMCTT.png"
+        data-srcset="https://i.imgur.com/bGlMCTT.png, https://i.imgur.com/bGlMCTT.png 1.5x, https://i.imgur.com/bGlMCTT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/bGlMCTT.png"
+        title="image-20240130172025878" /></p>
+<h6 id="步驟六將dataset-編入新的索引中">步驟六：將dataset 編入新的索引中</h6>
+<p>First document</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/vm0Vpcs.png"
+        data-srcset="https://i.imgur.com/vm0Vpcs.png, https://i.imgur.com/vm0Vpcs.png 1.5x, https://i.imgur.com/vm0Vpcs.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/vm0Vpcs.png"
+        title="image-20240130172255688" /></p>
+<p>Second document</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/dlHjJ10.png"
+        data-srcset="https://i.imgur.com/dlHjJ10.png, https://i.imgur.com/dlHjJ10.png 1.5x, https://i.imgur.com/dlHjJ10.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/dlHjJ10.png"
+        title="image-20240130172836248" /></p>
+<blockquote>
+<p>📍這裡不小心按了兩次，順便附上 deleteById的方法</p>
+<p><code>DELETE {the_index_to_execute}/_doc/{the_doc_id_to_delete}</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/s2gHirl.png"
+        data-srcset="https://i.imgur.com/s2gHirl.png, https://i.imgur.com/s2gHirl.png 1.5x, https://i.imgur.com/s2gHirl.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/s2gHirl.png"
+        title="image-20240130173251915" /></p>
+</blockquote>
+<p>Third document</p>
+<ul>
+<li>
+<p>假設這份產品有原定mapping沒有包含的field (<code>organic</code>)，會怎樣？正常新增</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/2ERquxU.png"
+        data-srcset="https://i.imgur.com/2ERquxU.png, https://i.imgur.com/2ERquxU.png 1.5x, https://i.imgur.com/2ERquxU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/2ERquxU.png"
+        title="image-20240130174048027" /></p>
+</li>
+<li>
+<p>確認一下這個索引目前的mapping，發現 Elasticsearch 動態新增了一個 field</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yNVvUOh.png"
+        data-srcset="https://i.imgur.com/yNVvUOh.png, https://i.imgur.com/yNVvUOh.png 1.5x, https://i.imgur.com/yNVvUOh.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yNVvUOh.png"
+        title="image-20240130174413711" /></p>
+</li>
+</ul>
+<h6 id="如果要變更既有的-field-type怎麼辦">如果要變更既有的 field type，怎麼辦？</h6>
+<p>如果原本不開放搜尋的 botanical_name 現在需要支持全文檢索，只能建立新的 index，再將所有文檔重新編入新的索引</p>
+<p>##Part 6/6 Troubleshooting errors</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -1822,7 +2604,7 @@ $$</p>
     </div>
 
     <div class="post-nav"><a href="/posts/owasp_/" class="prev" rel="prev" title="[筆記] OWASP API Security Top 10"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[筆記] OWASP API Security Top 10</a>
-            <a href="/posts/elasticcloud_onuploaddataset/" class="next" rel="next" title="[錯誤排除] ElasticCloud 上傳type為date的csv檔案">[錯誤排除] ElasticCloud 上傳type為date的csv檔案<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/posts/elasticcloud_onuploaddataset/" class="next" rel="next" title="〔Debug〕ElasticCloud 上傳type為date的csv檔案">〔Debug〕ElasticCloud 上傳type為date的csv檔案<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
