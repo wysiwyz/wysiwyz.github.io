@@ -1,0 +1,3001 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack) - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)" />
+<meta property="og:description" content="2023-07-11 的筆記太簡略粗糙，重新整理
+Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
+通常用於啟用application的搜索功能，有以下特性
+如果產品有評價等級，而開發想要提高高評價產品的關聯性 開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序 ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台
+可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc. 例子：
+Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage) Application Performance Management (APM) : 應用程式性能管理 Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch ) Excellent at analyzing lots of data: 分析大量數據 使用機器學習根據歷史資料，來預測未來銷售額) Anomality Detection 偵測異常 Data is stored as documents, which is just a unit of information" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://wysiwyz.github.io/posts/elasticsearch/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-01-22T17:00:05+08:00" />
+<meta property="article:modified_time" content="2024-01-22T17:00:05+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)"/>
+<meta name="twitter:description" content="2023-07-11 的筆記太簡略粗糙，重新整理
+Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
+通常用於啟用application的搜索功能，有以下特性
+如果產品有評價等級，而開發想要提高高評價產品的關聯性 開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序 ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台
+可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc. 例子：
+Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage) Application Performance Management (APM) : 應用程式性能管理 Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch ) Excellent at analyzing lots of data: 分析大量數據 使用機器學習根據歷史資料，來預測未來銷售額) Anomality Detection 偵測異常 Data is stored as documents, which is just a unit of information"/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/elasticsearch/" /><link rel="prev" href="http://wysiwyz.github.io/posts/owasp_/" /><link rel="next" href="http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Elasticsearch 從頭開始學習(ELK \u0026 Elastic Stack)",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/"
+        },"genre": "posts","keywords": "ElasticSearch, Kibana","wordcount":  4061 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/elasticsearch\/","datePublished": "2024-01-22T17:00:05+08:00","dateModified": "2024-01-22T17:00:05+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Elasticsearch 從頭開始學習(ELK & Elastic Stack)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-01-22">2024-01-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4061 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;20 minutes&nbsp;<span id="/posts/elasticsearch/" class="leancloud_visitors" data-flag-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#elastic-search-到底是什麼">Elastic Search 到底是什麼</a></li>
+    <li><a href="#overview-of-the-elastic-stack">Overview of the Elastic Stack</a>
+      <ul>
+        <li><a href="#kibana">Kibana</a></li>
+        <li><a href="#logstash">Logstash</a></li>
+        <li><a href="#x-pack">X-Pack</a></li>
+        <li><a href="#beats">Beats</a></li>
+        <li><a href="#小結">小結</a></li>
+      </ul>
+    </li>
+    <li><a href="#常見架構">常見架構</a></li>
+    <li><a href="#安裝方式">安裝方式</a>
+      <ul>
+        <li><a href="#elastic-cloud">Elastic Cloud</a></li>
+        <li><a href="#在macos上安裝elasticsearch">在MacOS上安裝ElasticSearch</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#part-16-kibana--elasticsearch">Part 1/6 Kibana &amp; ElasticSearch</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#part-26-搜尋的關聯性">Part 2/6 搜尋的關聯性</a>
+      <ul>
+        <li><a href="#syntax">Syntax</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-36--全文檢索">Part 3/6  全文檢索</a></li>
+    <li><a href="#part-46-aggregations">Part 4/6 Aggregations</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#part-56-mapping">Part 5/6 Mapping</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#part-66-troubleshooting-errors">Part 6/6 Troubleshooting errors</a>
+      <ul>
+        <li><a href="#常見錯誤">常見錯誤</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>2023-07-11 的筆記太簡略粗糙，重新整理</p>
+</blockquote>
+<h2 id="elastic-search-到底是什麼">Elastic Search 到底是什麼</h2>
+<ul>
+<li>
+<p>ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)</p>
+</li>
+<li>
+<p>通常用於啟用application的搜索功能，有以下特性</p>
+<ul>
+<li>如果產品有評價等級，而開發想要提高高評價產品的關聯性</li>
+<li>開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序</li>
+</ul>
+</li>
+<li>
+<p>ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台</p>
+<ul>
+<li>可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc.</li>
+</ul>
+</li>
+<li>
+<p>例子：</p>
+<ul>
+<li>Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage)</li>
+<li>Application Performance Management (APM) : 應用程式性能管理</li>
+<li>Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch )</li>
+<li>Excellent at analyzing lots of data: 分析大量數據
+<ul>
+<li>使用機器學習根據歷史資料，來預測未來銷售額)</li>
+<li>Anomality Detection 偵測異常</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Data is stored as documents, which is just a unit of information</p>
+<p><em>FIELD_NAMES</em> : <em>FIELD_VALUES</em></p>
+<pre tabindex="0"><code>{
+    &#34;firstName&#34;: &#34;Angela&#34;,
+    &#34;lastName&#34;: &#34;Joji&#34;,
+    &#34;interests&#34;: [&#34;ElasticSearch&#34;, &#34;Logstash&#34;, &#34;Kibana&#34;, &#34;ElasticStack&#34;]
+}
+</code></pre></li>
+<li>
+<p>數據存成文件(documents)，再透過RESTful API查詢資料</p>
+</li>
+<li>
+<p>發送到ElasticSearch的查詢也是用JSON編寫的</p>
+</li>
+<li>
+<p>ElasticSearch是用Java編寫，並建構於Apache Lucene</p>
+</li>
+<li>
+<p>因為使用起來很方便而且擴充性很告，ElasticSearch的普及率很高</p>
+</li>
+</ul>
+<h2 id="overview-of-the-elastic-stack">Overview of the Elastic Stack</h2>
+<ul>
+<li>由Elasticsearch BV開發維護</li>
+<li>Elastic Stack 以 Elastic Search 為核心，加上 X-Pack、KIBANA、BEATS、LOGSTASH</li>
+</ul>
+<h3 id="kibana">Kibana</h3>
+<ul>
+<li>An analytics and visualization platform 分析和可視化 平台</li>
+<li>可以想成是ElasticSearch的儀表板，可以在其中建立資料視覺化，像是圓餅圖、折線圖</li>
+<li>Data Detection &amp; Prediction的配置也是在Kibana做更改</li>
+<li>Kibana也提供了一個介面來管理ElasticSearch的某些部份，例如AuthZ &amp; AuthN</li>
+<li>Kibana: 存在ElasticSearch裡面資料的web interface</li>
+</ul>
+<h3 id="logstash">Logstash</h3>
+<ul>
+<li>傳統上，logstash用來處理來自app的日誌log，並將它發送到ElasticSearch</li>
+<li>但現在Logstash演變成更通用的工具，作為數據處理管道  data processing pipeline</li>
+<li>Logstash收到的數據會以事件的形式被處理
+<ul>
+<li>log file entries</li>
+<li>e-commerce orders</li>
+<li>customers</li>
+<li>chat messages</li>
+</ul>
+</li>
+<li>以上事件會由Logstash處理，接著送往其它目的地(例如⬇️)
+<ul>
+<li>ElasticSearch</li>
+<li>Kafka queue</li>
+<li>Email message</li>
+<li>HTTP endpoints</li>
+</ul>
+</li>
+<li>Logstash 管道由三個部分/三個階段組成：  inputs, filters, outputs</li>
+<li>每個階段都能使用插件(plug-ins)</li>
+</ul>
+<h4 id="plugins">Plugins</h4>
+<ul>
+<li>
+<p>input plugins</p>
+<ul>
+<li>Logstash接收事件的方式，可以是一個 document</li>
+<li>logstash 會從給定的文件讀取事件</li>
+<li>也可以是透過HTTP發送事件到Logstash，從RDS讀取資料，或者監聽Kafka貯列</li>
+</ul>
+</li>
+<li>
+<p>filter plugins</p>
+<ul>
+<li>Logstash處理事件的方式</li>
+<li>Parse Data: 可以解析CSV、XML或JSON</li>
+<li>Data Enrichment: 例如查詢一個ip位址，並解析其地理位置</li>
+</ul>
+</li>
+<li>
+<p>Output plugins</p>
+<ul>
+<li>將處理過後的事件發送到哪裡，目的地正式名稱為STASHES</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>簡言之，Logstash從一到多個管道接收事件，處理事件並且發送事件到一至多個STASHES</p>
+</blockquote>
+<ul>
+<li>一個Logstash instance中，可以運行多個 pipelines</li>
+<li>Logstash可以水平擴展</li>
+</ul>
+<h4 id="logstash-配置">Logstash 配置</h4>
+<ul>
+<li>
+<p>類似JSON格式的markup format，但又不僅是markup language，因為它還可以添加條件語句，讓管道動態化</p>
+</li>
+<li>
+<p>以下範例配置文本：</p>
+<ul>
+<li>
+<p>解析字串（將非結構化的數據結構化）：使用Grok pattern</p>
+<blockquote>
+<p>Grok Pattern類似正則表達式</p>
+<p>用途：to match pieces of text and store them within fields</p>
+</blockquote>
+</li>
+</ul>
+<pre tabindex="0"><code class="language-Treetop" data-lang="Treetop">input {
+  file {
+    patch =&gt; &#34;/path/to/apache_access.log&#34;
+  }
+}
+
+filter {
+  if [request] in [&#34;/robots.txt&#34;, &#34;/favicon.ico&#34;] {
+    drop {}
+  }
+}
+
+output {
+  file {
+    patch =&gt; &#34;%{type}_%{+yyyy_MM_dd}.log&#34;
+  }
+}
+</code></pre><h3 id="x-pack">X-Pack</h3>
+<p>給ElasticSearch 和 Kibana 添加功能</p>
+<ol>
+<li>Security: X-Pack給Kibana和ElasticSearch添加了AuthN 與 AuthZ功能
+<ul>
+<li>Kibana可以整合(集成integrate) 其它AuthN providers，例如LDAP、Active Directory</li>
+<li>另外也可以在配置檔加入users &amp; roles，並配置允許特定角色/用戶訪問的內容</li>
+</ul>
+</li>
+<li>Monitoring
+<ul>
+<li>X-Pack可以協助監控Elastic Stack (ElasticSearch, Logstash, Kibana) 的性能</li>
+<li>例: CPU &amp; memory usage CPU和內存的使用情況, disk space磁碟空間 等有效指標</li>
+</ul>
+</li>
+<li>Alerting警報
+<ul>
+<li>例: 當web server的CPU利用率超過90%，或者application error達到門檻</li>
+<li>透過電子郵件,  或Slack等其它方式告知</li>
+</ul>
+</li>
+<li>Reporting
+<ul>
+<li>將Kibana視覺化的數據導出成PDF文件</li>
+<li>可以接收需求後才輸出報告，也可以定期輸出報告並發送至e-mail</li>
+<li>另外也可以指定觸發輸出報告的條件（類似alerting)</li>
+</ul>
+</li>
+<li>Machine Learning
+<ul>
+<li>功能性(functionality)由X-Pack提供，接口(interface)由Kibana提供</li>
+<li>可以做異常檢測、預測未來數據</li>
+</ul>
+</li>
+<li>Graph
+<ul>
+<li>指的是資料之間的關係</li>
+<li>例: 在商品明細頁面顯示與相關商品們，或者Spotify的下一首推薦歌單</li>
+<li>需要區分popularity與relevance，不然可能產生誤導
+<ul>
+<li>喜歡聽LinkinPark的樂迷可能也偶爾會聽古典樂</li>
+</ul>
+</li>
+<li>提供一個公開API，可以用來將Graph整合進應用程式</li>
+<li>提供一個plugins，可以用來可視化Kibana裡面資料之間的關係</li>
+</ul>
+</li>
+<li>ElasticSearch SQL
+<ul>
+<li>使用SQL查詢SQL</li>
+<li>使用Query DSL撰寫查詢（flexible but verbose at times)</li>
+<li>透過HTTP或JDBC driver發送SQL</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="beats">Beats</h3>
+<ul>
+<li>
+<p>Collections of data receiver</p>
+</li>
+<li>
+<p>Light-weight agent 輕量級代理, 在Server中，將數據發送到Logstash或者ElasticSearch</p>
+<ul>
+<li>Beats: data shipper, 收集不同類型的數據</li>
+</ul>
+</li>
+<li>
+<p>常見beats</p>
+<ol>
+<li>FileBeat
+<ul>
+<li>收集log檔案</li>
+<li>包含常見log種類的模組 (例如: nginx, MySQL)</li>
+</ul>
+</li>
+<li>MetricBeat
+<ul>
+<li>收集系統與服務的度量指標, 例如: memory and CPU usage</li>
+<li>包含常見log種類的模組 (例如: nginx, MySQL)</li>
+</ul>
+</li>
+<li>PacketBeat:
+<ul>
+<li>Collects network data 收集網路數據</li>
+<li>例如: HTTP requests or database transaction HTTP請求或資料庫交易</li>
+</ul>
+</li>
+<li>WinLogBeat: Collects Windows Events Logs</li>
+<li>AuditBit: Collects audit data from Linux 收集Linux審計數據</li>
+<li>HeartBeat: monitor service uptime 監控服務上線時間</li>
+</ol>
+</li>
+</ul>
+<h3 id="小結">小結</h3>
+<ul>
+<li>X-Pack: Add features to the elastic stack</li>
+<li>Logstash and Beats: In charge of data ingestion</li>
+<li>ElasticSearch: Search, analyze and store data</li>
+<li>Kibana: Visualize your data</li>
+</ul>
+<hr>
+<h2 id="常見架構">常見架構</h2>
+<p>現在有個電商網站，資料存在資料庫，當client請求資料時是從資料庫拿，再透過後端應用程式傳回前端瀏覽器，但現在想要將ElasticSearch整合進現有架構，怎麼做？</p>
+<p>通常建議使用client libraries，同時要保持資料庫與ElasticSearch同步更新，數據在database與ElasticSearch會重複。</p>
+<p>如果資料庫已經有10萬筆商品，要怎麼同步到ElasticSearch？</p>
+<ul>
+<li>如果資料沒有那麼多，可以寫script讓它一口氣完成輸入</li>
+<li>如果資料更多就需要paginating或scroll</li>
+<li>資料輸入後，就需要應用程式負責維護兩邊的資料同步更新</li>
+</ul>
+<p>隨著業務成長，要確保目前的架構足以應付未來增長（處理流量高峰，了解何時應該增加一台web server)  ，可以使用metricbeat監控系統級別指標（system level metrics），例如CPU使用率和內存memory使用率。所以在Web Server啟動MetricBeat，但數據如何結束於ElasticSearch？</p>
+<ul>
+<li>Beats支持向Logstash以及ElasticSearch發送數據，後者相對簡單</li>
+<li>配置Metricbeat，使它能將資料送進 ElasticSearch 的 ingest node</li>
+<li>指示Metricbeat，在Kibana中配置儀表板</li>
+<li>Kibana的配置則存在ElasticSearch裡面</li>
+</ul>
+<p>配置更多的東西：Web Server 的 access logs, error logs。雖然可以利用Google Analytics，但access log更可以提供一些有用訊息，像是</p>
+<ul>
+<li>web server處理每個請求花了多長時間</li>
+<li>監控響應時間 (respone time) 並聚合每個端點的請求</li>
+<li>識別bad deployments（例如：太長的響應時間、或4xx/5xx的HTTP狀態碼）</li>
+<li>上述這些都可以透過Filebeat達成，Filebeat可以
+<ul>
+<li>解析日誌(parse logs)</li>
+<li>處理多行事件(multi-line events)，例如stack trace, etc.</li>
+</ul>
+</li>
+</ul>
+<p>更高級的事件處理，像是data enrichment數據豐富化，可以在web application中執行這類操作，但可能會導致一些缺點：</p>
+<ol>
+<li>首先業務邏輯程式碼會充滿雜亂無章的事件處理，增加服務器響應時間（除非用異步執行）</li>
+<li>去中心化的事件處理：事件處理會發生在很多地方， 可以透過Logstash實現集中化，將事件處理放在同一個地方完成
+<ul>
+<li>WebServer發送事件，透過HTTP到Logstash，Logstash依照指示的方式處理事件，接著發送到ElasticSearch</li>
+<li>那來自MetricBeat和FileBeat的data要怎麼處理？可以透過Logstash發送到elasticsearch（最理想狀況），或直接送到ElasticSearch</li>
+<li>ElasticSearch only handles query from web-app, not modifying data</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="安裝方式">安裝方式</h2>
+<ol>
+<li>安裝Kibana - 它有Console方便開發，可以輕易的發送查詢到ElasticSearch</li>
+<li>如果使用 <a href="https://www.elastic.co/cloud/cloud-trial-overview" target="_blank" rel="noopener noreffer ">Elastic Cloud</a> 就都不用安裝了😅他是有14天期限的試用版
+<ul>
+<li>試用期是從你建立第一個cluster開始算，而不是建立帳戶開始算</li>
+</ul>
+</li>
+</ol>
+<h3 id="elastic-cloud">Elastic Cloud</h3>
+<ul>
+<li>
+<p>集群(cluster)：elastic cloud 把他稱為 deployment (less technical term for  cluster)</p>
+</li>
+<li>
+<p>創建部署 create deployment</p>
+<ol>
+<li>
+<p>命名, 選擇cloud platform, 選擇template</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/kMGTeno.jpg"
+        data-srcset="https://i.imgur.com/kMGTeno.jpg, https://i.imgur.com/kMGTeno.jpg 1.5x, https://i.imgur.com/kMGTeno.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/kMGTeno.jpg"
+        title="Naming" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/sSQ4Gii.jpg"
+        data-srcset="https://i.imgur.com/sSQ4Gii.jpg, https://i.imgur.com/sSQ4Gii.jpg 1.5x, https://i.imgur.com/sSQ4Gii.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/sSQ4Gii.jpg"
+        title="Choose_Platform" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/nmKK5Hw.png"
+        data-srcset="https://i.imgur.com/nmKK5Hw.png, https://i.imgur.com/nmKK5Hw.png 1.5x, https://i.imgur.com/nmKK5Hw.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/nmKK5Hw.png"
+        title="Save_Credentials" /></p>
+</li>
+<li>
+<p>部署完成後，點擊Actions➡️Manage就可以看到相關的基本信息</p>
+<ul>
+<li>health status</li>
+<li>actions we can perform</li>
+<li>memory and disk usage</li>
+<li>Cloud ID: 當你要從ElasticStack相關產品 (Beats or Logstash) 發送數據到ElasticSearch時，會需要用到這個ID</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="在macos上安裝elasticsearch">在MacOS上安裝ElasticSearch</h3>
+<ul>
+<li>ElasticSearch是一堆jar檔 (java archive)</li>
+<li>ElasticSearch附帶一個版本的OpenJDK
+<ul>
+<li>如果已經有安裝，則會使用JAVA_HOME環境變數指向的JVM</li>
+<li>還沒安裝的話就會使用 bundled JDK，不用額外安裝</li>
+</ul>
+</li>
+<li><a href="https://www.elastic.co/downloads/elasticsearch" target="_blank" rel="noopener noreffer ">下載連結</a></li>
+</ul>
+<hr>
+<h1 id="beginners-crash-course">Beginner&rsquo;s Crash Course</h1>
+<h2 id="part-16-kibana--elasticsearch">Part 1/6 Kibana &amp; ElasticSearch</h2>
+<h5 id="what-is-sharing">What is sharing?</h5>
+<p>Index is just a virtual thing that keeps track of where documents are stored.</p>
+<p>When you create an index, one shard is created by default, and the shard is assigned to a node. Remember, shard is where documents are stored, and number of documents a shark could hold depends on the capacity of the node.</p>
+<p>Let&rsquo;s say you want to index 600_000 documents(60萬) in your produce index, but the node where the shard is assigned to could only hold 200_000 documents, which is not gonna work, but we do have two more nodes which could hold 200_000 documents each.</p>
+<p>因此，一個cluster 裡面有三個node，每個node各有一個produce index的shard，但是produce index裡面的資料還會一直增加，這時候 sharding就派上用場了。</p>
+<h5 id="the-beauty-of-sharding">The beauty of sharding</h5>
+<p>You could add more shards and nodes as the need rises, so you could horizontally scale and adapt to increasing data, but that&rsquo;s not the only superpower that comes with sharding.</p>
+<p>Shard is where you store documents, and it&rsquo;s also where you run search queries. Let&rsquo;s talk about a scenario where the client is sending a search request for gingery read bean tang-yuan. In this scenario, you have one chart in a node that could hold the entire produce index.</p>
+<h5 id="sharding-speedings-up-your-search">Sharding speedings up your search</h5>
+<p>You could run a search on all 10 of these shards at the same time in parallel</p>
+<p>所以如果有一個Produce Index 具有500_000資料，全部都放在<code>P0</code>一個shard裡面，那麽要完成搜尋需要耗費10秒鐘（sequentially）。</p>
+<p>但如果有Produce Index有10個shards，分別佈在10個nodes上面，而一個shard存有50_000筆文件，在這裏要完成搜尋只要花1秒鐘。</p>
+<h5 id="what-are-replica-shards">What are replica shards?</h5>
+<p>Let&rsquo;s say everything is going well with our online grocery shop, but all of a sudden one of our nodes go down and we lose our data. To avoid this, we could make copies of the original shards and store it&rsquo;s copies across different nodes.</p>
+<p>Node 1&amp;2: contain original shards (<code>P0</code>, <code>P1</code>), also known as primary shards.</p>
+<p>Node 3&amp;2: make copies of original shards and store these in different nodes(<code>R0</code>, <code>R1</code>), also known as replica shards.</p>
+<p>除了能夠避免某個節點有問題，還可以增進搜尋效能</p>
+<h5 id="replica-shards-can-improve-the-performance-of-your-search">Replica shards can improve the performance of your search</h5>
+<p>2000 search queries per second ➡️ 8000 search queries per second</p>
+<p>Because the replicas are identical copies of the primary shards, now these replica shards can pick up the slack and your cluster could better handle increased demands on search.</p>
+<p>Note:</p>
+<ul>
+<li>
+<p>如果有ElasticSearch密碼，啟動腳本<code>bin/elasticsearch</code>之後的curl cmd如下</p>
+<p><code>curl -k -u elastic:{password_for_the_elastic_user} https://localhost:9200</code>（<a href="https://discuss.elastic.co/t/curl-x-get-http-localhost-9200-curl-52-empty-reply-from-server/329211" target="_blank" rel="noopener noreffer ">參</a>）</p>
+<ul>
+<li>只有<code>curl http://localhost:9200</code>只會收到Empty reply from Server</li>
+<li>password_for_the_elastic_user: 這是首次啟動 <code>bin/elasticsearch</code> script會產生的密碼，也可以用<code>bin/elasticsearch-reset-password -u elastic</code>重新產生一組密碼</li>
+</ul>
+</li>
+<li>
+<p>在$ES_HOME(即解壓縮後的elastic tar.gz檔案) 路徑開啟終端機，輸入 <code>code .</code> 打開 vsCode</p>
+</li>
+<li>
+<p>當你啟動了一個node，預設會自動形成一個cluster，最好給他們有意義的命名，以利爾後在多個clusters/多個nodes識別不同的任務/負責項目</p>
+<ul>
+<li>修改 elastic search.yml 檔案以下兩行，存檔之後要停止 elasticsearch script &amp; kibana scrip，再重新啟動</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/JJGsyYk.jpg"
+        data-srcset="https://i.imgur.com/JJGsyYk.jpg, https://i.imgur.com/JJGsyYk.jpg 1.5x, https://i.imgur.com/JJGsyYk.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/JJGsyYk.jpg"
+        title="cluster_node" /></p>
+</li>
+<li>
+<p>GET 可以查看cluster健康、nodes狀態</p>
+</li>
+<li>
+<p>PUT 可以建立一筆索引，如果response JSON 的 &ldquo;acknowledged&rdquo; 為 true，就表示建立成功</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/T7e1qpT.jpg"
+        data-srcset="https://i.imgur.com/T7e1qpT.jpg, https://i.imgur.com/T7e1qpT.jpg 1.5x, https://i.imgur.com/T7e1qpT.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/T7e1qpT.jpg"
+        title="PUT_FAVORITE_CURRY" /></p>
+</li>
+<li>
+<p>INDEX as verb 在某筆索引裡面儲放/加入documents，可以用 POST 或 PUT</p>
+<ul>
+<li>
+<p>POST: 請ElasticSearch自動幫你建立一個 document ID</p>
+<pre tabindex="0"><code>POST {索引的名稱}/_doc
+{
+    &#34;field&#34;: &#34;value&#34;
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/KS1VhHj.jpg"
+        data-srcset="https://i.imgur.com/KS1VhHj.jpg, https://i.imgur.com/KS1VhHj.jpg 1.5x, https://i.imgur.com/KS1VhHj.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/KS1VhHj.jpg"
+        title="SyntaxExample" /></p>
+</li>
+<li>
+<p>PUT: 則適用於要給該文件指定一筆ID號碼，通常是使用 natural identifier 給資料編索引時會使用</p>
+<pre tabindex="0"><code>PUT {索引的名稱}/_doc/{這份文件要分配到的指定ID}
+{
+    &#34;field&#34;: &#34;value&#34;
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ehieOWZ.jpg"
+        data-srcset="https://i.imgur.com/ehieOWZ.jpg, https://i.imgur.com/ehieOWZ.jpg 1.5x, https://i.imgur.com/ehieOWZ.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ehieOWZ.jpg"
+        title="PUT_fav_curry" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>READ 讀取document</p>
+<pre tabindex="0"><code>GET {索引名稱}/_doc/{要查找的DocumentID}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/0Y54vkD.jpg"
+        data-srcset="https://i.imgur.com/0Y54vkD.jpg, https://i.imgur.com/0Y54vkD.jpg 1.5x, https://i.imgur.com/0Y54vkD.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/0Y54vkD.jpg"
+        title="Get" /></p>
+</li>
+<li>
+<p>如果用既有的 ID put 一筆文件，會發現原本的Joshua被Jupytor覆寫了</p>
+<p><code>result:updated</code> 以及 <code>_version:2</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/6hQCuSc.jpg"
+        data-srcset="https://i.imgur.com/6hQCuSc.jpg, https://i.imgur.com/6hQCuSc.jpg 1.5x, https://i.imgur.com/6hQCuSc.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/6hQCuSc.jpg"
+        title="Step1" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/WZwvlkT.jpg"
+        data-srcset="https://i.imgur.com/WZwvlkT.jpg, https://i.imgur.com/WZwvlkT.jpg 1.5x, https://i.imgur.com/WZwvlkT.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/WZwvlkT.jpg"
+        title="step2" /></p>
+</li>
+<li>
+<p>如果要避免文件被覆蓋，可以使用 <code>_create_entpoint</code> ，這樣如果指定的是已經存在的ID，就會拋出錯誤，以免不小心覆蓋掉既有的doc</p>
+<pre tabindex="0"><code>PUT {索引名稱}/_create/{指定的DocId}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/b9YfqK2.jpg"
+        data-srcset="https://i.imgur.com/b9YfqK2.jpg, https://i.imgur.com/b9YfqK2.jpg 1.5x, https://i.imgur.com/b9YfqK2.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/b9YfqK2.jpg"
+        title="Error409" /></p>
+</li>
+<li>
+<p>Update 更新文件</p>
+<ul>
+<li>注意這裡的JSON 一定要帶 field <code>doc</code>，欄位不用全部都給</li>
+</ul>
+<pre tabindex="0"><code>POST {索引名稱}/_update/{待更新的Doc的Id}
+{
+    &#34;doc&#34;: {
+        &#34;field1&#34;: &#34;value&#34;,
+        &#34;field2&#34;: &#34;value&#34;
+    }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/PDKgGKG.jpg"
+        data-srcset="https://i.imgur.com/PDKgGKG.jpg, https://i.imgur.com/PDKgGKG.jpg 1.5x, https://i.imgur.com/PDKgGKG.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/PDKgGKG.jpg"
+        title="Update_only partial fields" /></p>
+</li>
+<li>
+<p>Delete 刪除文件</p>
+<pre tabindex="0"><code>DELETE {索引名稱}/_doc/{指定要刪除的DocId}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/wrLIgT5.jpg"
+        data-srcset="https://i.imgur.com/wrLIgT5.jpg, https://i.imgur.com/wrLIgT5.jpg 1.5x, https://i.imgur.com/wrLIgT5.jpg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/wrLIgT5.jpg"
+        title="Delete Demo" /></p>
+</li>
+</ul>
+<h5 id="q-and-a">Q and A</h5>
+<ol>
+<li>RDBMS與ElasticSearch比較
+<ul>
+<li>ElasticSearch不是資料庫，它是搜尋分析引擎</li>
+<li>沒有schema，建構於Lucene，擅於全文搜索</li>
+<li>可以微調搜尋結果的關聯性（precision, ranking, recall)</li>
+</ul>
+</li>
+<li><code>node</code>相當於SQL Server的table，而<code>cluster</code>相當於SQL Server的servers，這種說法對嗎？
+<ul>
+<li>蘋果不能跟橘子相比</li>
+</ul>
+</li>
+<li>Nodes會用cache找被之前 搜尋的數據嗎？
+<ul>
+<li>Yes, node use cache at the level of ElasticSearch and operating system, so that you could retrieve information faster.</li>
+</ul>
+</li>
+<li>如何在一個node裡面做sharding分片化？
+<ul>
+<li>不建議使用，因為如果這個node有問題，那data就永遠消失了，而且把資料sharding在不同的nodes才有助於平行化搜尋資料</li>
+</ul>
+</li>
+<li>使用ElasticSearch的缺點
+<ul>
+<li>不支持joins、transactions</li>
+</ul>
+</li>
+<li>其它問題，<a href="https://discuss.elastic.co/" target="_blank" rel="noopener noreffer ">discuss_elastic_co</a> 應該都找得到解答</li>
+<li><code>:9200</code>(ElasticSearch) 以及 <code>:5601</code>(Kibana)，有支援Authentication/ tokens 嗎？
+<ul>
+<li>有～～～官方有相關guide，請搜尋以下關鍵字
+<ul>
+<li>secure-cluster, encrypting-communications, setting-up-authentication</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="part-26-搜尋的關聯性">Part 2/6 搜尋的關聯性</h2>
+<ul>
+<li>
+<p>如何量測關聯性？Precision + Recall</p>
+</li>
+<li>
+<p>當你傳送search query至ElasticSearch，它會回傳它認為有關聯性的documents</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/MviYIa2.png"
+        data-srcset="https://i.imgur.com/MviYIa2.png, https://i.imgur.com/MviYIa2.png 1.5x, https://i.imgur.com/MviYIa2.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/MviYIa2.png"
+        title="image-20240128115200212" /></p>
+<ul>
+<li>green dots: true positives
+<ul>
+<li>relevant documents that are returned to the user</li>
+</ul>
+</li>
+<li>red dots: false positives
+<ul>
+<li>irrelevant documents that are returned to the user</li>
+</ul>
+</li>
+<li>gray dots: true negatives
+<ul>
+<li>irrelevant documents that are NOT returned to the user</li>
+</ul>
+</li>
+<li>magenta dots: false negatives
+<ul>
+<li>relevant documents that were not returned to the user</li>
+</ul>
+</li>
+<li>Precision公式</li>
+</ul>
+<p>$$
+Precision = \frac{True:positives}{True:positives + \textcolor{orange}{False:positives}}
+$$</p>
+<ul>
+<li>Recall公式</li>
+</ul>
+<p>$$
+Recall = \frac{True:positives}{True:positives + \textcolor{magenta}{False:negatives}}
+$$</p>
+<ul>
+<li>
+<p>Precision 與 Recall 是負相關的</p>
+<ul>
+<li>Precision: 回傳的值都必須完美匹配於搜尋條件，即使回傳的document數量較少</li>
+<li>Recall: 要取得比較多的回傳值，即使回傳的documents不一定是完美匹配</li>
+</ul>
+</li>
+<li>
+<p>Precision and recall determine which documents are included in the search results.</p>
+</li>
+<li>
+<p>Precision and recall do not determine which of the returned documents are more relevant compared to the others.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>回傳文件集之間的關聯性排序：Ranking</p>
+<ul>
+<li>Ranking refers to ordering of the results (from  most relevant result at the top, to least relevant at the bottom)</li>
+</ul>
+</li>
+<li>
+<p>Score又是什麼</p>
+<ul>
+<li>代表該文件對此查詢條件相關性多高的值</li>
+<li>A score is computed for each document that is a <code>hit</code></li>
+<li><code>hit</code>:傳送至user的搜尋結果</li>
+</ul>
+</li>
+<li>
+<p>計算document score的因子</p>
+<ul>
+<li>Term Frequency (TF)</li>
+<li>Inverse Document Frequency (IDF)</li>
+</ul>
+</li>
+<li>
+<p>Term Frequency (TF) determines how many times each search term appears in a document</p>
+<ul>
+<li>If search terms are found in high frequency in a document, the document is considered more relevant to this search query.</li>
+<li>假設一個Search Query 是 <code>How to train dragons</code>，就會有四個Search Terms。ElasticSearch會查看整份document，計算Search Terms在documents出現的次數</li>
+</ul>
+</li>
+<li>
+<p>Inverse Document Frequency diminishes the weight of terms that occur very frequently in the document set and increases the weight of terms that occur rarely!</p>
+<ul>
+<li>搜尋結果 Hits 可能會得到很多<code>How to train puppy</code>, <code>How to train machine</code>, <code>How to train students</code>, &hellip; etc. 之類的結果，但這些都跟 <code>How to train dragons</code>沒有關係</li>
+</ul>
+</li>
+<li>
+<p>Find datasets to work with:</p>
+<p><a href="https://www.kaggle.com/datasets" target="_blank" rel="noopener noreffer ">https://www.kaggle.com/datasets</a></p>
+</li>
+</ul>
+<h3 id="syntax">Syntax</h3>
+<ol>
+<li>
+<p>Retrieve all document from an index</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index_here}/_search
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET anime_tv_shows/_search
+</code></pre></li>
+<li>
+<p>如果dataset非常大，elasticsearch會限制total value為10,000筆</p>
+</li>
+<li>
+<p>如何知道total value是否為實際值？要看total relation</p>
+<ul>
+<li><code>&quot;relation&quot;: &quot;gte&quot;</code> greater than or equal to 10,000</li>
+<li><code>&quot;relation&quot;: &quot;eq&quot;</code> the value is equal to the total number of hits</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/vax8q8T.png"
+        data-srcset="https://i.imgur.com/vax8q8T.png, https://i.imgur.com/vax8q8T.png 1.5x, https://i.imgur.com/vax8q8T.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/vax8q8T.png"
+        title="image-20240128162436889" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/mJI1JAP.png"
+        data-srcset="https://i.imgur.com/mJI1JAP.png, https://i.imgur.com/mJI1JAP.png 1.5x, https://i.imgur.com/mJI1JAP.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/mJI1JAP.png"
+        title="image-20240128164036840" /></p>
+<ul>
+<li><code>&quot;hits&quot;</code>: [] 預設提供十筆sample search results</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Get total hits</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index_here}/_search
+{
+    &#34;track_total_hits&#34;: true
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/F2HqONx.png"
+        data-srcset="https://i.imgur.com/F2HqONx.png, https://i.imgur.com/F2HqONx.png 1.5x, https://i.imgur.com/F2HqONx.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/F2HqONx.png"
+        title="image-20240128163222326" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/w2TMTzk.png"
+        data-srcset="https://i.imgur.com/w2TMTzk.png, https://i.imgur.com/w2TMTzk.png 1.5x, https://i.imgur.com/w2TMTzk.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/w2TMTzk.png"
+        title="image-20240128164110733" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Search for data within specific time range</p>
+<ul>
+<li>
+<p>ElasticSearch搜尋有兩種主要方式：query &amp; aggregation</p>
+<ul>
+<li>Query: 取得符合criteria的documents</li>
+<li>Aggregation:</li>
+</ul>
+</li>
+<li>
+<p>Syntax &hellip; Query</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_intex_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;Specify the type of query here&#34;: {
+      &#34;Enter name of the field here&#34;: {
+        &#34;gte&#34;: &#34;Enter lowest value of the range here&#34;,
+        &#34;lte&#34;: &#34;Enter highest value of the range here&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example &hellip; Query</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/B8mW4TS.png"
+        data-srcset="https://i.imgur.com/B8mW4TS.png, https://i.imgur.com/B8mW4TS.png 1.5x, https://i.imgur.com/B8mW4TS.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/B8mW4TS.png"
+        title="image-20240128165927972" /></p>
+</li>
+<li>
+<p>Syntax &hellip; Aggregations</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index_here}/_search
+{
+  &#34;aggs&#34;: {
+    &#34;name your aggregation here&#34;: {
+      &#34;specify aggregation type here&#34;: {
+        &#34;field&#34;: &#34;name the field you want to aggregate&#34;,
+        &#34;size&#34;: &#34;state how many buckets you want to retrieve&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example &hellip; Aggregations</p>
+<ol>
+<li>
+<p>收合<code>&quot;hits&quot;: [...]</code> 之後就能看到聚合搜尋結果</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;aggs&#34;: {
+    &#34;by_category&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;category&#34;,
+        &#34;size&#34;: 100
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/AIbcw1y.png"
+        data-srcset="https://i.imgur.com/AIbcw1y.png, https://i.imgur.com/AIbcw1y.png 1.5x, https://i.imgur.com/AIbcw1y.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/AIbcw1y.png"
+        title="image-20240128172158732" /></p>
+<p><code>aggs</code> or <code>aggregations</code></p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;aggregations&#34;: {
+    &#34;by_category&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;category&#34;,
+        &#34;size&#34;: 100
+      }
+    }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/sSLZaMB.png"
+        data-srcset="https://i.imgur.com/sSLZaMB.png, https://i.imgur.com/sSLZaMB.png 1.5x, https://i.imgur.com/sSLZaMB.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/sSLZaMB.png"
+        title="image-20240129103745319" /></p>
+</li>
+<li>
+<p>找出entertainment類別中，最熱門的topics</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: { &#34;category&#34;: &#34;ENTERTAINMENT&#34; }
+  },
+  &#34;aggregations&#34;: {
+    &#34;popular_in_entertainment&#34;: {
+      &#34;significant_text&#34;: { &#34;field&#34;: &#34;headline&#34; }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/jvYYGQq.png"
+        data-srcset="https://i.imgur.com/jvYYGQq.png, https://i.imgur.com/jvYYGQq.png 1.5x, https://i.imgur.com/jvYYGQq.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/jvYYGQq.png"
+        title="image-20240128172755896" /></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>Precision and Recall</p>
+<ul>
+<li>
+<p>Increasing Recall</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;Specify the field you want to search&#34;: {
+        &#34;query&#34;: &#34;Enter search terms&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<ul>
+<li>Note: 以下這四個 search terms 預設是使用<code>OR</code>邏輯，所以如果一份document只包含其中一個 search term，也會被算在hit清單中</li>
+<li>OR logic具有 high recall 特性：關聯性較低的hits增加</li>
+</ul>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;headline&#34;: {
+        &#34;query&#34;: &#34;Khloe Kardashian Kendall Jenner&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/v1wOHI2.png"
+        data-srcset="https://i.imgur.com/v1wOHI2.png, https://i.imgur.com/v1wOHI2.png 1.5x, https://i.imgur.com/v1wOHI2.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/v1wOHI2.png"
+        title="image-20240128181334483" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Increasing Precision</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;Specify the field you want to search&#34;: {
+        &#34;query&#34;: &#34;Enter search terms&#34;,
+        &#34;operator&#34;: &#34;and&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;headline&#34;: {
+        &#34;query&#34;: &#34;Khloe Kardashian Kendall Jenner&#34;,
+        &#34;operator&#34;: &#34;and&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Ra8qKjP.png"
+        data-srcset="https://i.imgur.com/Ra8qKjP.png, https://i.imgur.com/Ra8qKjP.png 1.5x, https://i.imgur.com/Ra8qKjP.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Ra8qKjP.png"
+        title="And_Operator" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>minimum_should_match</p>
+<ul>
+<li>Specifying the minimum number of terms a document should have to be included in the search results</li>
+<li>Giving you more control over fine tuning precision and recall off your search</li>
+</ul>
+<p>Syntax:</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;Specify the field you want to search&#34;: {
+        &#34;query&#34;: &#34;Enter search terms&#34;,
+        &#34;minimum_should_match&#34;: Enter a number here
+      }
+    }
+  }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Combine several different queries to sort the results:</p>
+<ul>
+<li>
+<p>Syntax of <strong>Bool query</strong></p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;must&#34;: [
+      {}
+    ],
+    &#34;must_not&#34;: [
+      {}
+    ],
+    &#34;should&#34;: [
+      {}
+    ],
+    &#34;filter&#34;: [
+      {}
+    ]
+  }
+}
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>刪除已經加入的 index dataset</p>
+<ol>
+<li>
+<p>首先要 <code>DELETE {enter_name_of_index_here}</code>，會回傳true</p>
+</li>
+<li>
+<p>接著驗證，輸入<code>GET {enter_name_of_index_here}/_search</code>，如果上個步驟有刪除成功，應該會看到 &ldquo;index_not_found_exception&rdquo;</p>
+</li>
+<li>
+<p>刪除先前存在的 index pattern</p>
+<p><code>≡</code> ➡️ HOME ➡️ Stack Management ➡️ Index Management</p>
+</li>
+<li>
+<p>另外也要刪除 existed data view，不然在上傳時會拋出<code>DuplicateDataViewError</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/O3cF8lB.png"
+        data-srcset="https://i.imgur.com/O3cF8lB.png, https://i.imgur.com/O3cF8lB.png 1.5x, https://i.imgur.com/O3cF8lB.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/O3cF8lB.png"
+        title="image-20240129174657679" /></p>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="part-36--全文檢索">Part 3/6  全文檢索</h2>
+<ol>
+<li>
+<p>匹配片語搜尋 - <code>match_phrase query</code></p>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET Enter_the_name_of_the_index_here/_search
+{
+  &#34;query&#34;: {
+    &#34;match_phrase&#34;: {
+      &#34;Specify the field u want to search over&#34;: &#34;Enter the phrase u are searching for&#34;
+    }
+  }
+}
+</code></pre><p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/KtbxfZU.png"
+        data-srcset="https://i.imgur.com/KtbxfZU.png, https://i.imgur.com/KtbxfZU.png 1.5x, https://i.imgur.com/KtbxfZU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/KtbxfZU.png"
+        title="image-20240129103013654" /></p>
+<ul>
+<li>&ldquo;match&rdquo;  shape of you   ➡️  超過一萬筆，只要包含 shape 或 of 或 you 皆列入</li>
+<li>&ldquo;match&rdquo; shape of you + &ldquo;operator&rdquo;: &ldquo;and&rdquo; ➡️ 3筆 + 兩筆&quot;shape of you<strong>r</strong> &hellip;&quot;</li>
+<li>&ldquo;match_phrase&rdquo;: 3筆</li>
+</ul>
+</li>
+<li>
+<p>多個匹配條件</p>
+<ul>
+<li>user可能會查詢由Michelle Obama撰寫的文章、或者關於Michelle Obama的文章，可以透過從多個 fields 查詢來完成</li>
+<li>這類query會再每個field搜尋符合條件的document，給每個field計算score</li>
+</ul>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;multi_match&#34;: {
+      &#34;query&#34;: &#34;Enter search terms here&#34;,
+      &#34;fields&#34;: [
+        &#34;List the field u want to search over&#34;,
+        &#34;List the field u want to search over&#34;,
+        &#34;List the field u want to search over&#34;
+      ]
+    }
+  }
+}
+</code></pre><p>Example</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;multi_match&#34;: {
+      &#34;query&#34;: &#34;Michelle Obama&#34;,
+      &#34;fields&#34;: [
+        &#34;headline&#34;,
+        &#34;short_description&#34;,
+        &#34;authors&#34;
+      ]
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ITHsrrv.png"
+        data-srcset="https://i.imgur.com/ITHsrrv.png, https://i.imgur.com/ITHsrrv.png 1.5x, https://i.imgur.com/ITHsrrv.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ITHsrrv.png"
+        title="image-20240129112821717" /></p>
+</li>
+<li>
+<p>多個匹配條件_給特定field加權</p>
+<p>Syntax:</p>
+<ul>
+<li><code>^number</code> 使用 carat 符號加強權重，增進精確度</li>
+</ul>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;multi_match&#34;: {
+      &#34;query&#34;: &#34;Enter search terms here&#34;,
+      &#34;fields&#34;: [
+        &#34;List the field u want to search over^2&#34;,
+        &#34;List the field u want to search over&#34;,
+        &#34;List the field u want to search over&#34;
+      ]
+    }
+  }
+}
+</code></pre><p>Example:</p>
+<ul>
+<li>可以看到搜尋結果比數還是一樣，但ranking改變了</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/JK4pUHT.png"
+        data-srcset="https://i.imgur.com/JK4pUHT.png, https://i.imgur.com/JK4pUHT.png 1.5x, https://i.imgur.com/JK4pUHT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/JK4pUHT.png"
+        title="image-20240129113252327" /></p>
+</li>
+<li>
+<p>多個匹配條件 - 查詢片語並改善其精準度</p>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;query&#34;: {
+    &#34;multi_match&#34;: {
+      &#34;query&#34;: &#34;Enter search phrase&#34;,
+      &#34;fields&#34;: [
+        &#34;List the field u want to boost^2&#34;,
+        &#34;List the field u want to search over&#34;,
+        &#34;List the field u want to search over&#34;
+      ],
+      &#34;type&#34;: &#34;phrase&#34;
+    }
+  }
+}
+</code></pre><p>Example</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;multi_match&#34;: {
+      &#34;query&#34;: &#34;party planning&#34;,
+      &#34;fields&#34;: [
+        &#34;headline^2&#34;,
+        &#34;short_description&#34;
+      ],
+      &#34;type&#34;: &#34;phrase&#34;
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/NRVzKZE.png"
+        data-srcset="https://i.imgur.com/NRVzKZE.png, https://i.imgur.com/NRVzKZE.png 1.5x, https://i.imgur.com/NRVzKZE.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/NRVzKZE.png"
+        title="image-20240129113956270" /></p>
+</li>
+<li>
+<p>合併 Queries</p>
+<ul>
+<li>user可能會詢問多面向問題 (multi-faceted question)，需要multiple queries</li>
+<li>例：查詢關於Michelle Obama政治方面的、2016年以前發佈的文章</li>
+</ul>
+<p><strong>Bool query</strong></p>
+<ul>
+<li>
+<p>SYNTAX</p>
+<p>must: 應徵者<strong>必備</strong>條件  (e.g. 有兩年金融科技相關工作經驗)</p>
+<p>must not: 符合此欄所述條件的應徵者會被篩除 (e.g. 非資訊相關科系)</p>
+<p>should: 應徵者<strong>加分</strong>條件 (e.g. 對高併發、微服務、分佈式架構有明確理解)</p>
+<p>filter: <strong>是否</strong>符合某特定條件 (e.g. 住在與公司地址同縣市區域)</p>
+<pre tabindex="0"><code>GET {name_of_index}/_search
+{
+  &#34;query&#34;: {
+    &#34;bool&#34;: {
+      &#34;must&#34;: [
+        {One or more queries can be specified here...}
+      ],
+      &#34;must_not&#34;: [
+        {A document must NOT match any of the quereies ...}
+      ],
+      &#34;should&#34;: [
+        {A document does not have to match any queries ...}
+      ],
+      &#34;filter&#34;: [
+        {These filters(queries) place documents in element}
+      ]
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<ul>
+<li>
+<p>Must + Must Not</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/WpaAwJQ.png"
+        data-srcset="https://i.imgur.com/WpaAwJQ.png, https://i.imgur.com/WpaAwJQ.png 1.5x, https://i.imgur.com/WpaAwJQ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/WpaAwJQ.png"
+        title="image-20240129120518694" /></p>
+</li>
+<li>
+<p>Must + Should</p>
+<p>二月是BlackHistoryMonth，user更想看到black voices相關的documents。這樣的配置會給符合 should 條件的 documents 比較高的 score，document 顯示上的排序也比較靠前。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/UIvEF10.png"
+        data-srcset="https://i.imgur.com/UIvEF10.png, https://i.imgur.com/UIvEF10.png 1.5x, https://i.imgur.com/UIvEF10.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/UIvEF10.png"
+        title="image-20240129120634990" /></p>
+</li>
+<li>
+<p>Must + Filter</p>
+<p>將documents二分法，例如符合某段時間內的為true，其餘為false。filter 子句的搜尋結果只包含 yes category 的 documents。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/9Hxr8nD.png"
+        data-srcset="https://i.imgur.com/9Hxr8nD.png, https://i.imgur.com/9Hxr8nD.png 1.5x, https://i.imgur.com/9Hxr8nD.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/9Hxr8nD.png"
+        title="image-20240129121331309" /></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="part-46-aggregations">Part 4/6 Aggregations</h2>
+<ol>
+<li>Metric aggregations</li>
+<li>Bucket aggregations</li>
+<li>Combined aggregations</li>
+</ol>
+<p>將你的資料概括成metrics, statistics, 或其它 analytics</p>
+<h4 id="aggregations-request">Aggregations Request</h4>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;aggs&#34;: {
+    &#34;Name your aggregations here&#34;: {
+      &#34;Specify the aggregation type here&#34;: {
+        &#34;field&#34;: &#34;Name the field u want to aggregate on&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Metrics Aggregation: 根據資料集計算出數值，運用<code>sum</code>, <code>min</code>, <code>max</code>, <code>avg</code>, unique count(<code>cardinality</code>) 等等</p>
+<p>Syntax &mdash; SUM</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;aggs&#34;: {
+    &#34;Name your aggregations here&#34;: {
+      &#34;sum&#34;: {
+        &#34;field&#34;: &#34;name the field you want to aggregate on&#34;
+      }
+    }
+  }
+}
+</code></pre><p>Example &mdash; 查看 <code>aggregations</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/DrSIWYI.png"
+        data-srcset="https://i.imgur.com/DrSIWYI.png, https://i.imgur.com/DrSIWYI.png 1.5x, https://i.imgur.com/DrSIWYI.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/DrSIWYI.png"
+        title="image-20240129153518448" /></p>
+</li>
+<li>
+<p>Metrics Aggregation &mdash; SUM + 使用size參數</p>
+<p>Syntax</p>
+<ul>
+<li><code>&quot;size&quot;: 0</code> 告訴ELS不用取得前10大hits結果了 (參上圖右側 line 16 ~ line 157)</li>
+</ul>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;sum_unit_price&#34;: {
+      &#34;sum&#34;: {
+        &#34;field&#34;: &#34;UnitPrice&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/834SeCa.png"
+        data-srcset="https://i.imgur.com/834SeCa.png, https://i.imgur.com/834SeCa.png 1.5x, https://i.imgur.com/834SeCa.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/834SeCa.png"
+        title="image-20240129154045784" /></p>
+</li>
+<li>
+<p>Metrics Aggregation：計算最低unit price <code>min</code></p>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;Name your aggregations here&#34;: {
+      &#34;min&#34;: {
+        &#34;field&#34;: &#34;Name the field u want to aggregate on&#34;
+      }
+    }
+  }
+}
+</code></pre><p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;lowest_unit_price&#34;: {
+      &#34;min&#34;: {
+        &#34;field&#34;: &#34;UnitPrice&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Vr5ORAz.png"
+        data-srcset="https://i.imgur.com/Vr5ORAz.png, https://i.imgur.com/Vr5ORAz.png 1.5x, https://i.imgur.com/Vr5ORAz.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Vr5ORAz.png"
+        title="image-20240129154428170" /></p>
+</li>
+<li>
+<p>Metrics Aggregation：計算最高unit price <code>max</code></p>
+<p>直接上 Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;highest_unit_price&#34;: {
+      &#34;max&#34;: {
+        &#34;field&#34;: &#34;UnitPrice&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/bptBN8N.png"
+        data-srcset="https://i.imgur.com/bptBN8N.png, https://i.imgur.com/bptBN8N.png 1.5x, https://i.imgur.com/bptBN8N.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/bptBN8N.png"
+        title="image-20240129154613476" /></p>
+</li>
+<li>
+<p>一次得到上面所列的metrics aggs &mdash; <strong>Stats Aggregation</strong></p>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;Name your aggregations here&#34;: {
+      &#34;stats&#34;: {
+        &#34;field&#34;: &#34;Name the field u want to aggregate on&#34;
+      }
+    }
+  }
+}
+</code></pre><p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;all_stats_unit_price&#34;: {
+      &#34;stats&#34;: {
+        &#34;field&#34;: &#34;UnitPrice&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/KNzZIFV.png"
+        data-srcset="https://i.imgur.com/KNzZIFV.png, https://i.imgur.com/KNzZIFV.png 1.5x, https://i.imgur.com/KNzZIFV.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/KNzZIFV.png"
+        title="image-20240129154925916" /></p>
+<ul>
+<li><code>count</code>: aggregation執行的資料筆數</li>
+<li>最低單價、最高單價、平均單價、單價加總</li>
+</ul>
+</li>
+<li>
+<p><strong>Cardinality Aggregations</strong></p>
+<ul>
+<li>
+<p>應用場景：you want the number of unique customers who bough from our app</p>
+</li>
+<li>
+<p>the cardinality aggregation computes the count of unique values for a given field</p>
+<p>用途：用來計算某一個欄位的唯一值數量</p>
+</li>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;name ur aggregations here&#34;: {
+      &#34;cardinality&#34;: {
+        &#34;field&#34;: &#34;name the field u want to aggregate on&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;number_unique_country&#34;: {
+      &#34;cardinality&#34;: {
+        &#34;field&#34;: &#34;Country&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/D75I861.png"
+        data-srcset="https://i.imgur.com/D75I861.png, https://i.imgur.com/D75I861.png 1.5x, https://i.imgur.com/D75I861.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/D75I861.png"
+        title="image-20240129160641480" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>限制aggregation的作用域</p>
+<ul>
+<li>
+<p>Syntax (整合query與aggregation)</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;query&#34;: {
+    &#34;Enter match or match_phrase here&#34;: {
+      &#34;Enter the name of the field&#34;: &#34;Enter the value you are limiting&#34;
+    }
+  },
+  &#34;aggregations&#34;: {
+    &#34;Name ur aggregations here&#34;: {
+      &#34;Specify aggregations type here&#34;: {
+        &#34;field&#34;: &#34;Name the field u want to aggregate here&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/MwbtyK1.png"
+        data-srcset="https://i.imgur.com/MwbtyK1.png, https://i.imgur.com/MwbtyK1.png 1.5x, https://i.imgur.com/MwbtyK1.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/MwbtyK1.png"
+        title="image-20240129161534706" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="bucket-aggregation">Bucket Aggregation</h4>
+<p>上述的例子是 aggregate on ONE subject of documents (即只對文件一個子集做聚合數據處理)，如果要對文件的多個子集做處理，就使用 bucket aggregation</p>
+<p>例如說 Transactions index 可能就會依照月份份成不同的 buckets，還有其他不同<code>bucket aggs</code></p>
+<ol>
+<li>Date Histogram Aggregation</li>
+<li>Histogram Aggregation</li>
+<li>Range Aggregation</li>
+<li>Terms Aggregation</li>
+</ol>
+<h5 id="date-histogram-aggregation">Date Histogram Aggregation</h5>
+<ul>
+<li>
+<p>根據日期區間做分組</p>
+</li>
+<li>
+<p>有兩種定義日期區間的方式</p>
+<ol>
+<li>
+<p><code>Fixed_interval</code>：區間值是固定的常數</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;Name ur aggregations here&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;Name the field u want to aggregate on here&#34;,
+        &#34;fixed_interval&#34;: &#34;Specify the interval here&#34;
+      }
+    }
+  }
+}
+</code></pre><p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/II3xdia.png"
+        data-srcset="https://i.imgur.com/II3xdia.png, https://i.imgur.com/II3xdia.png 1.5x, https://i.imgur.com/II3xdia.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/II3xdia.png"
+        title="image-20240129175237148" /></p>
+</li>
+<li>
+<p><code>Calendar_interval</code>：</p>
+<ul>
+<li>
+<p>區間會有些微變化，像是日光節約時間、大小月、leap seconds(閏秒)</p>
+</li>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;name ur aggregations here&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;Name the field u want to aggregate on here&#34;,
+        &#34;calendar_interval&#34;: &#34;Specify the interval here&#34;
+      }
+    }
+  }
+}
+</code></pre><p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/WlQBgIU.png"
+        data-srcset="https://i.imgur.com/WlQBgIU.png, https://i.imgur.com/WlQBgIU.png 1.5x, https://i.imgur.com/WlQBgIU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/WlQBgIU.png"
+        title="image-20240129175142547" /></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Bucket sorting for data histogram aggregation</p>
+<ul>
+<li>
+<p>日期buckets預設是以升冪方式排序，加入<code>order</code>參數可以修改排序</p>
+</li>
+<li>
+<p>直接上Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;name ur aggregations here&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;@timestamp&#34;,
+        &#34;calendar_interval&#34;: &#34;1M&#34;,
+        &#34;order&#34;: {
+          &#34;_key&#34;: &#34;desc&#34;
+        }
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/rubRPRN.png"
+        data-srcset="https://i.imgur.com/rubRPRN.png, https://i.imgur.com/rubRPRN.png 1.5x, https://i.imgur.com/rubRPRN.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/rubRPRN.png"
+        title="image-20240129175634473" /></p>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="histogram-aggregation">Histogram Aggregation</h5>
+<ul>
+<li>
+<p>可以根據任何數值區間（numerical interval）分成多個buckets</p>
+</li>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;name your aggregrations here&#34;: {
+      &#34;histogram&#34;: {
+        &#34;field&#34;: &#34;name the field u want to aggregate on here&#34;,
+        &#34;interval&#34;: Specify the interval here
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;price_interval_descending&#34;: {
+      &#34;histogram&#34;: {
+        &#34;field&#34;: &#34;UnitPrice&#34;,
+        &#34;interval&#34;: 10
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/XanOYs9.png"
+        data-srcset="https://i.imgur.com/XanOYs9.png, https://i.imgur.com/XanOYs9.png 1.5x, https://i.imgur.com/XanOYs9.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/XanOYs9.png"
+        title="image-20240129180547945" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/xHxpYLf.png"
+        data-srcset="https://i.imgur.com/xHxpYLf.png, https://i.imgur.com/xHxpYLf.png 1.5x, https://i.imgur.com/xHxpYLf.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/xHxpYLf.png"
+        title="image-20240129180349104" /></p>
+</li>
+</ul>
+<h5 id="range-aggregation">Range Aggregation</h5>
+<ul>
+<li>
+<p>讓你能夠定義不同intervals of varying sizes (可供客製化)</p>
+</li>
+<li>
+<p>例如將單價分組成 ($50以下)($50~$200區間)($200以上)</p>
+</li>
+<li>
+<p>Syntax</p>
+</li>
+<li>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;name your aggregrations here&#34;: {
+      &#34;range&#34;: {
+        &#34;field&#34;: &#34;name the field u want to aggregate on here&#34;,
+        &#34;ranges&#34;: [
+          {
+            &#34;to&#34;: x
+          }, 
+          {
+            &#34;from&#34;: x, 
+            &#34;to&#34;: y
+          },
+          {
+            &#34;from&#34;: x
+          }
+        ]
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;transactions_per_custom_price_ranges&#34;: {
+      &#34;range&#34;: {
+        &#34;field&#34;: &#34;UnitPrice&#34;,
+        &#34;ranges&#34;: [
+          {
+            &#34;to&#34;: 50
+          }, 
+          {
+            &#34;from&#34;: 50, 
+            &#34;to&#34;: 200
+          },
+          {
+            &#34;from&#34;: 200
+          }
+        ]
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/IDM6fu2.png"
+        data-srcset="https://i.imgur.com/IDM6fu2.png, https://i.imgur.com/IDM6fu2.png 1.5x, https://i.imgur.com/IDM6fu2.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/IDM6fu2.png"
+        title="image-20240130102154666" /></p>
+</li>
+</ul>
+<h5 id="terms-aggregation">Terms Aggregation</h5>
+<ul>
+<li>
+<p>creates a new bucket for every unique term it encounters for the specified field</p>
+</li>
+<li>
+<p>通常用來找document中，搜尋頻率最高的terms</p>
+</li>
+<li>
+<p>例如：要識別交易金額最高的前五筆客戶</p>
+</li>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_index_here}/_search
+{
+  &#34;aggs&#34;: {
+    &#34;name your aggregrations here&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;name the field u want to aggregate on here&#34;,
+        &#34;size&#34;: State how many top results u want returned
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example &mdash; Descending</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;top_5_countries&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;Country&#34;,
+        &#34;size&#34;: 5
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/CGJstzy.png"
+        data-srcset="https://i.imgur.com/CGJstzy.png, https://i.imgur.com/CGJstzy.png 1.5x, https://i.imgur.com/CGJstzy.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/CGJstzy.png"
+        title="image-20240130103132239" /></p>
+</li>
+<li>
+<p>Example &mdash; Ascending</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;5_countries_w/_lowest ecommerce data&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;Country&#34;,
+        &#34;size&#34;: 5,
+        &#34;order&#34;: {
+          &#34;_count&#34;: &#34;asc&#34;
+        }
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/qHreq6U.png"
+        data-srcset="https://i.imgur.com/qHreq6U.png, https://i.imgur.com/qHreq6U.png 1.5x, https://i.imgur.com/qHreq6U.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/qHreq6U.png"
+        title="image-20240130103434037" /></p>
+</li>
+</ul>
+<h5 id="combined-aggregations">Combined Aggregations</h5>
+<ul>
+<li>
+<p>有些查詢需要合併不同aggregations來完成</p>
+</li>
+<li>
+<p>例如：每日的營業總額是多少？</p>
+<p><code>doc['UnitPrice'].value * doc['Quantity'].value</code></p>
+<ul>
+<li>script: 在ElasticSearch裡動態創建搜尋結果</li>
+<li>for each document in our bucket, multiply <strong>the value of field price</strong> by <strong>the value of the field Quantity</strong></li>
+</ul>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;aggs&#34;: {
+    &#34;transactions_per_day&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;@timestamp&#34;,
+        &#34;calendar_interval&#34;: &#34;day&#34;
+      },
+      &#34;aggs&#34;: {
+        &#34;daily_revenue&#34;: {
+          &#34;sum&#34;: {
+            &#34;script&#34;: {
+              &#34;source&#34;: &#34;doc[&#39;UnitPrice&#39;].value * doc[&#39;Quantity&#39;].value&#34;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/UZZkMed.png"
+        data-srcset="https://i.imgur.com/UZZkMed.png, https://i.imgur.com/UZZkMed.png 1.5x, https://i.imgur.com/UZZkMed.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/UZZkMed.png"
+        title="image-20240130105308021" /></p>
+</li>
+<li>
+<p>可以建構任何combinations of aggregations來回答更複雜的問題</p>
+</li>
+<li>
+<p>例如：取得每日營業額以及每日的unique countries數量</p>
+<ul>
+<li>需要在每個bucket中計算多個metric aggregations</li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0, 
+  &#34;aggs&#34;: {
+    &#34;transactions_per_day&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;@timestamp&#34;,
+        &#34;calendar_interval&#34;: &#34;day&#34;
+      },
+      &#34;aggs&#34;: {
+        &#34;daily_revenue&#34;: {
+          &#34;sum&#34;: {
+            &#34;script&#34;: {
+              &#34;source&#34;: &#34;doc[&#39;UnitPrice&#39;].value * doc[&#39;Quantity&#39;].value&#34;
+            }
+          }
+        },
+        &#34;number_of_unique_countries_per_day&#34;: {
+          &#34;cardinality&#34;: {
+            &#34;field&#34;: &#34;Country&#34;
+          }
+        }
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/h9dr3DR.png"
+        data-srcset="https://i.imgur.com/h9dr3DR.png, https://i.imgur.com/h9dr3DR.png 1.5x, https://i.imgur.com/h9dr3DR.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/h9dr3DR.png"
+        title="image-20240130111250073" /></p>
+<ul>
+<li>Bucket 預設是以日期升冪排序，如果要改用每日營業額排序呢？
+<ul>
+<li>最簡單的方法是改用每日營業額給dataset分成不同buckets</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="sorting-by-metric-value-of-a-sub-aggregation">Sorting by metric value of a sub-aggregation</h5>
+<ul>
+<li>
+<p>不用總是以時間區段、數字區段分組，也可以用 metric value of a sub-aggregation 分組</p>
+</li>
+<li>
+<p>以下範例計算了每日營業額以及每日採購國家數量，如果要查截至今哪天的日營業額最高，只需要加入order參數，再用daily_revenue數值給buckets降冪排序</p>
+<pre tabindex="0"><code>GET ecommerce_data/
+</code></pre></li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0, 
+  &#34;aggs&#34;: {
+    &#34;transactions_per_day&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;@timestamp&#34;,
+        &#34;calendar_interval&#34;: &#34;day&#34;,
+          &#34;order&#34;: {
+            &#34;daily_revenue&#34;: &#34;desc&#34;
+          }
+      },
+      &#34;aggs&#34;: {
+        &#34;daily_revenue&#34;: {
+          &#34;sum&#34;: {
+            &#34;script&#34;: {
+              &#34;source&#34;: &#34;doc[&#39;UnitPrice&#39;].value * doc[&#39;Quantity&#39;].value&#34;
+            }
+          }
+        },
+        &#34;number_of_unique_countries_per_day&#34;: {
+          &#34;cardinality&#34;: {
+            &#34;field&#34;: &#34;Country&#34;
+          }
+        }
+      }
+    }
+  }
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/lyQcd7Y.png"
+        data-srcset="https://i.imgur.com/lyQcd7Y.png, https://i.imgur.com/lyQcd7Y.png 1.5x, https://i.imgur.com/lyQcd7Y.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/lyQcd7Y.png"
+        title="image-20240130113116910" /></p>
+</li>
+</ul>
+<h2 id="part-56-mapping">Part 5/6 Mapping</h2>
+<p>Mapping 定義了一份document以及其field是如何被索引以及儲存的</p>
+<p>學習定義自己的mapping有以下幫助：</p>
+<ol>
+<li>優化ElasticSearch的效能</li>
+<li>節省空間</li>
+</ol>
+<h4 id="index-a-document">Index a Document</h4>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>POST {enter_name_of_index_here}/_doc
+{
+  &#34;field&#34;: &#34;value&#34;
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/SqFzBv8.png"
+        data-srcset="https://i.imgur.com/SqFzBv8.png, https://i.imgur.com/SqFzBv8.png 1.5x, https://i.imgur.com/SqFzBv8.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/SqFzBv8.png"
+        title="image-20240130120732081" /></p>
+</li>
+</ul>
+<h5 id="mapping-explained">Mapping Explained</h5>
+<ul>
+<li>
+<p>mapping決定了document以及其field如何被索引，且定義了儲存的type類型</p>
+</li>
+<li>
+<p>包含 names list 以及對應的 field type</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/DOKrSQZ.png"
+        data-srcset="https://i.imgur.com/DOKrSQZ.png, https://i.imgur.com/DOKrSQZ.png 1.5x, https://i.imgur.com/DOKrSQZ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/DOKrSQZ.png"
+        title="image-20240130121351970" /></p>
+</li>
+</ul>
+<h5 id="dynamic-mapping">Dynamic Mapping</h5>
+<ul>
+<li>當user沒有事先定義mapping，Elasticsearch 在需要的情況下會預設建立或更新映射(mapping)，稱之為動態映射</li>
+<li>Elasticsearch 查看個別欄位，並且試圖從field內容推論出資料型別，給每個field分配一個型別，建立一個包含field name 與對應型別 (type) 的清單 (mapping)</li>
+<li>檢視mapping <code>GET {name_of_the_index}/_mapping</code></li>
+<li>field包含的<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html" target="_blank" rel="noopener noreffer ">所有型別</a></li>
+</ul>
+<h5 id="indexing-strings">Indexing Strings</h5>
+<ul>
+<li>string 資料型別有兩種：1️⃣ Text    2️⃣ Keyword</li>
+<li>預設的，每個字串被映射兩次，一次是text field，另一次是keyword multi-field</li>
+<li>這兩種資料型別適用於不同類型的需求：
+<ul>
+<li>關鍵字 (keyword) 用於精確匹配和聚合 (exact searches, aggregations, sorting)</li>
+<li>文本 (text) 用於全文檢索 (full-text searches)
+<ul>
+<li>Non-Case sensitive manner 不管大小寫</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="text-field-type">Text Field Type</h5>
+<ol>
+<li>
+<p>Text analysis：文本經過Analyzer分成多個詞 (individual tokens)，不包含標點符號</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yvhE0Vs.png"
+        data-srcset="https://i.imgur.com/yvhE0Vs.png, https://i.imgur.com/yvhE0Vs.png 1.5x, https://i.imgur.com/yvhE0Vs.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yvhE0Vs.png"
+        title="image-20240130145756669" /></p>
+</li>
+<li>
+<p>Inverted index：一旦字串經過分析後，individual tokenu以及相關的doc_ID 會存在一個sorted list，稱為<code>inverted index</code></p>
+</li>
+<li>
+<p>如果再新增一筆內容與前一筆 (doc_1) 一模一樣的 document (doc_2)，那麽只會增加 doc_id 欄</p>
+</li>
+<li>
+<p>假設doc_3內容是 <code>These chestnut are sourced from Turkey.</code>，那 Inverted index 就會長得像下面這樣</p>
+<table>
+<thead>
+<tr>
+<th>term</th>
+<th>doc_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>are</td>
+<td>1,2,<strong>3</strong></td>
+</tr>
+<tr>
+<td>china</td>
+<td>1,2</td>
+</tr>
+<tr>
+<td>from</td>
+<td>1,2,3</td>
+</tr>
+<tr>
+<td>chestnuts</td>
+<td>1,2,<strong>3</strong></td>
+</tr>
+<tr>
+<td>sourced</td>
+<td>1,2,<strong>3</strong></td>
+</tr>
+<tr>
+<td>these</td>
+<td>1,2,3</td>
+</tr>
+<tr>
+<td>turkey</td>
+<td><strong>3</strong></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<blockquote>
+<p>Text field type is optimal for full-text search，因為只要client發出要查找包含 term <code>sourced</code> OR <code>from</code>的 documents的請求，Elastic Cluster 只要去 inverted index 裡面找出對應的 doc_id 就行。</p>
+</blockquote>
+<h5 id="keyword-field-type">Keyword Field Type</h5>
+<ol>
+<li>
+<p>建立了 keyword field 之後，不會分析內容，也沒有inverted index，而是使用 doc values 的資料結構來儲存資料</p>
+</li>
+<li>
+<p>Doc values 適用於 Aggregations, sorting, exact searches 的檢索情境</p>
+<p>每新增一筆 document，其 doc_id 以及原封不動的 original string(保留大小寫) 會被存進 doc values</p>
+<table>
+<thead>
+<tr>
+<th>doc id</th>
+<th>doc value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4</td>
+<td>New Florida</td>
+</tr>
+<tr>
+<td>5</td>
+<td>New Mexico</td>
+</tr>
+<tr>
+<td>6</td>
+<td>New Jersey</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p>但你的使用場景並不是每次都需要這兩種 field types，這樣的話，預設設定會有點浪費，因為會減緩 indexing 速度，而且佔掉比較多的磁碟空間。自行定義mapping可以讓資料的儲存與檢索更有效率</p>
+<h5 id="練習">練習</h5>
+<p>專案：建構一個可以讓client管理農產品倉儲庫存的app</p>
+<h6 id="需求">需求：</h6>
+<ol>
+<li>查詢產品名稱、產地國家、產品敘述</li>
+<li>辨別出採購紀錄頻率最高的產地來源國</li>
+<li>以類型分類農產品（水果 or 蔬菜）</li>
+<li>取得每月費用總結的資料</li>
+</ol>
+<h6 id="樣本資料">樣本資料：</h6>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;chestnut&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;botanical_name&#34;</span><span class="p">:</span> <span class="s2">&#34;Castanea sativa&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;produce_type&#34;</span><span class="p">:</span> <span class="s2">&#34;Fruit&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;country_of_origin&#34;</span><span class="p">:</span> <span class="s2">&#34;China&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;date_purchased&#34;</span><span class="p">:</span> <span class="s2">&#34;2024-02-05T02:16:24&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;quantity&#34;</span><span class="p">:</span> <span class="mi">325</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;unit_price&#34;</span><span class="p">:</span> <span class="mf">7.17</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;a large, brown nut that covered with burlike skin and grows on a tree, often cooked and eaten hot&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;vendor_details&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;vendor&#34;</span><span class="p">:</span> <span class="s2">&#34;The Lee&#39;s Lander&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;main_contect&#34;</span><span class="p">:</span> <span class="s2">&#34;Chipi Lee&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;vendor_location&#34;</span><span class="p">:</span> <span class="s2">&#34;TienJing, China&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;preferred_vendor&#34;</span><span class="p">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h6 id="行動方案">行動方案：</h6>
+<ol>
+<li>可搜尋產品名稱、產地來源國、產品敘述
+<ul>
+<li>fields: name, country_of_origin, description</li>
+<li>全文檢索</li>
+<li>name 以及 description 不需要聚合/分類/精確搜尋 ➡️ text only</li>
+<li>country_of_origin: To be decided</li>
+</ul>
+</li>
+<li>辨別出採購紀錄頻率最高的產地來源國
+<ul>
+<li>field: country_of_origin</li>
+<li>Terms aggregration</li>
+<li>需要用到全文檢索以及聚合查詢 ➡️ text and keyword</li>
+</ul>
+</li>
+<li>以類型分類農產品（水果 or 蔬菜）
+<ul>
+<li>field: produce_type</li>
+<li>需要分類 Sorting，不用全文檢索 ➡️ keyword only</li>
+</ul>
+</li>
+<li>取得每月費用總結的資料
+<ul>
+<li>fields: date_purchased, quantity, unit_price</li>
+<li>Date histogram aggregration
+<ul>
+<li>建立以月份區分的buckets (date_purchased)</li>
+</ul>
+</li>
+<li>Metric aggregation
+<ul>
+<li>計算每一筆採購的總額 (total = quantity * unit_price)</li>
+<li>將同月份buckets中，所有採購總額加總成 monthly expense</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h6 id="根據所需功能優化的mapping">根據所需功能優化的mapping</h6>
+<table>
+<thead>
+<tr>
+<th>String field(s)</th>
+<th>適合的 field type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>country_of_origin</td>
+<td>Text and Keyword</td>
+</tr>
+<tr>
+<td>description_name</td>
+<td>Text only</td>
+</tr>
+<tr>
+<td>produce_type</td>
+<td>Keyword only</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>vendor_details</code>物件以及<code>botanical_name</code>field不會用到，可以disabled</li>
+</ul>
+<h5 id="自定義-mapping">自定義 mapping</h5>
+<h6 id="rules">Rules</h6>
+<ol>
+<li>如果沒有提前定義mapping，Elasticsearch會動態建立mapping</li>
+<li>如果要自建mapping，可以在創建索引時一起執行</li>
+<li>一個索引只定義一個mapping，一旦這個索引建立之後，只能在mapping增加新的field，無法變更既有field的mapping type</li>
+<li>如果一定要變更既有field的型別，一定要先建立一個新的索引+理想的mapping，再將所有文檔 reindex 進新的索引裡</li>
+</ol>
+<h6 id="步驟一將樣本document索引進一個test-index">步驟一：將樣本document索引進一個test index</h6>
+<p>這個樣本文檔必須包含你想要定義的 fields，這些 fields 也必須包含與你想要定義的field type型別相近的值</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>POST {name_of_test_index}/_doc
+{
+  &#34;field&#34;: &#34;value&#34;
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/9gs99YU.png"
+        data-srcset="https://i.imgur.com/9gs99YU.png, https://i.imgur.com/9gs99YU.png 1.5x, https://i.imgur.com/9gs99YU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/9gs99YU.png"
+        title="image-20240130163918382" /></p>
+</li>
+</ul>
+<h6 id="步驟二檢視動態映射-dynamic-mapping">步驟二：檢視動態映射 (dynamic mapping)</h6>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {name_of_test_index}/_mapping
+</code></pre></li>
+<li>
+<p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/nFrNhiW.png"
+        data-srcset="https://i.imgur.com/nFrNhiW.png, https://i.imgur.com/nFrNhiW.png 1.5x, https://i.imgur.com/nFrNhiW.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/nFrNhiW.png"
+        title="image-20240130164326294" /></p>
+</li>
+<li>
+<p>mapping fields 以英文字母排序，會顯示Elasticseach 動態映射的結果，可以將其作為自訂 mapping 的範本</p>
+</li>
+</ul>
+<h6 id="步驟三編輯自訂mapping">步驟三：編輯自訂mapping</h6>
+<ol>
+<li>
+<p>將上述結果複製貼到左邊輸入框，刪除第二行的 <code>&quot;test_index&quot;: {</code> 以及對應的<code>}</code></p>
+</li>
+<li>
+<p>country_of_origin 要保留 keyword &amp; text，不更改</p>
+</li>
+<li>
+<p>description, name 要刪除 keyword multi field (參下圖 line 31 - 36 以及 line 30的逗號)</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/mDrZjuf.png"
+        data-srcset="https://i.imgur.com/mDrZjuf.png, https://i.imgur.com/mDrZjuf.png 1.5x, https://i.imgur.com/mDrZjuf.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/mDrZjuf.png"
+        title="image-20240130165006261" /></p>
+</li>
+<li>
+<p>product_type 要刪除 text type，只有keyword only</p>
+<p>Before:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/e4HSUrL.png"
+        data-srcset="https://i.imgur.com/e4HSUrL.png, https://i.imgur.com/e4HSUrL.png 1.5x, https://i.imgur.com/e4HSUrL.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/e4HSUrL.png"
+        title="image-20240130165223787" /></p>
+<p>After</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/p0bZuPZ.png"
+        data-srcset="https://i.imgur.com/p0bZuPZ.png, https://i.imgur.com/p0bZuPZ.png 1.5x, https://i.imgur.com/p0bZuPZ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/p0bZuPZ.png"
+        title="image-20240130165242919" /></p>
+</li>
+<li>
+<p>botanical_name 以及 vendor_details</p>
+<ul>
+<li>
+<p>因為搜尋用不到，故刪除兩個 types，加入&quot;enabled&quot; 參數並設為false</p>
+</li>
+<li>
+<p>這樣就不會給這兩個欄位建立 inverted index 或者 doc values</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/EHcUsg3.png"
+        data-srcset="https://i.imgur.com/EHcUsg3.png, https://i.imgur.com/EHcUsg3.png 1.5x, https://i.imgur.com/EHcUsg3.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/EHcUsg3.png"
+        title="image-20240130165923069" /></p>
+</li>
+</ul>
+</li>
+</ol>
+<h6 id="步驟四用步驟三的自訂mapping建立新的索引">步驟四：用步驟三的自訂mapping，建立新的索引</h6>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>PUT {name_of_ur_final_index}
+{
+  copy and paste edited mapping from step#3
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<ul>
+<li>
+<p>&ldquo;enable<strong>d</strong>&rdquo; 要打對，不然Elasticsearch會以為你沒有定義field</p>
+</li>
+<li>
+<p>另外這個 console 有提供 auto ident 工具幫你自動縮排</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yCT81eF.png"
+        data-srcset="https://i.imgur.com/yCT81eF.png, https://i.imgur.com/yCT81eF.png 1.5x, https://i.imgur.com/yCT81eF.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yCT81eF.png"
+        title="image-20240130171331680" /></p>
+</li>
+</ul>
+<h6 id="步驟五確認-final-index-其中所有-field-對應的-type-都正確">步驟五：確認 final index 其中所有 field 對應的 type 都正確</h6>
+<p><code>GET produce_index/_mapping</code></p>
+<p>✅ country_of_origin 用到 Text and Keyword</p>
+<p>✅ description_name 只用 Text</p>
+<p>✅ produce_type 只用 Keyword</p>
+<p>❎ 計算每個產品的總費用，並存在新的 field <code>total_expense</code>（使用runtime fields)</p>
+<p>✅ botanical_name &amp; vendor_details 停用，避免建立不必要的inverted index或doc values</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/bGlMCTT.png"
+        data-srcset="https://i.imgur.com/bGlMCTT.png, https://i.imgur.com/bGlMCTT.png 1.5x, https://i.imgur.com/bGlMCTT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/bGlMCTT.png"
+        title="image-20240130172025878" /></p>
+<h6 id="步驟六將dataset-編入新的索引中">步驟六：將dataset 編入新的索引中</h6>
+<p>First document</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/vm0Vpcs.png"
+        data-srcset="https://i.imgur.com/vm0Vpcs.png, https://i.imgur.com/vm0Vpcs.png 1.5x, https://i.imgur.com/vm0Vpcs.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/vm0Vpcs.png"
+        title="image-20240130172255688" /></p>
+<p>Second document</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/dlHjJ10.png"
+        data-srcset="https://i.imgur.com/dlHjJ10.png, https://i.imgur.com/dlHjJ10.png 1.5x, https://i.imgur.com/dlHjJ10.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/dlHjJ10.png"
+        title="image-20240130172836248" /></p>
+<blockquote>
+<p>📍這裡不小心按了兩次，順便附上 deleteById的方法</p>
+<p><code>DELETE {the_index_to_execute}/_doc/{the_doc_id_to_delete}</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/s2gHirl.png"
+        data-srcset="https://i.imgur.com/s2gHirl.png, https://i.imgur.com/s2gHirl.png 1.5x, https://i.imgur.com/s2gHirl.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/s2gHirl.png"
+        title="image-20240130173251915" /></p>
+</blockquote>
+<p>Third document</p>
+<ul>
+<li>
+<p>假設這份產品有原定mapping沒有包含的field (<code>organic</code>)，會怎樣？正常新增</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/2ERquxU.png"
+        data-srcset="https://i.imgur.com/2ERquxU.png, https://i.imgur.com/2ERquxU.png 1.5x, https://i.imgur.com/2ERquxU.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/2ERquxU.png"
+        title="image-20240130174048027" /></p>
+</li>
+<li>
+<p>確認一下這個索引目前的mapping，發現 Elasticsearch 動態新增了一個 field</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/yNVvUOh.png"
+        data-srcset="https://i.imgur.com/yNVvUOh.png, https://i.imgur.com/yNVvUOh.png 1.5x, https://i.imgur.com/yNVvUOh.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/yNVvUOh.png"
+        title="image-20240130174413711" /></p>
+</li>
+</ul>
+<h6 id="如果要變更既有的-field-type怎麼辦">如果要變更既有的 field type，怎麼辦？</h6>
+<p>如果原本不開放搜尋的 botanical_name 現在需要支持全文檢索，只能建立新的 index，再將所有文檔重新編入新的索引</p>
+<ul>
+<li>
+<p>重編入新索引的Syntax</p>
+<pre tabindex="0"><code>POST _reindex
+{
+  &#34;source&#34;: {
+    &#34;index&#34;: &#34;{name_of_the_index_OLD_mapping}&#34;
+  },
+  &#34;dest&#34;: {
+    &#34;index&#34;: &#34;{name_of_the_new_index_NEW_mapping}&#34;
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/3PJstQi.png"
+        data-srcset="https://i.imgur.com/3PJstQi.png, https://i.imgur.com/3PJstQi.png 1.5x, https://i.imgur.com/3PJstQi.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/3PJstQi.png"
+        title="image-20240131100748782" /></p>
+</li>
+</ul>
+<h6 id="runtime-field">Runtime Field</h6>
+<ul>
+<li>
+<p>Runtime is that moment in time when elasticsearch is executing your requests.</p>
+</li>
+<li>
+<p>在runtime期間，可以建立一個暫時的欄位(temporary field)，並在裡面計算數值</p>
+</li>
+<li>
+<p>如下步驟</p>
+<ol>
+<li>
+<p>建立<code>runtime field</code>把它加進既有index的mapping</p>
+<pre tabindex="0"><code>PUT {enter_name_of_index}/_mapping
+{
+  &#34;runtime&#34;: {
+    &#34;name_ur_runtime_field_here&#34;: {
+      &#34;type&#34;: &#34;specify_field_type_here&#34;,
+      &#34;script&#34;: {
+        &#34;source&#34;: &#34;specify_the_formula_u_want_executed&#34;
+      }
+    }
+  }
+}
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/PXzgLyf.png"
+        data-srcset="https://i.imgur.com/PXzgLyf.png, https://i.imgur.com/PXzgLyf.png 1.5x, https://i.imgur.com/PXzgLyf.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/PXzgLyf.png"
+        title="image-20240131101948036" /></p>
+</li>
+<li>
+<p>檢視更新後的 mapping</p>
+<ul>
+<li>
+<p>這個runtime field並沒有列在properties裡，也沒有編進索引</p>
+</li>
+<li>
+<p>只有在執行請求時，會創建此欄位並計算值</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/zCNxMtQ.png"
+        data-srcset="https://i.imgur.com/zCNxMtQ.png, https://i.imgur.com/zCNxMtQ.png 1.5x, https://i.imgur.com/zCNxMtQ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/zCNxMtQ.png"
+        title="image-20240131102253402" /></p>
+</li>
+</ul>
+</li>
+<li>
+<p>測試runtime field執行情況</p>
+<ul>
+<li>
+<p>Syntax</p>
+<pre tabindex="0"><code>GET {enter_name_of_the_index}/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;name_ur_aggregations here&#34;: {
+      &#34;specify_the_aggregation_type_here&#34;: {
+        &#34;field&#34;: &#34;name_the_field_u_want_to_aggregate_on_here&#34;
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Example</p>
+<p>剛建立的 runtime field 就在 line# 7</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/t3bSgry.png"
+        data-srcset="https://i.imgur.com/t3bSgry.png, https://i.imgur.com/t3bSgry.png 1.5x, https://i.imgur.com/t3bSgry.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/t3bSgry.png"
+        title="image-20240131102726662" /></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="part-66-troubleshooting-errors">Part 6/6 Troubleshooting errors</h2>
+<h3 id="常見錯誤">常見錯誤</h3>
+<h4 id="unable-to-connect">Unable to connect</h4>
+<p>可能是 cluster 出問題或者是連線問題，要查看 network status 以及 cluster health</p>
+<h4 id="connection-unexpected-closed">Connection unexpected closed</h4>
+<p>node 可能死了，或者是 network 問題，要重試請求</p>
+<h4 id="5xx-errors">5XX Errors</h4>
+<p>是Elasticsearch 內部server出錯，要查看 Elasticsearch log</p>
+<h4 id="4xx-errors">4XX Errors</h4>
+<p>是 client side 出錯，應檢查請求內容並修正，以下篇幅主要都是這方面的問題排除！</p>
+<hr>
+<h5 id="crud相關的錯誤">CRUD相關的錯誤</h5>
+<ol>
+<li>
+<p>404 no such index</p>
+<p><code>GET common_errors/_doc/1</code> 查無此索引</p>
+</li>
+<li>
+<p>405 incorrect HTTP method for uri, allowed: [x]</p>
+<ul>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>PUT common_errors/_doc
+{
+  &#34;field_one&#34;: &#34;content_one&#34;
+}
+</code></pre></li>
+<li>
+<p>PUT 給一份document編入索引，並且指定一個ID，所以應該要寫成</p>
+<p><code>PUT common_errors/_doc/{specified_document_id}</code></p>
+</li>
+<li>
+<p>POST 給一份document編入索引，Elasticsearch自行產生ID</p>
+</li>
+</ul>
+</li>
+<li>
+<p>400 Unexpected Character</p>
+<ul>
+<li>
+<p>was expecting a comma to separate Object entries at [Source:&hellip;] line: x</p>
+</li>
+<li>
+<p>Example</p>
+<pre tabindex="0"><code>POST common_errors/_update/1
+{
+  &#34;doc&#34;: {
+    &#34;field_1&#34;: &#34;value_1&#34;
+    &#34;field_2&#34;: &#34;value_2&#34;,
+  }
+}
+</code></pre></li>
+<li>
+<p>通常是物件的欄位之間忘記用逗號分開，或者不該有逗號的地方放了逗號</p>
+</li>
+</ul>
+</li>
+</ol>
+<h5 id="query相關錯誤">Query相關錯誤</h5>
+<ol>
+<li>
+<p>400 <i class="far fa-check-square fa-fw" aria-hidden="true"></i> query does not support [y]</p>
+<ul>
+<li><em>[range] query does not support [date]</em> &mdash; 誤導</li>
+<li>建議去官方 <a href="https://www.elastic.co/guide/index.html" target="_blank" rel="noopener noreffer ">documentation</a> 搜尋 range query 語法，就能發現<code>gte</code> <code>lte</code>應該用大括號包起來</li>
+</ul>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;range&#34;: {
+      &#34;date&#34;:
+        &#34;gte&#34;: &#34;2015-02-05&#34;,
+        &#34;lte&#34;: &#34;2015-02-16&#34;
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>400 Unexpected character</p>
+<ul>
+<li><em>was expecting double-quote to start field name</em> - 原因一樣很模糊</li>
+<li><code>&quot;type&quot;: &quot;phrase&quot;</code> 應該放在 <code>multi_match</code>括號內</li>
+</ul>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;multi_match&#34;: {
+      &#34;query&#34;: &#34;party planning&#34;,
+      &#34;fields&#34;: [
+        &#34;headline&#34;,
+        &#34;short_description&#34;
+      ]
+    },
+    &#34;type&#34;: &#34;phrase&#34;
+  }
+}
+</code></pre></li>
+<li>
+<p>400 parsing_exception</p>
+<ul>
+<li>
+<p>Example 查詢2017-02-05發行的娛樂版新聞</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;match&#34;: {
+      &#34;category&#34;: &#34;ENTERTAINMENT&#34;,
+      &#34;date&#34;: &#34;2018-02-05&#34;
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>因為 <code>match query</code> 只能接收 document <strong>單一個</strong> field的檢索，如果有多個查詢條件，要改用 <code>Bool Query</code> (參 part 3/6, must, must_not, should, filter子句)</p>
+<ul>
+<li>isEntertainment? true/false</li>
+<li>isOn20180205? true/false &hellip; 可以用 filter 子句，裡面裝兩個match queries</li>
+</ul>
+<p>Corrected example：</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;query&#34;: {
+    &#34;bool&#34;: {
+      &#34;filter&#34;: [
+        {
+          &#34;match&#34;: {
+            &#34;category&#34;: &#34;ENTERTAINMENT&#34;
+          }
+        },
+        {
+          &#34;match&#34;: {
+            &#34;date&#34;: &#34;2018-02-05&#34;
+          }
+        }
+      ]
+    }
+  }
+}
+</code></pre></li>
+</ul>
+</li>
+</ol>
+<h5 id="aggregations相關錯誤">Aggregations相關錯誤</h5>
+<ol>
+<li>
+<p>400 Aggregation definition for [x], expected a [y]</p>
+<pre tabindex="0"><code>GET news_headlines/_search
+{
+  &#34;aggs&#34;: {
+    &#34;size&#34;: 0,
+    &#34;by_category&#34;: {
+      &#34;terms&#34;: {
+        &#34;field&#34;: &#34;category&#34;
+      }
+    }
+  }
+}
+</code></pre><p>Error message:</p>
+<p>&ldquo;Aggregation definition for [size starts with a [VALUE_NUMBER], expected a [START_OBJECT].&rdquo;</p>
+<blockquote>
+<p>START_OBJECT在這裡是指 <code>aggs</code>,  <code>自訂的聚合名稱</code>, <code>terms</code>, <code>field</code></p>
+<p>size 出現在不對的地方，應該加在 <code>aggs</code>外面</p>
+</blockquote>
+</li>
+<li>
+<p>400 Field [x] of type [y] is not supported for z type of aggregation</p>
+<ul>
+<li>Date Histogram (fixed_interval): 以InvoiceDate分組，每8小時分一組</li>
+<li><em>Field [InvoiceDate] of type [keyword] is not supported for aggregation [date_histogram]</em>   - 因為這個欄位型別是keyword、不是date，故不支援依日期分組</li>
+<li>Date histogram aggregation 只支援 date 或者 date range values</li>
+</ul>
+<h6 id="與_meta-field-相關的錯誤">與<code>_meta</code> field 相關的錯誤</h6>
+<ul>
+<li>
+<p>這個field通常出現在使用自訂mapping新建索引的時候</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;mappings&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;_meta&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&#34;created_by&#34;</span><span class="p">:</span> <span class="s2">&#34;ml-file-data-visualizer&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;properties&#34;</span><span class="p">:</span> <span class="p">{</span><span class="err">...</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>用自建mapping新增索引時，不太需要加上<code>_meta</code>的內容，可以直接刪除</p>
+</li>
+</ul>
+<h6 id="關於-type-date-format-的知識">關於 type date format 的知識</h6>
+<ul>
+<li>Elasticsearch是以 ISO8601 作為預設日期格式 (例：2023-02-16T17:39:05.123Z)</li>
+<li>如果文檔內容的時間格式與 ISO8601 不同，Elasticsearch就會拋錯</li>
+<li>&ldquo;format&rdquo; 內容的定義方式依照 <a href="https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html" target="_blank" rel="noopener noreffer ">DateTimeFormatter</a> 之標準</li>
+</ul>
+</li>
+<li>
+<p>400 Found two aggregation type definitions in <i class="far fa-check-square fa-fw" aria-hidden="true"></i> : y and z</p>
+<ul>
+<li>
+<p>Elasticsearch能夠合併不同 aggregation 來回答更複雜的問題</p>
+</li>
+<li>
+<p>例如說要取得每日營業額以及the number of unique customers per day</p>
+<ol>
+<li>先將資料分組成 daily buckets</li>
+<li>在每個bucket中，計算營業額以及the number of unique customers per day</li>
+</ol>
+<pre tabindex="0"><code>GET ecommerce_data/_search
+{
+  &#34;size&#34;: 0,
+  &#34;aggs&#34;: {
+    &#34;transactions_per_day&#34;: {
+      &#34;date_histogram&#34;: {
+        &#34;field&#34;: &#34;InvoiceDate&#34;,
+        &#34;calendar_interval&#34;: &#34;day&#34;
+      },
+      &#34;daily_revenue&#34;: {
+        &#34;sum&#34;: {
+          &#34;script&#34;: {
+            &#34;source&#34;: &#34;doc[&#39;UnitPrice&#39;].value * doc[&#39;Quantity&#39;].value&#34;
+          }
+        }
+      },
+      &#34;number_of_unique_customers_per_day&#34;: {
+        &#34;cardinality&#34;: {
+          &#34;field&#34;: &#34;CustomerID&#34;
+        }
+      }
+    }
+  }
+}
+</code></pre></li>
+<li>
+<p>Error message: <em>Found two aggregation type definitions in [transactions_per_day]: [date_histogram] and [daily_revenue]</em>  - occurred at line 9</p>
+</li>
+<li>
+<p>原因：aggregation請求的結構不正確。應該是aggregations (計算日營業額與去重的來客數量) within aggregations (依一天為單位分層)</p>
+</li>
+<li>
+<p>解法：再用一個 <code>&quot;aggs&quot;: {}</code> 把 <code>daily_revenue</code>以及<code>number_of_unique_customers_per_day</code>包在大括號裡</p>
+</li>
+</ul>
+</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-01-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/elasticsearch/" data-hashtag="ElasticSearch"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/elasticsearch/" data-title="Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">ElasticSearch</a>,&nbsp;<a href="/tags/kibana/">Kibana</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/owasp_/" class="prev" rel="prev" title="[筆記] OWASP API Security Top 10"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[筆記] OWASP API Security Top 10</a>
+            <a href="/posts/elasticcloud_onuploaddataset/" class="next" rel="next" title="〔Debug〕ElasticCloud 上傳type為date的csv檔案">〔Debug〕ElasticCloud 上傳type為date的csv檔案<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

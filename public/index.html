@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+	<meta name="generator" content="Hugo 0.111.3">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Ich bin yiwen." />
+<meta property="og:description" content="An ordinary space for storing and groups pieces of articles." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://wysiwyz.github.io/" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ich bin yiwen."/>
+<meta name="twitter:description" content="An ordinary space for storing and groups pieces of articles."/>
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Ich bin yiwen.">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Ich bin yiwen."><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/wysiwyz.github.io\/","inLanguage": "en-us","description": "An ordinary space for storing and groups pieces of articles.","name": "Ich bin yiwen."
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/elasticcloud_onuploaddataset/">〔Debug〕ElasticCloud 上傳type為date的csv檔案</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-29">2024-01-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">錯誤內容： 當dataset其中一個field看起來像是日期可以分成多個buckets，實際上會拋出以下錯誤
+1 2 3 4 5 6 { &#34;error&#34;: { &#34;type&#34;: &#34;illegal_argument_exception&#34;, &#34;reason&#34;: &#34;Field [InvoiceDate] of type [keyword] is not supported for aggregation [date_histogram]&#34; } } 問題釐清： 上傳檔案時，3/30/2011 16:34 或者 12/1/2010 9:10 這類的欄位內容被辨識為 &quot;type&quot;: &quot;keyword&quot;，須要在上傳檔案時點擊 Override settings，勾選 Contains time field 再加上時間戳記格式以及對應的 time field，這樣就能正常做 bucket aggregations 了
+實際結果： 看起來 Elastic 幫你增加了一個@timestamp的欄位，而欄位內容確實是與 InvoiceDate 一致
+!(https://i.imgur.com/OFv0uCh.png)
+重編索引 - 使用Kibana console 先 PUT 建立一個自訂索引，細節參考另一篇Elasticsearch筆記，注意&quot;type&quot;:&quot;date&quot;需要再接上原本source index欄位的日期格式，不然會無法重編索引
+接著 POST _reindex 加入來源與目標 index 的參數，顯示下圖右結果就成功了</div><div class="post-footer">
+        <a href="/posts/elasticcloud_onuploaddataset/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticcloud/">ElasticCloud</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/elasticsearch/">Elasticsearch 從頭開始學習(ELK & Elastic Stack)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-22">2024-01-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">2023-07-11 的筆記太簡略粗糙，重新整理
+Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
+通常用於啟用application的搜索功能，有以下特性
+如果產品有評價等級，而開發想要提高高評價產品的關聯性 開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序 ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台
+可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc. 例子：
+Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage) Application Performance Management (APM) : 應用程式性能管理 Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch ) Excellent at analyzing lots of data: 分析大量數據 使用機器學習根據歷史資料，來預測未來銷售額) Anomality Detection 偵測異常 Data is stored as documents, which is just a unit of information</div><div class="post-footer">
+        <a href="/posts/elasticsearch/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">ElasticSearch</a>,&nbsp;<a href="/tags/kibana/">Kibana</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/owasp_/">[筆記] OWASP API Security Top 10</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-15">2024-01-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">What is OWASP Security Top 10 你會學到：API相關弱點的多樣類型、包含的來襲方向（attack vector）、弱點利用可能造成的技術影響
+這些人都該來瞭解一下：API生態系的相關人士, bug bunty hunters, 開發人員, 滲透測試人員, 組織領導, 對API Security有興趣的人
+（而且現在APISec University有一個certifcation bage提供給CASA 測驗通過的人，好像是個酷東西！）
+What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非營利基金會，目標是改善應用程式的資訊安全。 創立於2001年12月1日，以Top10List的開源工具還有其他安全專案而聞名 創立者：Erez Yalon、Inon Sheedy OWASP API Security Top 10 首次於 2019 年 12 月發佈，基於以下幾點原因而啟動 APIs迅速的興起：不用自己造輪子開發地圖、GPS、付款交易、驗證、溝通相關的程式，可以直接使用其他家專精開發且成熟完善的功能 安全重大缺口：以前用來作為企業級弱點管理的工具與技術（例如：程式、掃描工具與傳統網路資安監控工具）不是專為處理API相關資安風險而設計的，因此存在資料外洩(data breaches) 的風險 新的攻擊方向： 通常公開網路API忽略了所有過去幾十年隨著商機一起成長的資安手法。 攻擊者不用再經歷MITRE網路攻擊鏈（bypass firewall, gain entry to the network, pivot around to a system that contains data, find a way to exfiltrate that data 攻擊者可以利用不穩定的API，直接存取資料源 一些上新聞的 API 意外事件</div><div class="post-footer">
+        <a href="/posts/owasp_/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/security/">security</a>,&nbsp;<a href="/tags/owasp/">OWASP</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/gcp_on_board/">GCP on board</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-10">2024-01-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Mod1_GCP 簡介 什麼是雲端運算？
+自助式隨選服務 - 無需人為介入即可取得資源 廣泛的網路存取權 - 隨時隨地都可存取 資源集區 (共享資源的概念) - 提供者可將資源分享給客戶 迅速彈性 - 隨需快速取得更多資源 依使用的服務計費 - 用多少，付多少 雲端技術如何發展而成？未來方向為何？
+實體/主機代管：由使用者設定、管理與維護 [Phase2] 虛擬化：由使用者設定，由供應商代管與維護 [Phase3] 無伺服器：全自動化 GCP 運算架構 [採用代管基礎架構] ↔️ [採用動態基礎架構]
+Compute Engine Kubernetes Engine App Engine Cloud Functions 代管服務 IaaS 混合式 PaaS 無伺服器邏輯 自動 GCP 在全球設立187個網路邊緣位置（POP，網際網路交換中心），並投資鋪設20+條海底電纜
+GCP 依區域和可用區劃分
+區域region、可用區zone
+每個區域裡有多個可用區zone (大部分3個)，一個資料中心就是一個區域region
+Google善盡環保責任
+100%落實碳中和政策(自2007年起)
+Data Center 2030年達成零碳排
+全球數一數二的再生能源採購企業
+資料中心率先通過 ISO 14001 認證
+貼近客戶需求的計價方式
+以秒/毫秒計費：適用於運算、資料處理和其他服務 續用折扣：虛擬機器的使用時間超過當月的25%，就會自動套用此折扣 (upto 30%) 承諾使用折扣：以較低的價格取得長期穩定的工作負載 (around 50%off) 先占使用折扣：以較低價格取得可中斷的工作負載 自訂VM執行個體類型：僅為應用程式所需的資源付費 (pricing calculator) 開放式API和開放原始碼讓客戶能改用其他供應商的服務</div><div class="post-footer">
+        <a href="/posts/gcp_on_board/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/s_spring_security/">Spring Security zero to master</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-08">2024-01-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">想學很久的 Spring Security 終於在看完 udemy 的 JUnit + Mockito 課程之後，決定認真來瞭解一下了！！
+先附上 連結</div><div class="post-footer">
+        <a href="/posts/s_spring_security/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/springsecurity/">SpringSecurity</a>,&nbsp;<a href="/tags/security/">security</a>,&nbsp;<a href="/tags/spring/">spring</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ss_white-box/">[筆記] 黑白箱弱點掃描淺淺談</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-04">2024-01-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">黑白箱弱點掃描 白箱： 又名為輔助邏輯驅動測試 (auxiliary and logic driven testing)、clear-box testing、open-box testing 在光譜上是黑箱測試的另一面，滲透測試者對source code以及相關架構設計文件有全部的存取權限 在大量可用的data中淘選過濾，目地在於找到潛在弱點，因此它是滲透測試中最耗時的一種 白箱滲透測試人員可以對static code進行分析 白箱測試可以手動執行，或借助於自動化工具掃出像是 SQL注入攻擊(SQL injection)、跨站腳本攻擊 (cross-site scripting)、緩衝區溢位 (buffer overflow) 等弱點。 以下是白箱測試中很重要的工具：source code analyzer, debuggers 另外 dynamic analysis tool 也很重要，可以找出static analysis可能會漏掉的弱點，像是目標系統錯誤配置造成的弱點 (misconfiguration of target systems) 白箱滲透測試提供了綜合的評估，包含程式的內部弱點與外部弱點 黑箱： 又稱為 DAST test (動態分析資安測試 dynamic analysis security testing) 黑箱測試對於找出這樣的弱點很有幫助：input/output驗證問題, 伺服器配置相關的錯誤等。 黑箱測試的目標是要模擬真實世界的情境，並找出系統在不同情境下的行爲，例如網路攻擊、惡意輸入、阻斷服務攻擊DoS。 黑箱測試可以手動操作執行，或透過像是port scanners、fuzzers、web scanners 等自動化工具探測系統弱點。 深透測試目的是為了識別並補強可能會被攻擊者利用的弱點，因此黑箱測試是比較理想的滲透測試方法，因為大多數攻擊者並不知道目標網路的內部行為。
+跟黑箱測試相反的則是白箱測試，測試人員有目標系統的完整資訊。
+而灰箱測試則是提供測試人員有關目標系統『有限的』資訊，灰箱測試所模擬的資訊瞭解程度是「駭客透過調查與系統偵查足跡(footprinting)的方式，長期使用目標系統所能得到資訊」。
+參考資料 黑箱、灰箱、白箱滲透測試是什麼
+以黑箱測試改進應用程式的安全性
+白箱資安測試與黑箱測試的異同</div><div class="post-footer">
+        <a href="/posts/ss_white-box/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><ul class="pagination"><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/2/">2</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link" aria-hidden="true">&hellip;</span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/9/">9</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"data":{"id-1":"If your memories leaked like water from a claypot, perhaps writing could help."},"twemoji":true,"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
