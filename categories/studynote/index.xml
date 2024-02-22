@@ -3,7 +3,30 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Jan 2024 17:21:01 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 22 Feb 2024 15:59:25 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>如何查看哪一個SQL語法是最佳解：explain執行計畫</title>
+    <link>http://wysiwyz.github.io/posts/sql_explain/</link>
+    <pubDate>Thu, 22 Feb 2024 15:59:25 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/sql_explain/</guid>
+    <description><![CDATA[昨天與一位做自有產品的執行長官面談被問到如何確認SQL的效能，當下沒能立即回答上。
+但今天在練習 LeetCode SQL 50 的時候，看到有神人對一道 570. Managers with at Least 5 Direct Reports 題目給出了五種 solutions，於是回想起之前聽過但不常用的 explain 語法，這樣慘痛的教訓肯定是要花時間瞭解一下的吧。
+問題 題目只有一張 Table : Employee:
+每一列包含了員工id、員工名、員工所屬部門以及他們的所屬主管id，如果managerId 為 null，就表示這員工沒有直屬主管。
+沒有員工會自己當自己的主管，即 id 與 managerId 不能為相同的值。
+1 2 3 4 5 6 create table employee ( id int not null primary key auto_increment, name varchar(20), department varchar(2), managerId int ) auto_increment=101; Table 欄位內容：
+Employee table: +-----+-------+------------+-----------+ | id | name | department | managerId | +-----+-------+------------+-----------+ | 101 | John | A | null | | 102 | Dan | A | 101 | | 103 | James | A | 101 | | 104 | Amy | A | 101 | | 105 | Anne | A | 101 | | 106 | Ron | B | 101 | +-----+-------+------------+-----------+ 預期結果： +------+ | name | +------+ | John | +------+ 解法: A.]]></description>
+</item>
+<item>
+    <title>挑戰一個月內準備完 GCP Cloud Developer</title>
+    <link>http://wysiwyz.github.io/posts/gcp_pcd_notes/</link>
+    <pubDate>Wed, 31 Jan 2024 15:44:43 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/gcp_pcd_notes/</guid>
+    <description><![CDATA[ 聽說 Cloud Developer 的難度比CA還高，想說趁最近手邊沒有棘手工作來好好準備 🫠，這次打算以這些學習資源為主：
+CloudSkillsBoost_PCD_learning path 10項活動，估計要花至少 174+hrs awesome-gcp-certification/PCD 包含一些準備策略、心得 ExamTopics 想設計一個簡單的程式，從412題中亂數出50題 ]]></description>
+</item>
+<item>
     <title>〔Debug〕ElasticCloud 上傳type為date的csv檔案</title>
     <link>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</link>
     <pubDate>Mon, 29 Jan 2024 17:21:01 &#43;0800</pubDate>
@@ -115,37 +138,6 @@ docker run &lt;image_name&gt;:
 [CONTAINER Port vs HOST Port]
 + Multiple containers can run on your host machine
 + Your laptop has only certain ports available]]></description>
-</item>
-<item>
-    <title>使用 JUnit &amp; Mockito 測試 Java 程式</title>
-    <link>http://wysiwyz.github.io/posts/ss_junit/</link>
-    <pubDate>Tue, 26 Dec 2023 14:14:47 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ss_junit/</guid>
-    <description><![CDATA[使用 JUnit &amp; Mockito 測試 Java 程式 Mockito &mdash; 本來以為這跟薄荷飲料mochito同音，實際要唸成 /mɑkiːtoʊ/ 或者 /mˈɒkiːtoʊ/ ，音譯就是『莫kito』或者『碼kito』，總之 k 要發音，因為他是模擬方法 (&ldquo;mock all methods&rdquo;)
-Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式碼一部分區塊 的一個小型方法
-1 2 3 public String isEmailValid(String email) { //Code that needs to be tested } 如何寫單元測試以確保一個類別中的某方法正常運作呢？
-這是一段除法程式：
-1 2 3 4 5 public class Calculator { public int integerDivision(int dividend, int divisor) { return dividend / divisor; } } 我們可以寫以下的單元測試，以驗證上方程式裡，開發者沒有敲錯鍵，把除號打成乘號.
-1 2 3 4 5 6 7 8 9 @Test void testIntegerDivision_whenValidValuesProvided_shouldReturnExpectedResult() { //Arrange Calculator calculatore = new Calculator(); //Act int result = calculator.]]></description>
-</item>
-<item>
-    <title>Gradle初探</title>
-    <link>http://wysiwyz.github.io/posts/ss_gradle/</link>
-    <pubDate>Tue, 26 Dec 2023 14:14:31 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ss_gradle/</guid>
-    <description><![CDATA[概觀 Gradle是一個基於Groovy的建構管理系統，它特別設計用來建構基於Java的專案
-Gradle運行在所有主流作業系統，只需要Java JDK 8 或者以上的版本即可安裝
-(1) Unix的作業系統，可以用 SDKMAN package manager 安裝，指令sdk install gradle 8.5
-​ macOS的作業系統，可以用Homebrew package manager安裝，指令 brew install gradle
-(2) 設置環境
-Linux or MacOS: 在所選的目錄下解壓縮
-$ mkdir /opt/gradle $ unzip -d /opt/gradle gradle-8.5-bin.zip $ ls /opt/gradle/gradle-8.5 LICENSE NOTICE bin getting-started.html init.d lib media Microsoft Windows
-用 File Explorer 創建新的目錄 C:\Gradle，再把下載後解壓縮的 gradle-8.5 資料夾拉進去這個目錄
-(3) 配置環境變數
-Linux or MacOS: 配置 PATH 環境變數，注意要包括解壓縮後擋彈的 bin 目錄
-$ export PATH=$PATH:/opt/gradle/gradle-8.6/bin Microsoft Windows: [This PC/Computer] 右鍵 → Properties → Advanced System Settings → Environment Variable 在System Variables，選擇Path→ Edit，加上 C:\Gradle\gradle-8.]]></description>
 </item>
 </channel>
 </rss>

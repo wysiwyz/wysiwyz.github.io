@@ -53,6 +53,24 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_06_linux/">Lesson 06: Linux 筆記 - Shell Script! final</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-22">2023-04-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Shell Script 與排程
+Linux 安全應用演練及總複習
+shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
+Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10.</div><div class="post-footer">
+        <a href="/posts/lesson_06_linux/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_05_linux/">Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-15">2023-04-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Log Server 實作
+MariaDB 權限與加密, nmap 檢測工具介紹
+User ID Report
+aureport -u -i --failed | less 1.Write message to syslog BIOS/UEF ➡ grub2 ➡ kernel ➡ systemd ➡ journalctl
+rsyslog : 如果選 minimal installation，err不會由rsyslog接，改由journalctl接error接收 將訊息寫入系統紀錄中 @Server
+1 root# logger hello World 1 root# tail /var/log/messages 1 root# journalctl 1 root# journalctl --since &#34;2023-04-15&#34; 1 root# reboot 將journalctl紀錄持久化 推書時間: 實戰Linux系統數位鑑識 (江湖海) (Practical Linux Forensics: A guide for digital investigators, by Bruce Nikkel)</div><div class="post-footer">
+        <a href="/posts/lesson_05_linux/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/javascript_functions/">JavaScript 常見內建方法</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-11">2023-04-11</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這裡紀錄上班看遇到的常用 JavaScript 內建方法 ╚(•⌂•)╝
 Object.prototype.hasOwnProperty(param) 回傳 boolean 值
@@ -89,33 +107,6 @@ list-style-type 設定清單的項目編碼符號
 劇情 鼓勵自己 常世裡的燦爛星空 渴望得到鈴芽關愛的大臣白貓🥰🤍 戲份不多但是很帥很成熟的大黑貓 撫養外甥女鈴芽12年的姨 念咒語之前，要想著這片土地上孕育的人與情 2011/3/11的地震到現在十二年了ಥ_ಥ 勇敢無畏的高中女生 特效 蚯蚓的各種型態 從地面向上蒸發的金色光束 鑰匙旁飄散的藍色雲絲光 </div><div class="post-footer">
         <a href="/posts/suzume_no_tojimari/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/suzume/">suzume</a>,&nbsp;<a href="/tags/animation/">Animation</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/gcp_pca_course_notes/">Cloud architect GCP 🚧</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-24">2023-03-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Active learning - think and take notes
-Review - every once in a while
-Section 01 Getting Started GCP has 200+ services. This exam expects knowledge of 40+ services
-Exam tests your decision making abilities:
-Which service do you choose in which situation?
-How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?
-Below notes will help with making the tough choices</div><div class="post-footer">
-        <a href="/posts/gcp_pca_course_notes/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/google_cloud/">google_cloud</a>,&nbsp;<a href="/tags/ca/">CA</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/lesson_03_linux/">Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-18">2023-03-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">LUKS 加密服務 適用對象 移動式設備資料保護
-notebook, USB磁碟加密
-提供32組插槽使用
-把partition切成小塊加密，裡面放密碼、key_file
-可以使用設定的密碼解密或者用key解密
-注意事項 LUKS並不對檔案本身進行加密(針對整個partition,整個D槽) LUKS對於單一磁碟取走後能夠起保護作用 KUKS對於已經解密之磁碟內容不起保護作用 指令 cryptsetup luksFormat 建立加密磁碟 luksOpen 開啟加密磁碟 close 關閉已經開啟的加密磁碟 luks - 解密
-mount - 掛起來
-umount - 卸載
-​ (順便同步, 如果未正確卸載可能會造成檔案毀損)
-1 2 3 4 5 6 7 8 lsblk /dev/sdb cryptsetup luksFormat /dev/sdb cryptsetup luksOpen /dev/sdb secDisk mkfs.xfs /dev/mapper/secDisk mount /dev/mapper/secDisk /mnt touch /mnt/myfile umount /mnt cryptsetup close secDisk Dump/Status more cmds 使用插槽 刪除插槽 memcached的使用
-Luks資料加密架構與資料救援方法
-Linux檔案加密_GPG_GnuPG</div><div class="post-footer">
-        <a href="/posts/lesson_03_linux/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">linux</a>,&nbsp;<a href="/tags/security/">security</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -146,7 +137,7 @@ Linux檔案加密_GPG_GnuPG</div><div class="post-footer">
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/9/">9</a>
+                        <a href="/page/10/">10</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

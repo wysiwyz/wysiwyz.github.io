@@ -3,7 +3,16 @@
         <title>google_cloud - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/google_cloud/</link>
         <description>google_cloud - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/google_cloud/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 31 Jan 2024 15:44:43 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/google_cloud/" rel="self" type="application/rss+xml" /><item>
+    <title>挑戰一個月內準備完 GCP Cloud Developer</title>
+    <link>http://wysiwyz.github.io/posts/gcp_pcd_notes/</link>
+    <pubDate>Wed, 31 Jan 2024 15:44:43 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/gcp_pcd_notes/</guid>
+    <description><![CDATA[ 聽說 Cloud Developer 的難度比CA還高，想說趁最近手邊沒有棘手工作來好好準備 🫠，這次打算以這些學習資源為主：
+CloudSkillsBoost_PCD_learning path 10項活動，估計要花至少 174+hrs awesome-gcp-certification/PCD 包含一些準備策略、心得 ExamTopics 想設計一個簡單的程式，從412題中亂數出50題 ]]></description>
+</item>
+<item>
     <title>Cloud architect GCP 🚧</title>
     <link>http://wysiwyz.github.io/posts/gcp_pca_course_notes/</link>
     <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
