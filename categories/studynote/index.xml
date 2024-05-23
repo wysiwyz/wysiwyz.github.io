@@ -3,7 +3,114 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 22 Feb 2024 15:59:25 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 May 2024 01:41:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>Smart contract, wallet, solidity 新手村</title>
+    <link>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</link>
+    <pubDate>Wed, 22 May 2024 01:41:05 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</guid>
+    <description><![CDATA[Preface 今天中午午休聽了itplus的每周線上會-Web3.0全端開發工程師，聽到不少以前完全沒機會認識的名詞，像是Dapp、電子錢包 Metamask、Mist Browser、智能合約 Smart Contract、Solidity，決定記錄下這個腦袋又增加的plugins。
+References Metamask doc 這裡手把手教你用 React, typescript, vite 建置錢包，很是實用 The Ethereum Wiki Solidity_Introduction to Smart Contract 乙太坊社群專欄 ]]></description>
+</item>
+<item>
+    <title>CKA 筆記 [7,8,9]: Security, Storage, Networking</title>
+    <link>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</link>
+    <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</guid>
+    <description><![CDATA[Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
+Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
+Asymmetric Encryption:
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygenid_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0# create certificate signing requestcat &gt; akshay.yamlvi akshay.csrvi akshay.yamlkubectl create -f akshay.yamlcertificatesigningrequest.certificates.k8s.io/akshay createdkubectl get csrkubectl certificate approve akshaykubectl get csr agent-smith -o yamlkubectl certificate deny agent-smithkubectl get csrkubectl delete csr agent-smith Create certificate signing request]]></description>
+</item>
+<item>
+    <title>Docker Compose 厲害了！一次幫你蓋多個containers</title>
+    <link>http://wysiwyz.github.io/posts/240515-docker-compose/</link>
+    <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240515-docker-compose/</guid>
+    <description><![CDATA[前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。
+Docker Compose 概覽 Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。
+Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。
+Compose可以在production、staging、開發、測試、CI Workflow等各種環境使用，也有用來管理應用程式整個生命週期的指令：
+Start, stop, rebuild 服務 檢視 running service 的狀態 對 running service 做日誌串流 對某個服務執行一個one-off指令 Docker Compose 主要優點 簡化控制性: 簡化了調度多個服務的複雜任務，管理或複製app環境更容易 有效合作: docker compose 配置檔容易共享，開發、運營之間協作更順利 快速應用程式開發: Compose會將創建容器的配置檔緩存起來，如果重啟了沒有做任何異動的服務，Compose會重複利用既有的容器，這樣要在environment做變更會很快 不同環境的可攜性: Compose 檔支援變數，可以用這些變數給不同環境或不同user客製化你的組成 廣泛的社群與支援: Docker Compost 有活躍的社群，提供豐富的資源、教學與支援 Docker Compose 常用 use cases 開發環境 Docker Compose 檔可以記錄並且配置應用程式全部的服務所需的依賴 (例如資料庫、隊列、緩存、Web service API等等)。可以用 docker compose up 一次建立並啟動每個依賴所需的容器。
+Compose可以把一個多頁的「開發者新手指南」濃縮成一個單一且機器可讀的compose file外加幾個指令。
+自動化測試環境 Automated test suite 是CICD程序中非常重要的一環。自動化end-to-end testing需要一個用來跑測試的環境。Compose提供一個很方便的方式，為你的test suite提供一個可以創建且用完銷毀的隔離測試環境。
+docker compose up -d.]]></description>
+</item>
+<item>
+    <title>消費者與提供者之間的合約測試 - Pact.io</title>
+    <link>http://wysiwyz.github.io/posts/240510-pact.io/</link>
+    <pubDate>Fri, 10 May 2024 17:39:51 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240510-pact.io/</guid>
+    <description><![CDATA[Introduction Pact是一個程式碼優先工具，使用contract tests測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。
+測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。
+Pact合約測試流程動圖
+Consumer 針對provider mock執行單元測試，驗證自己程式的行為 跨系統之間的互動行為會捕捉至contract Contract由不同團隊之間共享，使用Pactflow工具能夠確保協同合作性 Contract中的requests 重演了 provider API 並驗證 consumer 的預期值 Provider 的測試中所有其他系統都用替身，所以能隔離測試 Javascript code guide, 5 mins
+1 2 3 4 5 group = &#39;au.com.dius.pactworkshop&#39; dependencies { testImplementation &#39;au.com.dius.pact.consumer:junit5:4.6.5&#39; } contract testing是什麼 Contract testing 是用來測試某個integration point的技術，藉由隔離測試個別的APP，以確保它接收或傳送出的訊息，符合紀載在合約上的共識。
+如果是透過HTTP通訊的應用程式，這些訊息就會是HTTP請求/回覆，如果是使用Queue的應用程式，這些訊息就會是要傳送到隊列的內容。
+Pact實作合約測試的方式，就是確認所有呼叫你的test doubles的測試都會得到如同實際app一樣的回傳值。
+什麼時候使用contract testing 當你有兩個需要互通有無的service時，contract testing就可以立刻派上用場，例如API client要與web front-end溝通的應用場景。雖然單一客戶端對單一個服務是很常建的use case，contract testing在微服務架構(有多個services的環境)更彰顯其價值。如果有格式良好的合約測試，開發就要避免版本地域就更家容易。合約測試可說是微服務開發與部署的殺手級應用。
+合約測試術語 consumer: 例如需要接收資料的client provider: 例如server上的API，提供client所需的資料 通常在微服務架構下，client/server的術語不適合所有情境，例如透過訊息隊列的溝通就不適合。所以這裡會以consumer與provider為主。
+消費者驅動的contracts Pact是程式碼優先、消費者驅動的合約測試工具，通常由寫程式的開發或測試人員使用。在自動化的consumer tests過程中產生這個contract。這種模式的一個主要優勢是，全部的communication中，只測試到 consumer會實際使用到的部分communication。也就是說，任何不會被當前的consumer所使用到的 provider行為，都可以在不弄壞測試結果的前提下做異動修改。
+另外Pact contract也不像schema或者規格 (例如 OAS) 這類靜態的artefact定義資源的所有可能的狀態，pact contract實施方式是藉由執行測試案例的集合，每個元素描述了具體的請求/回應對。Pact實際上就是範例式合約。參考Schema測試與Contract測試的差異]]></description>
+</item>
+<item>
+    <title>框架比較：Springboot 與 Quarkus</title>
+    <link>http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/</link>
+    <pubDate>Thu, 09 May 2024 23:39:21 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/</guid>
+    <description><![CDATA[以下的筆記主要參照Baeldung這篇文章，後續會在針對如何用Quarkus建立第一個專案補充說明。
+SpringBoot v.s. Quarkus 概觀 這篇文章的關注點在於比較兩個廣為人知的Java框架—SpringBoot與Quarkus。看完文章，能更加瞭解兩者之間的相似、差異處以及各自的特殊性。另外也有一些測試來檢測效能並觀察表現。
+SpringBoot 這個Java framework主要用於企業級應用程式。集成了所有Spring project，提供許多production-ready的整合，可協助開發者提高生產力。 減少了要配置的數量以及文件樣板。另外因為約定大於配置的方法，會根據runtime時classpath中的依賴 (dependencies)，自動註冊預設的配置。SpringBoot大幅減少了許多Java應用程式上市的時間。
+Quarkus Quarkus 是另外一個framework，其方法類似SpringBoot，但另外能在快速的啟動時間內，交付較小型的artifacts，有更好的資源利用度以及效率。 Quarkus 是以 cloud、serverless以及容器化環境所最佳化的框架。除此之外，Quarkus framework與Java其他框架的的整合性也很好。
+比較這兩者 如上所述，這兩個framework與其他的project跟framework的整合性都不錯，但其內部 implementation &amp; architecture 並不相同。例如，SpringBoot提供兩種 web capabilities: blocking(Servlets) 以及 non-blocking(WebFlux)
+Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blocking跟non-blocking這兩種策略。另外 Quarkus 有將響應式的方法內嵌在本身的架構中。
+因此這裡主要比較的是 Spring WebFlux 以及 Quarkus reactive capabilities 比較相似的情境 (non-blocking)。
+另外，這兩個projects中比較顯著的功能是新建 native images (binary executables 以及 platform-specific executables)，所以也會比較這兩個projects的native images。
+註: SpringBoot 2.7 版本的 native image support 仍在實驗階段，直到 VERSION 3 才正式支持 native image support，需要使用 GraalVM。 註: Native image 這裡指的是將Java程式碼建構成 standalone executable 可執行檔的技術。Executable 包含了 java classes, classes from its dependencies, runtime library class, 以及 jdk 的 native code。]]></description>
+</item>
+<item>
+    <title>資料庫版控，走起，高飛！Flyway</title>
+    <link>http://wysiwyz.github.io/posts/240509-flyway/</link>
+    <pubDate>Thu, 09 May 2024 22:39:38 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240509-flyway/</guid>
+    <description><![CDATA[因為G.K.老師常常強調 Flyway 的優勢，資料庫版控、避免共用的資料庫不知道被誰扔了dirty data導致其他人開發的功能壞掉，等等的好處，所以來看看官方文件。
+初探Flyway Flyway@build.gradle: dependencies {implementation &#39;org.flywaydb:flyway-core&#39;} Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flywayspring.flyway.schemas={default_schema}spring.flyway.user=spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
+Flyway Desktop 提供GUI讓資料庫開發跟數據家能夠追蹤資料庫物件的異動，並且在版本控制中管理資料遷移的腳本。
+Flyway command-line 是可以獨立運行的套件 (只需要操作系統，不用其他支援框架)，有Windows、macOS以及Linux版本。適合想要用命令列介面遷移資料庫的user，而不用將Flyway整合進應用程式，也不用安裝build tool。
+另外可以用 API 將 Flway 整合進應用程式，在程式啟動時一同執行資料庫遷移。
+Flyway commands Flyway Desktop 安裝時，會一併安裝command line以及API，主要有以下命令:
+Migrate 將schema遷移成最新的版本 是Flyway workflow的中心，它會在檔案系統或你的類別路經中掃描找出可用的migrations，並比較已經執行到資料庫的遷移，如果有任何差異就會做對應的migration，以彌平差異。 通常是在application startup時期執行migrate Clean 在已經配置好schemas的資料庫中，刪掉所有資料表物件 千萬不能用在 production DB 如果是複雜的資料庫結構，可能因為明確的dependency graph架構不起來，所以沒辦法清乾淨所有物件。另外有些物件考量安全性，也不會清除，例如 SQL server 的 users 資料。可以加上 afterClean callback 來額外定義要 drop 的敘述 Info 可以了解當下有哪些migration已經執行了，哪一些還沒開始，何時執行的migration以及執行結果是成功或失敗。 Validate 驗證可用的 migration 是否相當於已經被執行的 migration 可以偵測意料之外的異動，可以預防重新產生schema 在 migration 執行時，存進一個checksum (使用CRC32校驗)。要驗證時，就查看本地的migration與已經執行到database的 migration 是否有相同一致的checksum。 此外，可能會有一些 hotfix, migration deletion 或者異動，可能違反Flyway驗證習慣，這時候也可以客製化驗證規則 Undo 復原最近一次被執行的migration版本 需要指定 target，這樣Flyway會綁你倒回至target之前的版本 如果沒有要 undo 的 versioned migration，呼叫這個undo就沒啥用 Baseline 給之前已經存在的數據庫 (已經包含數據，但之前沒有被Flyway管理)建立一個基準起始版本 Repair 用來修復 flyway_schema_history 資料庫的，有以下用途 移除failed migration entries (失敗的遷移紀錄) 只適用於不支援DDL transactions的資料庫 PostgreSQL, Oracle: 支持ddl事務 MySQL, MariaDB, SQLite: 不支持ddl事務]]></description>
+</item>
+<item>
+    <title>非阻塞式🌌 Non Blocking Jdbc</title>
+    <link>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</link>
+    <pubDate>Fri, 03 May 2024 20:39:03 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</guid>
+    <description><![CDATA[Part 1 阻塞式程式碼是現代軟體工程的禍根，它需要比較多的CPU cycles以及memory使用資源，提高了執行程式的成本
+I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
+了解 non-blocking calls 在做什麼 了解 event based system 的重要性以及他們如何協助調用 non-blocking calls 圖表的呈現面向:
+程式語言: Java 會使用到 Java 執行緒 非同步的方法為綠底，同步的方法是紅底 藍底是不會產生阻塞的Java方法 Blocking Call save方法呼叫write方法 write方法是一個blocking call: 寫入磁碟 直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態 這個thread在blocking call return之後重新開始 接著這個thread呼叫notify方法 Asynchronous Call 非同步呼叫 save方法呼叫write方法，這個write方法包裝了一個asynchronous call 此 write包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟 這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成 執行save方法的主要執行緒不受到組塞，可以執行其他程序 新產生的執行緒在完成 blocking call 之後回傳，並呼叫notify方法 Asynchronous Non Blocking Call save方法呼叫write方法 (write方法使用 Java NIO) Non Blocking Call 不會阻塞主要執行緒 non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成 執行save方法的主要執行緒並不會受到阻塞，可以執行其他程序 在non-blocking call完成之後，這個non-blocking方法呼叫notify方法 結論 Blocking Call]]></description>
+</item>
+<item>
+    <title>初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml</title>
+    <link>http://wysiwyz.github.io/posts/240426-gitlab-ci-note/</link>
+    <pubDate>Fri, 26 Apr 2024 21:38:35 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240426-gitlab-ci-note/</guid>
+    <description><![CDATA[使用 CI/CD 建構應用程式 開始 CI/CD 是軟體開發其中一個continuous method，你可以在這方法中持續的建構、測試、部署、監測迭代的程式碼異動。
+這種方式有助於降低在有誤的前一個版本中開發新程式，GitLab CI/CD在開發早期階段就能抓錯，確保部署到正式環境的程式碼符合所建立的程式碼標準，而這個程序是更大的workflow之中的一個環節:
+Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use CI/CD to build your app Secure your app Deploy and release your app Monitor app performance Organize work with projects Manage your code Manage infrastructure Monitor GitLab Runner usage Plan and track work Analyze GitLab usage 1. 首先建立.gitlab-ci.yml 在project根目錄建立 .gitlab-ci.yml，定義在CI/CD pipeline中所要執行的 stages, jobs, script。
+另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。
+沒有硬性規定要怎麼命名，但.gitlab-ci.yml是這個 CI/CD configuration file 最常見的名字。]]></description>
+</item>
+<item>
     <title>如何查看哪一個SQL語法是最佳解：explain執行計畫</title>
     <link>http://wysiwyz.github.io/posts/sql_explain/</link>
     <pubDate>Thu, 22 Feb 2024 15:59:25 &#43;0800</pubDate>
@@ -15,7 +122,7 @@
 每一列包含了員工id、員工名、員工所屬部門以及他們的所屬主管id，如果managerId 為 null，就表示這員工沒有直屬主管。
 沒有員工會自己當自己的主管，即 id 與 managerId 不能為相同的值。
 1 2 3 4 5 6 create table employee ( id int not null primary key auto_increment, name varchar(20), department varchar(2), managerId int ) auto_increment=101; Table 欄位內容：
-Employee table: +-----+-------+------------+-----------+ | id | name | department | managerId | +-----+-------+------------+-----------+ | 101 | John | A | null | | 102 | Dan | A | 101 | | 103 | James | A | 101 | | 104 | Amy | A | 101 | | 105 | Anne | A | 101 | | 106 | Ron | B | 101 | +-----+-------+------------+-----------+ 預期結果： +------+ | name | +------+ | John | +------+ 解法: A.]]></description>
+Employee table:+-----+-------+------------+-----------+| id | name | department | managerId |+-----+-------+------------+-----------+| 101 | John | A | null || 102 | Dan | A | 101 || 103 | James | A | 101 || 104 | Amy | A | 101 || 105 | Anne | A | 101 || 106 | Ron | B | 101 |+-----+-------+------------+-----------+ 預期結果： +------+| name |+------+| John |+------+ 解法: A.]]></description>
 </item>
 <item>
     <title>挑戰一個月內準備完 GCP Cloud Developer</title>
@@ -25,119 +132,6 @@ Employee table: +-----+-------+------------+-----------+ | id | name | departmen
     <guid>http://wysiwyz.github.io/posts/gcp_pcd_notes/</guid>
     <description><![CDATA[ 聽說 Cloud Developer 的難度比CA還高，想說趁最近手邊沒有棘手工作來好好準備 🫠，這次打算以這些學習資源為主：
 CloudSkillsBoost_PCD_learning path 10項活動，估計要花至少 174+hrs awesome-gcp-certification/PCD 包含一些準備策略、心得 ExamTopics 想設計一個簡單的程式，從412題中亂數出50題 ]]></description>
-</item>
-<item>
-    <title>〔Debug〕ElasticCloud 上傳type為date的csv檔案</title>
-    <link>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</link>
-    <pubDate>Mon, 29 Jan 2024 17:21:01 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</guid>
-    <description><![CDATA[錯誤內容： 當dataset其中一個field看起來像是日期可以分成多個buckets，實際上會拋出以下錯誤
-1 2 3 4 5 6 { &#34;error&#34;: { &#34;type&#34;: &#34;illegal_argument_exception&#34;, &#34;reason&#34;: &#34;Field [InvoiceDate] of type [keyword] is not supported for aggregation [date_histogram]&#34; } } 問題釐清： 上傳檔案時，3/30/2011 16:34 或者 12/1/2010 9:10 這類的欄位內容被辨識為 &quot;type&quot;: &quot;keyword&quot;，須要在上傳檔案時點擊 Override settings，勾選 Contains time field 再加上時間戳記格式以及對應的 time field，這樣就能正常做 bucket aggregations 了
-實際結果： 看起來 Elastic 幫你增加了一個@timestamp的欄位，而欄位內容確實是與 InvoiceDate 一致
-!(https://i.imgur.com/OFv0uCh.png)
-重編索引 - 使用Kibana console 先 PUT 建立一個自訂索引，細節參考另一篇Elasticsearch筆記，注意&quot;type&quot;:&quot;date&quot;需要再接上原本source index欄位的日期格式，不然會無法重編索引
-接著 POST _reindex 加入來源與目標 index 的參數，顯示下圖右結果就成功了]]></description>
-</item>
-<item>
-    <title>Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)</title>
-    <link>http://wysiwyz.github.io/posts/elasticsearch/</link>
-    <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/elasticsearch/</guid>
-    <description><![CDATA[2023-07-11 的筆記太簡略粗糙，重新整理
-Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
-通常用於啟用application的搜索功能，有以下特性
-如果產品有評價等級，而開發想要提高高評價產品的關聯性 開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序 ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台
-可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc. 例子：
-Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage) Application Performance Management (APM) : 應用程式性能管理 Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch ) Excellent at analyzing lots of data: 分析大量數據 使用機器學習根據歷史資料，來預測未來銷售額) Anomality Detection 偵測異常 Data is stored as documents, which is just a unit of information]]></description>
-</item>
-<item>
-    <title>[筆記] OWASP API Security Top 10</title>
-    <link>http://wysiwyz.github.io/posts/owasp_/</link>
-    <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/owasp_/</guid>
-    <description><![CDATA[What is OWASP Security Top 10 你會學到：API相關弱點的多樣類型、包含的來襲方向（attack vector）、弱點利用可能造成的技術影響
-這些人都該來瞭解一下：API生態系的相關人士, bug bunty hunters, 開發人員, 滲透測試人員, 組織領導, 對API Security有興趣的人
-（而且現在APISec University有一個certifcation bage提供給CASA 測驗通過的人，好像是個酷東西！）
-What is OWASP OWASP 是 Open Web Application Security Project 的縮寫，為非營利基金會，目標是改善應用程式的資訊安全。 創立於2001年12月1日，以Top10List的開源工具還有其他安全專案而聞名 創立者：Erez Yalon、Inon Sheedy OWASP API Security Top 10 首次於 2019 年 12 月發佈，基於以下幾點原因而啟動 APIs迅速的興起：不用自己造輪子開發地圖、GPS、付款交易、驗證、溝通相關的程式，可以直接使用其他家專精開發且成熟完善的功能 安全重大缺口：以前用來作為企業級弱點管理的工具與技術（例如：程式、掃描工具與傳統網路資安監控工具）不是專為處理API相關資安風險而設計的，因此存在資料外洩(data breaches) 的風險 新的攻擊方向： 通常公開網路API忽略了所有過去幾十年隨著商機一起成長的資安手法。 攻擊者不用再經歷MITRE網路攻擊鏈（bypass firewall, gain entry to the network, pivot around to a system that contains data, find a way to exfiltrate that data 攻擊者可以利用不穩定的API，直接存取資料源 一些上新聞的 API 意外事件]]></description>
-</item>
-<item>
-    <title>GCP on board</title>
-    <link>http://wysiwyz.github.io/posts/gcp_on_board/</link>
-    <pubDate>Wed, 10 Jan 2024 13:01:59 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/gcp_on_board/</guid>
-    <description><![CDATA[Mod1_GCP 簡介 什麼是雲端運算？
-自助式隨選服務 - 無需人為介入即可取得資源 廣泛的網路存取權 - 隨時隨地都可存取 資源集區 (共享資源的概念) - 提供者可將資源分享給客戶 迅速彈性 - 隨需快速取得更多資源 依使用的服務計費 - 用多少，付多少 雲端技術如何發展而成？未來方向為何？
-實體/主機代管：由使用者設定、管理與維護 [Phase2] 虛擬化：由使用者設定，由供應商代管與維護 [Phase3] 無伺服器：全自動化 GCP 運算架構 [採用代管基礎架構] ↔️ [採用動態基礎架構]
-Compute Engine Kubernetes Engine App Engine Cloud Functions 代管服務 IaaS 混合式 PaaS 無伺服器邏輯 自動 GCP 在全球設立187個網路邊緣位置（POP，網際網路交換中心），並投資鋪設20+條海底電纜
-GCP 依區域和可用區劃分
-區域region、可用區zone
-每個區域裡有多個可用區zone (大部分3個)，一個資料中心就是一個區域region
-Google善盡環保責任
-100%落實碳中和政策(自2007年起)
-Data Center 2030年達成零碳排
-全球數一數二的再生能源採購企業
-資料中心率先通過 ISO 14001 認證
-貼近客戶需求的計價方式
-以秒/毫秒計費：適用於運算、資料處理和其他服務 續用折扣：虛擬機器的使用時間超過當月的25%，就會自動套用此折扣 (upto 30%) 承諾使用折扣：以較低的價格取得長期穩定的工作負載 (around 50%off) 先占使用折扣：以較低價格取得可中斷的工作負載 自訂VM執行個體類型：僅為應用程式所需的資源付費 (pricing calculator) 開放式API和開放原始碼讓客戶能改用其他供應商的服務]]></description>
-</item>
-<item>
-    <title>Spring Security zero to master</title>
-    <link>http://wysiwyz.github.io/posts/s_spring_security/</link>
-    <pubDate>Mon, 08 Jan 2024 13:33:24 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/s_spring_security/</guid>
-    <description><![CDATA[想學很久的 Spring Security 終於在看完 udemy 的 JUnit + Mockito 課程之後，決定認真來瞭解一下了！！
-先附上 連結]]></description>
-</item>
-<item>
-    <title>[筆記] 黑白箱弱點掃描淺淺談</title>
-    <link>http://wysiwyz.github.io/posts/ss_white-box/</link>
-    <pubDate>Thu, 04 Jan 2024 14:12:33 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ss_white-box/</guid>
-    <description><![CDATA[黑白箱弱點掃描 白箱： 又名為輔助邏輯驅動測試 (auxiliary and logic driven testing)、clear-box testing、open-box testing 在光譜上是黑箱測試的另一面，滲透測試者對source code以及相關架構設計文件有全部的存取權限 在大量可用的data中淘選過濾，目地在於找到潛在弱點，因此它是滲透測試中最耗時的一種 白箱滲透測試人員可以對static code進行分析 白箱測試可以手動執行，或借助於自動化工具掃出像是 SQL注入攻擊(SQL injection)、跨站腳本攻擊 (cross-site scripting)、緩衝區溢位 (buffer overflow) 等弱點。 以下是白箱測試中很重要的工具：source code analyzer, debuggers 另外 dynamic analysis tool 也很重要，可以找出static analysis可能會漏掉的弱點，像是目標系統錯誤配置造成的弱點 (misconfiguration of target systems) 白箱滲透測試提供了綜合的評估，包含程式的內部弱點與外部弱點 黑箱： 又稱為 DAST test (動態分析資安測試 dynamic analysis security testing) 黑箱測試對於找出這樣的弱點很有幫助：input/output驗證問題, 伺服器配置相關的錯誤等。 黑箱測試的目標是要模擬真實世界的情境，並找出系統在不同情境下的行爲，例如網路攻擊、惡意輸入、阻斷服務攻擊DoS。 黑箱測試可以手動操作執行，或透過像是port scanners、fuzzers、web scanners 等自動化工具探測系統弱點。 深透測試目的是為了識別並補強可能會被攻擊者利用的弱點，因此黑箱測試是比較理想的滲透測試方法，因為大多數攻擊者並不知道目標網路的內部行為。
-跟黑箱測試相反的則是白箱測試，測試人員有目標系統的完整資訊。
-而灰箱測試則是提供測試人員有關目標系統『有限的』資訊，灰箱測試所模擬的資訊瞭解程度是「駭客透過調查與系統偵查足跡(footprinting)的方式，長期使用目標系統所能得到資訊」。
-參考資料 黑箱、灰箱、白箱滲透測試是什麼
-以黑箱測試改進應用程式的安全性
-白箱資安測試與黑箱測試的異同]]></description>
-</item>
-<item>
-    <title>初學 Kafka</title>
-    <link>http://wysiwyz.github.io/posts/ss_kafka/</link>
-    <pubDate>Wed, 03 Jan 2024 15:52:54 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/ss_kafka/</guid>
-    <description><![CDATA[Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions &mdash; producer and consumer. 消費者與生產者的抽象概念
-Topic: 資料邏輯分層 logical partitioning of data
-Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
-消費者在從 Users Topic 拉訊息 (pull information) 下來，
-當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。]]></description>
-</item>
-<item>
-    <title>Docker</title>
-    <link>http://wysiwyz.github.io/posts/s_docker_learn/</link>
-    <pubDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/s_docker_learn/</guid>
-    <description><![CDATA[Docker Note docker ps
-​ list running containers
-docker stop &lt;container_id&gt;
-​ stops the container
-docker start &lt;container_id&gt;
-​ starts stopped container
-docker ps -a
-​ lists running and stopped container
-docker run &lt;image_name&gt;:
-​ pulls image and starts container
-​ (docker pull + docker start in one command)
-[CONTAINER Port vs HOST Port]
-+ Multiple containers can run on your host machine
-+ Your laptop has only certain ports available]]></description>
 </item>
 </channel>
 </rss>

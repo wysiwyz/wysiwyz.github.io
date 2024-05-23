@@ -2,14 +2,53 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-02-22T15:59:25&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-02-22T15:59:25&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-02-22T15:59:25&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-02-22T15:59:25&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/smart-contract/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/solidity/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/web3/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</loc><lastmod>2024-05-20T02:40:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/kubernetes/</loc><lastmod>2024-05-20T02:40:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/networking/</loc><lastmod>2024-05-20T02:40:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/security/</loc><lastmod>2024-05-20T02:40:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/storage/</loc><lastmod>2024-05-20T02:40:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/compose/</loc><lastmod>2024-05-15T23:40:15&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/composev1/</loc><lastmod>2024-05-15T23:40:15&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/composev2/</loc><lastmod>2024-05-15T23:40:15&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/docker/</loc><lastmod>2024-05-15T23:40:15&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/240515-docker-compose/</loc><lastmod>2024-05-15T23:40:15&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/contract-testing/</loc><lastmod>2024-05-10T17:39:51&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/http-pact/</loc><lastmod>2024-05-10T17:39:51&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/message-pact/</loc><lastmod>2024-05-10T17:39:51&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/pact.io/</loc><lastmod>2024-05-10T17:39:51&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/240510-pact.io/</loc><lastmod>2024-05-10T17:39:51&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/quarkus/</loc><lastmod>2024-05-09T23:39:21&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/springboot/</loc><lastmod>2024-05-09T23:39:21&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/</loc><lastmod>2024-05-09T23:39:21&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/data-migration/</loc><lastmod>2024-05-09T22:39:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/flyway/</loc><lastmod>2024-05-09T22:39:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/flywaycli/</loc><lastmod>2024-05-09T22:39:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/240509-flyway/</loc><lastmod>2024-05-09T22:39:38&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/asynchronous/</loc><lastmod>2024-05-03T20:39:03&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/asynchronous-non-blocking/</loc><lastmod>2024-05-03T20:39:03&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/blocking/</loc><lastmod>2024-05-03T20:39:03&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/nio/</loc><lastmod>2024-05-03T20:39:03&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/nio2/</loc><lastmod>2024-05-03T20:39:03&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/r2dbc/</loc><lastmod>2024-05-03T20:39:03&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/reactive/</loc><lastmod>2024-05-03T20:39:03&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</loc><lastmod>2024-05-03T20:39:03&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/ci/cd-components/</loc><lastmod>2024-04-26T21:38:35&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/ci/cd-yaml-syntax/</loc><lastmod>2024-04-26T21:38:35&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/job/</loc><lastmod>2024-04-26T21:38:35&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/tags/pipeline/</loc><lastmod>2024-04-26T21:38:35&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/240426-gitlab-ci-note/</loc><lastmod>2024-04-26T21:38:35&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/sql_explain/</loc><lastmod>2024-02-22T15:59:25&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/google_cloud/</loc><lastmod>2024-01-31T15:44:43&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/googlecloudplatform/</loc><lastmod>2024-01-31T15:44:43&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2024-01-31T15:44:43&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/gcp_pcd_notes/</loc><lastmod>2024-01-31T15:44:43&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/elasticcloud/</loc><lastmod>2024-01-29T17:21:01&#43;08:00</lastmod></url><url>
@@ -18,14 +57,12 @@
             <loc>http://wysiwyz.github.io/tags/kibana/</loc><lastmod>2024-01-22T17:00:05&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/owasp_/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/owasp/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/tags/security/</loc><lastmod>2024-01-15T20:28:58&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/gcp_on_board/</loc><lastmod>2024-01-10T13:01:59&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/spring/</loc><lastmod>2024-01-08T13:33:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/s_spring_security/</loc><lastmod>2024-01-08T13:33:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/springsecurity/</loc><lastmod>2024-01-08T13:33:24&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ss_white-box/</loc><lastmod>2024-01-04T14:12:33&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ss_kafka/</loc><lastmod>2024-01-03T15:52:54&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/tags/docker/</loc><lastmod>2023-12-26T14:59:55&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/s_docker_learn/</loc><lastmod>2023-12-26T14:59:55&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ss_junit/</loc><lastmod>2023-12-26T14:14:47&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/ss_gradle/</loc><lastmod>2023-12-26T14:14:31&#43;08:00</lastmod></url><url>

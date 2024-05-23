@@ -4,15 +4,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Redis 筆記 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Redis 筆記" />
-<meta property="og:description" content="資料分群 三種依照服務類型儲存資料的方法：
+        <title>Redis 筆記 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/ss_redis_notes/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="Redis 筆記">
+  <meta property="og:description" content="資料分群 三種依照服務類型儲存資料的方法：
 namespace：在key的前面加上如user:的prefix，所有資料放在一個Redis內
 建議用:區分。 可以用 redis-audit，它會用自動分群，也可以加入部分規則，減少自動分群花的時間。
-使用 database：用指令 select 切換用不同的 &ldquo;database&rdquo;
+使用 database：用指令 select 切換用不同的 “database”
 Redis Cluster只能用database 0，因此長遠 scalability 考量，database並不適用。
 用不同的 Redis servers
 管理成本較高。設成LRU mode存cache資料，作為第一個Redis Cluster：存persistent data，作為第二個Redis Cluster。如此，可以個別設定適合的 shards、replicas 以及 各別設定適合的shards、replicas 以及 OOM 時的處理方式。
-使用Expiration &ndash; 標上有效期限 避免無限量的丟東西到記憶體裡面，以降低太多資料的管理成本
+使用Expiration – 標上有效期限 避免無限量的丟東西到記憶體裡面，以降低太多資料的管理成本
 須注意，Redis只有支援在第一層keys加上expiration。如果需要用到hash，可是hash部分內容需要加expiration的話，比較善用expiration的方法是「將一個大hash攤成多個小hash或者string，才能善用expiration。另外，使用多個小hash會比一個大hash更省時間，因為Redis有針對小hash的最佳化儲存方式。
 分析占空間的keys 除了分析工具 (redis-audit等其他記憶體分析工具)，也可以用redis-cli查找問題
 找出常見的keys，看數量分佈是否合理：redis-cli scan 0 count 100
@@ -23,21 +25,23 @@ Redis Cluster只能用database 0，因此長遠 scalability 考量，database並
 Latency 常用指令：
 了解自己機器合理的 operation per second：benchmark
 找出 ≥ 10ms的操作：slowlog
-因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://wysiwyz.github.io/posts/ss_redis_notes/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-12-26T14:12:12+08:00" />
-<meta property="article:modified_time" content="2023-12-26T14:12:12+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Redis 筆記"/>
-<meta name="twitter:description" content="資料分群 三種依照服務類型儲存資料的方法：
+因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-12-26T14:12:12+08:00">
+    <meta property="article:modified_time" content="2023-12-26T14:12:12+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Redis 筆記">
+  <meta name="twitter:description" content="資料分群 三種依照服務類型儲存資料的方法：
 namespace：在key的前面加上如user:的prefix，所有資料放在一個Redis內
 建議用:區分。 可以用 redis-audit，它會用自動分群，也可以加入部分規則，減少自動分群花的時間。
-使用 database：用指令 select 切換用不同的 &ldquo;database&rdquo;
+使用 database：用指令 select 切換用不同的 “database”
 Redis Cluster只能用database 0，因此長遠 scalability 考量，database並不適用。
 用不同的 Redis servers
 管理成本較高。設成LRU mode存cache資料，作為第一個Redis Cluster：存persistent data，作為第二個Redis Cluster。如此，可以個別設定適合的 shards、replicas 以及 各別設定適合的shards、replicas 以及 OOM 時的處理方式。
-使用Expiration &ndash; 標上有效期限 避免無限量的丟東西到記憶體裡面，以降低太多資料的管理成本
+使用Expiration – 標上有效期限 避免無限量的丟東西到記憶體裡面，以降低太多資料的管理成本
 須注意，Redis只有支援在第一層keys加上expiration。如果需要用到hash，可是hash部分內容需要加expiration的話，比較善用expiration的方法是「將一個大hash攤成多個小hash或者string，才能善用expiration。另外，使用多個小hash會比一個大hash更省時間，因為Redis有針對小hash的最佳化儲存方式。
 分析占空間的keys 除了分析工具 (redis-audit等其他記憶體分析工具)，也可以用redis-cli查找問題
 找出常見的keys，看數量分佈是否合理：redis-cli scan 0 count 100
@@ -48,7 +52,7 @@ Redis Cluster只能用database 0，因此長遠 scalability 考量，database並
 Latency 常用指令：
 了解自己機器合理的 operation per second：benchmark
 找出 ≥ 10ms的操作：slowlog
-因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作"/>
+因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作">
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/ss_redis_notes/" /><link rel="prev" href="http://wysiwyz.github.io/posts/react_scrimba/" /><link rel="next" href="http://wysiwyz.github.io/posts/ss_springboot/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">

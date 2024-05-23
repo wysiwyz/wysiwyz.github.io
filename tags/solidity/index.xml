@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Solidity - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/solidity/</link>
+        <description>Solidity - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 May 2024 01:41:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/solidity/" rel="self" type="application/rss+xml" /><item>
+    <title>Smart contract, wallet, solidity 新手村</title>
+    <link>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</link>
+    <pubDate>Wed, 22 May 2024 01:41:05 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</guid>
+    <description><![CDATA[Preface 今天中午午休聽了itplus的每周線上會-Web3.0全端開發工程師，聽到不少以前完全沒機會認識的名詞，像是Dapp、電子錢包 Metamask、Mist Browser、智能合約 Smart Contract、Solidity，決定記錄下這個腦袋又增加的plugins。
+References Metamask doc 這裡手把手教你用 React, typescript, vite 建置錢包，很是實用 The Ethereum Wiki Solidity_Introduction to Smart Contract 乙太坊社群專欄 ]]></description>
+</item>
+</channel>
+</rss>

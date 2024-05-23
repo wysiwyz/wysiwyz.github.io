@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>linux - Tag - Ich bin yiwen.</title>
+        <title>Linux - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/linux/</link>
-        <description>linux - Tag - Ich bin yiwen.</description>
+        <description>Linux - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
     <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
     <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
@@ -12,7 +12,7 @@
     <description><![CDATA[Shell Script 與排程
 Linux 安全應用演練及總複習
 shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
-Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10.]]></description>
+Shell Script 1. if ... elif ... else ... fi #!/bin/bashLANG=C #強制輸出的語系x=10if[ ${x} -gt 10 ]; thenecho &#34;x greater than 10.&#34;elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; thenecho &#34; x between 0 and 10.]]></description>
 </item>
 <item>
     <title>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</title>
@@ -68,7 +68,7 @@ Linux檔案加密_GPG_GnuPG]]></description>
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
 UGO User Group Other
 由三組位元所組成（八進制）
-l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
+l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x,dr-xr-x---, 數字:
 ❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
 允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
 SUID &amp; SGID &amp; SBIT
@@ -92,7 +92,7 @@ AAA, Triple A - 認證授權紀錄
 基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC
 &mdash; ntpdate 舊時代的工具，別用
 Chrony_NTP_lab
-Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172. server desktopXX iburst systemctl restart chronyd systemctl enable chronyd systemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
+Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172.server desktopXX iburst systemctl restart chronydsystemctl enable chronydsystemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
 另外一個設定時區方式 podman.io (官方比較少推)
 兩種設定方式 官方主推指令方式 getent group wheet
 設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作]]></description>

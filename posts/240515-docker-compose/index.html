@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Docker Compose 厲害了！一次幫你蓋多個containers - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/240515-docker-compose/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="Docker Compose 厲害了！一次幫你蓋多個containers">
+  <meta property="og:description" content="前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。
+Docker Compose 概覽 Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。
+Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。
+Compose可以在production、staging、開發、測試、CI Workflow等各種環境使用，也有用來管理應用程式整個生命週期的指令：
+Start, stop, rebuild 服務 檢視 running service 的狀態 對 running service 做日誌串流 對某個服務執行一個one-off指令 Docker Compose 主要優點 簡化控制性: 簡化了調度多個服務的複雜任務，管理或複製app環境更容易 有效合作: docker compose 配置檔容易共享，開發、運營之間協作更順利 快速應用程式開發: Compose會將創建容器的配置檔緩存起來，如果重啟了沒有做任何異動的服務，Compose會重複利用既有的容器，這樣要在environment做變更會很快 不同環境的可攜性: Compose 檔支援變數，可以用這些變數給不同環境或不同user客製化你的組成 廣泛的社群與支援: Docker Compost 有活躍的社群，提供豐富的資源、教學與支援 Docker Compose 常用 use cases 開發環境 Docker Compose 檔可以記錄並且配置應用程式全部的服務所需的依賴 (例如資料庫、隊列、緩存、Web service API等等)。可以用 docker compose up 一次建立並啟動每個依賴所需的容器。
+Compose可以把一個多頁的「開發者新手指南」濃縮成一個單一且機器可讀的compose file外加幾個指令。
+自動化測試環境 Automated test suite 是CICD程序中非常重要的一環。自動化end-to-end testing需要一個用來跑測試的環境。Compose提供一個很方便的方式，為你的test suite提供一個可以創建且用完銷毀的隔離測試環境。
+docker compose up -d.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-15T23:40:15+08:00">
+    <meta property="article:modified_time" content="2024-05-15T23:40:15+08:00">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="Compose">
+    <meta property="article:tag" content="ComposeV1">
+    <meta property="article:tag" content="ComposeV2">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Docker Compose 厲害了！一次幫你蓋多個containers">
+  <meta name="twitter:description" content="前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。
+Docker Compose 概覽 Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。
+Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。
+Compose可以在production、staging、開發、測試、CI Workflow等各種環境使用，也有用來管理應用程式整個生命週期的指令：
+Start, stop, rebuild 服務 檢視 running service 的狀態 對 running service 做日誌串流 對某個服務執行一個one-off指令 Docker Compose 主要優點 簡化控制性: 簡化了調度多個服務的複雜任務，管理或複製app環境更容易 有效合作: docker compose 配置檔容易共享，開發、運營之間協作更順利 快速應用程式開發: Compose會將創建容器的配置檔緩存起來，如果重啟了沒有做任何異動的服務，Compose會重複利用既有的容器，這樣要在environment做變更會很快 不同環境的可攜性: Compose 檔支援變數，可以用這些變數給不同環境或不同user客製化你的組成 廣泛的社群與支援: Docker Compost 有活躍的社群，提供豐富的資源、教學與支援 Docker Compose 常用 use cases 開發環境 Docker Compose 檔可以記錄並且配置應用程式全部的服務所需的依賴 (例如資料庫、隊列、緩存、Web service API等等)。可以用 docker compose up 一次建立並啟動每個依賴所需的容器。
+Compose可以把一個多頁的「開發者新手指南」濃縮成一個單一且機器可讀的compose file外加幾個指令。
+自動化測試環境 Automated test suite 是CICD程序中非常重要的一環。自動化end-to-end testing需要一個用來跑測試的環境。Compose提供一個很方便的方式，為你的test suite提供一個可以創建且用完銷毀的隔離測試環境。
+docker compose up -d.">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/240515-docker-compose/" /><link rel="prev" href="http://wysiwyz.github.io/posts/240510-pact.io/" /><link rel="next" href="http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Docker Compose 厲害了！一次幫你蓋多個containers",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/240515-docker-compose\/"
+        },"genre": "posts","keywords": "Docker, compose, composeV1, composeV2","wordcount":  626 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/240515-docker-compose\/","datePublished": "2024-05-15T23:40:15+08:00","dateModified": "2024-05-15T23:40:15+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Docker Compose 厲害了！一次幫你蓋多個containers</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-15">2024-05-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;626 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/240515-docker-compose/" class="leancloud_visitors" data-flag-title="Docker Compose 厲害了！一次幫你蓋多個containers">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#docker-compose-概覽">Docker Compose 概覽</a>
+      <ul>
+        <li><a href="#docker-compose-主要優點">Docker Compose 主要優點</a></li>
+        <li><a href="#docker-compose-常用-use-cases">Docker Compose 常用 use cases</a></li>
+        <li><a href="#docker-compose-演變史">Docker compose 演變史</a></li>
+        <li><a href="#compose-是如何發揮作用">Compose 是如何發揮作用</a></li>
+        <li><a href="#docker-compose-快速啟動">Docker Compose 快速啟動</a></li>
+        <li><a href="#遷移到-compose-v2">遷移到 Compose V2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。</p>
+<h2 id="docker-compose-概覽">Docker Compose 概覽</h2>
+<p>Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。</p>
+<p>Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。</p>
+<p>Compose可以在production、staging、開發、測試、CI Workflow等各種環境使用，也有用來管理應用程式整個生命週期的指令：</p>
+<ul>
+<li>Start, stop, rebuild 服務</li>
+<li>檢視 running service 的狀態</li>
+<li>對 running service 做日誌串流</li>
+<li>對某個服務執行一個<code>one-off</code>指令</li>
+</ul>
+<h3 id="docker-compose-主要優點">Docker Compose 主要優點</h3>
+<ul>
+<li>簡化控制性: 簡化了調度多個服務的複雜任務，管理或複製app環境更容易</li>
+<li>有效合作: docker compose 配置檔容易共享，開發、運營之間協作更順利</li>
+<li>快速應用程式開發: Compose會將創建容器的配置檔緩存起來，如果重啟了沒有做任何異動的服務，Compose會重複利用既有的容器，這樣要在environment做變更會很快</li>
+<li>不同環境的可攜性: Compose 檔支援變數，可以用這些變數給不同環境或不同user客製化你的組成</li>
+<li>廣泛的社群與支援: Docker Compost 有活躍的社群，提供豐富的資源、教學與支援</li>
+</ul>
+<h3 id="docker-compose-常用-use-cases">Docker Compose 常用 use cases</h3>
+<h4 id="開發環境">開發環境</h4>
+<p>Docker Compose 檔可以記錄並且配置應用程式全部的服務所需的依賴 (例如資料庫、隊列、緩存、Web service API等等)。可以用 <code>docker compose up</code> 一次建立並啟動每個依賴所需的容器。</p>
+<p>Compose可以把一個多頁的「開發者新手指南」濃縮成一個單一且機器可讀的compose file外加幾個指令。</p>
+<h4 id="自動化測試環境">自動化測試環境</h4>
+<p>Automated test suite 是CICD程序中非常重要的一環。自動化end-to-end testing需要一個用來跑測試的環境。Compose提供一個很方便的方式，為你的test suite提供一個可以創建且用完銷毀的隔離測試環境。</p>
+<pre tabindex="0"><code>docker compose up -d
+./run_tests
+docker compose down
+</code></pre><h3 id="docker-compose-演變史">Docker compose 演變史</h3>
+<p>這裡會比較 <code>Compose V1</code> 與 <code>Compose V2</code> 之間的file formats 以及主要的差異，也會簡短介紹Docker Compose CLI的發展歷史。</p>
+<ul>
+<li>Compose V1
+<ul>
+<li>不再支援了 (嗯? 但我們專案還是用docker-compose)</li>
+<li>用Python寫的</li>
+<li>使用 <code>version</code> top-level element</li>
+<li>使用 <code>docker-compose</code> 命令列語法
+<pre tabindex="0"><code>Compose file format 3.x
+Compose file format 2.x
+Compose file format 1
+</code></pre></li>
+</ul>
+</li>
+<li>Compose V2
+<ul>
+<li>用GO寫的 (GoLang好熱門)</li>
+<li>Optional: compose build/deploy/develop spec
+<pre tabindex="0"><code>Compose Specification
+  ├ Compose Build Specification   (optional)
+  ├ Compose Deploy Specification  (optional)
+  └ Compose Develop Specification (optional)
+</code></pre></li>
+<li><a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener noreffer ">這個網址</a>定義了Compose各個區塊的top-level element寫法，包括version, name, services, networks, volumes, configs, secrets</li>
+</ul>
+</li>
+</ul>
+<h4 id="docker-compose-cli-版本">Docker Compose CLI 版本</h4>
+<p>Docker Compose command-line binary 的第一個版本首先是2014年發布，用Python寫的，用<code>docker-compose</code>指令調用。基本上，Compose V1 版本的<code>compose.yml</code>檔案裡面包括了top-level <code>version</code> 元素，版本的值從 2.0 ~ 3.8 (<a href="https://docs.docker.com/compose/intro/history/#compose-file-format-versioning" target="_blank" rel="noopener noreffer ">分別是2014, 2016, 2017年發布</a>)不等。</p>
+<p>Docker Compose command-line binary 版本二是在2020年發布，用Go寫的，調用的指令是<code>docker compose</code>。Compose V2在<code>compose.yml</code>檔案裡面忽略了version top-level element (應該就是不寫版本 <del>version: &ldquo;3.8&rdquo;</del> 的意思吧)。</p>
+<h4 id="compose-file-格式版本">Compose file 格式版本</h4>
+<p>Compose file format 1 (2014) 沒有 top-level <code>services</code> 標籤，這種格式的 compose 檔無法兼容於 Compose V2 的指令</p>
+<p>Compose file format 2.x(2016) 跟 Compose file format 3.x(2017) 兩者之間很相似，但後者加入了很多針對Swarm deployments提供的新選項。</p>
+<blockquote>
+<p>Swam deployment 是 Docker 的集群管理工具</p>
+</blockquote>
+<p>所以為了解決Compose CLI版本混亂、compose file格式版本差異、有無使用Swarm mode的功能均等性 (feature parity)，File format 2跟File format 3就被整合進了 Compose Specification (Compose V2)。</p>
+<p>Compose V2 可以向前相容，file format 2.x跟3.x之間異動或棄用的元素應該還是可以使用。</p>
+<h3 id="compose-是如何發揮作用">Compose 是如何發揮作用</h3>
+<p>Docker Compose 倚賴yaml配置檔，這個檔案通常命名為<code>compose.yaml</code>。</p>
+<p><code>compose.yaml</code> 會依照<a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener noreffer ">Compose Specification</a>提供的規範來定義多容器應用程式</p>
+<!-- raw HTML omitted -->
+<pre><code>Services: 
+- app做計算的元件，定義為services。Service是實作在平台的一個抽象概念，是同樣的container image 跟 configuration設定 run 1次~多次
+
+Networks:
+
+Volumes:
+
+Configs:
+
+Secret:
+
+[Reference](https://docs.docker.com/compose/compose-application-model/)
+</code></pre>
+<!-- raw HTML omitted -->
+<h3 id="docker-compose-快速啟動">Docker Compose 快速啟動</h3>
+<p>跟著這個tutorial實作，會得到</p>
+<pre tabindex="0"><code>composetest
+    app.py
+    compose.yaml
+    Dockerfile
+    requirements.txt
+</code></pre><ul>
+<li>
+<p>Dockerfile 常用的指令:</p>
+<ul>
+<li>FROM: set the base image for subsequent instructions</li>
+<li>WORKDIR: set the working directory for any following instructions, such as RUN, CMD, COPY etc.</li>
+<li>ENV: set the environment variable &lsquo;key&rsquo; to the &lsquo;value&rsquo;</li>
+<li>RUN: execute any command to create a new layer on top of the current image, and the add layer will be used in the next step</li>
+<li>CMD: set the command to be executed when running a container from an image</li>
+<li>COPY: copy from source to destination</li>
+<li>EXPOSE: informs Docker that this container listens on the specified network ports at runtime (default is TCP)</li>
+<li><a href="https://docs.docker.com/reference/dockerfile/#add" target="_blank" rel="noopener noreffer ">ADD</a>: 也沒有，但應該是跟掛載檔案有關吧
+<ul>
+<li><code>ADD --chown={} --chmod={file-permission} &lt;src&gt; &lt;dest&gt;</code></li>
+</ul>
+</li>
+<li><a href="https://docs.docker.com/reference/dockerfile/#entrypoint" target="_blank" rel="noopener noreffer ">ENTRYPOINT</a>: 配置一個當作可執行檔的container</li>
+<li><a href="https://docs.docker.com/reference/dockerfile/#label" target="_blank" rel="noopener noreffer ">LABEL</a>: 給這個image加上metadata，也是key-value pair</li>
+<li><a href="https://docs.docker.com/reference/dockerfile/#format" target="_blank" rel="noopener noreffer ">關於Dockerfile Instruction看一篇就好</a></li>
+</ul>
+</li>
+<li>
+<p>另外內文有提到，如果在 service.web 加上 develop.watch 的話，存檔的同時會同步將程式碼 <a href="https://docs.docker.com/compose/file-watch/" target="_blank" rel="noopener noreffer ">Use Compose Watch</a></p>
+<ul>
+<li>
+<p>但要注意的是存檔之後，後續的 docker compose 指令要加參數: <code>docker compose watch</code> 或者 <code>docker compose up --watch</code>，用以建構/啟動 app, 並開始 file watch mode</p>
+</li>
+<li>
+<p>異動程式碼之後存檔，可以看到 changes were detected
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://hackmd.io/_uploads/SyzXDeGQ0.png"
+        data-srcset="https://hackmd.io/_uploads/SyzXDeGQ0.png, https://hackmd.io/_uploads/SyzXDeGQ0.png 1.5x, https://hackmd.io/_uploads/SyzXDeGQ0.png 2x"
+        data-sizes="auto"
+        alt="https://hackmd.io/_uploads/SyzXDeGQ0.png"
+        title="Screenshot 2024-05-15 164730" /></p>
+</li>
+<li>
+<p>刷新瀏覽器頁面就可以看到異動了</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="遷移到-compose-v2">遷移到 Compose V2</h3>
+<p>從2023年7月開始，Compose V1不再接收更新，後續發布的Docker Desktop也沒支援了。</p>
+<p>Compose V2 一開始是2020發布，Docker Desktop目前有支援的版本都有 Compose V2。這版本改善了CLI體驗，用BuildKit改善了build效能，也持續開發新的功能。</p>
+<h4 id="要怎麼轉換到-compose-v2">要怎麼轉換到 Compose V2</h4>
+<p>最簡單的是確保你有安裝最新版的 Docker Desktop，就綁了 Docker Engine 以及包含了Compose V2的Docker CLI platform。</p>
+<p>Docker Desktop 的<code>Use Compose V2</code>設定是開啟的，所以<code>docker compose</code> - an alias from <code>docker-compose</code></p>
+<h4 id="所以-compose-v1-跟-compose-v2-之間到底差在哪">所以 Compose V1 跟 Compose V2 之間到底差在哪</h4>
+<h5 id="docker-compose-vs-docker-compose"><code>docker-compose</code> vs <code>docker compose</code></h5>
+<p>Compose V2 因為整合進了 Docker CLI 平台，所以command-line syntax變成了<code>docker compose</code></p>
+<p>Docker CLI 平台提供了有一致性而且可預期的options以及flags，例如<code>DOCKER_HOST</code>環境變數或者<code>--context</code>CLI flag</p>
+<p>這個異動讓你能夠使用<code>docker</code>root command之下全部的共享flags。例如<code>docker --log-level=debug --tls compose up</code> 啟用 Docker Engine 的 debug 日誌類型，另外也確保TLS用來作為連線。</p>
+<h5 id="service-container-names">Service container names</h5>
+<p>Compose 根據 project name, service name 以及 scale/replica count 產生出容器名稱</p>
+<p>Compose V1，單字之間用<code>_</code>底線分隔；而Compose V2則改用<code>-</code>分號隔開</p>
+<p>底線不是DNS hostname的有效字元。所以Compose V2可以確保service container可以藉由有一致性、且可預測的hostname在網路上存取</p>
+<p>舉例</p>
+<ul>
+<li><code>-p myproject up --scale=1 svc</code> 的docker compose指令
+<ul>
+<li>V1: <code>myproject_svc_1</code></li>
+<li>V2: <code>myproject-svc-1</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="command-line-flags-and-subcommands">Command-line flags and subcommands</h5>
+<p>Compose V2支援了幾乎全部的 Compose V1 既有的 flags 以及 subcommand，所以在腳本上能夠做直接替換(drop-in replacement)</p>
+<ul>
+<li>Compose V2 <strong>不支援</strong>:
+<ul>
+<li>不支援<code>docker-compose scale</code>，要改用<code>docker compose up --scale</code></li>
+<li><code>docker-compose rm --all</code></li>
+</ul>
+</li>
+<li>Compose V2 <strong>有異動</strong>:
+<ul>
+<li><code>--compatibility</code>
+<ul>
+<li>V1: 已棄用，根據legacy schema version遷移yaml fields</li>
+<li>V2: 使用<code>_</code>不用<code>-</code>當做容器名稱的單字分詞符</li>
+</ul>
+</li>
+<li><code>ps --filter KEY-VALUE</code>
+<ul>
+<li>V1: 沒有文件紀錄，允許用任意的service property做過濾</li>
+<li>V2: 只能用特定的properties做過濾，例如<code>--filter=status=running</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="environments-variables">Environments variables</h5>
+<p>Compose V1 的環境變數的行為沒有完整記載，在某些edge cases會有不一致的行為。</p>
+<p>至於Compose V2，環境變數就包含了(1) precedence 以及(2)<code>.env</code> file interpolation，也包含很多範例，涵蓋了像是跳脫巢狀式quotes的難題。</p>
+<blockquote>
+<p><a href="https://docs.docker.com/compose/environment-variables/envvars-precedence/" target="_blank" rel="noopener noreffer ">precedence</a> 指的是當這個變數在很多個來源都有給值，Docker Compose 決定要先採用哪一邊定義所使用的規則
+<code>.env</code> 檔案插值(interpolation) 是指在<a href="https://docs.docker.com/compose/environment-variables/env-file/" target="_blank" rel="noopener noreffer ">放環境變數的檔案</a>插入其他值</p>
+</blockquote>
+<p>以下要確認:</p>
+<ul>
+<li>專案有無多層級的環境變數覆寫，例如<code>.env</code> 跟<code>--env</code> CLI flag同時存在</li>
+<li>任何包含跳脫sequences或者巢狀quotes的<code>.env</code>檔案</li>
+<li>任何包含<code>$</code>符號的<code>.env</code>檔案，這在PHP的專案尤其常見</li>
+<li>任何使用進階擴充語法的變數值，例如<code>${VAR:?error}</code></li>
+</ul>
+<blockquote>
+<p>豆知識
+可以透過<code>docker compose config</code>來預覽 Compose V2之後的配置檔確實已經做參數值插入，來驗證變數的值如預期呈現</p>
+</blockquote>
+<h4 id="那如果我的專案用的是compose-v1會怎樣嗎">那如果我的專案用的是Compose V1會怎樣嗎</h4>
+<p>大部分的projects要遷移到Compose V2的話，並不用在compose yaml或者開發的workflow做任何的異動。</p>
+<p>通常會建議你改用<code>docker compose</code>取代原本的<code>docker-compose</code>，這樣就可以拔掉 <code>docker-compose</code>外加 compatibility alias 的需求。</p>
+<p>然而 Docker Desktop 持續有支援<code>docker-compose</code> alias來重新將指令導向到<code>docker compose</code>，以提供方便性以及更佳兼容於第三方的工具與腳本。</p>
+<h4 id="在切換到compose-v2之前有應注意事項嗎">在切換到Compose V2之前有應注意事項嗎</h4>
+<ul>
+<li>遷移運行中的專案
+<ul>
+<li>在V1跟V2兩版本中，只要指令有帶<code>up</code>，都會比較Docker Engine的實際狀態，來重新建立服務容器，以達到預期狀態，實際狀態的對照組是compose yaml、環境變數、command-line flags。</li>
+<li>因為 Compose V1 跟 V2 兩者命名服務容器的方式不同，如果是原本由V1啟動的專案第一次改用V2的<code>up</code>重啟容器時，會導致重啟的container有不同的服務名稱。</li>
+<li>要注意的是，即使你用了<code>--compatibility</code> flag來保存原有V1的命名風格，Compose V2 首次用<code>up</code>指令是，還是需要重新建立由 V1啟動的服務容器，來遷移其內部狀態 (internal state)</li>
+</ul>
+</li>
+<li>在Docker-in-Docker中使用COMPOSE V2
+<ul>
+<li>Compose V2 有包含在<a href="https://hub.docker.com/_/docker" target="_blank" rel="noopener noreffer ">Docker官方發布的image</a></li>
+<li>另外也有<a href="https://hub.docker.com/r/docker/compose-bin" target="_blank" rel="noopener noreffer ">最新版的Compose V2 imagee</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/240515-docker-compose/" data-hashtag="Docker"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/240515-docker-compose/" data-title="Docker Compose 厲害了！一次幫你蓋多個containers"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/docker/">Docker</a>,&nbsp;<a href="/tags/compose/">Compose</a>,&nbsp;<a href="/tags/composev1/">ComposeV1</a>,&nbsp;<a href="/tags/composev2/">ComposeV2</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/240510-pact.io/" class="prev" rel="prev" title="消費者與提供者之間的合約測試 - Pact.io"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>消費者與提供者之間的合約測試 - Pact.io</a>
+            <a href="/posts/240520-k8s-security-storage-networking/" class="next" rel="next" title="CKA 筆記 [7,8,9]: Security, Storage, Networking">CKA 筆記 [7,8,9]: Security, Storage, Networking<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Asynchronous - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/asynchronous/</link>
+        <description>Asynchronous - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 03 May 2024 20:39:03 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/asynchronous/" rel="self" type="application/rss+xml" /><item>
+    <title>非阻塞式🌌 Non Blocking Jdbc</title>
+    <link>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</link>
+    <pubDate>Fri, 03 May 2024 20:39:03 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</guid>
+    <description><![CDATA[Part 1 阻塞式程式碼是現代軟體工程的禍根，它需要比較多的CPU cycles以及memory使用資源，提高了執行程式的成本
+I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
+了解 non-blocking calls 在做什麼 了解 event based system 的重要性以及他們如何協助調用 non-blocking calls 圖表的呈現面向:
+程式語言: Java 會使用到 Java 執行緒 非同步的方法為綠底，同步的方法是紅底 藍底是不會產生阻塞的Java方法 Blocking Call save方法呼叫write方法 write方法是一個blocking call: 寫入磁碟 直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態 這個thread在blocking call return之後重新開始 接著這個thread呼叫notify方法 Asynchronous Call 非同步呼叫 save方法呼叫write方法，這個write方法包裝了一個asynchronous call 此 write包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟 這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成 執行save方法的主要執行緒不受到組塞，可以執行其他程序 新產生的執行緒在完成 blocking call 之後回傳，並呼叫notify方法 Asynchronous Non Blocking Call save方法呼叫write方法 (write方法使用 Java NIO) Non Blocking Call 不會阻塞主要執行緒 non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成 執行save方法的主要執行緒並不會受到阻塞，可以執行其他程序 在non-blocking call完成之後，這個non-blocking方法呼叫notify方法 結論 Blocking Call]]></description>
+</item>
+</channel>
+</rss>

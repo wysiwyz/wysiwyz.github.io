@@ -3,16 +3,16 @@
         <title>Categories - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/</link>
         <description>Categories - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 22 Feb 2024 15:59:25 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 May 2024 01:41:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/" rel="self" type="application/rss+xml" /><item>
     <title>StudyNote</title>
     <link>http://wysiwyz.github.io/categories/studynote/</link>
-    <pubDate>Thu, 22 Feb 2024 15:59:25 &#43;0800</pubDate>
+    <pubDate>Wed, 22 May 2024 01:41:05 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/categories/studynote/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>movieReviews</title>
+    <title>MovieReviews</title>
     <link>http://wysiwyz.github.io/categories/moviereviews/</link>
     <pubDate>Mon, 27 Mar 2023 17:18:19 &#43;0800</pubDate>
     <author>Author</author>
@@ -20,7 +20,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>novelReadingLog</title>
+    <title>NovelReadingLog</title>
     <link>http://wysiwyz.github.io/categories/novelreadinglog/</link>
     <pubDate>Mon, 18 Nov 2019 21:50:30 &#43;0800</pubDate>
     <author>Author</author>
@@ -28,7 +28,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>bookReadingLog</title>
+    <title>BookReadingLog</title>
     <link>http://wysiwyz.github.io/categories/bookreadinglog/</link>
     <pubDate>Sat, 26 Oct 2019 23:30:34 &#43;0800</pubDate>
     <author>Author</author>
@@ -36,7 +36,7 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>algorithm</title>
+    <title>Algorithm</title>
     <link>http://wysiwyz.github.io/categories/algorithm/</link>
     <pubDate>Tue, 05 Oct 1993 19:25:55 &#43;0800</pubDate>
     <author>Author</author>

@@ -4,8 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Interview Ready, set, go - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Interview Ready, set, go" />
-<meta property="og:description" content="SpringMVC的執行流程
+        <title>Interview Ready, set, go - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/mic_architect/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="Interview Ready, set, go">
+  <meta property="og:description" content="SpringMVC的執行流程
 封裝了 Servlet，提供更有好的開發模型
 用戶發起請求 - &gt; DispatcherServlet 收到請求，轉發給 Handler Mapping -&gt; Handler Mapping 解析請求，根據請求信息和配置信息找到匹配的 Controller 類別 OR
 如果有配置攔截器的話，會按照攔截器裡的順序執行 preHandle 方法 -&gt;
@@ -17,14 +19,17 @@ MySQL binlog 和 redolog 有什麼區別？
 binlog(binary log)：
 數據備份、數據恢復、數據同步 redolog：
 主要是在MySQL數據庫事務的ACID特性裡面，用來保證數據的持久化特性 也可以在數據庫崩潰時，通過 RedoLog 來恢復未完成的數據，保證數據的完整性 Conclusion:
-# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://wysiwyz.github.io/posts/mic_architect/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-04-30T09:10:52+08:00" />
-<meta property="article:modified_time" content="2023-04-30T09:10:52+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Interview Ready, set, go"/>
-<meta name="twitter:description" content="SpringMVC的執行流程
+# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-04-30T09:10:52+08:00">
+    <meta property="article:modified_time" content="2023-04-30T09:10:52+08:00">
+    <meta property="article:tag" content="Java">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Interview Ready, set, go">
+  <meta name="twitter:description" content="SpringMVC的執行流程
 封裝了 Servlet，提供更有好的開發模型
 用戶發起請求 - &gt; DispatcherServlet 收到請求，轉發給 Handler Mapping -&gt; Handler Mapping 解析請求，根據請求信息和配置信息找到匹配的 Controller 類別 OR
 如果有配置攔截器的話，會按照攔截器裡的順序執行 preHandle 方法 -&gt;
@@ -36,7 +41,7 @@ MySQL binlog 和 redolog 有什麼區別？
 binlog(binary log)：
 數據備份、數據恢復、數據同步 redolog：
 主要是在MySQL數據庫事務的ACID特性裡面，用來保證數據的持久化特性 也可以在數據庫崩潰時，通過 RedoLog 來恢復未完成的數據，保證數據的完整性 Conclusion:
-# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？"/>
+# binlog redolog 使用場景不同 數據備份、數據恢復、主從集群的數據同步 實現Mysql數據庫的事務恢復、保證事務的ACID特性當數據庫崩潰時，redolog 可以把未提交的事務回滾，把已經提交的事務進行持久化 記錄信息不同 紀錄數據庫的邏輯變化提供三種日誌格式：statement, row, mixed 紀錄數據的物理變化i.e. 數據頁的變化結果 紀錄時機不同 執行SQL語句時，在主線程生成邏輯變化，寫入disk『語句級別』的紀錄方式 是在 Ｍysql 後台線程中去生成，並寫入到disk『事務級別』的紀錄方式 limit 1000000, 10加載很慢，如何解決？">
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/mic_architect/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_06_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/coursera_pca/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -295,7 +300,7 @@ notify-keyspace-events &#34;Ex&#34;
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">java</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/java/">Java</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

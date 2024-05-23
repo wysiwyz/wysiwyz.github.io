@@ -1,9 +1,21 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>security - Tag - Ich bin yiwen.</title>
+        <title>Security - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/security/</link>
-        <description>security - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/security/" rel="self" type="application/rss+xml" /><item>
+        <description>Security - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 May 2024 02:40:38 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/security/" rel="self" type="application/rss+xml" /><item>
+    <title>CKA 筆記 [7,8,9]: Security, Storage, Networking</title>
+    <link>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</link>
+    <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</guid>
+    <description><![CDATA[Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
+Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
+Asymmetric Encryption:
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygenid_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0# create certificate signing requestcat &gt; akshay.yamlvi akshay.csrvi akshay.yamlkubectl create -f akshay.yamlcertificatesigningrequest.certificates.k8s.io/akshay createdkubectl get csrkubectl certificate approve akshaykubectl get csr agent-smith -o yamlkubectl certificate deny agent-smithkubectl get csrkubectl delete csr agent-smith Create certificate signing request]]></description>
+</item>
+<item>
     <title>[筆記] OWASP API Security Top 10</title>
     <link>http://wysiwyz.github.io/posts/owasp_/</link>
     <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
@@ -43,7 +55,7 @@ VPC Projects, networks, subnetworks A project Associates objects and servicing w
     <description><![CDATA[Shell Script 與排程
 Linux 安全應用演練及總複習
 shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
-Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的語系 x=10 if[ ${x} -gt 10 ]; then echo &#34;x greater than 10.&#34; elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; then echo &#34; x between 0 and 10.]]></description>
+Shell Script 1. if ... elif ... else ... fi #!/bin/bashLANG=C #強制輸出的語系x=10if[ ${x} -gt 10 ]; thenecho &#34;x greater than 10.&#34;elif [ ${x} -ge 0] &amp;&amp; [ ${x} -le 10 ]; thenecho &#34; x between 0 and 10.]]></description>
 </item>
 <item>
     <title>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</title>
@@ -99,7 +111,7 @@ Linux檔案加密_GPG_GnuPG]]></description>
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
 UGO User Group Other
 由三組位元所組成（八進制）
-l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
+l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x,dr-xr-x---, 數字:
 ❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
 允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
 SUID &amp; SGID &amp; SBIT
@@ -123,19 +135,10 @@ AAA, Triple A - 認證授權紀錄
 基本等級設計 - 強制原則MAC、地方自治DAC、以角色為基準授權RBAC
 &mdash; ntpdate 舊時代的工具，別用
 Chrony_NTP_lab
-Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172. server desktopXX iburst systemctl restart chronyd systemctl enable chronyd systemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
+Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑識 (GoTop) 圖解 Linux 核心工作原理（GoTop） server 172.server desktopXX iburst systemctl restart chronydsystemctl enable chronydsystemctl status chronyd 在 Docker 設定時區 https://confluence.atlassian.com/kb/how-to-set-the-timezone-for-docker-container-976780914.html#:~:text=The%20timezone%20value%20in%20Atlassian,e%20TZ%3D.
 另外一個設定時區方式 podman.io (官方比較少推)
 兩種設定方式 官方主推指令方式 getent group wheet
 設定帳號不能登入系統 也可以在 /opt/目錄下寫個 .sh 檔案，讓用戶在 desktop 登入遭拒絕之前先出示文字 or 其它執行動作]]></description>
-</item>
-<item>
-    <title>Lesson 00: Linux 筆記 - 資安原則、OpenSCAP</title>
-    <link>http://wysiwyz.github.io/posts/lesson_00_linux/</link>
-    <pubDate>Sat, 11 Feb 2023 10:08:41 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_00_linux/</guid>
-    <description><![CDATA[資安是一個循環 這次會過不代表下次會過，每年都要複驗 ISO27001 改版（LA - lead auditor） Log server Windows 的 GPO policy 是什麼 .twcertcc : https://www.twcert.org.tw/tw/mp-1.html 營利目標 依公司法，企業營運是為了向股東負責 企業營運 以永續經營與營利為目標 發展產品或服務解決客戶之問題，或者滿足其需求 有利企業發展的事才考慮執行 機密性 產生營利的過程中，衍生出只有甲乙雙方才能知道的事件 營運過程中，衍生無法完全透明的內部資訊 營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資) 營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力 目標 保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標 常用手法 人員階級、職等、業務範圍管理 實物管理（區域進出換證、資產盤點） 數位資訊管理 CentOS 8 安全措施 作業系統安全 作業系統安裝 系統紀錄 檔案稽核 檔案系統權限配置 系統防火牆 應用服務安全 Web SSL MariaDB (MySQL &hellip; audit 要付費) Samba(smb)/NFS [AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)
-NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?]]></description>
 </item>
 </channel>
 </rss>

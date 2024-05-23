@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>非阻塞式🌌 Non Blocking Jdbc - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="非阻塞式🌌 Non Blocking Jdbc">
+  <meta property="og:description" content="Part 1 阻塞式程式碼是現代軟體工程的禍根，它需要比較多的CPU cycles以及memory使用資源，提高了執行程式的成本
+I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
+了解 non-blocking calls 在做什麼 了解 event based system 的重要性以及他們如何協助調用 non-blocking calls 圖表的呈現面向:
+程式語言: Java 會使用到 Java 執行緒 非同步的方法為綠底，同步的方法是紅底 藍底是不會產生阻塞的Java方法 Blocking Call save方法呼叫write方法 write方法是一個blocking call: 寫入磁碟 直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態 這個thread在blocking call return之後重新開始 接著這個thread呼叫notify方法 Asynchronous Call 非同步呼叫 save方法呼叫write方法，這個write方法包裝了一個asynchronous call 此 write包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟 這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成 執行save方法的主要執行緒不受到組塞，可以執行其他程序 新產生的執行緒在完成 blocking call 之後回傳，並呼叫notify方法 Asynchronous Non Blocking Call save方法呼叫write方法 (write方法使用 Java NIO) Non Blocking Call 不會阻塞主要執行緒 non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成 執行save方法的主要執行緒並不會受到阻塞，可以執行其他程序 在non-blocking call完成之後，這個non-blocking方法呼叫notify方法 結論 Blocking Call">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-03T20:39:03+08:00">
+    <meta property="article:modified_time" content="2024-05-03T20:39:03+08:00">
+    <meta property="article:tag" content="Blocking">
+    <meta property="article:tag" content="Asynchronous">
+    <meta property="article:tag" content="Asynchronous-Non-Blocking">
+    <meta property="article:tag" content="R2DBC">
+    <meta property="article:tag" content="Reactive">
+    <meta property="article:tag" content="NIO">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="非阻塞式🌌 Non Blocking Jdbc">
+  <meta name="twitter:description" content="Part 1 阻塞式程式碼是現代軟體工程的禍根，它需要比較多的CPU cycles以及memory使用資源，提高了執行程式的成本
+I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
+了解 non-blocking calls 在做什麼 了解 event based system 的重要性以及他們如何協助調用 non-blocking calls 圖表的呈現面向:
+程式語言: Java 會使用到 Java 執行緒 非同步的方法為綠底，同步的方法是紅底 藍底是不會產生阻塞的Java方法 Blocking Call save方法呼叫write方法 write方法是一個blocking call: 寫入磁碟 直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態 這個thread在blocking call return之後重新開始 接著這個thread呼叫notify方法 Asynchronous Call 非同步呼叫 save方法呼叫write方法，這個write方法包裝了一個asynchronous call 此 write包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟 這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成 執行save方法的主要執行緒不受到組塞，可以執行其他程序 新產生的執行緒在完成 blocking call 之後回傳，並呼叫notify方法 Asynchronous Non Blocking Call save方法呼叫write方法 (write方法使用 Java NIO) Non Blocking Call 不會阻塞主要執行緒 non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成 執行save方法的主要執行緒並不會受到阻塞，可以執行其他程序 在non-blocking call完成之後，這個non-blocking方法呼叫notify方法 結論 Blocking Call">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/" /><link rel="prev" href="http://wysiwyz.github.io/posts/240426-gitlab-ci-note/" /><link rel="next" href="http://wysiwyz.github.io/posts/240509-flyway/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "非阻塞式🌌 Non Blocking Jdbc",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/240503-non-blocking-jdbc\/"
+        },"genre": "posts","keywords": "blocking, asynchronous, asynchronous-non-blocking, R2DBC, Reactive, NIO, NIO2","wordcount":  561 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/240503-non-blocking-jdbc\/","datePublished": "2024-05-03T20:39:03+08:00","dateModified": "2024-05-03T20:39:03+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">非阻塞式🌌 Non Blocking Jdbc</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-03">2024-05-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;561 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/240503-non-blocking-jdbc/" class="leancloud_visitors" data-flag-title="非阻塞式🌌 Non Blocking Jdbc">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#i-blockingasynchronousasynchronous-non-blocking">I. Blocking/Asynchronous/Asynchronous-Non-Blocking</a>
+      <ul>
+        <li><a href="#blocking-call">Blocking Call</a></li>
+        <li><a href="#asynchronous-call-非同步呼叫">Asynchronous Call 非同步呼叫</a></li>
+        <li><a href="#asynchronous-non-blocking-call">Asynchronous Non Blocking Call</a></li>
+        <li><a href="#結論">結論</a></li>
+      </ul>
+    </li>
+    <li><a href="#ii-remote-procedure-calls-vs-messagingevents-service-calls">II. Remote Procedure Calls v.s. Messaging/Events Service calls</a>
+      <ul>
+        <li><a href="#direct-remote-procedure-call">Direct Remote Procedure call</a></li>
+        <li><a href="#queue-based-events">Queue based events</a></li>
+        <li><a href="#erlang-events">Erlang Events</a></li>
+        <li><a href="#akka-actors-and-events">Akka Actors and Events</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#java-io-nio-以及-nio2">Java IO NIO 以及 NIO2</a>
+      <ul>
+        <li><a href="#主要層面">主要層面</a></li>
+      </ul>
+    </li>
+    <li><a href="#database-cursorsconnections">Database Cursors/Connections</a>
+      <ul>
+        <li><a href="#jdbc-連線池">JDBC 連線池</a></li>
+        <li><a href="#每次連線到database-server端的資源">每次連線到Database Server端的資源</a></li>
+        <li><a href="#database-administrator-資料庫管理難題">Database Administrator 資料庫管理難題</a></li>
+      </ul>
+    </li>
+    <li><a href="#non-blocking-jdbc">Non Blocking JDBC</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#r2dbcio">R2DBC.IO</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#r2dbc-plus-spring-framework">R2DBC plus Spring framework</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#oracle-adba-and-r2dbc">Oracle ADBA and R2DBC</a></li>
+    <li><a href="#oracle-jdbc-reactive-extensions">Oracle JDBC Reactive Extensions</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="part-1">Part 1</h1>
+<p>阻塞式程式碼是現代軟體工程的禍根，它需要比較多的CPU cycles以及memory使用資源，提高了執行程式的成本</p>
+<h2 id="i-blockingasynchronousasynchronous-non-blocking">I. Blocking/Asynchronous/Asynchronous-Non-Blocking</h2>
+<p>這個章節(I)會學到:</p>
+<ol>
+<li>了解 non-blocking calls 在做什麼</li>
+<li>了解 event based system 的重要性以及他們如何協助調用 non-blocking calls</li>
+</ol>
+<p>圖表的呈現面向:</p>
+<ol>
+<li>程式語言: Java</li>
+<li>會使用到 Java 執行緒</li>
+<li>非同步的方法為綠底，同步的方法是紅底</li>
+<li>藍底是不會產生阻塞的Java方法</li>
+</ol>
+<h3 id="blocking-call">Blocking Call</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="//TODO"
+        data-srcset="//TODO, //TODO 1.5x, //TODO 2x"
+        data-sizes="auto"
+        alt="//TODO"
+        title="blocking_call" /></p>
+<ol>
+<li><code>save</code>方法呼叫<code>write</code>方法</li>
+<li><code>write</code>方法是一個blocking call: 寫入磁碟</li>
+<li>直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態</li>
+<li>這個thread在blocking call return之後重新開始</li>
+<li>接著這個thread呼叫notify方法</li>
+</ol>
+<h3 id="asynchronous-call-非同步呼叫">Asynchronous Call 非同步呼叫</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="//TODO"
+        data-srcset="//TODO, //TODO 1.5x, //TODO 2x"
+        data-sizes="auto"
+        alt="//TODO"
+        title="asynchronous_call" /></p>
+<ol>
+<li><code>save</code>方法呼叫<code>write</code>方法，這個<code>write</code>方法包裝了一個asynchronous call</li>
+<li>此 <code>write</code>包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟</li>
+<li>這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成</li>
+<li>執行<code>save</code>方法的主要執行緒不受到組塞，可以執行其他程序</li>
+<li>新產生的執行緒在完成 blocking call 之後回傳，並呼叫<code>notify</code>方法</li>
+</ol>
+<h3 id="asynchronous-non-blocking-call">Asynchronous Non Blocking Call</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="//TODO"
+        data-srcset="//TODO, //TODO 1.5x, //TODO 2x"
+        data-sizes="auto"
+        alt="//TODO"
+        title="asynchronous_non_blocking" /></p>
+<ol>
+<li><code>save</code>方法呼叫<code>write</code>方法 (write方法使用 Java NIO)</li>
+<li>Non Blocking Call 不會阻塞主要執行緒</li>
+<li>non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成</li>
+<li>執行<code>save</code>方法的主要執行緒並不會受到阻塞，可以執行其他程序</li>
+<li>在non-blocking call完成之後，這個non-blocking方法呼叫<code>notify</code>方法</li>
+</ol>
+<h3 id="結論">結論</h3>
+<ol>
+<li>
+<p>Blocking Call</p>
+<ul>
+<li>此時此刻當今應該沒有人在用 blocking call 了</li>
+<li>但如果真的 真的 真的需要 blocking call，要列出正當理由</li>
+<li>例如說，向JDBC資料庫做的JDBC call，就算是一個blocking call</li>
+<li>JDC SQL 2 package: 這跟<code>java.sql</code>主要不同之處在於，它是異步、為了高吞吐量的程式開發
+<ul>
+<li><a href="https://cr.openjdk.org/~lancea/apidoc/java/sql2/package-summary.html" target="_blank" rel="noopener noreffer ">JDBC SQL2</a></li>
+<li><a href="https://github.com/pgjdbc/pgadba" target="_blank" rel="noopener noreffer ">pgjdbc/pgadba</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Asynchronous Call</p>
+<ul>
+<li>使用新產生的執行緒，異步處理blocking call，是避免讓主要執行緒阻塞的好方法</li>
+<li>如果這個由新產生的執行緒包裝的blocking call執行期間短會很有幫助</li>
+<li>但如果blocking call長時間使用資源，可能會造成JVM中 <a href="https://docs.oracle.com/javase/tutorial/essential/concurrency/starvelive.html" target="_blank" rel="noopener noreffer ">thread starvation</a> 的問題</li>
+<li>在單體式架構 (有充足CPU,RAM資源)，可能會在app執行一段期間之後遇到執行緒耗盡的問題</li>
+<li>在微服務架構下，這問題可能會視deployment model情況而變更嚴重</li>
+<li>主要原因在於有很多微服務，每個微服務有清楚的權責且部署到的地方(例如K8s pod)</li>
+<li>通常每個pod的RAM以及CPU的資源有限 <a href="https://developer.ibm.com/patterns/deploy-java-microservices-on-kubernetes-with-polyglot-support/" target="_blank" rel="noopener noreffer ">Deloy Java microservices to K8s</a></li>
+<li>因此這個做法不是最佳解，應該盡可能避免blocking call</li>
+</ul>
+</li>
+<li>
+<p>Non Blocking Call</p>
+<ul>
+<li>不會阻塞系統內的任何執行緒</li>
+<li>Jva NIO 是從 JDK1.4 開始就有的功能</li>
+<li>寫 non-blocking code 的方法眾多<a href="https://jenkov.com/tutorials/java-concurrency/non-blocking-algorithms.html" target="_blank" rel="noopener noreffer ">參考Non-blocking Algorithms</a></li>
+<li>Asynchronous code可能需要花點時間習慣，因為它可能不是嚴格的sequential</li>
+</ul>
+</li>
+</ol>
+<h2 id="ii-remote-procedure-calls-vs-messagingevents-service-calls">II. Remote Procedure Calls v.s. Messaging/Events Service calls</h2>
+<p>這個章節(II)圖表的呈現面向:</p>
+<ol>
+<li>一個服務負責一個job</li>
+<li>不僅限於Java，也適用於其他程式語言</li>
+</ol>
+<h3 id="direct-remote-procedure-call">Direct Remote Procedure call</h3>
+<h4 id="rpc-two-services">RPC: Two services</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="//TODO"
+        data-srcset="//TODO, //TODO 1.5x, //TODO 2x"
+        data-sizes="auto"
+        alt="//TODO"
+        title="RPC 2 services" /></p>
+<ol>
+<li>如上圖，Service One 對 ServiceTwo 做出Remote Procedure Call 的請求</li>
+<li>ServiceTwo 執行程序，並將 response 回傳給 ServiceOne</li>
+<li>這個行為本身是個 synchronous call</li>
+<li>所以 ServiceOne 會等待 response</li>
+<li>使用的通訊協議可能是以下其中一個:
+<ul>
+<li>low level sockets with a custom protocol</li>
+<li>HTTP/REST protocol</li>
+<li>other protocol</li>
+</ul>
+</li>
+<li>ServiceOne 跟 ServiceTwo 耦合度很高，邏輯須一致</li>
+</ol>
+<h4 id="rpc-two-services-timeout">RPC: Two services timeout</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="//TODO"
+        data-srcset="//TODO, //TODO 1.5x, //TODO 2x"
+        data-sizes="auto"
+        alt="//TODO"
+        title="Logical_diagram_two_services_timeout" /></p>
+<ol>
+<li>ServiceTwo 如果 no response 的話，傳送請求的 ServiceOne 需要有處理機制</li>
+<li>可能是ServiceTwo 停機、意外錯誤或者網路問題</li>
+</ol>
+<h4 id="many-services">Many services</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="//TODO"
+        data-srcset="//TODO, //TODO 1.5x, //TODO 2x"
+        data-sizes="auto"
+        alt="//TODO"
+        title="RPC many services" /></p>
+<ol>
+<li>以上是有三個Services同時需要一個Service，會發送請求與等待回覆的情況</li>
+<li>若多個 Services 都對 ServiceOne 提 RPC calls，此 ServiceOne 則需要處理 Synchronous requests 以及每個 Service inferface 各自的 timeouts</li>
+</ol>
+<h4 id="conclusion-for-rpc">Conclusion for RPC</h4>
+<ol>
+<li>這裡遇到的問題是Services之間緊密的耦合度</li>
+<li>使用方式是同步的調用，基本上是blocking call</li>
+<li>很容易被理解為 blocking call 而寫成 synchronous 方法</li>
+</ol>
+<h3 id="queue-based-events">Queue based events</h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="//TODO"
+        data-srcset="//TODO, //TODO 1.5x, //TODO 2x"
+        data-sizes="auto"
+        alt="//TODO"
+        title="Queue_event_based_services" /></p>
+<ol>
+<li>ServiceOne 在 QueueX 上<code>publish</code>一則message</li>
+<li>對此message有接收興趣的ServiceTwo 就從 QueueX 訂閱這個隊列的訊息</li>
+<li>ServiceFour根據從 QueueX 接收到的訊息，再發布message至QueueY</li>
+<li>ServiceOne 對#3發布的訊息感興趣，所以訂閱 QueueY</li>
+</ol>
+<h4 id="conclusion-for-messaging">Conclusion for Messaging</h4>
+<ol>
+<li>使用 Messaging queue 解決了 services 之間的高耦度</li>
+<li>每個向 queue 發送訊息 的 service 可以繼續做其它要做的工作</li>
+<li>使用異步調用方法，本質上是 non-blocking call</li>
+<li>優點除了解耦，另外各個services也可以獨立開發，獨立測試，建構響應式系統更容易 (參考<a href="https://martinfowler.com/articles/201701-event-driven.html" target="_blank" rel="noopener noreffer ">What do you mean by Event Driven?</a>)</li>
+</ol>
+<h3 id="erlang-events">Erlang Events</h3>
+<p>Erlang 是高併發語言，由Ericsson發明</p>
+<h3 id="akka-actors-and-events">Akka Actors and Events</h3>
+<ul>
+<li>受 Erlang 影響很多，Akka Actors and Event 在 JVM 運行，支援 Scala 以及 Java</li>
+</ul>
+<hr>
+<h1 id="part-2">Part 2</h1>
+<p>這個部分主要討論到 Java NIO, Java JDBC 以及 non-blocking JDBC 的需求</p>
+<h2 id="java-io-nio-以及-nio2">Java IO NIO 以及 NIO2</h2>
+<h3 id="主要層面">主要層面</h3>
+<ol>
+<li>Java IO 在每個 connection model 的每次連線都有個 thread，可擴充性並不高</li>
+<li>Java NIO</li>
+<li>Java NIO2</li>
+</ol>
+<h4 id="小結論">小結論</h4>
+<h2 id="database-cursorsconnections">Database Cursors/Connections</h2>
+<h3 id="jdbc-連線池">JDBC 連線池</h3>
+<p>當 Java 的 JDBC 標準出現時，我們發現開啟/關閉JDBC連線的每個操作都會耗費高昂的資源而且很耗時間</p>
+<p>因此出現了JDBC連線池，目前大部分的Java Server標準安奘版都配有 JDBC 連線池</p>
+<h3 id="每次連線到database-server端的資源">每次連線到Database Server端的資源</h3>
+<p>每一筆連線都代表某些程序、記憶體或其他資料庫端的資源</p>
+<p>JDBC連線在 server 端都會耗費一些資源或費用，在Oracle資料庫有個術語稱之 Cursors，不是無限的資源，可能會在某些情況用完</p>
+<ul>
+<li><a href="https://blogs.oracle.com/connect/post/working-with-cursors" target="_blank" rel="noopener noreffer ">Working with Cursors</a></li>
+<li><a href="https://blogs.oracle.com/opal/post/node-oracledb-avoiding-ora-01000-maximum-open-cursors-exceeded" target="_blank" rel="noopener noreffer ">Max cursors exceeded</a></li>
+</ul>
+<h3 id="database-administrator-資料庫管理難題">Database Administrator 資料庫管理難題</h3>
+<h4 id="假設情境">假設情境</h4>
+<p>開發寫了個 JDBC 應用程式，在開發環境都沒問題，所以進到效能測試。DBA就發現隨著這個app 的負荷增加，所要求的資料庫資源就變得更昂貴。</p>
+<p>開發因為資源不足怪DBA，DBA則怪開發的程式設計不佳，不清楚資料庫的資源有限</p>
+<p>NIO 跟 NIO2 就是以 non-blocking thread 減少使用資源量的設計</p>
+<h2 id="non-blocking-jdbc">Non Blocking JDBC</h2>
+<blockquote>
+<p>Blocking a thread is a resource issue as each blocked thread holds onto ~0.5MB of stack and may incur context switch and memory-access delays (adds latency to thread processing) when being switched to. For Example, 100 blocked threads hold one to ~50MB of memory (outside of Java heap).  &ndash; Davaid Morten
+每個阻塞的執行緒會占用至多 0.5MB 的棧區，可能導致上下文切換以及記憶體存取的延遲性增加</p>
+</blockquote>
+<hr>
+<h1 id="part-3">Part 3</h1>
+<p>這部分主角是 R2DBC，也會探究 Oracle 提供 non-blocking JDBC 的觀點</p>
+<h2 id="r2dbcio">R2DBC.IO</h2>
+<h4 id="重要層面">重要層面</h4>
+<ol>
+<li>Reactive Relational Database Connectivity (R2DBC) 響應式關聯式資料庫連線給關聯式資料庫提供了響應式編程API</li>
+<li>支援多類型的資料庫，像是 GCP Cloud Spanner, MySQL, PostgreSQL, H2, MariaDB, MSSQL, MySQL, PostgreSQL</li>
+<li>有某些以 KOTLIN 為基礎的 drivers</li>
+</ol>
+<h4 id="小結">小結</h4>
+<p>JDBC是過去好幾年以來的API標準，但我們需要提供JDBC一個非同步，非阻塞式的標準，而R2DBC就能補足這個需求空缺</p>
+<p>參考 <a href="https://r2dbc.io/" target="_blank" rel="noopener noreffer ">R2DBC 延伸資料</a></p>
+<h2 id="r2dbc-plus-spring-framework">R2DBC plus Spring framework</h2>
+<p>Spring framework 有 <code>Flux</code>,<code>Mono</code>, <code>WebFlux</code> 承擔了建置 reactive streams 的功能，再加上 R2DBC，讓 reactive JDBC 實作起來更加容易。</p>
+<p>許多效能測試都有一致的結果顯示WebFlux + R2DBC 在延遲、吞股量、cpu使用量等數據上表現都顯示這兩者是很優秀的組合，參考官方文件<a href="https://spring.io/projects/spring-data-r2dbc" target="_blank" rel="noopener noreffer ">Spring support for R2DBC</a></p>
+<h4 id="小結-1">小結</h4>
+<p>R2DBC 提供跨資料庫的響應式、非阻塞式資料庫存取的API，不是Oracle支援的計畫，更像是開源社群的成果，但因為跟Spring一起使用效果很好，值得考慮使用</p>
+<h2 id="oracle-adba-and-r2dbc">Oracle ADBA and R2DBC</h2>
+<p>Oracle 在 2018 開始了個計畫要將 Asynchronous Database Access API 導入 Oracle，但目前終止了(discontinused)(🙄)</p>
+<p>參考 <a href="https://blogs.oracle.com/java/post/asynchronous-database-access-api-adba" target="_blank" rel="noopener noreffer ">Oracle ADBA for Asynchronous Database Access API</a></p>
+<h2 id="oracle-jdbc-reactive-extensions">Oracle JDBC Reactive Extensions</h2>
+<p>在停掉ADBA計畫之後，Oracle想出了JDBC Reactive Extensions，用來作為存取Oracle 資料庫&ndash;以非阻塞式存取的解決方案。目前這個Java標準不是所有RDBMS access都能使用&hellip;其他的RDBMS廠商沒有被包含在這個計畫中&hellip;</p>
+<h4 id="小結-2">小結</h4>
+<p>Oracle 提供了一個以non-blocking方式存取 Oracle 資料庫方式，但只是 Oracle DB 的 JDBC DRIVER 的 extension。Oracle Java 沒有像標準化JDBC一樣，將 non-blocking API 對 RDBMS 的存取做標準化。(所以就是買進來就撒手不管的實際例子🤔)</p>
+<h4 id="延伸">延伸</h4>
+<ul>
+<li>Oracle Reactive Extension
+<ul>
+<li><a href="https://www.oracle.com/a/tech/docs/dev6323-reactivestreams-fiber.pdf" target="_blank" rel="noopener noreffer ">Streams Fiber PDF-1</a></li>
+<li><a href="https://cdn.ymaws.com/ukoug.org/resource/collection/904331A4-A794-4730-AC6B-6AB8B1DD1E36/JDBC-Reactive-Extensions.pdf" target="_blank" rel="noopener noreffer ">Streams Fiber PDF-2</a></li>
+<li><a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/jdbc-reactive-extensions.html" target="_blank" rel="noopener noreffer ">Oracle JDBC Reactive Extensions</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/" data-hashtag="blocking"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/" data-title="非阻塞式🌌 Non Blocking Jdbc"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/blocking/">Blocking</a>,&nbsp;<a href="/tags/asynchronous/">Asynchronous</a>,&nbsp;<a href="/tags/asynchronous-non-blocking/">Asynchronous-Non-Blocking</a>,&nbsp;<a href="/tags/r2dbc/">R2DBC</a>,&nbsp;<a href="/tags/reactive/">Reactive</a>,&nbsp;<a href="/tags/nio/">NIO</a>,&nbsp;<a href="/tags/nio2/">NIO2</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/240426-gitlab-ci-note/" class="prev" rel="prev" title="初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml</a>
+            <a href="/posts/240509-flyway/" class="next" rel="next" title="資料庫版控，走起，高飛！Flyway">資料庫版控，走起，高飛！Flyway<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

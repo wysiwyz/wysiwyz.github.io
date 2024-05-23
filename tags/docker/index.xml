@@ -3,7 +3,22 @@
         <title>Docker - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/docker/</link>
         <description>Docker - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/docker/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 May 2024 23:40:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/docker/" rel="self" type="application/rss+xml" /><item>
+    <title>Docker Compose 厲害了！一次幫你蓋多個containers</title>
+    <link>http://wysiwyz.github.io/posts/240515-docker-compose/</link>
+    <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240515-docker-compose/</guid>
+    <description><![CDATA[前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。
+Docker Compose 概覽 Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。
+Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。
+Compose可以在production、staging、開發、測試、CI Workflow等各種環境使用，也有用來管理應用程式整個生命週期的指令：
+Start, stop, rebuild 服務 檢視 running service 的狀態 對 running service 做日誌串流 對某個服務執行一個one-off指令 Docker Compose 主要優點 簡化控制性: 簡化了調度多個服務的複雜任務，管理或複製app環境更容易 有效合作: docker compose 配置檔容易共享，開發、運營之間協作更順利 快速應用程式開發: Compose會將創建容器的配置檔緩存起來，如果重啟了沒有做任何異動的服務，Compose會重複利用既有的容器，這樣要在environment做變更會很快 不同環境的可攜性: Compose 檔支援變數，可以用這些變數給不同環境或不同user客製化你的組成 廣泛的社群與支援: Docker Compost 有活躍的社群，提供豐富的資源、教學與支援 Docker Compose 常用 use cases 開發環境 Docker Compose 檔可以記錄並且配置應用程式全部的服務所需的依賴 (例如資料庫、隊列、緩存、Web service API等等)。可以用 docker compose up 一次建立並啟動每個依賴所需的容器。
+Compose可以把一個多頁的「開發者新手指南」濃縮成一個單一且機器可讀的compose file外加幾個指令。
+自動化測試環境 Automated test suite 是CICD程序中非常重要的一環。自動化end-to-end testing需要一個用來跑測試的環境。Compose提供一個很方便的方式，為你的test suite提供一個可以創建且用完銷毀的隔離測試環境。
+docker compose up -d.]]></description>
+</item>
+<item>
     <title>Docker</title>
     <link>http://wysiwyz.github.io/posts/s_docker_learn/</link>
     <pubDate>Tue, 26 Dec 2023 14:59:55 &#43;0800</pubDate>

@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>frontMatter - Tag - Ich bin yiwen.</title>
+        <title>FrontMatter - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/frontmatter/</link>
-        <description>frontMatter - Tag - Ich bin yiwen.</description>
+        <description>FrontMatter - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 14 Oct 2022 23:08:24 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/frontmatter/" rel="self" type="application/rss+xml" /><item>
     <title>Firstpost</title>
     <link>http://wysiwyz.github.io/posts/firstpost/</link>

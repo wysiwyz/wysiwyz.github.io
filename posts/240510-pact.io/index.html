@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>消費者與提供者之間的合約測試 - Pact.io - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/240510-pact.io/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="消費者與提供者之間的合約測試 - Pact.io">
+  <meta property="og:description" content="Introduction Pact是一個程式碼優先工具，使用contract tests測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。
+測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。
+Pact合約測試流程動圖
+Consumer 針對provider mock執行單元測試，驗證自己程式的行為 跨系統之間的互動行為會捕捉至contract Contract由不同團隊之間共享，使用Pactflow工具能夠確保協同合作性 Contract中的requests 重演了 provider API 並驗證 consumer 的預期值 Provider 的測試中所有其他系統都用替身，所以能隔離測試 Javascript code guide, 5 mins
+1 2 3 4 5 group = &#39;au.com.dius.pactworkshop&#39; dependencies { testImplementation &#39;au.com.dius.pact.consumer:junit5:4.6.5&#39; } contract testing是什麼 Contract testing 是用來測試某個integration point的技術，藉由隔離測試個別的APP，以確保它接收或傳送出的訊息，符合紀載在合約上的共識。
+如果是透過HTTP通訊的應用程式，這些訊息就會是HTTP請求/回覆，如果是使用Queue的應用程式，這些訊息就會是要傳送到隊列的內容。
+Pact實作合約測試的方式，就是確認所有呼叫你的test doubles的測試都會得到如同實際app一樣的回傳值。
+什麼時候使用contract testing 當你有兩個需要互通有無的service時，contract testing就可以立刻派上用場，例如API client要與web front-end溝通的應用場景。雖然單一客戶端對單一個服務是很常建的use case，contract testing在微服務架構(有多個services的環境)更彰顯其價值。如果有格式良好的合約測試，開發就要避免版本地域就更家容易。合約測試可說是微服務開發與部署的殺手級應用。
+合約測試術語 consumer: 例如需要接收資料的client provider: 例如server上的API，提供client所需的資料 通常在微服務架構下，client/server的術語不適合所有情境，例如透過訊息隊列的溝通就不適合。所以這裡會以consumer與provider為主。
+消費者驅動的contracts Pact是程式碼優先、消費者驅動的合約測試工具，通常由寫程式的開發或測試人員使用。在自動化的consumer tests過程中產生這個contract。這種模式的一個主要優勢是，全部的communication中，只測試到 consumer會實際使用到的部分communication。也就是說，任何不會被當前的consumer所使用到的 provider行為，都可以在不弄壞測試結果的前提下做異動修改。
+另外Pact contract也不像schema或者規格 (例如 OAS) 這類靜態的artefact定義資源的所有可能的狀態，pact contract實施方式是藉由執行測試案例的集合，每個元素描述了具體的請求/回應對。Pact實際上就是範例式合約。參考Schema測試與Contract測試的差異">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-10T17:39:51+08:00">
+    <meta property="article:modified_time" content="2024-05-10T17:39:51+08:00">
+    <meta property="article:tag" content="Pact.io">
+    <meta property="article:tag" content="Contract-Testing">
+    <meta property="article:tag" content="Http-Pact">
+    <meta property="article:tag" content="Message-Pact">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="消費者與提供者之間的合約測試 - Pact.io">
+  <meta name="twitter:description" content="Introduction Pact是一個程式碼優先工具，使用contract tests測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。
+測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。
+Pact合約測試流程動圖
+Consumer 針對provider mock執行單元測試，驗證自己程式的行為 跨系統之間的互動行為會捕捉至contract Contract由不同團隊之間共享，使用Pactflow工具能夠確保協同合作性 Contract中的requests 重演了 provider API 並驗證 consumer 的預期值 Provider 的測試中所有其他系統都用替身，所以能隔離測試 Javascript code guide, 5 mins
+1 2 3 4 5 group = &#39;au.com.dius.pactworkshop&#39; dependencies { testImplementation &#39;au.com.dius.pact.consumer:junit5:4.6.5&#39; } contract testing是什麼 Contract testing 是用來測試某個integration point的技術，藉由隔離測試個別的APP，以確保它接收或傳送出的訊息，符合紀載在合約上的共識。
+如果是透過HTTP通訊的應用程式，這些訊息就會是HTTP請求/回覆，如果是使用Queue的應用程式，這些訊息就會是要傳送到隊列的內容。
+Pact實作合約測試的方式，就是確認所有呼叫你的test doubles的測試都會得到如同實際app一樣的回傳值。
+什麼時候使用contract testing 當你有兩個需要互通有無的service時，contract testing就可以立刻派上用場，例如API client要與web front-end溝通的應用場景。雖然單一客戶端對單一個服務是很常建的use case，contract testing在微服務架構(有多個services的環境)更彰顯其價值。如果有格式良好的合約測試，開發就要避免版本地域就更家容易。合約測試可說是微服務開發與部署的殺手級應用。
+合約測試術語 consumer: 例如需要接收資料的client provider: 例如server上的API，提供client所需的資料 通常在微服務架構下，client/server的術語不適合所有情境，例如透過訊息隊列的溝通就不適合。所以這裡會以consumer與provider為主。
+消費者驅動的contracts Pact是程式碼優先、消費者驅動的合約測試工具，通常由寫程式的開發或測試人員使用。在自動化的consumer tests過程中產生這個contract。這種模式的一個主要優勢是，全部的communication中，只測試到 consumer會實際使用到的部分communication。也就是說，任何不會被當前的consumer所使用到的 provider行為，都可以在不弄壞測試結果的前提下做異動修改。
+另外Pact contract也不像schema或者規格 (例如 OAS) 這類靜態的artefact定義資源的所有可能的狀態，pact contract實施方式是藉由執行測試案例的集合，每個元素描述了具體的請求/回應對。Pact實際上就是範例式合約。參考Schema測試與Contract測試的差異">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/240510-pact.io/" /><link rel="prev" href="http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/" /><link rel="next" href="http://wysiwyz.github.io/posts/240515-docker-compose/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "消費者與提供者之間的合約測試 - Pact.io",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/240510-pact.io\/"
+        },"genre": "posts","keywords": "pact.io, contract-testing, http-pact, message-pact","wordcount":  579 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/240510-pact.io\/","datePublished": "2024-05-10T17:39:51+08:00","dateModified": "2024-05-10T17:39:51+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">消費者與提供者之間的合約測試 - Pact.io</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-10">2024-05-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;579 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;<span id="/posts/240510-pact.io/" class="leancloud_visitors" data-flag-title="消費者與提供者之間的合約測試 - Pact.io">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#contract-testing是什麼">contract testing是什麼</a></li>
+    <li><a href="#什麼時候使用contract-testing">什麼時候使用contract testing</a></li>
+    <li><a href="#合約測試術語">合約測試術語</a></li>
+    <li><a href="#消費者驅動的contracts">消費者驅動的contracts</a></li>
+    <li><a href="#供應者的合約測試">供應者的合約測試</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#消費者測試">消費者測試</a></li>
+    <li><a href="#提供者的驗證">提供者的驗證</a></li>
+    <li><a href="#組合起來">組合起來</a></li>
+    <li><a href="#non-http-testing-message-pact">Non-HTTP testing (message pact)</a></li>
+    <li><a href="#要怎麼寫-message-pact-的測試">要怎麼寫 <code>message pact</code> 的測試？</a>
+      <ul>
+        <li></li>
+        <li><a href="#下一步">下一步</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="introduction">Introduction</h1>
+<p>Pact是一個程式碼優先工具，使用<code>contract tests</code>測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。</p>
+<p>測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。</p>
+<p><a href="https://pactflow.io/how-pact-works/#slide-1" target="_blank" rel="noopener noreffer ">Pact合約測試流程動圖</a></p>
+<ol>
+<li><code>Consumer</code> 針對provider mock執行單元測試，驗證自己程式的行為</li>
+<li>跨系統之間的互動行為會捕捉至<code>contract</code></li>
+<li>Contract由不同團隊之間共享，使用Pactflow工具能夠確保協同合作性</li>
+<li>Contract中的requests 重演了 provider API 並驗證 consumer 的預期值</li>
+<li><code>Provider</code> 的測試中所有其他系統都用替身，所以能隔離測試</li>
+</ol>
+<p><a href="https://docs.pact.io/5-minute-getting-started-guide" target="_blank" rel="noopener noreffer ">Javascript code guide, 5 mins</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gradle" data-lang="gradle"><span class="line"><span class="cl"><span class="n">group</span> <span class="o">=</span> <span class="s1">&#39;au.com.dius.pactworkshop&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dependencies</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">testImplementation</span> <span class="s1">&#39;au.com.dius.pact.consumer:junit5:4.6.5&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="contract-testing是什麼">contract testing是什麼</h2>
+<p>Contract testing 是用來測試某個integration point的技術，藉由隔離測試個別的APP，以確保它接收或傳送出的<strong>訊息</strong>，符合紀載在合約上的共識。</p>
+<p>如果是透過HTTP通訊的應用程式，這些<strong>訊息</strong>就會是HTTP請求/回覆，如果是使用Queue的應用程式，這些<strong>訊息</strong>就會是要傳送到隊列的內容。</p>
+<p>Pact實作合約測試的方式，就是確認所有呼叫你的test doubles的測試都會<a href="https://martinfowler.com/bliki/ContractTest.html" target="_blank" rel="noopener noreffer ">得到如同實際app一樣的回傳值</a>。</p>
+<h2 id="什麼時候使用contract-testing">什麼時候使用contract testing</h2>
+<p>當你有兩個需要互通有無的service時，contract testing就可以立刻派上用場，例如API client要與web front-end溝通的應用場景。雖然單一客戶端對單一個服務是很常建的use case，contract testing在微服務架構(有多個services的環境)更彰顯其價值。如果有格式良好的合約測試，開發就要避免版本地域就更家容易。合約測試可說是微服務開發與部署的殺手級應用。</p>
+<h2 id="合約測試術語">合約測試術語</h2>
+<p><code>consumer</code>: 例如需要接收資料的client
+<code>provider</code>: 例如server上的API，提供client所需的資料
+通常在微服務架構下，client/server的術語不適合所有情境，例如透過訊息隊列的溝通就不適合。所以這裡會以<code>consumer</code>與<code>provider</code>為主。</p>
+<h2 id="消費者驅動的contracts">消費者驅動的contracts</h2>
+<p>Pact是程式碼優先、消費者驅動的合約測試工具，通常由寫程式的開發或測試人員使用。在自動化的consumer tests過程中產生這個contract。這種模式的一個主要優勢是，全部的communication中，只測試到 consumer會實際使用到的部分communication。也就是說，任何不會被當前的consumer所使用到的 provider行為，都可以在不弄壞測試結果的前提下做異動修改。</p>
+<p>另外Pact contract也不像schema或者規格 (例如 OAS) 這類靜態的artefact定義資源的所有可能的狀態，pact contract實施方式是藉由執行測試案例的集合，每個元素描述了具體的請求/回應對。Pact實際上就是範例式合約。參考<a href="https://pactflow.io/blog/contract-testing-using-json-schemas-and-open-api-part-1/" target="_blank" rel="noopener noreffer ">Schema測試與Contract測試的差異</a></p>
+<h2 id="供應者的合約測試">供應者的合約測試</h2>
+<p><code>contract testing</code> 又稱 <code>provider contract testing</code> 在其他文件中有時候是指standalone provider的測試，而不是integration合約測試。如果是用在這類文本，<code>contract testing</code>指的是確保 provider 的實際行為符合文件合約 (e.g. OpenAPI文件)。這類的合約測試透過確保provider的程式碼與文件之間的同步一致性，避免整合時會發生的錯誤。然而這並不提供任何測試上的保證，用以確保consumer用正確的方式呼叫provider，或者provider提供的資料符合consumer所預期。所以在預防串接上的錯誤效果並不佳。
+本文的<code>contract testing</code>指的都是 intergration 整合合約測試。</p>
+<h1 id="how-pact-works">How Pact works</h1>
+<ul>
+<li><strong>Consumer</strong>: 藉由使用其他application提供的功能或資料來完成工作。例如：使用HTTP通訊時，無論資料流向，consumer就是發起http請求的一方 (前端)。使用queue隊列通訊時，consumer就是從queue讀取訊息的接收方。</li>
+<li><strong>Provider</strong>：提供功能或者資料給其他應用程式使用的一個應用程式 (通常稱為服務service)。使用HTTP通訊時，provider就是提供回傳結果的一方。使用queue隊列通訊時，provider (又稱為 producer) 就是將訊息寫進queue的一方。</li>
+</ul>
+<p>消費者與提供者之間的合約就稱為<code>pact</code>，每個pact都是一些互動(interactions)的集合，每一筆互動描述了:</p>
+<ul>
+<li>HTTP:
+<ul>
+<li>預期的請求內容: 消費者會發送給提供者的請求內容</li>
+<li>最小預期回傳內容: 消費者預期提供者會提供的回傳內容</li>
+</ul>
+</li>
+<li>messages (queue):
+<ul>
+<li>最小預期訊息: 消費者想要使用的訊息內容</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code> ╔═════════╡Interaction╞═════════╗
+ ║                               ║
+ ║     [Expected request]        ║
+ ║  [Minimal expected response]  ║
+ ╚═══════════════════════════════╝
+</code></pre><p>撰寫pact test的首要步驟就是描述以上的 interaction。</p>
+<h2 id="消費者測試">消費者測試</h2>
+<p>consumer pact test 則操作上述提到的每一個interaction，以說明『假定provider給這個請求傳回了預期的回傳值，那消費者端的程式碼是否正確，能夠產生符合的請求內容，並且能夠處理所預期的回傳結果?』</p>
+<p>每一個interaction都使用Pact框架測試，由consumer端的單元測試框架所驅動。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://hackmd.io/_uploads/HJd43zifR.png"
+        data-srcset="https://hackmd.io/_uploads/HJd43zifR.png, https://hackmd.io/_uploads/HJd43zifR.png 1.5x, https://hackmd.io/_uploads/HJd43zifR.png 2x"
+        data-sizes="auto"
+        alt="https://hackmd.io/_uploads/HJd43zifR.png"
+        title="Screenshot 2024-05-10 103221" /></p>
+<p>以上圖表的步驟敘述:</p>
+<ol>
+<li>使用 Pact DSL，將預期請求與回傳值註冊在 mock service 中</li>
+<li>consumer 的測試程式碼發出一個實際的請求到 mock provider (這個provider由Pact框架建立)</li>
+<li>mock provider 比較預期請求跟實際請求，如果比較結果成功，則發送預期response</li>
+<li>consumer 的測試程式碼再確認這個response確實是可理解的內容</li>
+</ol>
+<p>只有每個步驟都無誤地完成，Pact test才算成功。</p>
+<p>通常，interaction的定義跟consumer test是寫在一起，參考這個範例 <a href="https://dius.com.au/2014/05/20/simplifying-microservice-testing-with-pacts/" target="_blank" rel="noopener noreffer ">Simplifing Microservice testing w/ Pacts</a> 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="c1"># Describe the interaction</span>
+</span></span><span class="line"><span class="cl"><span class="n">before</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">event_api</span><span class="o">.</span><span class="n">upon_receiving</span><span class="p">(</span><span class="s1">&#39;A POST request with an event&#39;</span><span class="p">)</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">with</span><span class="p">(</span><span class="nb">method</span><span class="p">:</span> <span class="ss">:post</span><span class="p">,</span> <span class="ss">path</span><span class="p">:</span> <span class="s1">&#39;/events&#39;</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;application/json&#39;</span><span class="p">},</span> <span class="ss">body</span><span class="p">:</span> <span class="n">event_json</span><span class="p">)</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">    <span class="n">will_respond_with</span><span class="p">(</span><span class="ss">status</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="ss">headers</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;application/json&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Trigger the client code to generate the request and receive the response</span>
+</span></span><span class="line"><span class="cl"><span class="n">it</span> <span class="s1">&#39;is successful&#39;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="n">expect</span><span class="p">(</span><span class="n">subject</span><span class="o">.</span><span class="n">save_event</span><span class="p">(</span><span class="n">event</span><span class="p">))</span><span class="o">.</span><span class="n">to</span> <span class="n">be_true</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>儘管概念上 pact interaction test 會進行很多事，但實際的測試程式碼很簡潔明瞭，這是 Pact 一項主要賣點。</p>
+<p>Pact之中的每一項 interaction 應該都是各自獨立的，指的是每項測試只會測試他自己的一個 interaction。如果需要描述依賴在 pre-existing state 的 interaction，可以使用<code>provider states</code>達成。<strong>Provider states</strong> 允許你描述 provider 在產出預期response之前所需的預先狀態 (preconditions)。例如，某個使用者資料存在於provider端，這在後續的 provider 驗證區塊會再提到。</p>
+<pre tabindex="0"><code> ╔═════════╡Interaction╞═════════╗
+ ║                               ║
+ ║      [Provider state]         ║
+ ║     [Expected request]        ║
+ ║  [Minimal expected response]  ║
+ ╚═══════════════════════════════╝
+</code></pre><p>這樣測試不會寫成「建立使用者debbie，然後登入」，而會分成兩個不同的interactions，第一個是「建立使用者debbie」；而第二個則會是「provide state: 使用者debbie已存在」，「以使用者debbie登入」。</p>
+<p>一旦所有的 interactions 都在消費者端測試完畢，Pact framework 就會產生一個<code>pact file</code>，描述每一個 interaction 的內容。這個 pact file 可以用來驗證 provider 提供的 respone 都有符合 consumer 的預期。</p>
+<h2 id="提供者的驗證">提供者的驗證</h2>
+<p>跟消費者測試相反，provider verification完全都由 Pact framework 所驅動。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://hackmd.io/_uploads/rJcXnMsM0.png"
+        data-srcset="https://hackmd.io/_uploads/rJcXnMsM0.png, https://hackmd.io/_uploads/rJcXnMsM0.png 1.5x, https://hackmd.io/_uploads/rJcXnMsM0.png 2x"
+        data-sizes="auto"
+        alt="https://hackmd.io/_uploads/rJcXnMsM0.png"
+        title="2" /></p>
+<p>每一筆預期的請求都會從mock consumer發送到Provider，接著拿provider實際給的response與最小預期response做比較。</p>
+<p>如果每一筆request都能接到response，而這個實際的response包含文件所述的最小預期response，這樣 provider verification 就算通過。</p>
+<p>很多情況是在請求發送時，provider需要處在某個特定狀態 (例如已登入的情況才能測試，或者已登入的用戶持有某一筆發票)。Pact framework 會讓你在上演交互之前，依provider state內容所述，預先建置好狀態資料。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://hackmd.io/_uploads/BJWm3GsGA.png"
+        data-srcset="https://hackmd.io/_uploads/BJWm3GsGA.png, https://hackmd.io/_uploads/BJWm3GsGA.png 1.5x, https://hackmd.io/_uploads/BJWm3GsGA.png 2x"
+        data-sizes="auto"
+        alt="https://hackmd.io/_uploads/BJWm3GsGA.png"
+        title="3" /></p>
+<h2 id="組合起來">組合起來</h2>
+<p>如果將每一個 interaction 的 consumer test 與 provider verification 兩個程序組合起來，就完成了 consumer 與 provider 之間完整的測試，不用花時間部署啟動兩邊的服務。</p>
+<h2 id="non-http-testing-message-pact">Non-HTTP testing (message pact)</h2>
+<p>現代的分散式架構整合時採用了鬆耦合和異步通信的方式，選用這種架構設計的趨勢增加。常見的訊息隊列像是 ActiveMQ、RabbitMQ、SNS、SQS、Kafka、Kinesis，通常藉由小規模且次數頻繁的微服務調用 (例如 lambda)來做整合。這種類的 interactions 就稱之為 <code>message pacts</code>。</p>
+<p>Pact在這個應用案例的作法與http通訊的案例有點不同。Pact透過將「協議與特定的隊列技術(例如: Kafka) 」做抽象化，把關注點著重在兩者之間的訊息傳遞。</p>
+<p>確認你使用的<a href="https://docs.pact.io/roadmap/feature_support" target="_blank" rel="noopener noreffer ">語言有無支持MessagePact</a></p>
+<blockquote>
+<p>因為MQ類型太多，不在Pact要解決的範疇中。可以用其他測試框框架，自行寫功能測試來驗證 message queueing techonologies</p>
+</blockquote>
+<p>當你寫測試時，Pact會取代通訊媒介 (MQ/broker等)，負責確認消費者是否能夠處理 MQ 提供的事件，或者確認提供者是否能產出正確的訊息。</p>
+<h2 id="要怎麼寫-message-pact-的測試">要怎麼寫 <code>message pact</code> 的測試？</h2>
+<p>建議你將這兩段程式碼分開</p>
+<ul>
+<li>處理協議相關的，例如 AWS lambda handler、AWS SNS input body</li>
+<li>處理payload相關的程式</li>
+</ul>
+<p>對於分層架構(例如: ports 與 adapters又稱六角形架構)你可能已經有些概念，所以下面的模組化架構可以協助簡化:</p>
+<pre tabindex="0"><code>Adapter        |  [Lambda Handler]
+               |              ↘ 
+Port           |                [Service]
+               |            ↙       ↓        ↘
+Business Logic | [Repository] [Domain Model] [Collaborators]
+</code></pre><p>以下會用一個由 AWS SNS 發布的<code>product event</code>的範例來解釋</p>
+<h4 id="consumer-side">Consumer side</h4>
+<p>假定cosumer期望接收到的訊息長得像下面這樣:</p>
+<pre tabindex="0"><code class="language-json=" data-lang="json=">{
+    &#34;id&#34;: &#34;some-uuid-8765-4321&#34;,
+    &#34;type&#34;: &#34;spare&#34;,
+    &#34;name&#34;: &#34;15mm steel bolt&#34;,
+    &#34;version&#34;: &#34;v1&#34;,
+    &#34;event&#34;: &#34;UPDATED&#34;
+}
+</code></pre><h5 id="adapter">Adapter</h5>
+<p><code>Adapter</code>的程式碼會用來處理特定queue的實作。例如，可能會是</p>
+<ul>
+<li>Lambda handler: 接收並處理SNS傳來的訊息payload</li>
+<li>function: 從Kafka訊息隊列取訊息</li>
+</ul>
+<pre tabindex="0"><code class="language-javascript=" data-lang="javascript=">const handler = async (event) =&gt; {
+  console.info(event);
+
+  // Read the SNS message and pass the contents to the actual message handler
+  const results = event.Records.map((e) =&gt; receiveProductUpdate(JSON.parse(e.Sns.Message)));
+
+  return Promise.all(results);
+};
+</code></pre><h5 id="port">Port</h5>
+<p><code>Port</code> 不會知道自己是在SNS還是在跟Kafka做溝通，只會處理 domain 的資料，這裡就是指 <code>product event</code></p>
+<pre tabindex="0"><code class="language-javascript=" data-lang="javascript=">const receiveProductUpdate = (product) =&gt; {
+  console.log(&#39;received product:&#39;, product)
+
+  // do something with the product event, e.g. store in the database
+  return repository.insert(new Product(product.id, product.type, product.name, product.version))
+}
+</code></pre><p>上面這個 function 是 Pact test 在消費者端 target</p>
+<h4 id="provider-producer-side">Provider (Producer) side</h4>
+<p>另一方面，我們需要找到負責製造出訊息的 <code>Port</code>，這裡是 ProductEvenService</p>
+<pre tabindex="0"><code class="language-javascript=" data-lang="javascript=">class ProductEventService {
+  async create(event) {
+    const product = productFromJson(event);
+    return this.publish(createEvent(product, &#34;CREATED&#34;));
+  }
+
+  async update(event) {
+    const product = productFromJson(event);
+    return this.publish(createEvent(product, &#34;UPDATED&#34;));
+  }
+
+  ...
+
+  async publish(message) {
+    const SNS = new AWS.SNS({
+      endpoint: process.env.AWS_SNS_ENDPOINT,
+      region: process.env.AWS_REGION
+    });
+
+    const params = {
+      Message: JSON.stringify(message),
+      TopicArn: TOPIC_ARN,
+    };
+
+    return SNS.publish(params).promise();
+  }
+}
+</code></pre><p>Adapter 和 Port 的概念：</p>
+<p>&ldquo;Adapter&rdquo; 通常表示用於與外部系統互動的元件。</p>
+<ul>
+<li>在這個例子中，<code>publish</code> 方法是用來將訊息發佈到 AWS SNS 的元件，因此被稱為 &ldquo;Adapter&rdquo;</li>
+<li>這個部分負責與外部服務進行交互，並了解與之通信的技術細節</li>
+<li><code>publish</code> 知道如何跟AWS SNS溝通</li>
+</ul>
+<p>&ldquo;Port&rdquo; 表示與業務領域相關的元件。</p>
+<ul>
+<li>在這個例子中，<code>update</code> 和 <code>create</code> 方法屬於這個類別</li>
+<li>只處理業務邏輯，並且知道如何建立特定的事件結構</li>
+<li>這部分的功能與底層的技術實作無關，只與業務領域邏輯相關。</li>
+<li><code>update</code> 知道如何創建特定的事件結構</li>
+<li>是Pact要測試 provider side 的著重點</li>
+</ul>
+<p>延伸閱讀:</p>
+<ul>
+<li><a href="https://docs.pactflow.io/docs/examples/aws/sns/consumer" target="_blank" rel="noopener noreffer ">example consumer project</a></li>
+<li><a href="https://docs.pactflow.io/docs/examples/aws/sns/provider" target="_blank" rel="noopener noreffer ">example provider project</a></li>
+</ul>
+<h3 id="下一步">下一步</h3>
+<p>Contract應該將重點放在訊息 (request/response)而非行為。在provider這一端可能會有人想用合約測試寫實際的功能性測試。但這樣通常會導致痛苦的寫測試經驗，還有容易壞的測試。這篇文章有關於<a href="https://docs.pact.io/consumer/contract_tests_not_functional_tests" target="_blank" rel="noopener noreffer ">功能性測試跟合約測試的比較</a>。</p>
+<p>Pact test 應該要資料獨立，成功的驗證不依賴於Provider回傳的特定資料。參考<a href="https://docs.pact.io/consumer" target="_blank" rel="noopener noreffer ">撰寫interaction的最佳實作</a></p>
+<p>使用broker代理機制來整合Pact與CI機制，有助於安全成功的部署，參考<a href="https://docs.pact.io/pact_nirvana" target="_blank" rel="noopener noreffer ">Pact整合最佳實作</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-10</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/240510-pact.io/" data-hashtag="pact.io"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/240510-pact.io/" data-title="消費者與提供者之間的合約測試 - Pact.io"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/pact.io/">Pact.io</a>,&nbsp;<a href="/tags/contract-testing/">Contract-Testing</a>,&nbsp;<a href="/tags/http-pact/">Http-Pact</a>,&nbsp;<a href="/tags/message-pact/">Message-Pact</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/240509-springboot-vs-quarkus/" class="prev" rel="prev" title="框架比較：Springboot 與 Quarkus"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>框架比較：Springboot 與 Quarkus</a>
+            <a href="/posts/240515-docker-compose/" class="next" rel="next" title="Docker Compose 厲害了！一次幫你蓋多個containers">Docker Compose 厲害了！一次幫你蓋多個containers<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

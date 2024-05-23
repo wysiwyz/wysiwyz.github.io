@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Flywaycli - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/flywaycli/</link>
+        <description>Flywaycli - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 09 May 2024 22:39:38 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/flywaycli/" rel="self" type="application/rss+xml" /><item>
+    <title>資料庫版控，走起，高飛！Flyway</title>
+    <link>http://wysiwyz.github.io/posts/240509-flyway/</link>
+    <pubDate>Thu, 09 May 2024 22:39:38 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240509-flyway/</guid>
+    <description><![CDATA[因為G.K.老師常常強調 Flyway 的優勢，資料庫版控、避免共用的資料庫不知道被誰扔了dirty data導致其他人開發的功能壞掉，等等的好處，所以來看看官方文件。
+初探Flyway Flyway@build.gradle: dependencies {implementation &#39;org.flywaydb:flyway-core&#39;} Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flywayspring.flyway.schemas={default_schema}spring.flyway.user=spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
+Flyway Desktop 提供GUI讓資料庫開發跟數據家能夠追蹤資料庫物件的異動，並且在版本控制中管理資料遷移的腳本。
+Flyway command-line 是可以獨立運行的套件 (只需要操作系統，不用其他支援框架)，有Windows、macOS以及Linux版本。適合想要用命令列介面遷移資料庫的user，而不用將Flyway整合進應用程式，也不用安裝build tool。
+另外可以用 API 將 Flway 整合進應用程式，在程式啟動時一同執行資料庫遷移。
+Flyway commands Flyway Desktop 安裝時，會一併安裝command line以及API，主要有以下命令:
+Migrate 將schema遷移成最新的版本 是Flyway workflow的中心，它會在檔案系統或你的類別路經中掃描找出可用的migrations，並比較已經執行到資料庫的遷移，如果有任何差異就會做對應的migration，以彌平差異。 通常是在application startup時期執行migrate Clean 在已經配置好schemas的資料庫中，刪掉所有資料表物件 千萬不能用在 production DB 如果是複雜的資料庫結構，可能因為明確的dependency graph架構不起來，所以沒辦法清乾淨所有物件。另外有些物件考量安全性，也不會清除，例如 SQL server 的 users 資料。可以加上 afterClean callback 來額外定義要 drop 的敘述 Info 可以了解當下有哪些migration已經執行了，哪一些還沒開始，何時執行的migration以及執行結果是成功或失敗。 Validate 驗證可用的 migration 是否相當於已經被執行的 migration 可以偵測意料之外的異動，可以預防重新產生schema 在 migration 執行時，存進一個checksum (使用CRC32校驗)。要驗證時，就查看本地的migration與已經執行到database的 migration 是否有相同一致的checksum。 此外，可能會有一些 hotfix, migration deletion 或者異動，可能違反Flyway驗證習慣，這時候也可以客製化驗證規則 Undo 復原最近一次被執行的migration版本 需要指定 target，這樣Flyway會綁你倒回至target之前的版本 如果沒有要 undo 的 versioned migration，呼叫這個undo就沒啥用 Baseline 給之前已經存在的數據庫 (已經包含數據，但之前沒有被Flyway管理)建立一個基準起始版本 Repair 用來修復 flyway_schema_history 資料庫的，有以下用途 移除failed migration entries (失敗的遷移紀錄) 只適用於不支援DDL transactions的資料庫 PostgreSQL, Oracle: 支持ddl事務 MySQL, MariaDB, SQLite: 不支持ddl事務]]></description>
+</item>
+</channel>
+</rss>

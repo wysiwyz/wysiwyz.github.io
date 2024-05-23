@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Job - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/job/</link>
+        <description>Job - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 26 Apr 2024 21:38:35 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/job/" rel="self" type="application/rss+xml" /><item>
+    <title>初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml</title>
+    <link>http://wysiwyz.github.io/posts/240426-gitlab-ci-note/</link>
+    <pubDate>Fri, 26 Apr 2024 21:38:35 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240426-gitlab-ci-note/</guid>
+    <description><![CDATA[使用 CI/CD 建構應用程式 開始 CI/CD 是軟體開發其中一個continuous method，你可以在這方法中持續的建構、測試、部署、監測迭代的程式碼異動。
+這種方式有助於降低在有誤的前一個版本中開發新程式，GitLab CI/CD在開發早期階段就能抓錯，確保部署到正式環境的程式碼符合所建立的程式碼標準，而這個程序是更大的workflow之中的一個環節:
+Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use CI/CD to build your app Secure your app Deploy and release your app Monitor app performance Organize work with projects Manage your code Manage infrastructure Monitor GitLab Runner usage Plan and track work Analyze GitLab usage 1. 首先建立.gitlab-ci.yml 在project根目錄建立 .gitlab-ci.yml，定義在CI/CD pipeline中所要執行的 stages, jobs, script。
+另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。
+沒有硬性規定要怎麼命名，但.gitlab-ci.yml是這個 CI/CD configuration file 最常見的名字。]]></description>
+</item>
+</channel>
+</rss>

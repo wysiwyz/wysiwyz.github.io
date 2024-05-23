@@ -1,0 +1,19 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Storage - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/storage/</link>
+        <description>Storage - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 May 2024 02:40:38 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/storage/" rel="self" type="application/rss+xml" /><item>
+    <title>CKA 筆記 [7,8,9]: Security, Storage, Networking</title>
+    <link>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</link>
+    <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</guid>
+    <description><![CDATA[Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
+Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
+Asymmetric Encryption:
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygenid_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0# create certificate signing requestcat &gt; akshay.yamlvi akshay.csrvi akshay.yamlkubectl create -f akshay.yamlcertificatesigningrequest.certificates.k8s.io/akshay createdkubectl get csrkubectl certificate approve akshaykubectl get csr agent-smith -o yamlkubectl certificate deny agent-smithkubectl get csrkubectl delete csr agent-smith Create certificate signing request]]></description>
+</item>
+</channel>
+</rss>

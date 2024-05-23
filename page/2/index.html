@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.111.3">
+	<meta name="generator" content="Hugo 0.126.1">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Ich bin yiwen." />
-<meta property="og:description" content="An ordinary space for storing and groups pieces of articles." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://wysiwyz.github.io/" /><meta property="og:site_name" content="Ich bin yiwen." />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Ich bin yiwen."/>
-<meta name="twitter:description" content="An ordinary space for storing and groups pieces of articles."/>
+        <title>Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="Ich bin yiwen.">
+  <meta property="og:description" content="An ordinary space for storing and groups pieces of articles.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ich bin yiwen.">
+  <meta name="twitter:description" content="An ordinary space for storing and groups pieces of articles.">
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Ich bin yiwen.">
     <link rel="feed" href="/index.xml" type="application/rss+xml" title="Ich bin yiwen."><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -53,73 +56,59 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/s_spring_security/">Spring Security zero to master</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-08">2024-01-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">想學很久的 Spring Security 終於在看完 udemy 的 JUnit + Mockito 課程之後，決定認真來瞭解一下了！！
-先附上 連結</div><div class="post-footer">
-        <a href="/posts/s_spring_security/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/springsecurity/">SpringSecurity</a>,&nbsp;<a href="/tags/security/">security</a>,&nbsp;<a href="/tags/spring/">spring</a></div></div>
+        <a href="/posts/240503-non-blocking-jdbc/">非阻塞式🌌 Non Blocking Jdbc</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-05-03">2024-05-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Part 1 阻塞式程式碼是現代軟體工程的禍根，它需要比較多的CPU cycles以及memory使用資源，提高了執行程式的成本
+I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
+了解 non-blocking calls 在做什麼 了解 event based system 的重要性以及他們如何協助調用 non-blocking calls 圖表的呈現面向:
+程式語言: Java 會使用到 Java 執行緒 非同步的方法為綠底，同步的方法是紅底 藍底是不會產生阻塞的Java方法 Blocking Call save方法呼叫write方法 write方法是一個blocking call: 寫入磁碟 直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態 這個thread在blocking call return之後重新開始 接著這個thread呼叫notify方法 Asynchronous Call 非同步呼叫 save方法呼叫write方法，這個write方法包裝了一個asynchronous call 此 write包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟 這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成 執行save方法的主要執行緒不受到組塞，可以執行其他程序 新產生的執行緒在完成 blocking call 之後回傳，並呼叫notify方法 Asynchronous Non Blocking Call save方法呼叫write方法 (write方法使用 Java NIO) Non Blocking Call 不會阻塞主要執行緒 non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成 執行save方法的主要執行緒並不會受到阻塞，可以執行其他程序 在non-blocking call完成之後，這個non-blocking方法呼叫notify方法 結論 Blocking Call</div><div class="post-footer">
+        <a href="/posts/240503-non-blocking-jdbc/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/blocking/">Blocking</a>,&nbsp;<a href="/tags/asynchronous/">Asynchronous</a>,&nbsp;<a href="/tags/asynchronous-non-blocking/">Asynchronous-Non-Blocking</a>,&nbsp;<a href="/tags/r2dbc/">R2DBC</a>,&nbsp;<a href="/tags/reactive/">Reactive</a>,&nbsp;<a href="/tags/nio/">NIO</a>,&nbsp;<a href="/tags/nio2/">NIO2</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_white-box/">[筆記] 黑白箱弱點掃描淺淺談</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-04">2024-01-04</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">黑白箱弱點掃描 白箱： 又名為輔助邏輯驅動測試 (auxiliary and logic driven testing)、clear-box testing、open-box testing 在光譜上是黑箱測試的另一面，滲透測試者對source code以及相關架構設計文件有全部的存取權限 在大量可用的data中淘選過濾，目地在於找到潛在弱點，因此它是滲透測試中最耗時的一種 白箱滲透測試人員可以對static code進行分析 白箱測試可以手動執行，或借助於自動化工具掃出像是 SQL注入攻擊(SQL injection)、跨站腳本攻擊 (cross-site scripting)、緩衝區溢位 (buffer overflow) 等弱點。 以下是白箱測試中很重要的工具：source code analyzer, debuggers 另外 dynamic analysis tool 也很重要，可以找出static analysis可能會漏掉的弱點，像是目標系統錯誤配置造成的弱點 (misconfiguration of target systems) 白箱滲透測試提供了綜合的評估，包含程式的內部弱點與外部弱點 黑箱： 又稱為 DAST test (動態分析資安測試 dynamic analysis security testing) 黑箱測試對於找出這樣的弱點很有幫助：input/output驗證問題, 伺服器配置相關的錯誤等。 黑箱測試的目標是要模擬真實世界的情境，並找出系統在不同情境下的行爲，例如網路攻擊、惡意輸入、阻斷服務攻擊DoS。 黑箱測試可以手動操作執行，或透過像是port scanners、fuzzers、web scanners 等自動化工具探測系統弱點。 深透測試目的是為了識別並補強可能會被攻擊者利用的弱點，因此黑箱測試是比較理想的滲透測試方法，因為大多數攻擊者並不知道目標網路的內部行為。
-跟黑箱測試相反的則是白箱測試，測試人員有目標系統的完整資訊。
-而灰箱測試則是提供測試人員有關目標系統『有限的』資訊，灰箱測試所模擬的資訊瞭解程度是「駭客透過調查與系統偵查足跡(footprinting)的方式，長期使用目標系統所能得到資訊」。
-參考資料 黑箱、灰箱、白箱滲透測試是什麼
-以黑箱測試改進應用程式的安全性
-白箱資安測試與黑箱測試的異同</div><div class="post-footer">
-        <a href="/posts/ss_white-box/">Read More</a><div class="post-tags">
+        <a href="/posts/240426-gitlab-ci-note/">初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-26">2024-04-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">使用 CI/CD 建構應用程式 開始 CI/CD 是軟體開發其中一個continuous method，你可以在這方法中持續的建構、測試、部署、監測迭代的程式碼異動。
+這種方式有助於降低在有誤的前一個版本中開發新程式，GitLab CI/CD在開發早期階段就能抓錯，確保部署到正式環境的程式碼符合所建立的程式碼標準，而這個程序是更大的workflow之中的一個環節:
+Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use CI/CD to build your app Secure your app Deploy and release your app Monitor app performance Organize work with projects Manage your code Manage infrastructure Monitor GitLab Runner usage Plan and track work Analyze GitLab usage 1. 首先建立.gitlab-ci.yml 在project根目錄建立 .gitlab-ci.yml，定義在CI/CD pipeline中所要執行的 stages, jobs, script。
+另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。
+沒有硬性規定要怎麼命名，但.gitlab-ci.yml是這個 CI/CD configuration file 最常見的名字。</div><div class="post-footer">
+        <a href="/posts/240426-gitlab-ci-note/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ci/cd-yaml-syntax/">CI/CD Yaml Syntax</a>,&nbsp;<a href="/tags/pipeline/">Pipeline</a>,&nbsp;<a href="/tags/job/">Job</a>,&nbsp;<a href="/tags/ci/cd-components/">CI/CD Components</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/sql_explain/">如何查看哪一個SQL語法是最佳解：explain執行計畫</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-02-22">2024-02-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">昨天與一位做自有產品的執行長官面談被問到如何確認SQL的效能，當下沒能立即回答上。
+但今天在練習 LeetCode SQL 50 的時候，看到有神人對一道 570. Managers with at Least 5 Direct Reports 題目給出了五種 solutions，於是回想起之前聽過但不常用的 explain 語法，這樣慘痛的教訓肯定是要花時間瞭解一下的吧。
+問題 題目只有一張 Table : Employee:
+每一列包含了員工id、員工名、員工所屬部門以及他們的所屬主管id，如果managerId 為 null，就表示這員工沒有直屬主管。
+沒有員工會自己當自己的主管，即 id 與 managerId 不能為相同的值。
+1 2 3 4 5 6 create table employee ( id int not null primary key auto_increment, name varchar(20), department varchar(2), managerId int ) auto_increment=101; Table 欄位內容：
+Employee table:+-----+-------+------------+-----------+| id | name | department | managerId |+-----+-------+------------+-----------+| 101 | John | A | null || 102 | Dan | A | 101 || 103 | James | A | 101 || 104 | Amy | A | 101 || 105 | Anne | A | 101 || 106 | Ron | B | 101 |+-----+-------+------------+-----------+ 預期結果： +------+| name |+------+| John |+------+ 解法: A.</div><div class="post-footer">
+        <a href="/posts/sql_explain/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_kafka/">初學 Kafka</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-03">2024-01-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions &mdash; producer and consumer. 消費者與生產者的抽象概念
-Topic: 資料邏輯分層 logical partitioning of data
-Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
-消費者在從 Users Topic 拉訊息 (pull information) 下來，
-當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。</div><div class="post-footer">
-        <a href="/posts/ss_kafka/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+        <a href="/posts/gcp_pcd_notes/">挑戰一個月內準備完 GCP Cloud Developer</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-31">2024-01-31</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content"> 聽說 Cloud Developer 的難度比CA還高，想說趁最近手邊沒有棘手工作來好好準備 🫠，這次打算以這些學習資源為主：
+CloudSkillsBoost_PCD_learning path 10項活動，估計要花至少 174+hrs awesome-gcp-certification/PCD 包含一些準備策略、心得 ExamTopics 想設計一個簡單的程式，從412題中亂數出50題 </div><div class="post-footer">
+        <a href="/posts/gcp_pcd_notes/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/googlecloudplatform/">GoogleCloudPlatform</a>,&nbsp;<a href="/tags/google_cloud/">Google_cloud</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/s_docker_learn/">Docker</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Docker Note docker ps
-​ list running containers
-docker stop &lt;container_id&gt;
-​ stops the container
-docker start &lt;container_id&gt;
-​ starts stopped container
-docker ps -a
-​ lists running and stopped container
-docker run &lt;image_name&gt;:
-​ pulls image and starts container
-​ (docker pull + docker start in one command)
-[CONTAINER Port vs HOST Port]
-+ Multiple containers can run on your host machine
-+ Your laptop has only certain ports available</div><div class="post-footer">
-        <a href="/posts/s_docker_learn/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/docker/">Docker</a></div></div>
+        <a href="/posts/elasticcloud_onuploaddataset/">〔Debug〕ElasticCloud 上傳type為date的csv檔案</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-29">2024-01-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">錯誤內容： 當dataset其中一個field看起來像是日期可以分成多個buckets，實際上會拋出以下錯誤
+1 2 3 4 5 6 { &#34;error&#34;: { &#34;type&#34;: &#34;illegal_argument_exception&#34;, &#34;reason&#34;: &#34;Field [InvoiceDate] of type [keyword] is not supported for aggregation [date_histogram]&#34; } } 問題釐清： 上傳檔案時，3/30/2011 16:34 或者 12/1/2010 9:10 這類的欄位內容被辨識為 &quot;type&quot;: &quot;keyword&quot;，須要在上傳檔案時點擊 Override settings，勾選 Contains time field 再加上時間戳記格式以及對應的 time field，這樣就能正常做 bucket aggregations 了
+實際結果： 看起來 Elastic 幫你增加了一個@timestamp的欄位，而欄位內容確實是與 InvoiceDate 一致
+!(https://i.imgur.com/OFv0uCh.png)
+重編索引 - 使用Kibana console 先 PUT 建立一個自訂索引，細節參考另一篇Elasticsearch筆記，注意&quot;type&quot;:&quot;date&quot;需要再接上原本source index欄位的日期格式，不然會無法重編索引
+接著 POST _reindex 加入來源與目標 index 的參數，顯示下圖右結果就成功了</div><div class="post-footer">
+        <a href="/posts/elasticcloud_onuploaddataset/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticcloud/">ElasticCloud</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_junit/">使用 JUnit & Mockito 測試 Java 程式</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">使用 JUnit &amp; Mockito 測試 Java 程式 Mockito &mdash; 本來以為這跟薄荷飲料mochito同音，實際要唸成 /mɑkiːtoʊ/ 或者 /mˈɒkiːtoʊ/ ，音譯就是『莫kito』或者『碼kito』，總之 k 要發音，因為他是模擬方法 (&ldquo;mock all methods&rdquo;)
-Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式碼一部分區塊 的一個小型方法
-1 2 3 public String isEmailValid(String email) { //Code that needs to be tested } 如何寫單元測試以確保一個類別中的某方法正常運作呢？
-這是一段除法程式：
-1 2 3 4 5 public class Calculator { public int integerDivision(int dividend, int divisor) { return dividend / divisor; } } 我們可以寫以下的單元測試，以驗證上方程式裡，開發者沒有敲錯鍵，把除號打成乘號.
-1 2 3 4 5 6 7 8 9 @Test void testIntegerDivision_whenValidValuesProvided_shouldReturnExpectedResult() { //Arrange Calculator calculatore = new Calculator(); //Act int result = calculator.</div><div class="post-footer">
-        <a href="/posts/ss_junit/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_gradle/">Gradle初探</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">概觀 Gradle是一個基於Groovy的建構管理系統，它特別設計用來建構基於Java的專案
-Gradle運行在所有主流作業系統，只需要Java JDK 8 或者以上的版本即可安裝
-(1) Unix的作業系統，可以用 SDKMAN package manager 安裝，指令sdk install gradle 8.5
-​ macOS的作業系統，可以用Homebrew package manager安裝，指令 brew install gradle
-(2) 設置環境
-Linux or MacOS: 在所選的目錄下解壓縮
-$ mkdir /opt/gradle $ unzip -d /opt/gradle gradle-8.5-bin.zip $ ls /opt/gradle/gradle-8.5 LICENSE NOTICE bin getting-started.html init.d lib media Microsoft Windows
-用 File Explorer 創建新的目錄 C:\Gradle，再把下載後解壓縮的 gradle-8.5 資料夾拉進去這個目錄
-(3) 配置環境變數
-Linux or MacOS: 配置 PATH 環境變數，注意要包括解壓縮後擋彈的 bin 目錄
-$ export PATH=$PATH:/opt/gradle/gradle-8.6/bin Microsoft Windows: [This PC/Computer] 右鍵 → Properties → Advanced System Settings → Environment Variable 在System Variables，選擇Path→ Edit，加上 C:\Gradle\gradle-8.</div><div class="post-footer">
-        <a href="/posts/ss_gradle/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+        <a href="/posts/elasticsearch/">Elasticsearch 從頭開始學習(ELK & Elastic Stack)</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-22">2024-01-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">2023-07-11 的筆記太簡略粗糙，重新整理
+Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
+通常用於啟用application的搜索功能，有以下特性
+如果產品有評價等級，而開發想要提高高評價產品的關聯性 開發要允許用戶過濾結果，例如按照價格範圍、品牌、尺寸、顏色，並依照關聯性排序 ElasticSearch除了全文搜尋之外，還可以查詢結構化數據（e.g. numbers, aggregated data）並且使用ElasticSearch作為分析平台
+可以編寫query of aggregated data，並使用結果製作圓餅圖、折線圖etc. 例子：
+Analyze application logs and system metrics: 存儲來自app的log檔以及各種服務器系統指標，分析並設置告警 (e.g. error and CPU memory usage) Application Performance Management (APM) : 應用程式性能管理 Send events to ElasticSearch: 發送事件至ElasticSearch (e.g. 將實體店銷售業績存到ElasticSearch ) Excellent at analyzing lots of data: 分析大量數據 使用機器學習根據歷史資料，來預測未來銷售額) Anomality Detection 偵測異常 Data is stored as documents, which is just a unit of information</div><div class="post-footer">
+        <a href="/posts/elasticsearch/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticsearch/">ElasticSearch</a>,&nbsp;<a href="/tags/kibana/">Kibana</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -140,7 +129,7 @@ $ export PATH=$PATH:/opt/gradle/gradle-8.6/bin Microsoft Windows: [This PC/Compu
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/10/">10</a>
+                        <a href="/page/11/">11</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

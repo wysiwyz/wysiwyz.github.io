@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>CKA 筆記 [7,8,9]: Security, Storage, Networking - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="CKA 筆記 [7,8,9]: Security, Storage, Networking">
+  <meta property="og:description" content="Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
+Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
+Asymmetric Encryption:
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygenid_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0# create certificate signing requestcat &gt; akshay.yamlvi akshay.csrvi akshay.yamlkubectl create -f akshay.yamlcertificatesigningrequest.certificates.k8s.io/akshay createdkubectl get csrkubectl certificate approve akshaykubectl get csr agent-smith -o yamlkubectl certificate deny agent-smithkubectl get csrkubectl delete csr agent-smith Create certificate signing request">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-20T02:40:38+08:00">
+    <meta property="article:modified_time" content="2024-05-20T02:40:38+08:00">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="Security">
+    <meta property="article:tag" content="Storage">
+    <meta property="article:tag" content="Networking">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="CKA 筆記 [7,8,9]: Security, Storage, Networking">
+  <meta name="twitter:description" content="Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
+Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
+Asymmetric Encryption:
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygenid_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0# create certificate signing requestcat &gt; akshay.yamlvi akshay.csrvi akshay.yamlkubectl create -f akshay.yamlcertificatesigningrequest.certificates.k8s.io/akshay createdkubectl get csrkubectl certificate approve akshaykubectl get csr agent-smith -o yamlkubectl certificate deny agent-smithkubectl get csrkubectl delete csr agent-smith Create certificate signing request">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/" /><link rel="prev" href="http://wysiwyz.github.io/posts/240515-docker-compose/" /><link rel="next" href="http://wysiwyz.github.io/posts/240522-solidity-smart-contract/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CKA 筆記 [7,8,9]: Security, Storage, Networking",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/240520-k8s-security-storage-networking\/"
+        },"genre": "posts","keywords": "Kubernetes, Security, Storage, Networking","wordcount":  2968 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/240520-k8s-security-storage-networking\/","datePublished": "2024-05-20T02:40:38+08:00","dateModified": "2024-05-20T02:40:38+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">CKA 筆記 [7,8,9]: Security, Storage, Networking</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-20">2024-05-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2968 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;14 minutes&nbsp;<span id="/posts/240520-k8s-security-storage-networking/" class="leancloud_visitors" data-flag-title="CKA 筆記 [7,8,9]: Security, Storage, Networking">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tls-basics">TLS Basics</a></li>
+        <li><a href="#solution-certificates-api-lab">Solution Certificates API [Lab]</a></li>
+        <li><a href="#kubeconfig">Kubeconfig</a></li>
+        <li><a href="#solution-kubeconfig">Solution Kubeconfig</a></li>
+        <li><a href="#api-groups">API Groups</a></li>
+        <li><a href="#authorization">Authorization</a></li>
+        <li><a href="#rbac">RBAC</a></li>
+        <li><a href="#view-rbac">View RBAC</a></li>
+        <li><a href="#check-access">Check Access</a></li>
+        <li><a href="#solution-role-based-access-controls">Solution Role based access controls</a></li>
+        <li><a href="#cluster-roles-and-cluster-rolebindings">Cluster Roles and cluster rolebindings</a></li>
+        <li><a href="#solution-cluster-roles">Solution cluster roles</a></li>
+        <li><a href="#service-accounts">Service Accounts</a></li>
+        <li><a href="#solution-security">Solution Security</a></li>
+        <li><a href="#docker-security">Docker Security</a></li>
+        <li><a href="#security-context">Security Context</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#network-policies">Network Policies</a></li>
+        <li><a href="#developing-network-policies">Developing network policies</a></li>
+        <li><a href="#solution-network-policies">Solution network policies</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#storage-in-docker">Storage in Docker</a></li>
+        <li><a href="#storage-drivers">Storage Drivers</a></li>
+        <li><a href="#container-storage-interface-csi">Container Storage Interface (CSI)</a></li>
+        <li><a href="#volumes">Volumes</a></li>
+        <li><a href="#persistent-volumes">Persistent Volumes</a></li>
+        <li><a href="#persistent-volume-claims">Persistent volume claims</a></li>
+        <li><a href="#solution-pv-and-pvc">Solution PV and PVC</a></li>
+        <li><a href="#storage-class">Storage Class</a></li>
+        <li><a href="#solution-storage-class">Solution Storage Class</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#linux-networking-basics-switching-routing">Linux Networking Basics: Switching, Routing</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="section-7-security">Section 7 Security</h1>
+<h3 id="tls-basics">TLS Basics</h3>
+<p>確保用戶跟Server之間的通訊是加密的</p>
+<p>Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。</p>
+<p>Asymmetric Encryption:</p>
+<ul>
+<li>Private Key: 用密鑰解密</li>
+<li>Public Lock: 用公鎖加密
+<pre tabindex="0"><code>ssh-keygen
+id_rsa  id_rsa.pub
+</code></pre></li>
+</ul>
+<p>PKI - Public Key Infrastructure</p>
+<h3 id="solution-certificates-api-lab">Solution Certificates API [Lab]</h3>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">pwd
+ls
+cat akshay.csr
+cat akshay.csr | base64 
+# prints a single line 
+cat akshay.csr | base64 -w 0
+# create certificate signing request
+cat &gt; akshay.yaml
+vi akshay.csr
+vi akshay.yaml
+
+kubectl create -f akshay.yaml
+  certificatesigningrequest.certificates.k8s.io/akshay created
+kubectl get csr
+kubectl certificate approve akshay
+kubectl get csr agent-smith -o yaml
+kubectl certificate deny agent-smith
+kubectl get csr
+kubectl delete csr agent-smith
+</code></pre><p><a href="https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/" target="_blank" rel="noopener noreffer ">Create certificate signing request</a></p>
+<ul>
+<li>akshay.yaml
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiversion</span><span class="p">:</span><span class="w"> </span><span class="l">certificates.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">CertificateSigningRequest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">akshay</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">request</span><span class="p">:</span><span class="w"> </span><span class="c"># paste the single line</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">signerName</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/kube-apiserver-client</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># expirationSeconds: 86400 # one day</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">usages</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">client auth</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="kubeconfig">Kubeconfig</h3>
+<pre tabindex="0"><code>kubectl get pods
+    --server my-kube-playground:6443
+    --client-key admin.key
+    --client-certificate admin.crt
+    --certificate-authority ca.cr
+</code></pre><ul>
+<li>
+<p>Move above information into a kubeconfig file</p>
+</li>
+<li>
+<p><code>$HOME/.kube/config</code></p>
+</li>
+<li>
+<p>format:</p>
+<ul>
+<li>Clusters
+<ul>
+<li>Development</li>
+<li>Production</li>
+<li>Google</li>
+<li>MyKubePlayground</li>
+</ul>
+</li>
+<li>Contexts
+<ul>
+<li>Admin@Production</li>
+<li>Dev@Google</li>
+<li>MyKubeAdmin@MyKubePlayground</li>
+</ul>
+</li>
+<li>Users
+<ul>
+<li>Admin</li>
+<li>Dev User</li>
+<li>Prod User</li>
+<li>MyKubeAdmin</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Config</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">current-context</span><span class="p">:</span><span class="w"> </span><span class="l">dev-user@google</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">clusters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l">my-kube-playground</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">certificate-authority</span><span class="p">:</span><span class="w"> </span><span class="l">ca.crt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l">https://my-kube-playground:6443</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">development</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">production</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">google</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">contexts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-kube-admin@my-kube-playground</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">context</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l">my-kube-playground</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l">my-kube-admin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">namespaces</span><span class="p">:</span><span class="w"> </span><span class="l">finaces</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dev-user@google</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prod-user@production</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">users</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-kube-admin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">client-certificate</span><span class="p">:</span><span class="w"> </span><span class="l">admin.crt</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">client-key</span><span class="p">:</span><span class="w"> </span><span class="l">admin.key</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">admin</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">dev-user</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">prod-user</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>cluster -&gt; users -&gt; contexts
+user <code>current-context</code></p>
+</li>
+<li>
+<p>commands:</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl config view
+kubectl config view --kubeconfig=my-kube-config
+# 變更context
+kubectl config use-context prod-user@production
+kubectl config -h
+</code></pre></li>
+<li>
+<p>namespaces (specified in context)</p>
+</li>
+<li>
+<p>use<code>certificate-authority-data</code>(optionally, providing the <strong>content</strong>) as alternative to <code>certificate-authority</code> (specifying path)</p>
+<ul>
+<li>cat ca.crt | base64</li>
+<li>要貼上去的content須base64編碼過</li>
+</ul>
+</li>
+</ul>
+<h3 id="solution-kubeconfig">Solution Kubeconfig</h3>
+<pre tabindex="0"><code>echo $HOME
+ls .kube/
+ls .kube//config
+kubectl config view
+kubectl get nodes
+</code></pre><h3 id="api-groups">API Groups</h3>
+<pre tabindex="0"><code>curl https://kube-master:6443/version     # version
+curl https://kube-master:6443/api/v1/pods # api
+</code></pre><ul>
+<li>Multiple groups
+<ul>
+<li><code>/metrics</code></li>
+<li><code>/healthz</code></li>
+<li><code>/version</code></li>
+<li><code>/api</code> core group
+<ul>
+<li><code>/api/v1/{sub-group}</code>, example of sub-group:
+namespaces, pods, rc, events endpoints, nodes, bindings, PV, PVC, configmaps, secrets, services</li>
+</ul>
+</li>
+<li><code>/apis</code> named group
+<ul>
+<li>API Groups: apps, extensions, networking.k8s.io, storage.k8s.io, authentication.k8s.io, certificates.k8s.io
+<ul>
+<li><code>/apis/apps/{version}/{resources}</code>:
+<ul>
+<li><code>/deployments</code>
+<ul>
+<li>list of actions associated with it, such as list, get, create, delete, update, watch (verb)</li>
+</ul>
+</li>
+<li><code>/replicasets</code></li>
+<li><code>/statefulsets</code></li>
+</ul>
+</li>
+<li><code>/apis/extensions/{version}/{resources}</code>:
+<ul>
+<li><code>/networkpolicies</code></li>
+</ul>
+</li>
+<li><code>/apis/networking.k8s.io/{version}/{resources}</code>:</li>
+<li><code>/apis/storage.k8s.io/{version}/{resources}</code>:</li>
+<li><code>/apis/authentication.k8s.io/{version}/{resources}</code>:</li>
+<li><code>/apis/certificates.k8s.io/{version}/{resources}</code>:
+<ul>
+<li><code>/certificatesigningrequests</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>/logs</code></li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code># to list all the available paths
+curl http://localhost:6443 -k
+
+curl http://localhost:6443/apis -k | grep &#34;name&#34;
+
+curl http://localhost:6443 -k
+    --key admin.key
+    --cert admin.crt
+    --cacert ca.crt
+</code></pre><h4 id="lauch-kubectl-proxy-on-1270018001">Lauch kubectl proxy on 127.0.0.1:8001</h4>
+<ul>
+<li>Kube proxy
+<ul>
+<li>to enable connectivity between pods and services across different nodes in the cluster</li>
+</ul>
+</li>
+<li>Kubectl proxy
+<ul>
+<li>An ACTP proxy service created by Kubectl</li>
+</ul>
+</li>
+</ul>
+<h3 id="authorization">Authorization</h3>
+<p>Authorization mechanism:</p>
+<ol>
+<li>Node
+<ul>
+<li>Node authorizer</li>
+</ul>
+</li>
+<li>ABAC (attribute-based authorization)
+<ul>
+<li>can view/can create/can delete
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;kind&#34;</span><span class="p">:</span> <span class="s2">&#34;Policy&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;spec&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;user&#34;</span><span class="p">:</span> <span class="s2">&#34;dev-user&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;namespace&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;resource&#34;</span><span class="p">:</span> <span class="s2">&#34;pods&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">        <span class="nt">&#34;apiGroup&#34;</span><span class="p">:</span> <span class="s2">&#34;*&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>RBAC (role-based authorization)
+<ul>
+<li>Instead of directly associating an user or group with a set of permissions, we define a role with a set of permissions required for developers, then associate all dev-users to that role.</li>
+<li>More standard approach to manage access withing K8S cluster</li>
+</ul>
+</li>
+<li>Webhook
+<ul>
+<li>Outsource all mechanism</li>
+<li>Open Policy Agent</li>
+</ul>
+</li>
+<li>AlwaysAllow</li>
+<li>AlwaysDeny</li>
+</ol>
+<h3 id="rbac">RBAC</h3>
+<p>Role:</p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: developer
+rules:
+- apiGroups: [&#34;&#34;]
+  resources: [&#34;pods&#34;]
+  verbs: [&#34;list&#34;, &#34;get&#34;, &#34;create&#34;, &#34;update&#34;, &#34;delete&#34;]
+- apiGroups: [&#34;&#34;]
+  resources: [&#34;ConfigMap&#34;]
+  verbs: [&#34;create&#34;]
+</code></pre><p>RoleBinding:</p>
+<ul>
+<li>links an user object to a role</li>
+<li>kubectl create -f devuser-developer-binding.yaml</li>
+</ul>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: devuser-developer-binding
+subjects:
+- kind: User
+  name: dev-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
+</code></pre><h3 id="view-rbac">View RBAC</h3>
+<pre tabindex="0"><code>kubectl get roles
+kubectl get rolebinding
+kubectl describe rolebinding devuser-developer-binding
+</code></pre><h3 id="check-access">Check Access</h3>
+<ul>
+<li>use the kubectl auth can i command to check if you can take certain actions
+<pre tabindex="0"><code>kubectl auth can-i create deployments
+kubectl auth can-i delete nodes
+</code></pre></li>
+<li>if you are an administrator, you can impersonate:
+<pre tabindex="0"><code> kubectl auth can-i create deployments --as dev-user
+ yes
+ kubectl auth can-i create pods --as dev-user --namespace test
+ no
+</code></pre></li>
+</ul>
+<h3 id="solution-role-based-access-controls">Solution Role based access controls</h3>
+<p>commands</p>
+<pre tabindex="0"><code>cat /etc/kubernetes/manifests/kube-apiserver.yaml
+ps -aux | grep authorization
+
+k get roles
+k get roles -A 
+k get roles -A --no-headers
+# wordcount
+k get roles -A --no-headers | wc -l
+
+k describe role kube-proxy -n kube-system
+
+k get rolebindings -n kube-system
+k describe rolebindings kube-proxy -n kube-system
+
+k config view
+k get pods --as dev-user 
+k create role --help
+k create role developer \
+    --verb=list,create,delete
+    --resource=pods
+k describe role developer
+
+k create rolebinding --help
+k create rolebinding dev-user-binding \
+    --role=developer
+    --user=dev-user
+k describe rolebinding dev-user-binding
+
+k --as dev-user get pod dark-blue-app -n blue
+pod &#34;dark-blue-app&#34; is forbidden
+k get roles -n blue
+k get rolebindings -n blue
+k describe role developer -n blue
+
+k edit role developer -n blue
+# change resrouceNames into dark-blue-app
+k --as dev-user get pod dark-blue-app -n blue
+
+k --as dev-user create deployment nginx --image=nginx -n blue
+k edit role developer -n blue
+# add another rules, apiGroups: &#34;apps&#34;, resources: deployments
+</code></pre><h3 id="cluster-roles-and-cluster-rolebindings">Cluster Roles and cluster rolebindings</h3>
+<p>namespaced v.s. cluster scoped</p>
+<ul>
+<li>namespaced
+<ul>
+<li>if not specified, default namespace is used</li>
+<li>resources:
+<ul>
+<li>pods</li>
+<li>replicasets</li>
+<li>jobs</li>
+<li>deployments</li>
+<li>services</li>
+<li>secrets</li>
+<li>roles</li>
+<li>rolebindings</li>
+<li>configmaps</li>
+<li>PVC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>cluster scoped
+<ul>
+<li>resources:
+<ul>
+<li>nodes</li>
+<li>PV (persistent volumes)</li>
+<li>clusterroles</li>
+<li>clusterrolebindings</li>
+<li>certificatesigningrequests</li>
+<li>namespaces</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>clusterRole -&gt; clusterRoleBinding</p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-administrator
+rules:
+- apiGroups: [&#34;&#34;]
+  resources: [&#34;nodes&#34;]
+  verbs: [&#34;list&#34;, &#34;get&#34;, &#34;create&#34;, &#34;delete&#34;]
+</code></pre><pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-admin-role-binding
+subjects:
+- kind: User
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: cluster-administrator
+  apiGroup: rbac.authorization.k8s.io
+</code></pre><h3 id="solution-cluster-roles">Solution cluster roles</h3>
+<p>commands used</p>
+<pre tabindex="0"><code>k get clusterroles
+k get clusterroles --no-headers | wc -l #wordcount newlines
+
+k get clusterrolebindings --no-headers | wc -l 
+k get clusterrolebindings | grep cluster-admin
+k describe clusterrolebindings cluster-admin
+
+k describe clusterrole cluster-admin
+# *.* stands for any and all resources
+
+k get nodes --as michelle
+k create clusterrole --help
+k create clusterrole michelle-role \
+    --verb=get,list,watch \
+    --resource=nodes
+    
+k create clusterrolebinding --help
+k create clusterrolebinding michelle-role-binding \
+    --clusterrole=michelle-role \
+    --user=michelle 
+    
+k describe clusterrole michelle-role
+k describe clusterrolebinding michelle-role-binding
+
+kubectl api-resources
+# lists all the resrources as well as their short names
+
+k create clusterrole storage-admin \
+    --resource=persistentvolumes,storageclasses \
+    --verb=list,create,get,watch
+k describe clusterrole storage-admin
+
+k get clusterrole storage-admin -o yaml
+k create clusterrolebinding michelle-storage-admin \
+    --user=michelle \
+    --clusterrole=storage-admin
+    
+k describe clusterrolebinding michelle-storage-admin
+k --as michelle get storageclass
+</code></pre><h3 id="service-accounts">Service Accounts</h3>
+<ul>
+<li>
+<p>Two types of accounts: user account, service account</p>
+<ul>
+<li>user account: human</li>
+<li>service account: used by application to interact with k8s, such as Prometheus and Jenkins</li>
+</ul>
+</li>
+<li>
+<p>When a service account is created, a service account token is created automatically</p>
+</li>
+</ul>
+<pre tabindex="0"><code>k create serviceaccount dashboard-sa
+k get serviceaccrount
+k describe servicearrount dashboard-sa
+...
+Tokens:    dashboard-sa-token-kbbdm
+</code></pre><ul>
+<li>For every namespace in kubernetes, a service account named default is automatically created.</li>
+<li>Whenever a pod is created, the default service account and its token are automatically mounted to that pod as a volume mount.</li>
+</ul>
+<pre tabindex="0"><code>kubectl exec -it my-kubernetes-dashboard -- ls /var/run/secrets/kubernetes.io/serviceaccount`
+
+kubectl exec -it my-kubernetes-dashboard cat /var/run/secrets/kubernetes.io/serviceaccount/token
+</code></pre><ul>
+<li>If you&rsquo;d like to use a different service account such as the one we just created, modify the pod definition file to include a service account field:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-kubernetes-dashboard</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-kubernetes-dashboard</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">my-kubernetes-dashboard</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l">dashboard-sa</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>You cannot modify the service account of an existing pod. You must delete and recreate the pod.</li>
+</ul>
+<h3 id="solution-security">Solution Security</h3>
+<p>commands</p>
+<pre tabindex="0"><code>kubectl create secret
+kubectl get deploy
+kubectl describe deploy web
+k edit deploy web
+# modify image and save
+k describe deploy web
+k get pods
+
+k create secret docker-registry -h
+k create secret docker-registry private-reg-cred \
+    --docker-server=myprivateregistry.com:5000 \
+    --docker-username=dock_user \
+    --docker-password=dock_password \
+    --docker-email=dock_user@myprivateregistry.com
+
+k get po
+</code></pre><h3 id="docker-security">Docker Security</h3>
+<p>Docker implements linux capabilities. Please refer to <code>/usr/include/linux/capability.h</code>
+<code>docker run --privileged</code>
+<code>docker run --cap-add</code>
+<code>docker run --cap-drop</code></p>
+<h3 id="security-context">Security Context</h3>
+<ul>
+<li>In K8S, containers are encapsulated in pod.</li>
+<li>If you configure setting on both container and pod, the setting on the container will override the setting on the pod.</li>
+</ul>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: v1
+kind: Pod
+metadata: 
+  name: web-pod
+spec:
+  # pod level 
+  securityContext:
+    runAsUser: 1000
+    
+  containers:
+       - name: ubuntu
+         image: ubuntu
+         command: [&#34;sleep&#34;, &#34;3600&#34;]
+         # container level
+         securityContext:
+           runAsUser: 1000
+           capabilities:
+               add: [&#34;MAC_ADMIN&#34;]
+</code></pre><h3 id="solution">Solution</h3>
+<p>command</p>
+<pre tabindex="0"><code>whami
+
+k get pod
+k exec ubuntu-sleeper -- whoami
+kubectl get pod ubuntu-sleeper -o yaml &gt; ubuntu-sleeper.yaml
+vi ubuntu-sleeper.yaml
+kubectl delete pod ubuntu-sleeper --force
+k apply -f ubuntu-sleeper.yaml
+k get pod
+</code></pre><h3 id="network-policies">Network Policies</h3>
+<ul>
+<li>Traffic
+<ul>
+<li>ingress: incoming from user</li>
+<li>egress: outgoing request to database server</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          name: api-pod
+    ports:
+    - protocol: TCP
+      port: 3306
+</code></pre><h4 id="note">Note:</h4>
+<ul>
+<li>Solutions that support network policies:
+<ul>
+<li>Kube-router</li>
+<li>Calico</li>
+<li>Romana</li>
+<li>Weave-net</li>
+</ul>
+</li>
+<li>Solutions that do not support network policies:
+<ul>
+<li>Flannel</li>
+</ul>
+</li>
+</ul>
+<h3 id="developing-network-policies">Developing network policies</h3>
+<ul>
+<li><strong>Pod selector</strong>: to select pods by labels</li>
+<li><strong>namespace selector</strong>: to select namespaces by labels</li>
+<li><strong>ipBlock selector</strong>: to select ip ranges</li>
+</ul>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-policy
+spec: 
+  podSelector:
+    matchLabels:
+      role: db 
+  policyTypes:
+  - Ingress
+  
+  ingress:
+  - from:
+    # Traffic coming from either pod/namespace or certain IP are allowed to passthrough
+    # Within the first rule, we have two selectors and traffic of thid kind must meet both selectors. 
+    # If added dash - before the namespaceSelector, these become three traffic rules.
+    - podSelector:
+          matchLabels:
+            name: api-pod
+      namespaceSelector:
+          matchLabels:
+            name: prod
+    - ipBlock:
+          cidr: 192.168.5.10/32 
+    ports:
+    - protocol: TCP
+      port: 3306
+      
+  egress:
+  - to:
+    - ipBlock:
+          cidr: 192.168.5.10/32
+    ports: 
+    - protocol: TCP
+      port: 80
+</code></pre><h3 id="solution-network-policies">Solution network policies</h3>
+<p>commands</p>
+<pre tabindex="0"><code>alias k=kubectl
+k get pods
+k get service
+k get networkpolicies
+k get netpol
+k describe netpol payroll-policy
+vi internalpolicy.yaml
+</code></pre><p>internalpolicy.yaml</p>
+<ul>
+<li>Policy name: internal-policy</li>
+<li>Policy Type: Egress</li>
+<li>Egress Allow: payroll</li>
+<li>Payroll Port: 8080</li>
+<li>Egress Allow: mysql</li>
+<li>MySQL Port: 3306
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+    -Ingress
+    -Egresss
+</code></pre></li>
+</ul>
+<hr>
+<h1 id="section-8-storage">Section 8 Storage</h1>
+<p>This chapter covers storage such as persistent volumes, persistent volume claims, configure App with persistent storage, access modes for volumes, Kubernetes storage object, etc.</p>
+<p>Two concepts of storages in Docker: <strong>Storage driver</strong>, <strong>Volume driver</strong></p>
+<h3 id="storage-in-docker">Storage in Docker</h3>
+<ul>
+<li>
+<p>File system</p>
+<ul>
+<li><code>/var/lib/docker</code>
+<ul>
+<li>aufs</li>
+<li>containers</li>
+<li>image</li>
+<li>volumes</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Layered architecture</p>
+<ul>
+<li>當Docker build images的時候，是以分層式架構(layered architecture) build image</li>
+<li>Dockfile example
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-dockerfile" data-lang="dockerfile"><span class="line"><span class="cl"><span class="c"># layer 1. base ubuntu layer</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> Ubuntu</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># layer 2. changes in apt packages</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> apt-get -y install python<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># layer 3. changes in pip packages</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> pip install flask flask-mysql<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># layer 4. source code</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> . /opt/source-code<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># layer 5. update entrypoint</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="nv">FLASK_APP</span><span class="o">=</span>/opt/source-code/app.py flask run<span class="err">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><code>docker build Dockerfile -t wycwyz/custom-app</code></li>
+<li>如果前三行使用的作業系統跟dependencies一樣，就會用cache裡面的，減少build image所需時間，也節省disk space</li>
+<li>以上的 layer 1 ~ layer 5 都是 Read Only (image layers)</li>
+<li>Layer 6 (container layer) 則是 Read Write</li>
+</ul>
+</li>
+<li>
+<p>Copy on Write mechanism</p>
+<ul>
+<li>如果連進container要修改程式，會先從image layer複製一份到container layer，原本的image不會異動，除非用 docker rebuild</li>
+<li>在刪掉container之後，container的暫存layer也會被刪掉</li>
+</ul>
+</li>
+<li>
+<p>Volumes</p>
+<ul>
+<li>保留由 container 建立的數據</li>
+<li><code>/var/lib/docker/volumes/data_volume</code>
+<pre tabindex="0"><code>docker run -v data_volume:/var/lib/mysql mysql
+docker run -v data_volume2:/var/lib/mysql mysql
+docker run -v /data/mysql:/var/lib//mysql mysql
+</code></pre></li>
+<li>兩種類型的掛載(mounting):
+<ol>
+<li>Volume mounting 卷掛載
+<ul>
+<li>mounts volume from the volume directory</li>
+</ul>
+</li>
+<li>Bind mount 綁定掛載
+<ul>
+<li>mounts a directory from any location on the Docker host (在Docker主機的任何位置掛載)</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>舊的flag<code>-v</code>、新版用<code>-mount</code>方法或<code>--mount</code>(best)
+<pre tabindex="0"><code>docker run \
+  --mount type=bind,source=/data/mysql,target=/var/lib/mysql mysql
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Storage Driver:</p>
+<ul>
+<li>工作內容:
+<ul>
+<li>維護 layered architecture</li>
+<li>創建 writable layer</li>
+<li>跨層移動文件來實現 copy and write</li>
+</ul>
+</li>
+<li>常見存儲驅動程序
+<ul>
+<li>AUFS</li>
+<li>ZFS</li>
+<li>BTRFS</li>
+<li>Device Mapper</li>
+<li>Overlay</li>
+<li>Overlay2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="storage-drivers">Storage Drivers</h3>
+<ul>
+<li>
+<p>Storage driver 不處理 volume，而是由 Volume driver 處理 volume</p>
+<ul>
+<li>常見Storage driver: AUFS, ZFS, BTRFS, DEVICE MAPPER, OVERLAY</li>
+</ul>
+</li>
+<li>
+<p>預設的 volume driver 是<code>Local</code>，還有其他選項</p>
+<ul>
+<li>常見Volume driver: Local, Azure File Storage, Convoy, DigitalOcean Block Storage, Flocker, gce-docker, GlusterFS, NetApp, RexRay, Portworx, VMware vSphere Storage
+<ul>
+<li>RexRay: 適用於AWS EBS, EMC, Google Persistent Disk, OpenStack Cinder</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Run volume driver 的時候指定類型
+把資料持久化的儲存在AWS cloud，當container exit時，資料存雲端</p>
+<pre tabindex="0"><code>docker run -it \
+    --name mysql
+    --volume-driver rexray/ebs
+    --mount src=ebs-vol,target=/var/lib/mysql \
+    mysql
+</code></pre></li>
+</ul>
+<h3 id="container-storage-interface-csi">Container Storage Interface (CSI)</h3>
+<p>以前，K8s的container runtime engine只有Docker，所有跟Docker交互的程式都刻在Kubernetes源碼。</p>
+<p>後來隨著其他container runtimes (例如: rkt, cri-o) 的出現，再用相同的embedded方法不太適合，因此出現了Container Runtime Interface。</p>
+<ul>
+<li>Container Networking Interface (CNI)
+<ul>
+<li>flannel, cilium, weaveworks</li>
+</ul>
+</li>
+<li>Container Storage Interface (CSI)
+<ul>
+<li>portworx, Amazon EBS, DELL EMC, GlusterFS</li>
+<li>可以自建driver來讓你的storage與K8s交互</li>
+</ul>
+</li>
+</ul>
+<h3 id="volumes">Volumes</h3>
+<ul>
+<li>Docker container is meant to be transient in nature.</li>
+<li>To attached persistent data to container, we attach a volume to the containers when they are created.</li>
+<li>Pod created in K8s is transcient. The data generated by pod is stored in volume.</li>
+</ul>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: v2
+kind: Pod
+metadata:
+  name: random-number-generator
+spec:
+  containers:
+  - image: alpine
+    name: alpine
+    command: [&#34;/bin/sh&#34;, &#34;-c&#34;]
+    args: [&#34;shut -i 0-100 -n 1 &gt;&gt; /opt/number.out&#34;]
+    volumeMounts:
+    - mountPath: /opt
+      name: data-volume
+    
+  volumes:
+  - name: data-volume
+    hostPath:
+      path: /data
+      type: Directory
+</code></pre><h3 id="persistent-volumes">Persistent Volumes</h3>
+<ul>
+<li>在先前提的volume中，<code>Volume</code>是定義在pod definition file，但如果你很多個PODS，這樣所有的PODS都需要做這些配置，若一有變更，所有的pod definition files都需要跟著修改，為了中心化管理，可以用Persistent Volume達成
+<pre tabindex="0"><code>[Pod1]  [Pod2]  [Pod3]  [Pod4]
+  |       |       |       |
+  |       |       |       |
+  [Peristent Volume Claim (PVC)]   
+  |       |       |       |
+[ [PVC]  [PVC]   [PVC]   [PVC] [] [] [] ]
+       Persistent Volumes (PVs)
+</code></pre></li>
+<li>Base Template <code>pv-definition.yaml</code>
+<ul>
+<li>accessModes三種: ReadOnlyMany, ReadWriteOnce, ReadWriteMany
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolume</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">pv-voll</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ReadWriteOnce  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">capacity</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">1Gi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/tmp/data</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>kubectl create -f pv-definition.yaml</li>
+<li>kubectl get persistentvolume</li>
+</ul>
+</li>
+</ul>
+<h3 id="persistent-volume-claims">Persistent volume claims</h3>
+<ul>
+<li>Persistent Volume 以及 Persistent Volume Claim 是 K8s 命名空間裡面兩個不同的物件。管理員建立 persistent volume 的集合，使用者建立 persistent volume claims 來使用storage</li>
+<li>一旦建立了 persistent volume claims，K8S 就會根據 request 以及 volume 設定的 properties，將 PV 綁定到相對應的 PVC</li>
+<li>每個 PVC 綁定一個 PV</li>
+<li>也可以用 label &amp; selector 做綁定條件</li>
+<li>Example of <code>pvc-definition.yaml</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myclaim</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span>- <span class="l">ReadWriteOnc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">500Mi</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>Example of <code>pv-definition.yaml</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolume</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">pv-voll</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ReadWriteOnce  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">capacity</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">1Gi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">awsElasticBlockStore</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumeID</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;volume-id&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fsType</span><span class="p">:</span><span class="w"> </span><span class="l">ext4</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>刪除 PVCs
+<pre tabindex="0"><code>kubectl delete persistentvolumeclaims myclaim
+</code></pre><ul>
+<li>刪除了之後，這個PVC預設會變成<code>retain</code>，指的是persistent volume仍然存在，直到管理員將volume刪除
+<pre tabindex="0"><code>persistentVolumeReclaimPolicy: Retain
+</code></pre></li>
+<li>可以調整設定讓persistent volume自動隨著pvc刪除而跟著刪掉釋放空間
+<pre tabindex="0"><code>persistentVolumeReclaimPolicy: Delete
+</code></pre></li>
+<li>另外一種<code>Recycle</code>指的是data volume的資料會被抹除，再給其它claim使用
+<pre tabindex="0"><code>persistentVolumeReclaimPolicy: Recycle
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h3 id="solution-pv-and-pvc">Solution PV and PVC</h3>
+<p>commands</p>
+<pre tabindex="0"><code>k get pods
+k exec webapp -- cat /log/app.log   #exec &lt;pod-name&gt; 
+k get pods
+k describe pod webapp 
+ls /var/log/webapp
+# set up volumes
+k edit pod webapp
+</code></pre><ul>
+<li><code>webapp-pod-definition.yaml</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/var/run/secrets/kubernetes.io/serviceaccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">kube-api-access-lmntb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># mount log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">log-volume</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">log-volume</span><span class="w"> </span><span class="c"># add log volume</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/var/log/webapp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">kube-api-access-lmntb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">...</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>commands</p>
+<pre tabindex="0"><code>cd ~
+vi pv-definition.yaml
+k create -f pv.yaml
+k get pv
+</code></pre><ul>
+<li><code>pv-definition.yaml</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolume</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">pv-log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">capacity</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">100Mi ✨Ref</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># volumeMode: Filesystem cmment不用</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">ReadWriteMany 🎉Ref</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">persistentVolumeReclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l">Retain</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">/pv/log</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>commands</p>
+<pre tabindex="0"><code>vi pvc.yaml
+k create -f pvc.yaml
+k get pvc #check status
+</code></pre><ul>
+<li><code>pvc.yaml</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">claim-log-1 🎆Ref</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">ReadWriteMany 🎉Ref</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">100Mi✨Ref</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>command</p>
+<pre tabindex="0"><code># To change the access modes on PVC, to rewritemany 
+vi pvc.yaml
+# delete and replace
+k replace --force -f pvc.yaml
+k get pv
+k get pvc
+# replace hostpath with PV
+ls /pv/log
+k edit pod webapp
+k replace --force -f /tmp/kubectl-edit-56385166.yaml
+ls /pv/log 
+k get pv pv-log
+k delete pvc 
+
+
+
+
+k describe pvc claim-log-1
+k delete pod webapp
+k get pvc
+</code></pre><ul>
+<li><code>webapp-pod-definition.yaml</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">  </span><span class="l">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">claim-log-1 🎆Ref</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="storage-class">Storage Class</h3>
+<ul>
+<li>Static Provisioning
+<ul>
+<li>從Google Cloud建立pv，在建立pv之前必須先在GoogleCloud手動建立disk，才能手動建立persistent volume
+<pre tabindex="0"><code>gcloud beta compute disks create pd-disk \
+    --size 1GB --region us-east1
+</code></pre></li>
+</ul>
+</li>
+<li>Dynamic Provisioning
+<ul>
+<li>建立以下template <code>sc-definition.yaml</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">storage.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StorageClass</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">google-storage 🎁Ref</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/gce-pd</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>可以拔掉persistent volume，再來修<code>pvc.yaml</code>, <code>pod.yaml</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>pv的設定在建立sc時就會隨之建立，所以不用pv.yaml</li>
+<li><code>pvc-definition.yaml</code>更新設定
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">claim-log-1 🎆Ref</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span>- <span class="l">ReadWriteOnce</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l">google-storage 🎁Ref</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># 這樣pvc才知道要使用哪個StorageClass</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">500Mi</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>這樣下次如果建立了一個pvc，與他關聯的sc就會使用defined provisioner來配置所需大小的new disk，然後建立 persistent volume並綁定pvc到這個volume</li>
+<li>StorageClass 仍然會建立一個PV</li>
+<li>有其它的provisioner，像是AWS EBS(elastic block store), AzureFile, AzureDisk, CephFS, Portworx, ScaleIO, etc.</li>
+<li>每個provisioner可以傳入額外參數，例如要provision的磁碟類型、replication type 等等，以下是拿GCE為例
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># standard class</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">storage.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StorageClass</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">silver</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/gce-pd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">parameters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">pd-standard</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># gold class: with ssd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">storage.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StorageClass</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">gold</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/gce-pd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">parameters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">pd-ssd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replication-type</span><span class="p">:</span><span class="w"> </span><span class="l">none</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># platinum class: with replication</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">storage.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">StorageClass</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">   </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">platinum</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">provisioner</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/gce-pd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">parameters</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">pd-ssd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replication-type</span><span class="p">:</span><span class="w"> </span><span class="l">regional-pd</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+<h3 id="solution-storage-class">Solution Storage Class</h3>
+<p>command</p>
+<pre tabindex="0"><code>k get storageclass
+k get sc
+# check volumebindingmode
+k get pv
+# RWO (accessmodes)
+k get pvc
+vi pvc.yaml
+# paste below pv.yaml file
+k create -f pvc.yaml
+k get pvc
+k describe pvc local-pvc
+k run nginx --image=nginx:alpine --dry-run=client -o yaml
+k run nginx --image=nginx:alpine --dry-run=client -o yaml &gt; nginx.yaml
+vi nginx.yaml
+# paste below nginx configuration
+k create -f nginx.yaml
+k get pod
+k get pvc
+vi delayed-volume-sc.yaml
+# paste below delayed-volume-sc.yaml
+k create -f delayed-volume-sc.yaml
+
+k get sc
+</code></pre><p>example of <code>pv.yaml</code></p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: local-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi
+  storageClassName: local-storage
+</code></pre><p>regarding the <code>nginx.yaml</code></p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
+spec:
+  containers:
+  - image: nginx:alpine
+    name: nginx
+    resources: {}
+    volumeMount:
+      - mountPath: &#34;/var/www/html&#34;
+        name: local-pvc-volume
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+  - name: local-pvc-volume
+    persistentVolumeClaim:
+        claimName: local-pvc
+status: {}
+</code></pre><p>regarding the delayed-volume-sc.yaml</p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: delayed-volume-sc
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+</code></pre><hr>
+<h1 id="section-9-networking">Section 9 Networking</h1>
+<p>This section focuses on the networking concepts.</p>
+<ul>
+<li>Pre-requisites:
+<ul>
+<li>Switching, Routing</li>
+<li>CoreDNS</li>
+<li>Tools</li>
+<li>DNS</li>
+<li>CNI</li>
+<li>Networking in Docker</li>
+</ul>
+</li>
+<li>Concepts:
+<ul>
+<li>Networking configuration on cluster nodes</li>
+<li>POD networking concepts</li>
+<li>Service networking</li>
+<li>Cluster DNS</li>
+<li>Network loadbalancer</li>
+<li>Ingress</li>
+</ul>
+</li>
+</ul>
+<h2 id="linux-networking-basics-switching-routing">Linux Networking Basics: Switching, Routing</h2>
+<ul>
+<li>
+<p>Networking pre-requisites</p>
+<ul>
+<li>Switching and Routing
+<ul>
+<li>Switching</li>
+<li>Routing</li>
+<li>Default Gateway</li>
+</ul>
+</li>
+<li>DNS
+<ul>
+<li>DNS Configurations on Linux</li>
+<li>CoreDNS Introduction</li>
+</ul>
+</li>
+<li>Network Namespaces</li>
+<li>Docker Networking</li>
+</ul>
+</li>
+<li>
+<p>Switching</p>
+<pre tabindex="0"><code>ip link
+ip addr add &lt;ip_of_the_other_host&gt;/24 dev eth0
+ping &lt;ip_of_the_switch&gt;
+</code></pre></li>
+<li>
+<p>Routing</p>
+<ul>
+<li>A router helps connect two networks together</li>
+<li>Think of it as another server with many network ports</li>
+</ul>
+</li>
+<li>
+<p>Gateway</p>
+<ul>
+<li>當systemB要傳封包到systemC，要如何知道這router在network哪裡，才能知道封包要往哪投，但network上面可能有很多這樣的devices，因此我們會用 Gateway 或 route 來配置系統</li>
+<li>如果network比喻成房間，那麼gateway就是連到外部世界的門，會接到其它網路或連到外部網路</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>查看系統既有的routing configuration: <code>route</code>
+增加一個route讓他連到network 2.0:</p>
+<pre tabindex="0"><code>ip route add &lt;network_2.0&gt;/24 via &lt;ip_of_host_B_of_1st_network&gt;
+</code></pre></blockquote>
+<p>增加一個路由條目:告訴host_A通往network_2的門/網關是通過host_B</p>
+<pre tabindex="0"><code>ip route add &lt;ip_address_to_network_2&gt;/24 via &lt;ip_from_A_to_host_B&gt;
+</code></pre><p>host_C同時也要找到如何傳回值的路徑，所以也要加route，透過host_B找到通往host_a的門</p>
+<pre tabindex="0"><code>ip route add &lt;ip_address_to_1st_network&gt;/24 via &lt;ip_from_C_to_host_B&gt;
+</code></pre><h4 id="take-aways">Take aways</h4>
+<ol>
+<li><code>ip link</code> 用來列出和修改host主機上的interface</li>
+<li><code>ip addr</code> 用來查看分配給這些interface的IP address</li>
+<li><code>ip addr add &lt;ip_address&gt;/24 dev eth0</code> 用來在interface裡面設定IP address</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/" data-hashtag="Kubernetes"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/" data-title="CKA 筆記 [7,8,9]: Security, Storage, Networking"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/security/">Security</a>,&nbsp;<a href="/tags/storage/">Storage</a>,&nbsp;<a href="/tags/networking/">Networking</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/240515-docker-compose/" class="prev" rel="prev" title="Docker Compose 厲害了！一次幫你蓋多個containers"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Docker Compose 厲害了！一次幫你蓋多個containers</a>
+            <a href="/posts/240522-solidity-smart-contract/" class="next" rel="next" title="Smart contract, wallet, solidity 新手村">Smart contract, wallet, solidity 新手村<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

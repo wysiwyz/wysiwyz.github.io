@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>框架比較：Springboot 與 Quarkus - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="框架比較：Springboot 與 Quarkus">
+  <meta property="og:description" content="以下的筆記主要參照Baeldung這篇文章，後續會在針對如何用Quarkus建立第一個專案補充說明。
+SpringBoot v.s. Quarkus 概觀 這篇文章的關注點在於比較兩個廣為人知的Java框架—SpringBoot與Quarkus。看完文章，能更加瞭解兩者之間的相似、差異處以及各自的特殊性。另外也有一些測試來檢測效能並觀察表現。
+SpringBoot 這個Java framework主要用於企業級應用程式。集成了所有Spring project，提供許多production-ready的整合，可協助開發者提高生產力。 減少了要配置的數量以及文件樣板。另外因為約定大於配置的方法，會根據runtime時classpath中的依賴 (dependencies)，自動註冊預設的配置。SpringBoot大幅減少了許多Java應用程式上市的時間。
+Quarkus Quarkus 是另外一個framework，其方法類似SpringBoot，但另外能在快速的啟動時間內，交付較小型的artifacts，有更好的資源利用度以及效率。 Quarkus 是以 cloud、serverless以及容器化環境所最佳化的框架。除此之外，Quarkus framework與Java其他框架的的整合性也很好。
+比較這兩者 如上所述，這兩個framework與其他的project跟framework的整合性都不錯，但其內部 implementation &amp; architecture 並不相同。例如，SpringBoot提供兩種 web capabilities: blocking(Servlets) 以及 non-blocking(WebFlux)
+Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blocking跟non-blocking這兩種策略。另外 Quarkus 有將響應式的方法內嵌在本身的架構中。
+因此這裡主要比較的是 Spring WebFlux 以及 Quarkus reactive capabilities 比較相似的情境 (non-blocking)。
+另外，這兩個projects中比較顯著的功能是新建 native images (binary executables 以及 platform-specific executables)，所以也會比較這兩個projects的native images。
+註: SpringBoot 2.7 版本的 native image support 仍在實驗階段，直到 VERSION 3 才正式支持 native image support，需要使用 GraalVM。 註: Native image 這裡指的是將Java程式碼建構成 standalone executable 可執行檔的技術。Executable 包含了 java classes, classes from its dependencies, runtime library class, 以及 jdk 的 native code。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-05-09T23:39:21+08:00">
+    <meta property="article:modified_time" content="2024-05-09T23:39:21+08:00">
+    <meta property="article:tag" content="Quarkus">
+    <meta property="article:tag" content="SpringBoot">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="框架比較：Springboot 與 Quarkus">
+  <meta name="twitter:description" content="以下的筆記主要參照Baeldung這篇文章，後續會在針對如何用Quarkus建立第一個專案補充說明。
+SpringBoot v.s. Quarkus 概觀 這篇文章的關注點在於比較兩個廣為人知的Java框架—SpringBoot與Quarkus。看完文章，能更加瞭解兩者之間的相似、差異處以及各自的特殊性。另外也有一些測試來檢測效能並觀察表現。
+SpringBoot 這個Java framework主要用於企業級應用程式。集成了所有Spring project，提供許多production-ready的整合，可協助開發者提高生產力。 減少了要配置的數量以及文件樣板。另外因為約定大於配置的方法，會根據runtime時classpath中的依賴 (dependencies)，自動註冊預設的配置。SpringBoot大幅減少了許多Java應用程式上市的時間。
+Quarkus Quarkus 是另外一個framework，其方法類似SpringBoot，但另外能在快速的啟動時間內，交付較小型的artifacts，有更好的資源利用度以及效率。 Quarkus 是以 cloud、serverless以及容器化環境所最佳化的框架。除此之外，Quarkus framework與Java其他框架的的整合性也很好。
+比較這兩者 如上所述，這兩個framework與其他的project跟framework的整合性都不錯，但其內部 implementation &amp; architecture 並不相同。例如，SpringBoot提供兩種 web capabilities: blocking(Servlets) 以及 non-blocking(WebFlux)
+Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blocking跟non-blocking這兩種策略。另外 Quarkus 有將響應式的方法內嵌在本身的架構中。
+因此這裡主要比較的是 Spring WebFlux 以及 Quarkus reactive capabilities 比較相似的情境 (non-blocking)。
+另外，這兩個projects中比較顯著的功能是新建 native images (binary executables 以及 platform-specific executables)，所以也會比較這兩個projects的native images。
+註: SpringBoot 2.7 版本的 native image support 仍在實驗階段，直到 VERSION 3 才正式支持 native image support，需要使用 GraalVM。 註: Native image 這裡指的是將Java程式碼建構成 standalone executable 可執行檔的技術。Executable 包含了 java classes, classes from its dependencies, runtime library class, 以及 jdk 的 native code。">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/" /><link rel="prev" href="http://wysiwyz.github.io/posts/240509-flyway/" /><link rel="next" href="http://wysiwyz.github.io/posts/240510-pact.io/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "框架比較：Springboot 與 Quarkus",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/240509-springboot-vs-quarkus\/"
+        },"genre": "posts","keywords": "Quarkus, SpringBoot","wordcount":  176 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/240509-springboot-vs-quarkus\/","datePublished": "2024-05-09T23:39:21+08:00","dateModified": "2024-05-09T23:39:21+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">框架比較：Springboot 與 Quarkus</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-05-09">2024-05-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;176 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/240509-springboot-vs-quarkus/" class="leancloud_visitors" data-flag-title="框架比較：Springboot 與 Quarkus">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>以下的筆記主要參照<a href="https://www.baeldung.com/spring-boot-vs-quarkus" target="_blank" rel="noopener noreffer ">Baeldung這篇文章</a>，後續會在針對如何用Quarkus建立第一個專案補充說明。</p>
+</blockquote>
+<h1 id="springboot-vs-quarkus">SpringBoot v.s. Quarkus</h1>
+<ol>
+<li>概觀</li>
+</ol>
+<p>這篇文章的關注點在於比較兩個廣為人知的Java框架—SpringBoot與Quarkus。看完文章，能更加瞭解兩者之間的相似、差異處以及各自的特殊性。另外也有一些測試來檢測效能並觀察表現。</p>
+<ol start="2">
+<li>SpringBoot</li>
+</ol>
+<p>這個Java framework主要用於企業級應用程式。集成了所有Spring project，提供許多production-ready的整合，可協助開發者提高生產力。
+減少了要配置的數量以及文件樣板。另外因為約定大於配置的方法，會根據runtime時classpath中的依賴 (dependencies)，自動註冊預設的配置。SpringBoot大幅減少了許多Java應用程式上市的時間。</p>
+<ol start="3">
+<li>Quarkus</li>
+</ol>
+<p>Quarkus 是另外一個framework，其方法類似SpringBoot，但另外能在快速的啟動時間內，交付較小型的artifacts，有更好的資源利用度以及效率。
+Quarkus 是以 cloud、serverless以及容器化環境所最佳化的框架。除此之外，Quarkus framework與Java其他框架的的整合性也很好。</p>
+<ol start="4">
+<li>比較這兩者</li>
+</ol>
+<p>如上所述，這兩個framework與其他的project跟framework的整合性都不錯，但其內部 implementation &amp; architecture 並不相同。例如，SpringBoot提供兩種 web capabilities: blocking(Servlets) 以及 non-blocking(WebFlux)</p>
+<p>Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blocking跟non-blocking這兩種策略。另外 Quarkus 有將響應式的方法內嵌在本身的架構中。</p>
+<p>因此這裡主要比較的是 <code>Spring WebFlux</code> 以及 <code>Quarkus reactive capabilities</code> 比較相似的情境 (non-blocking)。</p>
+<p>另外，這兩個projects中比較顯著的功能是新建 native images (binary executables 以及 platform-specific executables)，所以也會比較這兩個projects的native images。</p>
+<p>註: SpringBoot 2.7 版本的 native image support 仍在實驗階段，直到 <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/native-image.html" target="_blank" rel="noopener noreffer ">VERSION 3 才正式支持 native image support</a>，需要使用 GraalVM。
+註: <code>Native image</code> 這裡指的是將Java程式碼建構成 standalone executable 可執行檔的技術。Executable 包含了 java classes, classes from its dependencies, runtime library class, 以及 jdk 的 native code。</p>
+<p>4.1 ~ 4.3 測試參考原文</p>
+<ol start="5">
+<li>結論</li>
+</ol>
+<p>總結起來，SpringBoot的documentation資源會比Quarkus更加完整，Quarkus有很多協助改善生產力的功能，但文件與StackOverflow上面的討論仍比較少。</p>
+<p>Quarkus在jvm以及native versions上的啟動時間都比SpringBoot還要快。另外Quarkus build native images的速度也比較快 (91秒，相較於SpringBoot要花113秒)。但 SpringBoot 的 JVM build 就比 Quarkus 快了非常多 (1.75 vs 5.24秒)。</p>
+<ul>
+<li>CPU USAGE
+<ul>
+<li>Quarkus表現在native image跟JVM上都稍佳，但差異不大，也可以說 Quarkus 跟 SpringBoot 這局平手</li>
+</ul>
+</li>
+<li>MEMORY
+<ul>
+<li>這兩個frameworks的JVM版本，相較於native image版本，都需要比較多Heap區的memory</li>
+<li>只看JVM version的話，Quarkus的memory consumption比SpringBoot的少了一點點 (super tiny difference)</li>
+<li>在 native images 版本，Spring native 的 collect memory 較為頻繁，memory footprint 較低
+<blockquote>
+<p>memory footprint 指的是運行時間占用的內存比較少
+collect memory 就是管理程式內存，釋放不需要的內存空間</p>
+</blockquote>
+</li>
+<li>RSS memory measurement上，Quarkus在兩種版本的表現都比Spring還要優秀一點
+<blockquote>
+<p>RSS指的是處理程序的實際記憶體(常駐集)大小，即 resident set size</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>RESPONSE TIME
+<ul>
+<li>這邊使用 hyperfoil 來避免 coordinated omission 的問題</li>
+</ul>
+</li>
+<li>Connecting the dots
+<ul>
+<li><code>native app</code> 比較快，資源消耗比較低，適合serverless, short-living 的應用程式</li>
+<li><code>JVM app</code> 所需成本比較多，但穩定性跟吞吐量表現較好，適合robust, long-living 的應用程式</li>
+</ul>
+</li>
+</ul>
+<ol start="6">
+<li>結論</li>
+</ol>
+<p>本來以為會有實作寫法的比較，但只有比較回應時間, 記憶體消耗跟cpu用量，實際程式碼以及使用的工具可以到<a href="https://github.com/eugenp/tutorials/tree/master/quarkus-modules/quarkus-vs-springboot" target="_blank" rel="noopener noreffer ">這一個REPO</a>查看。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-05-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/" data-hashtag="Quarkus"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/" data-title="框架比較：Springboot 與 Quarkus"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/quarkus/">Quarkus</a>,&nbsp;<a href="/tags/springboot/">SpringBoot</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/240509-flyway/" class="prev" rel="prev" title="資料庫版控，走起，高飛！Flyway"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>資料庫版控，走起，高飛！Flyway</a>
+            <a href="/posts/240510-pact.io/" class="next" rel="next" title="消費者與提供者之間的合約測試 - Pact.io">消費者與提供者之間的合約測試 - Pact.io<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

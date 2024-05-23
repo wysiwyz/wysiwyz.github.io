@@ -4,27 +4,32 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Cascading style sheet - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cascading style sheet" />
-<meta property="og:description" content="這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
+        <title>Cascading style sheet - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/cascading_style_sheet/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="Cascading style sheet">
+  <meta property="og:description" content="這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
 看到什麼就記下來，之後複習的話再分類
 overflow: hidden 直接隱藏超出範圍的文字
 overflow: auto 與 overflow: scroll 類似，但 overflow:auto 只有在有需要時才會出現 scroll bar
 參考: css overflow
 list-style-type 設定清單的項目編碼符號
-1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&quot;foo&quot; 一個元素可以有多個class，用空格區別 class=&quot;foo bar&quot; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://wysiwyz.github.io/posts/cascading_style_sheet/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-04-10T09:53:01+08:00" />
-<meta property="article:modified_time" content="2023-04-10T09:53:01+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Cascading style sheet"/>
-<meta name="twitter:description" content="這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
+1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&#34;foo&#34; 一個元素可以有多個class，用空格區別 class=&#34;foo bar&#34; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-04-10T09:53:01+08:00">
+    <meta property="article:modified_time" content="2023-04-10T09:53:01+08:00">
+    <meta property="article:tag" content="Css">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Cascading style sheet">
+  <meta name="twitter:description" content="這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
 看到什麼就記下來，之後複習的話再分類
 overflow: hidden 直接隱藏超出範圍的文字
 overflow: auto 與 overflow: scroll 類似，但 overflow:auto 只有在有需要時才會出現 scroll bar
 參考: css overflow
 list-style-type 設定清單的項目編碼符號
-1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&quot;foo&quot; 一個元素可以有多個class，用空格區別 class=&quot;foo bar&quot; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象"/>
+1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&#34;foo&#34; 一個元素可以有多個class，用空格區別 class=&#34;foo bar&#34; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象">
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/cascading_style_sheet/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_04_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/javascript_functions/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -501,7 +506,7 @@ list-style-type 設定清單的項目編碼符號
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/css/">css</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/css/">Css</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

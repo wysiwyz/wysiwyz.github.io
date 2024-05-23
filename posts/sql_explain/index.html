@@ -4,29 +4,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>如何查看哪一個SQL語法是最佳解：explain執行計畫 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="如何查看哪一個SQL語法是最佳解：explain執行計畫" />
-<meta property="og:description" content="昨天與一位做自有產品的執行長官面談被問到如何確認SQL的效能，當下沒能立即回答上。
+        <title>如何查看哪一個SQL語法是最佳解：explain執行計畫 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/sql_explain/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="如何查看哪一個SQL語法是最佳解：explain執行計畫">
+  <meta property="og:description" content="昨天與一位做自有產品的執行長官面談被問到如何確認SQL的效能，當下沒能立即回答上。
 但今天在練習 LeetCode SQL 50 的時候，看到有神人對一道 570. Managers with at Least 5 Direct Reports 題目給出了五種 solutions，於是回想起之前聽過但不常用的 explain 語法，這樣慘痛的教訓肯定是要花時間瞭解一下的吧。
 問題 題目只有一張 Table : Employee:
 每一列包含了員工id、員工名、員工所屬部門以及他們的所屬主管id，如果managerId 為 null，就表示這員工沒有直屬主管。
 沒有員工會自己當自己的主管，即 id 與 managerId 不能為相同的值。
 1 2 3 4 5 6 create table employee ( id int not null primary key auto_increment, name varchar(20), department varchar(2), managerId int ) auto_increment=101; Table 欄位內容：
-Employee table: &#43;-----&#43;-------&#43;------------&#43;-----------&#43; | id | name | department | managerId | &#43;-----&#43;-------&#43;------------&#43;-----------&#43; | 101 | John | A | null | | 102 | Dan | A | 101 | | 103 | James | A | 101 | | 104 | Amy | A | 101 | | 105 | Anne | A | 101 | | 106 | Ron | B | 101 | &#43;-----&#43;-------&#43;------------&#43;-----------&#43; 預期結果： &#43;------&#43; | name | &#43;------&#43; | John | &#43;------&#43; 解法: A." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://wysiwyz.github.io/posts/sql_explain/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2024-02-22T15:59:25+08:00" />
-<meta property="article:modified_time" content="2024-02-22T15:59:25+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="如何查看哪一個SQL語法是最佳解：explain執行計畫"/>
-<meta name="twitter:description" content="昨天與一位做自有產品的執行長官面談被問到如何確認SQL的效能，當下沒能立即回答上。
+Employee table:&#43;-----&#43;-------&#43;------------&#43;-----------&#43;| id | name | department | managerId |&#43;-----&#43;-------&#43;------------&#43;-----------&#43;| 101 | John | A | null || 102 | Dan | A | 101 || 103 | James | A | 101 || 104 | Amy | A | 101 || 105 | Anne | A | 101 || 106 | Ron | B | 101 |&#43;-----&#43;-------&#43;------------&#43;-----------&#43; 預期結果： &#43;------&#43;| name |&#43;------&#43;| John |&#43;------&#43; 解法: A.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-02-22T15:59:25+08:00">
+    <meta property="article:modified_time" content="2024-02-22T15:59:25+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="如何查看哪一個SQL語法是最佳解：explain執行計畫">
+  <meta name="twitter:description" content="昨天與一位做自有產品的執行長官面談被問到如何確認SQL的效能，當下沒能立即回答上。
 但今天在練習 LeetCode SQL 50 的時候，看到有神人對一道 570. Managers with at Least 5 Direct Reports 題目給出了五種 solutions，於是回想起之前聽過但不常用的 explain 語法，這樣慘痛的教訓肯定是要花時間瞭解一下的吧。
 問題 題目只有一張 Table : Employee:
 每一列包含了員工id、員工名、員工所屬部門以及他們的所屬主管id，如果managerId 為 null，就表示這員工沒有直屬主管。
 沒有員工會自己當自己的主管，即 id 與 managerId 不能為相同的值。
 1 2 3 4 5 6 create table employee ( id int not null primary key auto_increment, name varchar(20), department varchar(2), managerId int ) auto_increment=101; Table 欄位內容：
-Employee table: &#43;-----&#43;-------&#43;------------&#43;-----------&#43; | id | name | department | managerId | &#43;-----&#43;-------&#43;------------&#43;-----------&#43; | 101 | John | A | null | | 102 | Dan | A | 101 | | 103 | James | A | 101 | | 104 | Amy | A | 101 | | 105 | Anne | A | 101 | | 106 | Ron | B | 101 | &#43;-----&#43;-------&#43;------------&#43;-----------&#43; 預期結果： &#43;------&#43; | name | &#43;------&#43; | John | &#43;------&#43; 解法: A."/>
+Employee table:&#43;-----&#43;-------&#43;------------&#43;-----------&#43;| id | name | department | managerId |&#43;-----&#43;-------&#43;------------&#43;-----------&#43;| 101 | John | A | null || 102 | Dan | A | 101 || 103 | James | A | 101 || 104 | Amy | A | 101 || 105 | Anne | A | 101 || 106 | Ron | B | 101 |&#43;-----&#43;-------&#43;------------&#43;-----------&#43; 預期結果： &#43;------&#43;| name |&#43;------&#43;| John |&#43;------&#43; 解法: A.">
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/sql_explain/" /><link rel="prev" href="http://wysiwyz.github.io/posts/gcp_pcd_notes/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/sql_explain/" /><link rel="prev" href="http://wysiwyz.github.io/posts/gcp_pcd_notes/" /><link rel="next" href="http://wysiwyz.github.io/posts/240426-gitlab-ci-note/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -341,7 +345,8 @@ Employee table: &#43;-----&#43;-------&#43;------------&#43;-----------&#43; | i
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/gcp_pcd_notes/" class="prev" rel="prev" title="挑戰一個月內準備完 GCP Cloud Developer"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>挑戰一個月內準備完 GCP Cloud Developer</a></div>
+    <div class="post-nav"><a href="/posts/gcp_pcd_notes/" class="prev" rel="prev" title="挑戰一個月內準備完 GCP Cloud Developer"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>挑戰一個月內準備完 GCP Cloud Developer</a>
+            <a href="/posts/240426-gitlab-ci-note/" class="next" rel="next" title="初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml">初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

@@ -4,27 +4,33 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Cloud architect GCP 🚧 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Cloud architect GCP 🚧" />
-<meta property="og:description" content="Active learning - think and take notes
+        <title>Cloud architect GCP 🚧 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/gcp_pca_course_notes/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="Cloud architect GCP 🚧">
+  <meta property="og:description" content="Active learning - think and take notes
 Review - every once in a while
 Section 01 Getting Started GCP has 200&#43; services. This exam expects knowledge of 40&#43; services
 Exam tests your decision making abilities:
 Which service do you choose in which situation?
 How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?
-Below notes will help with making the tough choices" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://wysiwyz.github.io/posts/gcp_pca_course_notes/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-03-24T13:39:15+08:00" />
-<meta property="article:modified_time" content="2023-03-24T13:39:15+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Cloud architect GCP 🚧"/>
-<meta name="twitter:description" content="Active learning - think and take notes
+Below notes will help with making the tough choices">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-03-24T13:39:15+08:00">
+    <meta property="article:modified_time" content="2023-03-24T13:39:15+08:00">
+    <meta property="article:tag" content="Google_cloud">
+    <meta property="article:tag" content="CA">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Cloud architect GCP 🚧">
+  <meta name="twitter:description" content="Active learning - think and take notes
 Review - every once in a while
 Section 01 Getting Started GCP has 200&#43; services. This exam expects knowledge of 40&#43; services
 Exam tests your decision making abilities:
 Which service do you choose in which situation?
 How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?
-Below notes will help with making the tough choices"/>
+Below notes will help with making the tough choices">
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/gcp_pca_course_notes/" /><link rel="prev" href="http://wysiwyz.github.io/posts/lesson_03_linux/" /><link rel="next" href="http://wysiwyz.github.io/posts/suzume_no_tojimari/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -3052,10 +3058,10 @@ Other locations: 100,000</li>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">SecretVersionName</span> <span class="n">secretVersionName</span> <span class="o">=</span> <span class="n">SecretVersionName</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">projectId</span><span class="o">,</span> <span class="n">secretId</span><span class="o">,</span> <span class="n">versionId</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">AccessSecretVersionResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">accessSecretVersion</span><span class="o">(</span><span class="n">secretVersionName</span><span class="o">);</span>
-</span></span><span class="line"><span class="cl"><span class="n">String</span> <span class="n">secretValue</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getPayload</span><span class="o">().</span><span class="na">getData</span><span class="o">().</span><span class="na">toStringUtf8</span><span class="o">();</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">SecretVersionName</span><span class="w"> </span><span class="n">secretVersionName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SecretVersionName</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">projectId</span><span class="p">,</span><span class="w"> </span><span class="n">secretId</span><span class="p">,</span><span class="w"> </span><span class="n">versionId</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">AccessSecretVersionResponse</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">accessSecretVersion</span><span class="p">(</span><span class="n">secretVersionName</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">String</span><span class="w"> </span><span class="n">secretValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">getPayload</span><span class="p">().</span><span class="na">getData</span><span class="p">().</span><span class="na">toStringUtf8</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>How do you manage your database passwords, your API keys securely?</li>
@@ -4384,7 +4390,7 @@ Other locations: 100,000</li>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/google_cloud/">google_cloud</a>,&nbsp;<a href="/tags/ca/">CA</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/google_cloud/">Google_cloud</a>,&nbsp;<a href="/tags/ca/">CA</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
         </section>

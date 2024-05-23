@@ -4,8 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>JavaScript - dashing dashshound - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="JavaScript - dashing dashshound" />
-<meta property="og:description" content="下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
+        <title>JavaScript - dashing dashshound - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/javascript_2018/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="JavaScript - dashing dashshound">
+  <meta property="og:description" content="下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
 🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
 後面可接英文字母、底線_、錢字號$、數字
 大小寫有區別
@@ -17,14 +19,17 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
 1 2 3 var m = 1; var m = 2; var m = 3; 透過 let 宣告的變數不能被再次宣告
 1 2 3 let m = 1; let m = 2; //⚠️Uncaught SyntaxError: Identifier &#39;m&#39; has already been declared. 變數資料型別 變數本身不帶有資料型別資訊，其中的值/物件才有
 變數沒有型別，值才有 JavaScript支援型別
-基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://wysiwyz.github.io/posts/javascript_2018/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-03-15T10:09:41+08:00" />
-<meta property="article:modified_time" content="2023-03-15T10:09:41+08:00" /><meta property="og:site_name" content="Ich bin yiwen." />
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="JavaScript - dashing dashshound"/>
-<meta name="twitter:description" content="下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
+基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-03-15T10:09:41+08:00">
+    <meta property="article:modified_time" content="2023-03-15T10:09:41+08:00">
+    <meta property="article:tag" content="JavaScript">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JavaScript - dashing dashshound">
+  <meta name="twitter:description" content="下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
 🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
 後面可接英文字母、底線_、錢字號$、數字
 大小寫有區別
@@ -36,7 +41,7 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
 1 2 3 var m = 1; var m = 2; var m = 3; 透過 let 宣告的變數不能被再次宣告
 1 2 3 let m = 1; let m = 2; //⚠️Uncaught SyntaxError: Identifier &#39;m&#39; has already been declared. 變數資料型別 變數本身不帶有資料型別資訊，其中的值/物件才有
 變數沒有型別，值才有 JavaScript支援型別
-基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別"/>
+基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別">
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/javascript_2018/" /><link rel="prev" href="http://wysiwyz.github.io/posts/mypuppy/" /><link rel="next" href="http://wysiwyz.github.io/posts/git_bash_cmds/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -556,8 +561,8 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">document</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="s">&#34;&lt;h1&gt;Jean Jing Jingle&lt;/h1&gt;&#34;</span><span class="o">);</span>
-</span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">document</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="s">&#34;&lt;h1&gt;Jean Jing Jingle&lt;/h1&gt;&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>也可以用來新增script標籤，但要注意結尾標籤寫法<code>&lt;\/script&gt;</code></p>
 <div class="highlight"><div class="chroma">

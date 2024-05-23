@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/240426-gitlab-ci-note/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml">
+  <meta property="og:description" content="使用 CI/CD 建構應用程式 開始 CI/CD 是軟體開發其中一個continuous method，你可以在這方法中持續的建構、測試、部署、監測迭代的程式碼異動。
+這種方式有助於降低在有誤的前一個版本中開發新程式，GitLab CI/CD在開發早期階段就能抓錯，確保部署到正式環境的程式碼符合所建立的程式碼標準，而這個程序是更大的workflow之中的一個環節:
+Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use CI/CD to build your app Secure your app Deploy and release your app Monitor app performance Organize work with projects Manage your code Manage infrastructure Monitor GitLab Runner usage Plan and track work Analyze GitLab usage 1. 首先建立.gitlab-ci.yml 在project根目錄建立 .gitlab-ci.yml，定義在CI/CD pipeline中所要執行的 stages, jobs, script。
+另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。
+沒有硬性規定要怎麼命名，但.gitlab-ci.yml是這個 CI/CD configuration file 最常見的名字。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-04-26T21:38:35+08:00">
+    <meta property="article:modified_time" content="2024-04-26T21:38:35+08:00">
+    <meta property="article:tag" content="CI/CD Yaml Syntax">
+    <meta property="article:tag" content="Pipeline">
+    <meta property="article:tag" content="Job">
+    <meta property="article:tag" content="CI/CD Components">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml">
+  <meta name="twitter:description" content="使用 CI/CD 建構應用程式 開始 CI/CD 是軟體開發其中一個continuous method，你可以在這方法中持續的建構、測試、部署、監測迭代的程式碼異動。
+這種方式有助於降低在有誤的前一個版本中開發新程式，GitLab CI/CD在開發早期階段就能抓錯，確保部署到正式環境的程式碼符合所建立的程式碼標準，而這個程序是更大的workflow之中的一個環節:
+Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use CI/CD to build your app Secure your app Deploy and release your app Monitor app performance Organize work with projects Manage your code Manage infrastructure Monitor GitLab Runner usage Plan and track work Analyze GitLab usage 1. 首先建立.gitlab-ci.yml 在project根目錄建立 .gitlab-ci.yml，定義在CI/CD pipeline中所要執行的 stages, jobs, script。
+另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。
+沒有硬性規定要怎麼命名，但.gitlab-ci.yml是這個 CI/CD configuration file 最常見的名字。">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/240426-gitlab-ci-note/" /><link rel="prev" href="http://wysiwyz.github.io/posts/sql_explain/" /><link rel="next" href="http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/240426-gitlab-ci-note\/"
+        },"genre": "posts","keywords": "CI\/CD yaml syntax, pipeline, job, CI\/CD components","wordcount":  2336 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/240426-gitlab-ci-note\/","datePublished": "2024-04-26T21:38:35+08:00","dateModified": "2024-04-26T21:38:35+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-04-26">2024-04-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2336 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;<span id="/posts/240426-gitlab-ci-note/" class="leancloud_visitors" data-flag-title="初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#使用-cicd-建構應用程式">使用 CI/CD 建構應用程式</a>
+      <ul>
+        <li><a href="#開始">開始</a></li>
+        <li><a href="#cicd-yaml-句法參考">CI/CD YAML 句法參考</a></li>
+        <li><a href="#pipelines">Pipelines</a></li>
+        <li><a href="#jobs">Jobs</a></li>
+        <li><a href="#cicd-components">CI/CD components</a></li>
+        <li><a href="#variables">Variables</a></li>
+        <li><a href="#pipeline-security">Pipeline security</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="使用-cicd-建構應用程式">使用 CI/CD 建構應用程式</h2>
+<h3 id="開始">開始</h3>
+<p>CI/CD 是軟體開發其中一個continuous method，你可以在這方法中持續的建構、測試、部署、監測迭代的程式碼異動。</p>
+<p>這種方式有助於降低在有誤的前一個版本中開發新程式，GitLab CI/CD在開發早期階段就能抓錯，確保部署到正式環境的程式碼符合所建立的程式碼標準，而這個程序是更大的workflow之中的一個環節:</p>
+<table>
+<thead>
+<tr>
+<th>Plan</th>
+<th>Create</th>
+<th>Verify</th>
+<th>Secure</th>
+<th>Release</th>
+<th>Monitor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manage your organization</td>
+<td>Learn Git</td>
+<td><strong>Use CI/CD to build your app</strong></td>
+<td>Secure your app</td>
+<td>Deploy and release your app</td>
+<td>Monitor app performance</td>
+</tr>
+<tr>
+<td>Organize work with projects</td>
+<td>Manage your code</td>
+<td></td>
+<td></td>
+<td>Manage infrastructure</td>
+<td>Monitor GitLab Runner usage</td>
+</tr>
+<tr>
+<td>Plan and track work</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Analyze GitLab usage</td>
+</tr>
+</tbody>
+</table>
+<h5 id="1-首先建立gitlab-ciyml">1. 首先建立<code>.gitlab-ci.yml</code></h5>
+<p>在project根目錄建立 <code>.gitlab-ci.yml</code>，定義在CI/CD pipeline中所要執行的 stages, jobs, script。</p>
+<p>另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。</p>
+<p>沒有硬性規定要怎麼命名，但<code>.gitlab-ci.yml</code>是這個 CI/CD configuration file 最常見的名字。</p>
+<h5 id="2-接著尋找或新建-runners">2. 接著尋找或新建 runners</h5>
+<p>Runners 是替你執行 jobs 的 agents，可以在實體機或者虛擬instances上run jobs。在 yml 檔可以指定你run jobs的時候，要指定使用的container image。Runner會把image載下來，clone你的project，並且在本地或者container裡面 run the job</p>
+<p>如果使用的是 GitLab.com，那就已經可以使用 runners on Linux, Windows and macOS，也可以在GitLab.com註冊你自己的runners。</p>
+<p>如果不是使用 GitLab.com，那可以:
+(1) 在自己管理的instance，使用已經註冊的runner或者註冊一個runner
+(2) 在本機新建一個runner</p>
+<h5 id="3-定義你的-pipelines">3. 定義你的 pipelines</h5>
+<p>pipeline 就是定義在 yml 檔的東西，即檔案內容在 runner 上執行時會發生的事情，是由 jobs 跟 stages 組成:</p>
+<ul>
+<li>Stages 定義執行的順序，通常包含<code>build</code>, <code>test</code>, <code>deploy</code></li>
+<li>Jobs 指定在每個 stage 所要執行的 tasks，例如編譯或測試程式的 job</li>
+</ul>
+<p>pipeline 可以藉由不同類型的事件觸發，例如 commits, merges 或者依排程執行</p>
+<h5 id="4-使用cicd-variable作為-jobs-其中一部分">4. 使用CI/CD variable作為 jobs 其中一部分</h5>
+<p>GitLab CI/CD variable 鍵值對應，是用來儲存『配置設定以及機敏資訊』(例如pcode或者API keys)，並且傳進 pipeline jobs</p>
+<p>有兩種 variables: custom variable 跟 predefined variable</p>
+<ul>
+<li>Custom variable: 由 user 定義，在 yml 檔、GitLab UI或者API建立/管理</li>
+<li>Predefined variable: 由 GitLab 自動設定，提供了關於當前job、pipeline以及enviroment相關的資訊</li>
+</ul>
+<h5 id="5-使用-cicd-components">5. 使用 CI/CD components</h5>
+<p>CI/CD component 可以重複使用的 pipeline 配置單位，一個 pipeline 可以由一個甚至多個CI/CD component組建而成。</p>
+<p>可以用<code>include:component</code>關鍵字來把 CI/CD component 加進 pipeline 設定檔。</p>
+<p>優點: 可以減少重複，改善維護性，使整個project有更好的一致性</p>
+<h4 id="比較複雜的-pipeline">比較複雜的 pipeline</h4>
+<p>這一個TUTORIAL挺不錯的，跟著做會得到一個用Docusaurus產出的網站
+<a href="https://docs.gitlab.com/ee/ci/quick_start/tutorial.html" target="_blank" rel="noopener noreffer ">連結在這裡</a>
+自己的 github 是用 hugo，但 gitlab + docusaurus 是前公司共筆的做法，很好奇，找天來做看看</p>
+<ul>
+<li><code>image</code>: 告訴 runner 這個 job 要以哪一個 image 的 docker container 來 run，這裡 runner 負責:
+<ol>
+<li>下載 container image 並且啟動它</li>
+<li>把你的 GitLab project CLONE 進 running container</li>
+<li>執行 <code>script</code> 裡面列的命令 (一次一行)</li>
+</ol>
+</li>
+<li><code>artifacts</code>: jobs各自獨立，不會跟其他 jobs 共享資源，如果要讓某個 job 產出的檔案能夠為後續的 jobs 所用，必須要把它另存成 artifacts，這樣後續的 jobs 就能接收到 artifacts 並使用產出的檔案
+<pre tabindex="0"><code class="language-yml=" data-lang="yml=">build-job:
+  image: node
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - &#34;build/&#34;
+</code></pre></li>
+<li><code>allow_failure</code>: 會斷斷續續失敗，或者預期會失敗的 job 可能會降低生產力或者難以排除錯誤。使用這個關鍵字可以讓 job 失敗時不至於造成 pipeline 執行的停擺
+<ul>
+<li><code>allow_failure: true</code></li>
+</ul>
+</li>
+<li><code>dependencies</code>: 藉由列出 artifacts 的取得來源 jobs，來管控個別的 jobs 要下載的 artifacts
+<ul>
+<li>don&rsquo;t fetch any artifacts: <code>dependencis: []</code></li>
+<li>fetch artifacts from dependencies list:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="w">  </span><span class="nt">dependencies</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">build-job</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li><code>rules</code>: 在每個jobs裡面加上rules，以配置這些jobs應該在那些 pipeline 執行，例如 merge request pipeline、scheduled pipelines。Rules是由高到低來評估，如果其中一個規則 rules 吻合，這 job 就會被加進 pipeline
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">build-job</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">node</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">npm install</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">npm run build</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">artifacts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;build/&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">$CI_PIPELINE_SOURCE == &#39;merge_request_event&#39;  </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># Run for all changes to a merge request&#39;s source branch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># Run for all changes to the default branch</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="規劃遷移到-gitlab-cicd">規劃遷移到 GitLab CI/CD</h4>
+<p>from Bamboo, GitHub actions, Jenkins, a maven build from Jenkins, CircleCI &hellip;</p>
+<h4 id="cicd-範例">CI/CD 範例</h4>
+<p>使用 Dpl部署, end-to-end, npm, php</p>
+<h3 id="cicd-yaml-句法參考">CI/CD YAML 句法參考</h3>
+<p>關鍵字分成三種類型: Global keyword, Header keyword, Job keyword (另外有 Deprecated keyword)
+<a href="https://docs.gitlab.com/ee/ci/yaml/" target="_blank" rel="noopener noreffer ">CI/CD configuration file syntax reference</a></p>
+<p>GitLab Runner 這應用程式跟 GitLab CI/CD 協作在pipeline run jobs，有兩種 runners:</p>
+<ol>
+<li>GitLab-hosted runners</li>
+</ol>
+<p>所有 GitLab.com 或 GitLab Dedicated 上面建立的 project 預設都有啟用這個 ，如果有owner角色的話，可以<a href="https://docs.gitlab.com/ee/ci/runners/runners_scope.html#disable-shared-runners" target="_blank" rel="noopener noreffer ">停用 runners</a></p>
+<ol start="3">
+<li>Self-managed runners</li>
+</ol>
+<p>如果要建自有的runner，首先要安裝GitLab Runner，再到GitLab.com註冊自有的runner</p>
+<p>若是你的組織有一整組 runners，擴增縮減的監控調校方式可以<a href="https://docs.gitlab.com/runner/fleet_scaling/index.html" target="_blank" rel="noopener noreffer ">參考這裡</a></p>
+<h4 id="gitlab-runner-tags">GitLab Runner TAGS</h4>
+<p>註冊完 runner 之後，可以加上 tags。這個 tag 會映射到每個 jobs 設定<code>tags:</code>底下的內容</p>
+<p>Example: 以下的 job 執行時會使用掛<code>ruby</code> tag的 runner</p>
+<pre tabindex="0"><code>job:
+  tags:
+    - ruby
+</code></pre><ul>
+<li>使用 <code>config.toml</code> 設定 runner，這檔案是在 runner installation 的時候就載下來的。可以用來調整個別指定runner或者所有runners的設定。可以調 logging, cache, concurrency, memory, CPU limits 等其它設定</li>
+<li>使用 Prometheus 監控 runners，可以檢視當前運行中 jobs 的數量，以及這些 runners 用了多少 CPU</li>
+</ul>
+<h4 id="runner-execution-flow">Runner execution flow</h4>
+<p>以下文章解釋 GitLab, GitLabRunner 還有 Executor 之間的關係很易懂，就不在此贅述了</p>
+<ul>
+<li><a href="https://chengweichen.com/2021/03/gitlab-ci-executor.html" target="_blank" rel="noopener noreffer ">艦長你有事嗎 關於Runner的Executor</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLBd8JGCAcUAEwyH2kT1wW2BUmcSPQzGcu" target="_blank" rel="noopener noreffer ">為你自己學ci/cd</a></li>
+</ul>
+<h3 id="pipelines">Pipelines</h3>
+<p>Pipeline 是持續整合、持續交付、持續部署之中，最高層級的component</p>
+<p>Pipeline 包括了:</p>
+<ul>
+<li>Jobs: 定義了要做什麼事情，例如編譯code的job、測試code的job</li>
+<li>Stages: 定義什麼時候要run這些jobs，例如在compile stage之後才到run tests stage</li>
+</ul>
+<p>Job 是由 runners 執行，如果concurrent runner數量足夠的話，同一個stage的多個jobs會被平行處理。</p>
+<p>如果一個stage的所有jobs都執行成功，pipeline才會執行到下一個stage。</p>
+<p>如果一個stage有任何一個job fails，通常不會執行下個stage，pipeline會提前結束。</p>
+<p>通常 pipeline會自動執行，一旦建立了就不需要其它的介入。但有時候你也可以手動跟pipeline做交互。</p>
+<p>典型的pipeline會包含四個stages，依序以下列的順序執行:</p>
+<ul>
+<li><code>build</code> stage: 包含一個<code>compile</code>job</li>
+<li><code>test</code> stage: 通常會有一至多個test jobs</li>
+<li><code>staging</code> stage: 包含一個名為<code>deploy-to-stage</code>的job名稱</li>
+<li><code>production</code> stage: 包含一個名為<code>deploy-to-prod</code>的job名稱</li>
+</ul>
+<p>可以用多種不同方式來配置pipelines</p>
+<ul>
+<li>
+<p>basic pipelines: 在每個stage中，並行執行所有的jobs，後接下個stage</p>
+</li>
+<li>
+<p>directed acyclic graph pipeline (DAG): 根據job之間關係，run的速度通常比basic pipelines還要快 (可以避免不必要的等待)</p>
+</li>
+<li>
+<p>merge request pipelines: 只有 merge request 執行時才會用的 pipeline</p>
+</li>
+<li>
+<p>merged result pipelines: 在實際合併分支之前測試合併之後的結果</p>
+</li>
+<li>
+<p>merge trains: 利用 merged results pipelines，讓merges的動作一個接著一個執行</p>
+</li>
+<li>
+<p>parent-child pipelines: 將複雜的pipeline拆解成一個parent pipeline，這個parent pipeline可以觸發多個 child sub-pipelines，parent &amp; children 都run在相同一個project，使用一樣的SHA，這種類型的pipeline架構常常出現在 mono-repos</p>
+</li>
+<li>
+<p>multi-project pipelines: 將負責不同projects的pipelines合併起來</p>
+</li>
+</ul>
+<p><a href="https://docs.gitlab.com/ee/ci/pipelines/pipeline_architectures.html#basic-pipelines" target="_blank" rel="noopener noreffer ">pipeline architecture</a></p>
+<h4 id="pipeline配置設定">pipeline配置設定</h4>
+<p>可以用 CI/CD yaml 配置 jobs 以及 stages，也可以用 GitLab UI 配置特定層面的 pipelines</p>
+<p>如果是用VS Code編輯GitLab CI/CD配置文件，可以安裝GitLab Workflow VS code extension幫助你驗證configuration並檢視pipeline status</p>
+<h5 id="在manual-pipeline預先填變數">在manual pipeline預先填變數</h5>
+<p>可以使用<code>description</code>與<code>value</code>關鍵字來定義 pipeline-level(global)的變數，這些變數在手動run pipeline時可以預填內容。description 主要是用來解釋這個variable用來做什麼，允許的值是什麼。</p>
+<p>job-level variable 無法填預設內容。</p>
+<p>如果configuration檔案的pipeline-level variable有列description，但沒有定義value的話，就會是空白值(blank value)，例如:</p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">variables:
+  DEPLOY_CREDENTIALS:
+    description: &#34;The deployment credentials.&#34;
+  DEPLOY_ENVIRONMENT:
+    description: &#34;Select the deployment target. Valid options are: &#39;canary&#39;, &#39;staging&#39;, &#39;production&#39;, or a stable branch of your choice.&#34;
+    value: &#34;canary&#34;
+</code></pre><ul>
+<li><code>DEPLOY_CREDENTIALS</code> 沒有預先填value，所以每次手動run pipeline的時候都要定義值</li>
+<li><code>DEPLOY_ENVIRONMENT</code> 預設值是 canary，在description區塊解釋了其它可用的選項</li>
+</ul>
+<h5 id="配置一個可擇的預填變數清單">配置一個可擇的預填變數清單</h5>
+<p>在手動run pipeline時，也可以定義一個陣列讓執行pipeline的user做選擇，用<code>options</code>關鍵字列清單，<code>value</code>關鍵字列預設選項。注意放在 value 的字串也必須包含在 options 清單中，這個清單在Run pipeline UI頁會變成一個下拉選單。</p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">variables:
+  DEPLOYMENT_ENVIRONMENT:
+    value: &#34;staging&#34;
+    option:
+      - &#34;production&#34;
+      - &#34;staging&#34;
+      - &#34;canary&#34;
+    description: &#34;The deployment target, Set to &#39;staging&#39; env by default.&#34;
+</code></pre><h5 id="run-a-pipeline-by-url-query-string">run a pipeline by URL query string</h5>
+<p>可以使用一個查詢字串來預填 Run Pipeline頁，例如:</p>
+<ul>
+<li><code>.../pipelines/new?ref=my_branch&amp;var[foo]=bar&amp;file_var[file_foo]=file_bar</code>
+<ul>
+<li>Run for field: <code>my_branch</code>
+<ul>
+<li>指明要用哪一個branch來預填 <strong>Run for</strong> field</li>
+</ul>
+</li>
+<li>Variables:
+<ul>
+<li>variable:
+<ul>
+<li>指明<code>Variable</code>類型variable</li>
+<li>Key: <code>foo</code></li>
+<li>Value: <code>bar</code></li>
+</ul>
+</li>
+<li>file:
+<ul>
+<li>指明<code>File</code>類型的variable</li>
+<li>Key: <code>file_foo</code></li>
+<li>Value: <code>file_bar</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="add-manual-interaction">Add manual interaction</h5>
+<ul>
+<li><a href="https://docs.gitlab.com/ee/ci/jobs/job_control.html#create-a-job-that-must-be-run-manually" target="_blank" rel="noopener noreffer ">Manual jobs</a>:
+<ul>
+<li>定義: 除非user啟動之，否則這個job永遠不會run，通常用在 deploy to production 的情境中</li>
+<li>設定: 在這個job之下加上關鍵字<code>when: manual</code>，這樣pipeline啟動時就會被skipped掉</li>
+</ul>
+</li>
+</ul>
+<h6 id="start-all-manual-jobs-in-a-stage">Start all manual jobs in a stage</h6>
+<ul>
+<li>如果某一個stage裡面全部都是manual jobs，可以透過<code>Run all manual</code> 來同時啟動所有jobs (但如果這stage有包含non-manual job就不會顯示此按鈕)</li>
+</ul>
+<h5 id="skip-a-pipeline">Skip a pipeline</h5>
+<ul>
+<li>如果要commit但不想要觸發pipeline，則在commit message加上<code>ci skip</code>或者<code>skip ci</code> (大小寫不分)</li>
+<li>另外，在 Git 2.10 或更後期的版本，使用 <code>ci.skip</code> 作為 git push 的選項，通常並不會跳脫不執行merge request pipeline
+<pre tabindex="0"><code>git push -o ci.skip 
+# 
+</code></pre><ul>
+<li><code>-o</code>: 這裡指的是 &ndash;push-option</li>
+<li>使最近的一筆push不會產生一個CI/CD pipeline (只會skip branch pipeline，merge request pipeline如果有的話還是會執行)</li>
+<li>另外這個command也不會跳過CI/CD整合相關的 pipeline (例如Jenkins)</li>
+</ul>
+</li>
+</ul>
+<h5 id="delete-a-pipeline">Delete a pipeline</h5>
+<p>擁有該 project 的 Owner 角色的 user 有權限刪除 pipeline，但刪除一個pipeline並不會自動刪掉它的child pipelines</p>
+<p>刪除一個 pipeline 會使所有 pipeline caches 逾期，並且立刻刪除所有相關物件，例如jobs, logs, artifacts, triggers (刪除後就無法復原了)</p>
+<h5 id="pipeline-security-on-a-protected-branches">Pipeline security on a protected branches</h5>
+<ul>
+<li>
+<p>protected branch</p>
+<ul>
+<li>可以設定哪些user可以merge, 哪些user可以push，那些能夠force push, 那些user能透過 <a href="https://docs.gitlab.com/ee/api/commits.html" target="_blank" rel="noopener noreffer ">Commits API</a> 修改branch</li>
+<li>如果pipeline在這類branch執行，會實行嚴格的 security model</li>
+</ul>
+</li>
+<li>
+<p>如果某 user 有權限 merge 或 push 進這個 branch，就可以</p>
+<ul>
+<li>使用 Web UI 或 pipelines API，run manual pipeline</li>
+<li>run 有排程的 pipeline</li>
+<li>觸發 pipeline</li>
+<li>跑動態應用程式安全測試(DAST, as dynamic application security test)</li>
+<li>在既有的 pipeline 觸發手動的action</li>
+<li>使用 Web UI 或 pipelines API，重試或取消既有的jobs</li>
+</ul>
+</li>
+<li>
+<p>protected variable:</p>
+<ul>
+<li>只有當user存取機敏資料 (例如 deployment credentials, deployment token) 的權限，才適合分配 merge code to protected branches 的權限給此 user</li>
+<li>protected branches的pipeline，其下的jobs可以存取protected variables</li>
+</ul>
+</li>
+<li>
+<p>protected runner:</p>
+<ul>
+<li>受保護的runner只能在受保護的分支run jobs，以避免未受信任的程式碼在受保護的runner上執行，也避免部署相關的機敏資料被意外取得</li>
+<li>為了確保要在受保護的runner執行的jobs不在regular普通runners執行，這些jobs需要加上關鍵字 <code>&lt;job_name&gt;: tags:</code> <a href="https://docs.gitlab.com/ee/ci/yaml/index.html#tags" target="_blank" rel="noopener noreffer ">reference job tags</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="檢視pipeline">檢視pipeline</h4>
+<ul>
+<li>可以用來過濾pipeline list的條件有: trigger author, branch name, status, tag, source</li>
+</ul>
+<h5 id="使用-stage-或者-needs-配置來分組-jobs">使用 stage 或者 <code>needs</code> 配置來分組 jobs</h5>
+<p>如果用<code>needs</code>關鍵字配置jobs，則會有兩種在pipeline明細頁分組jobs的選項：<code>group jobs by stage</code>, <code>group jobs by Job dependencies</code></p>
+<ul>
+<li><code>needs: []</code> : 不依賴於任何其它jobs</li>
+</ul>
+<p>設定依賴的方式:</p>
+<ol>
+<li>在jobs yml設定檔裡面加 <code>needs: [&quot;&lt;the_job_name_to_depend_on&gt;&quot;]</code>
+<ul>
+<li>jobs array 上限數量50個</li>
+<li>設為 empty array，則這個 job 在此 pipeline 創建時就會開始作業了</li>
+<li>其它 <a href="https://docs.gitlab.com/ee/ci/yaml/index.html#needs" target="_blank" rel="noopener noreffer ">needs syntax</a></li>
+</ul>
+</li>
+<li>可以在UI檢視依賴關係: Group jobs by Job dependencies -&gt; 打開 show dependencies</li>
+</ol>
+<h4 id="pipeline-success-and-duration-charts">pipeline success and duration charts</h4>
+<p>點選要查看的 project -&gt; 左側選單 -&gt; Analyze -&gt; CI/CD 就可以看到</p>
+<p>Note: DORA 指標(DevOps Research and Assessment)
+<a href="https://docs.gitlab.com/ee/user/analytics/ci_cd_analytics.html#view-dora-deployment-frequency-chart" target="_blank" rel="noopener noreffer ">Reference: 部署頻率,異動交付期間,服務恢復時間,更改失敗率</a></p>
+<h3 id="jobs">Jobs</h3>
+<p>Jobs是GitLab的CI/CD pipeline中，最基本的元素，在<code>.gitlab-ci.yml</code>用 command清單來配置jobs，以達成建構、測試、部署程式碼的目的。</p>
+<blockquote>
+<p>基本上是<code>export=</code>儲存變數，符合某條件時<code>if[...]; then ...; fi</code>儲存變數，<code>cd</code> 移動到某資料夾，<code>docker build</code>&hellip;，<code>docker push</code> &hellip;，<code>./gradlew</code>&hellip;，查看<code>java --version</code>，或者<code>aws ecr</code>指令操作</p>
+</blockquote>
+<p>Jobs:</p>
+<ul>
+<li>定義在符合哪些條件下，應該執行哪些作業</li>
+<li>是 top-level 元素，任意命名(arbitary name)，至少必須包含<code>script</code>子句</li>
+<li>可以定義的jobs數量沒有上限</li>
+</ul>
+<p>Job 由 runners 收集，在 runner environement 執行，每個 jobs 的運行都各自獨立於其它的 jobs。</p>
+<h4 id="在-pipeline-中檢視-jobs">在 pipeline 中檢視 jobs</h4>
+<p>可以在pipeline查看其中的jobs，點選個別的job可以查看這個job log，另外可以:</p>
+<ul>
+<li>取消這個job</li>
+<li>如果失敗，重試這個job</li>
+<li>如果通過，再跑一次這個job</li>
+<li>清除這個job log</li>
+</ul>
+<h4 id="查看-job-failed-失敗原因">查看 job failed 失敗原因</h4>
+<p>可以用滑鼠 hover 到 pipeline graph(在pipeline details檢視頁), pipeline widgets(在 merge requests&amp;commit頁面) 或者 job views 查看失敗原因</p>
+<h4 id="pipeline-裡面的-job-order">pipeline 裡面的 job order</h4>
+<p>視pipeline graph的類型不同，有不同的job順序</p>
+<ul>
+<li><code>full pipeline graph</code>(詳細大圖): 以name排序</li>
+<li><code>pipeline mini graph</code>(): 先以status排序。再以name排序</li>
+</ul>
+<p>Job status order:</p>
+<ul>
+<li><code>failed</code> red x</li>
+<li><code>warning</code> yellow !</li>
+<li><code>pending</code> grey circle</li>
+<li><code>running</code> blue two-thirds sector</li>
+<li><code>manual</code> black gear</li>
+<li><code>scheduled</code> ?</li>
+<li><code>canceled</code> white \</li>
+<li><code>success</code> green v</li>
+<li><code>skipped</code> gray &raquo;</li>
+<li><code>created</code> ?</li>
+</ul>
+<h4 id="job-命名限制">job 命名限制</h4>
+<ul>
+<li>
+<p>job名稱必須小於或等於255字元，如果一個檔案有多個相同名稱的jobs，只有一個會被加進pipeline，而且無法預判是哪一個被加進pipeline</p>
+</li>
+<li>
+<p>如果被included的job同名，其參數會被merging</p>
+</li>
+<li>
+<p>以下的關鍵字不能當作job名稱:
+image | services | stages | types
+before_script | after_script | variables
+cache | include | true | false | nil
+pages:deploy (configured for a <code>deploy</code> stage)</p>
+</li>
+</ul>
+<h4 id="在-pipeline-裡面替-jobs-做分組">在 pipeline 裡面替 jobs 做分組</h4>
+<p>如果你有很多類似的 jobs，呈現的 pipeline graph 就會太長難以閱讀</p>
+<p>如果 job names 是以特定格式命型，就可以自動將相似的 jobs 做分組，在 regular pipeline 就會被摺疊成單一的組別</p>
+<p>在<code>.gitlab-ci.yml</code>將多個jobs寫成一組，可以用數字以及以下符號擇一：</p>
+<ul>
+<li>Slash 正斜線: <code>slash-test 1/3</code>, <code>slash-test 2/3</code>, <code>slash-test 3/3</code></li>
+<li>Colon 冒號: <code>slash-test 1:3</code>, <code>slash-test 2:3</code>, <code>slash-test 3:3</code></li>
+<li>Space 空格: <code>slash-test 0 3</code>, <code>slash-test 1 3</code>, <code>slash-test 2 3</code></li>
+</ul>
+<h4 id="隱藏-hidden-jobs">隱藏 hidden jobs</h4>
+<p>可以用 comment out (加#,CTRL+L) 或者job_name前面打句點</p>
+<p>前面打句點的 job 可以用來作為範本給其它 jobs 做重複使用的配置，使用方式有二:</p>
+<ul>
+<li><code>extends</code> 關鍵字</li>
+<li><a href="https://docs.gitlab.com/ee/ci/yaml/yaml_optimization.html#anchors" target="_blank" rel="noopener noreffer ">YAML anchors</a>，即<code>&amp;</code>,<code>&lt;&lt;</code>,<code>*</code></li>
+</ul>
+<h4 id="控制-default-keyword-以及-global-variable-的繼承">控制 default keyword 以及 global variable 的繼承</h4>
+<p>可以用<code>inherit:default</code> 管控 <code>default keywords</code> 的繼承
+可以用<code>inherit:variables</code> 管控 <code>global variables</code> 的繼承</p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">default:
+  image:
+  before_script:
+
+variables:
+  DOMAIN: ywc.wednes.com
+  WEBHOOK_URL: https:/wysiwyz.io
+
+job_name_taht_inherits_all:
+  inherit:
+    default: true
+    variables: true
+  script: bundle exec inheriting all
+  
+job_that_doesnt_inherit_anything:
+  inherit:
+    default: false
+    variables: false
+  script: bundle exec inheriting nothing
+  
+job_that_doesnt_require_before_script_and_domain:
+  inherit:
+    default: [image]
+    variables: [WEBHOOK_URL]
+  script: echo this job does not inherit before script and domain
+    
+</code></pre><h4 id="run-manual-jobs的時候指定variables">run manual jobs的時候指定variables</h4>
+<p>在 pipeline view 點擊要手動執行的 job 的名稱，不要點 Run ▶ 按鈕</p>
+<p>可以看到 Variables 有 key 跟 value 的欄位可輸入內容</p>
+<p>如果輸入的 key 已經定義在 CI/CD settings 或者 <code>.gitlab-ci.yml</code> 檔，那這個手動加入的變數會覆寫原有的值，新的值不會被隱碼，會被expanded（<a href="https://docs.gitlab.com/ee/ci/variables/index.html#prevent-cicd-variable-expansion" target="_blank" rel="noopener noreffer ">加上$參照到其它variable</a>）</p>
+<h4 id="延後一個job的執行">延後一個job的執行</h4>
+<p>當你不想要立刻執行job，可以使用<code>when:delayed</code>關鍵字來使延遲 job execution 一段時間</p>
+<p>roll out 新程式碼的時候，timed incremental rollout 尤其有利於逐步部署程式碼到生產環境</p>
+<p>例如說，如果你要開始部署新程式碼:</p>
+<ul>
+<li>User 沒有遇到困難，GitLab 可以自動地從0~100% 完成部署</li>
+<li>User 在新程式碼遇到疑難的話，可以藉由取消pipeline並倒回到上一個穩定版本，來停止 timed incremental rollout</li>
+</ul>
+<h4 id="展開或折疊-job-log-sections">展開或折疊 job log sections</h4>
+<p>Job log 可區分為不同 sections，每個section可以被折疊或展開，每個section會顯示這期間的相關訊息
+點擊 <code>&gt;</code> 可以展開 section；點擊 <code>v</code> 可以折疊 section</p>
+<h5 id="客制化可折疊的section">客制化可折疊的section</h5>
+<p>可以用 manual output special codes (這是GitLab用來判斷哪一個section要摺疊的程式碼)，在 job logs 裡面建立 collapsible section:</p>
+<ul>
+<li>Marker: Section起始處
+<code>\e[0Ksection_start:UNIX_TIMESTAMP:SECTION_NAME\r\e[0K</code> + <code>TEXT_OF_SECTION_HEADER</code></li>
+<li>Marker: Section結束的地方
+<code>\e[0Ksection_end:UNIX_TIMESTAMP:SECTION_NAME\r\e[0K</code></li>
+</ul>
+<p>這兩段marker都是加在 CI configuration 的腳本區塊，使用 <code>echo -e </code>&ldquo;starting_marker&rdquo;、<code>echo -e </code>&ldquo;ending_marker&rdquo;</p>
+<p>如果使用的是 Zsh shell，會需要跳脫字元，例如<code>\e</code>→<code>\\e</code>以及<code>\r</code> → <code>\\r</code></p>
+<ul>
+<li>UNIX_TIMESTAMP: 例如<code>data+%s</code>，是Unix timestamp</li>
+<li>SECTION_NAME: 這個section的名稱，只能由英數字以及<code>_</code>,<code>.</code>,<code>-</code>這三種符號構成</li>
+<li><code>\r\e[0K</code>: 用來避免將section markers顯示在渲染出來的job log裡面 (在raw job log仍然看的到)，切換到 raw job log 可以點 job log 右上角，選擇<strong>show complete raw</strong> (文件icon)
+<ul>
+<li><code>\r</code>: carriage return</li>
+<li><code>\e[0K</code>: 清除 line ANSI escape sequence (一定要加0，<code>\e[K</code>無效)</li>
+</ul>
+</li>
+</ul>
+<p>另外也可以 <a href="https://docs.gitlab.com/ee/ci/jobs/#use-a-script-to-improve-display-of-collapsible-sections" target="_blank" rel="noopener noreffer ">用腳本改善可折疊的section display</a></p>
+<h4 id="deployment-jobs-部署作業">deployment jobs 部署作業</h4>
+<p>任何使用 <code>environment</code> 關鍵字，以及<code>action:start</code> 的job，就稱之為Deployment jobs，用途是部屬程式碼到環境中</p>
+<p>Deployment jobs 不必須在 deploy stage</p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">deploy_job_this_is:
+  script:
+    - deploy-to-cats.sh
+  environment:
+    name: production
+    url: https://this-is-a-simple-url.com
+    action: start
+</code></pre><h3 id="cicd-components">CI/CD components</h3>
+<p>CI/CD component 是可以重複使用的單一的 pipeline 配置單位。component 可以建立成一個大型 pipeline 的其中一小部分，甚至可以構成完整的 pipeline configuration。</p>
+<p>component可以用<a href="https://docs.gitlab.com/ee/ci/yaml/inputs.html" target="_blank" rel="noopener noreffer ">傳入參數</a>的配置來動態調整行為。</p>
+<p>CI/CD components 類似於用<code>include</code>關鍵字加入其它的configuration yml file (參考<a href="https://docs.gitlab.com/ee/ci/yaml/includes.html" target="_blank" rel="noopener noreffer ">官方Docs</a>) ，但使用components有以下不少優勢：</p>
+<ul>
+<li>可以將 components 列在 <a href="https://docs.gitlab.com/ee/ci/components/#cicd-catalog" target="_blank" rel="noopener noreffer ">CI/CD catalog</a> 之中
+(問: 這應該是有Owner角色的使用者才能看到，因為我都看不到😅)</li>
+<li>可以發行 component 並指明使用特定一個版本</li>
+<li>多個 component 可以定義在同一個 project 並且一起定義版本編號</li>
+</ul>
+<p>除了創建自有的 components，也可以在CI/CD catalog 搜尋現成且符合所需功能的已發布 components</p>
+<ul>
+<li>可以參考以下的影片 &amp; Beta版的
+<ul>
+<li><a href="https://www.youtube.com/watch?v=-yvfSFKAgbA" target="_blank" rel="noopener noreffer ">以可重複使用的 component 建立有效率的 DevSecOps workflow</a></li>
+<li><a href="https://gitlab.navattic.com/cicd-catalog" target="_blank" rel="noopener noreffer ">Beta CI/CD Catalog Product Tour</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="component-project">Component project</h4>
+<p>component project 是一個 GitLab project，包含 個 repository，hosting 一至多個 components。這個 project 之中的多個 components 都一同編版本號，一個 project 上限最多可以有 30 個 components。</p>
+<p>如果其中某一個 component 要求跟其它 components 不一樣的版本編號，那這個 component 應該被搬到另外一個專用的 project。</p>
+<h4 id="建立一個-component-project">建立一個 component project</h4>
+<ol>
+<li>New project with README.md (如要發布到 CI/CD catalog 的話，顯示這個component摘要的時候，會用到 description &amp; project avatar)</li>
+<li>依照以下的 required directory structure，替每一個 component 加上 YAML 配置檔案
+<a href="https://docs.gitlab.com/ee/ci/components/#directory-structure" target="_blank" rel="noopener noreffer ">需求目錄架構</a>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">spec:
+  inputs:
+    stage:
+      default: test
+---
+component-job:
+  script: echo job 1
+  stage: $[[ inputs.stage ]]
+</code></pre></li>
+</ol>
+<p>這樣就可以立刻開始使用component了，使用 include 關鍵字，component 參照的格式:</p>
+<blockquote>
+<p><code>&lt;fully-qualified-domain-name&gt;/&lt;project-path&gt;/&lt;component-name&gt;@&lt;specific-version&gt;</code>:</p>
+</blockquote>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">include: 
+  - component: gitlab.example.com/yws-org/security-components/secret-detection@1.0.0
+    inputs:
+      stage: build
+</code></pre><ul>
+<li><code>secret-detection</code> 指的可能是 <code>secret-detection.yml</code> 檔名，也可能是指某一個目錄，目錄裡面的<code>template.yml</code></li>
+<li></li>
+</ul>
+<p><a href="https://docs.gitlab.com/ee/ci/components/#use-a-component" target="_blank" rel="noopener noreffer ">參考docs連結在這裡</a></p>
+<h4 id="component-project-的目錄架構">component project 的目錄架構</h4>
+<ul>
+<li>
+<p>如果只有單一一個component</p>
+<pre tabindex="0"><code>├── templates/
+│   └── my-component.yml
+├── LICENSE.md
+├── README.md
+└── .gitlab-ci.yml
+</code></pre><ul>
+<li>這裡的<code>gitlab-ci.yml</code>作用是用來<a href="https://docs.gitlab.com/ee/ci/components/#test-the-component" target="_blank" rel="noopener noreffer ">寫job測試 my-component</a>，並且<a href="https://docs.gitlab.com/ee/ci/components/#publish-a-new-release" target="_blank" rel="noopener noreffer ">發布新版本</a>用的</li>
+<li>component都放在最高層的<code>templates/</code>目錄底下</li>
+<li>每一個components也可以添加自己的<code>README.md</code>文件，再連向上層的 top-level <code>README.md</code> 文件</li>
+<li><code>LICENSE.md</code>，選擇像是 The MIT License from open source initiative 或者 Apache License, ver.2.0
+<blockquote>
+<p>這個LICENSE是開源許可證，用來定義使用、複製、修改程式碼的條款與條件，Apache License 2.0 適合涉及專利保護相館的考量，而 The MIT License 比較簡單靈活，沒有專利條款限制，只要求保留版權聲明和許可證</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>如果有多個components</p>
+<pre tabindex="0"><code>├── templates/
+│   ├── my-simple-component.yml
+│   └── my-complex-component/
+│       ├── template.yml
+│       ├── Dockerfile
+│       ├── test.sh
+│       └── README.md
+├── LICENSE.md
+├── README.md
+└── .gitlab-ci.yml
+</code></pre></li>
+</ul>
+<h4 id="component-versions">Component versions:</h4>
+<p>以最高優先權排序，component version可以是:</p>
+<ol>
+<li>commit SHA code，例如 <code>439e77c88be865fa99afeed0ecd4ee3b17ae4af7</code></li>
+<li>tag
+<ul>
+<li>例如 <code>1.0.0</code></li>
+<li>如果一個name有tag跟commit SHA同時存在，則以commit SHA優先</li>
+<li>發佈到 CI/CD 的 component 應該依照 <a href="https://docs.gitlab.com/ee/ci/components/#semantic-versioning" target="_blank" rel="noopener noreffer ">semantic versioning</a> 的標準加上 tag
+<ul>
+<li>semantic version 是定義該異動為 major, minor, patch 或其他類型異動的標準</li>
+<li><code>1.0.0</code>、<code>2.3.4</code>、<code>1.0.0-alpha</code> 這些都是有效 semantic versions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>branch name分支名稱，<code>main</code>，如果 tag 跟 branch 皆存在，以 tag 為優先</li>
+<li><code>~latest</code>，永遠指向CI/CD catalog上面最新發行的 semantic version</li>
+</ol>
+<p>建議使用有發布至 CI/CD catalog 的版本，用 commit SHA 或者 branch 名稱參照的版本可能尚未發布到 catalog，是供測試用。</p>
+<h5 id="避免使用-global-keywords-關鍵字">避免使用 global keywords 關鍵字</h5>
+<p>避免使用會影響到整個pipeline裡面所有jobs執行的所有components，包括定義在 main <code>.gitlab-ci.yml</code> 或者其他 included components 的 jobs</p>
+<p>Global keywords:</p>
+<ul>
+<li>default: 如果job沒有定義這些keyword，就會用到default區的keyword，
+<ul>
+<li>subkey 包含 <code>image</code>, <code>retry</code>, <code>script</code>, <code>services</code>, <code>interruptible</code>, <code>tags</code>, <code>timeout</code>, <code>cache</code>, <code>hooks</code>,<code>id_tokens</code>, <code>artifiacts</code>, <code>before_script</code>, <code>after_script</code> etc.</li>
+</ul>
+</li>
+<li>include: 用來定義外部引入的 yaml 檔，把主要的<code>.gitlab-ci.yml</code>拆成多個檔案增加可讀性或減少重複程式碼
+<ul>
+<li>subkey 包含 <code>component</code>, <code>local</code>, <code>project</code>, <code>remote</code>, <code>template</code>, <code>inputs</code>, <code>rules</code></li>
+</ul>
+</li>
+<li>stages: 定義在某個或某些stages所要執行的jobs
+<ul>
+<li>subkey 包含 <code>.pre</code>, <code>build</code>, <code>test</code>, <code>deploy</code>, <code>.post</code></li>
+</ul>
+</li>
+<li>workflow: 用來控制 pipeline 行為
+<ul>
+<li>subkey 包含 <code>auto_cancel:on_new_commit</code>, <code>auto_cancel:on_job_failure</code>, <code>name</code>, <code>rules</code>, etc.</li>
+</ul>
+</li>
+</ul>
+<p>避免使用global keyword的替代方案:</p>
+<ul>
+<li>Not_recommand:
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">default</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ruby:3.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rspec-1</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">bundle exec rspec dir2/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rspec-2</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">bundle exec rspec dir2/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>Solution_1: 直接在每個 jobs 裡面加 configuration
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">rspec-1</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ruby:3.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">bundle exec rspec dir2/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rspec-2</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ruby:3.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">bundle exec rspec dir2/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>在 component 之中使用 <code>extends</code> 關鍵字，使用獨特字以減少 component 在 merged 進 configuration 的時候可能造成的重複命名風險
+<code>.rspec-image</code> is hidden job, as template for reducing and extending duplicate configuration.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">.rspec-image</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ruby:3.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rspec-1</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">extends</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">.rspec-image</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">bundle exec rspec dir2/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rspec-2</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">ruby:3.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">bundle exec rspec dir2/</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h5 id="用-inputs-取代-hardcoded-值">用 <code>inputs</code> 取代 hardcoded 值</h5>
+<p>避免在 CI/CD component 裡面寫死資料，造成後續使用者要審核component內部細節之後才能使用之</p>
+<p>hard-coded寫死相關的問題常常發生在<code>stage</code>關鍵字這區，如果一個component job的stage寫死，所有使用這個component的pipeline都必須定義完全相同的stge，或者<a href="https://docs.gitlab.com/ee/ci/yaml/includes.html#override-included-configuration-values" target="_blank" rel="noopener noreffer ">覆寫configuration</a>，用 merging method 重新定義變數的值。</p>
+<p>比較好的方法是，使用<code>input</code>關鍵字來做動態component配置，讓component使用者可以自行指定所需的值。</p>
+<p>Example: 在 component 使用 <code>inputs.stage</code> 當參數，使用<code>$[[</code><em>{要動態傳入的參數}</em><code>]]</code>參照傳入參數名稱</p>
+<ul>
+<li>
+<p>以下是<code>component</code>配置文件:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">stage</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l">test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">unit-test</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">$[[ inputs.stage ]]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">echo unit tests</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">integration-test</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">$[[ inputs.stage ]]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">echo integration tests</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>以下是使用上述component的project:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">stages</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">verify, deploy]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">include</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">component</span><span class="p">:</span><span class="w"> </span><span class="l">$CI_SERVER_FQDN/ywsorg/ruby/test@1.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">verify</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h5 id="用-inputs-取代客製的-cicd-variables">用 <code>inputs</code> 取代客製的 CI/CD variables</h5>
+<p>如果要在component使用CI/CD variable，可以先評估可否改用<code>inputs</code>關鍵字。如果<code>inputs</code>是較佳解，應該避免要求user去定義custom variable來配置component。</p>
+<p>通常inputs是明確定義在components的<code>spec</code>區塊，比variable有更好的驗證性(檢查格式、可維護性、文檔化，有助於預期pipeline的可靠性和穩定性)</p>
+<p>Example:</p>
+<ul>
+<li>component 宣告 inputs.scanner-output 要傳入變數 (默認是 json):
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">scanner-output</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">default</span><span class="p">:</span><span class="w"> </span><span class="l">json</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">my-scanner</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">my-scan --output $[[ inputs.scanner-output ]]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>參照到這個component的project (指定用 yaml)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">include</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">component</span><span class="p">:</span><span class="w"> </span><span class="l">$CI_SERVER_FQDN/path/to/project/my-scanner@1.0.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">scanner-output</span><span class="p">:</span><span class="w"> </span><span class="l">yaml</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p>但有些情況，使用CI/CD variable會比使用inputs更適合，例如:</p>
+<ul>
+<li>使用<a href="https://docs.gitlab.com/ee/ci/variables/predefined_variables.html" target="_blank" rel="noopener noreffer ">預定義的變數</a>，自動配置component以符合user&rsquo;s project</li>
+<li>要求user用遮碼或受保護的CI/CD variable儲存機敏資訊</li>
+</ul>
+<h3 id="variables">Variables</h3>
+<p>CI/CD variable 可以用來：</p>
+<ul>
+<li>控制 job 與 pipelines 的行為</li>
+<li>儲存想要重複使用的數值</li>
+<li>避免在 <code>.gitlab-ci.yml</code> hardcode 數值</li>
+</ul>
+<p>可以在<a href="https://docs.gitlab.com/ee/ci/jobs/index.html#specifying-variables-when-running-manual-jobs" target="_blank" rel="noopener noreffer ">run manual jobs的時候幫某個特定 pipeline 覆寫變數的值</a>，或者在 <a href="https://docs.gitlab.com/ee/ci/pipelines/index.html#prefill-variables-in-manual-pipelines" target="_blank" rel="noopener noreffer ">manual pipeline 預填變數</a></p>
+<p>如果要在 <code>.gitlab-ci.yml</code> 檔案裡面建立一個 CI/CD 變數，需要用 variables 關鍵字：</p>
+<pre tabindex="0"><code class="language-yaml=" data-lang="yaml=">variables:
+  GLOBAL_JEN: &#34;A global variable&#34;
+  
+job1:
+  variables:
+    JOB_GEM: &#34;A Job1 variable&#34;
+  script:
+    - echo &#34;Variables are &#39;$GLOBAL_JEN&#39; and &#39;$JOB_GEM&#39;&#34;
+    
+job2:
+  script:
+    - echo &#34;Variables are &#39;$GLOBAL_JEN&#39; and &#39;$JOB_GEM&#39;&#34;
+</code></pre><ul>
+<li>如果定義在檔案最上方，那這個檔案裡面所有jobs都能夠使用</li>
+<li>如果定義在job裡面，那就只有這一個job才能使用</li>
+<li>就以上例子來看:
+<ul>
+<li><code>job1</code> 會印出 <code>'Variables are 'A global variable' and 'A Job1 variable'</code></li>
+<li><code>job2</code> 會印出 <code>'Variables are 'A global variable' and ''</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="如何在單一個single-job裡面-skip掉不用全域變數">如何在單一個single job裡面 skip掉不用全域變數</h5>
+<p>如果要在某一個 job 裡面 block 掉不用全域變數的話，給 variables 設定<code>{}</code></p>
+<pre tabindex="0"><code class="language-yml=" data-lang="yml=">variables:
+  NOSY_GLOBAL_VAR: &#34;helloIamJennie&#34;
+
+job1:
+  variables: {}
+  script:
+    - echo This job does not need any global variables
+</code></pre><p>機敏資料的環境變數不適合放在 yml 檔，要透過 UI 設定，也可以透過 API endpoint 新增這些變數，例如:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><a href="https://docs.gitlab.com/ee/api/project_level_variables.html" target="_blank" rel="noopener noreffer ">project-level</a></th>
+<th><a href="https://docs.gitlab.com/ee/api/group_level_variables.html" target="_blank" rel="noopener noreffer ">group-level</a></th>
+<th><a href="https://docs.gitlab.com/ee/api/instance_level_ci_variables.html" target="_blank" rel="noopener noreffer ">instance-level</a></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>create</td>
+<td>/project/:id/variables</td>
+<td>/group/:id/variables</td>
+<td>/admin/ci/variables</td>
+</tr>
+</tbody>
+</table>
+<p>預設而言，forked出來的專案無法存取父專案的 CI/CD variables。</p>
+<h5 id="cicd-variable-security">CI/CD variable security</h5>
+<p>有任何異動到<code>.gitlab-ci.yml</code>檔的 merge request，在做以下動作之前都要先仔細審核：</p>
+<ul>
+<li>before merging the changes</li>
+<li>為了從forked project提交的 merge request，在parent project run pipeline</li>
+</ul>
+<p>像是在 job script 裡面引用到 USER, PASSWORD, SECRET_VARIABLE 這類 variable 就會造成機敏資訊暴露</p>
+<p>預防對策:</p>
+<ol>
+<li>job logs中，機敏訊息的variable設定都要在mask variable checkbox打勾，再update variable</li>
+<li>限制某些受保護的branches或者受保護的tags才能使用機敏的variables (protect variable checkbox)</li>
+<li>或者用 3rd party secret management provider 儲存取得機敏資訊</li>
+</ol>
+<h5 id="什麼是-variable-type-variable-什麼是-file-type-variable">什麼是 variable type variable, 什麼是 file type variable</h5>
+<p>Variable type variable定義:</p>
+<ul>
+<li>一個key-value對</li>
+<li>可以作為job裡面的環境變數</li>
+</ul>
+<p>通常project, group, instance的CI/CD variable預設為<code>variable type</code>(variable_type of <code>env_var</code>)，但也可以設定成<code>file type</code>(variable_type of <code>file</code>)</p>
+<p>File type variable定義:</p>
+<ul>
+<li>包含一個key, value 以及 file</li>
+<li>也可依當作job裡面的環境變數，如下作用
+<ul>
+<li>key: 環境變數名稱</li>
+<li>value: 要存在某一個暫存檔的值，代表文件的內容</li>
+<li>path to the temporary file: 暫存文件的路徑當作環境變數的值</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>要注意，在 GitLab 15.6 或更早之前的版本中，文件的內容當作value，而不是檔案路徑當作value</p>
+</blockquote>
+<p>不能將定義在 <code>.gitlab-ci.yml</code> 檔的 CI/CD variable 設置為檔案類型的變數，有繞過的方法:</p>
+<ol>
+<li>先在 variables 設置 variable type variable</li>
+<li>接著在 job script(CICD作業)中，把這個 variable 的值寫入一個檔案 <code>echo &quot;$VAR_TYPE_VAR_URL&quot; &gt; &quot;transformed_file.txt&quot;</code></li>
+<li>這樣需要檔案路徑的指令列工具(mytool)就能使用了</li>
+</ol>
+<h5 id="在-job-scripts-使用-cicd-variables">在 job scripts 使用 CI/CD variables</h5>
+<ul>
+<li>Bash, sh 或類似的 shells: <code>$</code>{KEY}</li>
+<li>PowerShell: <code>$</code>{KEY} 或者 <code>$env:</code>{KEY}
+<ul>
+<li>有些情況需要加quotes，如下
+<code>&quot;-DsosposDailyUsr=$env:SOSPOS_DAILY_USR&quot;</code></li>
+</ul>
+</li>
+<li>Windows Batch*: <code>%</code>{KEY}<code>%</code>
+<ul>
+<li>如果是在 windows 環境中跑 CI/CD pipeline</li>
+<li>這類型的腳本附檔名為<code>.bat</code>或<code>.cmd</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>另外有其他以下功能</p>
+<ol>
+<li>將job_A建立的variable傳遞給後續的job_B (存在副檔名為 .env 的檔案)</li>
+<li>控制哪些jobs不需要使用<code>.env</code>(<code>dotenv</code>)裡面的環境變數</li>
+<li>變數的value設定多個字串，以空格隔開，再用script的迴圈達到一個變數多個值(array)的效果</li>
+<li>另外還有覆寫variable，限制哪些人才能複寫
+&hellip; 其它參考網址👉 <a href="https://docs.gitlab.com/ee/ci/variables/#pass-an-environment-variable-to-another-job" target="_blank" rel="noopener noreffer ">Doc</a></li>
+</ol>
+</blockquote>
+<h4 id="predefined-cicd-variables">predefined CICD variables</h4>
+<p>每個 GitLab CI/CD pipeline 都可以使用預定義的變數。</p>
+<p>在兩個不同pipeline執行階段，可以使用預定義的變數，有些是在 GitLab 創建 pipeline 時有效，可以在 job scripts 裡面使用，或者可以用來做 pipeline 配置。另外一些則是在 runners run job 的時候才有效，只能在 job scripts 使用。</p>
+<p>在 runner 階段才有效的預定義變數，無法在 trigger-jobs 或者以下三個關鍵字內使用：</p>
+<ul>
+<li><code>workflow</code>, <code>include</code>, <code>rules</code></li>
+<li><a href="https://docs.gitlab.com/ee/ci/pipelines/downstream_pipelines.html#trigger-a-downstream-pipeline-from-a-job-in-the-gitlab-ciyml-file" target="_blank" rel="noopener noreffer ">trigger-jobs</a></li>
+</ul>
+<h4 id="where-variables-can-be-used">where variables can be used</h4>
+<p>可以放在兩個地方:</p>
+<ol>
+<li>GitLab 端，放在 <code>.gitlab-ci.yml</code> 檔裡</li>
+<li>GitLab Runner 端，<code>config.toml</code></li>
+</ol>
+<p>GitLab 內部變數的 expansion 機制</p>
+<p>要寫成 <code>$variable</code>, <code>${variable}</code>, 或者<code>%variable%</code> 這樣的格式</p>
+<h3 id="pipeline-security">Pipeline security</h3>
+<p>secret 定義：password, SSH keys, access token 或其他驗證身分用的資料</p>
+<h4 id="secrets-storage">secrets storage</h4>
+<p>分成兩種</p>
+<ul>
+<li>Secrets management providers</li>
+</ul>
+<p>存在 GitLab instance 以外的空間，例如 HashiCorp Vault、Azure Key Vault、Google Cloud Secret Manager
+實作細節可參考：<a href="https://docs.gitlab.com/ee/ci/secrets/index.html#" target="_blank" rel="noopener noreffer ">Using external secrets in CI</a></p>
+<ul>
+<li>CI/CD variables</li>
+</ul>
+<p>要在 CICD pipeline 儲存重複使用 data 的話，<a href="https://docs.gitlab.com/ee/ci/variables/index.html" target="_blank" rel="noopener noreffer ">CI/CD variables</a>是很方便的選項，但相較於前者 secrets management providers 不安全</p>
+<ul>
+<li>
+<p>variables 存在 project, group, instances 的<code>settings</code>，有權限存取 settings 的 user 就能訪問 variables</p>
+<blockquote>
+<p>[路徑] Repository / Settings / CI/CD / Variables</p>
+</blockquote>
+</li>
+<li>
+<p>variables 可以被覆寫（這樣就很難識別哪裡的變數被用到</p>
+</li>
+<li>
+<p>如果 pipeline 不小心配置錯誤的話，可能會意外暴露 variable</p>
+</li>
+</ul>
+<p>適合存在 variables 的資訊應該是非機敏資料（不用擔心資料暴露），如果有機敏層級比較低的資料要存在 Variables，應該要遮蔽（mask variable checkbox 打勾）或保護之（protect variable checkbox 打勾，再update variable）</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-04-26</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/240426-gitlab-ci-note/" data-hashtag="CI/CD yaml syntax"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/240426-gitlab-ci-note/" data-title="初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ci/cd-yaml-syntax/">CI/CD Yaml Syntax</a>,&nbsp;<a href="/tags/pipeline/">Pipeline</a>,&nbsp;<a href="/tags/job/">Job</a>,&nbsp;<a href="/tags/ci/cd-components/">CI/CD Components</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/sql_explain/" class="prev" rel="prev" title="如何查看哪一個SQL語法是最佳解：explain執行計畫"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>如何查看哪一個SQL語法是最佳解：explain執行計畫</a>
+            <a href="/posts/240503-non-blocking-jdbc/" class="next" rel="next" title="非阻塞式🌌 Non Blocking Jdbc">非阻塞式🌌 Non Blocking Jdbc<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

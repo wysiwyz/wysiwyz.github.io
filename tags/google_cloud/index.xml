@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>google_cloud - Tag - Ich bin yiwen.</title>
+        <title>Google_cloud - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/google_cloud/</link>
-        <description>google_cloud - Tag - Ich bin yiwen.</description>
+        <description>Google_cloud - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 31 Jan 2024 15:44:43 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/google_cloud/" rel="self" type="application/rss+xml" /><item>
     <title>挑戰一個月內準備完 GCP Cloud Developer</title>
     <link>http://wysiwyz.github.io/posts/gcp_pcd_notes/</link>

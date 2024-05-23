@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Contract-Testing - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/contract-testing/</link>
+        <description>Contract-Testing - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 10 May 2024 17:39:51 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/contract-testing/" rel="self" type="application/rss+xml" /><item>
+    <title>消費者與提供者之間的合約測試 - Pact.io</title>
+    <link>http://wysiwyz.github.io/posts/240510-pact.io/</link>
+    <pubDate>Fri, 10 May 2024 17:39:51 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/240510-pact.io/</guid>
+    <description><![CDATA[Introduction Pact是一個程式碼優先工具，使用contract tests測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。
+測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。
+Pact合約測試流程動圖
+Consumer 針對provider mock執行單元測試，驗證自己程式的行為 跨系統之間的互動行為會捕捉至contract Contract由不同團隊之間共享，使用Pactflow工具能夠確保協同合作性 Contract中的requests 重演了 provider API 並驗證 consumer 的預期值 Provider 的測試中所有其他系統都用替身，所以能隔離測試 Javascript code guide, 5 mins
+1 2 3 4 5 group = &#39;au.com.dius.pactworkshop&#39; dependencies { testImplementation &#39;au.com.dius.pact.consumer:junit5:4.6.5&#39; } contract testing是什麼 Contract testing 是用來測試某個integration point的技術，藉由隔離測試個別的APP，以確保它接收或傳送出的訊息，符合紀載在合約上的共識。
+如果是透過HTTP通訊的應用程式，這些訊息就會是HTTP請求/回覆，如果是使用Queue的應用程式，這些訊息就會是要傳送到隊列的內容。
+Pact實作合約測試的方式，就是確認所有呼叫你的test doubles的測試都會得到如同實際app一樣的回傳值。
+什麼時候使用contract testing 當你有兩個需要互通有無的service時，contract testing就可以立刻派上用場，例如API client要與web front-end溝通的應用場景。雖然單一客戶端對單一個服務是很常建的use case，contract testing在微服務架構(有多個services的環境)更彰顯其價值。如果有格式良好的合約測試，開發就要避免版本地域就更家容易。合約測試可說是微服務開發與部署的殺手級應用。
+合約測試術語 consumer: 例如需要接收資料的client provider: 例如server上的API，提供client所需的資料 通常在微服務架構下，client/server的術語不適合所有情境，例如透過訊息隊列的溝通就不適合。所以這裡會以consumer與provider為主。
+消費者驅動的contracts Pact是程式碼優先、消費者驅動的合約測試工具，通常由寫程式的開發或測試人員使用。在自動化的consumer tests過程中產生這個contract。這種模式的一個主要優勢是，全部的communication中，只測試到 consumer會實際使用到的部分communication。也就是說，任何不會被當前的consumer所使用到的 provider行為，都可以在不弄壞測試結果的前提下做異動修改。
+另外Pact contract也不像schema或者規格 (例如 OAS) 這類靜態的artefact定義資源的所有可能的狀態，pact contract實施方式是藉由執行測試案例的集合，每個元素描述了具體的請求/回應對。Pact實際上就是範例式合約。參考Schema測試與Contract測試的差異]]></description>
+</item>
+</channel>
+</rss>
