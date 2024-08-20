@@ -11,7 +11,7 @@
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
 UGO User Group Other
 由三組位元所組成（八進制）
-l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x,dr-xr-x---, 數字:
+l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
 ❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
 允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
 SUID &amp; SGID &amp; SBIT
@@ -30,7 +30,7 @@ SUID &amp; SGID &amp; SBIT
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
 UGO User Group Other
 由三組位元所組成（八進制）
-l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x,dr-xr-x---, 數字:
+l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
 ❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
 允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
 SUID &amp; SGID &amp; SBIT

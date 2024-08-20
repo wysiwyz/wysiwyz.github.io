@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.126.1">
+	<meta name="generator" content="Hugo 0.133.0">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
@@ -56,6 +56,24 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/s_docker_learn/">Docker</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Docker Note docker ps
+​ list running containers
+docker stop &lt;container_id&gt;
+​ stops the container
+docker start &lt;container_id&gt;
+​ starts stopped container
+docker ps -a
+​ lists running and stopped container
+docker run &lt;image_name&gt;:
+​ pulls image and starts container
+​ (docker pull + docker start in one command)
+[CONTAINER Port vs HOST Port]
++ Multiple containers can run on your host machine
++ Your laptop has only certain ports available</div><div class="post-footer">
+        <a href="/posts/s_docker_learn/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/docker/">Docker</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ss_junit/">使用 JUnit & Mockito 測試 Java 程式</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">使用 JUnit &amp; Mockito 測試 Java 程式 Mockito &mdash; 本來以為這跟薄荷飲料mochito同音，實際要唸成 /mɑkiːtoʊ/ 或者 /mˈɒkiːtoʊ/ ，音譯就是『莫kito』或者『碼kito』，總之 k 要發音，因為他是模擬方法 (&ldquo;mock all methods&rdquo;)
 Unit Testing簡介 Unit Test 是什麼 單元測試是用來測試你的程式碼一部分區塊 的一個小型方法
@@ -73,7 +91,7 @@ Gradle運行在所有主流作業系統，只需要Java JDK 8 或者以上的版
 ​ macOS的作業系統，可以用Homebrew package manager安裝，指令 brew install gradle
 (2) 設置環境
 Linux or MacOS: 在所選的目錄下解壓縮
-$ mkdir /opt/gradle$ unzip -d /opt/gradle gradle-8.5-bin.zip$ ls /opt/gradle/gradle-8.5LICENSE NOTICE bin getting-started.html init.d lib media Microsoft Windows
+$ mkdir /opt/gradle $ unzip -d /opt/gradle gradle-8.5-bin.zip $ ls /opt/gradle/gradle-8.5 LICENSE NOTICE bin getting-started.html init.d lib media Microsoft Windows
 用 File Explorer 創建新的目錄 C:\Gradle，再把下載後解壓縮的 gradle-8.5 資料夾拉進去這個目錄
 (3) 配置環境變數
 Linux or MacOS: 配置 PATH 環境變數，注意要包括解壓縮後擋彈的 bin 目錄
@@ -103,7 +121,7 @@ Hibernate 可以自動生成SQL 語句，自動執行
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/ss_springboot/">1hr37mins30secs de SpringBoot</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">SpringBoot 2023 SpringBoot initializr Dependencies:
-SpringBoot DevTools Spring Web Spring Data JPA and Hibernate PostgreSQL Driver Starting the server src- main- java- com.example.demo.DemoApplication- resources- static- templates- application.properties- test- java- resources Create a simple API 1 2 3 4 5 6 7 @RestController //To Make the class to serve restful endpoint public class DemoController {} @GetMapping //To set Restful endpoint on method public List&lt;String&gt; hello() { return List.</div><div class="post-footer">
+SpringBoot DevTools Spring Web Spring Data JPA and Hibernate PostgreSQL Driver Starting the server src - main - java - com.example.demo.DemoApplication - resources - static - templates - application.properties - test - java - resources Create a simple API 1 2 3 4 5 6 7 @RestController //To Make the class to serve restful endpoint public class DemoController {} @GetMapping //To set Restful endpoint on method public List&lt;String&gt; hello() { return List.</div><div class="post-footer">
         <a href="/posts/ss_springboot/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
@@ -129,14 +147,6 @@ Latency 常用指令：
 因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作</div><div class="post-footer">
         <a href="/posts/ss_redis_notes/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/react_scrimba/">Think in REACT</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-10-25">2023-10-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">0. 建立 React 靜態頁面的入門方法 \index.html 在 head 加入 react 以及 react-dom 的 script 連結 referred doc
-在 head 加入 babel.min.js 的 script 連結 referred doc
-✏️ script 除了加上 index.js 的檔案來源，也要記得加上 type 屬性 text/babel，不然無法順利 ReactDOM.render() 喔！
-1 2 3 4 5 6 7 8 9 10 11 12 &lt;html&gt; &lt;head&gt; &lt;link rel=&#34;stylesheet&#34; href=&#34;index.css&#34;&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react@18/umd/react.development.js&#34;&gt;&lt;/script&gt; &lt;script crossorigin src=&#34;https://unpkg.com/react-dom@18/umd/react-dom.development.js&#34;&gt;&lt;/script&gt; &lt;script src=&#34;https://unpkg.com/babel-standalone@6/babel.min.js&#34;&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&#34;root&#34;&gt;&lt;/div&gt; &lt;script src=&#34;index.js&#34; type=&#34;text/babel&#34;&gt;&lt;/script&gt; &lt;/body&gt; &lt;/html&gt; \index.js ReactDOM.</div><div class="post-footer">
-        <a href="/posts/react_scrimba/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

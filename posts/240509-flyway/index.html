@@ -8,7 +8,7 @@
   <meta property="og:site_name" content="Ich bin yiwen.">
   <meta property="og:title" content="資料庫版控，走起，高飛！Flyway">
   <meta property="og:description" content="因為G.K.老師常常強調 Flyway 的優勢，資料庫版控、避免共用的資料庫不知道被誰扔了dirty data導致其他人開發的功能壞掉，等等的好處，所以來看看官方文件。
-初探Flyway Flyway@build.gradle: dependencies {implementation &#39;org.flywaydb:flyway-core&#39;} Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flywayspring.flyway.schemas={default_schema}spring.flyway.user=spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
+初探Flyway Flyway@build.gradle: dependencies { implementation &#39;org.flywaydb:flyway-core&#39; } Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flyway spring.flyway.schemas={default_schema} spring.flyway.user= spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
 Flyway Desktop 提供GUI讓資料庫開發跟數據家能夠追蹤資料庫物件的異動，並且在版本控制中管理資料遷移的腳本。
 Flyway command-line 是可以獨立運行的套件 (只需要操作系統，不用其他支援框架)，有Windows、macOS以及Linux版本。適合想要用命令列介面遷移資料庫的user，而不用將Flyway整合進應用程式，也不用安裝build tool。
 另外可以用 API 將 Flway 整合進應用程式，在程式啟動時一同執行資料庫遷移。
@@ -26,7 +26,7 @@ Migrate 將schema遷移成最新的版本 是Flyway workflow的中心，它會�
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="資料庫版控，走起，高飛！Flyway">
   <meta name="twitter:description" content="因為G.K.老師常常強調 Flyway 的優勢，資料庫版控、避免共用的資料庫不知道被誰扔了dirty data導致其他人開發的功能壞掉，等等的好處，所以來看看官方文件。
-初探Flyway Flyway@build.gradle: dependencies {implementation &#39;org.flywaydb:flyway-core&#39;} Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flywayspring.flyway.schemas={default_schema}spring.flyway.user=spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
+初探Flyway Flyway@build.gradle: dependencies { implementation &#39;org.flywaydb:flyway-core&#39; } Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flyway spring.flyway.schemas={default_schema} spring.flyway.user= spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
 Flyway Desktop 提供GUI讓資料庫開發跟數據家能夠追蹤資料庫物件的異動，並且在版本控制中管理資料遷移的腳本。
 Flyway command-line 是可以獨立運行的套件 (只需要操作系統，不用其他支援框架)，有Windows、macOS以及Linux版本。適合想要用命令列介面遷移資料庫的user，而不用將Flyway整合進應用程式，也不用安裝build tool。
 另外可以用 API 將 Flway 整合進應用程式，在程式啟動時一同執行資料庫遷移。

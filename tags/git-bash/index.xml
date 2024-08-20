@@ -25,7 +25,7 @@ squash
 將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
 Voilà! 原本的兩個commits合併成一個惹！
 git commit amend 可修改最近一筆local端本分支的 msg
-Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt;↖[j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用]]></description>
+Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt; ↖ [j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用]]></description>
 </item>
 </channel>
 </rss>

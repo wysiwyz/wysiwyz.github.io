@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SAA-C03 AWS Solution Architect Associate 準備心得（上） - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/saa-c03-one/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="SAA-C03 AWS Solution Architect Associate 準備心得（上）">
+  <meta property="og:description" content="Motivation 自從去年八月考過 GCP PCA 之後，發現 (1) 想去的幾家公司使用的雲服務供應商都是用 AWS 居多，加上 (2) 某次聚會上遇到的進外商的優秀前同事有 AWS SAA-C03 證照，(3) 今年 AWS 新聞說要在台灣設立資料中心，以及 (4) 前公司提供了 AWS 考照半價補助但沒機會用到，還有 (5) 在 Facebook 社團看到 AWS 官方提供了兩種考照半價優惠的方案（一個要組隊報名，另一個只要在時限前完成官方部分課程）。
+基於看到 Educate Program 再過一天就要報名截止的心態，我刻不容緩的完成兩章的指定課程，趕緊送出申請，並且在一週後的星期三收到報名成功通知信。
+Requirement 報名成功通知信主要有三個重點：
+要完成三個任務才能再填表單申請半價考試券 voucher
+完成 skills builder 某一個課程（要提供課程完成100%截圖） 在 skills builder 某一個 exam set 考試達到 72 / 100 的成績 提供了一個 Notion URL 以及一個 Discord URL
+可以在 notion 裡面看到其他人的考試心得、考古題資源還有 AWS 學習影片 9/27 之前考試通過的話可以拿到 AWS 背包或者 AWS T-Shirt；分享心得可以拿到筆電支架
+許願 SAA 考過是拿到 T-shirt，但是 8/19 的考試券通知信是公告背包，也許可以拿來當地震逃難包的選手之一（？）">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-08-20T11:41:20+08:00">
+    <meta property="article:modified_time" content="2024-08-20T11:41:20+08:00">
+    <meta property="article:tag" content="AWS">
+    <meta property="article:tag" content="SAA-C03">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SAA-C03 AWS Solution Architect Associate 準備心得（上）">
+  <meta name="twitter:description" content="Motivation 自從去年八月考過 GCP PCA 之後，發現 (1) 想去的幾家公司使用的雲服務供應商都是用 AWS 居多，加上 (2) 某次聚會上遇到的進外商的優秀前同事有 AWS SAA-C03 證照，(3) 今年 AWS 新聞說要在台灣設立資料中心，以及 (4) 前公司提供了 AWS 考照半價補助但沒機會用到，還有 (5) 在 Facebook 社團看到 AWS 官方提供了兩種考照半價優惠的方案（一個要組隊報名，另一個只要在時限前完成官方部分課程）。
+基於看到 Educate Program 再過一天就要報名截止的心態，我刻不容緩的完成兩章的指定課程，趕緊送出申請，並且在一週後的星期三收到報名成功通知信。
+Requirement 報名成功通知信主要有三個重點：
+要完成三個任務才能再填表單申請半價考試券 voucher
+完成 skills builder 某一個課程（要提供課程完成100%截圖） 在 skills builder 某一個 exam set 考試達到 72 / 100 的成績 提供了一個 Notion URL 以及一個 Discord URL
+可以在 notion 裡面看到其他人的考試心得、考古題資源還有 AWS 學習影片 9/27 之前考試通過的話可以拿到 AWS 背包或者 AWS T-Shirt；分享心得可以拿到筆電支架
+許願 SAA 考過是拿到 T-shirt，但是 8/19 的考試券通知信是公告背包，也許可以拿來當地震逃難包的選手之一（？）">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/saa-c03-one/" /><link rel="prev" href="http://wysiwyz.github.io/posts/240522-solidity-smart-contract/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SAA-C03 AWS Solution Architect Associate 準備心得（上）",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/saa-c03-one\/"
+        },"genre": "posts","keywords": "AWS, SAA-C03","wordcount":  291 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/saa-c03-one\/","datePublished": "2024-08-20T11:41:20+08:00","dateModified": "2024-08-20T11:41:20+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SAA-C03 AWS Solution Architect Associate 準備心得（上）</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-08-20">2024-08-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;291 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/posts/saa-c03-one/" class="leancloud_visitors" data-flag-title="SAA-C03 AWS Solution Architect Associate 準備心得（上）">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#motivation">Motivation</a></li>
+    <li><a href="#requirement">Requirement</a></li>
+    <li><a href="#準備方向">準備方向</a></li>
+    <li><a href="#準備進度">準備進度</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="motivation">Motivation</h2>
+<p>自從去年八月考過 GCP PCA 之後，發現 (1) 想去的幾家公司使用的雲服務供應商都是用 AWS 居多，加上 (2) 某次聚會上遇到的進外商的優秀前同事有 AWS SAA-C03 證照，(3) 今年 AWS 新聞說要在台灣設立資料中心，以及 (4) 前公司提供了 AWS 考照半價補助但沒機會用到，還有 (5) 在 Facebook 社團看到 AWS 官方提供了兩種考照半價優惠的方案（一個要組隊報名，另一個只要在時限前完成官方部分課程）。</p>
+<p>基於看到 Educate Program 再過一天就要報名截止的心態，我刻不容緩的完成兩章的指定課程，趕緊送出申請，並且在一週後的星期三收到報名成功通知信。</p>
+<h2 id="requirement">Requirement</h2>
+<p>報名成功通知信主要有三個重點：</p>
+<ol>
+<li>
+<p>要完成三個任務才能再填表單申請半價考試券 voucher</p>
+<ul>
+<li>完成 skills builder 某一個課程（要提供課程完成100%截圖）</li>
+<li>在 skills builder 某一個 exam set 考試達到 72 / 100 的成績</li>
+</ul>
+</li>
+<li>
+<p>提供了一個 Notion URL 以及一個 Discord URL</p>
+<ul>
+<li>可以在 notion 裡面看到其他人的考試心得、考古題資源還有 AWS 學習影片</li>
+</ul>
+</li>
+<li>
+<p>9/27 之前考試通過的話可以拿到 AWS 背包或者 AWS T-Shirt；分享心得可以拿到筆電支架</p>
+<blockquote>
+<p>許願 SAA 考過是拿到 T-shirt，但是 8/19 的考試券通知信是公告背包，也許可以拿來當地震逃難包的選手之一（？）</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="準備方向">準備方向</h2>
+<ol>
+<li>
+<p>學習面</p>
+<p>我主要是以 AWS Skills Builder 的影片為主，Udemy 或 Youtube 影片為輔。</p>
+<p>官方的 Skills Builder 使用下來自己體感覺得相較於 Google Cloud Skills Boost 使用起來，影片資源陳列的方式比較難一目瞭然。例如 GCP Skills Boost 打開可以直接看到有幾部影片、幾個 Quizzes，但 AWS Skills Builder 不一定每個章節都會有小考，這部分可能也是因為自己用的 AWS 是個人帳號，但是在使用 GCP Skills Boost 的時候用的是前公司帳號，有 Google Partner 加持。</p>
+</li>
+<li>
+<p>實務面</p>
+<p>除了在公司有實際練習到幾個功能（少掉很多 Fancy a.k.a. 比較貴比較盤子的服務），另外也有看 FreeCodeCamp 一部有 50 多小時、由 ExamPro 製作的 SAA-C03 影片。</p>
+<blockquote>
+<p>自己在準備證照的過程中有知會公司，隱約覺得相較於前公司，主管對於考這種雲服務證照的支持態度有比較多保留態度。所以在這一個月的準備期間，我的首要原則是必須理論實務並重，然後最好要有一個自己的 AWS 帳號多練習把它練熟。</p>
+</blockquote>
+</li>
+<li>
+<p>題目面</p>
+<ul>
+<li>
+<p>使用 Educate Program 提供的 Notion 裡面的考古題</p>
+</li>
+<li>
+<p>使用 ExamTopics 考古題</p>
+</li>
+<li>
+<p>把 ExampTopics 考古題用 Google App Script 存進一張 Google Sheet</p>
+</li>
+<li>
+<p>用 Google App Script 將 Google Sheet 的題目，每隔 30 分鐘隨機抽一題題目/選項/Discussion，用 LineNotify 傳送到 Line ChatRoom</p>
+<blockquote>
+<p>有點像是利用單字卡加深印象</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="準備進度">準備進度</h2>
+<p><strong>7/30 - 7/31</strong> 完成 AWS <code>Cloud Practitioner Essentials</code> Chapter 01 ~ 02</p>
+<p><strong>7/31 - 8/7</strong> 完成 AWS Cloud Practioner Essentials Chapter 03 ~ 11; 看 Udemy AWS CLF-C02 影片</p>
+<p><strong>8/7 - 8/13</strong> 完成 AWS Skill Builder 以下兩個課程並提交 voucher 申請</p>
+<ul>
+<li><code>Exam Prep Standard Course: AWS Certified Solutions Architect - Associate (SAA-C03)</code></li>
+<li><code>Exam Prep Official Question Set: AWS Certified Cloud Practitioner (CLF-C02 - English)</code></li>
+</ul>
+<p><strong>8/19 - 9/20</strong> 看考古題 ＋ 補完官方 SAA-C03 的影片</p>
+<ul>
+<li>ExamTopics 981 題（可能看不完但會拼命看完，看 user Discussion 很好玩）</li>
+<li>在 Google App Script 寫程式將 ExamTopics 題庫輸出到 Google Sheet，再每 30 分鐘抽一題目/選項/解析，以 Line Notify 送到自己的 Line Chatroom</li>
+<li>其它學習資源
+<ul>
+<li>雲育鏈出版的 <a href="https://book.tpml.edu.tw/bookDetail/825341?qs=%7B%5Eurl3%2C%2Fsearch4%2Cquery%5E%3A%7B%5E%2Cs23%2CFullText4%2C%2Cs13%2C%E5%A4%A7%E8%A9%B1aws%E9%9B%B2%E7%AB%AF%E6%9E%B6%E6%A7%8B%5E%7D%7D&amp;serialNo=3" target="_blank" rel="noopener noreffer ">大話AWS雲端架構</a></li>
+<li><a href="https://youtu.be/c3Cn4xYfxJY?si=LHsgLowB0ej4NXLI" target="_blank" rel="noopener noreffer ">FreeCodeCamp SAA-C03 50 hours Full Course with Demo</a>
+如果想要跟 QwikLab 一樣動手實作 (get your hand dirty) 但又不知道從何開始，推薦跟這個影片實作</li>
+<li>Udemy 的課程（這兩個 <a href="https://www.udemy.com/share/103aFP3@F9nUeyZTKwnWO0B3T0xywrB5nl1cVDMWvHedRaxwI-PcKZXe18asT_q0hutwduzSKw==/" target="_blank" rel="noopener noreffer ">CLF-C02</a>、<a href="https://www.udemy.com/share/102INo3@IGIXhHA8UNE5R_Qpl4epqKgH-W4GoWkcr07HEqweZLkojReM-p0g-OF_87MMoxJ89A==/" target="_blank" rel="noopener noreffer ">SAP-C02</a>）
+SAP-C02 是 SAA-C03 再進階，是當初還沒看到 Educate Program 就買的課程，想說前主管說 <del>GCP 不用考 associate 準備 professional 就好，那 AWS 應該也同理可證</del></li>
+</ul>
+</li>
+</ul>
+<p>先這樣，後續再補考試心得！</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-08-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/saa-c03-one/" data-hashtag="AWS"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/saa-c03-one/" data-title="SAA-C03 AWS Solution Architect Associate 準備心得（上）"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/aws/">AWS</a>,&nbsp;<a href="/tags/saa-c03/">SAA-C03</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/240522-solidity-smart-contract/" class="prev" rel="prev" title="Smart contract, wallet, solidity 新手村"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Smart contract, wallet, solidity 新手村</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

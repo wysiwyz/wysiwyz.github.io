@@ -10,8 +10,8 @@
   <meta property="og:description" content="Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
 Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
 Asymmetric Encryption:
-Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygenid_rsa id_rsa.pub PKI - Public Key Infrastructure
-Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0# create certificate signing requestcat &gt; akshay.yamlvi akshay.csrvi akshay.yamlkubectl create -f akshay.yamlcertificatesigningrequest.certificates.k8s.io/akshay createdkubectl get csrkubectl certificate approve akshaykubectl get csr agent-smith -o yamlkubectl certificate deny agent-smithkubectl get csrkubectl delete csr agent-smith Create certificate signing request">
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygen id_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwd ls cat akshay.csr cat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0 # create certificate signing request cat &gt; akshay.yaml vi akshay.csr vi akshay.yaml kubectl create -f akshay.yaml certificatesigningrequest.certificates.k8s.io/akshay created kubectl get csr kubectl certificate approve akshay kubectl get csr agent-smith -o yaml kubectl certificate deny agent-smith kubectl get csr kubectl delete csr agent-smith Create certificate signing request">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -27,8 +27,8 @@ Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # 
   <meta name="twitter:description" content="Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
 Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
 Asymmetric Encryption:
-Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygenid_rsa id_rsa.pub PKI - Public Key Infrastructure
-Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0# create certificate signing requestcat &gt; akshay.yamlvi akshay.csrvi akshay.yamlkubectl create -f akshay.yamlcertificatesigningrequest.certificates.k8s.io/akshay createdkubectl get csrkubectl certificate approve akshaykubectl get csr agent-smith -o yamlkubectl certificate deny agent-smithkubectl get csrkubectl delete csr agent-smith Create certificate signing request">
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygen id_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwd ls cat akshay.csr cat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0 # create certificate signing request cat &gt; akshay.yaml vi akshay.csr vi akshay.yaml kubectl create -f akshay.yaml certificatesigningrequest.certificates.k8s.io/akshay created kubectl get csr kubectl certificate approve akshay kubectl get csr agent-smith -o yaml kubectl certificate deny agent-smith kubectl get csr kubectl delete csr agent-smith Create certificate signing request">
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/" /><link rel="prev" href="http://wysiwyz.github.io/posts/240515-docker-compose/" /><link rel="next" href="http://wysiwyz.github.io/posts/240522-solidity-smart-contract/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">

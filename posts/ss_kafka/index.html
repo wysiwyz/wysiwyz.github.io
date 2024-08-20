@@ -9,7 +9,7 @@
   <meta property="og:title" content="初學 Kafka">
   <meta property="og:description" content="Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions — producer and consumer. 消費者與生產者的抽象概念
 Topic: 資料邏輯分層 logical partitioning of data
-Kafka broker(9092)[Topic A]Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
+Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
 消費者在從 Users Topic 拉訊息 (pull information) 下來，
 當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。">
   <meta property="og:locale" content="en_us">
@@ -22,7 +22,7 @@ Kafka broker(9092)[Topic A]Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer
   <meta name="twitter:title" content="初學 Kafka">
   <meta name="twitter:description" content="Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions — producer and consumer. 消費者與生產者的抽象概念
 Topic: 資料邏輯分層 logical partitioning of data
-Kafka broker(9092)[Topic A]Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
+Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
 消費者在從 Users Topic 拉訊息 (pull information) 下來，
 當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。">
 <meta name="application-name" content="Ich bin yiwen.">

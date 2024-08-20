@@ -3,7 +3,23 @@
         <title>Tags - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/</link>
         <description>Tags - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 May 2024 01:41:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>AWS</title>
+    <link>http://wysiwyz.github.io/tags/aws/</link>
+    <pubDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/aws/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>SAA-C03</title>
+    <link>http://wysiwyz.github.io/tags/saa-c03/</link>
+    <pubDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/saa-c03/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Smart-Contract</title>
     <link>http://wysiwyz.github.io/tags/smart-contract/</link>
     <pubDate>Wed, 22 May 2024 01:41:05 &#43;0800</pubDate>
@@ -65,22 +81,6 @@
     <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/compose/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>ComposeV1</title>
-    <link>http://wysiwyz.github.io/tags/composev1/</link>
-    <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/composev1/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>ComposeV2</title>
-    <link>http://wysiwyz.github.io/tags/composev2/</link>
-    <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/composev2/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

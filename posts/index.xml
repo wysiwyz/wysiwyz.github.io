@@ -3,7 +3,21 @@
         <title>All Posts - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/posts/</link>
         <description>All Posts | Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 22 May 2024 01:41:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>SAA-C03 AWS Solution Architect Associate 準備心得（上）</title>
+    <link>http://wysiwyz.github.io/posts/saa-c03-one/</link>
+    <pubDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/posts/saa-c03-one/</guid>
+    <description><![CDATA[Motivation 自從去年八月考過 GCP PCA 之後，發現 (1) 想去的幾家公司使用的雲服務供應商都是用 AWS 居多，加上 (2) 某次聚會上遇到的進外商的優秀前同事有 AWS SAA-C03 證照，(3) 今年 AWS 新聞說要在台灣設立資料中心，以及 (4) 前公司提供了 AWS 考照半價補助但沒機會用到，還有 (5) 在 Facebook 社團看到 AWS 官方提供了兩種考照半價優惠的方案（一個要組隊報名，另一個只要在時限前完成官方部分課程）。
+基於看到 Educate Program 再過一天就要報名截止的心態，我刻不容緩的完成兩章的指定課程，趕緊送出申請，並且在一週後的星期三收到報名成功通知信。
+Requirement 報名成功通知信主要有三個重點：
+要完成三個任務才能再填表單申請半價考試券 voucher
+完成 skills builder 某一個課程（要提供課程完成100%截圖） 在 skills builder 某一個 exam set 考試達到 72 / 100 的成績 提供了一個 Notion URL 以及一個 Discord URL
+可以在 notion 裡面看到其他人的考試心得、考古題資源還有 AWS 學習影片 9/27 之前考試通過的話可以拿到 AWS 背包或者 AWS T-Shirt；分享心得可以拿到筆電支架
+許願 SAA 考過是拿到 T-shirt，但是 8/19 的考試券通知信是公告背包，也許可以拿來當地震逃難包的選手之一（？）]]></description>
+</item>
+<item>
     <title>Smart contract, wallet, solidity 新手村</title>
     <link>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</link>
     <pubDate>Wed, 22 May 2024 01:41:05 &#43;0800</pubDate>
@@ -21,8 +35,8 @@ References Metamask doc 這裡手把手教你用 React, typescript, vite 建置�
     <description><![CDATA[Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
 Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
 Asymmetric Encryption:
-Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygenid_rsa id_rsa.pub PKI - Public Key Infrastructure
-Solution Certificates API [Lab] pwdlscat akshay.csrcat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0# create certificate signing requestcat &gt; akshay.yamlvi akshay.csrvi akshay.yamlkubectl create -f akshay.yamlcertificatesigningrequest.certificates.k8s.io/akshay createdkubectl get csrkubectl certificate approve akshaykubectl get csr agent-smith -o yamlkubectl certificate deny agent-smithkubectl get csrkubectl delete csr agent-smith Create certificate signing request]]></description>
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygen id_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwd ls cat akshay.csr cat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0 # create certificate signing request cat &gt; akshay.yaml vi akshay.csr vi akshay.yaml kubectl create -f akshay.yaml certificatesigningrequest.certificates.k8s.io/akshay created kubectl get csr kubectl certificate approve akshay kubectl get csr agent-smith -o yaml kubectl certificate deny agent-smith kubectl get csr kubectl delete csr agent-smith Create certificate signing request]]></description>
 </item>
 <item>
     <title>Docker Compose 厲害了！一次幫你蓋多個containers</title>
@@ -37,7 +51,7 @@ Compose可以在production、staging、開發、測試、CI Workflow等各種環
 Start, stop, rebuild 服務 檢視 running service 的狀態 對 running service 做日誌串流 對某個服務執行一個one-off指令 Docker Compose 主要優點 簡化控制性: 簡化了調度多個服務的複雜任務，管理或複製app環境更容易 有效合作: docker compose 配置檔容易共享，開發、運營之間協作更順利 快速應用程式開發: Compose會將創建容器的配置檔緩存起來，如果重啟了沒有做任何異動的服務，Compose會重複利用既有的容器，這樣要在environment做變更會很快 不同環境的可攜性: Compose 檔支援變數，可以用這些變數給不同環境或不同user客製化你的組成 廣泛的社群與支援: Docker Compost 有活躍的社群，提供豐富的資源、教學與支援 Docker Compose 常用 use cases 開發環境 Docker Compose 檔可以記錄並且配置應用程式全部的服務所需的依賴 (例如資料庫、隊列、緩存、Web service API等等)。可以用 docker compose up 一次建立並啟動每個依賴所需的容器。
 Compose可以把一個多頁的「開發者新手指南」濃縮成一個單一且機器可讀的compose file外加幾個指令。
 自動化測試環境 Automated test suite 是CICD程序中非常重要的一環。自動化end-to-end testing需要一個用來跑測試的環境。Compose提供一個很方便的方式，為你的test suite提供一個可以創建且用完銷毀的隔離測試環境。
-docker compose up -d.]]></description>
+docker compose up -d .]]></description>
 </item>
 <item>
     <title>消費者與提供者之間的合約測試 - Pact.io</title>
@@ -80,7 +94,7 @@ Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blo
     <author>celine</author>
     <guid>http://wysiwyz.github.io/posts/240509-flyway/</guid>
     <description><![CDATA[因為G.K.老師常常強調 Flyway 的優勢，資料庫版控、避免共用的資料庫不知道被誰扔了dirty data導致其他人開發的功能壞掉，等等的好處，所以來看看官方文件。
-初探Flyway Flyway@build.gradle: dependencies {implementation &#39;org.flywaydb:flyway-core&#39;} Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flywayspring.flyway.schemas={default_schema}spring.flyway.user=spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
+初探Flyway Flyway@build.gradle: dependencies { implementation &#39;org.flywaydb:flyway-core&#39; } Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flyway spring.flyway.schemas={default_schema} spring.flyway.user= spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
 Flyway Desktop 提供GUI讓資料庫開發跟數據家能夠追蹤資料庫物件的異動，並且在版本控制中管理資料遷移的腳本。
 Flyway command-line 是可以獨立運行的套件 (只需要操作系統，不用其他支援框架)，有Windows、macOS以及Linux版本。適合想要用命令列介面遷移資料庫的user，而不用將Flyway整合進應用程式，也不用安裝build tool。
 另外可以用 API 將 Flway 整合進應用程式，在程式啟動時一同執行資料庫遷移。
@@ -122,16 +136,7 @@ Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use
 每一列包含了員工id、員工名、員工所屬部門以及他們的所屬主管id，如果managerId 為 null，就表示這員工沒有直屬主管。
 沒有員工會自己當自己的主管，即 id 與 managerId 不能為相同的值。
 1 2 3 4 5 6 create table employee ( id int not null primary key auto_increment, name varchar(20), department varchar(2), managerId int ) auto_increment=101; Table 欄位內容：
-Employee table:+-----+-------+------------+-----------+| id | name | department | managerId |+-----+-------+------------+-----------+| 101 | John | A | null || 102 | Dan | A | 101 || 103 | James | A | 101 || 104 | Amy | A | 101 || 105 | Anne | A | 101 || 106 | Ron | B | 101 |+-----+-------+------------+-----------+ 預期結果： +------+| name |+------+| John |+------+ 解法: A.]]></description>
-</item>
-<item>
-    <title>挑戰一個月內準備完 GCP Cloud Developer</title>
-    <link>http://wysiwyz.github.io/posts/gcp_pcd_notes/</link>
-    <pubDate>Wed, 31 Jan 2024 15:44:43 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/gcp_pcd_notes/</guid>
-    <description><![CDATA[ 聽說 Cloud Developer 的難度比CA還高，想說趁最近手邊沒有棘手工作來好好準備 🫠，這次打算以這些學習資源為主：
-CloudSkillsBoost_PCD_learning path 10項活動，估計要花至少 174+hrs awesome-gcp-certification/PCD 包含一些準備策略、心得 ExamTopics 想設計一個簡單的程式，從412題中亂數出50題 ]]></description>
+Employee table: +-----+-------+------------+-----------+ | id | name | department | managerId | +-----+-------+------------+-----------+ | 101 | John | A | null | | 102 | Dan | A | 101 | | 103 | James | A | 101 | | 104 | Amy | A | 101 | | 105 | Anne | A | 101 | | 106 | Ron | B | 101 | +-----+-------+------------+-----------+ 預期結果： +------+ | name | +------+ | John | +------+ 解法: A.]]></description>
 </item>
 </channel>
 </rss>
