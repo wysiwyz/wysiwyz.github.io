@@ -56,6 +56,14 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/saa-c03-two/">SAA-C03 AWS Solution Architect Associate 準備心得（下）</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-09-06">2024-09-06</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
+另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（絕對不是因為line通知太煩所以提前測驗的）
+測驗過程 原本因為 voucher 通知信上說考照成功獎需要在9/27前考照成功，才有資格申請，所以排 9/20 週五晚上考試。但後來 9/2 全部將 ExamTopics 的題目收進複習的小本之後，覺得一直刷題實在很沒趣，有更重要的 Keycloak 升級與 Kubernetes 實務一把火在燒，所以隔天就手刀上 PearsonVue 測驗登記網站提前測驗日期了。
+提前測驗的行為現在想來真是一步險棋，因為我到 9/5 晚上六點半測驗前都還沒有全部重看完所有考古 981 題。加上台北 PearsonVue 考場實在有夠冷，坐在一間長寬約 100 cm 的單人間座位，看著考試介面上字體被拉寬 10~20% 的英文題目，總時長 140 分鐘一共 65 題。</div><div class="post-footer">
+        <a href="/posts/saa-c03-two/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/saa-c03-one/">SAA-C03 AWS Solution Architect Associate 準備心得（上）</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-08-20">2024-08-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Motivation 自從去年八月考過 GCP PCA 之後，發現 (1) 想去的幾家公司使用的雲服務供應商都是用 AWS 居多，加上 (2) 某次聚會上遇到的進外商的優秀前同事有 AWS SAA-C03 證照，(3) 今年 AWS 新聞說要在台灣設立資料中心，以及 (4) 前公司提供了 AWS 考照半價補助但沒機會用到，還有 (5) 在 Facebook 社團看到 AWS 官方提供了兩種考照半價優惠的方案（一個要組隊報名，另一個只要在時限前完成官方部分課程）。
 基於看到 Educate Program 再過一天就要報名截止的心態，我刻不容緩的完成兩章的指定課程，趕緊送出申請，並且在一週後的星期三收到報名成功通知信。
@@ -108,19 +116,6 @@ Pact實作合約測試的方式，就是確認所有呼叫你的test doubles的�
 另外Pact contract也不像schema或者規格 (例如 OAS) 這類靜態的artefact定義資源的所有可能的狀態，pact contract實施方式是藉由執行測試案例的集合，每個元素描述了具體的請求/回應對。Pact實際上就是範例式合約。參考Schema測試與Contract測試的差異</div><div class="post-footer">
         <a href="/posts/240510-pact.io/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/pact.io/">Pact.io</a>,&nbsp;<a href="/tags/contract-testing/">Contract-Testing</a>,&nbsp;<a href="/tags/http-pact/">Http-Pact</a>,&nbsp;<a href="/tags/message-pact/">Message-Pact</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/240509-springboot-vs-quarkus/">框架比較：Springboot 與 Quarkus</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-05-09">2024-05-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">以下的筆記主要參照Baeldung這篇文章，後續會在針對如何用Quarkus建立第一個專案補充說明。
-SpringBoot v.s. Quarkus 概觀 這篇文章的關注點在於比較兩個廣為人知的Java框架—SpringBoot與Quarkus。看完文章，能更加瞭解兩者之間的相似、差異處以及各自的特殊性。另外也有一些測試來檢測效能並觀察表現。
-SpringBoot 這個Java framework主要用於企業級應用程式。集成了所有Spring project，提供許多production-ready的整合，可協助開發者提高生產力。 減少了要配置的數量以及文件樣板。另外因為約定大於配置的方法，會根據runtime時classpath中的依賴 (dependencies)，自動註冊預設的配置。SpringBoot大幅減少了許多Java應用程式上市的時間。
-Quarkus Quarkus 是另外一個framework，其方法類似SpringBoot，但另外能在快速的啟動時間內，交付較小型的artifacts，有更好的資源利用度以及效率。 Quarkus 是以 cloud、serverless以及容器化環境所最佳化的框架。除此之外，Quarkus framework與Java其他框架的的整合性也很好。
-比較這兩者 如上所述，這兩個framework與其他的project跟framework的整合性都不錯，但其內部 implementation &amp; architecture 並不相同。例如，SpringBoot提供兩種 web capabilities: blocking(Servlets) 以及 non-blocking(WebFlux)
-Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blocking跟non-blocking這兩種策略。另外 Quarkus 有將響應式的方法內嵌在本身的架構中。
-因此這裡主要比較的是 Spring WebFlux 以及 Quarkus reactive capabilities 比較相似的情境 (non-blocking)。
-另外，這兩個projects中比較顯著的功能是新建 native images (binary executables 以及 platform-specific executables)，所以也會比較這兩個projects的native images。
-註: SpringBoot 2.7 版本的 native image support 仍在實驗階段，直到 VERSION 3 才正式支持 native image support，需要使用 GraalVM。 註: Native image 這裡指的是將Java程式碼建構成 standalone executable 可執行檔的技術。Executable 包含了 java classes, classes from its dependencies, runtime library class, 以及 jdk 的 native code。</div><div class="post-footer">
-        <a href="/posts/240509-springboot-vs-quarkus/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/quarkus/">Quarkus</a>,&nbsp;<a href="/tags/springboot/">SpringBoot</a></div></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

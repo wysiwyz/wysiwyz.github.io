@@ -56,6 +56,13 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/javascript_functions/">JavaScript 常見內建方法</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-11">2023-04-11</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這裡紀錄上班看遇到的常用 JavaScript 內建方法 ╚(•⌂•)╝
+Object.prototype.hasOwnProperty(param) 回傳 boolean 值
+true: 如果該param是該物件的直接屬性(direct property)，即便值為 null 或者 undefined false: 如果屬性是繼承來的，或從沒被宣告 1 2 3 4 5 6 7 8 9 10 11 12 13 _self._getCurrencyFlagPath = (function () { var imageList = Object.freeze({ AUD: &#39;images/lilyRose/flag_AUD.svg&#39;, CAD: &#39;images/lilyRose/flag_CAD.svg&#39;, EUR: &#39;images/lilyRose/flag_EUR.svg&#39;, JPY: &#39;images/lilyRose/flag_JPY.svg&#39;, TWD: &#39;images/lilyRose/flag_TWD.svg&#39;, NTD: &#39;images/lilyRose/flag_TWD.svg&#39; }); return function (currency) { return imageList.hasOwnProperty(currency) ? imageList[currency] : &#39;&#39;; } })(); Object.freeze() 淺凍結 Freezing an object prevents extensions and makes existing properties non-writable and non-configurable.</div><div class="post-footer">
+        <a href="/posts/javascript_functions/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/javascript/">JavaScript</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cascading_style_sheet/">Cascading style sheet</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-10">2023-04-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
 看到什麼就記下來，之後複習的話再分類
@@ -111,19 +118,6 @@ umount - 卸載
 Luks資料加密架構與資料救援方法
 Linux檔案加密_GPG_GnuPG</div><div class="post-footer">
         <a href="/posts/lesson_03_linux/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/security/">Security</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/lesson_02_linux/">Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-17">2023-03-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">請假六小時，來補課arrrhh
-何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
-UGO User Group Other
-由三組位元所組成（八進制）
-l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
-❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
-允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
-SUID &amp; SGID &amp; SBIT
-檔案系統 特殊權限 1. SetUID nosuid 在根目錄建立一個secure folder，設定成777，查看/secure/目錄的權限，</div><div class="post-footer">
-        <a href="/posts/lesson_02_linux/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/security/">Security</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">

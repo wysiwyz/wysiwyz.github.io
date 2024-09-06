@@ -56,6 +56,16 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/elasticcloud_onuploaddataset/">〔Debug〕ElasticCloud 上傳type為date的csv檔案</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-29">2024-01-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">錯誤內容： 當dataset其中一個field看起來像是日期可以分成多個buckets，實際上會拋出以下錯誤
+1 2 3 4 5 6 { &#34;error&#34;: { &#34;type&#34;: &#34;illegal_argument_exception&#34;, &#34;reason&#34;: &#34;Field [InvoiceDate] of type [keyword] is not supported for aggregation [date_histogram]&#34; } } 問題釐清： 上傳檔案時，3/30/2011 16:34 或者 12/1/2010 9:10 這類的欄位內容被辨識為 &quot;type&quot;: &quot;keyword&quot;，須要在上傳檔案時點擊 Override settings，勾選 Contains time field 再加上時間戳記格式以及對應的 time field，這樣就能正常做 bucket aggregations 了
+實際結果： 看起來 Elastic 幫你增加了一個@timestamp的欄位，而欄位內容確實是與 InvoiceDate 一致
+!(https://i.imgur.com/OFv0uCh.png)
+重編索引 - 使用Kibana console 先 PUT 建立一個自訂索引，細節參考另一篇Elasticsearch筆記，注意&quot;type&quot;:&quot;date&quot;需要再接上原本source index欄位的日期格式，不然會無法重編索引
+接著 POST _reindex 加入來源與目標 index 的參數，顯示下圖右結果就成功了</div><div class="post-footer">
+        <a href="/posts/elasticcloud_onuploaddataset/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticcloud/">ElasticCloud</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/elasticsearch/">Elasticsearch 從頭開始學習(ELK & Elastic Stack)</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-22">2024-01-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">2023-07-11 的筆記太簡略粗糙，重新整理
 Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
@@ -106,15 +116,6 @@ Data Center 2030年達成零碳排
 以黑箱測試改進應用程式的安全性
 白箱資安測試與黑箱測試的異同</div><div class="post-footer">
         <a href="/posts/ss_white-box/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_kafka/">初學 Kafka</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-03">2024-01-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions &mdash; producer and consumer. 消費者與生產者的抽象概念
-Topic: 資料邏輯分層 logical partitioning of data
-Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
-消費者在從 Users Topic 拉訊息 (pull information) 下來，
-當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。</div><div class="post-footer">
-        <a href="/posts/ss_kafka/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">

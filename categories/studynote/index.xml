@@ -3,7 +3,18 @@
         <title>StudyNote - Category - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/categories/studynote/</link>
         <description>StudyNote - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 06 Sep 2024 10:05:31 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/studynote/" rel="self" type="application/rss+xml" /><item>
+    <title>SAA-C03 AWS Solution Architect Associate 準備心得（下）</title>
+    <link>http://wysiwyz.github.io/posts/saa-c03-two/</link>
+    <pubDate>Fri, 06 Sep 2024 10:05:31 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/posts/saa-c03-two/</guid>
+    <description><![CDATA[準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
+另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（絕對不是因為line通知太煩所以提前測驗的）
+測驗過程 原本因為 voucher 通知信上說考照成功獎需要在9/27前考照成功，才有資格申請，所以排 9/20 週五晚上考試。但後來 9/2 全部將 ExamTopics 的題目收進複習的小本之後，覺得一直刷題實在很沒趣，有更重要的 Keycloak 升級與 Kubernetes 實務一把火在燒，所以隔天就手刀上 PearsonVue 測驗登記網站提前測驗日期了。
+提前測驗的行為現在想來真是一步險棋，因為我到 9/5 晚上六點半測驗前都還沒有全部重看完所有考古 981 題。加上台北 PearsonVue 考場實在有夠冷，坐在一間長寬約 100 cm 的單人間座位，看著考試介面上字體被拉寬 10~20% 的英文題目，總時長 140 分鐘一共 65 題。]]></description>
+</item>
+<item>
     <title>SAA-C03 AWS Solution Architect Associate 準備心得（上）</title>
     <link>http://wysiwyz.github.io/posts/saa-c03-one/</link>
     <pubDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</pubDate>
@@ -123,20 +134,6 @@ I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
 Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use CI/CD to build your app Secure your app Deploy and release your app Monitor app performance Organize work with projects Manage your code Manage infrastructure Monitor GitLab Runner usage Plan and track work Analyze GitLab usage 1. 首先建立.gitlab-ci.yml 在project根目錄建立 .gitlab-ci.yml，定義在CI/CD pipeline中所要執行的 stages, jobs, script。
 另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。
 沒有硬性規定要怎麼命名，但.gitlab-ci.yml是這個 CI/CD configuration file 最常見的名字。]]></description>
-</item>
-<item>
-    <title>如何查看哪一個SQL語法是最佳解：explain執行計畫</title>
-    <link>http://wysiwyz.github.io/posts/sql_explain/</link>
-    <pubDate>Thu, 22 Feb 2024 15:59:25 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/sql_explain/</guid>
-    <description><![CDATA[昨天與一位做自有產品的執行長官面談被問到如何確認SQL的效能，當下沒能立即回答上。
-但今天在練習 LeetCode SQL 50 的時候，看到有神人對一道 570. Managers with at Least 5 Direct Reports 題目給出了五種 solutions，於是回想起之前聽過但不常用的 explain 語法，這樣慘痛的教訓肯定是要花時間瞭解一下的吧。
-問題 題目只有一張 Table : Employee:
-每一列包含了員工id、員工名、員工所屬部門以及他們的所屬主管id，如果managerId 為 null，就表示這員工沒有直屬主管。
-沒有員工會自己當自己的主管，即 id 與 managerId 不能為相同的值。
-1 2 3 4 5 6 create table employee ( id int not null primary key auto_increment, name varchar(20), department varchar(2), managerId int ) auto_increment=101; Table 欄位內容：
-Employee table: +-----+-------+------------+-----------+ | id | name | department | managerId | +-----+-------+------------+-----------+ | 101 | John | A | null | | 102 | Dan | A | 101 | | 103 | James | A | 101 | | 104 | Amy | A | 101 | | 105 | Anne | A | 101 | | 106 | Ron | B | 101 | +-----+-------+------------+-----------+ 預期結果： +------+ | name | +------+ | John | +------+ 解法: A.]]></description>
 </item>
 </channel>
 </rss>

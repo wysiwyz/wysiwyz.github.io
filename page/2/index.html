@@ -56,6 +56,19 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/240509-springboot-vs-quarkus/">框架比較：Springboot 與 Quarkus</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-05-09">2024-05-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">以下的筆記主要參照Baeldung這篇文章，後續會在針對如何用Quarkus建立第一個專案補充說明。
+SpringBoot v.s. Quarkus 概觀 這篇文章的關注點在於比較兩個廣為人知的Java框架—SpringBoot與Quarkus。看完文章，能更加瞭解兩者之間的相似、差異處以及各自的特殊性。另外也有一些測試來檢測效能並觀察表現。
+SpringBoot 這個Java framework主要用於企業級應用程式。集成了所有Spring project，提供許多production-ready的整合，可協助開發者提高生產力。 減少了要配置的數量以及文件樣板。另外因為約定大於配置的方法，會根據runtime時classpath中的依賴 (dependencies)，自動註冊預設的配置。SpringBoot大幅減少了許多Java應用程式上市的時間。
+Quarkus Quarkus 是另外一個framework，其方法類似SpringBoot，但另外能在快速的啟動時間內，交付較小型的artifacts，有更好的資源利用度以及效率。 Quarkus 是以 cloud、serverless以及容器化環境所最佳化的框架。除此之外，Quarkus framework與Java其他框架的的整合性也很好。
+比較這兩者 如上所述，這兩個framework與其他的project跟framework的整合性都不錯，但其內部 implementation &amp; architecture 並不相同。例如，SpringBoot提供兩種 web capabilities: blocking(Servlets) 以及 non-blocking(WebFlux)
+Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blocking跟non-blocking這兩種策略。另外 Quarkus 有將響應式的方法內嵌在本身的架構中。
+因此這裡主要比較的是 Spring WebFlux 以及 Quarkus reactive capabilities 比較相似的情境 (non-blocking)。
+另外，這兩個projects中比較顯著的功能是新建 native images (binary executables 以及 platform-specific executables)，所以也會比較這兩個projects的native images。
+註: SpringBoot 2.7 版本的 native image support 仍在實驗階段，直到 VERSION 3 才正式支持 native image support，需要使用 GraalVM。 註: Native image 這裡指的是將Java程式碼建構成 standalone executable 可執行檔的技術。Executable 包含了 java classes, classes from its dependencies, runtime library class, 以及 jdk 的 native code。</div><div class="post-footer">
+        <a href="/posts/240509-springboot-vs-quarkus/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/quarkus/">Quarkus</a>,&nbsp;<a href="/tags/springboot/">SpringBoot</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/240509-flyway/">資料庫版控，走起，高飛！Flyway</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-05-09">2024-05-09</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">因為G.K.老師常常強調 Flyway 的優勢，資料庫版控、避免共用的資料庫不知道被誰扔了dirty data導致其他人開發的功能壞掉，等等的好處，所以來看看官方文件。
 初探Flyway Flyway@build.gradle: dependencies { implementation &#39;org.flywaydb:flyway-core&#39; } Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flyway spring.flyway.schemas={default_schema} spring.flyway.user= spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
@@ -100,16 +113,6 @@ Employee table: +-----+-------+------------+-----------+ | id | name | departmen
 CloudSkillsBoost_PCD_learning path 10項活動，估計要花至少 174+hrs awesome-gcp-certification/PCD 包含一些準備策略、心得 ExamTopics 想設計一個簡單的程式，從412題中亂數出50題 </div><div class="post-footer">
         <a href="/posts/gcp_pcd_notes/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/googlecloudplatform/">GoogleCloudPlatform</a>,&nbsp;<a href="/tags/google_cloud/">Google_cloud</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/elasticcloud_onuploaddataset/">〔Debug〕ElasticCloud 上傳type為date的csv檔案</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-29">2024-01-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">錯誤內容： 當dataset其中一個field看起來像是日期可以分成多個buckets，實際上會拋出以下錯誤
-1 2 3 4 5 6 { &#34;error&#34;: { &#34;type&#34;: &#34;illegal_argument_exception&#34;, &#34;reason&#34;: &#34;Field [InvoiceDate] of type [keyword] is not supported for aggregation [date_histogram]&#34; } } 問題釐清： 上傳檔案時，3/30/2011 16:34 或者 12/1/2010 9:10 這類的欄位內容被辨識為 &quot;type&quot;: &quot;keyword&quot;，須要在上傳檔案時點擊 Override settings，勾選 Contains time field 再加上時間戳記格式以及對應的 time field，這樣就能正常做 bucket aggregations 了
-實際結果： 看起來 Elastic 幫你增加了一個@timestamp的欄位，而欄位內容確實是與 InvoiceDate 一致
-!(https://i.imgur.com/OFv0uCh.png)
-重編索引 - 使用Kibana console 先 PUT 建立一個自訂索引，細節參考另一篇Elasticsearch筆記，注意&quot;type&quot;:&quot;date&quot;需要再接上原本source index欄位的日期格式，不然會無法重編索引
-接著 POST _reindex 加入來源與目標 index 的參數，顯示下圖右結果就成功了</div><div class="post-footer">
-        <a href="/posts/elasticcloud_onuploaddataset/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/elasticcloud/">ElasticCloud</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>

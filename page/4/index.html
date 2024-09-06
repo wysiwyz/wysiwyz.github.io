@@ -56,6 +56,15 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/ss_kafka/">初學 Kafka</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-01-03">2024-01-03</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Kafka Broker Kafka broker (9092) is the first server that users interact with, it listens to some TCP connection. There are two pieces of abstractions &mdash; producer and consumer. 消費者與生產者的抽象概念
+Topic: 資料邏輯分層 logical partitioning of data
+Kafka broker(9092) [Topic A] Producer &lt;---&gt; [Topic B] &lt;---&gt; Consumer 假設現在 Kafka broker 裡面有個 Users Topic，而生產者發佈 John 進去 Users topic，當生產者持續發佈東西進 Users Topic，這個 Topic 就會越來越肥大
+消費者在從 Users Topic 拉訊息 (pull information) 下來，
+當資料表記有百萬筆資料，會採用sharding 將資料分成不同 database，而Kafka借用了這種技術，將Users Topic 分成了 Partition 1 (A - M) 與 Partition 2 (N-Z)。</div><div class="post-footer">
+        <a href="/posts/ss_kafka/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/s_docker_learn/">Docker</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Docker Note docker ps
 ​ list running containers
@@ -123,29 +132,6 @@ Hibernate 可以自動生成SQL 語句，自動執行
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">SpringBoot 2023 SpringBoot initializr Dependencies:
 SpringBoot DevTools Spring Web Spring Data JPA and Hibernate PostgreSQL Driver Starting the server src - main - java - com.example.demo.DemoApplication - resources - static - templates - application.properties - test - java - resources Create a simple API 1 2 3 4 5 6 7 @RestController //To Make the class to serve restful endpoint public class DemoController {} @GetMapping //To set Restful endpoint on method public List&lt;String&gt; hello() { return List.</div><div class="post-footer">
         <a href="/posts/ss_springboot/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/ss_redis_notes/">Redis 筆記</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-12-26">2023-12-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">資料分群 三種依照服務類型儲存資料的方法：
-namespace：在key的前面加上如user:的prefix，所有資料放在一個Redis內
-建議用:區分。 可以用 redis-audit，它會用自動分群，也可以加入部分規則，減少自動分群花的時間。
-使用 database：用指令 select 切換用不同的 &ldquo;database&rdquo;
-Redis Cluster只能用database 0，因此長遠 scalability 考量，database並不適用。
-用不同的 Redis servers
-管理成本較高。設成LRU mode存cache資料，作為第一個Redis Cluster：存persistent data，作為第二個Redis Cluster。如此，可以個別設定適合的 shards、replicas 以及 各別設定適合的shards、replicas 以及 OOM 時的處理方式。
-使用Expiration &ndash; 標上有效期限 避免無限量的丟東西到記憶體裡面，以降低太多資料的管理成本
-須注意，Redis只有支援在第一層keys加上expiration。如果需要用到hash，可是hash部分內容需要加expiration的話，比較善用expiration的方法是「將一個大hash攤成多個小hash或者string，才能善用expiration。另外，使用多個小hash會比一個大hash更省時間，因為Redis有針對小hash的最佳化儲存方式。
-分析占空間的keys 除了分析工具 (redis-audit等其他記憶體分析工具)，也可以用redis-cli查找問題
-找出常見的keys，看數量分佈是否合理：redis-cli scan 0 count 100
-取樣找出各個資料類型最大的keys：redis-cli --bigkeys
-查看 KEY serialized 後的大小：DEBUG OBJECT key
-看某個 KEY 多久沒有被存取：OBJECT IDLETIME key
-[注意] default setting下，不會回傳正確的值
-Latency 常用指令：
-了解自己機器合理的 operation per second：benchmark
-找出 ≥ 10ms的操作：slowlog
-因為 Redis 單線程(只有main thread)，可以用這指令找出比較花時間的操作</div><div class="post-footer">
-        <a href="/posts/ss_redis_notes/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">

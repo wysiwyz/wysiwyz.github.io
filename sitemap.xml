@@ -2,13 +2,14 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-09-06T10:05:31&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-09-06T10:05:31&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-09-06T10:05:31&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/posts/saa-c03-two/</loc><lastmod>2024-09-06T10:05:31&#43;08:00</lastmod></url><url>
+            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-09-06T10:05:31&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/aws/</loc><lastmod>2024-08-20T11:41:20&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/</loc><lastmod>2024-08-20T11:41:20&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/</loc><lastmod>2024-08-20T11:41:20&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/posts/</loc><lastmod>2024-08-20T11:41:20&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/saa-c03/</loc><lastmod>2024-08-20T11:41:20&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/saa-c03-one/</loc><lastmod>2024-08-20T11:41:20&#43;08:00</lastmod></url><url>
-            <loc>http://wysiwyz.github.io/categories/studynote/</loc><lastmod>2024-08-20T11:41:20&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/</loc><lastmod>2024-08-20T11:41:20&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>
             <loc>http://wysiwyz.github.io/tags/smart-contract/</loc><lastmod>2024-05-22T01:41:05&#43;08:00</lastmod></url><url>

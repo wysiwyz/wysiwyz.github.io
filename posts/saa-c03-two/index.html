@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>SAA-C03 AWS Solution Architect Associate 準備心得（下） - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/saa-c03-two/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="SAA-C03 AWS Solution Architect Associate 準備心得（下）">
+  <meta property="og:description" content="準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
+另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（絕對不是因為line通知太煩所以提前測驗的）
+測驗過程 原本因為 voucher 通知信上說考照成功獎需要在9/27前考照成功，才有資格申請，所以排 9/20 週五晚上考試。但後來 9/2 全部將 ExamTopics 的題目收進複習的小本之後，覺得一直刷題實在很沒趣，有更重要的 Keycloak 升級與 Kubernetes 實務一把火在燒，所以隔天就手刀上 PearsonVue 測驗登記網站提前測驗日期了。
+提前測驗的行為現在想來真是一步險棋，因為我到 9/5 晚上六點半測驗前都還沒有全部重看完所有考古 981 題。加上台北 PearsonVue 考場實在有夠冷，坐在一間長寬約 100 cm 的單人間座位，看著考試介面上字體被拉寬 10~20% 的英文題目，總時長 140 分鐘一共 65 題。">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-09-06T10:05:31+08:00">
+    <meta property="article:modified_time" content="2024-09-06T10:05:31+08:00">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SAA-C03 AWS Solution Architect Associate 準備心得（下）">
+  <meta name="twitter:description" content="準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
+另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（絕對不是因為line通知太煩所以提前測驗的）
+測驗過程 原本因為 voucher 通知信上說考照成功獎需要在9/27前考照成功，才有資格申請，所以排 9/20 週五晚上考試。但後來 9/2 全部將 ExamTopics 的題目收進複習的小本之後，覺得一直刷題實在很沒趣，有更重要的 Keycloak 升級與 Kubernetes 實務一把火在燒，所以隔天就手刀上 PearsonVue 測驗登記網站提前測驗日期了。
+提前測驗的行為現在想來真是一步險棋，因為我到 9/5 晚上六點半測驗前都還沒有全部重看完所有考古 981 題。加上台北 PearsonVue 考場實在有夠冷，坐在一間長寬約 100 cm 的單人間座位，看著考試介面上字體被拉寬 10~20% 的英文題目，總時長 140 分鐘一共 65 題。">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/saa-c03-two/" /><link rel="prev" href="http://wysiwyz.github.io/posts/saa-c03-one/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "SAA-C03 AWS Solution Architect Associate 準備心得（下）",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/saa-c03-two\/"
+        },"genre": "posts","keywords": "","wordcount":  161 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/saa-c03-two\/","datePublished": "2024-09-06T10:05:31+08:00","dateModified": "2024-09-06T10:05:31+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SAA-C03 AWS Solution Architect Associate 準備心得（下）</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;161 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/saa-c03-two/" class="leancloud_visitors" data-flag-title="SAA-C03 AWS Solution Architect Associate 準備心得（下）">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#準備心得">準備心得</a></li>
+    <li><a href="#測驗過程">測驗過程</a></li>
+    <li><a href="#應試心得">應試心得</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png"
+        data-srcset="https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png, https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png 1.5x, https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png 2x"
+        data-sizes="auto"
+        alt="https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png"
+        title="passed" /></p>
+<h2 id="準備心得">準備心得</h2>
+<p>八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。</p>
+<p>另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（<del>絕對不是因為line通知太煩所以提前測驗的</del>）</p>
+<h2 id="測驗過程">測驗過程</h2>
+<p>原本因為 voucher 通知信上說考照成功獎需要在9/27前考照成功，才有資格申請，所以排 9/20 週五晚上考試。但後來 9/2 全部將 ExamTopics 的題目收進複習的小本之後，覺得一直刷題實在很沒趣，有更重要的 Keycloak 升級與 Kubernetes 實務一把火在燒，所以隔天就手刀上 PearsonVue 測驗登記網站提前測驗日期了。</p>
+<p>提前測驗的行為現在想來真是一步險棋，因為我到 9/5 晚上六點半測驗前都還沒有全部重看完所有考古 981 題。加上台北 PearsonVue 考場實在有夠冷，坐在一間長寬約 100 cm 的單人間座位，看著考試介面上字體被拉寬 10~20% 的英文題目，總時長 140 分鐘一共 65 題。</p>
+<p>測驗通知信說至少要在表定考試前 15 分鐘報到，怕下班時間塞車所以我提前 45 分鐘報到，為的是台北考場景觀很美的休息區（重點錯誤）。報到時要簽署兩份文件，櫃檯人員會核對雙證件以及再次確認考試科目代碼以及英文姓名，還需要像 costco 或者富邦辦卡那樣到白牆前拍照留紀錄。因為我報名時護照剛好快過期，致電詢問台北考場確定可以用身份證＋英文姓名正確的信用卡驗證身份。進考場前要將手機與行動裝置關機，個人物品寄放在櫃檯，監考人員會檢查你身上的口袋（上衣、褲子前後口袋）都有淨空，也需要將眼鏡拿下來放到平面上給監考官檢查，褲管也需要撩起來檢查。</p>
+<p>考試過程中，值得一提的是，PearsonVue 的測驗題目介面也跟 Kyterion 一樣可以讓你 <code>mark for review</code> (小的不才，居然 mark 了 21 題，所以考完直覺自己小看了 PearsonVue 可能考爆了)，另外還可以變更佈景主題，預設是藍白底黑字，另外還有很多主題，像是 white on black、black on pink、white on blue（但我好奇是不是真的有人會更換，畢竟藍底白字看久了很容易視覺疲勞）。</p>
+<p>考完需要填寫 14 題 survery，問題涵蓋考試題目範圍、考場環境。考完後不會直接顯示測驗結果，而是告訴你五個工作天內會收到測驗結果。我自己是當天晚上 8 點多考完，隔天早上醒來就看到測驗結果通知信（<code>You just earned a badge from Amazon Web Services Training and Certification🎉 !</code>）簡直不要太 Happy Friday。</p>
+<h2 id="應試心得">應試心得</h2>
+<p>先說 AWS 的評分模型實在很神秘，看到 AWS Educate Ambassador 說會有一些不計分的題組，就是這些題目讓我走出考場覺得之前煞費苦心的準備，付出的 2400 台幣（150USD 扣掉半價 voucher）可能要付諸流水白忙一場了。</p>
+<p>當然，參加測驗只是一種認識 AWS Cloud Provider 提供的服務，考題範圍很廣，但並沒有真的考到你怎麼實作以及實作要注意的眉角。公司的大佬說他手上有兩張 AWS 證照，後續還是持續看了十幾本書/看官網學習，在前公司的專案建置了一整套 AWS CodeDeploy 以及 AWS CodePipeline，另外也在公司上個專案實作了 AWS site-to-site VPN 的功能。</p>
+<p>我自己也認同選擇題或多選題這類型的考試，講白點如果你很會考試、記憶力也不差夠熟悉考古題、也有基本的概念，用測驗評估實力確實是有一點放水，含金量不會比需要動手實作的 Kubernetes CKA 或 Elastic Certification 一樣，有需要動手 hands on 實作的題目。但也誠如其他分享考照心得的網上好人所述，確實不失為一種讓非本科轉職工程師建立自信心的方法之一。</p>
+<p>最後感謝參與 AWS 陪跑計畫的大使與一起線上準備證照的大家，準備的過程才不會覺得孤獨，有一群人一起奮鬥的感覺真好。附上新鮮的測驗結果。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/N8f2Q8K.jpeg"
+        data-srcset="https://i.imgur.com/N8f2Q8K.jpeg, https://i.imgur.com/N8f2Q8K.jpeg 1.5x, https://i.imgur.com/N8f2Q8K.jpeg 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/N8f2Q8K.jpeg"
+        title="https://i.imgur.com/N8f2Q8K.jpeg" /></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-09-06</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/saa-c03-two/" data-hashtag=""><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/saa-c03-two/" data-title="SAA-C03 AWS Solution Architect Associate 準備心得（下）"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/saa-c03-one/" class="prev" rel="prev" title="SAA-C03 AWS Solution Architect Associate 準備心得（上）"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>SAA-C03 AWS Solution Architect Associate 準備心得（上）</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
