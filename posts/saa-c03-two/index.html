@@ -7,7 +7,8 @@
         <title>SAA-C03 AWS Solution Architect Associate 準備心得（下） - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/saa-c03-two/">
   <meta property="og:site_name" content="Ich bin yiwen.">
   <meta property="og:title" content="SAA-C03 AWS Solution Architect Associate 準備心得（下）">
-  <meta property="og:description" content="準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
+  <meta property="og:description" content="本文有重新排版放到 medium … Go to Medium story
+準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
 另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（絕對不是因為line通知太煩所以提前測驗的）
 測驗過程 原本因為 voucher 通知信上說考照成功獎需要在9/27前考照成功，才有資格申請，所以排 9/20 週五晚上考試。但後來 9/2 全部將 ExamTopics 的題目收進複習的小本之後，覺得一直刷題實在很沒趣，有更重要的 Keycloak 升級與 Kubernetes 實務一把火在燒，所以隔天就手刀上 PearsonVue 測驗登記網站提前測驗日期了。
 提前測驗的行為現在想來真是一步險棋，因為我到 9/5 晚上六點半測驗前都還沒有全部重看完所有考古 981 題。加上台北 PearsonVue 考場實在有夠冷，坐在一間長寬約 100 cm 的單人間座位，看著考試介面上字體被拉寬 10~20% 的英文題目，總時長 140 分鐘一共 65 題。">
@@ -19,12 +20,13 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="SAA-C03 AWS Solution Architect Associate 準備心得（下）">
-  <meta name="twitter:description" content="準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
+  <meta name="twitter:description" content="本文有重新排版放到 medium … Go to Medium story
+準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
 另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（絕對不是因為line通知太煩所以提前測驗的）
 測驗過程 原本因為 voucher 通知信上說考照成功獎需要在9/27前考照成功，才有資格申請，所以排 9/20 週五晚上考試。但後來 9/2 全部將 ExamTopics 的題目收進複習的小本之後，覺得一直刷題實在很沒趣，有更重要的 Keycloak 升級與 Kubernetes 實務一把火在燒，所以隔天就手刀上 PearsonVue 測驗登記網站提前測驗日期了。
 提前測驗的行為現在想來真是一步險棋，因為我到 9/5 晚上六點半測驗前都還沒有全部重看完所有考古 981 題。加上台北 PearsonVue 考場實在有夠冷，坐在一間長寬約 100 cm 的單人間座位，看著考試介面上字體被拉寬 10~20% 的英文題目，總時長 140 分鐘一共 65 題。">
 <meta name="application-name" content="Ich bin yiwen.">
-<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/saa-c03-two/" /><link rel="prev" href="http://wysiwyz.github.io/posts/saa-c03-one/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/saa-c03-two/" /><link rel="prev" href="http://wysiwyz.github.io/posts/saa-c03-one/" /><link rel="next" href="http://wysiwyz.github.io/posts/cncf-kubestronaut/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -35,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/saa-c03-two\/"
-        },"genre": "posts","keywords": "","wordcount":  161 ,
+        },"genre": "posts","keywords": "","wordcount":  168 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/saa-c03-two\/","datePublished": "2024-09-06T10:05:31+08:00","dateModified": "2024-09-06T10:05:31+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,7 +79,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SAA-C03 AWS Solution Architect Associate 準備心得（下）</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;161 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-09-06">2024-09-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;168 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/posts/saa-c03-two/" class="leancloud_visitors" data-flag-title="SAA-C03 AWS Solution Architect Associate 準備心得（下）">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
@@ -93,7 +95,10 @@
     <li><a href="#應試心得">應試心得</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p><img
+            </div><div class="content" id="content"><blockquote>
+<p>本文有重新排版放到 medium &hellip; <a href="https://medium.com/@yiwenhaha/saa-c03-aws-solution-architect-associate-%e6%ba%96%e5%82%99%e5%bf%83%e5%be%97-1b7d1dcf049b" target="_blank" rel="noopener noreffer ">Go to Medium story</a></p>
+</blockquote>
+<p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="https://images.credly.com/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png"
@@ -144,7 +149,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/saa-c03-one/" class="prev" rel="prev" title="SAA-C03 AWS Solution Architect Associate 準備心得（上）"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>SAA-C03 AWS Solution Architect Associate 準備心得（上）</a></div>
+    <div class="post-nav"><a href="/posts/saa-c03-one/" class="prev" rel="prev" title="SAA-C03 AWS Solution Architect Associate 準備心得（上）"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>SAA-C03 AWS Solution Architect Associate 準備心得（上）</a>
+            <a href="/posts/cncf-kubestronaut/" class="next" rel="next" title="當不成 Astronaut, 試試 Kubestronaut">當不成 Astronaut, 試試 Kubestronaut<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.

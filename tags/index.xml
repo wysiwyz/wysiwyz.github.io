@@ -3,7 +3,23 @@
         <title>Tags - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/</link>
         <description>Tags - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>CloudNative</title>
+    <link>http://wysiwyz.github.io/tags/cloudnative/</link>
+    <pubDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/cloudnative/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Kubernetes</title>
+    <link>http://wysiwyz.github.io/tags/kubernetes/</link>
+    <pubDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/tags/kubernetes/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>AWS</title>
     <link>http://wysiwyz.github.io/tags/aws/</link>
     <pubDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</pubDate>
@@ -44,14 +60,6 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>Kubernetes</title>
-    <link>http://wysiwyz.github.io/tags/kubernetes/</link>
-    <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/kubernetes/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
     <title>Networking</title>
     <link>http://wysiwyz.github.io/tags/networking/</link>
     <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
@@ -73,14 +81,6 @@
     <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/tags/storage/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Compose</title>
-    <link>http://wysiwyz.github.io/tags/compose/</link>
-    <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/tags/compose/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
