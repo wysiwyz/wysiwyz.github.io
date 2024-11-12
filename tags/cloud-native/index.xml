@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Cloud Native - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/cloud-native/</link>
+        <description>Cloud Native - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 18 Sep 2024 13:48:44 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/cloud-native/" rel="self" type="application/rss+xml" /><item>
+    <title>Kubestronaut 之路 (1/5) - CKAD 考照筆記</title>
+    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut-03ckad/</link>
+    <pubDate>Wed, 18 Sep 2024 13:48:44 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut-03ckad/</guid>
+    <description><![CDATA[11/12 註：因為上個月考過 CKAD 了，想說作為紀錄把這筆記 draft 改成 false，另外 Ｓequoia MacOS 開 PSI Secure Browser 沒辦法看到 CKA 題目，目前正在等 Linux Foundation Ticket Assignee 回覆（好像要等超過三天，這辦事效率，唉）
+下週一就可以去領護照了呀！準備考試 &hellip; total 001 ~ 185
+Introduction 001. Introduction Pre-Requisites Lab environment Kubernetes Architecture Master and Worker Nodes Pods, ReplicaSets, Deployments Command Line - kubectl Understanding yaml Services Namespaces Course Objectives ñCore Concepts K8s Architecture Create and configure pods Configuration ConfigMaps SecurityContexts Resource Requirements Secrets ServiceAccounts Multi-Container Pods Ambassador pattern Adapter pattern Sidecar pattern Observability Readiness and Liveness Probes Container Logging Monitor and Debug Applications Pod Design Labels, Selectors and Annotations Rolling Updates and Rollbacks in Deployments Jobs and CronJobs Services and Networking Understand Services Network Policies State Persistence Persistent Volumes Persistent Volume Claims Core Concepts 009.]]></description>
+</item>
+</channel>
+</rss>

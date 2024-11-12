@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Kubernetes: techworld nana - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/kubernetes_na/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="Kubernetes: techworld nana">
+  <meta property="og:description" content="What is K8s 官方定義 Open source container orchestration tool 開源的容器調度工具
+Developed by Google
+Helps you manage containerized applications in different deployment environments 在不同部署環境下，協助管理容器化應用程式
+e.g. physical, virtual, cloud, hybrid deployment
+Kubernetes解決什麼問題？ 容器調度工具的需求 從單體式架構轉向微服務的趨勢 容器使用的增加 管理數百個容器的一個合適的方式 調度工具提供哪些功能？ 高可用 (HA), or no downtime 可擴展性 (Scalability), or high performance 災難復原 - backup and restore Main K8s Components Node: a simple server, a physical or virtual machine
+Pod:
+Basic component or the smallest unit of kubernetes Abstraction over container Pod is usually meant to run one application container inside of it (usually 1 application per Pod) You can run multiple containers inside one pod, but it’s usually if you have one main application container and a helper container or some side service that has to run inside of that pod.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-02-24T17:22:17+08:00">
+    <meta property="article:modified_time" content="2024-02-24T17:22:17+08:00">
+    <meta property="article:tag" content="Kubernetes">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kubernetes: techworld nana">
+  <meta name="twitter:description" content="What is K8s 官方定義 Open source container orchestration tool 開源的容器調度工具
+Developed by Google
+Helps you manage containerized applications in different deployment environments 在不同部署環境下，協助管理容器化應用程式
+e.g. physical, virtual, cloud, hybrid deployment
+Kubernetes解決什麼問題？ 容器調度工具的需求 從單體式架構轉向微服務的趨勢 容器使用的增加 管理數百個容器的一個合適的方式 調度工具提供哪些功能？ 高可用 (HA), or no downtime 可擴展性 (Scalability), or high performance 災難復原 - backup and restore Main K8s Components Node: a simple server, a physical or virtual machine
+Pod:
+Basic component or the smallest unit of kubernetes Abstraction over container Pod is usually meant to run one application container inside of it (usually 1 application per Pod) You can run multiple containers inside one pod, but it’s usually if you have one main application container and a helper container or some side service that has to run inside of that pod.">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/kubernetes_na/" /><link rel="prev" href="http://wysiwyz.github.io/posts/sql_explain/" /><link rel="next" href="http://wysiwyz.github.io/posts/rabbitmq/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Kubernetes: techworld nana",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/kubernetes_na\/"
+        },"genre": "posts","keywords": "Kubernetes","wordcount":  4151 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/kubernetes_na\/","datePublished": "2024-02-24T17:22:17+08:00","dateModified": "2024-02-24T17:22:17+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "celine"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Kubernetes: techworld nana</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-02-24">2024-02-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;4151 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;20 minutes&nbsp;<span id="/posts/kubernetes_na/" class="leancloud_visitors" data-flag-title="Kubernetes: techworld nana">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#what-is-k8s">What is K8s</a>
+      <ul>
+        <li><a href="#官方定義">官方定義</a></li>
+        <li><a href="#kubernetes解決什麼問題">Kubernetes解決什麼問題？</a></li>
+        <li><a href="#調度工具提供哪些功能">調度工具提供哪些功能？</a></li>
+      </ul>
+    </li>
+    <li><a href="#main-k8s-components">Main K8s Components</a></li>
+    <li><a href="#k8s-architecture">K8s architecture</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#minikube-and-kubectl---local-setup">Minikube and kubectl - Local Setup</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#main-kubectl-commands---k8s-cli">Main kubectl commands - K8s CLI</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#k8s-yaml-configuration-file">K8s YAML configuration file</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#demo-mongodb-n-mongoexpress">Demo: MongoDB n MongoExpress</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="what-is-k8s">What is K8s</h2>
+<h3 id="官方定義">官方定義</h3>
+<ul>
+<li>
+<p>Open source container orchestration tool 開源的容器調度工具</p>
+</li>
+<li>
+<p>Developed by Google</p>
+</li>
+<li>
+<p>Helps you manage containerized applications  in different deployment environments
+在不同部署環境下，協助管理容器化應用程式</p>
+<p>e.g. physical, virtual, cloud, hybrid deployment</p>
+</li>
+</ul>
+<h3 id="kubernetes解決什麼問題">Kubernetes解決什麼問題？</h3>
+<ul>
+<li>容器調度工具的需求
+<ul>
+<li>從單體式架構轉向微服務的趨勢</li>
+<li>容器使用的增加</li>
+<li>管理數百個容器的一個合適的方式</li>
+</ul>
+</li>
+</ul>
+<h3 id="調度工具提供哪些功能">調度工具提供哪些功能？</h3>
+<ol>
+<li>高可用 (HA), or no downtime</li>
+<li>可擴展性 (Scalability), or high performance</li>
+<li>災難復原 - backup and restore</li>
+</ol>
+<h2 id="main-k8s-components">Main K8s Components</h2>
+<ol>
+<li>
+<p><code>Node</code>: a simple server, a physical or virtual machine</p>
+</li>
+<li>
+<p><code>Pod</code>:</p>
+<ul>
+<li>Basic component or the smallest unit of kubernetes</li>
+<li>Abstraction over container</li>
+<li>Pod is usually meant to run one application container inside of it
+(usually 1 application per Pod)
+<ul>
+<li>You can run multiple containers inside one pod, but it&rsquo;s usually if you have one main application container and a helper container or some side service that has to run inside of that pod.</li>
+</ul>
+</li>
+<li>Each Pod gets its own IP address
+<ul>
+<li>my-app container可以透過ip address與db container互通有無</li>
+<li>pod components in k8s is ephemeral. The pod will die, if we lose a database container because the container crashed, or the server that I am running them on ran out of resources.</li>
+</ul>
+</li>
+<li>New IP address on re-creation</li>
+</ul>
+</li>
+<li>
+<p><code>Service</code></p>
+<ul>
+<li>A static IP address orpermanent IP address that can be attached to each pod</li>
+<li>Lifecycle of Pod and Service NOT connected</li>
+<li>Service has two functionalities:
+<ol>
+<li>Permanent IP</li>
+<li>Load balancer: The service will catch the request and forwarded it to whichever pod is least busy.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Ingress</code></p>
+<ul>
+<li>External Services - let your app be accessible through browser</li>
+</ul>
+</li>
+<li>
+<p><code>Volumes</code></p>
+<ul>
+<li>
+<p>如果 db container 或 pod 重啟了，原有資料消失會造成很大麻煩</p>
+</li>
+<li>
+<p>使用 Volumes 可以使 log data or database data stored persistedly, reliably long term</p>
+</li>
+<li>
+<p>Attached a physical storage on a hard drive to your pod</p>
+</li>
+<li>
+<p>Storage could be either on <strong>local</strong> machine, or <strong>remote</strong> (outside of the K8s cluster)</p>
+</li>
+<li>
+<p>Regardless of whether it&rsquo;s local or remote storage, think of a storage as an external hard drive plugged-in to the Kubernetes cluster.</p>
+<p>把volumes想像成外接至K8s cluster的外部硬碟</p>
+</li>
+<li>
+<p>K8s cluster explicitly doesn&rsquo;t manage data persistence.</p>
+</li>
+<li>
+<p>Users or Administrator are responsible for backing up the data, replicating and managing it, making sure that it&rsquo;s kept on a proper hardware. 使用或管理者自己要負責備份資料/複製或管理data</p>
+</li>
+</ul>
+</li>
+<li>
+<p><code>Secrets</code></p>
+<ul>
+<li>It&rsquo;s also external configuration component (similar to ConfigMap), but <strong>Secret</strong> is used to store secret data</li>
+<li>Base64 encoded</li>
+<li>Note that the built-in security mechanism is NOT enabled by default</li>
+<li>Use it as environment variable or as a properties file</li>
+</ul>
+</li>
+<li>
+<p><code>ConfigMap</code></p>
+<ul>
+<li>假設現在有個情況需要變更 database URL，而這個URL通常是寫在 build application，如果 service endpoint 或者 service name 變更為 mongo-db，開發就會需要修改 built application 的 URL，re-build 此程式 (w/ new version)，push to repository, pull the new image in your pod, and restart the whole thing.</li>
+<li>簡單的變更需要一連串繁瑣的動作太麻煩了，所以有了ConfigMap這個component的出現
+<ul>
+<li>external configuration of your application</li>
+<li>只要將ConfigMap連接上pod即可</li>
+</ul>
+</li>
+<li>注意不可將身分驗證資訊 plain text format 寫在 ConfigMap</li>
+</ul>
+</li>
+<li>
+<p><code>Deployment</code></p>
+<ul>
+<li>情境：假設在一個正常的production環境，application其中一個 pod crashed 了，或者因為 build 了一個新的 container image 而需要 restart，這樣會有user無法 reach this application 的 downtime，這在 production environment 會是很糟糕的情況</li>
+<li>與其只依賴於 one application pod 以及 one data base pod，會將全部都複製 replicate 到多個 server 上：cloned node / replica-node</li>
+<li>The replica is connected to the same Service.</li>
+<li>要建立 replica 不只是單純建立第二個pod而已，而是要 define blueprints for pods</li>
+<li>定義出的blueprint就稱為 <strong>Deployment</strong> :
+<ul>
+<li>blueprint for my-app pods</li>
+<li>you create Deployments</li>
+<li>Pod is an layer of abstraction on top of containers, and deployment is another abstraction on top of pods</li>
+</ul>
+</li>
+<li>但是如果 database pod died 也會需要 db replica 囉？
+<ul>
+<li>NO ❌. DB can&rsquo;t be replicated via Deployment, because database has state which is its data.</li>
+<li>If we have clones of database, they will all need to access the same shared data storage.</li>
+<li>There you would need some kind of mechanism that manages which pods are currently writing to that storage, or which pods are reading from the storage in order to avoid data inconsistencies.</li>
+<li>這樣的機制可以透過 <strong>StatefulSet</strong> 達成</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>StatefulSet</code></p>
+<ul>
+<li>This component is meant for STATEFUL apps, such as elastic, mongoDB, MySQL.</li>
+<li>Those stateful app or databases should be created using StatefulSet and not deployments.</li>
+<li>However, deploying database application using StatefulSet in Kubernetes cluster can be somewhat tedious.</li>
+<li>Therefore, it&rsquo;s also a common practice to host database applications OUTSIDE of the kubernetes cluster and just have the deployments or stateless applications that replicate and scale with no problem inside of Kubernetes cluster and communicates with external databases.</li>
+</ul>
+</li>
+</ol>
+<h2 id="k8s-architecture">K8s architecture</h2>
+<ul>
+<li>Two types of nodes that Kubernetes operates on: Master, Slave</li>
+<li>What are the differences between those, and which role each one of them has inside of the cluster.</li>
+</ul>
+<h4 id="worker-machine-in-k8s-cluster">Worker machine in K8s cluster</h4>
+<ul>
+<li>
+<p>Each node has multiple Pods on it</p>
+</li>
+<li>
+<p>Three processes must be installed on every node</p>
+</li>
+<li>
+<p>Worker Nodes do the actual work</p>
+</li>
+<li>
+<p>Kubelet <strong>interacts with both</strong> - the container and node</p>
+</li>
+<li>
+<p>Kublet <strong>starts the pod</strong> with a container inside</p>
+</li>
+<li>
+<p>Usually Kubernetes cluster is made up of multiple nodes which also must have container runtime, kubelet service installed</p>
+</li>
+<li>
+<p><strong>Kube Proxy</strong> forwards the requests</p>
+</li>
+<li>
+<p>Three Node Processes:</p>
+<ol>
+<li>Kubelet</li>
+<li>Kube Proxy</li>
+<li>Container runtime</li>
+</ol>
+</li>
+<li>
+<p>How do you interact with this cluster?</p>
+</li>
+<li>
+<p>How to schedule pod? monitor? re-schedule/re-start pod? join a new Node?</p>
+<p>All these managements are done by master processes.</p>
+</li>
+</ul>
+<h4 id="master-processes">Master processes</h4>
+<ul>
+<li>
+<p>4 processes run on every master node:</p>
+<ol>
+<li>
+<p>API server</p>
+<ul>
+<li>
+<p>interact with API Server using some client (such as UI, commandline tool, or Kubenetes API)</p>
+</li>
+<li>
+<p>It&rsquo;s like a cluster gateway, which gets any request, updates, queries into the cluster.</p>
+</li>
+<li>
+<p>It also acts as a gatekeeper for authentication:</p>
+<p>[some request]➡️[API Server]➡️[validates request]➡️[other processes]➡️[Pod]</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Scheduler</p>
+<ul>
+<li>[Schedule new Pod]➡️[API Server]➡️[Scheduler]➡️[Where to put the Pod?]➡️[Kubelet]</li>
+<li>Scheduler <strong>just decides on which node</strong> new Pod should be scheduled.</li>
+</ul>
+</li>
+<li>
+<p>Controller Manager</p>
+<ul>
+<li>Detects cluster state changes
+that a node has died and reschedule those pods as soon as possible</li>
+<li>[Controller Manager]➡️[Scheduler]➡️[Kubelet]➡️[Pod]</li>
+</ul>
+</li>
+<li>
+<p>etcd</p>
+<ul>
+<li>
+<p>A key-value store of a cluster state</p>
+</li>
+<li>
+<p>You can think of it as the cluster brain</p>
+</li>
+<li>
+<p>Cluster changes get stored (changed or updated) in the key value store</p>
+</li>
+<li>
+<p>All these mechanism with scheduler and controller manager work because of etcd&rsquo;s data.</p>
+<ul>
+<li>
+<p>e.g. How does a scheduler know what resources are available?</p>
+</li>
+<li>
+<p>e.g. How does a controller manager know that the a cluster state changed in some way? (A pods died, or that the kubelet restarted new pods upon the request of the scheduler.)</p>
+</li>
+<li>
+<p>e.g. Is the cluster healthy?</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="example-cluster-set-up">Example Cluster Set-Up</h4>
+<ul>
+<li>2 master nodes</li>
+<li>3 worker nodes</li>
+<li>Note that the hardware resources for master and node server actually differ.
+<ul>
+<li>Master has less load of work: need less resources like CPU, RAM or STORAGE.</li>
+<li>Worker nodes do the actual job of running those pods with containers inside and need more resources.</li>
+</ul>
+</li>
+<li>You can add new master/node server pretty easily:</li>
+</ul>
+<ol>
+<li>Get new bare server</li>
+<li>Install all the master/worker node processes (such as container runtime, kubelet, kube proxy unit)</li>
+<li>Add it to the Kubernetes cluster</li>
+</ol>
+<h2 id="minikube-and-kubectl---local-setup">Minikube and kubectl - Local Setup</h2>
+<h4 id="minikube-是什麼">Minikube 是什麼</h4>
+<p>Usually in K8s world, when you are setting up a production cluster -</p>
+<ul>
+<li>
+<p>multiple <strong>Masters</strong>: at least two in production setting</p>
+</li>
+<li>
+<p>multiple <strong>Worker</strong> nodes</p>
+</li>
+<li>
+<p>Master and Worker have separate responsibilities:</p>
+<ul>
+<li>separate virtual or physical machines that each represent a node</li>
+</ul>
+</li>
+</ul>
+<p>If you want to test on local machine, or try something out very quickly, setting up a production level cluster would be pretty difficult or even impossible if you don&rsquo;t have enough resources like memory and CPU etc.</p>
+<h5 id="minikube---open-source-tool">Minikube - open source tool</h5>
+<ul>
+<li>
+<p>One node cluster where the master processes and the worker processes both run on one node.</p>
+</li>
+<li>
+<p>This node  will have a Docker container runtime pre-installed.</p>
+</li>
+<li>
+<p>You will be able to run the containers or the pods with containers on this node.</p>
+</li>
+<li>
+<p>The way it&rsquo;s going to run on your laptop is through a <strong>virtual box</strong> or some other <strong>hypervisor</strong>.</p>
+</li>
+<li>
+<p>Minikube will create a virtual box on your laptop, and the nodes that you see here of this node will run in that virtual box.</p>
+</li>
+<li>
+<p>Summary: Minikube is a one node K8s cluster that runs in a virtual box on your laptop, which you can use for testing kubernetes on your local setup.</p>
+</li>
+</ul>
+<h4 id="kubectl是什麼"><code>kubectl</code>是什麼</h4>
+<ul>
+<li>A way to interact with the minikube (i.e. create pods and other K8s components on the node)</li>
+<li>A command line tool for K8s cluster</li>
+<li>Minikube runs both master and worker processes, so one of the master processes called <strong>API Server</strong> is actually the main entry point into the K8s cluster.</li>
+<li>If you want to configure anything, create any component, you first had to talk to the API server.</li>
+<li>The way to talk to the API Server is through different clients
+<ul>
+<li>An <strong>UI</strong> like a dashboard</li>
+<li>Kubernetes <strong>API</strong></li>
+<li>A <strong>CLI</strong> <code>kubectl</code>: the most powerful of all the three clients</li>
+</ul>
+</li>
+<li>Important to note that <code>kubectl</code> isn&rsquo;t just for minikube cluster, if you have a cloud cluster or hybrid cluster, <code>kubectl</code> is the tool to interact with any type of kubernetes cluster setup.</li>
+</ul>
+<h4 id="minikube安裝步驟">minikube安裝步驟</h4>
+<ol>
+<li>
+<p>用 brew 安裝 virtual box/hypervisor</p>
+<blockquote>
+<p>[2024/2/26] 這邊安裝hyperkit之前還須要裝 xcode.app</p>
+</blockquote>
+<p>因為 minikube 自己有 kubectl dependency, 安裝minikube就會順便安裝kubectl</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">brew update
+brew install hyperkit
+brew install minikube
+</code></pre></li>
+<li>
+<p>用以下cmd確認安裝成功</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl
+minikube
+</code></pre></li>
+<li>
+<p>Tell MiniKube to use hyperkit hypervisor to start this virtual MiniKube cluster</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">minikube start --vm-driver=hyperkit
+</code></pre><p><code>minikube stop</code>, <code>minikube delete</code></p>
+<blockquote>
+<p>[2024/2/26]</p>
+<p>查它的 &ndash;help 指示說 <code>--vm-driver</code>是已經deprecated的指令，改用 <code>--driver</code>即可</p>
+<p>另外，筆者無法用 hyperkit driver 啟動 minikube</p>
+<p><code>The driver 'hyperkit' is not supported on darwin/arm64</code></p>
+<p>所以最後改用 docker 安裝</p>
+<ol>
+<li>
+<p>先刪除本地全部的 minikube cluster <code>minikube delete --all --purge</code></p>
+</li>
+<li>
+<p>打開docker desktop，並用這個命令啟動</p>
+<p><code>minikube start --driver=docker --force --extra-config=kubelet.cgroup-driver=systemd --cni calico --container-runtime=containerd --registry-mirror=[https://registry.docker-cn.com](https://registry.docker-cn.com/)</code></p>
+</li>
+</ol>
+<p>結果如下：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/oMz1A9l.png"
+        data-srcset="https://i.imgur.com/oMz1A9l.png, https://i.imgur.com/oMz1A9l.png 1.5x, https://i.imgur.com/oMz1A9l.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/oMz1A9l.png"
+        title="image-20240226170420739" /></p>
+</blockquote>
+</li>
+<li>
+<p>查看 nodes status</p>
+<blockquote>
+<p>[2024/2/26]</p>
+<p>這裡實作時得到錯誤訊息 <code>couldn't get current server API group list: Get &quot;https://127.0.0.1:52807/api?timeout=32s&quot;: EOF</code></p>
+<p>在Docker Desktop打開的情況下重啟 <code>minikube start --driver=docker</code>，不放額外的設定</p>
+<p>結果：（有人知道為何一開始會有 EOF error嗎）</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/LqNQHQI.png"
+        data-srcset="https://i.imgur.com/LqNQHQI.png, https://i.imgur.com/LqNQHQI.png 1.5x, https://i.imgur.com/LqNQHQI.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/LqNQHQI.png"
+        title="image-20240226172001733" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/KOAUspr.png"
+        data-srcset="https://i.imgur.com/KOAUspr.png, https://i.imgur.com/KOAUspr.png 1.5x, https://i.imgur.com/KOAUspr.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/KOAUspr.png"
+        title="image-20240226172017349" /></p>
+</blockquote>
+<pre tabindex="0"><code>kubectl get nodes
+</code></pre></li>
+<li>
+<p>查看狀態</p>
+</li>
+</ol>
+<ul>
+<li>host is running</li>
+<li>kubelet (a service that actually runs the pods using container runtime)</li>
+<li>apiserver</li>
+<li>kubeconfig</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">minikube status
+</code></pre><ol start="6">
+<li>
+<p>查看已安裝的 Kubernetes 版本</p>
+<blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/8RCWPGT.png"
+        data-srcset="https://i.imgur.com/8RCWPGT.png, https://i.imgur.com/8RCWPGT.png 1.5x, https://i.imgur.com/8RCWPGT.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/8RCWPGT.png"
+        title="image-20240226174031800" /></p>
+<p>[2024/2/26] 為何實作看不到 Server Version, 也沒有 version.Info{} (including major, minor, gitVersion, gitCommit, gitTreeState, buildDate, goVersion, compiler, platform)</p>
+</blockquote>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl version
+</code></pre><ul>
+<li><code>kubectl</code> CLI : for configuring the MiniKube cluster (大部分都用這個)</li>
+<li><code>minikube</code> CLI: for start up/deleting the cluster</li>
+</ul>
+</li>
+</ol>
+<h2 id="main-kubectl-commands---k8s-cli">Main kubectl commands - K8s CLI</h2>
+<h4 id="basic-kubectl-commands">Basic kubectl commands</h4>
+<ul>
+<li>Status of different K8s components</li>
+</ul>
+<p><code>kubectl get [nodes | pod | services]</code></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/m6eQhjf.png"
+        data-srcset="https://i.imgur.com/m6eQhjf.png, https://i.imgur.com/m6eQhjf.png 1.5x, https://i.imgur.com/m6eQhjf.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/m6eQhjf.png"
+        title="image-20240226175443132" /></p>
+<ul>
+<li>
+<p>CRUD commands</p>
+<ol>
+<li>
+<p>因為現在沒有pod，CREATE的指令:</p>
+<ul>
+<li>
+<p>查詢create相關指令</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl create -h
+</code></pre></li>
+</ul>
+<p>Pod is the smallest unit of the K8s cluster, but usually in practice, you are not working with pods directly. There is a <code>Deployment</code>, which is an abstraction over Pods.</p>
+<pre tabindex="0"><code>kubectl create deployment &lt;NAME&gt; --image=image
+</code></pre><ul>
+<li>
+<p>例如：建立一個 NGINX deployment，以下的指令會從dockerhub下載最新版本的nginx image</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl create deployment nginx-depl --image=nginx
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/aQ5tZD0.png"
+        data-srcset="https://i.imgur.com/aQ5tZD0.png, https://i.imgur.com/aQ5tZD0.png 1.5x, https://i.imgur.com/aQ5tZD0.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/aQ5tZD0.png"
+        title="image-20240226180324589" /></p>
+<p>READY 若顯示為 0/1，則表示其 pod ContainerCreating</p>
+<p>當執行以上的建立 kubectl，會執行以下動作：</p>
+<ol>
+<li>Deployment has all the information or <strong>blueprint</strong> for creating pods</li>
+<li>This is the minimum/<strong>most basic configuration</strong> for deployment (name and image to use)</li>
+<li>Rest is just defaults</li>
+</ol>
+</li>
+<li>
+<p>Between deployment and pod, there is another layer which is automatically managed by K8s deployment &mdash; <strong>ReplicaSet</strong></p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl get replicaset
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Ubq38ZW.png"
+        data-srcset="https://i.imgur.com/Ubq38ZW.png, https://i.imgur.com/Ubq38ZW.png 1.5x, https://i.imgur.com/Ubq38ZW.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Ubq38ZW.png"
+        title="image-20240226181043674" /></p>
+<p>可以發現 pod 的命名是 {deployment的NAME}-{ReplicaSet的ID}-{Pod自己的ID}</p>
+</li>
+<li>
+<p>Replicaset is managing the replicas of a Pod, practically, you will never have to create , delete or update a Replicaset in any way.</p>
+</li>
+</ul>
+<p><strong>Layers of Abstraction</strong></p>
+<ul>
+<li>Deployment manages a ReplicaSet.</li>
+<li>ReplicaSet manages all the replicas of that pod.</li>
+<li>Pod is an abstraction of a container.</li>
+<li>Everything below Deployment is and should be handled by Kubernetes.</li>
+</ul>
+</li>
+<li>
+<p>UPDATE</p>
+<ul>
+<li>修改某一個 deployment by its name</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl edit deployment [name]
+</code></pre><ul>
+<li>
+<p>會得到一個 auto-generated configuration file with default values</p>
+</li>
+<li>
+<p>在 image section 限定使用映像檔版本</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/1r8o4Ho.png"
+        data-srcset="https://i.imgur.com/1r8o4Ho.png, https://i.imgur.com/1r8o4Ho.png 1.5x, https://i.imgur.com/1r8o4Ho.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/1r8o4Ho.png"
+        title="image-20240226182432889" /></p>
+</li>
+<li>
+<p>存檔之後可以看到多了一個pod</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/8GqDvOR.png"
+        data-srcset="https://i.imgur.com/8GqDvOR.png, https://i.imgur.com/8GqDvOR.png 1.5x, https://i.imgur.com/8GqDvOR.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/8GqDvOR.png"
+        title="image-20240226182611125" /></p>
+<p><code>6777bffb6f</code> will be terminated and disappeared from above list once the <code>6bdcdf7f5</code> starts running.</p>
+</li>
+<li>
+<p><code>kubectl get replicaset</code>: The old one has no pods in it, and a new one has been created as well.</p>
+</li>
+<li>
+<p>僅只是修改 deployment，就可以發現 pod、deployment 以及 replicaset 都自動由 Kubernetes 異動完了</p>
+</li>
+</ul>
+</li>
+<li>
+<p>DELETE</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl delete deployment [name]
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/AsQKUbv.png"
+        data-srcset="https://i.imgur.com/AsQKUbv.png, https://i.imgur.com/AsQKUbv.png 1.5x, https://i.imgur.com/AsQKUbv.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/AsQKUbv.png"
+        title="image-20240227105742667" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>Debugging pods</p>
+<ol>
+<li>
+<p>log to console</p>
+<ul>
+<li>basically shows you what the application running inside the Pod actually locked</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl logs [pod name]
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/ZXkF4th.png"
+        data-srcset="https://i.imgur.com/ZXkF4th.png, https://i.imgur.com/ZXkF4th.png 1.5x, https://i.imgur.com/ZXkF4th.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/ZXkF4th.png"
+        title="image-20240226184620353" /></p>
+</li>
+<li>
+<p>get interactive terminal</p>
+<ul>
+<li><code>-it</code> stands for interactive terminal</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl exec -it [pod name] -- bin/bash
+</code></pre><p>Example:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/5a26IUe.png"
+        data-srcset="https://i.imgur.com/5a26IUe.png, https://i.imgur.com/5a26IUe.png 1.5x, https://i.imgur.com/5a26IUe.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/5a26IUe.png"
+        title="image-20240227105116565" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>All the CRUD operations happen on the deployment level, and everything underneath just follows automatically (pod, replicaset, etc.).</p>
+</li>
+<li>
+<p>但是在 <code>kubectl create deployment name image option1 option2</code> 有很多配置，可以改用 configuration file 定義，只要叫 k8s 執行該配置檔即可</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl apply -f config-file.yaml
+</code></pre><p>Example:</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl apply -f nginx-depl.yaml
+touch nginx-depl.yaml
+</code></pre><pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ cat nginx-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app:nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.16
+        ports:
+        - containerPort: 80
+</code></pre><ol>
+<li>
+<p><code>spec.replicas</code>:</p>
+<ul>
+<li>How many replicas of the the pod I want to create</li>
+<li>specification for the deployment</li>
+</ul>
+</li>
+<li>
+<p>Blueprint for a pod: <code>spec.template.spec</code> section</p>
+<ul>
+<li>Per above example, we just want one container inside the pod, with nginx image, and bind that on port 80.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>[2024/2/27] 這裏在實作上遇到以下錯誤</p>
+<p>error when creating &ldquo;nginx-deployment.yaml&rdquo;: Deployment in version &ldquo;v1&rdquo; cannot be handled as a Deployment: json: cannot unmarshal string into Go struct field LabelSelector.spec.selector.matchLabels of type map[string]string</p>
+<p>最後是刪除了value後面的空白，最後一行以下的空白，還有<code>:</code>之後必須空一格</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/M7Qntuc.png"
+        data-srcset="https://i.imgur.com/M7Qntuc.png, https://i.imgur.com/M7Qntuc.png 1.5x, https://i.imgur.com/M7Qntuc.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/M7Qntuc.png"
+        title="image-20240227114619275" /></p>
+</blockquote>
+<ol start="3">
+<li>
+<p>如果變更以上yaml檔，在 apply 時，kubenetes 會自動辨別要 create 還是 update</p>
+<p>Example: update replicaset number from 1 to 2</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/euXAybl.png"
+        data-srcset="https://i.imgur.com/euXAybl.png, https://i.imgur.com/euXAybl.png 1.5x, https://i.imgur.com/euXAybl.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/euXAybl.png"
+        title="image-20240227115434039" /></p>
+</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p><strong>Wrap-up</strong></p>
+<pre tabindex="0"><code>kubectl create deployment [name]
+kubectl edit deployment [name]
+kubectl delete deployment [name]
+
+kubectl get nodes | pod | services | replicaset | deployment
+
+kubectl logs [pod name]
+kubectl exec -it [pod name] -- bin/bash
+kubectl describe pod [pod name]
+
+kubectl apply -f [file name]
+kubectl delete -f [file name]
+</code></pre></blockquote>
+<h2 id="k8s-yaml-configuration-file">K8s YAML configuration file</h2>
+<h4 id="overview">Overview</h4>
+<ul>
+<li>
+<p>The three parts of configuration file</p>
+<ol>
+<li>
+<p><strong>metadata</strong></p>
+</li>
+<li>
+<p><strong>specification</strong></p>
+<pre tabindex="0"><code>spec:
+  replicas: ...
+  selector: ...
+  template: ...
+  ports: ...
+</code></pre></li>
+<li>
+<p><strong>status</strong> - to be automatically generated and added by Kubernetes</p>
+<p>那K8s是從何處取得status data？從<code>etcd</code>取得</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Connecting deployments to Service to Pods</p>
+</li>
+<li>
+<p>Demo</p>
+</li>
+</ul>
+<h4 id="yaml-configuration-files">YAML configuration files</h4>
+<ul>
+<li>
+<p>&ldquo;<strong>Human friendly</strong> data serialization, standard for all programming languages&rdquo;</p>
+</li>
+<li>
+<p>Syntax: <strong>strict indentation</strong></p>
+<ul>
+<li>
+<p>格式簡單，非常重視縮排，如果有任何格式錯誤就會導致 invalid file</p>
+</li>
+<li>
+<p>當你的 yaml 有兩百多行這麼長的話，可以使用網路上的工具 yaml validator，另外也有 code editors 提供 YAML syntax validation 的插件 plugins</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Store the config file with your code or own git repository</p>
+<ul>
+<li>Usually it would be a part of the whole infrastructure as a code concept
+(基礎架構即程式碼的概念)</li>
+<li>Or you can have it&rsquo;s own repository just for the configuration</li>
+</ul>
+</li>
+</ul>
+<h4 id="blueprint-for-pods-template">Blueprint for pods (Template)</h4>
+<ul>
+<li>Deployment manage pods.</li>
+<li>When you expand a <code>spec.template</code>, you see it also has it&rsquo;s own <code>metadata</code> and <code>spec</code> section. This configuration applies to a Pod.</li>
+<li>提供了像是 which image it should be based on, which port it should open, what is gonna be the name of the container 等等之類的定義</li>
+</ul>
+<h4 id="connecting-components-labels--selectors--ports">Connecting components (Labels &amp; Selectors &amp; Ports)</h4>
+<ul>
+<li>
+<p>The <code>metadata</code> part contains <code>labels</code>, and the <code>spec</code> part contains <code>selectors</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># nginx-deployment.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx-deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx:1.16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>In the metadata, you give components like deployment or pod a key-value pair.
+It could be any key-value pair for component.</p>
+</li>
+<li>
+<p>Pods get the label through the template blueprint.</p>
+</li>
+<li>
+<p>This label is matched by the selector.</p>
+</li>
+</ul>
+<h4 id="connect-services-to-deployments">Connect Services to Deployments</h4>
+<ul>
+<li>
+<p>Deployment has its own label (e.g. <code>app: nginx</code>) used by the service selector.</p>
+</li>
+<li>
+<p>In the specification of a service, we define a selector which basically makes a connection between the service (spec.selector.app) and the deployment or its pods (metadata.labels.app), becuase service must know which pods are kind of registered with it, i.e. which pods belong to that service.
+Service 和 Pod 之間的連接性是透過 selector of the label 達成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># nginx-service.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx-service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>以上的 service yaml 檔案可發現，service 有它自己的 ports configuration</p>
+</li>
+<li>
+<p>而 deployment yaml 也有定義 containerPort</p>
+</li>
+</ul>
+<h4 id="ports-in-service-and-pod">Ports in Service and Pod</h4>
+<ul>
+<li>
+<p>Service has a port where the service itself is accessible at. If other services sends request to nginx service here, it needs to send it on Port <strong>80</strong>.</p>
+</li>
+<li>
+<p>However, this service needs to know to which pod it should forward the request, but also at which Port is that pod listening &mdash; That is the Target Port.</p>
+</li>
+<li>
+<p>因此 service <code>spec.ports.targetPort</code> 的值必須與 deployment <code>spec.template.spec.containers.ports.containerPort</code> 的值吻合</p>
+</li>
+<li>
+<p>Example:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/Apq9V4q.png"
+        data-srcset="https://i.imgur.com/Apq9V4q.png, https://i.imgur.com/Apq9V4q.png 1.5x, https://i.imgur.com/Apq9V4q.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/Apq9V4q.png"
+        title="image-20240227145437884" /></p>
+</li>
+<li>
+<p>要如何驗證service的pods可以正確的轉發請求到指定的port號？使用以下cmd</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl describe service [the_service_name]
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/MqGocYk.png"
+        data-srcset="https://i.imgur.com/MqGocYk.png, https://i.imgur.com/MqGocYk.png 1.5x, https://i.imgur.com/MqGocYk.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/MqGocYk.png"
+        title="image-20240227145753169" /></p>
+<ul>
+<li>可以看到列出了所有的 status information 像是定義在 yaml 檔裡面的 selector、TargetPort 以及 Endpoints。</li>
+<li>Endpoints 必須為 Pod 的 IP 位址 +  port 號</li>
+</ul>
+</li>
+<li>
+<p>如何查看 Pod 的 IP 位址？</p>
+<p><code>-o</code> for output</p>
+<p><code>wide</code> for more information</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl get pod -o wide
+</code></pre><p>查看以下欄位的 IP 就能驗證上面的Endpoints是否正確</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/VOewNVS.png"
+        data-srcset="https://i.imgur.com/VOewNVS.png, https://i.imgur.com/VOewNVS.png 1.5x, https://i.imgur.com/VOewNVS.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/VOewNVS.png"
+        title="image-20240227163709339" /></p>
+</li>
+</ul>
+<h4 id="3rd-part-of-configuration-file--status">3rd Part of Configuration File : Status</h4>
+<ul>
+<li>
+<p>如何查看 automatically generated 的 Status？</p>
+<ul>
+<li>用 yaml 格式查看某一個 deployment 的 output</li>
+<li>用以下的 command 可以取得最終或更新後的 deployment configuration 檔，這個檔案其實放在 <code>etcd</code>底下，因爲 <code>etcd</code>存的是整個 cluster 的狀態，包括每一個 component</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl get deployment nginx-deployment -o yaml
+</code></pre><ul>
+<li>Result:</li>
+</ul>
+<pre tabindex="0"><code>...
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: &#34;2024-02-27T06:49:06Z&#34;
+    lastUpdateTime: &#34;2024-02-27T06:49:06Z&#34;
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: &#34;True&#34;
+    type: Available
+  - lastTransitionTime: &#34;2024-02-27T06:49:05Z&#34;
+    lastUpdateTime: &#34;2024-02-27T06:49:06Z&#34;
+    message: ReplicaSet &#34;nginx-deployment-7b965f675d&#34; has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: &#34;True&#34;
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2
+</code></pre><ul>
+<li>
+<p>將 Result 另存成一個檔案</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl get deployment nginx-deployment -o yaml &gt; nginx-deployment-result.yaml
+</code></pre></li>
+<li>
+<p>All this <strong>status</strong> is automatically edited and updated constantly by K8s.</p>
+</li>
+<li>
+<p>可以看到 how many replicas are running, what the state of those replicas, etc.</p>
+</li>
+<li>
+<p>在除錯時查看這段 status 有助於 trouble shooting</p>
+</li>
+</ul>
+</li>
+<li>
+<p>除了 Status，還可以在這個 yaml 看到：</p>
+<ol>
+<li>
+<p>K8s 在 metadata 加了其它東西，像是</p>
+<p><code>creationTimestamp</code>: 這個 component 建立的時間</p>
+</li>
+<li>
+<p>specification 也是</p>
+</li>
+</ol>
+</li>
+<li>
+<p>如果要自動化腳本，替既有的 deployment 複製一份新的 yaml，須要刪除這些k8s自動產生的內容</p>
+<ol>
+<li>clean that deployment configuration file first</li>
+<li>create another deployment from that blueprint</li>
+</ol>
+</li>
+<li>
+<p>用 configuration file 刪除 deployment 與 service</p>
+<pre tabindex="0"><code>kubectl delete -f nginx-deployment.yaml
+</code></pre><p>可以發現 nginx-deployment 以及 nginx-service 都被刪掉看不到了</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/LQzzJXf.png"
+        data-srcset="https://i.imgur.com/LQzzJXf.png, https://i.imgur.com/LQzzJXf.png 1.5x, https://i.imgur.com/LQzzJXf.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/LQzzJXf.png"
+        title="image-20240227175718222" /></p>
+</li>
+</ul>
+<h2 id="demo-mongodb-n-mongoexpress">Demo: MongoDB n MongoExpress</h2>
+<p>使用 K8s components 設定完整的 application setup，這一段會部署兩個 applications：mongodb 以及 mongoExpress。</p>
+<p>選擇原因：it demostrates really well a typical setup of a web application and its database.</p>
+<h4 id="k8s-components概觀">K8s components概觀</h4>
+<ul>
+<li>2 Deployment / Pod</li>
+<li>2 Services</li>
+<li>1 ConfigMap</li>
+<li>1 Secret</li>
+</ul>
+<h4 id="steps">Steps</h4>
+<ol>
+<li>
+<p>建立一個 MongoDB pod</p>
+</li>
+<li>
+<p>要能夠與這個Pod溝通的話，需要一個 Service &mdash; 建立 internal service</p>
+<ul>
+<li>No external request are allowed to the Pod, only components inside the same cluster can talk to it.</li>
+</ul>
+</li>
+<li>
+<p>建立一個 Mongo Express deployment</p>
+<ul>
+<li>需要一個 mongodb 的 database URL，這樣 MongoExpress 才能連上 DB</li>
+<li>需要 credentials：資料庫的 username, password
+<ul>
+<li>藉由<code>deployment.yaml</code>的環境變數，將上述資訊傳遞給 Mongo Express</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>建立一個 ConifgMap，存放 db url</p>
+</li>
+<li>
+<p>建立一個 Secret，存放 DB 帳密驗證資料</p>
+</li>
+<li>
+<p>再由 Deployment.yaml 引用這兩個 components</p>
+</li>
+</ol>
+<h4 id="browser-request-flow-through-the-k8s-components">Browser Request Flow through the K8s components</h4>
+<ul>
+<li>The request comes from the browser and it goes to the external service of the Express (Mongo Express External Service), which will then forward to the Express pod.</li>
+<li>The Pod will then connect to internal service of MongoDB (MongoDB Internal Service), that is basically the database URL (as stored in ConfigMap).</li>
+<li>It will forward. them to MongoDB Pod where it will authenticate the request using the credentials.</li>
+</ul>
+<h4 id="mongo-db-deployment">Mongo DB Deployment</h4>
+<ul>
+<li>
+<p>取得 cluster 裡面的所有 components setup</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl get all
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/WpPCLDQ.png"
+        data-srcset="https://i.imgur.com/WpPCLDQ.png, https://i.imgur.com/WpPCLDQ.png 1.5x, https://i.imgur.com/WpPCLDQ.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/WpPCLDQ.png"
+        title="image-20240228155324286" /></p>
+</li>
+</ul>
+<ol>
+<li>
+<p>建立一個 MongoDB deployment</p>
+<p>Pod Blueprint:</p>
+<ul>
+<li>
+<p>name: mongodb</p>
+</li>
+<li>
+<p>image: mongo</p>
+</li>
+<li>
+<p>specify what port I want to expose, using <code>ports.containerPort</code></p>
+</li>
+<li>
+<p>環境變數的name 參照 <a href="https://hub.docker.com/_/mongo" target="_blank" rel="noopener noreffer ">dockerhub_mongodb</a></p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># mongo.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mongo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">27017</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">MONGO_INITDB_ROOT_USERNAME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">MONGO_INITDB_ROOT_PASSWORD</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Note that Deployment Config File is checked into repository. So usually you wouldn&rsquo;t write username and password inside the configuration file. 因此要建立一個 Secret 用來參照 config file 的 value</p>
+<ul>
+<li>The Secret lives in K8s, not in the repository.</li>
+</ul>
+</li>
+</ol>
+<h4 id="create-secret">Create Secret</h4>
+<ul>
+<li>
+<p><code>kind</code>: Secret</p>
+</li>
+<li>
+<p><code>metadata.name</code>: a random name</p>
+</li>
+<li>
+<p><code>type</code>:</p>
+<ul>
+<li>Opaque - <strong>default</strong> for arbitrary key-value pairs</li>
+</ul>
+</li>
+<li>
+<p><code>data</code>:</p>
+<ul>
+<li>
+<p>the actual contents - in key-value pairs</p>
+</li>
+<li>
+<p>key: the name you come up with</p>
+</li>
+<li>
+<p>value: not plain text, MUST be base64 encoded</p>
+<p>注意一定要有<code>-n</code></p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ echo -n &#39;username&#39; | base64
+dXNlcm5hbWU=
+❯ echo -n &#39;passowrd&#39; | base64
+cGFzc293cmQ=
+</code></pre></li>
+</ul>
+</li>
+<li>
+<p>Secret must be created before the Deployment if you want to reference secret in deployment.</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Opaque</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mongo-root-username</span><span class="p">:</span><span class="w"> </span><span class="l">dXNlcm5hbWU=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">mongo-root-password</span><span class="p">:</span><span class="w"> </span><span class="l">cGFzc293cmQ= </span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>建立一個目錄，並將這兩個 yaml 放在同目錄下</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">mkdir k8s-configuration
+mv mongo.yaml k8s-configuration
+mv mongo-secret.yaml k8s-configuration
+cd k8s-configuration/
+</code></pre></li>
+<li>
+<p>在這個目錄裡，輸入以下指令以新建 secret 並查看結果</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl apply -f mongo-secret.yaml
+secret/mongodb-secret created
+❯ kubectl get secret
+NAME             TYPE     DATA   AGE
+mongodb-secret   Opaque   2      34s
+</code></pre></li>
+<li>
+<p>deployment config file 的 value，與其用 <code>value</code> 改用 <code>valueFrom</code></p>
+<ul>
+<li>valueFrom.secretKeyRef.name: 這裏放 secret yaml  的 metadata.name 值</li>
+<li>valueFrom.secretKeyRef.key: 這裏放 secret yaml 裡面 data key 的命名</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mongo</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">27017</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">MONGO_INITDB_ROOT_USERNAME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-root-username</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">MONGO_INITDB_ROOT_PASSWORD</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-root-password</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改完後，建立這個 mongo deployment</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl apply -f mongo.yaml
+deployment.apps/mongodb-deployment created
+</code></pre></li>
+<li>
+<p>接著就可以用 <code>kubectl get all</code> 查看剛建立好的 deployment, pod, replicaset</p>
+</li>
+<li>
+<p>如果用 <code>kubectl get pod --watch</code> 看到 STATUS 一直在 <code>ContainerCreating</code>，可以用 <code>describe</code> 除錯</p>
+<ul>
+<li>
+<p><code>--watch</code>: 如果這個pod有狀態變更，shell會繼續印新的一行</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl get pod --watch
+NAME                                 READY   STATUS    RESTARTS   AGE
+mongodb-deployment-699744c7d-6qp25   1/1     Running   0          6m36s
+</code></pre></li>
+<li>
+<p>trouble shooting <code>kubectl describe pod [the_pod_name]</code></p>
+<p>可以在 Events table, message 欄位看到目前進度</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">kubectl describe pod mongodb-deployment-699744c7d-6qp25
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h4 id="mongodb-internal-service">MongoDB Internal Service</h4>
+<ul>
+<li>
+<p>建立一個 service，通常 deployment 跟 service 一起放在同一個檔案中</p>
+<ul>
+<li>使用 <code>---</code>做 yaml document separation</li>
+<li><code>kind</code>: Service</li>
+<li><code>metadata.name</code>: a random name</li>
+<li><code>selector</code>: to connect to Pod through label</li>
+<li><code>ports.port</code>: the service port</li>
+<li><code>ports.targetPort</code>: containerPort of Deployment</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># ... configs of deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">27017</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">27017</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>用 <code>kubectl apply -f mongo.yaml</code>建立 deployment</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl apply -f mongo.yaml
+deployment.apps/mongodb-deployment unchanged
+service/mongodb-service created
+</code></pre><pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl get service
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE
+kubernetes        ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP     3d3h
+mongodb-service   ClusterIP   10.99.162.252   &lt;none&gt;        27017/TCP   62s
+</code></pre></li>
+<li>
+<p>驗證 service is attached to the K8s pod</p>
+<ul>
+<li><code>Endpoints</code>: IP address of the pod and the port where the application inside the pod is listening</li>
+<li><code>kubectl get pod -o wide</code>: to get additional output</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl describe service mongodb-service
+Name:              mongodb-service
+Namespace:         default
+Labels:            &lt;none&gt;
+Annotations:       &lt;none&gt;
+Selector:          app=mongodb
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.99.162.252
+IPs:               10.99.162.252
+Port:              &lt;unset&gt;  27017/TCP
+TargetPort:        27017/TCP
+Endpoints:         10.244.0.9:27017
+Session Affinity:  None
+Events:            &lt;none&gt;
+
+❯ kubectl get pod -o wide
+NAME                                 READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+mongodb-deployment-699744c7d-6qp25   1/1     Running   0          24m   10.244.0.9   minikube   &lt;none&gt;           &lt;none&gt;
+</code></pre></li>
+<li>
+<p>To see all the components for one application:</p>
+</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal"> ❯ kubectl get all | grep mongodb
+</code></pre><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/TGPEA9g.png"
+        data-srcset="https://i.imgur.com/TGPEA9g.png, https://i.imgur.com/TGPEA9g.png 1.5x, https://i.imgur.com/TGPEA9g.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/TGPEA9g.png"
+        title="image-20240301142933003" /></p>
+<h4 id="mongo-express-deployment--service--configmap">Mongo Express Deployment &amp; Service &amp; ConfigMap</h4>
+<p>接著要建立 Mongo Express Deployment 以及 Service，還有 external configuration (ConfigMap, 用來放DB Url)</p>
+<ul>
+<li>
+<p>以下是 mongo-express 的 yaml</p>
+<ul>
+<li>需要三個環境變數，命名參考 <a href="https://hub.docker.com/_/mongo-express" target="_blank" rel="noopener noreffer ">dockerhub_mongo_express</a>
+<ol>
+<li>Which DB to connect? MongoDB Address / Internal Service
+<ul>
+<li>ME_CONFIG_MONGODB_SERVER</li>
+</ul>
+</li>
+<li>Which credentials to authenticate?
+<ul>
+<li>ME_CONFIG_MONGODB_ADMINUSERNAME</li>
+<li>ME_CONFIG_MONGODB_ADMINPASSWORD</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>Need to open ports (you can have multiple ports in a pod)
+<ul>
+<li>add environment names, username 與 password 跟之前的一樣</li>
+<li>Server 使用 ConfigMap 目的：
+<ul>
+<li>external configuration</li>
+<li>centralization 存放在同一位置</li>
+<li>other components can use it 其它元件也可共用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-express</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-express</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchLabels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-express</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-express</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-express</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-express</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8081</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ME_CONFIG_MONGODB_ADMINUSERNAME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-root-username</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ME_CONFIG_MONGODB_ADMINPASSWORD</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">secretKeyRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-secret</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-root-password</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ME_CONFIG_MONGODB_SERVER</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>接著是 ConfigMap Configuration File</p>
+<ul>
+<li>yaml結構基本上與 secret 一樣</li>
+<li><code>kind</code>: ConfigMap</li>
+<li><code>metadata.name</code>: a random name</li>
+<li><code>data</code>: the actual contents - in key-value pairs</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-configmap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">database_url</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-service</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>跟 Secret 一樣，執行建立ConfigMap 還有 MongoExpress 的順序，ConfigMap要先執行，這樣 MongoExpress 在建立時才能夠參照</p>
+</li>
+<li>
+<p>在 MongoExpress 的 yaml 引用 configmap 的方式也跟 Secret 差不多</p>
+<ul>
+<li>只有 <code>configMapKeyRef</code> 對應 secretKeyRef</li>
+<li>其它 configMapKeyRef.name 是 configmap 的 <code>data.name</code></li>
+<li>而 configMapKeyRef.key 是 configmap 定義的 data key 名字</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ME_CONFIG_MONGODB_SERVER</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">valueFrom</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">configMapKeyRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongodb-configmap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">database_url</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>依順序建立 configmap 和 deployment</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl apply -f mongo-configmap.yaml
+configmap/mongodb-configmap created
+
+❯ kubectl apply -f mongo-express.yaml
+deployment.apps/mongo-express created
+
+❯ kubectl get pod
+NAME                                 READY   STATUS    RESTARTS   AGE
+mongo-express-859f75dd4f-qr59v       1/1     Running   0          77s
+mongodb-deployment-699744c7d-6qp25   1/1     Running   0          63m
+</code></pre></li>
+<li>
+<p>查看 log <code> kubectl logs [name_of_the_pod]</code></p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl logs mongo-express-859f75dd4f-qr59v
+Waiting for mongo:27017...
+...
+Mongo Express server listening at http://0.0.0.0:8081
+Server is open to allow connections from anyone (0.0.0.0)
+basicAuth credentials are &#34;admin:pass&#34;, it is recommended you change this in your config.js!
+</code></pre></li>
+<li>
+<p>在 <code>mongo-express.yaml</code>裡，建立 service 的 config file</p>
+<ul>
+<li>Because in practice, you never have deployment without service, so it makes sense to keep them together.</li>
+<li>How to make it  an <strong>External Service</strong>?
+<ul>
+<li><code>type</code>: LoadBalancer
+<ul>
+<li>A bad name because it can be confusing. Internal service also acts as a load balancer.</li>
+<li>What this loadbalancer does is that it accepts external requests by assigning the service <strong>an external IP address</strong> and so accepts external requests</li>
+</ul>
+</li>
+<li><code>ports.nodePort</code>:
+<ul>
+<li>Port for external IP address</li>
+<li>Port you need to put into browser</li>
+<li>Range must be between 30000 ~ 32767</li>
+<li>The port where this external IP address will be open.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># mongo express deployment</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-express-service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">mongo-express</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">LoadBalancer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8081</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8081</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="m">30100</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>啟動 mongo express service</p>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl apply -f mongo-express.yaml
+deployment.apps/mongo-express unchanged
+service/mongo-express-service created
+</code></pre></li>
+<li>
+<p>可以看到</p>
+<ul>
+<li>
+<p>type ClusterIP:</p>
+<ul>
+<li>Internal Service or Cluster IP is default, you don&rsquo;t have to define it when you are creating internal service.</li>
+<li>與 loadbalancer 的差別：cluster ip will give the service an internal IP address</li>
+</ul>
+</li>
+<li>
+<p>type LoadBalancer:</p>
+<ul>
+<li>LoadBalancer will also service an internal IP address, and i</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">❯ kubectl get service
+NAME                    TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+kubernetes              ClusterIP      10.96.0.1        &lt;none&gt;        443/TCP          3d5h
+mongo-express-service   LoadBalancer   10.110.159.160   &lt;pending&gt;     8081:30000/TCP   58s
+mongodb-service         ClusterIP      10.99.162.252    &lt;none&gt;        27017/TCP        86m
+</code></pre><ul>
+<li></li>
+<li></li>
+</ul>
+<p>To be continued &hellip;</p>
+<pre tabindex="0"><code>
+
+## Organize your components with K8s namespaces
+
+
+
+## K8s ingress explained
+
+
+
+## Helm - Package Manager
+
+
+
+## Persisting Data in K8s with Volumes
+
+
+
+## Deploying Stateful Apps with StatefulSet
+
+
+
+## K8s Services explained
+</code></pre></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-02-24</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/kubernetes_na/" data-hashtag="Kubernetes"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/kubernetes_na/" data-title="Kubernetes: techworld nana"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kubernetes/">Kubernetes</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/sql_explain/" class="prev" rel="prev" title="如何查看哪一個SQL語法是最佳解：explain執行計畫"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>如何查看哪一個SQL語法是最佳解：explain執行計畫</a>
+            <a href="/posts/rabbitmq/" class="next" rel="next" title="Everything about RabbitMQ">Everything about RabbitMQ<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>

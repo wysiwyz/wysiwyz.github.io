@@ -56,6 +56,27 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/240520-k8s-security-storage-networking/">CKA 筆記 [7,8,9]: Security, Storage, Networking</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-05-20">2024-05-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
+Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
+Asymmetric Encryption:
+Private Key: 用密鑰解密 Public Lock: 用公鎖加密 ssh-keygen id_rsa id_rsa.pub PKI - Public Key Infrastructure
+Solution Certificates API [Lab] pwd ls cat akshay.csr cat akshay.csr | base64 # prints a single line cat akshay.csr | base64 -w 0 # create certificate signing request cat &gt; akshay.yaml vi akshay.csr vi akshay.yaml kubectl create -f akshay.yaml certificatesigningrequest.certificates.k8s.io/akshay created kubectl get csr kubectl certificate approve akshay kubectl get csr agent-smith -o yaml kubectl certificate deny agent-smith kubectl get csr kubectl delete csr agent-smith Create certificate signing request</div><div class="post-footer">
+        <a href="/posts/240520-k8s-security-storage-networking/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/security/">Security</a>,&nbsp;<a href="/tags/storage/">Storage</a>,&nbsp;<a href="/tags/networking/">Networking</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/240515-docker-compose/">Docker Compose 厲害了！一次幫你蓋多個containers</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-05-15">2024-05-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。
+Docker Compose 概覽 Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。
+Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。
+Compose可以在production、staging、開發、測試、CI Workflow等各種環境使用，也有用來管理應用程式整個生命週期的指令：
+Start, stop, rebuild 服務 檢視 running service 的狀態 對 running service 做日誌串流 對某個服務執行一個one-off指令 Docker Compose 主要優點 簡化控制性: 簡化了調度多個服務的複雜任務，管理或複製app環境更容易 有效合作: docker compose 配置檔容易共享，開發、運營之間協作更順利 快速應用程式開發: Compose會將創建容器的配置檔緩存起來，如果重啟了沒有做任何異動的服務，Compose會重複利用既有的容器，這樣要在environment做變更會很快 不同環境的可攜性: Compose 檔支援變數，可以用這些變數給不同環境或不同user客製化你的組成 廣泛的社群與支援: Docker Compost 有活躍的社群，提供豐富的資源、教學與支援 Docker Compose 常用 use cases 開發環境 Docker Compose 檔可以記錄並且配置應用程式全部的服務所需的依賴 (例如資料庫、隊列、緩存、Web service API等等)。可以用 docker compose up 一次建立並啟動每個依賴所需的容器。
+Compose可以把一個多頁的「開發者新手指南」濃縮成一個單一且機器可讀的compose file外加幾個指令。
+自動化測試環境 Automated test suite 是CICD程序中非常重要的一環。自動化end-to-end testing需要一個用來跑測試的環境。Compose提供一個很方便的方式，為你的test suite提供一個可以創建且用完銷毀的隔離測試環境。
+docker compose up -d .</div><div class="post-footer">
+        <a href="/posts/240515-docker-compose/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/docker/">Docker</a>,&nbsp;<a href="/tags/compose/">Compose</a>,&nbsp;<a href="/tags/composev1/">ComposeV1</a>,&nbsp;<a href="/tags/composev2/">ComposeV2</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/240510-pact.io/">消費者與提供者之間的合約測試 - Pact.io</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-05-10">2024-05-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Introduction Pact是一個程式碼優先工具，使用contract tests測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。
 測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。
@@ -102,26 +123,6 @@ I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
 程式語言: Java 會使用到 Java 執行緒 非同步的方法為綠底，同步的方法是紅底 藍底是不會產生阻塞的Java方法 Blocking Call save方法呼叫write方法 write方法是一個blocking call: 寫入磁碟 直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態 這個thread在blocking call return之後重新開始 接著這個thread呼叫notify方法 Asynchronous Call 非同步呼叫 save方法呼叫write方法，這個write方法包裝了一個asynchronous call 此 write包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟 這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成 執行save方法的主要執行緒不受到組塞，可以執行其他程序 新產生的執行緒在完成 blocking call 之後回傳，並呼叫notify方法 Asynchronous Non Blocking Call save方法呼叫write方法 (write方法使用 Java NIO) Non Blocking Call 不會阻塞主要執行緒 non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成 執行save方法的主要執行緒並不會受到阻塞，可以執行其他程序 在non-blocking call完成之後，這個non-blocking方法呼叫notify方法 結論 Blocking Call</div><div class="post-footer">
         <a href="/posts/240503-non-blocking-jdbc/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/blocking/">Blocking</a>,&nbsp;<a href="/tags/asynchronous/">Asynchronous</a>,&nbsp;<a href="/tags/asynchronous-non-blocking/">Asynchronous-Non-Blocking</a>,&nbsp;<a href="/tags/r2dbc/">R2DBC</a>,&nbsp;<a href="/tags/reactive/">Reactive</a>,&nbsp;<a href="/tags/nio/">NIO</a>,&nbsp;<a href="/tags/nio2/">NIO2</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/240426-gitlab-ci-note/">初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-26">2024-04-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">使用 CI/CD 建構應用程式 開始 CI/CD 是軟體開發其中一個continuous method，你可以在這方法中持續的建構、測試、部署、監測迭代的程式碼異動。
-這種方式有助於降低在有誤的前一個版本中開發新程式，GitLab CI/CD在開發早期階段就能抓錯，確保部署到正式環境的程式碼符合所建立的程式碼標準，而這個程序是更大的workflow之中的一個環節:
-Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use CI/CD to build your app Secure your app Deploy and release your app Monitor app performance Organize work with projects Manage your code Manage infrastructure Monitor GitLab Runner usage Plan and track work Analyze GitLab usage 1. 首先建立.gitlab-ci.yml 在project根目錄建立 .gitlab-ci.yml，定義在CI/CD pipeline中所要執行的 stages, jobs, script。
-另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。
-沒有硬性規定要怎麼命名，但.gitlab-ci.yml是這個 CI/CD configuration file 最常見的名字。</div><div class="post-footer">
-        <a href="/posts/240426-gitlab-ci-note/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ci/cd-yaml-syntax/">CI/CD Yaml Syntax</a>,&nbsp;<a href="/tags/pipeline/">Pipeline</a>,&nbsp;<a href="/tags/job/">Job</a>,&nbsp;<a href="/tags/ci/cd-components/">CI/CD Components</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/sql_explain/">如何查看哪一個SQL語法是最佳解：explain執行計畫</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-02-22">2024-02-22</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">昨天與一位做自有產品的執行長官面談被問到如何確認SQL的效能，當下沒能立即回答上。
-但今天在練習 LeetCode SQL 50 的時候，看到有神人對一道 570. Managers with at Least 5 Direct Reports 題目給出了五種 solutions，於是回想起之前聽過但不常用的 explain 語法，這樣慘痛的教訓肯定是要花時間瞭解一下的吧。
-問題 題目只有一張 Table : Employee:
-每一列包含了員工id、員工名、員工所屬部門以及他們的所屬主管id，如果managerId 為 null，就表示這員工沒有直屬主管。
-沒有員工會自己當自己的主管，即 id 與 managerId 不能為相同的值。
-1 2 3 4 5 6 create table employee ( id int not null primary key auto_increment, name varchar(20), department varchar(2), managerId int ) auto_increment=101; Table 欄位內容：
-Employee table: +-----+-------+------------+-----------+ | id | name | department | managerId | +-----+-------+------------+-----------+ | 101 | John | A | null | | 102 | Dan | A | 101 | | 103 | James | A | 101 | | 104 | Amy | A | 101 | | 105 | Anne | A | 101 | | 106 | Ron | B | 101 | +-----+-------+------------+-----------+ 預期結果： +------+ | name | +------+ | John | +------+ 解法: A.</div><div class="post-footer">
-        <a href="/posts/sql_explain/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -142,7 +143,7 @@ Employee table: +-----+-------+------------+-----------+ | id | name | departmen
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/12/">12</a>
+                        <a href="/page/13/">13</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

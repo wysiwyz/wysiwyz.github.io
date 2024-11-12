@@ -3,7 +3,27 @@
         <title>All Posts - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/posts/</link>
         <description>All Posts | Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 12 Nov 2024 12:33:42 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Kong Academy 網關學習筆記</title>
+    <link>http://wysiwyz.github.io/posts/kong-hq-academy/</link>
+    <pubDate>Tue, 12 Nov 2024 12:33:42 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/posts/kong-hq-academy/</guid>
+    <description><![CDATA[由於最近工作上要從自建的網關轉移到 Kong 這個雲原生產品做 API Gateway，怕自己學不成，反而被派去從零開始學寫系統分析，又看到 Kong Gateway Certified Associate Exam 有相關的三個 Lab 可以跟著實作，所以決定寫一篇學習筆記，並且嘗試將自己理解的 Kong 寫下來當作 output 介紹給潛在讀者。
+註：有人唸成『控』、但是 Youtube 的 Kong 官方頻道是唸作『抗』，就是香港 / 香江的『Kong』
+References Education Konghq.com 裡面主要使用以下幾個 courses，註冊帳號後即可 enroll ，但一旦 enroll 了就有三天 due date 期限 KGLL-101 Getting Started with Kong Gateway - Services, Routes, Plugins &amp; Consumers KGLL-103 Logging and Analyzing Operational Metrics with Kong KGLL-106 Reduce the Risk of New Software Versions with Canary Deployments Kong Inc Youtube 官方影片 Kong Gateway Documentation Core entities Services]]></description>
+</item>
+<item>
+    <title>Kubestronaut 之路 (1/5) - CKAD 考照筆記</title>
+    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut-03ckad/</link>
+    <pubDate>Wed, 18 Sep 2024 13:48:44 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut-03ckad/</guid>
+    <description><![CDATA[11/12 註：因為上個月考過 CKAD 了，想說作為紀錄把這筆記 draft 改成 false，另外 Ｓequoia MacOS 開 PSI Secure Browser 沒辦法看到 CKA 題目，目前正在等 Linux Foundation Ticket Assignee 回覆（好像要等超過三天，這辦事效率，唉）
+下週一就可以去領護照了呀！準備考試 &hellip; total 001 ~ 185
+Introduction 001. Introduction Pre-Requisites Lab environment Kubernetes Architecture Master and Worker Nodes Pods, ReplicaSets, Deployments Command Line - kubectl Understanding yaml Services Namespaces Course Objectives ñCore Concepts K8s Architecture Create and configure pods Configuration ConfigMaps SecurityContexts Resource Requirements Secrets ServiceAccounts Multi-Container Pods Ambassador pattern Adapter pattern Sidecar pattern Observability Readiness and Liveness Probes Container Logging Monitor and Debug Applications Pod Design Labels, Selectors and Annotations Rolling Updates and Rollbacks in Deployments Jobs and CronJobs Services and Networking Understand Services Network Policies State Persistence Persistent Volumes Persistent Volume Claims Core Concepts 009.]]></description>
+</item>
+<item>
     <title>當不成 Astronaut, 試試 Kubestronaut</title>
     <link>http://wysiwyz.github.io/posts/cncf-kubestronaut/</link>
     <pubDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</pubDate>
@@ -113,31 +133,6 @@ Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blo
 因此這裡主要比較的是 Spring WebFlux 以及 Quarkus reactive capabilities 比較相似的情境 (non-blocking)。
 另外，這兩個projects中比較顯著的功能是新建 native images (binary executables 以及 platform-specific executables)，所以也會比較這兩個projects的native images。
 註: SpringBoot 2.7 版本的 native image support 仍在實驗階段，直到 VERSION 3 才正式支持 native image support，需要使用 GraalVM。 註: Native image 這裡指的是將Java程式碼建構成 standalone executable 可執行檔的技術。Executable 包含了 java classes, classes from its dependencies, runtime library class, 以及 jdk 的 native code。]]></description>
-</item>
-<item>
-    <title>資料庫版控，走起，高飛！Flyway</title>
-    <link>http://wysiwyz.github.io/posts/240509-flyway/</link>
-    <pubDate>Thu, 09 May 2024 22:39:38 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240509-flyway/</guid>
-    <description><![CDATA[因為G.K.老師常常強調 Flyway 的優勢，資料庫版控、避免共用的資料庫不知道被誰扔了dirty data導致其他人開發的功能壞掉，等等的好處，所以來看看官方文件。
-初探Flyway Flyway@build.gradle: dependencies { implementation &#39;org.flywaydb:flyway-core&#39; } Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flyway spring.flyway.schemas={default_schema} spring.flyway.user= spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
-Flyway Desktop 提供GUI讓資料庫開發跟數據家能夠追蹤資料庫物件的異動，並且在版本控制中管理資料遷移的腳本。
-Flyway command-line 是可以獨立運行的套件 (只需要操作系統，不用其他支援框架)，有Windows、macOS以及Linux版本。適合想要用命令列介面遷移資料庫的user，而不用將Flyway整合進應用程式，也不用安裝build tool。
-另外可以用 API 將 Flway 整合進應用程式，在程式啟動時一同執行資料庫遷移。
-Flyway commands Flyway Desktop 安裝時，會一併安裝command line以及API，主要有以下命令:
-Migrate 將schema遷移成最新的版本 是Flyway workflow的中心，它會在檔案系統或你的類別路經中掃描找出可用的migrations，並比較已經執行到資料庫的遷移，如果有任何差異就會做對應的migration，以彌平差異。 通常是在application startup時期執行migrate Clean 在已經配置好schemas的資料庫中，刪掉所有資料表物件 千萬不能用在 production DB 如果是複雜的資料庫結構，可能因為明確的dependency graph架構不起來，所以沒辦法清乾淨所有物件。另外有些物件考量安全性，也不會清除，例如 SQL server 的 users 資料。可以加上 afterClean callback 來額外定義要 drop 的敘述 Info 可以了解當下有哪些migration已經執行了，哪一些還沒開始，何時執行的migration以及執行結果是成功或失敗。 Validate 驗證可用的 migration 是否相當於已經被執行的 migration 可以偵測意料之外的異動，可以預防重新產生schema 在 migration 執行時，存進一個checksum (使用CRC32校驗)。要驗證時，就查看本地的migration與已經執行到database的 migration 是否有相同一致的checksum。 此外，可能會有一些 hotfix, migration deletion 或者異動，可能違反Flyway驗證習慣，這時候也可以客製化驗證規則 Undo 復原最近一次被執行的migration版本 需要指定 target，這樣Flyway會綁你倒回至target之前的版本 如果沒有要 undo 的 versioned migration，呼叫這個undo就沒啥用 Baseline 給之前已經存在的數據庫 (已經包含數據，但之前沒有被Flyway管理)建立一個基準起始版本 Repair 用來修復 flyway_schema_history 資料庫的，有以下用途 移除failed migration entries (失敗的遷移紀錄) 只適用於不支援DDL transactions的資料庫 PostgreSQL, Oracle: 支持ddl事務 MySQL, MariaDB, SQLite: 不支持ddl事務]]></description>
-</item>
-<item>
-    <title>非阻塞式🌌 Non Blocking Jdbc</title>
-    <link>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</link>
-    <pubDate>Fri, 03 May 2024 20:39:03 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</guid>
-    <description><![CDATA[Part 1 阻塞式程式碼是現代軟體工程的禍根，它需要比較多的CPU cycles以及memory使用資源，提高了執行程式的成本
-I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
-了解 non-blocking calls 在做什麼 了解 event based system 的重要性以及他們如何協助調用 non-blocking calls 圖表的呈現面向:
-程式語言: Java 會使用到 Java 執行緒 非同步的方法為綠底，同步的方法是紅底 藍底是不會產生阻塞的Java方法 Blocking Call save方法呼叫write方法 write方法是一個blocking call: 寫入磁碟 直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態 這個thread在blocking call return之後重新開始 接著這個thread呼叫notify方法 Asynchronous Call 非同步呼叫 save方法呼叫write方法，這個write方法包裝了一個asynchronous call 此 write包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟 這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成 執行save方法的主要執行緒不受到組塞，可以執行其他程序 新產生的執行緒在完成 blocking call 之後回傳，並呼叫notify方法 Asynchronous Non Blocking Call save方法呼叫write方法 (write方法使用 Java NIO) Non Blocking Call 不會阻塞主要執行緒 non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成 執行save方法的主要執行緒並不會受到阻塞，可以執行其他程序 在non-blocking call完成之後，這個non-blocking方法呼叫notify方法 結論 Blocking Call]]></description>
 </item>
 </channel>
 </rss>

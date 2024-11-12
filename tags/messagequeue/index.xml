@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MessageQueue - Tag - Ich bin yiwen.</title>
+        <link>http://wysiwyz.github.io/tags/messagequeue/</link>
+        <description>MessageQueue - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 13 Mar 2024 09:31:29 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/messagequeue/" rel="self" type="application/rss+xml" /><item>
+    <title>Everything about RabbitMQ</title>
+    <link>http://wysiwyz.github.io/posts/rabbitmq/</link>
+    <pubDate>Wed, 13 Mar 2024 09:31:29 &#43;0800</pubDate>
+    <author>celine</author>
+    <guid>http://wysiwyz.github.io/posts/rabbitmq/</guid>
+    <description><![CDATA[RabbitMQ vs Apache Kafka 資料結構差異 The Queue(RabbitMQ) vs. The Log (Apache Kafka)
+Queue
+FIFO data structure Optimized for efficient write and read operations from either end of the sequence Stored data is transient in nature Not shared between applications Log
+Also known as write-ahead logs, transaction logs and commit logs
+Append-only. Ordered by time
+Unique log sequence numbers (可以用來識別這個 log 在 log data 的 position)
+Stored data is persistent in nature]]></description>
+</item>
+</channel>
+</rss>

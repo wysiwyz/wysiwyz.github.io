@@ -56,6 +56,54 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"><a href="https://github.com/wysiwyz" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github fa-fw" aria-hidden="true"></i></a><a href="https://linkedin.com/in/wysiwyz" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a><a href="https://www.instagram.com/wysiwyz_" title="Instagram" target="_blank" rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden="true"></i></a><a href="https://discordapp.com/users/764144401655922698" title="Discord" target="_blank" rel="noopener noreffer me"><i class="fab fa-discord fa-fw" aria-hidden="true"></i></a></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/javascript_functions/">JavaScript 常見內建方法</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-11">2023-04-11</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這裡紀錄上班看遇到的常用 JavaScript 內建方法 ╚(•⌂•)╝
+Object.prototype.hasOwnProperty(param) 回傳 boolean 值
+true: 如果該param是該物件的直接屬性(direct property)，即便值為 null 或者 undefined false: 如果屬性是繼承來的，或從沒被宣告 1 2 3 4 5 6 7 8 9 10 11 12 13 _self._getCurrencyFlagPath = (function () { var imageList = Object.freeze({ AUD: &#39;images/lilyRose/flag_AUD.svg&#39;, CAD: &#39;images/lilyRose/flag_CAD.svg&#39;, EUR: &#39;images/lilyRose/flag_EUR.svg&#39;, JPY: &#39;images/lilyRose/flag_JPY.svg&#39;, TWD: &#39;images/lilyRose/flag_TWD.svg&#39;, NTD: &#39;images/lilyRose/flag_TWD.svg&#39; }); return function (currency) { return imageList.hasOwnProperty(currency) ? imageList[currency] : &#39;&#39;; } })(); Object.freeze() 淺凍結 Freezing an object prevents extensions and makes existing properties non-writable and non-configurable.</div><div class="post-footer">
+        <a href="/posts/javascript_functions/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/javascript/">JavaScript</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cascading_style_sheet/">Cascading style sheet</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-10">2023-04-10</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">這一兩天上班在研究既有程式碼的CSS寫法，因為之後的需求要拉皮
+看到什麼就記下來，之後複習的話再分類
+overflow: hidden 直接隱藏超出範圍的文字
+overflow: auto 與 overflow: scroll 類似，但 overflow:auto 只有在有需要時才會出現 scroll bar
+參考: css overflow
+list-style-type 設定清單的項目編碼符號
+1 2 3 4 5 6 7 8 9 10 11 ul { list-style-type: none; /* list-style-type: disc; //實心黑圓點 list-style-type: circle; //空心圓圈 list-style-type: square; list-style-type: decimal; list-style-type: georgian; list-style-type: &#34;\1F44D&#34;; //👍 */ } . 以及 # #foo {}：id selector，像是id=foo .foo {}：class selector，例如class=&quot;foo&quot; 一個元素可以有多個class，用空格區別 class=&quot;foo bar&quot; #yIcon &gt; img 只選擇 id 為 yIcon 元素底下的直接子對象</div><div class="post-footer">
+        <a href="/posts/cascading_style_sheet/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/css/">Css</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/lesson_04_linux/">Lesson 04: Linux 筆記 - CA憑證、SELinux</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-04-08">2023-04-08</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Strict Transport Security (HSTS) Apache Nginx HTTPS 加密流程 Client 連到 Server 時，Server 將 Public key 傳給 Client Client 使用 Public key 產生隨機碼，和 Server 建立加密通道。 Client 用 Public key 進行傳輸資料加解密，Server 用 Private key 進行傳輸資料加解密 實際的資料使用對稱式加密方式，透過已經建好的加密通道進行傳輸 https 使用了非對稱式與對稱式加密 Khoor, Olqxa 怎麼在廣大的領域中發現小小的弱點，突破當前使用之演算法的弱點 &ndash; Dr. Mathematics
+凱薩加密演算法
+字母位移預設三個字 @Desktop
+1 2 root# mkdir demo; cd demo/ root# vi caesar-cipher.sh shellscript
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 #!</div><div class="post-footer">
+        <a href="/posts/lesson_04_linux/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/security/">Security</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/suzume_no_tojimari/">すずめの戸締(toji)まり- 我出門了，我回來了 </a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-27">2023-03-27</time></span>&nbsp;<span class="post-category">included in <a href="/categories/moviereviews/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>MovieReviews</a></span></div><div class="content">
+鈴芽是一位平凡的高二少女，某天騎著自行車上學的下坡路上遇見東京地理系大學生（教師考生/斜槓家業關門師）草太，留著及肩捲髮，皮膚白皙的他右下眼角有一顆淚痣，穿著白色T恤、天藍色（azure; hex: #f0ffff）長大衣、脖子上掛著一把鑰匙的他獨自一人背對波光粼粼的海面，徒步走向宮崎當地的山區廢墟。
+一句請問這附近有門、有廢墟嗎，在鈴芽心中發芽，開啟了這部作品的序幕。毅然決定翹課的鈴芽騎著單車來到廢棄小鎮，尋無他的身影，倒是來到了一個看似廢棄圓頂溫室花園前。積窪上奇妙的立者一扇木門，鈴芽看見門後那個叫做常世的地方，滿天繁星草原卻在一踏進門時轉瞬消失。
+中午回到學校，正和朋友聊天配飯的鈴芽驚見天有異象，不安於室地回到廢墟，再次遇見草太哥，他們跟著大臣白貓貓，意外踏上關門之旅，愛媛 神戶 東京 仙台 岩手縣&hellip;.（這裡決定要好好守護這個故事就不爆雷了）
+先把有觸及到我的閃光點條列下來&ndash;
+劇情 鼓勵自己 常世裡的燦爛星空 渴望得到鈴芽關愛的大臣白貓🥰🤍 戲份不多但是很帥很成熟的大黑貓 撫養外甥女鈴芽12年的姨 念咒語之前，要想著這片土地上孕育的人與情 2011/3/11的地震到現在十二年了ಥ_ಥ 勇敢無畏的高中女生 特效 蚯蚓的各種型態 從地面向上蒸發的金色光束 鑰匙旁飄散的藍色雲絲光 </div><div class="post-footer">
+        <a href="/posts/suzume_no_tojimari/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/suzume/">Suzume</a>,&nbsp;<a href="/tags/animation/">Animation</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/gcp_pca_course_notes/">Cloud architect GCP 🚧</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-24">2023-03-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Active learning - think and take notes
+Review - every once in a while
+Section 01 Getting Started GCP has 200+ services. This exam expects knowledge of 40+ services
+Exam tests your decision making abilities:
+Which service do you choose in which situation?
+How do you trade-off between resilience, performance and cost while not compromising on security and operational excellence?
+Below notes will help with making the tough choices</div><div class="post-footer">
+        <a href="/posts/gcp_pca_course_notes/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/google_cloud/">Google_cloud</a>,&nbsp;<a href="/tags/ca/">CA</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/lesson_03_linux/">Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-18">2023-03-18</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">LUKS 加密服務 適用對象 移動式設備資料保護
 notebook, USB磁碟加密
@@ -71,76 +119,6 @@ Luks資料加密架構與資料救援方法
 Linux檔案加密_GPG_GnuPG</div><div class="post-footer">
         <a href="/posts/lesson_03_linux/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/security/">Security</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/lesson_02_linux/">Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-17">2023-03-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">請假六小時，來補課arrrhh
-何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
-UGO User Group Other
-由三組位元所組成（八進制）
-l for link, d for directory, -一般檔案(執行檔也是), c或d裝置檔 drwxr-xr-x, dr-xr-x---, 數字:
-❔ r w x - 數值 4 2 1 0 ⚠️666&amp; 777 注意
-允許每個人都能讀寫檔案或目錄，可能會造成file tempering(檔案篡改)
-SUID &amp; SGID &amp; SBIT
-檔案系統 特殊權限 1. SetUID nosuid 在根目錄建立一個secure folder，設定成777，查看/secure/目錄的權限，</div><div class="post-footer">
-        <a href="/posts/lesson_02_linux/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux/">Linux</a>,&nbsp;<a href="/tags/security/">Security</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/native_cloud/">Cloud native - the next gen</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-17">2023-03-17</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">現在沒有雲原生可是不行的，了解一下下
-Cloud native 公有雲、私有雲、混合雲 動態環境 - Node上下, stateless vs stateful 可擴展 - auto scaling (HPA) 聲明式 - ansible, terraform, K8S yaml 容器、微服務、無服務器 - K8S, OCP, Cloud Run, Cloud Function 最小化用戶的操作負擔 - auto healing (liveness, readiness) 所有的服務最好都是stateless
-Stateless vs Stateful Stateless 無狀態，每次請求都是獨立 example JWT .map() Vue/React/Angular service Deployment (K8S) Stateful 有狀態，每次請求與過去相關 example Session .reduce() MySQL Volume/StatefulSet(K8S) 聲明式 - Ansible 聲明式 - Terraform CKA Kubernetes 認證使用命令式 kubectl run nginx -image=nginx
-實務上用聲明式</div><div class="post-footer">
-        <a href="/posts/native_cloud/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/terraform/">Terraform</a>,&nbsp;<a href="/tags/jenv/">JEnv</a>,&nbsp;<a href="/tags/cloud_native/">Cloud_native</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/git_bash_cmds/">Git Bash - some awesome commands</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-16">2023-03-16</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">紀錄一些 git bash 指令
-git log -oneline 跟sourceTree_History_Description欄位基本一樣
-git log 跟樓上一樣, 但多了些author/date訊息
-Interactive Rebase 可用來修改local端的commit message 刪除local端commit 整理local端commits 合併多個commits為一個 將一個commit拆分為多個commits 注意：會重寫commit history，產生新的hash ID(i.e. new commit)
-所以不能對已經push上remote repository的commits執行interactive rebase
-git rebase -i HEAD~3
-rebase interactive head till the three
-要回去幾個節點之前? base commit是哪個?
-copy hash id 9a23775 Head minus 3 接著會出現一個editor window，可控制head+前兩個commit
-reword
-不直接改commit msg，而是將pick改成reword，存檔關閉
-接著才會出現該commit id的編輯器視窗，修改內文後存檔關閉 (esc+:wq)
-squash
-將該行commit和它的上一行(前一個commit)合併成同一個，存檔關閉 跳新視窗，寫入合併後的commit msg，存檔關閉
-Voilà! 原本的兩個commits合併成一個惹！
-git commit amend 可修改最近一筆local端本分支的 msg
-Cherry-Picking - 合併特定一筆/特定幾筆commits [j1]&lt;--[j3]&lt;--[j2]--&lt;branch_R&gt; ↖ [j2]&lt;--[j4]--&lt;branch_J&gt; 主要還是用 rebase 跟 merge，只有特殊情境才用</div><div class="post-footer">
-        <a href="/posts/git_bash_cmds/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/git-bash/">Git Bash</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/javascript_2018/">JavaScript - dashing dashshound</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-15">2023-03-15</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
-🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
-後面可接英文字母、底線_、錢字號$、數字
-大小寫有區別
-關鍵字、保留字不能當變數名稱，詳閱MDN
-JavaScript 1.3 起支援Unicode，可用中文(盡量避免)
-ES6之後可用var(變數)、let(作用範圍與var不同)、const
-所有沒透過var宣告的變數，都會自動變成全域變數
-1 2 m = 1; console.log(m); //未宣告var會有後遺症 已經被 var 宣告過的變數可以再次被宣告 [合法]
-1 2 3 var m = 1; var m = 2; var m = 3; 透過 let 宣告的變數不能被再次宣告
-1 2 3 let m = 1; let m = 2; //⚠️Uncaught SyntaxError: Identifier &#39;m&#39; has already been declared. 變數資料型別 變數本身不帶有資料型別資訊，其中的值/物件才有
-變數沒有型別，值才有 JavaScript支援型別
-基本型別 Primitives string, number, boolean, null, undefined Symbol (ES6之後多的型別) 物件型別 Object 可以用 typeof 運算子協助判斷型別</div><div class="post-footer">
-        <a href="/posts/javascript_2018/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/javascript/">JavaScript</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/mypuppy/">My Heart Puppy 超完美狗保母 멍뭉이</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2023-03-13">2023-03-13</time></span>&nbsp;<span class="post-category">included in <a href="/categories/moviereviews/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>MovieReviews</a></span></div><div class="content">應朋友邀約在超完美狗保母上檔隔天的早晨看電影，這部影片是由柳演錫和車太鉉所主演的韓國寵物劇情片。據朋友說劇組在拍攝期間花了很多時間與電影中出現的狗勾們朝夕相處，想必這樣拍攝起來會減輕不少適應困難吧。
-主角民秀是一位出版社社員，在與美麗的空服員女友求婚當晚，發現她的家族都對狗勾的口水過敏，每次去對方家裡之前都需要吃抗過敏藥。與表哥真國商量下，決定透過社群媒體影響力的方式，幫黃金獵犬魯尼尋找下一位家人，他們拜訪了怕吵的新生兒家庭、有嚴重潔癖的暴發戶創業家、尚未走出喪犬之痛的小男孩的家、家裡環境優渥的遠親的家，發現都不太適合，決定驅車前往濟州島拜訪當地的動物之家。
-前往港口的路途中，他們在高速公路下救援了五隻米克斯幼犬，在附近中途之家收留了一隻巴哥犬，更在airB&amp;B主人庭院贖回了遭到虐待的毛小孩，一行人沿著濟州島達米安麵包店的線索找到患有帕金森氏症的富商女兒家，在一切條件近乎完美的情況下，卻因為女孩關於家人不會拋棄彼此的話而收回了請求。
-回到首爾的民秀決定回到母親故居，正視傷痛並重新建立一個適合未婚妻與毛小孩共生的環境，而表哥真國則暫時住在親戚家幫忙照顧狗狗們，同時準備未來重開狗狗寵物咖啡廳的夢想。
-這部電影有很多溫暖人心的寵物畫面、濟州島觀光美景、賺人熱淚的母子情誼、荒謬幽默的喜劇情節，可惜自己覺得在高速公路到橋下，接著前往動物中途之家，甚至救回即將被安樂死的狗狗這段情節意外的有點讓人出戲。另外他們千里迢迢來到濟洲島，卻未留下任何一名途中收留的毛小孩也有點讓人意外。只能說有些事情是要透過時間洗禮才能找到答案吧。
-推薦這部電影給任何對狗狗、韓國旅遊、車太鉉(?)、金裕珍(??) 有興趣的人。
-但如果你是極務實主義者可能就不太適合🤣</div><div class="post-footer">
-        <a href="/posts/mypuppy/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/">Tags</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -171,7 +149,7 @@ ES6之後可用var(變數)、let(作用範圍與var不同)、const
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/12/">12</a>
+                        <a href="/page/13/">13</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
