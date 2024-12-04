@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Quarkus - Tag - Ich bin yiwen.</title>
-        <link>http://localhost:1313/tags/quarkus/</link>
+        <link>http://wysiwyz.github.io/tags/quarkus/</link>
         <description>Quarkus - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 09 May 2024 23:39:21 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/quarkus/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 09 May 2024 23:39:21 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/quarkus/" rel="self" type="application/rss+xml" /><item>
     <title>框架比較：Springboot 與 Quarkus</title>
-    <link>http://localhost:1313/posts/240509-springboot-vs-quarkus/</link>
+    <link>http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/</link>
     <pubDate>Thu, 09 May 2024 23:39:21 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/240509-springboot-vs-quarkus/</guid>
+    <guid>http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/</guid>
     <description><![CDATA[以下的筆記主要參照Baeldung這篇文章，後續會在針對如何用Quarkus建立第一個專案補充說明。
 SpringBoot v.s. Quarkus 概觀 這篇文章的關注點在於比較兩個廣為人知的Java框架—SpringBoot與Quarkus。看完文章，能更加瞭解兩者之間的相似、差異處以及各自的特殊性。另外也有一些測試來檢測效能並觀察表現。
 SpringBoot 這個Java framework主要用於企業級應用程式。集成了所有Spring project，提供許多production-ready的整合，可協助開發者提高生產力。 減少了要配置的數量以及文件樣板。另外因為約定大於配置的方法，會根據runtime時classpath中的依賴 (dependencies)，自動註冊預設的配置。SpringBoot大幅減少了許多Java應用程式上市的時間。

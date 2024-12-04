@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Message-Pact - Tag - Ich bin yiwen.</title>
-        <link>http://localhost:1313/tags/message-pact/</link>
+        <link>http://wysiwyz.github.io/tags/message-pact/</link>
         <description>Message-Pact - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 10 May 2024 17:39:51 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/message-pact/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 10 May 2024 17:39:51 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/message-pact/" rel="self" type="application/rss+xml" /><item>
     <title>消費者與提供者之間的合約測試 - Pact.io</title>
-    <link>http://localhost:1313/posts/240510-pact.io/</link>
+    <link>http://wysiwyz.github.io/posts/240510-pact.io/</link>
     <pubDate>Fri, 10 May 2024 17:39:51 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/240510-pact.io/</guid>
+    <guid>http://wysiwyz.github.io/posts/240510-pact.io/</guid>
     <description><![CDATA[Introduction Pact是一個程式碼優先工具，使用contract tests測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。
 測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。
 Pact合約測試流程動圖

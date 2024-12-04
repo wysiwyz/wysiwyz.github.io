@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>All Posts - Ich bin yiwen.</title>
-        <link>http://localhost:1313/posts/</link>
+        <link>http://wysiwyz.github.io/posts/</link>
         <description>All Posts | Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>Apache Kafka 做中學</title>
-    <link>http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/</link>
+    <link>http://wysiwyz.github.io/posts/kk_learn_by_doing_apache_kafka/</link>
     <pubDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/</guid>
+    <guid>http://wysiwyz.github.io/posts/kk_learn_by_doing_apache_kafka/</guid>
     <description><![CDATA[這篇是根據 KK Learn By Doing: Beginner&rsquo;s Guid to Apache Kafka - Foundation and Development 所做的筆記與實作紀錄。
 學習目標是要能夠將 Kafka architecture 以及 essential components 套用在服務紀錄需求面，只是這 2.5 小時的課可能還是遠遠不夠，都有人把 Kafka 寫成 30 篇系列文章了。
 A distributed event streaming platform, widely used for building real-time data pipelines and applications
@@ -18,10 +18,10 @@ Core components Producer : 將 record 送往 Kafka topics 的 app，負責選擇
 </item>
 <item>
     <title>Kubestronaut 02 CKA</title>
-    <link>http://localhost:1313/posts/cncf-kubestronaut-02cka/</link>
+    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut-02cka/</link>
     <pubDate>Sat, 30 Nov 2024 06:22:38 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/cncf-kubestronaut-02cka/</guid>
+    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut-02cka/</guid>
     <description><![CDATA[11/30 註：寫需求分析不可控的因素太多了，除了要兼顧 bigger picture、detailed process、granular fields for programming、還要顧慮到 user sentiment、senior critics、 &hellip;
 就現階段而言，工作有關給人最多成就感的是拿到證照這條路（來人拿球棒敲醒這個人吧），其它都像是練習，不停製造錯誤再不停被導回正途
 ![image-20241129110027476](/Users/yiwen/Library/Application Support/typora-user-images/image-20241129110027476.png)
@@ -35,20 +35,20 @@ Cluster install (need to know it but it&rsquo;s never tested) Cluster upgrade et
 </item>
 <item>
     <title>Kong Academy 網關學習筆記</title>
-    <link>http://localhost:1313/posts/kong-hq-academy/</link>
+    <link>http://wysiwyz.github.io/posts/kong-hq-academy/</link>
     <pubDate>Tue, 12 Nov 2024 12:33:42 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/kong-hq-academy/</guid>
+    <guid>http://wysiwyz.github.io/posts/kong-hq-academy/</guid>
     <description><![CDATA[由於最近工作上要從自建的網關轉移到 Kong 這個雲原生產品做 API Gateway，怕自己學不成，反而被派去從零開始學寫系統分析，又看到 Kong Gateway Certified Associate Exam 有相關的三個 Lab 可以跟著實作，所以決定寫一篇學習筆記，並且嘗試將自己理解的 Kong 寫下來當作 output 介紹給潛在讀者。
 註：有人唸成『控』、但是 Youtube 的 Kong 官方頻道是唸作『抗』，就是香港 / 香江的『Kong』
 References Education Konghq.com 裡面主要使用以下幾個 courses，註冊帳號後即可 enroll ，但一旦 enroll 了就有三天 due date 期限 KGLL-101 Getting Started with Kong Gateway - Services, Routes, Plugins &amp; Consumers KGLL-103 Logging and Analyzing Operational Metrics with Kong KGLL-106 Reduce the Risk of New Software Versions with Canary Deployments Kong Inc Youtube 官方影片 Kong Gateway Documentation Core entities Services]]></description>
 </item>
 <item>
     <title>當不成 Astronaut, 試試 Kubestronaut</title>
-    <link>http://localhost:1313/posts/cncf-kubestronaut/</link>
+    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut/</link>
     <pubDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/cncf-kubestronaut/</guid>
+    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut/</guid>
     <description><![CDATA[阿炆今年轉職前跟主管聊聊，說想學習 K8S 跟 AWS 微服務架構，所以離開了需要一直不停面試的乙方公司。
 阿炆入職後學習使用了很多 CNCF 專案，像是 Kubernetes、ArgoCD、Keycloak、Prometheus、HELM、Longhorn，另外也考了一個 AWS 證照。
 阿炆準備 AWS SAA-C03 之前一直陸陸續續的看函授自學線性代數跟離散數學，考完 AWS 之後覺得剩五個月時間不太夠了，加上一直以為自己試用期還沒結束，只是延長了，於是找新主管 one-on-one meeting 談談工作表現與規劃。
@@ -60,10 +60,10 @@ References Education Konghq.com 裡面主要使用以下幾個 courses，註冊�
 </item>
 <item>
     <title>SAA-C03 AWS Solution Architect Associate 準備心得（下）</title>
-    <link>http://localhost:1313/posts/saa-c03-two/</link>
+    <link>http://wysiwyz.github.io/posts/saa-c03-two/</link>
     <pubDate>Fri, 06 Sep 2024 10:05:31 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/saa-c03-two/</guid>
+    <guid>http://wysiwyz.github.io/posts/saa-c03-two/</guid>
     <description><![CDATA[本文有重新排版放到 medium &hellip; Go to Medium story
 準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
 另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（絕對不是因為line通知太煩所以提前測驗的）
@@ -72,10 +72,10 @@ References Education Konghq.com 裡面主要使用以下幾個 courses，註冊�
 </item>
 <item>
     <title>SAA-C03 AWS Solution Architect Associate 準備心得（上）</title>
-    <link>http://localhost:1313/posts/saa-c03-one/</link>
+    <link>http://wysiwyz.github.io/posts/saa-c03-one/</link>
     <pubDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/saa-c03-one/</guid>
+    <guid>http://wysiwyz.github.io/posts/saa-c03-one/</guid>
     <description><![CDATA[Motivation 自從去年八月考過 GCP PCA 之後，發現 (1) 想去的幾家公司使用的雲服務供應商都是用 AWS 居多，加上 (2) 某次聚會上遇到的進外商的優秀前同事有 AWS SAA-C03 證照，(3) 今年 AWS 新聞說要在台灣設立資料中心，以及 (4) 前公司提供了 AWS 考照半價補助但沒機會用到，還有 (5) 在 Facebook 社團看到 AWS 官方提供了兩種考照半價優惠的方案（一個要組隊報名，另一個只要在時限前完成官方部分課程）。
 基於看到 Educate Program 再過一天就要報名截止的心態，我刻不容緩的完成兩章的指定課程，趕緊送出申請，並且在一週後的星期三收到報名成功通知信。
 Requirement 報名成功通知信主要有三個重點：
@@ -86,19 +86,19 @@ Requirement 報名成功通知信主要有三個重點：
 </item>
 <item>
     <title>Smart contract, wallet, solidity 新手村</title>
-    <link>http://localhost:1313/posts/240522-solidity-smart-contract/</link>
+    <link>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</link>
     <pubDate>Wed, 22 May 2024 01:41:05 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/240522-solidity-smart-contract/</guid>
+    <guid>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</guid>
     <description><![CDATA[Preface 今天中午午休聽了itplus的每周線上會-Web3.0全端開發工程師，聽到不少以前完全沒機會認識的名詞，像是Dapp、電子錢包 Metamask、Mist Browser、智能合約 Smart Contract、Solidity，決定記錄下這個腦袋又增加的plugins。
 References Metamask doc 這裡手把手教你用 React, typescript, vite 建置錢包，很是實用 The Ethereum Wiki Solidity_Introduction to Smart Contract 乙太坊社群專欄 ]]></description>
 </item>
 <item>
     <title>CKA 筆記 [7,8,9]: Security, Storage, Networking</title>
-    <link>http://localhost:1313/posts/240520-k8s-security-storage-networking/</link>
+    <link>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</link>
     <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/240520-k8s-security-storage-networking/</guid>
+    <guid>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</guid>
     <description><![CDATA[Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
 Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
 Asymmetric Encryption:
@@ -107,10 +107,10 @@ Solution Certificates API [Lab] pwd ls cat akshay.csr cat akshay.csr | base64 # 
 </item>
 <item>
     <title>Docker Compose 厲害了！一次幫你蓋多個containers</title>
-    <link>http://localhost:1313/posts/240515-docker-compose/</link>
+    <link>http://wysiwyz.github.io/posts/240515-docker-compose/</link>
     <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/240515-docker-compose/</guid>
+    <guid>http://wysiwyz.github.io/posts/240515-docker-compose/</guid>
     <description><![CDATA[前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。
 Docker Compose 概覽 Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。
 Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。
@@ -122,10 +122,10 @@ docker compose up -d .]]></description>
 </item>
 <item>
     <title>消費者與提供者之間的合約測試 - Pact.io</title>
-    <link>http://localhost:1313/posts/240510-pact.io/</link>
+    <link>http://wysiwyz.github.io/posts/240510-pact.io/</link>
     <pubDate>Fri, 10 May 2024 17:39:51 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/240510-pact.io/</guid>
+    <guid>http://wysiwyz.github.io/posts/240510-pact.io/</guid>
     <description><![CDATA[Introduction Pact是一個程式碼優先工具，使用contract tests測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。
 測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。
 Pact合約測試流程動圖

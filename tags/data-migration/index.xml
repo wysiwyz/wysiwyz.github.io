@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Data-Migration - Tag - Ich bin yiwen.</title>
-        <link>http://localhost:1313/tags/data-migration/</link>
+        <link>http://wysiwyz.github.io/tags/data-migration/</link>
         <description>Data-Migration - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 09 May 2024 22:39:38 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/data-migration/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 09 May 2024 22:39:38 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/data-migration/" rel="self" type="application/rss+xml" /><item>
     <title>資料庫版控，走起，高飛！Flyway</title>
-    <link>http://localhost:1313/posts/240509-flyway/</link>
+    <link>http://wysiwyz.github.io/posts/240509-flyway/</link>
     <pubDate>Thu, 09 May 2024 22:39:38 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/240509-flyway/</guid>
+    <guid>http://wysiwyz.github.io/posts/240509-flyway/</guid>
     <description><![CDATA[因為G.K.老師常常強調 Flyway 的優勢，資料庫版控、避免共用的資料庫不知道被誰扔了dirty data導致其他人開發的功能壞掉，等等的好處，所以來看看官方文件。
 初探Flyway Flyway@build.gradle: dependencies { implementation &#39;org.flywaydb:flyway-core&#39; } Flyway@application.yml: spring.flyway.url=jdbc:h2:mem:flyway spring.flyway.schemas={default_schema} spring.flyway.user= spring.flyway.password= Three ways to interact with Flyway 除了提供版本控制與持續交付的功能，flyway 可以根據程式交付進度，來自動化部署資料庫。
 Flyway Desktop 提供GUI讓資料庫開發跟數據家能夠追蹤資料庫物件的異動，並且在版本控制中管理資料遷移的腳本。

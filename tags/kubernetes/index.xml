@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Kubernetes - Tag - Ich bin yiwen.</title>
-        <link>http://localhost:1313/tags/kubernetes/</link>
+        <link>http://wysiwyz.github.io/tags/kubernetes/</link>
         <description>Kubernetes - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 30 Nov 2024 06:22:38 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/kubernetes/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 30 Nov 2024 06:22:38 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/kubernetes/" rel="self" type="application/rss+xml" /><item>
     <title>Kubestronaut 02 CKA</title>
-    <link>http://localhost:1313/posts/cncf-kubestronaut-02cka/</link>
+    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut-02cka/</link>
     <pubDate>Sat, 30 Nov 2024 06:22:38 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/cncf-kubestronaut-02cka/</guid>
+    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut-02cka/</guid>
     <description><![CDATA[11/30 註：寫需求分析不可控的因素太多了，除了要兼顧 bigger picture、detailed process、granular fields for programming、還要顧慮到 user sentiment、senior critics、 &hellip;
 就現階段而言，工作有關給人最多成就感的是拿到證照這條路（來人拿球棒敲醒這個人吧），其它都像是練習，不停製造錯誤再不停被導回正途
 ![image-20241129110027476](/Users/yiwen/Library/Application Support/typora-user-images/image-20241129110027476.png)
@@ -22,10 +22,10 @@ Cluster install (need to know it but it&rsquo;s never tested) Cluster upgrade et
 </item>
 <item>
     <title>當不成 Astronaut, 試試 Kubestronaut</title>
-    <link>http://localhost:1313/posts/cncf-kubestronaut/</link>
+    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut/</link>
     <pubDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/cncf-kubestronaut/</guid>
+    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut/</guid>
     <description><![CDATA[阿炆今年轉職前跟主管聊聊，說想學習 K8S 跟 AWS 微服務架構，所以離開了需要一直不停面試的乙方公司。
 阿炆入職後學習使用了很多 CNCF 專案，像是 Kubernetes、ArgoCD、Keycloak、Prometheus、HELM、Longhorn，另外也考了一個 AWS 證照。
 阿炆準備 AWS SAA-C03 之前一直陸陸續續的看函授自學線性代數跟離散數學，考完 AWS 之後覺得剩五個月時間不太夠了，加上一直以為自己試用期還沒結束，只是延長了，於是找新主管 one-on-one meeting 談談工作表現與規劃。
@@ -37,10 +37,10 @@ Cluster install (need to know it but it&rsquo;s never tested) Cluster upgrade et
 </item>
 <item>
     <title>CKA 筆記 [7,8,9]: Security, Storage, Networking</title>
-    <link>http://localhost:1313/posts/240520-k8s-security-storage-networking/</link>
+    <link>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</link>
     <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/240520-k8s-security-storage-networking/</guid>
+    <guid>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</guid>
     <description><![CDATA[Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
 Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
 Asymmetric Encryption:
@@ -49,10 +49,10 @@ Solution Certificates API [Lab] pwd ls cat akshay.csr cat akshay.csr | base64 # 
 </item>
 <item>
     <title>Kubernetes: techworld nana</title>
-    <link>http://localhost:1313/posts/kubernetes_na/</link>
+    <link>http://wysiwyz.github.io/posts/kubernetes_na/</link>
     <pubDate>Sat, 24 Feb 2024 17:22:17 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/kubernetes_na/</guid>
+    <guid>http://wysiwyz.github.io/posts/kubernetes_na/</guid>
     <description><![CDATA[What is K8s 官方定義 Open source container orchestration tool 開源的容器調度工具
 Developed by Google
 Helps you manage containerized applications in different deployment environments 在不同部署環境下，協助管理容器化應用程式

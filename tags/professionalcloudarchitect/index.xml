@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>ProfessionalCloudArchitect - Tag - Ich bin yiwen.</title>
-        <link>http://localhost:1313/tags/professionalcloudarchitect/</link>
+        <link>http://wysiwyz.github.io/tags/professionalcloudarchitect/</link>
         <description>ProfessionalCloudArchitect - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 25 Jun 2023 15:26:29 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/professionalcloudarchitect/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 25 Jun 2023 15:26:29 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/professionalcloudarchitect/" rel="self" type="application/rss+xml" /><item>
     <title>GCP PCA --- practice exam</title>
-    <link>http://localhost:1313/posts/gcp_pca_exam_dump/</link>
+    <link>http://wysiwyz.github.io/posts/gcp_pca_exam_dump/</link>
     <pubDate>Sun, 25 Jun 2023 15:26:29 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/gcp_pca_exam_dump/</guid>
+    <guid>http://wysiwyz.github.io/posts/gcp_pca_exam_dump/</guid>
     <description><![CDATA[2023-08-04 Google Cloud Platform - Professional Cloud Architect GET!
 VPC firewall rules
 Security policy overview

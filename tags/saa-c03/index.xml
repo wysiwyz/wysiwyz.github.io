@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>SAA-C03 - Tag - Ich bin yiwen.</title>
-        <link>http://localhost:1313/tags/saa-c03/</link>
+        <link>http://wysiwyz.github.io/tags/saa-c03/</link>
         <description>SAA-C03 - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/saa-c03/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/saa-c03/" rel="self" type="application/rss+xml" /><item>
     <title>SAA-C03 AWS Solution Architect Associate 準備心得（上）</title>
-    <link>http://localhost:1313/posts/saa-c03-one/</link>
+    <link>http://wysiwyz.github.io/posts/saa-c03-one/</link>
     <pubDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://localhost:1313/posts/saa-c03-one/</guid>
+    <guid>http://wysiwyz.github.io/posts/saa-c03-one/</guid>
     <description><![CDATA[Motivation 自從去年八月考過 GCP PCA 之後，發現 (1) 想去的幾家公司使用的雲服務供應商都是用 AWS 居多，加上 (2) 某次聚會上遇到的進外商的優秀前同事有 AWS SAA-C03 證照，(3) 今年 AWS 新聞說要在台灣設立資料中心，以及 (4) 前公司提供了 AWS 考照半價補助但沒機會用到，還有 (5) 在 Facebook 社團看到 AWS 官方提供了兩種考照半價優惠的方案（一個要組隊報名，另一個只要在時限前完成官方部分課程）。
 基於看到 Educate Program 再過一天就要報名截止的心態，我刻不容緩的完成兩章的指定課程，趕緊送出申請，並且在一週後的星期三收到報名成功通知信。
 Requirement 報名成功通知信主要有三個重點：

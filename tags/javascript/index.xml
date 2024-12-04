@@ -1,24 +1,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>JavaScript - Tag - Ich bin yiwen.</title>
-        <link>http://localhost:1313/tags/javascript/</link>
+        <link>http://wysiwyz.github.io/tags/javascript/</link>
         <description>JavaScript - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/javascript/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
     <title>JavaScript 常見內建方法</title>
-    <link>http://localhost:1313/posts/javascript_functions/</link>
+    <link>http://wysiwyz.github.io/posts/javascript_functions/</link>
     <pubDate>Tue, 11 Apr 2023 10:50:51 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/javascript_functions/</guid>
+    <guid>http://wysiwyz.github.io/posts/javascript_functions/</guid>
     <description><![CDATA[這裡紀錄上班看遇到的常用 JavaScript 內建方法 ╚(•⌂•)╝
 Object.prototype.hasOwnProperty(param) 回傳 boolean 值
 true: 如果該param是該物件的直接屬性(direct property)，即便值為 null 或者 undefined false: 如果屬性是繼承來的，或從沒被宣告 1 2 3 4 5 6 7 8 9 10 11 12 13 _self._getCurrencyFlagPath = (function () { var imageList = Object.freeze({ AUD: &#39;images/lilyRose/flag_AUD.svg&#39;, CAD: &#39;images/lilyRose/flag_CAD.svg&#39;, EUR: &#39;images/lilyRose/flag_EUR.svg&#39;, JPY: &#39;images/lilyRose/flag_JPY.svg&#39;, TWD: &#39;images/lilyRose/flag_TWD.svg&#39;, NTD: &#39;images/lilyRose/flag_TWD.svg&#39; }); return function (currency) { return imageList.hasOwnProperty(currency) ? imageList[currency] : &#39;&#39;; } })(); Object.freeze() 淺凍結 Freezing an object prevents extensions and makes existing properties non-writable and non-configurable.]]></description>
 </item>
 <item>
     <title>JavaScript - dashing dashshound</title>
-    <link>http://localhost:1313/posts/javascript_2018/</link>
+    <link>http://wysiwyz.github.io/posts/javascript_2018/</link>
     <pubDate>Wed, 15 Mar 2023 10:09:41 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/javascript_2018/</guid>
+    <guid>http://wysiwyz.github.io/posts/javascript_2018/</guid>
     <description><![CDATA[下周工作開始要用到 JavaScript, jQuery, HTML, CSS，特此複習
 🦊Basic_1 變數 第一個字母必須為英文字母、底線_、錢字號$
 後面可接英文字母、底線_、錢字號$、數字

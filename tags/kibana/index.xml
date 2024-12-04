@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Kibana - Tag - Ich bin yiwen.</title>
-        <link>http://localhost:1313/tags/kibana/</link>
+        <link>http://wysiwyz.github.io/tags/kibana/</link>
         <description>Kibana - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/kibana/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/kibana/" rel="self" type="application/rss+xml" /><item>
     <title>Elasticsearch 從頭開始學習(ELK &amp; Elastic Stack)</title>
-    <link>http://localhost:1313/posts/elasticsearch/</link>
+    <link>http://wysiwyz.github.io/posts/elasticsearch/</link>
     <pubDate>Mon, 22 Jan 2024 17:00:05 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://localhost:1313/posts/elasticsearch/</guid>
+    <guid>http://wysiwyz.github.io/posts/elasticsearch/</guid>
     <description><![CDATA[2023-07-11 的筆記太簡略粗糙，重新整理
 Elastic Search 到底是什麼 ElasticSearch 是一個開源分析工具 (Opensource analytics) 和全文搜尋引擎 (full-text search engine)
 通常用於啟用application的搜索功能，有以下特性
