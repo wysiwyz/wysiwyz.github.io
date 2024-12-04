@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Terraform - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/terraform/</link>
+        <link>http://localhost:1313/tags/terraform/</link>
         <description>Terraform - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 17 Mar 2023 14:02:55 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/terraform/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 17 Mar 2023 14:02:55 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/terraform/" rel="self" type="application/rss+xml" /><item>
     <title>Cloud native - the next gen</title>
-    <link>http://wysiwyz.github.io/posts/native_cloud/</link>
+    <link>http://localhost:1313/posts/native_cloud/</link>
     <pubDate>Fri, 17 Mar 2023 14:02:55 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/native_cloud/</guid>
+    <guid>http://localhost:1313/posts/native_cloud/</guid>
     <description><![CDATA[現在沒有雲原生可是不行的，了解一下下
 Cloud native 公有雲、私有雲、混合雲 動態環境 - Node上下, stateless vs stateful 可擴展 - auto scaling (HPA) 聲明式 - ansible, terraform, K8S yaml 容器、微服務、無服務器 - K8S, OCP, Cloud Run, Cloud Function 最小化用戶的操作負擔 - auto healing (liveness, readiness) 所有的服務最好都是stateless
 Stateless vs Stateful Stateless 無狀態，每次請求都是獨立 example JWT .map() Vue/React/Angular service Deployment (K8S) Stateful 有狀態，每次請求與過去相關 example Session .reduce() MySQL Volume/StatefulSet(K8S) 聲明式 - Ansible 聲明式 - Terraform CKA Kubernetes 認證使用命令式 kubectl run nginx -image=nginx

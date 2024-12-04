@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>MovieReviews - Category - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/categories/moviereviews/</link>
+        <link>http://localhost:1313/categories/moviereviews/</link>
         <description>MovieReviews - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 27 Mar 2023 17:18:19 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/moviereviews/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 27 Mar 2023 17:18:19 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/moviereviews/" rel="self" type="application/rss+xml" /><item>
     <title>すずめの戸締(toji)まり- 我出門了，我回來了 </title>
-    <link>http://wysiwyz.github.io/posts/suzume_no_tojimari/</link>
+    <link>http://localhost:1313/posts/suzume_no_tojimari/</link>
     <pubDate>Mon, 27 Mar 2023 17:18:19 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/suzume_no_tojimari/</guid>
+    <guid>http://localhost:1313/posts/suzume_no_tojimari/</guid>
     <description><![CDATA[
 鈴芽是一位平凡的高二少女，某天騎著自行車上學的下坡路上遇見東京地理系大學生（教師考生/斜槓家業關門師）草太，留著及肩捲髮，皮膚白皙的他右下眼角有一顆淚痣，穿著白色T恤、天藍色（azure; hex: #f0ffff）長大衣、脖子上掛著一把鑰匙的他獨自一人背對波光粼粼的海面，徒步走向宮崎當地的山區廢墟。
 一句請問這附近有門、有廢墟嗎，在鈴芽心中發芽，開啟了這部作品的序幕。毅然決定翹課的鈴芽騎著單車來到廢棄小鎮，尋無他的身影，倒是來到了一個看似廢棄圓頂溫室花園前。積窪上奇妙的立者一扇木門，鈴芽看見門後那個叫做常世的地方，滿天繁星草原卻在一踏進門時轉瞬消失。
@@ -18,10 +18,10 @@
 </item>
 <item>
     <title>My Heart Puppy 超完美狗保母 멍뭉이</title>
-    <link>http://wysiwyz.github.io/posts/mypuppy/</link>
+    <link>http://localhost:1313/posts/mypuppy/</link>
     <pubDate>Mon, 13 Mar 2023 09:32:57 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/mypuppy/</guid>
+    <guid>http://localhost:1313/posts/mypuppy/</guid>
     <description><![CDATA[應朋友邀約在超完美狗保母上檔隔天的早晨看電影，這部影片是由柳演錫和車太鉉所主演的韓國寵物劇情片。據朋友說劇組在拍攝期間花了很多時間與電影中出現的狗勾們朝夕相處，想必這樣拍攝起來會減輕不少適應困難吧。
 主角民秀是一位出版社社員，在與美麗的空服員女友求婚當晚，發現她的家族都對狗勾的口水過敏，每次去對方家裡之前都需要吃抗過敏藥。與表哥真國商量下，決定透過社群媒體影響力的方式，幫黃金獵犬魯尼尋找下一位家人，他們拜訪了怕吵的新生兒家庭、有嚴重潔癖的暴發戶創業家、尚未走出喪犬之痛的小男孩的家、家裡環境優渥的遠親的家，發現都不太適合，決定驅車前往濟州島拜訪當地的動物之家。
 前往港口的路途中，他們在高速公路下救援了五隻米克斯幼犬，在附近中途之家收留了一隻巴哥犬，更在airB&amp;B主人庭院贖回了遭到虐待的毛小孩，一行人沿著濟州島達米安麵包店的線索找到患有帕金森氏症的富商女兒家，在一切條件近乎完美的情況下，卻因為女孩關於家人不會拋棄彼此的話而收回了請求。
@@ -32,10 +32,10 @@
 </item>
 <item>
     <title>犬王 [還沒觀賞的話別點,皆劇透]</title>
-    <link>http://wysiwyz.github.io/posts/inu_oh/</link>
+    <link>http://localhost:1313/posts/inu_oh/</link>
     <pubDate>Sun, 23 Oct 2022 02:14:30 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/inu_oh/</guid>
+    <guid>http://localhost:1313/posts/inu_oh/</guid>
     <description><![CDATA[犬王改編自日本古典文學平家物語，在日本南北尚未統一的室町時代背景下，常說得到三件神器就能達成平定天下的志業。
 ¶
 當時京之都內，正規主流的表演團體就屬比叡座（Hieiza），主角友魚（Tomona）失去打漁的父親、失去視力，身上總背著被犬王戲稱長得像獨角仙的琵琶，他加入了定一法師的琵琶團，被給予了個和諧團體調性的名字——友一（Tomoichi）。

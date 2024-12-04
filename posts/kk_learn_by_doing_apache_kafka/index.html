@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Apache Kafka 做中學 - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="Apache Kafka 做中學">
+  <meta property="og:description" content="這篇是根據 KK Learn By Doing: Beginner’s Guid to Apache Kafka - Foundation and Development 所做的筆記與實作紀錄。
+學習目標是要能夠將 Kafka architecture 以及 essential components 套用在服務紀錄需求面，只是這 2.5 小時的課可能還是遠遠不夠，都有人把 Kafka 寫成 30 篇系列文章了。
+A distributed event streaming platform, widely used for building real-time data pipelines and applications
+01 introduction to Kafka Kafka 是開源分布式事件串流平台 (open-sourced, distributed, event streaming platform)，由 Apache Software Foundation 開發，原本是 LinkedIn 建立，在 2011 年開源。
+Kafka 是設計來處理實時資料，協助組織建構穩定、可擴充、且容錯率高的資料管線。
+Core components Producer : 將 record 送往 Kafka topics 的 app，負責選擇要將 record 送到該 topic 中的哪一個 partition Consumer : 從 Kafka topics 讀取 record 的 app，consumer 訂閱 topics 並將訊息作即時處理 Broker : 運行 Kafka 的伺服器，broker 從 producer 接收訊息，存在 disk，再將其發送到 consumers。一個 Kafka cluster 包含多個 brokers，用來確保負載平衡與容錯率 Topic : 是一個 logical channel，使 producer 用以發送 record，consumer 用以讀取 record。為了平行化與可擴張性，topic 會分片 (partitioned) Partition: 每個 topic 都拆分成 partitions，這個 partition 是有序且不可變的紀錄序列 (sequence of records)，使 Kafka 能夠水平擴展並在每個 partition 裡面維持紀錄順序 ZooKeeper or Kraft: 用來做分布式協調、配置管理、Kafka broker 與 topics 的主節點選舉 Kafka architecture Topics &amp; Partitions: Topic 再切分成 partitions，partition 是平行化跟可擴張性的基礎單位。每一個 partition 都是有序不可變的紀錄序列。partition 當中的每一個 record 都會分配到一個唯一的偏移量 (unique offset)。partitions 使得 Kafka 藉由分布式資料以及負載於多個 brokers 這兩種方式，達到可擴展性。 Producers &amp; Consumers: Kafka 支援 pub-sub 模型，多個 conusmer 可以訂閱到相同一個 topic，並獨立處理 data。 Brokers &amp; Clusters: Kafka broker 負責儲存與提供資料。Kafka cluster 包含多個 brokers 用來確保容錯性與高可用性。Brokers 分布在不同個 machines 以避免硬體故障造成資料遺失。 Zooker Coordination : Zookeeper 或 KRaft 管理配置檔以及 Kafka broker 之間合作，協助進行 partitions 主節點選舉，追蹤 broker metadata。但 Kafka 從 verion 2.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-12-03T11:11:57+08:00">
+    <meta property="article:modified_time" content="2024-12-03T11:11:57+08:00">
+    <meta property="article:tag" content="Apache">
+    <meta property="article:tag" content="Kafka">
+    <meta property="article:tag" content="Kodekloud">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Apache Kafka 做中學">
+  <meta name="twitter:description" content="這篇是根據 KK Learn By Doing: Beginner’s Guid to Apache Kafka - Foundation and Development 所做的筆記與實作紀錄。
+學習目標是要能夠將 Kafka architecture 以及 essential components 套用在服務紀錄需求面，只是這 2.5 小時的課可能還是遠遠不夠，都有人把 Kafka 寫成 30 篇系列文章了。
+A distributed event streaming platform, widely used for building real-time data pipelines and applications
+01 introduction to Kafka Kafka 是開源分布式事件串流平台 (open-sourced, distributed, event streaming platform)，由 Apache Software Foundation 開發，原本是 LinkedIn 建立，在 2011 年開源。
+Kafka 是設計來處理實時資料，協助組織建構穩定、可擴充、且容錯率高的資料管線。
+Core components Producer : 將 record 送往 Kafka topics 的 app，負責選擇要將 record 送到該 topic 中的哪一個 partition Consumer : 從 Kafka topics 讀取 record 的 app，consumer 訂閱 topics 並將訊息作即時處理 Broker : 運行 Kafka 的伺服器，broker 從 producer 接收訊息，存在 disk，再將其發送到 consumers。一個 Kafka cluster 包含多個 brokers，用來確保負載平衡與容錯率 Topic : 是一個 logical channel，使 producer 用以發送 record，consumer 用以讀取 record。為了平行化與可擴張性，topic 會分片 (partitioned) Partition: 每個 topic 都拆分成 partitions，這個 partition 是有序且不可變的紀錄序列 (sequence of records)，使 Kafka 能夠水平擴展並在每個 partition 裡面維持紀錄順序 ZooKeeper or Kraft: 用來做分布式協調、配置管理、Kafka broker 與 topics 的主節點選舉 Kafka architecture Topics &amp; Partitions: Topic 再切分成 partitions，partition 是平行化跟可擴張性的基礎單位。每一個 partition 都是有序不可變的紀錄序列。partition 當中的每一個 record 都會分配到一個唯一的偏移量 (unique offset)。partitions 使得 Kafka 藉由分布式資料以及負載於多個 brokers 這兩種方式，達到可擴展性。 Producers &amp; Consumers: Kafka 支援 pub-sub 模型，多個 conusmer 可以訂閱到相同一個 topic，並獨立處理 data。 Brokers &amp; Clusters: Kafka broker 負責儲存與提供資料。Kafka cluster 包含多個 brokers 用來確保容錯性與高可用性。Brokers 分布在不同個 machines 以避免硬體故障造成資料遺失。 Zooker Coordination : Zookeeper 或 KRaft 管理配置檔以及 Kafka broker 之間合作，協助進行 partitions 主節點選舉，追蹤 broker metadata。但 Kafka 從 verion 2.">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/" /><link rel="prev" href="http://localhost:1313/posts/cncf-kubestronaut-02cka/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Apache Kafka 做中學",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/localhost:1313\/posts\/kk_learn_by_doing_apache_kafka\/"
+        },"genre": "posts","keywords": "apache, kafka, kodekloud","wordcount":  3259 ,
+        "url": "http:\/\/localhost:1313\/posts\/kk_learn_by_doing_apache_kafka\/","datePublished": "2024-12-03T11:11:57+08:00","dateModified": "2024-12-03T11:11:57+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Apache Kafka 做中學</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-12-03">2024-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;3259 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;16 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#01-introduction-to-kafka">01 introduction to Kafka</a>
+      <ul>
+        <li></li>
+        <li><a href="#01-tasks">01-tasks</a></li>
+      </ul>
+    </li>
+    <li><a href="#02-components--architecture">02 components &amp; architecture</a>
+      <ul>
+        <li><a href="#2-1-kafka-broker">2-1 Kafka Broker</a></li>
+        <li><a href="#2-2-kafka-producers-and-consumers">2-2 Kafka Producers and Consumers</a></li>
+        <li><a href="#2-3-kafka-topics-and-partitions">2-3 Kafka Topics and Partitions</a></li>
+        <li><a href="#2-4-kafka-architecture">2-4 Kafka Architecture</a></li>
+        <li><a href="#2-5-tasks">2-5 Tasks</a></li>
+      </ul>
+    </li>
+    <li><a href="#03-producer--consumers">03 producer &amp; consumers</a>
+      <ul>
+        <li><a href="#3-1-kafka-producers">3-1 Kafka Producers</a></li>
+        <li><a href="#3-2-kafka-consumers">3-2 Kafka Consumers</a></li>
+        <li><a href="#3-3-實務上考量">3-3 實務上考量</a></li>
+        <li><a href="#3-4-tasks">3-4 Tasks</a></li>
+      </ul>
+    </li>
+    <li><a href="#04-kafka-topics--partitions">04 Kafka topics &amp; partitions</a>
+      <ul>
+        <li><a href="#4-1-kafka-topics">4-1 Kafka Topics</a></li>
+        <li><a href="#4-2-kafka-partitions">4-2 Kafka Partitions</a></li>
+        <li><a href="#4-3-實際案例生產消費訊息">4-3 實際案例：生產/消費訊息</a></li>
+        <li><a href="#4-4-tasks">4-4 Tasks</a></li>
+      </ul>
+    </li>
+    <li><a href="#05-kafka-environment-setup">05 Kafka environment setup</a>
+      <ul>
+        <li><a href="#5-1-先備知識">5-1 先備知識</a></li>
+        <li><a href="#5-2-實際步驟">5-2 實際步驟</a></li>
+        <li><a href="#5-3-驗證安裝">5-3 驗證安裝</a></li>
+        <li><a href="#5-4-task">5-4 Task</a></li>
+      </ul>
+    </li>
+    <li><a href="#06-hands-on-with-producers--consumers">06 hands-on with producers &amp; consumers</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>這篇是根據 KK Learn By Doing: Beginner&rsquo;s Guid to Apache Kafka - Foundation and Development 所做的筆記與實作紀錄。</p>
+<p>學習目標是要能夠將 Kafka architecture 以及 essential components 套用在服務紀錄需求面，只是這 2.5 小時的課可能還是遠遠不夠，都有人把 Kafka 寫成 <a href="https://ithelp.ithome.com.tw/users/20140255/ironman/4026" target="_blank" rel="noopener noreffer ">30 篇系列文章</a>了。</p>
+<blockquote>
+<p>A distributed event streaming platform, widely used for building real-time data pipelines and applications</p>
+</blockquote>
+<h2 id="01-introduction-to-kafka">01 introduction to Kafka</h2>
+<p>Kafka 是開源分布式事件串流平台 (open-sourced, distributed, event streaming platform)，由 Apache Software Foundation 開發，原本是 LinkedIn 建立，在 2011 年開源。</p>
+<p>Kafka 是設計來處理實時資料，協助組織建構穩定、可擴充、且容錯率高的資料管線。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://i.imgur.com/lQwhpfd.png"
+        data-srcset="https://i.imgur.com/lQwhpfd.png, https://i.imgur.com/lQwhpfd.png 1.5x, https://i.imgur.com/lQwhpfd.png 2x"
+        data-sizes="auto"
+        alt="https://i.imgur.com/lQwhpfd.png"
+        title="kafka" /></p>
+<h4 id="core-components">Core components</h4>
+<ul>
+<li>Producer : 將 record 送往 Kafka topics 的 app，負責選擇要將 record 送到該 topic 中的哪一個 partition</li>
+<li>Consumer : 從 Kafka topics 讀取 record 的 app，consumer 訂閱 topics 並將訊息作即時處理</li>
+<li>Broker : 運行 Kafka 的伺服器，broker 從 producer 接收訊息，存在 disk，再將其發送到 consumers。一個 Kafka cluster 包含多個 brokers，用來確保負載平衡與容錯率</li>
+<li>Topic : 是一個 logical channel，使 producer 用以發送 record，consumer 用以讀取 record。為了平行化與可擴張性，topic 會分片 (partitioned)</li>
+<li><strong>Partition</strong>: 每個 topic 都拆分成 partitions，這個 partition 是有序且不可變的紀錄序列 (sequence of records)，使 Kafka 能夠水平擴展並在每個 partition 裡面維持紀錄順序</li>
+<li>ZooKeeper or Kraft: 用來做分布式協調、配置管理、Kafka broker 與 topics 的主節點選舉</li>
+</ul>
+<h4 id="kafka-architecture">Kafka architecture</h4>
+<ul>
+<li><strong>Topics &amp; Partitions</strong>: Topic 再切分成 partitions，partition 是平行化跟可擴張性的基礎單位。每一個 partition 都是有序不可變的紀錄序列。partition 當中的每一個 record 都會分配到一個唯一的偏移量 (unique offset)。partitions 使得 Kafka 藉由分布式資料以及負載於多個 brokers 這兩種方式，達到可擴展性。</li>
+<li><strong>Producers &amp; Consumers</strong>: Kafka 支援 pub-sub 模型，多個 conusmer 可以訂閱到相同一個 topic，並獨立處理 data。</li>
+<li><strong>Brokers &amp; Clusters</strong>: Kafka broker 負責儲存與提供資料。Kafka cluster 包含多個 brokers 用來確保容錯性與高可用性。Brokers 分布在不同個 machines 以避免硬體故障造成資料遺失。</li>
+<li><strong>Zooker Coordination</strong> : Zookeeper 或 KRaft 管理配置檔以及 Kafka broker 之間合作，協助進行 partitions 主節點選舉，追蹤 broker metadata。但 Kafka 從 verion 2.8 開始移除 ZooKeeper 依賴，改用 KRaft mode。</li>
+</ul>
+<h4 id="kafta-在分布式串流平台的角色">Kafta 在分布式串流平台的角色</h4>
+<ul>
+<li>即時資料消化：Kafka 可以用於消化不同來源的 (logs, sensors, user interactions) 即時資料，對於大流量資料也有收集儲存的方法，具有擴充性與容錯性</li>
+<li>串流處理：Kafka 無縫整合串流處理框架，像是 Apache Flink, Apache Spark, Kafka Streams。結合這些能夠即時處理分析資料，也可以偵測詐騙，推薦引擎技術以及監控</li>
+<li>資料整合：Kafka 在資料整合扮演 central hub，使得資料能夠跨系統、跨應用程式移動，支援 connector 連向不同資料來源以及資料槽，方便建構 data pipeline</li>
+<li>事件溯源 (event sourcing)：應用程式的狀態變更會被 Kafka 紀錄成事件序列，提供了一個可靠、可審計的方式來追縱過去一段時間內的異動</li>
+<li>資料佇列：Kafka 也能作為分布式訊息佇列，在應用程式的不同元件之間能夠非同步溝通，提供了 producer 與 consumer 間的解耦，提高了應用程式的可擴展性與彈性</li>
+<li>日誌集成：Kafka 普遍用於日誌集成，從多個不同服務收集 logs 做集中處理，有利於監控、除錯、並從 log 資料獲取事件有關的洞察。</li>
+<li>指標集合與監控：Kafka 可以從多個不同系統中搜集並彙整指標，提供了即時監測與告警功能，有利維持應用程式與基礎建設的健康與效能</li>
+</ul>
+<h4 id="kafka-生態系">Kafka 生態系</h4>
+<ul>
+<li><a href="https://docs.confluent.io/platform/current/connect/index.html" target="_blank" rel="noopener noreffer ">Kafka Connect</a>：將 Kafka topic 資料匯出到外部系統</li>
+<li><a href="https://kafka.apache.org/documentation/streams/" target="_blank" rel="noopener noreffer ">Kafka Streams</a>：輕量化的串流處理 library</li>
+<li><a href="https://docs.confluent.io/platform/current/kafka-rest/index.html" target="_blank" rel="noopener noreffer ">Kafka REST Proxy</a>：提供與 kafka 互動的 RESTful 介面，讓 app 可以透過 HTTP 生產/消費訊息</li>
+<li><a href="https://docs.confluent.io/platform/current/schema-registry/index.html" target="_blank" rel="noopener noreffer ">Schema Registry</a>：將讀寫數據所需的 schema 作存儲/序列化/反序列化，用於版本控管與前後兼容性</li>
+<li><a href="https://docs.confluent.io/platform/current/ksqldb/overview.html" target="_blank" rel="noopener noreffer ">KSQL</a>：用直觀且較為熟悉的 query language 簡化了攥流處理與即時串流資料分析的工作</li>
+</ul>
+<h4 id="apache-kafka-使用案例">Apache Kafka 使用案例</h4>
+<ul>
+<li>即時分析：分析即時資料，提供洞察並提供主動決策</li>
+<li>事件驅動架構：不同服務透過事件溝通，提高可擴張性與低耦合度</li>
+<li>微服務：促進微服務之間非同步且可信賴的資料交互</li>
+<li>日誌集成與監控：從不同服務間集成日誌內容，可供集中化管理與告警</li>
+<li>資料整合：資料整合、跨系統搬移資料的中心，確保一致性與可靠度</li>
+</ul>
+<h4 id="為什麼使用-kafka">為什麼使用 Kafka</h4>
+<ol>
+<li>高吞吐低延遲
+<ul>
+<li>performance：低延遲處理高吞吐量的即時資料串流，透過有效 disk storage 機制以及高效能 networking capabilities。Kafka 架構讓你能每秒處理上百萬則訊息，相當適合需要高吞吐的應用系統</li>
+</ul>
+</li>
+<li>可擴充性
+<ul>
+<li>水平擴充：藉由往 cluster 增加更多 broker 來達成，而 Kafka 的每個 topic 都有做 partition，這些 partitions 可以遍佈在多個 brokers 各處，確保 Kafka 處理遞增負荷同時，不會降低效能</li>
+<li>Elasticity：卡夫卡的 partition based 架構可以動態擴展。當負荷增加了，會加入更多 partition 與 broker 而不會造成 downtime，提供了彈性化的擴展性</li>
+</ul>
+</li>
+<li>耐久性與容錯
+<ul>
+<li>Replication：Kafka 在多個不同 broker 間複製資料，確保資料耐久性與可用度。複本機制保證即使其中一個或多個 broker 壞了，還是可以存取資料</li>
+<li>Log-based storage：用 append-only 的方式，確保資料在 disk 的持久性，最小化資料毀損 (data corruption) 的可能性也提供了有效率的資料復原</li>
+</ul>
+</li>
+<li>彈性多元
+<ul>
+<li>多樣的使用案例：Kafka 提供了像是 real-time analytics 即時分析、event sourcing 資料溯源、log aggregation 日誌集成、metric collection 指標收集、stream processing 串流處理等等使用案例，可以應付眾多情境</li>
+<li>整合生態系：可以無縫接軌，跟 Kafka Connect 做資料整合、Kafka Streams 做串流處理、串接外部處理框架，例如 Apache Flink 以及 Apache Spark</li>
+</ul>
+</li>
+<li>保證訊息順序
+<ul>
+<li>Message ordering：Kafka 確保了單一個 partition 內，嚴格的訊息順序，對於需要事件先後順序的應用程式而言至關重要</li>
+<li>Delivery semantics：Kafka 支援多樣的傳送語意，包括 <code>at-most-once</code>, <code>at-least-once</code>, <code>exactly-one</code> delivery。可以讓開發者根據需求選擇合適等級的保證度</li>
+</ul>
+</li>
+<li>高可用
+<ul>
+<li>Leader-follower architecture: 主節點選舉可以確保 HA，每個 partition 有一個 leader 多個 followers，當 leader 倒了會有一個 follower 被升上去，不用人為介入就能達成持續可用性</li>
+</ul>
+</li>
+<li>成本效率
+<ul>
+<li>有效的資源利用率 (both storage and compute)，log-structure storage 機制將 disk I/O 最小化，distributed nature 保證 cluster 其中的負載平衡</li>
+<li>開源，沒有與私人訊息系統相關的 licensing 成本</li>
+</ul>
+</li>
+<li>活躍的社群支援
+<ul>
+<li>Confluent 提供企業級專業功能</li>
+</ul>
+</li>
+<li>串流處理能力
+<ul>
+<li>Kafka Streams : 原生自己的 stream processing library</li>
+<li>KSQL : 使 user 可以用 SQL-like language query</li>
+</ul>
+</li>
+</ol>
+<h4 id="與其它工具評比">與其它工具評比</h4>
+<h5 id="kafka-vs-rabbitmq">Kafka v.s. RabbitMQ</h5>
+<ul>
+<li>Throughput : 相較於 RabbitMQ，Kafka 提供較高的吞吐性，更適合用於高流量資料串流</li>
+<li>Scalability : 相較於 RabbitMQ 以訊息佇列為基礎的模型，Kafka 的 partition based 架構在擴展上更簡易有效率</li>
+<li>Durability : Kafka 的 log-based 存儲與複製提供更好的耐久性與容錯度</li>
+</ul>
+<h5 id="kafka-vs-apache-pulsar">Kafka v.s. Apache Pulsar</h5>
+<ul>
+<li>Architecture : Pulsar 提供分層架構，將 serving layer 與 storage layer 拆分開來，在某些情境下屬於優勢。但 Kafka 整合的架構比較簡單，也已經證實了效能</li>
+<li>Maturity &amp; Ecosystem : Kafka 有比較成熟的生態系、區域更廣的整合度與工具。Pulsar 比較新，在社群支援與生態系還有進步空間</li>
+</ul>
+<h5 id="kafka-vs-amazon-kinesis">Kafka v.s. Amazon Kinesis</h5>
+<ul>
+<li>Vendor lock-in: 相較於 AWS Kinesis 前者是開源，能夠在本地機房或任何雲端環境上運行，Kinesis 可能會有廠商鎖定問題</li>
+<li>Feature Set: Kafka 提供的 feature set，例如 Kafka Connect 以及 Kafka Streams 提供了比 Kinesis 更好的彈性與整合選項</li>
+</ul>
+<h3 id="01-tasks">01-tasks</h3>
+<ol>
+<li>Apache Kafka is primarily designed for <strong>real-time data feeds</strong></li>
+<li>Which of below best describes Kafka&rsquo;s role in event sourcing? <strong>Tracking state changes in applications</strong></li>
+<li>How does Kafka support real-time stream processing? <strong>By using Kafka Streams and integrating with processing frameworks like Apache Flink</strong></li>
+<li>What use case does Kafka support by acting as a distributed message queue? <strong>Asynchronous communication between application components</strong></li>
+<li>Why is Kafka favored over other providers for high-throughput applications? <strong>Kafka can process millions of messages per second with low latency</strong></li>
+<li>How does Kafka achieve fault tolerance in distributed environment? <strong>By replicating data accross multiple brokers</strong></li>
+<li>What feature makes Kafka scalable and suitable for elastic workloads? <strong>Kafka&rsquo;s ability to dynamically adjust partitions and brokers without downtime</strong></li>
+<li>Which of the following is NOT a common use case for Kafka? <strong>Image process is NOT a common use cases. The other three are real-time analytics, event-driven architecture and log aggregations and monitoring.</strong></li>
+<li>What is one key advantage of Kafka over RabbitMQ? <strong>Kafka has better scalability with its partition based architecture</strong></li>
+<li>In comparison to Apache Pulsar, what is a key advantage of Kafka? <strong>Kafka&rsquo;s integrated architecture is simpler and more proven compared to Pulsar which has different layers for storage and serving.</strong></li>
+<li>What is a significant advantage of Kafka over AWS Kinesis? <strong>Kafka has built-in stream processing with Kafka Streams and KSQL.</strong></li>
+<li>How does Kafka ensure strict message ordering within a partition? <strong>By assigning offsets to each message within a partition</strong></li>
+</ol>
+<hr>
+<h2 id="02-components--architecture">02 components &amp; architecture</h2>
+<p>這章節繼續介紹 Kafka ABC（基本的元素），像是 broker、producer、consumer、topics、partitions, 以及把它們綁在一起的 architecture，著重於複本與容錯機制。</p>
+<h3 id="2-1-kafka-broker">2-1 Kafka Broker</h3>
+<h4 id="2-1-1-kafka-broker-是啥">2-1-1 Kafka Broker 是啥</h4>
+<p>Kafka Broker 是 Kafka cluster 之中的一個 server，用來存放 data 並且提供 clients (producer &amp; consumer) 服務。Broker 處理所有對於 topics 的讀寫操作，一個 Kafka cluster 包含一到多個 broker 來確保擴展性與容錯性。</p>
+<blockquote>
+<p>嗯？Kafka 的 Topic 跟 RabbitMQ 的 channel 似曾相似</p>
+</blockquote>
+<h4 id="2-1-2-broker-在-kafka-的角色">2-1-2 Broker 在 Kafka 的角色</h4>
+<p>Broker 從 producer 接收訊息，將偏移量 (offsets) 分派給該訊息，並將該訊息提交給 disk storage。另外也服務 consumer，回應要取得特定 topics 與特定 partitions 的請求。此外 Broker 還負責做訊息複本以確保容錯率。</p>
+<h4 id="2-1-3-啟動一個-kafka-broker">2-1-3 啟動一個 kafka broker</h4>
+<p>通常是用 shell script 帶入 位於 <code>&lt;some-path&gt;/kafka/config/xxx.properties</code> 的配置檔案，以下是簡易版</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kafka-server-start.sh config/server.properties
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-2-kafka-producers-and-consumers">2-2 Kafka Producers and Consumers</h3>
+<h4 id="2-2-1-kafka-producers">2-2-1 Kafka Producers</h4>
+<p>Producer：將訊息發布/寫入到 Kafka topics 的應用程式，決定哪個 record 要被分派到哪一個 topic 的哪一段 partition，如下示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Properties</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;bootstrap.servers&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;localhost:9092&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;key.serializer&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;org.apache.kafka.common.serialization.StringSerializer&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;value.serializer&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;org.apache.kafka.common.serialization.StringSerializer&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Producer</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">producer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">KafkaProducer</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">props</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">producer</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ProducerRecord</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&#34;my-topic&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;key&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;value&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">producer</span><span class="p">.</span><span class="na">close</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-2-2-kafka-consumers">2-2-2 Kafka Consumers</h4>
+<p>Consumer：從 Kafka topics 讀取訊息，或訂閱 topics 的應用程式，可以平行化讀取多個 brokers 並消費訊息，如下示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Properties</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Properties</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;bootstrap.servers&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;localhost:9092&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;group.id&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;test&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;key.deserializer&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;org.apache.kafka.common.serialization.StringDeserializer&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;value.deserializer&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;org.apache.kafka.common.serialization.StringDeserializer&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">Consumer</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">consumer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">KafkaConsumer</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">props</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">consumer</span><span class="p">.</span><span class="na">subscribe</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&#34;my-topic&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">ConsumerRecords</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">consumer</span><span class="p">.</span><span class="na">poll</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofMillis</span><span class="p">(</span><span class="n">100</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">ConsumerRecord</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">record</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">records</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&#34;offset = %d, key = %s, value = %s%n&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="na">offset</span><span class="p">(),</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="na">key</span><span class="p">(),</span><span class="w"> </span><span class="n">record</span><span class="p">.</span><span class="na">value</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-3-kafka-topics-and-partitions">2-3 Kafka Topics and Partitions</h3>
+<h4 id="2-3-1-topics">2-3-1 Topics</h4>
+<p>Topic：一個種類或者訊息類型名稱，是 records 要發布的標的。Kafka Topics 都是有多個訂閱者，翻成白話文就是一個 topic 可以有零個、一個或者許多個 consumer 訂閱寫入這個 topics 的資料。</p>
+<h4 id="2-3-2-partitions">2-3-2 Partitions</h4>
+<p>Partition：是一個 topic 的部分片段。Topics 可以有多個 partitions，以便處理總數上下多變的資料，另外 partition 也將 data 分佈在多個不同 brokers 中，以達到 topics 平行化處理。</p>
+<h5 id="建立一個具有多重-partitions-的-topic">建立一個具有多重 partitions 的 topic</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--create --bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--replication-factor <span class="m">1</span> --partitions <span class="m">3</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-first-topic
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-4-kafka-architecture">2-4 Kafka Architecture</h3>
+<p>卡夫卡架構重點有三 (1) 高容錯度 (2) 可擴長性 (3) 能夠處理高流量資料，以下幾個關鍵元素：</p>
+<h4 id="2-4-1-role-of-brokers-in-architecture">2-4-1 Role of Brokers in Architecture</h4>
+<p>Brokers 是整個 Kafka cluster 的骨幹，每個 broker 能處理 terabytes 數百萬的訊息，又不影響效能。Brokers 共同協作提供服務並負載 clients 請求與 data 平衡。</p>
+<h4 id="2-4-2-主節點複本與從節點副本">2-4-2 主節點複本與從節點副本</h4>
+<p>每個 topic 的 每一個 partition 都會有一個 broker 作為主節點 (leader)，其它 broker 當作從屬節點 (followers)。主節點處這個 partition 的所有讀跟寫的請求，從屬節點則複製 leader 來確保 data redundancy 以及 fault tolerance</p>
+<h5 id="描述-topic-來查看主從節點副本">描述 topic 來查看主從節點副本</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--describe --bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-topic
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-4-3-藉由副本達成容錯度">2-4-3 藉由副本達成容錯度</h4>
+<p>Kafka 對所有配置的 servers 底下的 partition 都會做副本日誌，這樣即便 server 故障，資料還是能夠從另外一個 broker（此 broker 持有故障的 partition 副本）還原。</p>
+<p>透過瞭解上述的 Kafka 核心組件與架構，user 能設計更穩固、可擴展、且容錯度高的 streaming apps。</p>
+<h3 id="2-5-tasks">2-5 Tasks</h3>
+<ol>
+<li>
+<p>What is the primary role of a Kafka broker? <strong>To store data and server clients (producers and consumers)</strong></p>
+</li>
+<li>
+<p>How does Kafka ensure fault tolerance? <strong>By replicating data across multiple brokers</strong></p>
+</li>
+<li>
+<p>What command is used to start a Kafka broker? <strong>kafka-server-start.sh</strong></p>
+</li>
+<li>
+<p>Which component is responsible for publishing messages to Kafka topics? <strong>Producer</strong></p>
+</li>
+<li>
+<p>In the context of Kafka, what is a topic? <strong>A category or feed name to which records are published</strong></p>
+</li>
+<li>
+<p>What does a Kafka consumer do? <strong>It subscribes to topics and processes messages</strong></p>
+</li>
+<li>
+<p>What is a partition in Kafka? <strong>A subset of a topic&rsquo;s data</strong></p>
+</li>
+<li>
+<p>Which broker is the leader for the partition of <code>my-topic</code>?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ /root/kafka/bin/kafka-topics.sh --describe <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-topic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092
+</span></span><span class="line"><span class="cl">Topic: my-topic TopicId: KInvVHdEQQ6jazgiRfjt8Q PartitionCount: <span class="m">1</span>       ReplicationFactor: <span class="m">1</span> Configs: 
+</span></span><span class="line"><span class="cl">        Topic: my-topic Partition: <span class="m">0</span>    Leader: <span class="m">0</span>       Replicas: <span class="m">0</span>     Isr: <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr>
+<h2 id="03-producer--consumers">03 producer &amp; consumers</h2>
+<p>這一段落聚焦於 producers 以及 consumers，將探索這兩個 component 的角色、如何與 Kafka 互動，會使用 Kafka CLI 提供實際練習案例來生產/消費訊息。</p>
+<h3 id="3-1-kafka-producers">3-1 Kafka Producers</h3>
+<p>Kafka producer 負責發布 records/messages 到 Kafka topics，可以把 topic 看成是 records 要發布的類型或訊息來源名稱。Producer 把資料送進 Kafka brokers，讓 broker 確保資料有儲存，也有副本容錯。</p>
+<h4 id="3-1-1-producer-如何作用">3-1-1 Producer 如何作用</h4>
+<p>Producer 將資料做序列化（把它轉成 bytes）再透過 network 傳送至 Kafka cluster。這個 cluster 根據所定義的 partition strategy（例如 round-robin, key-based partitioning），將資料存進該 topic 下適當的 partition。</p>
+<h5 id="範例產生-message">範例：產生 message</h5>
+<p>使用 Kafka CLI 命令 <code>kafka-console-producer</code>，如下範例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-console-producer.sh <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--broker-list localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic exampleTopic
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這個指令會開啟一個 prompt，在這之後你輸入的每一行都會被發佈到在 <code>localhost:9092</code> 運行的 Kafka cluster 當中，名為 <code>exampleTopic</code> 的 topic。</p>
+<h4 id="3-1-2-kafka-producer-的幾個重要配置內容">3-1-2 Kafka Producer 的幾個重要配置內容</h4>
+<ul>
+<li><code>linger.ms</code>：控制了該 producer 在發送一個 batch of messages 之前要等待多久，設置比較高的數值可以透過允許一次發送比較多的訊息量，進而提高 throughput，但也可能提高 latency。</li>
+<li><code>acks</code>：決定 producer 在認定一則訊息『已發送』之前，要經過多少 acknowledgements
+<ul>
+<li><code>acks=all</code> 表示主節點需要等待所有副本都提供 acknowledgement，優點：訊息持久性，缺點：可能提高 latency</li>
+</ul>
+</li>
+<li><code>batch.size</code>：控制 producer 要發送的單一 batch 的最大容量 (in bytes)，比較大包的 batch 可以提高 throughput 但是也需要比較多 memory</li>
+</ul>
+<h3 id="3-2-kafka-consumers">3-2 Kafka Consumers</h3>
+<p>Kafka consumer 從 topics 讀取 records，consumer 訂閱一到多個 topics，按照產生的順序讀取 records</p>
+<h4 id="3-2-1-consumer-如何作用">3-2-1 Consumer 如何作用</h4>
+<p>Conumer 使用一個 <strong>pull model</strong> 來從 broker 取得資料，另外也透過管理 <strong>offsets</strong> 偏移量來追蹤消費過的 records。Offsets 實質上是 pointers 指向這個 consumer 讀取到的上一則 record。Kafka 儲存這些 offsets，讓 consumer 即使在壞掉或重啟後，都能夠從上一次讀取過的段落重新開始。</p>
+<h5 id="consumer-groups">Consumer Groups</h5>
+<p>Kafka consumer 可以作為 <strong>consumer groups</strong> 的一部分。當有多個 conumsers 共同處於一個 group，Kafka 則確保每個 partition 只會被這個 consumer groups 的 <strong>其中一個 consumer</strong> 所消費。這個機制可以讓資料分發傳送給多個 consumers 處理，達到可擴展與容錯性。</p>
+<h5 id="範例conumer-messages">範例：Conumer messages</h5>
+<p>使用 <code>kafka-console-consumer</code> 的 Kafka CLI 指令可以從一個 topic 讀取/消費訊息，如下例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-console-consumer.sh <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic exampleTopic --from-beginning
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這個指令會印出來自於 <code>exampleTopic</code> topic 的訊息，按照產生的順序，從最舊到最新顯示</p>
+<h4 id="3-2-2-kafka-consumer-的幾個重要配置內容">3-2-2 Kafka Consumer 的幾個重要配置內容</h4>
+<ul>
+<li><code>from-beginning</code>：在 consumer command 加入這個 flag，使 client 能夠從 topic 所能提供之 <strong>latest offset</strong> 開始消費訊息。沒有加這個 flag 的話，consumer 只會先從 <strong>latest offset</strong> 讀取訊息</li>
+<li><code>group.id</code>：定義這個 consumer 要屬於哪一個 consumer group，Kafka 確保一個 consumer group 當中，一次只會有一個 consumer 處理一個 partition，將其它負載分發傳送到相同 group 裡面的多個 consumers。</li>
+<li><code>isolation.level</code>：這個設置控制該 consumer 在處理交易性 topics 時，是否要讀取已提交或者尚未提交的訊息。把他設定為 <code>read_committed</code>，會確保該 consumer 只會讀取完全提交的訊息。</li>
+</ul>
+<h3 id="3-3-實務上考量">3-3 實務上考量</h3>
+<p>serialization/deserialization、partition、offset 管理，在實作 producer consumer 時都需要仔細考量，這三個面向對於 kafka-based application 的效率性與可靠性都至關重要。</p>
+<h4 id="3-3-1-serializationdeserialization">3-3-1 Serialization/deserialization</h4>
+<p>Producer 把 message 序列化成 bytes &ndash;&gt; 送進 Kafka &ndash;&gt; Consumer 將 bytes 反序列化回原始資料格式。Kafka 支援多種序列化格式，包含 JSON、Avro、Protobuf。</p>
+<h4 id="3-3-2-partitioning">3-3-2 Partitioning</h4>
+<p>適當的 partitioning 確保在 Kafka cluster 裡面有效率的資料分派。Producer 可以給每個 message 指明一個 key，這個 key 會被 Kafka 用來決定該 message 會被存進指定 topic 當中的哪一個 partition。</p>
+<h4 id="3-3-3-offset-management">3-3-3 Offset management</h4>
+<p>Consumer 使用 offset 追縱他們的進度，因此 offsets 需要仔細管理，以確保 consumer app 對於所有訊息都有依照產生順序消費，不會有重複讀取/消費的問題。</p>
+<h3 id="3-4-tasks">3-4 Tasks</h3>
+<ol>
+<li>
+<p>Apache Kafka is a distributed streaming platform that allows for the building of real-time streaming data pipelines and applications. At its core, Kafka manages records in a fault-tolerant and scalable way. This labs focus on two essential components of Kafka: producer and consumer</p>
+</li>
+<li>
+<p>Kafka producers are responsible for publishing records to Kafka topics, while Kafka consumers <em>read records</em> from topics. Understanding how these components interact with Kafka is crucial for building efficient and reliable streaming applications.</p>
+</li>
+<li>
+<p>Which of the following Kafka producer configurations controls the amount of time a producer waits before sending a batch of messages? <strong>linger.ms</strong></p>
+</li>
+<li>
+<p>Which Kafka producer configuration ensures that the producer waits for acknowledgments from all replicas before considering a message as successfully sent? <strong>acks=all</strong></p>
+</li>
+<li>
+<p>Which Kafka CLI command is used to produce message to a topic? <strong>kafka-console-producer.sh</strong></p>
+</li>
+<li>
+<p>Use the <code>kafka-console-producer</code> command to send <code>Hi, this is my first messsage</code> to the <code>myFirstTopic</code> topic</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">cd</span> /root/kafka/bin/
+</span></span><span class="line"><span class="cl">ls
+</span></span><span class="line"><span class="cl">cat kafka-console-producer.sh
+</span></span><span class="line"><span class="cl">kafka-console-producer.sh --topic myFirstTopic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092
+</span></span><span class="line"><span class="cl">&gt; Hi, this is my first messsage
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Which Kafka CLI command is used to consume messages to a topic? <strong>kafka-console-consumer.sh</strong></p>
+</li>
+<li>
+<p>When using Kafka&rsquo;s CLI consumer, what does the <code>--from-beginning</code> flag do? <strong>Consumes messages from the start of a topic</strong></p>
+</li>
+<li>
+<p>In Kafka CLI consumer, which of the following command allows you to specify the consumer group that the client should join? <strong>&ndash;group</strong></p>
+</li>
+<li>
+<p>What is the purpose of the <code>--isolation-level</code> configuration in the Kafka consumer CLI? <strong>To determine whether the consumer reads committed or uncommitted messages</strong></p>
+</li>
+<li>
+<p>Use the Kafka console consumer to read messages from the topic <code>myFirstTopic</code> and store them in <code>/root/messages</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-console-consumer.sh --topic myFirstTopic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-beginning --timeout-ms <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">Hi, this is my first message
+</span></span><span class="line"><span class="cl"><span class="nv">a29kZWtsb3VkCg</span><span class="o">==</span>
+</span></span><span class="line"><span class="cl">Processed a total of <span class="m">2</span> messages
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr>
+<h2 id="04-kafka-topics--partitions">04 Kafka topics &amp; partitions</h2>
+<p>這章節要解開 topics 跟 partition 這兩個 kafka 的謎霧。重複強調一下，Kafka 是 distributed streaming platform, 可以協助您達到高吞吐、且具有容錯性的即時資料來源處理。不管是 Kafka 小萌新，或者是打算將這兩個概念了解透徹，要有效率的使用 Kafka，了解 Topic 與 Partition 都是關鍵要素。現在要講如何用 topics 幫 message 分類，以及 partitions 如何啟用 Kafka 的可擴展性以及平行處理的能力。</p>
+<h3 id="4-1-kafka-topics">4-1 Kafka Topics</h3>
+<p>將 Kafka topic 想像成一個欄位或者一個儲存訊息的資料夾。Topics 是 Kafka producer 與 Kafka consumer 之間溝通的方式。每一則發佈到 Kafka cluster 的訊息都會被分派一個特定的 topic，使得這個 message 能夠被訂閱這個 topic 的任何 consumer group 所讀取/消費。</p>
+<h4 id="4-1-1-建立一個-kafka-topic">4-1-1 建立一個 Kafka Topic</h4>
+<p>使用 <code>kafka-topics</code> CLI 指令工具建立一個新的 Kafka topic</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh --create <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--replication-factor <span class="m">1</span> --partitions <span class="m">3</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-first-topic
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這指令會建立一個名為 <code>my-first-topic</code> 的 topics，有三個 partition，replication factor 是 1</p>
+<h4 id="4-1-2-列出-kafka-topics">4-1-2 列出 Kafka Topics</h4>
+<p>要查看 Kafka cluster 現在有的 topic 清單，可以用以下指令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-1-3-了解-topics-characteristics">4-1-3 了解 Topics characteristics</h4>
+<ul>
+<li>Immutability 不可變異性：一旦有訊息寫入一個 topic 就不能被異動。這是 kafka 設計的一個關鍵功能</li>
+<li>Retention Policy 保留政策：Kafka topic 可以配置訊息保留政策，決定訊息再被刪除之前要保留多久一段時間（可以根據時間或者訊息大小而定）</li>
+</ul>
+<h3 id="4-2-kafka-partitions">4-2 Kafka Partitions</h3>
+<p>Partitions 是 Kafka 確保擴展性以及容錯的方式。每一個 topic 會被區分成多個 partitions，每一個 partition 可以放在一個 cluster 當中，不同的 kakfa brokers。可以使得一個 topic 的訊息分佈在 cluster 各處，達到平行化處理並提高吞吐量。</p>
+<h4 id="4-2-1-為啥需要-partitions">4-2-1 為啥需要 Partitions</h4>
+<ul>
+<li>Parallelism 平行化：partition 允許多個 consumers 平行化讀取一個 topic 的訊息，顯著提升了系統的吞吐量</li>
+<li>Scalability 可擴展性：隨著 message 流量增加，可以加更多 partitions 近來，將負載分派到比較多的 brokers。</li>
+</ul>
+<h4 id="4-2-2-建立-partitions">4-2-2 建立 Partitions</h4>
+<p>建立 topics 可以指定 partitions 數量，您也可以直接修改既有 topics 的 partitions 數量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh --alter <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-first-topic --partitions <span class="m">6</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上述指令會將既有的 <code>my-first-topic</code>partitions 數量升到 6 個</p>
+<h4 id="4-2-3-partitions-如何運作">4-2-3 Partitions 如何運作</h4>
+<ul>
+<li><strong>Ordering</strong>: 在一個 partition 內的所有訊息都保證會以他們寫入的先後順序儲存，但是跨 partitions 的 message 順序就不保證</li>
+<li><strong>Consumer Groups</strong>: 一次只能有 consumer group 的唯一一名成員消費這個 partition 的訊息，以確保訊息有按照順序被處理</li>
+</ul>
+<h3 id="4-3-實際案例生產消費訊息">4-3 實際案例：生產/消費訊息</h3>
+<h4 id="4-3-1-發送-message-進一個-topic">4-3-1 發送 message 進一個 topic</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-first-topic
+</span></span><span class="line"><span class="cl">&gt; Hello, Kafka!
+</span></span><span class="line"><span class="cl">&gt; This is a message.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-3-2-從一個-topic-消費-message">4-3-2 從一個 topic 消費 message</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-first-topic --from-beginning
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>這指令會從名為 <code>my-first-topic</code> 的 topic，從最先前的地方開始顯示所有訊息</p>
+<h3 id="4-4-tasks">4-4 Tasks</h3>
+<ol>
+<li>
+<p>In this section, we will explore the fundamental concepts of Kafka topics and partitions. Topics serve as categories for messages, while partitions allow for scalability and parallel processing.</p>
+</li>
+<li>
+<p>What is a Kafka topic? <strong>A category or a folder where messages are stored</strong></p>
+</li>
+<li>
+<p>Create a Kafka Topic</p>
+<ul>
+<li>Utilize the Kafka CLI tool to create a topic named <code>my-first-topic</code> with 3 partitions and a replication factor of 1</li>
+<li>Use the Kafka binary located at <code>/root/kafka/bin/</code> to interact with Kafka</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--create --bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--replication-factor <span class="m">1</span> --partitions <span class="m">3</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-first-topic
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>How many topics are in this cluster?</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh --list <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 
+</span></span><span class="line"><span class="cl">customer-feedback
+</span></span><span class="line"><span class="cl">inventory-updates
+</span></span><span class="line"><span class="cl">my-first-topic
+</span></span><span class="line"><span class="cl">order-processing-queue
+</span></span><span class="line"><span class="cl">user-registration-events
+</span></span><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh --list <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 <span class="p">|</span> wc -l
+</span></span><span class="line"><span class="cl"><span class="m">5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Partitions in Kafka play a crucial role in scalability and fault tolerance. By dividing each topic into multiple partitions, Kafka enables parallel processing, which significantly improves throughput and system performance.</p>
+</li>
+<li>
+<p>Why are partitions important in Kafka? <strong>They allow for parallelism and scalability.</strong></p>
+</li>
+<li>
+<p>Increase the number of partitions for the topic <code>my-first-topic</code> to <code>6</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># alter</span>
+</span></span><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh --alter <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --topic my-first-topic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --partitions <span class="m">6</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># verify</span>
+</span></span><span class="line"><span class="cl">root/kafka/bin/kafka-topics.sh --describe <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --topic my-first-topic
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>What is the retention policy in Kafka? <strong>A policy to determine how long messages are kept before being deleted</strong></p>
+</li>
+<li>
+<p>Change the retention time for messages in the <code>my-second-topic</code> to 7 days</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># set config &#34;retention.ms&#34; to 7 days (=604800000 milliseconds)</span>
+</span></span><span class="line"><span class="cl">/root/kafka/bin/kafka-configs.sh --alter <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--entity-type topics <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--entity-name my-second-topic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--add-config retention.ms<span class="o">=</span><span class="m">604800000</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># verfy</span>
+</span></span><span class="line"><span class="cl">/root/kafka/bin/kafka-configs.sh --describe <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-second-topic
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Produce messages to a Kafka topic</p>
+<p>Use the Kafka-console-producer to send the message <code>{&quot;user&quot;: &quot;Alice&quot;, &quot;action&quot;: &quot;login&quot;, &quot;timestamp&quot;: &quot;2024-12-03T10:00:00Z&quot;}</code> to the topic <code>my-first-topic</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-console-producer.sh <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--broker-list localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-first-topic
+</span></span><span class="line"><span class="cl">&gt; <span class="o">{</span><span class="s2">&#34;user&#34;</span>: <span class="s2">&#34;Alice&#34;</span>, <span class="s2">&#34;action&#34;</span>: <span class="s2">&#34;login&#34;</span>, <span class="s2">&#34;timestamp&#34;</span>: <span class="s2">&#34;2024-09-30T10:00:00Z&#34;</span><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Consume messages from a Kafka topic</p>
+<p>Use the Kafka console consumer to read messages from the topic <code>my-first-topic</code> and store them in <code>/root/messages</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-console-consumer.sh --topic my-first-topic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--from-beginning --timeout-ms <span class="m">1000</span> &gt; /root/messages
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Delete a Kafka topic</p>
+<p>Use the Kafka CLI tool to delete the topic <code>my-first-topic</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">/root/kafka/bin/kafka-topics.sh --delete <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--topic my-first-topic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--bootstrap-server localhost:9092
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr>
+<h2 id="05-kafka-environment-setup">05 Kafka environment setup</h2>
+<p>這一章節目的要帶你走過整個從零開始建立 Kafka 環境的流程，使用到 Kafka 本身以及 ZooKeeper 用於 cluster 管理，程度適合 beginner。</p>
+<h3 id="5-1-先備知識">5-1 先備知識</h3>
+<p>在建立 kafka setup 之前要有以下知識背景：</p>
+<ul>
+<li>Linux-based 的系統（這裡提到的指令都用於 linux 環境）</li>
+<li>Command-line 基本知識</li>
+<li>系統已安裝 <code>curl</code> ，用來下載 Kafka</li>
+<li><code>tar</code> 用於解壓縮 Kafka archive</li>
+<li>系統已安裝 <code>Java</code>，用來運行 Kafka</li>
+<li>Root 或者 sudo 權限，用來建立 service files</li>
+</ul>
+<h3 id="5-2-實際步驟">5-2 實際步驟</h3>
+<h4 id="step-1-下載-kafka">Step 1: 下載 Kafka</h4>
+<p>可以從官網下載 Apache Kafka，但是為了便利性，這裡使用 curl 從 command line 直接下載 Kafka，以下指令下載的是 version 3.7.1 版本。需要新的版本的話，可以去 Kafka 下載頁面查看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -L https://downloads.apache.org/kafka/3.7.1/kafka_2.13-3.7.1.tgz -o ~/Downloads/kafka.tgz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-2-解壓縮-kafka">Step 2: 解壓縮 Kafka</h4>
+<p>一旦下載完成，需要解壓縮到你想要放的目錄裡。以下指令會在你的 home 目錄建立一個新的 directory 給 Kafka，並將 archive 解壓縮至此</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir ~/kafka <span class="o">&amp;&amp;</span> <span class="nb">cd</span> ~/kafka
+</span></span><span class="line"><span class="cl">tar -xvzf ~/Downloads/kafka.tgz --strip <span class="m">1</span> -C ~/kafka
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-3-建立-zookeeper-systemd-service">Step 3: 建立 ZooKeeper Systemd Service</h4>
+<p>使用以下指令建立 ZooKeeper 的 systemd service file</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo vi /etc/systemd/system/zookeeper.service
+</span></span><span class="line"><span class="cl"><span class="c1"># paste below config to the editor</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Requires</span><span class="o">=</span>network.target remote-fs.target
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>network.target remote-fs.target
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>simple
+</span></span><span class="line"><span class="cl"><span class="nv">User</span><span class="o">=</span>root
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/root/kafka/bin/zookeeper-server-start.sh /root/kafka/config/zookeeper.properties
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStop</span><span class="o">=</span>/root/kafka/bin/zookeeper-server-stop.sh
+</span></span><span class="line"><span class="cl"><span class="nv">Restart</span><span class="o">=</span>on-abnormal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl"><span class="c1"># save and close vi editor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-4-設定-kafka-server">Step 4: 設定 Kafka Server</h4>
+<p>類似 ZooKeeper，Kafka 也需要 system service 來做自動化管理，使用以下指令建立 Kafka service file</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo vi /etc/systemd/system/kafka.service
+</span></span><span class="line"><span class="cl"><span class="c1"># paste below config to the editor</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Requires</span><span class="o">=</span>zookeeper.service
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>zookeeper.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>simple
+</span></span><span class="line"><span class="cl"><span class="nv">User</span><span class="o">=</span>root
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/bin/sh -c <span class="s1">&#39;/root/kafka/bin/kafka-server-start.sh /root/kafka/config/server.properties &gt; /root/kafka/kafka.log 2&gt;&amp;1&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStop</span><span class="o">=</span>/root/kafka/bin/kafka-server-stop.sh
+</span></span><span class="line"><span class="cl"><span class="nv">Restart</span><span class="o">=</span>on-abnormal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl"><span class="c1"># save and close vi editor</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="step-5-啟動服務">Step 5: 啟動服務</h4>
+<p>兩個 services files 皆到位，就可以 enable and start ZooKeeper 跟 Kafka</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> zookeeper
+</span></span><span class="line"><span class="cl">sudo systemctl start zookeeper
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> kafka
+</span></span><span class="line"><span class="cl">sudo systemctl start kafka
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-3-驗證安裝">5-3 驗證安裝</h3>
+<p>以下指令用來驗證 Kafka 以及 Zookeeper 皆已正確安裝。如果都正確無誤，那這兩個 services 應該都在 active 狀態</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo systemctl status zookeeper
+</span></span><span class="line"><span class="cl">sudo systemctl status kafka
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-4-task">5-4 Task</h3>
+<ol>
+<li>
+<p>Apache Kafka is a powerful distributed streaming platform that enables you to build real-time streaming data pipelines and applications. Setting up a Kafka environment involves installing Kafka itself along with ZooKeeper, which Kafka uses for cluster management.</p>
+</li>
+<li>
+<p>Pre-requisite per above</p>
+</li>
+<li>
+<p>Install Java 17 as Kafka depends on this</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt update <span class="o">&amp;&amp;</span> sudo apt install -y openjdk-17-jdk
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>What is the primary purpose of ZooKeeper in a Kafka environment? <strong>To manage cluster metadata and configurations</strong></p>
+</li>
+<li>
+<p>Download the latest version of Kafka and store it in the <code>/home/bob/</code> directory with the filename <code>kafka.tgz</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -L https://downloads.apache.org/kafka/3.7.1/kafka_2.13-3.7.1.tgz -o /home/bob/kafka.tgz
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Extract the Kafka archive to the <code>/home/bob/kafka/</code> directory</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkdir -p /home/bob/kafka <span class="o">&amp;&amp;</span> tar -xvzf /home/bob/kafka.tgz --strip <span class="m">1</span> -C /home/bob/kafka
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>What is the correct path to the Kafka config file? <strong>/home/bob/kafka/config/server.properties</strong></p>
+</li>
+<li>
+<p>What is the correct path to the ZooKeeper config file? <strong>/home/bob/kafka/config/zookeeper.properties</strong></p>
+</li>
+<li>
+<p>Create a systemd service file to manage ZooKeeper as a service.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo vi /etc/systemd/system/zookeeper.service
+</span></span><span class="line"><span class="cl"><span class="c1"># paste below</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Requires</span><span class="o">=</span>network.target remote-fs.target
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>network.target remote-fs.target
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>simple
+</span></span><span class="line"><span class="cl"><span class="nv">User</span><span class="o">=</span>root
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/home/bob/kafka/bin/zookeeper-server-start.sh /home/bob/kafka/config/zookeeper.properties
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStop</span><span class="o">=</span>/home/bob/kafka/bin/zookeeper-server-stop.sh
+</span></span><span class="line"><span class="cl"><span class="nv">Restart</span><span class="o">=</span>on-abnormal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl"><span class="c1"># save and exit</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># reload the systemd daemon to recognize the new service file</span>
+</span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Create a systemd service file to manage Kafka as a service.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo vi /etc/systemd/system/kafka.service
+</span></span><span class="line"><span class="cl"><span class="c1"># paste</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Requires</span><span class="o">=</span>zookeeper.service
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>zookeeper.service
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>simple
+</span></span><span class="line"><span class="cl"><span class="nv">User</span><span class="o">=</span>root
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/bin/sh -c <span class="s1">&#39;/home/bob/kafka/bin/kafka-server-start.sh /home/bob/kafka/config/server.properties &gt; /home/bob/kafka/kafka.log 2&gt;&amp;1&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStop</span><span class="o">=</span>/home/bob/kafka/bin/kafka-server-stop.sh
+</span></span><span class="line"><span class="cl"><span class="nv">Restart</span><span class="o">=</span>on-abnormal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl"><span class="c1"># save and exit</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># reload the systemd daemon to apply the changes</span>
+</span></span><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Enable and start both the ZooKeeper and Kafka services to ensure they run at boot and are active immediately.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># enable ZooKeeper to start at boot</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> zookeeper
+</span></span><span class="line"><span class="cl"><span class="c1"># start the ZooKeeper service</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start zookeeper
+</span></span><span class="line"><span class="cl"><span class="c1"># enable Kafka to start at boot</span>
+</span></span><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> kafka
+</span></span><span class="line"><span class="cl"><span class="c1"># start the Kafka service</span>
+</span></span><span class="line"><span class="cl">sudo systemctl start kafka
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Install Kafdrop as a UI for managing your Kafka cluster with a graphical interface. Create Kafkaui as a service and ensure it is enabled and started automatically on boot?</p>
+<h5 id="solution">Solution</h5>
+<p>Follow these steps to install <strong>Kafdrop</strong> and set it up as a <strong>systemd service</strong> for your Kafka cluster:
+<strong>Step 1: Download Kafdrop</strong></p>
+<p>Use the following <strong>curl</strong> command to download the Kafdrop JAR file to the <code>/opt</code> directory:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo curl -L https://github.com/obsidiandynamics/kafdrop/releases/download/4.0.2/kafdrop-4.0.2.jar -o /opt/kafdrop-4.0.2.jar
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Step 2: Create a systemd Service for Kafdrop</strong></p>
+<ol>
+<li><strong>Create a systemd service</strong> file for <strong>Kafdrop</strong>. Open a new file using a text editor:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo vi /etc/systemd/system/kafkaui.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>Add the following content to the service file:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-properties" data-lang="properties"><span class="line"><span class="cl"><span class="err">[Unit]</span>
+</span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Web UI for administration of Kafka clusters</span>
+</span></span><span class="line"><span class="cl"><span class="na">Requires</span><span class="o">=</span><span class="s">kafka.service</span>
+</span></span><span class="line"><span class="cl"><span class="na">After</span><span class="o">=</span><span class="s">kafka.service</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[Service]</span>
+</span></span><span class="line"><span class="cl"><span class="na">User</span><span class="o">=</span><span class="s">root</span>
+</span></span><span class="line"><span class="cl"><span class="na">WorkingDirectory</span><span class="o">=</span><span class="s">/opt/</span>
+</span></span><span class="line"><span class="cl"><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/java --add-opens=java.base/sun.nio.ch=ALL-UNNAMED -jar kafdrop-4.0.2.jar --kafka.brokerConnect=ubuntu-host:9092</span>
+</span></span><span class="line"><span class="cl"><span class="na">StartLimitInterval</span><span class="o">=</span><span class="s">0</span>
+</span></span><span class="line"><span class="cl"><span class="na">RestartSec</span><span class="o">=</span><span class="s">10</span>
+</span></span><span class="line"><span class="cl"><span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">[Install]</span>
+</span></span><span class="line"><span class="cl"><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li><strong>Reload</strong> the <strong>systemd daemon</strong> to recognize the new service file:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo systemctl daemon-reload
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li><strong>Enable and Start</strong> the Kafdrop Service:</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> kafkaui.service
+</span></span><span class="line"><span class="cl">sudo systemctl start kafkaui.service
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<hr>
+<h2 id="06-hands-on-with-producers--consumers">06 hands-on with producers &amp; consumers</h2>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-12-03</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/" data-hashtag="apache"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/" data-title="Apache Kafka 做中學"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/apache/">Apache</a>,&nbsp;<a href="/tags/kafka/">Kafka</a>,&nbsp;<a href="/tags/kodekloud/">Kodekloud</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/cncf-kubestronaut-02cka/" class="prev" rel="prev" title="Kubestronaut 02 CKA"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Kubestronaut 02 CKA</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/twemoji/twemoji.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

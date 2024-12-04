@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>OWASP - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/owasp/</link>
+        <link>http://localhost:1313/tags/owasp/</link>
         <description>OWASP - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/owasp/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/owasp/" rel="self" type="application/rss+xml" /><item>
     <title>[筆記] OWASP API Security Top 10</title>
-    <link>http://wysiwyz.github.io/posts/owasp_/</link>
+    <link>http://localhost:1313/posts/owasp_/</link>
     <pubDate>Mon, 15 Jan 2024 20:28:58 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/owasp_/</guid>
+    <guid>http://localhost:1313/posts/owasp_/</guid>
     <description><![CDATA[What is OWASP Security Top 10 你會學到：API相關弱點的多樣類型、包含的來襲方向（attack vector）、弱點利用可能造成的技術影響
 這些人都該來瞭解一下：API生態系的相關人士, bug bunty hunters, 開發人員, 滲透測試人員, 組織領導, 對API Security有興趣的人
 （而且現在APISec University有一個certifcation bage提供給CASA 測驗通過的人，好像是個酷東西！）

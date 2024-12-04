@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>OperatingSystem - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/operatingsystem/</link>
+        <link>http://localhost:1313/tags/operatingsystem/</link>
         <description>OperatingSystem - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Jan 1993 14:30:01 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/operatingsystem/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 26 Jan 1993 14:30:01 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/operatingsystem/" rel="self" type="application/rss+xml" /><item>
     <title>Operating_system</title>
-    <link>http://wysiwyz.github.io/posts/operating_system/</link>
+    <link>http://localhost:1313/posts/operating_system/</link>
     <pubDate>Tue, 26 Jan 1993 14:30:01 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/operating_system/</guid>
+    <guid>http://localhost:1313/posts/operating_system/</guid>
     <description><![CDATA[01. Multiprogramming System (一）定義：系統允許多個 jobs (processes) 同時執行，即是
 主要目的：提高CPU utilization
 作法：透過Job scheduling (or CPU scheduling 工作的排班或者CPU的排班) 技術達成

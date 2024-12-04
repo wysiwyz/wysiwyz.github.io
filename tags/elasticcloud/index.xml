@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>ElasticCloud - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/elasticcloud/</link>
+        <link>http://localhost:1313/tags/elasticcloud/</link>
         <description>ElasticCloud - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Jan 2024 17:21:01 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/elasticcloud/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 29 Jan 2024 17:21:01 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/elasticcloud/" rel="self" type="application/rss+xml" /><item>
     <title>〔Debug〕ElasticCloud 上傳type為date的csv檔案</title>
-    <link>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</link>
+    <link>http://localhost:1313/posts/elasticcloud_onuploaddataset/</link>
     <pubDate>Mon, 29 Jan 2024 17:21:01 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/elasticcloud_onuploaddataset/</guid>
+    <guid>http://localhost:1313/posts/elasticcloud_onuploaddataset/</guid>
     <description><![CDATA[錯誤內容： 當dataset其中一個field看起來像是日期可以分成多個buckets，實際上會拋出以下錯誤
 1 2 3 4 5 6 { &#34;error&#34;: { &#34;type&#34;: &#34;illegal_argument_exception&#34;, &#34;reason&#34;: &#34;Field [InvoiceDate] of type [keyword] is not supported for aggregation [date_histogram]&#34; } } 問題釐清： 上傳檔案時，3/30/2011 16:34 或者 12/1/2010 9:10 這類的欄位內容被辨識為 &quot;type&quot;: &quot;keyword&quot;，須要在上傳檔案時點擊 Override settings，勾選 Contains time field 再加上時間戳記格式以及對應的 time field，這樣就能正常做 bucket aggregations 了
 實際結果： 看起來 Elastic 幫你增加了一個@timestamp的欄位，而欄位內容確實是與 InvoiceDate 一致

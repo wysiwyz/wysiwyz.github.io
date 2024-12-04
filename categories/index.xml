@@ -1,46 +1,46 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Categories - Category - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/categories/</link>
+        <link>http://localhost:1313/categories/</link>
         <description>Categories - Category - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 12 Nov 2024 12:33:42 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/categories/" rel="self" type="application/rss+xml" /><item>
     <title>StudyNote</title>
-    <link>http://wysiwyz.github.io/categories/studynote/</link>
-    <pubDate>Tue, 12 Nov 2024 12:33:42 &#43;0800</pubDate>
+    <link>http://localhost:1313/categories/studynote/</link>
+    <pubDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/studynote/</guid>
+    <guid>http://localhost:1313/categories/studynote/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>MovieReviews</title>
-    <link>http://wysiwyz.github.io/categories/moviereviews/</link>
+    <link>http://localhost:1313/categories/moviereviews/</link>
     <pubDate>Mon, 27 Mar 2023 17:18:19 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/moviereviews/</guid>
+    <guid>http://localhost:1313/categories/moviereviews/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>NovelReadingLog</title>
-    <link>http://wysiwyz.github.io/categories/novelreadinglog/</link>
+    <link>http://localhost:1313/categories/novelreadinglog/</link>
     <pubDate>Mon, 18 Nov 2019 21:50:30 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/novelreadinglog/</guid>
+    <guid>http://localhost:1313/categories/novelreadinglog/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>BookReadingLog</title>
-    <link>http://wysiwyz.github.io/categories/bookreadinglog/</link>
+    <link>http://localhost:1313/categories/bookreadinglog/</link>
     <pubDate>Sat, 26 Oct 2019 23:30:34 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/bookreadinglog/</guid>
+    <guid>http://localhost:1313/categories/bookreadinglog/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>Algorithm</title>
-    <link>http://wysiwyz.github.io/categories/algorithm/</link>
+    <link>http://localhost:1313/categories/algorithm/</link>
     <pubDate>Tue, 05 Oct 1993 19:25:55 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/categories/algorithm/</guid>
+    <guid>http://localhost:1313/categories/algorithm/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

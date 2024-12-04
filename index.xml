@@ -1,36 +1,56 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/</link>
+        <link>http://localhost:1313/</link>
         <description>An ordinary space for storing and groups pieces of articles.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 12 Nov 2024 12:33:42 &#43;0800</lastBuildDate>
-            <atom:link href="http://wysiwyz.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</lastBuildDate>
+            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Apache Kafka 做中學</title>
+    <link>http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/</link>
+    <pubDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/</guid>
+    <description><![CDATA[這篇是根據 KK Learn By Doing: Beginner&rsquo;s Guid to Apache Kafka - Foundation and Development 所做的筆記與實作紀錄。
+學習目標是要能夠將 Kafka architecture 以及 essential components 套用在服務紀錄需求面，只是這 2.5 小時的課可能還是遠遠不夠，都有人把 Kafka 寫成 30 篇系列文章了。
+A distributed event streaming platform, widely used for building real-time data pipelines and applications
+01 introduction to Kafka Kafka 是開源分布式事件串流平台 (open-sourced, distributed, event streaming platform)，由 Apache Software Foundation 開發，原本是 LinkedIn 建立，在 2011 年開源。
+Kafka 是設計來處理實時資料，協助組織建構穩定、可擴充、且容錯率高的資料管線。
+Core components Producer : 將 record 送往 Kafka topics 的 app，負責選擇要將 record 送到該 topic 中的哪一個 partition Consumer : 從 Kafka topics 讀取 record 的 app，consumer 訂閱 topics 並將訊息作即時處理 Broker : 運行 Kafka 的伺服器，broker 從 producer 接收訊息，存在 disk，再將其發送到 consumers。一個 Kafka cluster 包含多個 brokers，用來確保負載平衡與容錯率 Topic : 是一個 logical channel，使 producer 用以發送 record，consumer 用以讀取 record。為了平行化與可擴張性，topic 會分片 (partitioned) Partition: 每個 topic 都拆分成 partitions，這個 partition 是有序且不可變的紀錄序列 (sequence of records)，使 Kafka 能夠水平擴展並在每個 partition 裡面維持紀錄順序 ZooKeeper or Kraft: 用來做分布式協調、配置管理、Kafka broker 與 topics 的主節點選舉 Kafka architecture Topics &amp; Partitions: Topic 再切分成 partitions，partition 是平行化跟可擴張性的基礎單位。每一個 partition 都是有序不可變的紀錄序列。partition 當中的每一個 record 都會分配到一個唯一的偏移量 (unique offset)。partitions 使得 Kafka 藉由分布式資料以及負載於多個 brokers 這兩種方式，達到可擴展性。 Producers &amp; Consumers: Kafka 支援 pub-sub 模型，多個 conusmer 可以訂閱到相同一個 topic，並獨立處理 data。 Brokers &amp; Clusters: Kafka broker 負責儲存與提供資料。Kafka cluster 包含多個 brokers 用來確保容錯性與高可用性。Brokers 分布在不同個 machines 以避免硬體故障造成資料遺失。 Zooker Coordination : Zookeeper 或 KRaft 管理配置檔以及 Kafka broker 之間合作，協助進行 partitions 主節點選舉，追蹤 broker metadata。但 Kafka 從 verion 2.]]></description>
+</item>
+<item>
+    <title>Kubestronaut 02 CKA</title>
+    <link>http://localhost:1313/posts/cncf-kubestronaut-02cka/</link>
+    <pubDate>Sat, 30 Nov 2024 06:22:38 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://localhost:1313/posts/cncf-kubestronaut-02cka/</guid>
+    <description><![CDATA[11/30 註：寫需求分析不可控的因素太多了，除了要兼顧 bigger picture、detailed process、granular fields for programming、還要顧慮到 user sentiment、senior critics、 &hellip;
+就現階段而言，工作有關給人最多成就感的是拿到證照這條路（來人拿球棒敲醒這個人吧），其它都像是練習，不停製造錯誤再不停被導回正途
+![image-20241129110027476](/Users/yiwen/Library/Application Support/typora-user-images/image-20241129110027476.png)
+Topics not on CKAD but on CKA Workloads/Services
+DaemonSets Scheduling/Deploying
+Manual Scheduling kube-scheduler Multiple Schedulers Static pods Storage
+Hostpath volume Storage Class (creating) Security
+Certificate API Obervability
+Managing Application Logs Cluster Setup and Maintenance
+Cluster install (need to know it but it&rsquo;s never tested) Cluster upgrade etcd architecture, backup and restore kube-proxy CoreDNS Trouble shooting]]></description>
+</item>
+<item>
     <title>Kong Academy 網關學習筆記</title>
-    <link>http://wysiwyz.github.io/posts/kong-hq-academy/</link>
+    <link>http://localhost:1313/posts/kong-hq-academy/</link>
     <pubDate>Tue, 12 Nov 2024 12:33:42 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/kong-hq-academy/</guid>
+    <guid>http://localhost:1313/posts/kong-hq-academy/</guid>
     <description><![CDATA[由於最近工作上要從自建的網關轉移到 Kong 這個雲原生產品做 API Gateway，怕自己學不成，反而被派去從零開始學寫系統分析，又看到 Kong Gateway Certified Associate Exam 有相關的三個 Lab 可以跟著實作，所以決定寫一篇學習筆記，並且嘗試將自己理解的 Kong 寫下來當作 output 介紹給潛在讀者。
 註：有人唸成『控』、但是 Youtube 的 Kong 官方頻道是唸作『抗』，就是香港 / 香江的『Kong』
 References Education Konghq.com 裡面主要使用以下幾個 courses，註冊帳號後即可 enroll ，但一旦 enroll 了就有三天 due date 期限 KGLL-101 Getting Started with Kong Gateway - Services, Routes, Plugins &amp; Consumers KGLL-103 Logging and Analyzing Operational Metrics with Kong KGLL-106 Reduce the Risk of New Software Versions with Canary Deployments Kong Inc Youtube 官方影片 Kong Gateway Documentation Core entities Services]]></description>
 </item>
 <item>
-    <title>Kubestronaut 之路 (1/5) - CKAD 考照筆記</title>
-    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut-03ckad/</link>
-    <pubDate>Wed, 18 Sep 2024 13:48:44 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut-03ckad/</guid>
-    <description><![CDATA[11/12 註：因為上個月考過 CKAD 了，想說作為紀錄把這筆記 draft 改成 false，另外 Ｓequoia MacOS 開 PSI Secure Browser 沒辦法看到 CKA 題目，目前正在等 Linux Foundation Ticket Assignee 回覆（好像要等超過三天，這辦事效率，唉）
-下週一就可以去領護照了呀！準備考試 &hellip; total 001 ~ 185
-Introduction 001. Introduction Pre-Requisites Lab environment Kubernetes Architecture Master and Worker Nodes Pods, ReplicaSets, Deployments Command Line - kubectl Understanding yaml Services Namespaces Course Objectives ñCore Concepts K8s Architecture Create and configure pods Configuration ConfigMaps SecurityContexts Resource Requirements Secrets ServiceAccounts Multi-Container Pods Ambassador pattern Adapter pattern Sidecar pattern Observability Readiness and Liveness Probes Container Logging Monitor and Debug Applications Pod Design Labels, Selectors and Annotations Rolling Updates and Rollbacks in Deployments Jobs and CronJobs Services and Networking Understand Services Network Policies State Persistence Persistent Volumes Persistent Volume Claims Core Concepts 009.]]></description>
-</item>
-<item>
     <title>當不成 Astronaut, 試試 Kubestronaut</title>
-    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut/</link>
+    <link>http://localhost:1313/posts/cncf-kubestronaut/</link>
     <pubDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut/</guid>
+    <guid>http://localhost:1313/posts/cncf-kubestronaut/</guid>
     <description><![CDATA[阿炆今年轉職前跟主管聊聊，說想學習 K8S 跟 AWS 微服務架構，所以離開了需要一直不停面試的乙方公司。
 阿炆入職後學習使用了很多 CNCF 專案，像是 Kubernetes、ArgoCD、Keycloak、Prometheus、HELM、Longhorn，另外也考了一個 AWS 證照。
 阿炆準備 AWS SAA-C03 之前一直陸陸續續的看函授自學線性代數跟離散數學，考完 AWS 之後覺得剩五個月時間不太夠了，加上一直以為自己試用期還沒結束，只是延長了，於是找新主管 one-on-one meeting 談談工作表現與規劃。
@@ -42,10 +62,10 @@ Introduction 001. Introduction Pre-Requisites Lab environment Kubernetes Archite
 </item>
 <item>
     <title>SAA-C03 AWS Solution Architect Associate 準備心得（下）</title>
-    <link>http://wysiwyz.github.io/posts/saa-c03-two/</link>
+    <link>http://localhost:1313/posts/saa-c03-two/</link>
     <pubDate>Fri, 06 Sep 2024 10:05:31 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/saa-c03-two/</guid>
+    <guid>http://localhost:1313/posts/saa-c03-two/</guid>
     <description><![CDATA[本文有重新排版放到 medium &hellip; Go to Medium story
 準備心得 八月中旬自主模擬小考的期間，看完 ExamTopics 前 240 題之後，我發現 AWS Educate 暑期陪跑計畫的 Discord 群組有好心人分享使用關鍵字可以 Google Search 搜尋到剩下 241 ~ 981 題絕大多數的題目，所以我的做法是把這些一個個 copy 下來。聽起來很蠢，但因為它有些頁面都需要用 reCAPTCHA 之類的驗證碼確認是不是真人才能開啟，就沒有考慮研究網路爬蟲來節省時間了。
 另外也有使用 Google Apps Script 將存下來的題庫 google docs 轉成 google sheet，加上 Line Notify 並且紀錄每題發送次數的小功能，這樣用餐、吃飯時間、睡前、上洗手間、等火車這些零碎的滑手機時間，都會有 line 小幫手每 30 分鐘丟給你一個題目以及精選 discussion，實在是太有助於時間不夠的考生了！（絕對不是因為line通知太煩所以提前測驗的）
@@ -54,10 +74,10 @@ Introduction 001. Introduction Pre-Requisites Lab environment Kubernetes Archite
 </item>
 <item>
     <title>SAA-C03 AWS Solution Architect Associate 準備心得（上）</title>
-    <link>http://wysiwyz.github.io/posts/saa-c03-one/</link>
+    <link>http://localhost:1313/posts/saa-c03-one/</link>
     <pubDate>Tue, 20 Aug 2024 11:41:20 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/saa-c03-one/</guid>
+    <guid>http://localhost:1313/posts/saa-c03-one/</guid>
     <description><![CDATA[Motivation 自從去年八月考過 GCP PCA 之後，發現 (1) 想去的幾家公司使用的雲服務供應商都是用 AWS 居多，加上 (2) 某次聚會上遇到的進外商的優秀前同事有 AWS SAA-C03 證照，(3) 今年 AWS 新聞說要在台灣設立資料中心，以及 (4) 前公司提供了 AWS 考照半價補助但沒機會用到，還有 (5) 在 Facebook 社團看到 AWS 官方提供了兩種考照半價優惠的方案（一個要組隊報名，另一個只要在時限前完成官方部分課程）。
 基於看到 Educate Program 再過一天就要報名截止的心態，我刻不容緩的完成兩章的指定課程，趕緊送出申請，並且在一週後的星期三收到報名成功通知信。
 Requirement 報名成功通知信主要有三個重點：
@@ -68,19 +88,19 @@ Requirement 報名成功通知信主要有三個重點：
 </item>
 <item>
     <title>Smart contract, wallet, solidity 新手村</title>
-    <link>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</link>
+    <link>http://localhost:1313/posts/240522-solidity-smart-contract/</link>
     <pubDate>Wed, 22 May 2024 01:41:05 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240522-solidity-smart-contract/</guid>
+    <guid>http://localhost:1313/posts/240522-solidity-smart-contract/</guid>
     <description><![CDATA[Preface 今天中午午休聽了itplus的每周線上會-Web3.0全端開發工程師，聽到不少以前完全沒機會認識的名詞，像是Dapp、電子錢包 Metamask、Mist Browser、智能合約 Smart Contract、Solidity，決定記錄下這個腦袋又增加的plugins。
 References Metamask doc 這裡手把手教你用 React, typescript, vite 建置錢包，很是實用 The Ethereum Wiki Solidity_Introduction to Smart Contract 乙太坊社群專欄 ]]></description>
 </item>
 <item>
     <title>CKA 筆記 [7,8,9]: Security, Storage, Networking</title>
-    <link>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</link>
+    <link>http://localhost:1313/posts/240520-k8s-security-storage-networking/</link>
     <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</guid>
+    <guid>http://localhost:1313/posts/240520-k8s-security-storage-networking/</guid>
     <description><![CDATA[Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
 Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
 Asymmetric Encryption:
@@ -89,10 +109,10 @@ Solution Certificates API [Lab] pwd ls cat akshay.csr cat akshay.csr | base64 # 
 </item>
 <item>
     <title>Docker Compose 厲害了！一次幫你蓋多個containers</title>
-    <link>http://wysiwyz.github.io/posts/240515-docker-compose/</link>
+    <link>http://localhost:1313/posts/240515-docker-compose/</link>
     <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240515-docker-compose/</guid>
+    <guid>http://localhost:1313/posts/240515-docker-compose/</guid>
     <description><![CDATA[前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。
 Docker Compose 概覽 Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。
 Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。
@@ -104,10 +124,10 @@ docker compose up -d .]]></description>
 </item>
 <item>
     <title>消費者與提供者之間的合約測試 - Pact.io</title>
-    <link>http://wysiwyz.github.io/posts/240510-pact.io/</link>
+    <link>http://localhost:1313/posts/240510-pact.io/</link>
     <pubDate>Fri, 10 May 2024 17:39:51 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240510-pact.io/</guid>
+    <guid>http://localhost:1313/posts/240510-pact.io/</guid>
     <description><![CDATA[Introduction Pact是一個程式碼優先工具，使用contract tests測試 HTTP 以及訊息整合。Contract test斷言應用程式對應用程式之間的訊息，有符合文件所記錄的共識。如果沒有contract testing，那麼確保應用程式之前協作正確的唯一方式就只有使用容易壞掉又維護性高的整合測試了。
 測試煙霧警報器的時候，會使用測試按鈕，不會直接燒了房子，同理可證，Pact提供程式碼這樣一個測試按鈕，讓你在部署好所有微服務之前，能夠先安全地確認程式碼正確執行。
 Pact合約測試流程動圖
@@ -119,22 +139,6 @@ Pact實作合約測試的方式，就是確認所有呼叫你的test doubles的�
 合約測試術語 consumer: 例如需要接收資料的client provider: 例如server上的API，提供client所需的資料 通常在微服務架構下，client/server的術語不適合所有情境，例如透過訊息隊列的溝通就不適合。所以這裡會以consumer與provider為主。
 消費者驅動的contracts Pact是程式碼優先、消費者驅動的合約測試工具，通常由寫程式的開發或測試人員使用。在自動化的consumer tests過程中產生這個contract。這種模式的一個主要優勢是，全部的communication中，只測試到 consumer會實際使用到的部分communication。也就是說，任何不會被當前的consumer所使用到的 provider行為，都可以在不弄壞測試結果的前提下做異動修改。
 另外Pact contract也不像schema或者規格 (例如 OAS) 這類靜態的artefact定義資源的所有可能的狀態，pact contract實施方式是藉由執行測試案例的集合，每個元素描述了具體的請求/回應對。Pact實際上就是範例式合約。參考Schema測試與Contract測試的差異]]></description>
-</item>
-<item>
-    <title>框架比較：Springboot 與 Quarkus</title>
-    <link>http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/</link>
-    <pubDate>Thu, 09 May 2024 23:39:21 &#43;0800</pubDate>
-    <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240509-springboot-vs-quarkus/</guid>
-    <description><![CDATA[以下的筆記主要參照Baeldung這篇文章，後續會在針對如何用Quarkus建立第一個專案補充說明。
-SpringBoot v.s. Quarkus 概觀 這篇文章的關注點在於比較兩個廣為人知的Java框架—SpringBoot與Quarkus。看完文章，能更加瞭解兩者之間的相似、差異處以及各自的特殊性。另外也有一些測試來檢測效能並觀察表現。
-SpringBoot 這個Java framework主要用於企業級應用程式。集成了所有Spring project，提供許多production-ready的整合，可協助開發者提高生產力。 減少了要配置的數量以及文件樣板。另外因為約定大於配置的方法，會根據runtime時classpath中的依賴 (dependencies)，自動註冊預設的配置。SpringBoot大幅減少了許多Java應用程式上市的時間。
-Quarkus Quarkus 是另外一個framework，其方法類似SpringBoot，但另外能在快速的啟動時間內，交付較小型的artifacts，有更好的資源利用度以及效率。 Quarkus 是以 cloud、serverless以及容器化環境所最佳化的框架。除此之外，Quarkus framework與Java其他框架的的整合性也很好。
-比較這兩者 如上所述，這兩個framework與其他的project跟framework的整合性都不錯，但其內部 implementation &amp; architecture 並不相同。例如，SpringBoot提供兩種 web capabilities: blocking(Servlets) 以及 non-blocking(WebFlux)
-Quarkus 當然也有提供這兩種行為，但它可以讓開發同時使用blocking跟non-blocking這兩種策略。另外 Quarkus 有將響應式的方法內嵌在本身的架構中。
-因此這裡主要比較的是 Spring WebFlux 以及 Quarkus reactive capabilities 比較相似的情境 (non-blocking)。
-另外，這兩個projects中比較顯著的功能是新建 native images (binary executables 以及 platform-specific executables)，所以也會比較這兩個projects的native images。
-註: SpringBoot 2.7 版本的 native image support 仍在實驗階段，直到 VERSION 3 才正式支持 native image support，需要使用 GraalVM。 註: Native image 這裡指的是將Java程式碼建構成 standalone executable 可執行檔的技術。Executable 包含了 java classes, classes from its dependencies, runtime library class, 以及 jdk 的 native code。]]></description>
 </item>
 </channel>
 </rss>

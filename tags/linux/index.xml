@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Linux - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/linux/</link>
+        <link>http://localhost:1313/tags/linux/</link>
         <description>Linux - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/linux/" rel="self" type="application/rss+xml" /><item>
     <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
-    <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>
+    <link>http://localhost:1313/posts/lesson_06_linux/</link>
     <pubDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_06_linux/</guid>
+    <guid>http://localhost:1313/posts/lesson_06_linux/</guid>
     <description><![CDATA[Shell Script 與排程
 Linux 安全應用演練及總複習
 shebang 定義 指定由哪一個程式進行解讀此一檔案 必須放在 #!/bin/bash 執行Script 有執行權限，可用 ./{file}執行 ./myscript.sh 沒有執行權限 sh myscript.sh 執行 Script 時顯示除錯變數 VARIABLES 開頭可以是底線或字母 字串建議都用雙引號框起來，減少失誤 script = &quot;Horizon&quot; 🎁
@@ -16,10 +16,10 @@ Shell Script 1. if ... elif ... else ... fi #!/bin/bash LANG=C #強制輸出的�
 </item>
 <item>
     <title>Lesson 05: Linux 筆記 - Log Server, MariaDB, nmap</title>
-    <link>http://wysiwyz.github.io/posts/lesson_05_linux/</link>
+    <link>http://localhost:1313/posts/lesson_05_linux/</link>
     <pubDate>Sat, 15 Apr 2023 09:10:47 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_05_linux/</guid>
+    <guid>http://localhost:1313/posts/lesson_05_linux/</guid>
     <description><![CDATA[Log Server 實作
 MariaDB 權限與加密, nmap 檢測工具介紹
 User ID Report
@@ -29,10 +29,10 @@ rsyslog : 如果選 minimal installation，err不會由rsyslog接，改由journa
 </item>
 <item>
     <title>Lesson 04: Linux 筆記 - CA憑證、SELinux</title>
-    <link>http://wysiwyz.github.io/posts/lesson_04_linux/</link>
+    <link>http://localhost:1313/posts/lesson_04_linux/</link>
     <pubDate>Sat, 08 Apr 2023 09:15:16 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_04_linux/</guid>
+    <guid>http://localhost:1313/posts/lesson_04_linux/</guid>
     <description><![CDATA[Strict Transport Security (HSTS) Apache Nginx HTTPS 加密流程 Client 連到 Server 時，Server 將 Public key 傳給 Client Client 使用 Public key 產生隨機碼，和 Server 建立加密通道。 Client 用 Public key 進行傳輸資料加解密，Server 用 Private key 進行傳輸資料加解密 實際的資料使用對稱式加密方式，透過已經建好的加密通道進行傳輸 https 使用了非對稱式與對稱式加密 Khoor, Olqxa 怎麼在廣大的領域中發現小小的弱點，突破當前使用之演算法的弱點 &ndash; Dr. Mathematics
 凱薩加密演算法
 字母位移預設三個字 @Desktop
@@ -41,10 +41,10 @@ rsyslog : 如果選 minimal installation，err不會由rsyslog接，改由journa
 </item>
 <item>
     <title>Lesson 03: Linux 筆記 - 磁碟加密、Apache, Nginx, SSL</title>
-    <link>http://wysiwyz.github.io/posts/lesson_03_linux/</link>
+    <link>http://localhost:1313/posts/lesson_03_linux/</link>
     <pubDate>Sat, 18 Mar 2023 09:30:38 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_03_linux/</guid>
+    <guid>http://localhost:1313/posts/lesson_03_linux/</guid>
     <description><![CDATA[LUKS 加密服務 適用對象 移動式設備資料保護
 notebook, USB磁碟加密
 提供32組插槽使用
@@ -60,10 +60,10 @@ Linux檔案加密_GPG_GnuPG]]></description>
 </item>
 <item>
     <title>Lesson 02: Linux 筆記 - UGO, ACL, Samba, NFS, SFTP</title>
-    <link>http://wysiwyz.github.io/posts/lesson_02_linux/</link>
+    <link>http://localhost:1313/posts/lesson_02_linux/</link>
     <pubDate>Fri, 17 Mar 2023 16:44:11 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_02_linux/</guid>
+    <guid>http://localhost:1313/posts/lesson_02_linux/</guid>
     <description><![CDATA[請假六小時，來補課arrrhh
 何謂索引式檔案系統 沒有索引的時候，磁碟越大要掃描越久 自從有了索引，大大增加了檔案讀取的效率 日誌系統 確保檔案操作完成 減少檔案操作中斷的異常問題（寫入到一半停電之類的） 目前流行的檔案系統都有支援日誌功能 ext3/ext4 XFS 可以減少檔案損毀發生機率 參考書 大師養成起手式：從核心真正了解Linux運作原理 圖解Linux核心工作原理（五星推推⭐5） 掛載項目 在上層權限缺失的情況下，可以由mount point層面做最後一層限制 man fstab Options: noexec 檔案掛載時，要限制不能執行使用者放置的可執行檔 nosuid nodev（目前比較少用） Linux如果是作為log server，可能會有放置檔案上限問題
 UGO User Group Other
@@ -76,10 +76,10 @@ SUID &amp; SGID &amp; SBIT
 </item>
 <item>
     <title>Lesson 01: Linux 筆記 - Repository, 系統稽核/查詢</title>
-    <link>http://wysiwyz.github.io/posts/lesson_01_linux/</link>
+    <link>http://localhost:1313/posts/lesson_01_linux/</link>
     <pubDate>Sat, 04 Mar 2023 09:54:41 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_01_linux/</guid>
+    <guid>http://localhost:1313/posts/lesson_01_linux/</guid>
     <description><![CDATA[憑證具有 CIA 三要素
 Confidentiality 機密性
 Integrity
@@ -99,10 +99,10 @@ Linux history (morning) Recommended .GUTS - jsurf 實戰 Linux 系統數位鑑�
 </item>
 <item>
     <title>Lesson 00: Linux 筆記 - 資安原則、OpenSCAP</title>
-    <link>http://wysiwyz.github.io/posts/lesson_00_linux/</link>
+    <link>http://localhost:1313/posts/lesson_00_linux/</link>
     <pubDate>Sat, 11 Feb 2023 10:08:41 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/lesson_00_linux/</guid>
+    <guid>http://localhost:1313/posts/lesson_00_linux/</guid>
     <description><![CDATA[資安是一個循環 這次會過不代表下次會過，每年都要複驗 ISO27001 改版（LA - lead auditor） Log server Windows 的 GPO policy 是什麼 .twcertcc : https://www.twcert.org.tw/tw/mp-1.html 營利目標 依公司法，企業營運是為了向股東負責 企業營運 以永續經營與營利為目標 發展產品或服務解決客戶之問題，或者滿足其需求 有利企業發展的事才考慮執行 機密性 產生營利的過程中，衍生出只有甲乙雙方才能知道的事件 營運過程中，衍生無法完全透明的內部資訊 營運過程中，產生敏感度較高的數位物件 (e.g. 財務、薪資) 營運過程中，人事時地物的產生與其產生結果，具有不同層級的影響力 目標 保護營運資產不被未授權的人存取或者破壞，使用IT方式達成目標 常用手法 人員階級、職等、業務範圍管理 實物管理（區域進出換證、資產盤點） 數位資訊管理 CentOS 8 安全措施 作業系統安全 作業系統安裝 系統紀錄 檔案稽核 檔案系統權限配置 系統防火牆 應用服務安全 Web SSL MariaDB (MySQL &hellip; audit 要付費) Samba(smb)/NFS [AP windows] (NFS) &mdash;-&gt; [AP linux] (NFS)
 NFS: 可以做到細度、哪個 IP 可以對資料做存取 SRC cifs (smb)(smb3): 445/TCP 加密 linux 777 是什麼?]]></description>
 </item>

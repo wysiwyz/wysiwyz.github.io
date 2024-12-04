@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Kodekloud - Tag - Ich bin yiwen.</title>
+        <link>http://localhost:1313/tags/kodekloud/</link>
+        <description>Kodekloud - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/kodekloud/" rel="self" type="application/rss+xml" /><item>
+    <title>Apache Kafka 做中學</title>
+    <link>http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/</link>
+    <pubDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>http://localhost:1313/posts/kk_learn_by_doing_apache_kafka/</guid>
+    <description><![CDATA[這篇是根據 KK Learn By Doing: Beginner&rsquo;s Guid to Apache Kafka - Foundation and Development 所做的筆記與實作紀錄。
+學習目標是要能夠將 Kafka architecture 以及 essential components 套用在服務紀錄需求面，只是這 2.5 小時的課可能還是遠遠不夠，都有人把 Kafka 寫成 30 篇系列文章了。
+A distributed event streaming platform, widely used for building real-time data pipelines and applications
+01 introduction to Kafka Kafka 是開源分布式事件串流平台 (open-sourced, distributed, event streaming platform)，由 Apache Software Foundation 開發，原本是 LinkedIn 建立，在 2011 年開源。
+Kafka 是設計來處理實時資料，協助組織建構穩定、可擴充、且容錯率高的資料管線。
+Core components Producer : 將 record 送往 Kafka topics 的 app，負責選擇要將 record 送到該 topic 中的哪一個 partition Consumer : 從 Kafka topics 讀取 record 的 app，consumer 訂閱 topics 並將訊息作即時處理 Broker : 運行 Kafka 的伺服器，broker 從 producer 接收訊息，存在 disk，再將其發送到 consumers。一個 Kafka cluster 包含多個 brokers，用來確保負載平衡與容錯率 Topic : 是一個 logical channel，使 producer 用以發送 record，consumer 用以讀取 record。為了平行化與可擴張性，topic 會分片 (partitioned) Partition: 每個 topic 都拆分成 partitions，這個 partition 是有序且不可變的紀錄序列 (sequence of records)，使 Kafka 能夠水平擴展並在每個 partition 裡面維持紀錄順序 ZooKeeper or Kraft: 用來做分布式協調、配置管理、Kafka broker 與 topics 的主節點選舉 Kafka architecture Topics &amp; Partitions: Topic 再切分成 partitions，partition 是平行化跟可擴張性的基礎單位。每一個 partition 都是有序不可變的紀錄序列。partition 當中的每一個 record 都會分配到一個唯一的偏移量 (unique offset)。partitions 使得 Kafka 藉由分布式資料以及負載於多個 brokers 這兩種方式，達到可擴展性。 Producers &amp; Consumers: Kafka 支援 pub-sub 模型，多個 conusmer 可以訂閱到相同一個 topic，並獨立處理 data。 Brokers &amp; Clusters: Kafka broker 負責儲存與提供資料。Kafka cluster 包含多個 brokers 用來確保容錯性與高可用性。Brokers 分布在不同個 machines 以避免硬體故障造成資料遺失。 Zooker Coordination : Zookeeper 或 KRaft 管理配置檔以及 Kafka broker 之間合作，協助進行 partitions 主節點選舉，追蹤 broker metadata。但 Kafka 從 verion 2.]]></description>
+</item>
+</channel>
+</rss>

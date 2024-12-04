@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>CA - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/ca/</link>
+        <link>http://localhost:1313/tags/ca/</link>
         <description>CA - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/ca/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/ca/" rel="self" type="application/rss+xml" /><item>
     <title>Cloud architect GCP 🚧</title>
-    <link>http://wysiwyz.github.io/posts/gcp_pca_course_notes/</link>
+    <link>http://localhost:1313/posts/gcp_pca_course_notes/</link>
     <pubDate>Fri, 24 Mar 2023 13:39:15 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/gcp_pca_course_notes/</guid>
+    <guid>http://localhost:1313/posts/gcp_pca_course_notes/</guid>
     <description><![CDATA[Active learning - think and take notes
 Review - every once in a while
 Section 01 Getting Started GCP has 200+ services. This exam expects knowledge of 40+ services

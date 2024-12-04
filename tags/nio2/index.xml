@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>NIO2 - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/nio2/</link>
+        <link>http://localhost:1313/tags/nio2/</link>
         <description>NIO2 - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 03 May 2024 20:39:03 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/nio2/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 03 May 2024 20:39:03 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/nio2/" rel="self" type="application/rss+xml" /><item>
     <title>非阻塞式🌌 Non Blocking Jdbc</title>
-    <link>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</link>
+    <link>http://localhost:1313/posts/240503-non-blocking-jdbc/</link>
     <pubDate>Fri, 03 May 2024 20:39:03 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</guid>
+    <guid>http://localhost:1313/posts/240503-non-blocking-jdbc/</guid>
     <description><![CDATA[Part 1 阻塞式程式碼是現代軟體工程的禍根，它需要比較多的CPU cycles以及memory使用資源，提高了執行程式的成本
 I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
 了解 non-blocking calls 在做什麼 了解 event based system 的重要性以及他們如何協助調用 non-blocking calls 圖表的呈現面向:

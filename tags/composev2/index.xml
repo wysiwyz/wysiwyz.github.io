@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>ComposeV2 - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/composev2/</link>
+        <link>http://localhost:1313/tags/composev2/</link>
         <description>ComposeV2 - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 May 2024 23:40:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/composev2/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 May 2024 23:40:15 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/composev2/" rel="self" type="application/rss+xml" /><item>
     <title>Docker Compose 厲害了！一次幫你蓋多個containers</title>
-    <link>http://wysiwyz.github.io/posts/240515-docker-compose/</link>
+    <link>http://localhost:1313/posts/240515-docker-compose/</link>
     <pubDate>Wed, 15 May 2024 23:40:15 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240515-docker-compose/</guid>
+    <guid>http://localhost:1313/posts/240515-docker-compose/</guid>
     <description><![CDATA[前陣子去圖書館借了一本圖解Docker&amp;Kubernetes的書，看到第七章專門討論Docker Compose，加上練習的專案也大量使用到這個技術，因此花點時間來看一下官方的Documentation。
 Docker Compose 概覽 Docker Compose 這工具是用來定義以及運行多個容器之應用程式的工具，是解鎖流暢畫高效開發與部署經驗的工具。
 Compose簡化了整個application stack的控制，使用一個YAML檔簡化了服務、網路、volume的管理。用單一的指令就能建立並啟動配置檔案裏面所有的服務。

@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>CloudNative - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/cloudnative/</link>
+        <link>http://localhost:1313/tags/cloudnative/</link>
         <description>CloudNative - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/cloudnative/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/cloudnative/" rel="self" type="application/rss+xml" /><item>
     <title>當不成 Astronaut, 試試 Kubestronaut</title>
-    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut/</link>
+    <link>http://localhost:1313/posts/cncf-kubestronaut/</link>
     <pubDate>Mon, 16 Sep 2024 14:16:29 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut/</guid>
+    <guid>http://localhost:1313/posts/cncf-kubestronaut/</guid>
     <description><![CDATA[阿炆今年轉職前跟主管聊聊，說想學習 K8S 跟 AWS 微服務架構，所以離開了需要一直不停面試的乙方公司。
 阿炆入職後學習使用了很多 CNCF 專案，像是 Kubernetes、ArgoCD、Keycloak、Prometheus、HELM、Longhorn，另外也考了一個 AWS 證照。
 阿炆準備 AWS SAA-C03 之前一直陸陸續續的看函授自學線性代數跟離散數學，考完 AWS 之後覺得剩五個月時間不太夠了，加上一直以為自己試用期還沒結束，只是延長了，於是找新主管 one-on-one meeting 談談工作表現與規劃。

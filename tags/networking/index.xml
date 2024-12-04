@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Networking - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/networking/</link>
+        <link>http://localhost:1313/tags/networking/</link>
         <description>Networking - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 May 2024 02:40:38 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/networking/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 20 May 2024 02:40:38 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/networking/" rel="self" type="application/rss+xml" /><item>
     <title>CKA 筆記 [7,8,9]: Security, Storage, Networking</title>
-    <link>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</link>
+    <link>http://localhost:1313/posts/240520-k8s-security-storage-networking/</link>
     <pubDate>Mon, 20 May 2024 02:40:38 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/240520-k8s-security-storage-networking/</guid>
+    <guid>http://localhost:1313/posts/240520-k8s-security-storage-networking/</guid>
     <description><![CDATA[Section 7 Security TLS Basics 確保用戶跟Server之間的通訊是加密的
 Symmetric Encryption: 加解密用同一支密鑰，必須在sender跟receiver之間交換，Hacker解密數據的風險較高。
 Asymmetric Encryption:

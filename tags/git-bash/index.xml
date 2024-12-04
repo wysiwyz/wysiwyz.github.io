@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Git Bash - Tag - Ich bin yiwen.</title>
-        <link>http://wysiwyz.github.io/tags/git-bash/</link>
+        <link>http://localhost:1313/tags/git-bash/</link>
         <description>Git Bash - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/git-bash/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</lastBuildDate><atom:link href="http://localhost:1313/tags/git-bash/" rel="self" type="application/rss+xml" /><item>
     <title>Git Bash - some awesome commands</title>
-    <link>http://wysiwyz.github.io/posts/git_bash_cmds/</link>
+    <link>http://localhost:1313/posts/git_bash_cmds/</link>
     <pubDate>Thu, 16 Mar 2023 14:20:15 &#43;0800</pubDate>
     <author>celine</author>
-    <guid>http://wysiwyz.github.io/posts/git_bash_cmds/</guid>
+    <guid>http://localhost:1313/posts/git_bash_cmds/</guid>
     <description><![CDATA[紀錄一些 git bash 指令
 git log -oneline 跟sourceTree_History_Description欄位基本一樣
 git log 跟樓上一樣, 但多了些author/date訊息
