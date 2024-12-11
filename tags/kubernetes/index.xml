@@ -3,22 +3,14 @@
         <title>Kubernetes - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/kubernetes/</link>
         <description>Kubernetes - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 30 Nov 2024 06:22:38 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/kubernetes/" rel="self" type="application/rss+xml" /><item>
-    <title>Kubestronaut 02 CKA</title>
-    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut-02cka/</link>
-    <pubDate>Sat, 30 Nov 2024 06:22:38 &#43;0800</pubDate>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 29 Nov 2024 11:04:30 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/kubernetes/" rel="self" type="application/rss+xml" /><item>
+    <title>01 Kubestronaut KCNA &amp; KCSA</title>
+    <link>http://wysiwyz.github.io/posts/cncf-kubestronaut-01kcna/</link>
+    <pubDate>Fri, 29 Nov 2024 11:04:30 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut-02cka/</guid>
-    <description><![CDATA[11/30 註：寫需求分析不可控的因素太多了，除了要兼顧 bigger picture、detailed process、granular fields for programming、還要顧慮到 user sentiment、senior critics、 &hellip;
-就現階段而言，工作有關給人最多成就感的是拿到證照這條路（來人拿球棒敲醒這個人吧），其它都像是練習，不停製造錯誤再不停被導回正途
-![image-20241129110027476](/Users/yiwen/Library/Application Support/typora-user-images/image-20241129110027476.png)
-Topics not on CKAD but on CKA Workloads/Services
-DaemonSets Scheduling/Deploying
-Manual Scheduling kube-scheduler Multiple Schedulers Static pods Storage
-Hostpath volume Storage Class (creating) Security
-Certificate API Obervability
-Managing Application Logs Cluster Setup and Maintenance
-Cluster install (need to know it but it&rsquo;s never tested) Cluster upgrade etcd architecture, backup and restore kube-proxy CoreDNS Trouble shooting]]></description>
+    <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut-01kcna/</guid>
+    <description><![CDATA[KCSA Infrastructure Security summary
+Isolate critical applications on separate server for better security Restrict Docker port access with firewall rules and policies Apply least privilege to containers and secure Kubernetes dashboard Store sensitive data securely using Kubernetes secrets and RBAC Encrypt etcd data and use TLS authentication for protection Kubernetes Isolation Techniques Multi Tenancy with namespaces: different teams or project can use the same cluster without interfereing with others. Each team or project has its own namespace.]]></description>
 </item>
 <item>
     <title>當不成 Astronaut, 試試 Kubestronaut</title>

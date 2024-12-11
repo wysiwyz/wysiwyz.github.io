@@ -9,7 +9,7 @@
     <pubDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/posts/kk_learn_by_doing_apache_kafka/</guid>
-    <description><![CDATA[這篇是根據 KK Learn By Doing: Beginner&rsquo;s Guid to Apache Kafka - Foundation and Development 所做的筆記與實作紀錄。
+    <description><![CDATA[這篇是根據 KK Learn By Doing: Beginner&rsquo;s Guide to Apache Kafka - Foundation and Development 所做的筆記與實作紀錄。
 學習目標是要能夠將 Kafka architecture 以及 essential components 套用在服務紀錄需求面，只是這 2.5 小時的課可能還是遠遠不夠，都有人把 Kafka 寫成 30 篇系列文章了。
 A distributed event streaming platform, widely used for building real-time data pipelines and applications
 01 introduction to Kafka Kafka 是開源分布式事件串流平台 (open-sourced, distributed, event streaming platform)，由 Apache Software Foundation 開發，原本是 LinkedIn 建立，在 2011 年開源。

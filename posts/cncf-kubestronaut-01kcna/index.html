@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta name="google-adsense-account" content="ca-pub-6504473922193740">
+        <title>01 Kubestronaut KCNA &amp; KCSA - Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/posts/cncf-kubestronaut-01kcna/">
+  <meta property="og:site_name" content="Ich bin yiwen.">
+  <meta property="og:title" content="01 Kubestronaut KCNA & KCSA">
+  <meta property="og:description" content="KCSA Infrastructure Security summary
+Isolate critical applications on separate server for better security Restrict Docker port access with firewall rules and policies Apply least privilege to containers and secure Kubernetes dashboard Store sensitive data securely using Kubernetes secrets and RBAC Encrypt etcd data and use TLS authentication for protection Kubernetes Isolation Techniques Multi Tenancy with namespaces: different teams or project can use the same cluster without interfereing with others. Each team or project has its own namespace.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-11-29T11:04:30+08:00">
+    <meta property="article:modified_time" content="2024-11-29T11:04:30+08:00">
+    <meta property="article:tag" content="Cloud Native">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="KCSA">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="01 Kubestronaut KCNA & KCSA">
+  <meta name="twitter:description" content="KCSA Infrastructure Security summary
+Isolate critical applications on separate server for better security Restrict Docker port access with firewall rules and policies Apply least privilege to containers and secure Kubernetes dashboard Store sensitive data securely using Kubernetes secrets and RBAC Encrypt etcd data and use TLS authentication for protection Kubernetes Isolation Techniques Multi Tenancy with namespaces: different teams or project can use the same cluster without interfereing with others. Each team or project has its own namespace.">
+<meta name="application-name" content="Ich bin yiwen.">
+<meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/posts/cncf-kubestronaut-01kcna/" /><link rel="prev" href="http://wysiwyz.github.io/posts/kong-hq-academy/" /><link rel="next" href="http://wysiwyz.github.io/posts/kk_learn_by_doing_apache_kafka/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "01 Kubestronaut KCNA \u0026 KCSA",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/wysiwyz.github.io\/posts\/cncf-kubestronaut-01kcna\/"
+        },"genre": "posts","keywords": "Cloud Native, Kubernetes, KCSA","wordcount":  2443 ,
+        "url": "http:\/\/wysiwyz.github.io\/posts\/cncf-kubestronaut-01kcna\/","datePublished": "2024-11-29T11:04:30+08:00","dateModified": "2024-11-29T11:04:30+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "Author"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Ich bin yiwen.">Ich bin yiwen.</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">01 Kubestronaut KCNA & KCSA</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-11-29">2024-11-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2443 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;<span id="/posts/cncf-kubestronaut-01kcna/" class="leancloud_visitors" data-flag-title="01 Kubestronaut KCNA &amp; KCSA">
+                        <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#kcsa">KCSA</a>
+      <ul>
+        <li><a href="#infrastructure-security">Infrastructure Security</a></li>
+        <li><a href="#kubernetes-isolation-techniques">Kubernetes Isolation Techniques</a></li>
+        <li><a href="#workload-and-application-code-security">Workload and Application Code Security</a></li>
+        <li><a href="#api-server">Api Server</a></li>
+        <li><a href="#securing-controller-manager-and-scheduler">Securing Controller Manager and Scheduler</a></li>
+        <li><a href="#securing-kubelet">Securing Kubelet</a></li>
+        <li><a href="#securing-kube-proxy">Securing kube proxy</a></li>
+        <li><a href="#pod-security">Pod Security</a></li>
+        <li><a href="#securing-etd">Securing ETD</a></li>
+        <li><a href="#secure-container-networking">Secure container networking</a></li>
+        <li><a href="#client-security---kubectl-proxy-port-forward">Client Security - kubectl proxy port forward</a></li>
+        <li><a href="#pod-security-standards-and-pod-security-admissions">Pod Security Standards and Pod Security Admissions</a></li>
+        <li><a href="#authentication">Authentication</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="kcsa">KCSA</h2>
+<h3 id="infrastructure-security">Infrastructure Security</h3>
+<p>summary</p>
+<ol>
+<li>Isolate critical applications on separate server for better security</li>
+<li>Restrict Docker port access with firewall rules and policies</li>
+<li>Apply least privilege to containers and secure Kubernetes dashboard</li>
+<li>Store sensitive data securely using Kubernetes secrets and RBAC</li>
+<li>Encrypt etcd data and use TLS authentication for protection</li>
+</ol>
+<h3 id="kubernetes-isolation-techniques">Kubernetes Isolation Techniques</h3>
+<p><strong>Multi Tenancy</strong> with namespaces: different teams or project can use the same cluster without interfereing with others. Each team or project has its own namespace.</p>
+<p><strong>Network Policies</strong> allow us to define role regarding which components can talk to each other.</p>
+<p><strong>RBAC</strong> ensures that developer has only read access permission to production ns and full access to the development ns. Team A only has access to namespace A resources and team B only has access to namespace B resource.</p>
+<p>Resource Quotas and Limits ensures that each component gets a fair share of resources.</p>
+<h3 id="workload-and-application-code-security">Workload and Application Code Security</h3>
+<p>Container - Let&rsquo;s say a team use containeriation for the benefit of portability, scalability, consistency, isolation and security. Popular artifact repository supports image signing, enhanced access control, integrated vulnerability scaning, such as JFrog, Nexus Repository, GitHub Packages.</p>
+<p>Code - SQL injection attacks, use SonarQube to detect problematic code. Use OWASP dependency checking tool. Gaining insight into containerized application is essential. This is where tools lik Sysdig come into as a solution. Sysdig provides deep visibility into containerized environment, which allows you to monitor resrouce usage, detect anomalies, and troubleshoot issues in real time. With Sysdig, you can quickly pinpoint which container or process is causing high CPU or memory usage, can track down problematic workloads, and even inspect live system calls.</p>
+<table>
+<thead>
+<tr>
+<th>4 C&rsquo;s</th>
+<th>best practices</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code</td>
+<td></td>
+</tr>
+<tr>
+<td>Container</td>
+<td>Restrict Images, Supply Chain, Sandboxing, Privileged</td>
+</tr>
+<tr>
+<td>Cluster</td>
+<td>Authentication Authorization, Admission, Network Policy</td>
+</tr>
+<tr>
+<td>Cloud</td>
+<td>Data Center, Network, Servers</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api-server">Api Server</h3>
+<p>Who can access the api-server?</p>
+<ul>
+<li>Files - Username and passwords</li>
+<li>Files - username and tokens</li>
+<li>Certificates</li>
+<li>External Authentication providers - LDAP</li>
+<li>Service Accounts</li>
+</ul>
+<p>What can they (api-server) do?</p>
+<ul>
+<li>RBAC authorization</li>
+<li>ABAC authorization</li>
+<li>Node authorization</li>
+<li>Webhook Mode</li>
+</ul>
+<h3 id="securing-controller-manager-and-scheduler">Securing Controller Manager and Scheduler</h3>
+<p>summary</p>
+<ol>
+<li>Isolate controller manager and scheduler on separate dedicated nodes</li>
+<li>Use RBAC to limit permissions of controller manager and  scheduler</li>
+<li>Encrypt communications between components using TLS for security</li>
+<li>Enable audit logging to track and review all actions taken</li>
+<li>Secure default settings and protect the configuration files</li>
+<li>Run the latest version of Kubernetes</li>
+<li>Regularly scan for vulnerabilities</li>
+</ol>
+<h3 id="securing-kubelet">Securing Kubelet</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># kubelet.service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ExecStart=/usr/local/bin/kubelet \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>--<span class="l">container-runtime=docker \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>--<span class="l">image-pull-progress-deadline=2m \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>--<span class="l">kubeconfig=/var/lib/kubelet/kubeconfig \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>--<span class="l">network-plugin=cni \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>--<span class="l">register-node=true \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>--<span class="l">v=2 \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>--<span class="l">config=/var/lib/kubelet/kubelet-config.yaml</span><span class="w"> </span><span class="c"># add</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#  --cluster-domain=cluster.local \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#  --file-check-frequency=0s \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#  --healthz-port=10248 \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#  --cluster-dns=10.96.0.10 \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#  --http-check-frequency=0s \\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#  --sync-frequency=0s</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Above is how the kubelet service configuration file was originally, but with the release of version 1.10, most of these parameters were moved to another file called the kubelet config file for ease of deployment and configuration management. The object created within the file is named kubelet configuration.</p>
+<p>On the kubelete service config file, we pass the path to this file as a command line argument named config. Note that within the file, the parameters use camel case. So all dashes that separate words in the previous implementation are removed and words are written without spaces, and the first letter of each word is capitalized except the first word, see below:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">kubelet.config.k8s.io/v1beta1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">KubeletConfiguration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">clusterDomain</span><span class="p">:</span><span class="w"> </span><span class="l">cluster.local</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">fileCheckFrequency</span><span class="p">:</span><span class="w"> </span><span class="l">0s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">healthzPort</span><span class="p">:</span><span class="w"> </span><span class="m">10248</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">clusterDNS</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="m">10.96.0.10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">httpCheckFrequency</span><span class="p">:</span><span class="w"> </span><span class="l">0s</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">syncFrequency</span><span class="p">:</span><span class="w"> </span><span class="l">0s</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you specify a flag both in the service configuration file or on the command line as well as in the file in the kubelet configuration file, then the flag specified on the command line will override whatever is in this file.</p>
+<p>Let&rsquo;s say there are a large number of  worker nodes, instead of manually creating these kubelet config files in each of those worker nodes, the kubdadm tool can help in automatically configuring the kubelet files on those nodes when you run the kubeadm join command.</p>
+<h4 id="view-kubelet-options">View kubelet options</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">ps -aux <span class="p">|</span> grep kubelet
+</span></span><span class="line"><span class="cl">car /var/lib/kubelet/config.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="kubelet---security">Kubelet - Security</h4>
+<p>The kubelet serves on two ports: port 10250, which is where the kubelet serves the API server that allows full access. And port 10255, which serves an API that allows an authenticated, unauthorized read-only access. By default, the kubelet allows anonymous access to its API.</p>
+<table>
+<thead>
+<tr>
+<th>port</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10250</td>
+<td>Serves API that allows full access</td>
+</tr>
+<tr>
+<td>10255</td>
+<td>Serves API that allows unauthenticated read-only access</td>
+</tr>
+</tbody>
+</table>
+<p>Anyone that knows the IP address of these hosts can access these APIs to perform anything that the API server can do, such as viewing existing pods, creating new pods, execing into existing pods or viewing usage metrics and stats and logs and more.</p>
+<p>How to prevent possible security issues? How to implement security on the kubelet? Any request that comes to the kubelet is first authenticated and then authorized.  The authorization process decides what areas of the API can the user access and what operations can they perform.</p>
+<h4 id="set---anonymous-authfalse">Set <code>--anonymous-auth=false</code></h4>
+<p>You can disable anonymous user by setting anonymous auth flag to false in a kubelete service configuration file.  Also you can set anonymous enabled to false in a KubeletConfiguration file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">kubelet.config.k8s.io/v1beta1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">KubeletConfiguration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">authentication</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">anonymous</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Summary</p>
+<ol>
+<li>Regularly update and patch container runtimes to fix vulnerabilities</li>
+<li>Run containers with least privileges to minimize security risks</li>
+<li>Use read-only filesystems to prevent unauthorized filesystem modifications</li>
+<li>Limit resource usage to prevent denial-of-service (DoS) attacks</li>
+<li>Apply security profiles like SELinux and AppArmer for protection</li>
+<li>Transition to supported runtimes like containered or CRI-O</li>
+<li>Implement monitoring and logging for runtime behavior detection</li>
+</ol>
+<h3 id="securing-kube-proxy">Securing kube proxy</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># to locate the kube-proxy config file</span>
+</span></span><span class="line"><span class="cl">ps -ef <span class="p">|</span> grep kube-proxy
+</span></span><span class="line"><span class="cl">...... /usr/local/bin/kube-proxy --config<span class="o">=</span>/var/lib/kube-proxy/config.conf --hostname-override<span class="o">=</span>controlplane
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat /var/lib/kube-proxy/config.conf
+</span></span><span class="line"><span class="cl">apiVersion: kubeproxy.config.k8s.io/v1alpha1
+</span></span><span class="line"><span class="cl">bindAddress: 0.0.0.0
+</span></span><span class="line"><span class="cl">bindAddressHardFail: <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">clientConnection:
+</span></span><span class="line"><span class="cl">  acceptContentTypes: <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">  burst: <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  contentType: <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">  kubeconfig: /var/lib/kube-proxy/kubeconfig.conf
+</span></span><span class="line"><span class="cl">  qps: <span class="m">0</span>
+</span></span><span class="line"><span class="cl">clusterCIDR: 127.17.0.0/16
+</span></span><span class="line"><span class="cl">......
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># check the permission - must be 644 or stricter, only the own can edit the file</span>
+</span></span><span class="line"><span class="cl">stat -c %a /var/lib/kube-proxy/kubeconfig.conf
+</span></span><span class="line"><span class="cl"><span class="m">644</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># check the ownership (file owner and group)</span>
+</span></span><span class="line"><span class="cl">stat -c %U:%G /var/lib/kube-proxy/kubeconfig.conf
+</span></span><span class="line"><span class="cl">root:root
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="securing-communication">Securing communication</h4>
+<p>Secure communication between cube-proxy and the API server is crucial.</p>
+<p>The file path at <code>clusters[*].cluster.certificate-authority</code> is use to validate the API server&rsquo;s TLS certificate. The kube-proxy itself uses a service-account token to authenticate to the kube api server. We need to ensure that this communicated is encrypted using TLS to avoid eavesdropping and tempering (竊聽和篡改).</p>
+<p>Another step to make sure is that audit logs are enabled. In K8s,  audit logs enables all actions performed by that service (in this case kube-proxy service) to track changes and identify unauthorized access, so it&rsquo;s important that we regularly review these logs that helps in detecting and addressing suspicious activities.</p>
+<p>Summary</p>
+<ol>
+<li>Secure kube-proxy config file with strict permissions</li>
+<li>Encrypt API server communication using TLS and service accounts</li>
+<li>Run kube-proxy with least privileges necessary</li>
+<li>Implement network policies for traffic control (If necessary)</li>
+<li>Use logging and monitoring for detecting anomalies</li>
+<li>Regularly update and patch kube-proxy for security</li>
+<li>Enable audit logs to track kube-proxy actions</li>
+</ol>
+<h3 id="pod-security">Pod Security</h3>
+<p>Pod Security Policy (PSP) was removed as  of version 1.25 in Kubernetes and is replaced by Pod Security Admission (PSA) and Pod Security Standards (PSS), which was promoted to being stable in version 1.25.</p>
+<p>Basic idea of how PSP works:</p>
+<p>When PSP is enabled, the Pod Security Policy Admission Controller observes all Pod creation requests and validates the configuration against the set of pre-configured rules. If it detects a violation of the rule, then that request to create the Pod is rejected and the user receives an error message.</p>
+<p>To enable Pod Security Admission, we added to the enable admission plugins flag (<code>--enable-admission-plugins</code>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># at /etc/kubernetes/manifests/kube-apiserver.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">command</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">kube-apiserver</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">authorization-mode=Node,RBAC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">advertise-address=172.17.0.107</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">allow-privileged=true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">enable-bootstrap-token-auth=true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">enable-admission-plugins=PodSecurityPolicy</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="define-pod-security-policy">Define Pod Security Policy</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">policy/v1beta1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PodSecurityPolicy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example-psp</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">seLinux</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="l">RunAsAny</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">supplementalGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="l">RunAsAny</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">runAsUser</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nt">rule</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;MustRunAsNonRoot&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># fsGroup:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 	rule: RunAsAny</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">requiredDropCapabilities</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s1">&#39;CAP_SYS_BOOT&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">defaultAddCapabilities</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s1">&#39;CAP_SYS_TIME&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s1">&#39;persistentVolumeClaim&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>[kubectl] ➡️ [Authentication] ➡️ [Authorization] ➡️ [Admission Controllers - PodSecurityPolicy] ➡️ Create POD</p>
+<h4 id="challenges">Challenges</h4>
+<p>PodSecurityPolicy is not enabled by default. If you were to enable Pod Security Policies in a cluster, you have to make sure that appropriate policies are created in advance. Also it&rsquo;s complex as you need to bind PSP to roles and bindings.</p>
+<h3 id="securing-etd">Securing ETD</h3>
+<h4 id="enabling-data-encryption-at-rest">Enabling Data Encryption at Rest</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">EncryptionConfiguration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apiserver.config.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span>- <span class="l">secrets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nt">providers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span>- <span class="nt">aescbc</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	    </span><span class="nt">keys</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">key1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	      </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;base64-encoded-encryption-key&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span>- <span class="nt">identity</span><span class="p">:</span><span class="w"> </span>{}<span class="w"> </span><span class="c"># in case of aescbc can&#39;t be found</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>Specifies the type of k8s object: EncryptionConfiguration</li>
+<li>Specifies the k8s API version: apiserver.config.k8s.io/v1</li>
+<li>Lists the resources to be encrypted, like secrets</li>
+<li>Defines encryption providers, using aescbc as the algorithm</li>
+</ol>
+<h4 id="generate-the-encryption-key">Generate the encryption key</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">openssl rand -base64 <span class="m">32</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After kubectl apply and created the encryption object, we need to update the etcd pod specification file to use the encryption configuration file.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">etcd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">k8s.gcr.io/etcd:3.4.13-0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">etcd</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">......</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- --<span class="l">encryption-provider-config=/path/to/encryption-config.yaml</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="user-tls-for-secure-communication-the-data-in-transit--at-movement">User TLS for Secure Communication (the data in transit / at movement)</h4>
+<p><code>--cert-file</code>: Specifies the server&rsquo;s certificate file for secure identity presentation</p>
+<p><code>--key-file</code>: Specifies the server&rsquo;s key file used with the certificate</p>
+<p><code>--client-cert-auth</code> : Enables client certificate authentication to allow only trusted clients</p>
+<p><code>--trusted-ca-file</code>: Specifies the CA certificate for verifying client certificates</p>
+<p>``&ndash;peer-cert-file`: for secure peer-to-peer communication</p>
+<p><code>--peer-key-file</code></p>
+<p><code>--peer-client-cert-auth</code></p>
+<p><code>--peer-trusted-ca-file</code></p>
+<h4 id="regular-backups">Regular Backups</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">ETCDCTL_API</span><span class="o">=</span><span class="m">3</span> etcdctl snapshot save /path/to/backup.db <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --endpoints<span class="o">=</span>&lt;etcd-endpoints&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --cacert<span class="o">=</span>/path/to/ca.crt <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --cert<span class="o">=</span>/path/to/etcd-client.crt <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --key<span class="o">=</span>/path/to/etcd-client.key
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li>Specify the etcdctl API version to use (version 3)</li>
+<li>Command to take a snapshot of the etcd data</li>
+<li>Path where the backup file will be saved</li>
+<li>Specify the etcd endpoints to connect to</li>
+<li>Path to the CA certificate used to verify the etcd server certificate</li>
+<li>Path to the client certificate used to authenticate the client</li>
+<li>Path to the client key used to authenticate the client</li>
+</ol>
+<h4 id="summary">Summary</h4>
+<ol>
+<li>Enable data encryption at rest for etcd security</li>
+<li>Use TLS to secure etcd communication</li>
+<li>Regularly back up etcd data for recovery</li>
+</ol>
+<h3 id="secure-container-networking">Secure container networking</h3>
+<p>Implement networkPolicies to restrict pod to pod communication</p>
+<p>Use service meshes</p>
+<ul>
+<li>Istio, Linkerd to enforce mutual TLS, to ensure that all communication between services is encrypted and authenticated, which significantly reduces the risk of man-in-the-middle attacks</li>
+</ul>
+<p>Encrypting Network Traffic</p>
+<ul>
+<li>Use a CNI plugin like Calico to enable IPsec encryption for network traffic, which ensures that all data transferred between nodes is encrypted</li>
+</ul>
+<p>Isolating sensitive workloads</p>
+<ul>
+<li>Using namespaces or network policies to help contain potentical security breaches</li>
+</ul>
+<h4 id="summary-1">Summary</h4>
+<ol>
+<li>Implement network policies to control pod traffic flow</li>
+<li>Use service meshes for encrypted, secure service communication</li>
+<li>Encrypt network traffic between containers using IPsec or WireGuard</li>
+<li>Isolate sensitive workloads with namespaces and network policies</li>
+</ol>
+<h3 id="client-security---kubectl-proxy-port-forward">Client Security - kubectl proxy port forward</h3>
+<p>user details and credentials stored in kubeconfig file (<code>~/.kube/config</code>)</p>
+<p>Through port 6443 using curl using certificate files</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl http://&lt;kube-api-server-ip&gt;:6443 -k
+</span></span><span class="line"><span class="cl">  --key admin.key
+</span></span><span class="line"><span class="cl">  --cert admin.crt
+</span></span><span class="line"><span class="cl">  --cacert ca.crt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Alternative option: start kubectl proxy client</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kubectl proxy
+</span></span><span class="line"><span class="cl">Starting to servce on 127.0.0.1:9001
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">curl http://localhost:8001 -k
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The kube proxy client launch a proxy service locally on port 8001 by default, and used the credentials and certificates from your cube-config file to access the cluster. Remember that the proxy only runs on your laptop and is only accessible within your laptop.</p>
+<h4 id="kubectl-port-forward">Kubectl port forward</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kubectl port-forward service/nginx 28080:80
+</span></span><span class="line"><span class="cl">kubectl port-forward --help
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Summary</p>
+<ol>
+<li>Encrypt data at rest and in transit for protection</li>
+<li>Implement RBAC to control access to storage resources</li>
+<li>Use Storage Classes to enforce security and performance policies</li>
+<li>Regularly back up data and have a disaster recovery plan</li>
+<li>Monitor and audit storage access for compliance and security</li>
+</ol>
+<h3 id="pod-security-standards-and-pod-security-admissions">Pod Security Standards and Pod Security Admissions</h3>
+<p>KEP 2579 PSP replacement</p>
+<p>PodSecurityAdmissionController</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kubectl <span class="nb">exec</span> -n kube-system kube-apiserver-controlplane -it -- kube-apiserver -h <span class="p">|</span> grep enable-admission-plugins
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="configure-psa">Configure PSA</h4>
+<p>PSA is namespace scoped. This means you can label a namespace with PSA mode and security standard using below command syntax.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kubectl label ns payroll pod-security.kubernetes.io/&lt;mode&gt;<span class="o">=</span>&lt;security standard&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># examples of label key and value</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Key<span class="o">]</span>
+</span></span><span class="line"><span class="cl">pod-security.kubernetes.io/enforce
+</span></span><span class="line"><span class="cl">pod-security.kubernetes.io/audit
+</span></span><span class="line"><span class="cl">pod-security.kubernetes.io/warn
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Value<span class="o">]</span>
+</span></span><span class="line"><span class="cl">privileged
+</span></span><span class="line"><span class="cl">baseline
+</span></span><span class="line"><span class="cl">restricted
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>One of PSA goals is to simplify the whole implementation. Instead of requiring users to write their own profiles, a few built-in profiles are defined: privileged, baseline, restricted.</p>
+<h4 id="three-security-policies-defined-by-pod-security-standards">Three security policies defined by Pod Security Standards</h4>
+<table>
+<thead>
+<tr>
+<th>Profile</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Privileged</td>
+<td>Unrestricted policy. <!-- raw HTML omitted -->It allows the widest possible level of permissions, almost like there are no restrictions. Useful for system-wide programs like logging agents, CNIs, storage drivers</td>
+</tr>
+<tr>
+<td>Baseline</td>
+<td>Minimally restrictive policy.</td>
+</tr>
+<tr>
+<td>Restricted</td>
+<td>Heavily restricted policy. <!-- raw HTML omitted -->It follows the pod hardening best practices.</td>
+</tr>
+</tbody>
+</table>
+<p>A mode defines what action the control plane takes if the policy is violated. If it&rsquo;s set to enforce, then the pod creation request is rejected. If it&rsquo;s set to audit, then the pod creation is allowed and an entry is added to the audit logs. And warn mode triggers a user-facing warning.</p>
+<h4 id="three-modes-of-pod-security-admission">Three modes of Pod Security Admission</h4>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>On Violation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enforce</td>
+<td>Reject pod</td>
+</tr>
+<tr>
+<td>audit</td>
+<td>Record in the audit logs</td>
+</tr>
+<tr>
+<td>warn</td>
+<td>Trigger user-facing warning</td>
+</tr>
+</tbody>
+</table>
+<h4 id="transitioning-from-psp-to-a-new-pod-security-solution">Transitioning from PSP to a new pod security solution</h4>
+<p>PodSecurityPolicy is being deprecated in Kubernetes 1.21 and removed from Kubernetes 1.25. With alternative security measures, there are two options available:</p>
+<ol>
+<li>Policy as Code (PAC)
+<ul>
+<li>notable examples: Kyverno, OPA/Gatekeeper, Open Policy Agent, jsPolicy</li>
+</ul>
+</li>
+<li>Pod Security Standards with Pod Security Admission (PSS+PSA)</li>
+</ol>
+<p><a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/" target="_blank" rel="noopener noreffer ">Pod Security Standards</a></p>
+<p><a href="https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/#configure-the-admission-controller" target="_blank" rel="noopener noreffer ">Configure the built-in admission controller</a></p>
+<p>Three types of exemptions: Usernames, RuntimeClassNNames, Namespaces</p>
+<h5 id="privileged">Privileged</h5>
+<p>Example case is a container that needs to manage the host&rsquo;s network stack.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">    </span><span class="nt">securityContext</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="baseline">Baseline</h5>
+<p>Example case is an API server that requires limited security permissions without escalation privileges.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">    </span><span class="nt">securityContext</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">allowPrivilegeEscalation</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="restricted">Restricted</h5>
+<p>Example case is a payment processing app that handles sensitive data, which is  under restricted level to minimize the attack surface.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">    </span><span class="nt">securityContext</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">allowPrivilegeEscalation</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">runAsNonRoot</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">readOnlyRootFilesystem</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="example-of-admission-configuration-file">Example of admission configuration file</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">admissionregistration.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">AdmissionConfiguration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">plugins</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PodSecurity</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">configuration</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">pod-security.admission.config.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PodSecurityConfiguration</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">defaults</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">enforce</span><span class="p">:</span><span class="w"> </span><span class="l">baseline</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">enforce-version</span><span class="p">:</span><span class="w"> </span><span class="l">latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">audit</span><span class="p">:</span><span class="w"> </span><span class="l">restricted</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">audit-version</span><span class="p">:</span><span class="w"> </span><span class="l">latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">warn</span><span class="p">:</span><span class="w"> </span><span class="l">restricted</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">warn-version</span><span class="p">:</span><span class="w"> </span><span class="l">latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">exemptions</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">usernames</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">runtimeClassNames</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">namespaces</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">my-namespace]  </span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="authentication">Authentication</h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-11-29</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://wysiwyz.github.io/posts/cncf-kubestronaut-01kcna/" data-hashtag="Cloud Native"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://wysiwyz.github.io/posts/cncf-kubestronaut-01kcna/" data-title="01 Kubestronaut KCNA &amp; KCSA"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cloud-native/">Cloud Native</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/kcsa/">KCSA</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/kong-hq-academy/" class="prev" rel="prev" title="Kong Academy 網關學習筆記"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Kong Academy 網關學習筆記</a>
+            <a href="/posts/kk_learn_by_doing_apache_kafka/" class="next" rel="next" title="Apache Kafka 做中學">Apache Kafka 做中學<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">strict with yourself; lenient with others.</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://.disqus.com/embed.js" defer></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.5.0/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"valine":{"appId":"","appKey":"","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@14.0.0/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"visitor":true}},"twemoji":true};</script><script type="text/javascript" src="/js/theme.min.js"></script><script type="text/javascript">
+            window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());
+            gtag('config', 'G-CCS3QPVY5N', { 'anonymize_ip': true });
+        </script><script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=G-CCS3QPVY5N" async></script></body>
+</html>
