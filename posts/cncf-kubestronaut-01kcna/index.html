@@ -35,7 +35,7 @@ Isolate critical applications on separate server for better security Restrict Do
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/wysiwyz.github.io\/posts\/cncf-kubestronaut-01kcna\/"
-        },"genre": "posts","keywords": "Cloud Native, Kubernetes, KCSA","wordcount":  2443 ,
+        },"genre": "posts","keywords": "Cloud Native, Kubernetes, KCSA","wordcount":  6007 ,
         "url": "http:\/\/wysiwyz.github.io\/posts\/cncf-kubestronaut-01kcna\/","datePublished": "2024-11-29T11:04:30+08:00","dateModified": "2024-11-29T11:04:30+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,8 +77,8 @@ Isolate critical applications on separate server for better security Restrict Do
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">01 Kubestronaut KCNA & KCSA</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-11-29">2024-11-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2443 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;<span id="/posts/cncf-kubestronaut-01kcna/" class="leancloud_visitors" data-flag-title="01 Kubestronaut KCNA &amp; KCSA">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-11-29">2024-11-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;6007 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;29 minutes&nbsp;<span id="/posts/cncf-kubestronaut-01kcna/" class="leancloud_visitors" data-flag-title="01 Kubestronaut KCNA &amp; KCSA">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -102,7 +102,49 @@ Isolate critical applications on separate server for better security Restrict Do
         <li><a href="#secure-container-networking">Secure container networking</a></li>
         <li><a href="#client-security---kubectl-proxy-port-forward">Client Security - kubectl proxy port forward</a></li>
         <li><a href="#pod-security-standards-and-pod-security-admissions">Pod Security Standards and Pod Security Admissions</a></li>
-        <li><a href="#authentication">Authentication</a></li>
+        <li><a href="#isolation-and-segmentation---resourcequota--limits">Isolation and Segmentation - ResourceQuota &amp; Limits</a></li>
+        <li><a href="#audit-logs">Audit logs</a></li>
+      </ul>
+    </li>
+    <li><a href="#kubernetes-threat-model">Kubernetes Threat Model</a>
+      <ul>
+        <li><a href="#kubernetes-trust-boundaries-and-data-flow">Kubernetes Trust Boundaries and Data Flow</a></li>
+        <li><a href="#persistence">Persistence</a></li>
+        <li><a href="#denial-of-service">Denial of Service</a></li>
+        <li><a href="#melicious-code-execution">Melicious Code Execution</a></li>
+        <li><a href="#compromised-applications-in-containers">Compromised Applications in Containers</a></li>
+        <li><a href="#attacker-on-the-network">Attacker on the Network</a></li>
+        <li><a href="#access-to-sensitive-data">Access to Sensitive Data</a></li>
+      </ul>
+    </li>
+    <li><a href="#platform-security">Platform Security</a>
+      <ul>
+        <li><a href="#supply-chain-security---minimize-base-image-footprint">Supply Chain Security - Minimize base image footprint</a></li>
+        <li><a href="#supply-chain-security---scan-images-for-known-vulnerabilities">Supply Chain Security - Scan images for known vulnerabilities</a></li>
+        <li><a href="#image-repository-security">Image Repository Security</a></li>
+        <li><a href="#observability---overview">Observability - Overview</a></li>
+        <li><a href="#observability---falco-overview-and-installation">Observability - Falco Overview and Installation</a></li>
+        <li><a href="#observability---using-falco-to-detect-threats">Observability - Using Falco to Detect Threats</a></li>
+        <li><a href="#service-mesh---monolithics-vs-microservices">Service Mesh - Monolithics vs Microservices</a></li>
+        <li><a href="#service-mesh">Service Mesh</a></li>
+        <li><a href="#service-mesh---istio">Service Mesh - Istio</a></li>
+        <li><a href="#service-mesh---security-in-istio">Service Mesh - Security in Istio</a></li>
+        <li><a href="#service-mesh---istio-security-architecture">Service Mesh - Istio Security Architecture</a></li>
+        <li><a href="#k8s-pki---certificate-creation">K8s PKI - certificate creation</a></li>
+        <li><a href="#k8s-pki---view-certificate-details">K8s PKI - view certificate details</a></li>
+        <li><a href="#connectivity---tls-intro">Connectivity - TLS intro</a></li>
+        <li><a href="#connectivity---tls-basics">Connectivity - TLS basics</a></li>
+        <li><a href="#connectivity---tls-in-kubernetes">Connectivity - TLS in Kubernetes</a></li>
+        <li><a href="#connectivity---mutual-tls">Connectivity - Mutual TLS</a></li>
+        <li><a href="#admission-controllers">Admission Controllers</a></li>
+      </ul>
+    </li>
+    <li><a href="#compliance-and-security-framework">Compliance and security framework</a>
+      <ul>
+        <li><a href="#compliance-frameworks">Compliance Frameworks</a></li>
+        <li><a href="#threat-modelling-frameworks">Threat Modelling Frameworks</a></li>
+        <li><a href="#supply-chain-compliance">Supply Chain Compliance</a></li>
+        <li><a href="#automation-and-tooling">Automation and Tooling</a></li>
       </ul>
     </li>
   </ul>
@@ -819,8 +861,930 @@ Isolate critical applications on separate server for better security Restrict Do
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">namespaces</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">my-namespace]  </span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="authentication">Authentication</h3>
-</div><div class="post-footer" id="post-footer">
+</div><h3 id="isolation-and-segmentation---resourcequota--limits">Isolation and Segmentation - ResourceQuota &amp; Limits</h3>
+<p>By default, Kubernetes does not have a CPU or memory request or limit set. This means that any pod can consume as many resources as required on any node and suffocate other pods or processes that are running on the node of resources.</p>
+<h4 id="limitrange">LimitRange</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">LimitRange</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cpu-resource-constraint</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">default</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">500m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">defaultRequest</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">500m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">max</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">min</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">100m</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">Container</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>We can ensure that every pod created has some defaults set by LimitRanges. This can help you define default values to be set for containers in pods that are created without a request or limit specified in the pod definition file.</p>
+<h4 id="resourcequota">ResourceQuota</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ResourceQuota</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-resource-quota</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hard</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nt">requests.cpu</span><span class="p">:</span><span class="w"> </span><span class="m">4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nt">requests.memory</span><span class="p">:</span><span class="w"> </span><span class="l">4Gi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nt">limits.cpu</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nt">limits.memory</span><span class="p">:</span><span class="w"> </span><span class="l">10Gi</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>To restrict the total amount of  resources that can be consume by applications deployed in a Kubernetes cluster, we could create quotas at a namespace level. ResourceQuota is a namespace level object that can be created to set hard limit for requests and limits.</p>
+<h3 id="audit-logs">Audit logs</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kubectl logs -f falco-6t3dd
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>All requests made to the Kubernetes cluster have to go through the <strong>API server</strong>. When we send a request to the Kubernetes cluster, such as for creating a new Nginx pod, it&rsquo;s the API server that receives this request. As soon as a request is made to the API server, it goes through what is known as the <strong>request received stage</strong>.</p>
+<p>In the request received stage, events are generated, irrespective of whether the request is valid or not. Once the request is authenticated, validated and authorized, another event called <strong>response started</strong> is generated.</p>
+<p>The response started event is applicable for requests that can take some time to complete, such as when making use of the <code>--watch</code> flag with the kubectl get command. To continuously observe the states of objects, once a request has been completed, a response body is sent back. This stage is known as the <strong>response complete stage</strong>.</p>
+<p>Finally in case of an invalid request or an error, the request goes through a <strong>panic stage</strong>. Each of the stages that we have seen here, request received, response started, response complete, and panic generated events that can be recorded by the API server.</p>
+<p>[RequestReceived] &ndash;&gt; [ResponseStarted] &ndash;&gt; [ResponseComplete] &ndash;&gt; [Panic]</p>
+<h4 id="1-create-a-policy-object">1. Create a Policy Object</h4>
+<p>Only record when pods were deleted.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVerion</span><span class="p">:</span><span class="w"> </span><span class="l">audit.k8s.io/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Policy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">omitStages</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;RequestReceived&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">namespaces</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;prod-namespaces&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verb</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;delete&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">groups</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;pods&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">resourceNames</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;webapp-pod&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l">RequestResponse </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="l">Metadata</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	</span>- <span class="nt">groups</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34; &#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  	  </span><span class="nt">resources</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;secrets&#34;</span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="level---4-value">Level - 4 value:</h5>
+<ul>
+<li><code>None</code>: no events will be logs if the pod called webapp is deleted in the prod namespace</li>
+<li><code>Metadata</code>: only the metadata (timestamp, username, resources, verbs) will be logged, the least verbose level</li>
+<li><code>Request</code></li>
+<li><code>RequestResponse</code></li>
+</ul>
+<h4 id="2-enable-auditing-in-kube-apiserver">2. Enable auditing in kube apiserver</h4>
+<p>In version 1.20, two types of backends are supported: A log audit backend that stores audit events to a file on the master node, or a webhook backend that writes to a remote web hook such as a Falco service.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># At /etc/kubernetes/manifests/kube-apiserver.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">command</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">kube-apiserver</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">...</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">audit-log-path=/var/log/k8-audit.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">audit-policy-file=/etc/kubernetes/audit-policy.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">audit-log-maxage=10</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">audit-log-maxbackup=5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">audit-log-maxsize=100</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="kubernetes-threat-model">Kubernetes Threat Model</h2>
+<h3 id="kubernetes-trust-boundaries-and-data-flow">Kubernetes Trust Boundaries and Data Flow</h3>
+<p>Threat modeling is a process that helps you find potential threats, understand their impact and put measures in place.</p>
+<h4 id="trust-boundaries">Trust Boundaries</h4>
+<p>Isolating parts of the system and enforce specific measures help us manage and reduce security risks by ensuring that a breach in one part of the system doesn&rsquo;t compromise the entire application. These isolated areas are called trust boundaries.</p>
+<p>Cluster boundaries ➡️ Node boundary ➡️ Namespace boundary ➡️ Pod boundary ➡️ Container Boundary</p>
+<h4 id="exploring-data-flow-in-a-multi-tier-application">Exploring Data Flow in a Multi-Tier Application</h4>
+<ol>
+<li>From user to frontend-pod/nginx: Secure with measures like HTTPs and authentication to protect user data righ from the start</li>
+<li>From nginx to authentication service: Secure communication channels and proper API authentication</li>
+<li>From backend-svc to db-pod: Interation with database must be tightly controlled and encrypted to prevent unauthorized access and protect sensitive information</li>
+<li>Backend communication: use networkPolicies to prevent unauthorized inter-pod communication</li>
+</ol>
+<h4 id="threat-actors">Threat actors</h4>
+<p>Entities that post threats to our system, such as external attackers, compromised containers and malicious users.</p>
+<h3 id="persistence">Persistence</h3>
+<p>Persistence: The ability of an attacker to maintain access to a compromised system even after reboots, updates or other interruptions</p>
+<h4 id="mitigating-persistence-risks">Mitigating Persistence Risks</h4>
+<ol>
+<li>Implementing role based access controls</li>
+<li>Restrict access to Secrets</li>
+<li>Hardening pod security
+<ul>
+<li>including preventing the use of privileged containers and enforcing read-only root filesystems</li>
+</ul>
+</li>
+<li>Regular updates and patching
+<ul>
+<li>up-to-date security patches prevent exploitation</li>
+</ul>
+</li>
+<li>Monitoring and auditing
+<ul>
+<li>monitor for suspicious activities</li>
+<li>regular audit of Kubernetes events</li>
+</ul>
+</li>
+</ol>
+<h3 id="denial-of-service">Denial of Service</h3>
+<p>Summary</p>
+<ol>
+<li>DoS attacks overwhelm system resources, causing unresponsiveness</li>
+<li>Set resource quotas to prevent excessive resource usage</li>
+<li>Restrict service account permissions to limit potential attacks</li>
+<li>Use Network Policies and firewalls to control access</li>
+<li>Monitor and alert on unusual activity for quick response</li>
+</ol>
+<h3 id="melicious-code-execution">Melicious Code Execution</h3>
+<p>Summary</p>
+<ol>
+<li>Attackers exploit vulnerabilities in containers to execute malicious code</li>
+<li>Restrict API server access to authorized users and services only</li>
+<li>Secure image repositories and use signed images for verification</li>
+<li>Monitor and log activities to detect and respond to threats</li>
+<li>Regularly update and patch applications to prevent security exploits</li>
+</ol>
+<h3 id="compromised-applications-in-containers">Compromised Applications in Containers</h3>
+<p>Please refer to compromised container attackTree, credit from Marco Lancini&rsquo;s blog.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://blog.marcolancini.it/images/posts/blog_kubernetes_threatmodel_scenario-compromisedcontainer.png"
+        data-srcset="https://blog.marcolancini.it/images/posts/blog_kubernetes_threatmodel_scenario-compromisedcontainer.png, https://blog.marcolancini.it/images/posts/blog_kubernetes_threatmodel_scenario-compromisedcontainer.png 1.5x, https://blog.marcolancini.it/images/posts/blog_kubernetes_threatmodel_scenario-compromisedcontainer.png 2x"
+        data-sizes="auto"
+        alt="https://blog.marcolancini.it/images/posts/blog_kubernetes_threatmodel_scenario-compromisedcontainer.png"
+        title="compromised container attackTree" /></p>
+<h3 id="attacker-on-the-network">Attacker on the Network</h3>
+<p>The attacker could cause a loss of etcd quorum by overloading its ports 2380 and 2379, or by blocking it from syncing up with other components.</p>
+<p>By taking down the scheduler itself and the controller manager, the attacker can halt new or restarted workloads from being scheduled in the cluster. Attacking the scheduler ports (10251 and 10259), prevents Kubernetes from assigning ports to nodes, stopping new tasks from starting.</p>
+<p>Going after the controller manager (port 10252 and 10257) will disrupt critical control loops, which impacts scaling updates and replications, meaning Kubernetes won&rsquo;t be able to manage the cluster&rsquo;s state effectively.</p>
+<p>Kube-proxy is the service that manages network rules on each node. If the attacker takes down the kube-proxy or overloads its ports 10256 and 10249, it stops the flow of traffic between services and pods and essentially freezing communications.</p>
+<p>Targeting Kubernetes DNS ports 53 would break name resolution, meaning services can&rsquo;t find each other by name, causing connectivity issues all over.</p>
+<p>Attackers could also degrade the CNI (container network interface) by flooding it, which slows down or cuts off port-to-port communication, causing distributed services to fail.</p>
+<p>By targeting network boot services like PXE server, the attackers could prevent new nodes from joining the cluster. This would keep the cluster from scaling up or replacing failed nodes, locking it into a degraded state.</p>
+<h4 id="to-mitigate-network-based-attacks">To mitigate network based attacks</h4>
+<ul>
+<li>Configuring firewalls</li>
+<li>Securing nodes
+<ul>
+<li>apply latest security patches</li>
+<li>monitor vulnerabilities</li>
+</ul>
+</li>
+<li>Implementing network policies</li>
+<li>Strong authentication and authorization
+<ul>
+<li>strong password</li>
+<li>multi-factor authentication</li>
+<li>rule-based access control</li>
+</ul>
+</li>
+<li>Monitoring and logging</li>
+</ul>
+<h4 id="summary-2">Summary</h4>
+<ol>
+<li>Attackers can target K8s control plane and nodes for breaches</li>
+<li>Configure firewalls to limit network access to trusted IP addresses</li>
+<li>Keep node operating systems and components updated and patched</li>
+<li>Implement network policies to control traffic and prevent lateral movement</li>
+<li>Use strong authentication, multi-factor, and RBAC for secure access</li>
+<li>Monitor and log activities to detect and respond to threats</li>
+</ol>
+<h3 id="access-to-sensitive-data">Access to Sensitive Data</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">vi /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">sudo apt install nginx
+</span></span><span class="line"><span class="cl"><span class="c1"># the default configuration for sudo</span>
+</span></span><span class="line"><span class="cl">cat /etc/sudoers
+</span></span><span class="line"><span class="cl">visudo
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="platform-security">Platform Security</h2>
+<h3 id="supply-chain-security---minimize-base-image-footprint">Supply Chain Security - Minimize base image footprint</h3>
+<p>When the imsage is built from scratch (<code>FROM scratch</code>), it is called as the base image. Parent image and base image can be referred to as the same thing.</p>
+<h4 id="modular">Modular</h4>
+<p>Do not build images that combine multiple applications, such as a web server, database and other service, all into one image. Instead, build images that aer modular. These different images, when deployed as containers, can together form a single large application that has different services. And each component can scale up or down as required without having to scale the other components.</p>
+<h4 id="persist-state">Persist State</h4>
+<p>Another best practice to be followed is not storing data or states inside a container. Because containers are ephmeral in nature, we should be able to bring them back online and not lose data along with the container. Always store data in either an external volume or caching service like Redis.</p>
+<h4 id="choose-a-base-image">Choose a base image</h4>
+<p><code>FROM ??????</code></p>
+<p>First you look for iamges that suit your technical needs, such as httpd base image for your application, or nginx base image for nginx based server. Secondly, you must look for images with authenticity (<code>OFFICIAL IMAGE</code> or <code>verified publisher</code> tag). Thirdly, images must also be up to date, which are less likely to have vulnerabilities in them.</p>
+<h4 id="slimminimal-images">Slim/Minimal images</h4>
+<ol>
+<li>Create slim/minimal images</li>
+<li>Find an official minimal image that exists</li>
+<li>Only install necessary packages
+<ul>
+<li>remove shells/packages managers/tools</li>
+</ul>
+</li>
+<li>Maintain different images for different environment
+<ul>
+<li>development - debug tools</li>
+<li>Production - lean</li>
+</ul>
+</li>
+<li>Use multi-stage builds to create lean production ready images</li>
+</ol>
+<h4 id="distress-docker-images">Distress Docker Images</h4>
+<h5 id="contains">Contains:</h5>
+<ul>
+<li>Application</li>
+<li>Runtime dependencies</li>
+</ul>
+<h5 id="does-not-contain">Does not contain:</h5>
+<ul>
+<li>package managers</li>
+<li>shells</li>
+<li>network tools</li>
+<li>text editors</li>
+<li>other unwanted programs</li>
+</ul>
+<p>Please refer to <code>gcr.io/distroless/xxxxxx</code> images.</p>
+<h4 id="vulnerability-scanning">Vulnerability scanning</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">trivy image httpd
+</span></span><span class="line"><span class="cl"><span class="c1"># found 124 </span>
+</span></span><span class="line"><span class="cl">trivy image httpd:alpine
+</span></span><span class="line"><span class="cl"><span class="c1"># found zero!</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="supply-chain-security---scan-images-for-known-vulnerabilities">Supply Chain Security - Scan images for known vulnerabilities</h3>
+<p>CVE zero to ten points (low - high level vulnerabilities)</p>
+<h4 id="cve-scanner">CVE Scanner</h4>
+<p>A solution is to reduce the attack surface by removing unnecessary packages.</p>
+<ol>
+<li>
+<p>Trivy by aqua security</p>
+<ul>
+<li></li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>easy to install, easy to run scan</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># add repo to /etc/apt/sources.list.d</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install wget apt-transport-https gnupg lsb-release
+</span></span><span class="line"><span class="cl">wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key <span class="p">|</span> sudo apt-key add -
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> deb https://aquasecurity.github.io/trivy-repo/deb <span class="k">$(</span>lsb_release -sc<span class="k">)</span> main <span class="p">|</span> sudo tee -a /etc/apt/sources.list.d/trivy.list
+</span></span><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl">sudo apt-get install trivy
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># run image scan</span>
+</span></span><span class="line"><span class="cl">trivy image ngnx:1.18.0
+</span></span><span class="line"><span class="cl"><span class="c1"># only list vulnerabilities of critical severity level</span>
+</span></span><span class="line"><span class="cl">trivy image --severity CRITICAL nginx:1.18.0
+</span></span><span class="line"><span class="cl">trivy image --ignore-unfixed nginx:1.18.0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker save nginx:1.18.0 &gt; nginx.tar
+</span></span><span class="line"><span class="cl">trivy image --input archive.tar
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h4 id="best-practices">Best practices</h4>
+<ul>
+<li>Continuously rescan images</li>
+<li>K8s admission controllers to scan images</li>
+<li>Have your own repository with pre-scanned images ready to go</li>
+<li>Integrate scanning tool with CI/CD pipelines</li>
+</ul>
+<h3 id="image-repository-security">Image Repository Security</h3>
+<p><code>image: docker.io/library/nginx</code></p>
+<ul>
+<li>registry: <code>docker.io</code>, <code>gcr.io</code></li>
+<li>user/account</li>
+<li>image/repository</li>
+</ul>
+<h4 id="private-repository">Private Repository</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">docker login private-registry.io
+</span></span><span class="line"><span class="cl">docker run private-registry.io/apps/internal-app
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># create credentials</span>
+</span></span><span class="line"><span class="cl">kubectl create secret docker-registry regcred <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --docker-server<span class="o">=</span>private-registry.io <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --docker-username<span class="o">=</span>registry-user <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --docker-password<span class="o">=</span>registry-password <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --docker-email<span class="o">=</span>registry-user@org.com
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pass the image pull secret for private registry</span>
+</span></span><span class="line"><span class="cl">spec:
+</span></span><span class="line"><span class="cl">  imagePullSecrets:
+</span></span><span class="line"><span class="cl">  - name: regcred
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="observability---overview">Observability - Overview</h3>
+<p>[Securing Cluster] [Minimizing Microservices Vulnerability] [Sandboxing Techniques] [MTLS encryption] [Restricting Network Access]</p>
+<p>Even with above techniques are all used to secure our infrastructure, there&rsquo;s absolutely no guarantee that an attack will never happen in the future.</p>
+<p>How to identify breaches that have already occurred in our K8s cluster? We can make use of tools such as Falco from Sysdig.</p>
+<table>
+<thead>
+<tr>
+<th>SYSCALL name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>close</code></td>
+</tr>
+<tr>
+<td><code>nanosleep</code></td>
+</tr>
+<tr>
+<td><code>fcntl</code></td>
+</tr>
+<tr>
+<td><code>fstatfs</code></td>
+</tr>
+<tr>
+<td><code>getdents64</code></td>
+</tr>
+<tr>
+<td><code>exit_group</code></td>
+</tr>
+<tr>
+<td><code>poll_ctl</code></td>
+</tr>
+<tr>
+<td><code>openat</code></td>
+</tr>
+</tbody>
+</table>
+<p>We need analyze syscalls and filter out those that are suspicious. Attackers often want to erase tracks that they have ever been in the system, so they often try to delete some parts of logs that tracked how they got into the system in the first place. Normally, an administrator rarely has reasons to delete recent logs, so this activity can be considered anomalous and can be used as an early sign of intrusion. Falco can monitor this event and then send alerts using various notification channels.</p>
+<h3 id="observability---falco-overview-and-installation">Observability - Falco Overview and Installation</h3>
+<ol>
+<li>Falco Kernel Module - intrusive, some managed k8s service providers do not allow this</li>
+<li>Extended Berkely Packet Filter (eBPF) - safer and less intrusive</li>
+</ol>
+<h4 id="install-falco-as-a-package">Install Falco as a Package</h4>
+<p>With this method, Falco is isolated from Kubernetes, and it can still continue to detect and alert suspicious behavior.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -s https://falco.org/repo/falcosecurity-3672BA8F.asc <span class="p">|</span> apt-key add -
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;deb https://download.falco.org/packages/deb stable main&#34;</span> <span class="p">|</span> tee -a /etc/apt/sources.list.d/falcosecurity.list
+</span></span><span class="line"><span class="cl">apt update -y
+</span></span><span class="line"><span class="cl">apt get install -y linux-headers-<span class="k">$(</span>uname -r<span class="k">)</span>
+</span></span><span class="line"><span class="cl">apt install -y falco
+</span></span><span class="line"><span class="cl"><span class="c1"># start the falco server</span>
+</span></span><span class="line"><span class="cl">systemctl start falco
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="install-as-a-daemonset">Install as a DaemonSet</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">helm repo add falcosecurity https://falcosecurity.github.io/charts
+</span></span><span class="line"><span class="cl">helm repo update
+</span></span><span class="line"><span class="cl">helm install falco falcosecurity/falco
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="observability---using-falco-to-detect-threats">Observability - Using Falco to Detect Threats</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># assume falco is running as package</span>
+</span></span><span class="line"><span class="cl">systemctl status falco
+</span></span><span class="line"><span class="cl"><span class="c1"># run nginx pod and check which node it&#39;s on, ssh into that node</span>
+</span></span><span class="line"><span class="cl">journalctl -fu falco
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="service-mesh---monolithics-vs-microservices">Service Mesh - Monolithics vs Microservices</h3>
+<h3 id="service-mesh">Service Mesh</h3>
+<h3 id="service-mesh---istio">Service Mesh - Istio</h3>
+<h3 id="service-mesh---security-in-istio">Service Mesh - Security in Istio</h3>
+<h3 id="service-mesh---istio-security-architecture">Service Mesh - Istio Security Architecture</h3>
+<h4 id="lab">Lab</h4>
+<h3 id="k8s-pki---certificate-creation">K8s PKI - certificate creation</h3>
+<h3 id="k8s-pki---view-certificate-details">K8s PKI - view certificate details</h3>
+<h4 id="lab-1">Lab</h4>
+<h3 id="connectivity---tls-intro">Connectivity - TLS intro</h3>
+<h3 id="connectivity---tls-basics">Connectivity - TLS basics</h3>
+<h3 id="connectivity---tls-in-kubernetes">Connectivity - TLS in Kubernetes</h3>
+<h3 id="connectivity---mutual-tls">Connectivity - Mutual TLS</h3>
+<h3 id="admission-controllers">Admission Controllers</h3>
+<p>[<strong>kubectl</strong>] ➡️ [<strong>Authentication</strong>] ➡️ [<strong>Authorization</strong>] ➡️ [<strong>Admission Controllers</strong>] ➡️ [<strong>Create Pod</strong>]</p>
+<p>Authorization is achieved through role-based access control using Role and RoleBinding objects.</p>
+<p>Admission Controller helps us achieve better security measures to enforce how a cluster is used. Examples are like:</p>
+<ul>
+<li>Only permit images from certain registry</li>
+<li>Do not permit <code>runAs</code> root user</li>
+<li>Only permit certain capabilities</li>
+<li>Pod always has labels</li>
+</ul>
+<h4 id="examples-of-admission-controllers">Examples of Admission Controllers:</h4>
+<ul>
+<li>
+<p>AlwaysPullImages</p>
+</li>
+<li>
+<p>DefaultStorageClass</p>
+</li>
+<li>
+<p>EventRateLimit</p>
+</li>
+<li>
+<p>NamespaceExists</p>
+<blockquote>
+<p>Rejected a kubectl run command if the specified ns does not exist.</p>
+</blockquote>
+</li>
+<li>
+<p>NamespaceAutoProvision</p>
+</li>
+<li>
+<p>many more examples &hellip;</p>
+</li>
+</ul>
+<h4 id="view-enabled-admission-controllers">View Enabled Admission Controllers</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kube-apiserver -h <span class="p">|</span> grep enable-admission-plugins
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="enable-admission-controllers">Enable Admission Controllers</h4>
+<p>Update the enable admission plugins flag to the kube-apiserver yaml file to add the new admission controllers.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">kube-apiserver</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">kube-system</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">command</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">kube-apiserver</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">authorization-mode=Node,RBAC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">advertise-address=172.17.0.107</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">allow-privileged=true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">enable-bootstrap-token-auth=true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">enable-admission-plugins=NodeRestriction,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- --<span class="l">disable-admission-plugins=DefaultStorageClass</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="lab--admission-controllers">Lab -admission controllers</h4>
+<h2 id="compliance-and-security-framework">Compliance and security framework</h2>
+<h3 id="compliance-frameworks">Compliance Frameworks</h3>
+<blockquote>
+<p>Defines what needs to be done to meet legal, regulatory, or industry standards</p>
+</blockquote>
+<p>Security compliance frameworks provide the guidelines and standards that help us protect sensitive data, such as personal info, health records, payment details, to ensure system integrity and meet legal obligations.</p>
+<p>To avoid data breach leading to significant fines and loss of trust, organizations need to follow structured guidelines known as compliance frameworks. Compliance frameworks are guidelines and best practices that are designed to help organizations meet regulatory requirements and ensure data security and privacy.</p>
+<blockquote>
+<p>frameworks such as GDPR, HIPAA, PCI DSS, NIST, CIS Benchmarks</p>
+</blockquote>
+<h4 id="general-data-protection-regulation-gdpr">General Data Protection Regulation (GDPR)</h4>
+<p>GDPR is a comprehensive data protection law enacted by the European Union to safegard individual&rsquo;s personal data and uphold their privacy rights. GDPR is highly relevant for the EU, and it&rsquo;s got to do with personal data.</p>
+<h4 id="health-insurance-portability-and-accountability-act-hipaa">Health Insurance Portability and Accountability Act (HIPAA)</h4>
+<p>HIPAA is a US regulation that protects sensitive patient health information. If our web application handles patient data, we must ensure taht all data transfers between front-end, back-end and database are encrypted using TLS. Also we need to implement access controls to restrict unauthorized access to health data and that our Kubernetes secrets are securely configured for application use.  HIPAA is used to protect health data, health info (PH, protected health information).</p>
+<h4 id="payment-card-industry-data-security-standard-psi-dss">Payment Card Industry Data Security Standard (PSI DSS)</h4>
+<p>We must make sure the cardhold data both in transit and at rest are encrypted. Strong access controls must be in place, and we should regularly monitor and audit access to payment data to comply with PCI DSS.</p>
+<h4 id="national-institute-of-standards-and-technology-nist">National Institute of Standards and Technology (NIST)</h4>
+<p>NIST provides a framework for improving the security and resilience of information systems. Conducting regular risk assessments to identify potential vulnerabilities, implementing security controls like firewalls, intrusion detection systems and regular security audits to help ensure mitigation of this risk. Key component: protection against security standards like cybersecurity.</p>
+<h4 id="center-for-internet-security-cis">Center for Internet Security (CIS)</h4>
+<p>CIS benchmarks offer best practices for securing IT systems and data.</p>
+<ul>
+<li>securing a configuration of the API server at etcd, kubelet, controller, manager, scheduler, authentication and authorization</li>
+<li>enforcing RBAC and other access control mechanisms, logging and monitoring, network policies, pod securiity</li>
+</ul>
+<p>Tools like Kubebench by Aqua Security can help check whether K8s is deployed securely by running the checks documented in the CIS K8s benchmark. Key component: CIS provides benchmarks for different systems, including K8s.</p>
+<h4 id="recommended-tools">Recommended Tools</h4>
+<ul>
+<li>OneTrust, TrustArc - <strong>GDPR</strong></li>
+<li>Compliancy Group, POBOX - <strong>HIPAA</strong></li>
+<li>Prisma Cloud - <strong>PCI</strong></li>
+<li>NIST SRE Toolkit - <strong>NIST</strong></li>
+<li>Kube-bench - <strong>CIS</strong></li>
+</ul>
+<h3 id="threat-modelling-frameworks">Threat Modelling Frameworks</h3>
+<blockquote>
+<p>Specifies how to achieve it by identifying specific threats and suggesting mitigations to secure the system</p>
+</blockquote>
+<ol>
+<li>STRIDE</li>
+<li>MITRE ATT &amp; CK</li>
+</ol>
+<h4 id="stride">STRIDE</h4>
+<p>STRIDE is developed by Microsoft. STRIDE identifies six categories of threats.</p>
+<ul>
+<li>S - spoofing
+<ul>
+<li>an attacker try to impersonate a legitmate user to access our server</li>
+<li>mitigated by implementing strong authentication mechanisms 驗證機制</li>
+</ul>
+</li>
+<li>T - tempering
+<ul>
+<li>an attacker attempt to alter data being process by the backend server, including data in transit, data at rest</li>
+<li>mitigated by ensuring data integrity with encryption and digital signatures 數據加密 電子簽章</li>
+</ul>
+</li>
+<li>R - repudiation
+<ul>
+<li>users claim that they didn&rsquo;t do something or were not responsible for doing something</li>
+<li>addressed by keeping comprehensive logs that record user actions and using non-repudiation techniques like digital signatures 審計日誌 電子簽章</li>
+</ul>
+</li>
+<li>I - information disclosure
+<ul>
+<li>someone obtaining info that they are not authorized to access</li>
+<li>prevented by encrypting data in transit and at rest 加密保護</li>
+</ul>
+</li>
+<li>D - denial of service
+<ul>
+<li>attacker might try to overload our system, causing it to crash</li>
+<li>mitigated by setting up rate limiting and resource quotas in our K8s environment 服務限流</li>
+</ul>
+</li>
+<li>E - elevation of privilege
+<ul>
+<li>attacker might gain unauthorized access to higher privilege levels</li>
+<li>prevented by implementing strict RBAC policies</li>
+</ul>
+</li>
+</ul>
+<h4 id="mitre-attck">MITRE ATT&amp;CK</h4>
+<p>MITRE ATT&amp;CK is a global knowledge based of real-world tactics and techniques that are used to build threat models. This framework focuses on what attackers aim to do (tactics) and how they do it (techniques).</p>
+<ul>
+<li><strong>Initial Access</strong>: How attackers enter the cluster, such as exploiting weak authentication</li>
+<li><strong>Execution</strong>: Running unauthorized commands or code, like deploying malicious containers</li>
+<li><strong>Persistence</strong>: maintaining access, for example, by creating new users or modifying roles</li>
+<li><strong>Privilege Escalation</strong>: gaining higher access, such as exploiting misconfigured RBAC</li>
+<li><strong>Defence Evasion</strong>: hiding activities, like disabling logs or concealing workloads</li>
+</ul>
+<h4 id="summary-3">Summary</h4>
+<ol>
+<li>Threat modeling identifies, assesses and mitigates specific security threats</li>
+<li>STRIDE stands for spoofing, tampering, repudiation, information disclosure, DoS, Elevation</li>
+<li>STRIDE helps uncover vulnerabilities with tailered defenses for our environment</li>
+<li>Use attack trees to visualize and analyze different attack scenarios</li>
+<li>Implement security controls to mitigate prioritized threats identified by STRIDE</li>
+<li>Integrate threat modeling into development to address issues early</li>
+<li>Leverage the MITRE ATT&amp;CK framework to understand adversary tactics and techniques and strengthen defenses against specific threats</li>
+</ol>
+<h3 id="supply-chain-compliance">Supply Chain Compliance</h3>
+<h4 id="key-components-of-supply-chain-security">Key components of Supply Chain Security</h4>
+<ol>
+<li>
+<p>Artifact: verify what you deploy</p>
+<ul>
+<li>
+<p>In K8s, artifacts are signed during the release process using keyless signing tools like <code>Cosign</code>. This ensures the artifacts haven&rsquo;t been tampered with.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cosign sign <span class="nv">$IMAGE</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># generates ephmeral keys, retrieves signed certs and ask you to confirm</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>You can also use co-sign utilty to verify the image</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cosign verify-blob <span class="s2">&#34;</span><span class="nv">$BINARY</span><span class="s2">&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --signature <span class="s2">&#34;</span><span class="nv">$BINARY</span><span class="s2">&#34;</span>.sig <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --certificate <span class="s2">&#34;</span><span class="nv">$BINARY</span><span class="s2">&#34;</span>.cert <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --certificate-identity krel-staging@k8s-releng-prod.iam.gserviceaccount.com <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --certificate-oidc-issuer https://accounts.google.com
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>Metadata: understanding what&rsquo;s inside</p>
+<ul>
+<li>Metadata describes what&rsquo;s in your artifacts and where they come from</li>
+<li>A critical type of metadata is the SBOM (software bill of materials)</li>
+<li>A SBOM is in what is known as an SPDX format</li>
+<li>An SBOM details all the components, libraries and dependencies along with their versions and sources</li>
+<li>We use <code>SIFT</code> (a CLI tool and go library) to generate a SBOM</li>
+</ul>
+</li>
+<li>
+<p>Attestations: building trust</p>
+<ul>
+<li>
+<p>Attestations are signed statements that verify metadata like SBOM&rsquo;s provenance data or vulnerability reports from an authentic, trustworthy source</p>
+</li>
+<li>
+<p>Kubernetes release team generates the SBOM and signs it using a private key, creating an attestation</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cosign sign --key &lt;PRIVATE_KEY&gt; sbom.k8s.io/v1.27.4/release.spdx &gt; sbom.attestation
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>You verify the attestation using their public certificates with the cosign command</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cosign verify-attestation <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --key &lt;PUBLIC_KEY&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --certificate-identity krel-staging@k8s-releng-prod.iam.gserviceaccount.com <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --certificate-oidc-issuer https://accounts.google.com <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  sbom.k8s.io/v1.27.4/release.spdx
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Think of the SHA checksum as a checking that a sealed package hasn&rsquo;t been damaged during the shipping process</p>
+</li>
+<li>
+<p>The attestation is like verifying the package&rsquo;s seal and sender signature to confirm it&rsquo;s from a trusted vender and contains what they claim it has</p>
+</li>
+<li>
+<p>Attestation is rather a framework for defining and verifying the entire supply chain process</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Policies: automating compliance</p>
+<ul>
+<li>To automate the deployment and verification of these components on K8s, and make sure we are only deploying verified, trustworthy artifacts</li>
+<li>Policy - the rules that ensure compliance and security standards are enforced automatically</li>
+<li>Policy helps to prevent insecure or non-compliant components form being deployed</li>
+<li><code>SIGstore's policy-controller</code> integrated with admission controllers</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>component</th>
+<th>steps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact</td>
+<td>The binaries and container images are signed using Cosign</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>The SBOM details all the components and their origins, helping you identify risks</td>
+</tr>
+<tr>
+<td>Attestations</td>
+<td>The SBOM and other metadata are signed to ensure trustworthiness</td>
+</tr>
+<tr>
+<td>Policies</td>
+<td>Finally Admission controllers verify these signatures and enforce compliance before deployment</td>
+</tr>
+</tbody>
+</table>
+<h3 id="automation-and-tooling">Automation and Tooling</h3>
+<p>The Cloud Native Security Map builds on top of the Cloud Native Security Whitepaper by SIG-Security.</p>
+<h4 id="lifecycle---4-phases">Lifecycle - 4 phases</h4>
+<ol>
+<li>
+<p>Develop</p>
+<ul>
+<li>
+<p><strong>code</strong> (code, dockerfile, k8s manifest, Iac) &ndash;&gt; <strong>commit</strong></p>
+<ul>
+<li>
+<p><code>oss-fuzz</code> by Google 模糊測試</p>
+</li>
+<li>
+<p><code>snyk Code</code> at VScode plugin</p>
+</li>
+<li>
+<p><code>fabric8</code></p>
+</li>
+<li>
+<p><code>KubeLinter</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">kube-linter lint pod.yaml
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Distribute</p>
+<ul>
+<li><strong>Build pipelines</strong> &ndash;&gt; <strong>container registry</strong></li>
+</ul>
+</li>
+<li>
+<p>Deploy</p>
+</li>
+<li>
+<p>Runtime</p>
+</li>
+</ol>
+<iframe class="LikeCoin" height="235" src="https://button.like.co/in/embed/wysiwyz/button?referrer=http%3a%2f%2fwysiwyz.github.io%2fposts%2fcncf-kubestronaut-01kcna%2f" width="100%" frameborder=0></iframe><div class="disqus markdown">
+                
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+
+(function() {
+    
+    
+    if (window.location.hostname == "localhost")
+        return;
+
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    var disqus_shortname = 'blog-wysiwyz';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
