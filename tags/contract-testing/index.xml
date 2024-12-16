@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Contract-Testing - Tag - Ich bin yiwen.</title>
+        <title>contract-testing - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/contract-testing/</link>
-        <description>Contract-Testing - Tag - Ich bin yiwen.</description>
+        <description>contract-testing - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 10 May 2024 17:39:51 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/contract-testing/" rel="self" type="application/rss+xml" /><item>
     <title>消費者與提供者之間的合約測試 - Pact.io</title>
     <link>http://wysiwyz.github.io/posts/240510-pact.io/</link>

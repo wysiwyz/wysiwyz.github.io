@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Compose - Tag - Ich bin yiwen.</title>
+        <title>compose - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/compose/</link>
-        <description>Compose - Tag - Ich bin yiwen.</description>
+        <description>compose - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 15 May 2024 23:40:15 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/compose/" rel="self" type="application/rss+xml" /><item>
     <title>Docker Compose 厲害了！一次幫你蓋多個containers</title>
     <link>http://wysiwyz.github.io/posts/240515-docker-compose/</link>

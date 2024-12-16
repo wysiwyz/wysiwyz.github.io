@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>CI/CD Components - Tag - Ich bin yiwen.</title>
+        <title>CI/CD components - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/ci/cd-components/</link>
-        <description>CI/CD Components - Tag - Ich bin yiwen.</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 26 Apr 2024 21:38:35 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/ci/cd-components/" rel="self" type="application/rss+xml" /><item>
+        <description>CI/CD components - Tag - Ich bin yiwen.</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="http://wysiwyz.github.io/tags/ci/cd-components/" rel="self" type="application/rss+xml" /><item>
     <title>初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml</title>
     <link>http://wysiwyz.github.io/posts/240426-gitlab-ci-note/</link>
     <pubDate>Fri, 26 Apr 2024 21:38:35 &#43;0800</pubDate>

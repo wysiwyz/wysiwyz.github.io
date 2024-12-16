@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Java - Tag - Ich bin yiwen.</title>
+        <title>java - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/java/</link>
-        <description>Java - Tag - Ich bin yiwen.</description>
+        <description>java - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 05 Aug 2023 12:13:34 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/java/" rel="self" type="application/rss+xml" /><item>
     <title>1Z0-819 題目KO</title>
     <link>http://wysiwyz.github.io/posts/ocpjp_11_mockexam/</link>

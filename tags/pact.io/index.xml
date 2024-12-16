@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Pact.io - Tag - Ich bin yiwen.</title>
+        <title>pact.io - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/pact.io/</link>
-        <description>Pact.io - Tag - Ich bin yiwen.</description>
+        <description>pact.io - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 10 May 2024 17:39:51 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/pact.io/" rel="self" type="application/rss+xml" /><item>
     <title>消費者與提供者之間的合約測試 - Pact.io</title>
     <link>http://wysiwyz.github.io/posts/240510-pact.io/</link>

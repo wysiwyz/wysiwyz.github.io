@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Linux - Tag - Ich bin yiwen.</title>
+        <title>linux - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/linux/</link>
-        <description>Linux - Tag - Ich bin yiwen.</description>
+        <description>linux - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 22 Apr 2023 09:10:52 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
     <title>Lesson 06: Linux 筆記 - Shell Script! final</title>
     <link>http://wysiwyz.github.io/posts/lesson_06_linux/</link>

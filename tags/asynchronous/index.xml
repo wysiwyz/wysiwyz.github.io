@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Asynchronous - Tag - Ich bin yiwen.</title>
+        <title>asynchronous - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/asynchronous/</link>
-        <description>Asynchronous - Tag - Ich bin yiwen.</description>
+        <description>asynchronous - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 03 May 2024 20:39:03 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/asynchronous/" rel="self" type="application/rss+xml" /><item>
     <title>非阻塞式🌌 Non Blocking Jdbc</title>
     <link>http://wysiwyz.github.io/posts/240503-non-blocking-jdbc/</link>

@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.133.0">
+	<meta name="generator" content="Hugo 0.111.3">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta name="google-adsense-account" content="ca-pub-6504473922193740">
-        <title>Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/">
-  <meta property="og:site_name" content="Ich bin yiwen.">
-  <meta property="og:title" content="Ich bin yiwen.">
-  <meta property="og:description" content="An ordinary space for storing and groups pieces of articles.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Ich bin yiwen.">
-  <meta name="twitter:description" content="An ordinary space for storing and groups pieces of articles.">
+        <title>Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Ich bin yiwen." />
+<meta property="og:description" content="An ordinary space for storing and groups pieces of articles." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://wysiwyz.github.io/" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ich bin yiwen."/>
+<meta name="twitter:description" content="An ordinary space for storing and groups pieces of articles."/>
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Ich bin yiwen.">
     <link rel="feed" href="/index.xml" type="application/rss+xml" title="Ich bin yiwen."><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -65,11 +62,16 @@ A distributed event streaming platform, widely used for building real-time data 
 Kafka 是設計來處理實時資料，協助組織建構穩定、可擴充、且容錯率高的資料管線。
 Core components Producer : 將 record 送往 Kafka topics 的 app，負責選擇要將 record 送到該 topic 中的哪一個 partition Consumer : 從 Kafka topics 讀取 record 的 app，consumer 訂閱 topics 並將訊息作即時處理 Broker : 運行 Kafka 的伺服器，broker 從 producer 接收訊息，存在 disk，再將其發送到 consumers。一個 Kafka cluster 包含多個 brokers，用來確保負載平衡與容錯率 Topic : 是一個 logical channel，使 producer 用以發送 record，consumer 用以讀取 record。為了平行化與可擴張性，topic 會分片 (partitioned) Partition: 每個 topic 都拆分成 partitions，這個 partition 是有序且不可變的紀錄序列 (sequence of records)，使 Kafka 能夠水平擴展並在每個 partition 裡面維持紀錄順序 ZooKeeper or Kraft: 用來做分布式協調、配置管理、Kafka broker 與 topics 的主節點選舉 Kafka architecture Topics &amp; Partitions: Topic 再切分成 partitions，partition 是平行化跟可擴張性的基礎單位。每一個 partition 都是有序不可變的紀錄序列。partition 當中的每一個 record 都會分配到一個唯一的偏移量 (unique offset)。partitions 使得 Kafka 藉由分布式資料以及負載於多個 brokers 這兩種方式，達到可擴展性。 Producers &amp; Consumers: Kafka 支援 pub-sub 模型，多個 conusmer 可以訂閱到相同一個 topic，並獨立處理 data。 Brokers &amp; Clusters: Kafka broker 負責儲存與提供資料。Kafka cluster 包含多個 brokers 用來確保容錯性與高可用性。Brokers 分布在不同個 machines 以避免硬體故障造成資料遺失。 Zooker Coordination : Zookeeper 或 KRaft 管理配置檔以及 Kafka broker 之間合作，協助進行 partitions 主節點選舉，追蹤 broker metadata。但 Kafka 從 verion 2.</div><div class="post-footer">
         <a href="/posts/kk_learn_by_doing_apache_kafka/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/apache/">Apache</a>,&nbsp;<a href="/tags/kafka/">Kafka</a>,&nbsp;<a href="/tags/kodekloud/">Kodekloud</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/apache/">apache</a>,&nbsp;<a href="/tags/kafka/">kafka</a>,&nbsp;<a href="/tags/kodekloud/">kodekloud</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cncf-kubestronaut-01kcna/">01 Kubestronaut KCNA & KCSA</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-11-29">2024-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">KCSA Infrastructure Security summary
-Isolate critical applications on separate server for better security Restrict Docker port access with firewall rules and policies Apply least privilege to containers and secure Kubernetes dashboard Store sensitive data securely using Kubernetes secrets and RBAC Encrypt etcd data and use TLS authentication for protection Kubernetes Isolation Techniques Multi Tenancy with namespaces: different teams or project can use the same cluster without interfereing with others. Each team or project has its own namespace.</div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Author</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-11-29">2024-11-29</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">KCNA Container and Orchestration
+The matrix from hell
+Web server, database, messaging, orchestration OS, hardware infrastructure libraries, dependencies Module 2 Quiz (failed ones only) How can you specify a specific runtime endpoint when using the CRI control tool?
+Setting the CONTAINER_RUNTIME_ENDPOINT environment variable,
+Using the --runtime-endpoint command line option
+Why do Docker images continue to work seamlessly in Kubernetes even after the removal of Docker support?
+Because Docker images adhere to the Open Container Initiative (OCI) standard</div><div class="post-footer">
         <a href="/posts/cncf-kubestronaut-01kcna/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cloud-native/">Cloud Native</a>,&nbsp;<a href="/tags/kubernetes/">Kubernetes</a>,&nbsp;<a href="/tags/kcsa/">KCSA</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">

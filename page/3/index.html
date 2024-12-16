@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-	<meta name="generator" content="Hugo 0.133.0">
+	<meta name="generator" content="Hugo 0.111.3">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <meta name="google-adsense-account" content="ca-pub-6504473922193740">
-        <title>Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:url" content="http://wysiwyz.github.io/">
-  <meta property="og:site_name" content="Ich bin yiwen.">
-  <meta property="og:title" content="Ich bin yiwen.">
-  <meta property="og:description" content="An ordinary space for storing and groups pieces of articles.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Ich bin yiwen.">
-  <meta name="twitter:description" content="An ordinary space for storing and groups pieces of articles.">
+        <title>Ich bin yiwen.</title><meta name="Description" content="An ordinary space for storing and groups pieces of articles."><meta property="og:title" content="Ich bin yiwen." />
+<meta property="og:description" content="An ordinary space for storing and groups pieces of articles." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://wysiwyz.github.io/" /><meta property="og:site_name" content="Ich bin yiwen." />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Ich bin yiwen."/>
+<meta name="twitter:description" content="An ordinary space for storing and groups pieces of articles."/>
 <meta name="application-name" content="Ich bin yiwen.">
 <meta name="apple-mobile-web-app-title" content="Ich bin yiwen."><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/moon_icon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://wysiwyz.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Ich bin yiwen.">
     <link rel="feed" href="/index.xml" type="application/rss+xml" title="Ich bin yiwen."><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -63,7 +60,7 @@ I. Blocking/Asynchronous/Asynchronous-Non-Blocking 這個章節(I)會學到:
 了解 non-blocking calls 在做什麼 了解 event based system 的重要性以及他們如何協助調用 non-blocking calls 圖表的呈現面向:
 程式語言: Java 會使用到 Java 執行緒 非同步的方法為綠底，同步的方法是紅底 藍底是不會產生阻塞的Java方法 Blocking Call save方法呼叫write方法 write方法是一個blocking call: 寫入磁碟 直到 write to disk 完成之後，這個 thread 才會停止 blocking 狀態 這個thread在blocking call return之後重新開始 接著這個thread呼叫notify方法 Asynchronous Call 非同步呼叫 save方法呼叫write方法，這個write方法包裝了一個asynchronous call 此 write包裝方法使用Executor(線程池或其他併發機制)產出一個執行緒來寫入磁碟 這個新產生的執行緒進入阻塞狀態，直到write to disk工作完成 執行save方法的主要執行緒不受到組塞，可以執行其他程序 新產生的執行緒在完成 blocking call 之後回傳，並呼叫notify方法 Asynchronous Non Blocking Call save方法呼叫write方法 (write方法使用 Java NIO) Non Blocking Call 不會阻塞主要執行緒 non-blocking write 方法進入阻塞狀態，直到write to disk的工作完成 執行save方法的主要執行緒並不會受到阻塞，可以執行其他程序 在non-blocking call完成之後，這個non-blocking方法呼叫notify方法 結論 Blocking Call</div><div class="post-footer">
         <a href="/posts/240503-non-blocking-jdbc/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/blocking/">Blocking</a>,&nbsp;<a href="/tags/asynchronous/">Asynchronous</a>,&nbsp;<a href="/tags/asynchronous-non-blocking/">Asynchronous-Non-Blocking</a>,&nbsp;<a href="/tags/r2dbc/">R2DBC</a>,&nbsp;<a href="/tags/reactive/">Reactive</a>,&nbsp;<a href="/tags/nio/">NIO</a>,&nbsp;<a href="/tags/nio2/">NIO2</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/blocking/">blocking</a>,&nbsp;<a href="/tags/asynchronous/">asynchronous</a>,&nbsp;<a href="/tags/asynchronous-non-blocking/">asynchronous-non-blocking</a>,&nbsp;<a href="/tags/r2dbc/">R2DBC</a>,&nbsp;<a href="/tags/reactive/">Reactive</a>,&nbsp;<a href="/tags/nio/">NIO</a>,&nbsp;<a href="/tags/nio2/">NIO2</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/240426-gitlab-ci-note/">初探GitLab CI/CD - 如何撰寫.gitlab-ci.yml</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-04-26">2024-04-26</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">使用 CI/CD 建構應用程式 開始 CI/CD 是軟體開發其中一個continuous method，你可以在這方法中持續的建構、測試、部署、監測迭代的程式碼異動。
@@ -72,7 +69,7 @@ Plan Create Verify Secure Release Monitor Manage your organization Learn Git Use
 另外也會定義variables，不同jobs之間的依賴關係，並且指定每個job什麼時候會被執行，應該如何被執行。
 沒有硬性規定要怎麼命名，但.gitlab-ci.yml是這個 CI/CD configuration file 最常見的名字。</div><div class="post-footer">
         <a href="/posts/240426-gitlab-ci-note/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ci/cd-yaml-syntax/">CI/CD Yaml Syntax</a>,&nbsp;<a href="/tags/pipeline/">Pipeline</a>,&nbsp;<a href="/tags/job/">Job</a>,&nbsp;<a href="/tags/ci/cd-components/">CI/CD Components</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/ci/cd-yaml-syntax/">CI/CD yaml syntax</a>,&nbsp;<a href="/tags/pipeline/">pipeline</a>,&nbsp;<a href="/tags/job/">job</a>,&nbsp;<a href="/tags/ci/cd-components/">CI/CD components</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/s_nginx/">Engine X 是什麼</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-03-20">2024-03-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">Engine-X (NginX) &mdash; It&rsquo;s like a server that stand between the internet and your backend infrastructure.
@@ -90,7 +87,7 @@ Append-only. Ordered by time
 Unique log sequence numbers (可以用來識別這個 log 在 log data 的 position)
 Stored data is persistent in nature</div><div class="post-footer">
         <a href="/posts/rabbitmq/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rabbitmq/">RabbitMQ</a>,&nbsp;<a href="/tags/messagequeue/">MessageQueue</a></div></div>
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/rabbitmq/">rabbitMQ</a>,&nbsp;<a href="/tags/messagequeue/">MessageQueue</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/kubernetes_na/">Kubernetes: techworld nana</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>celine</a></span>&nbsp;<span class="post-publish">published on <time datetime="2024-02-24">2024-02-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/studynote/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>StudyNote</a></span></div><div class="content">What is K8s 官方定義 Open source container orchestration tool 開源的容器調度工具

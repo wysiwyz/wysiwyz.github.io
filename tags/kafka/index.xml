@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Kafka - Tag - Ich bin yiwen.</title>
+        <title>kafka - Tag - Ich bin yiwen.</title>
         <link>http://wysiwyz.github.io/tags/kafka/</link>
-        <description>Kafka - Tag - Ich bin yiwen.</description>
+        <description>kafka - Tag - Ich bin yiwen.</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 03 Dec 2024 11:11:57 &#43;0800</lastBuildDate><atom:link href="http://wysiwyz.github.io/tags/kafka/" rel="self" type="application/rss+xml" /><item>
     <title>Apache Kafka 做中學</title>
     <link>http://wysiwyz.github.io/posts/kk_learn_by_doing_apache_kafka/</link>

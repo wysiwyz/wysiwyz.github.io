@@ -9,8 +9,13 @@
     <pubDate>Fri, 29 Nov 2024 11:04:30 &#43;0800</pubDate>
     <author>Author</author>
     <guid>http://wysiwyz.github.io/posts/cncf-kubestronaut-01kcna/</guid>
-    <description><![CDATA[KCSA Infrastructure Security summary
-Isolate critical applications on separate server for better security Restrict Docker port access with firewall rules and policies Apply least privilege to containers and secure Kubernetes dashboard Store sensitive data securely using Kubernetes secrets and RBAC Encrypt etcd data and use TLS authentication for protection Kubernetes Isolation Techniques Multi Tenancy with namespaces: different teams or project can use the same cluster without interfereing with others. Each team or project has its own namespace.]]></description>
+    <description><![CDATA[KCNA Container and Orchestration
+The matrix from hell
+Web server, database, messaging, orchestration OS, hardware infrastructure libraries, dependencies Module 2 Quiz (failed ones only) How can you specify a specific runtime endpoint when using the CRI control tool?
+Setting the CONTAINER_RUNTIME_ENDPOINT environment variable,
+Using the --runtime-endpoint command line option
+Why do Docker images continue to work seamlessly in Kubernetes even after the removal of Docker support?
+Because Docker images adhere to the Open Container Initiative (OCI) standard]]></description>
 </item>
 </channel>
 </rss>
